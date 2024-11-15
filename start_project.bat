@@ -6,4 +6,4 @@ echo Iniciando el proyecto...
 code . 
 
 echo Proyecto listo para trabajar.
-pause
+exit
