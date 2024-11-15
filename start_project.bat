@@ -4,6 +4,5 @@ git pull origin main
 
 echo Iniciando el proyecto...
 code . 
-
-echo Proyecto listo para trabajar.
 exit
+
