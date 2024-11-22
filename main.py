@@ -13,5 +13,5 @@ class App:
             pyxel.quit()
     def draw(self):
         pyxel.cls(0)
-        pyxel.text(15,15,"BUenos dias",15)
+        pyxel.text(15,15,"Buenos dias",15)
 App()
