@@ -1,1 +1,1 @@
-print("Hello world")
+print("Actuliacion todo n pacman.pyrex")
