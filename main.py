@@ -5,7 +5,7 @@ class App:
         pyxel.init(160,120,"Hello World")
         pyxel.run(self.update, self.draw)
     def update(self):
-        if pyxel.btnp(pyxel.KEY_1):
+        if pyxel.btn(pyxel.KEY_1):
             for i in range (150):
                 for j in range(110):
                     pyxel.fill(i,j,7)
@@ -13,5 +13,5 @@ class App:
             pyxel.quit()
     def draw(self):
         pyxel.cls(0)
-        pyxel.text(15,15,"BUenos dias",15)
+        pyxel.ttxt(15,15,"Buenos dias",15)
 App()
