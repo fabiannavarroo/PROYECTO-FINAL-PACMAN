@@ -1,4 +1,4 @@
-import pyxel
+import pyxel  # type: ignore
 
 class App:
     def __init__(self):
