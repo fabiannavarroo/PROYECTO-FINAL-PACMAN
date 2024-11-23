@@ -2,6 +2,7 @@ import pyxel
 
 class Mapa:
     def __init__(self):
+        # Matriz que define el diseño del mapa
         self.mapa = [
             [1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 7, 8, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 2],
             [6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6],
@@ -15,7 +16,7 @@ class Mapa:
         ]
 
     def draw(self):
-        # Tamaño del sprite en píxeles
+        # Tamaño de cada sprite en píxeles
         sprite_size = 8
 
         # Diccionario que mapea valores de la matriz a coordenadas en el archivo de recursos
@@ -26,10 +27,17 @@ class Mapa:
             6: (0, 16), # Borde vertical
             7: (0, 24), # Intersección superior
             8: (8, 24), # Intersección inferior
-            # Agrega aquí más valores según corresponda...
+            9: (16, 24), # Borde inferior izquierdo
+            10: (24, 24), # Borde inferior derecho
+            11: (0, 32), # Esquina interior superior izquierda
+            12: (8, 32), # Esquina interior superior derecha
+            13: (16, 32), # Esquina interior inferior izquierda
+            14: (24, 32), # Esquina interior inferior derecha
+            15: (32, 32), # Centro vacío
+            16: (40, 32)  # Relleno especial
         }
 
-        # Dibujar cada celda del mapa
+        # Dibuja cada celda del mapa en la pantalla
         for y, row in enumerate(self.mapa):
             for x, cell in enumerate(row):
                 if cell in sprites:
@@ -38,17 +46,22 @@ class Mapa:
 
 class App:
     def __init__(self):
-        pyxel.init(224, 72, caption="Pacman")
+        # Inicializa Pyxel con el tamaño de la ventana
+        pyxel.init(224, 72)
+        # Establece el título de la ventana
+        pyxel.title = "Pacman"
+        # Carga los recursos del archivo .pyxres
         pyxel.load("assets/map.pyxres")
         self.mapa = Mapa()
+        # Ejecuta el bucle principal
         pyxel.run(self.update, self.draw)
 
     def update(self):
         pass
 
     def draw(self):
-        pyxel.cls(0)
-        self.mapa.draw()
+        pyxel.cls(0)  # Limpia la pantalla
+        self.mapa.draw()  # Dibuja el mapa
 
 # Inicia la aplicación
 App()
