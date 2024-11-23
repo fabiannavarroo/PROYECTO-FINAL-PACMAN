@@ -44,6 +44,7 @@ class Mapa:
             21: (16, 40),    # Semi circulo derecha abajo horizontal
             22: (8, 32),   # recta simple arriba horizontal
             23: (8, 40),   # recta simple abajo horizontal
+            
         }
 
         # Dibuja cada celda del mapa en la pantalla
