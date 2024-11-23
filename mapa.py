@@ -27,21 +27,19 @@ class Mapa:
             3: (0, 16),  # Esquina inferior izquierda
             4: (8, 16),  # Esquina inferior derecha
             5: (16,9),  # Borde superior 
-            6: (24, 8),  # Borde laterales
-            7: (16, 16),  # Bajada izquierda
-            8: (24, 16),  # Bajada derecha
-            9: (32, 8),  # U izquierda
-            10: (40, 8),  # U derecha
-            11: (32, 16),  # U abajo izquierda
-            12: (40, 16),  # U abajo derecha
-            13: (24, 8),  # Barra abajo 
-            14: (24, 8),  # Barra arriba 
-            15: (24, 8),  # Barra izquierda 
-            16: (24, 8),  # Barra derecha 
-            17: (0, 24),  # Celda rosa fantasmas 
-            18: (16, 24),  # Subida izquierda 
-            19: (32, 24),  # Subida derecha 
-            20: (0, 32),  # Giro izquierda arriba 
+            6: (24, 8),  # Borde inferior
+            9: (32, 8),  
+            10: (40, 8),  
+            11: (32, 16),  
+            12: (40, 16),  
+            13: (24, 8),  
+            14: (24, 8),  
+            15: (24, 8),  
+            16: (24, 8),  
+            17: (0, 24),  
+            18: (16, 24),   
+            19: (32, 24),  
+            20: (0, 32),  
             21: (8, 32),   
             22: (0, 40),  
             23: (8, 40),   
