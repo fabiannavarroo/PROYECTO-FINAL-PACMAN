@@ -38,8 +38,8 @@ class Mapa:
             15: (24, 8),  # Barra izquierda 
             16: (24, 8),  # Barra derecha 
             17: (0, 24),  # Celda rosa fantasmas 
-            18: (0, 32),  # Subida izquierda 
-            19: (8, 32),  # Subida derecha 
+            18: (16, 24),  # Subida izquierda 
+            19: (32, 24),  # Subida derecha 
             20: (24, 8),  # Borde 
             21: (24, 8),  # Borde 
             22: (24, 8),  # Borde 
