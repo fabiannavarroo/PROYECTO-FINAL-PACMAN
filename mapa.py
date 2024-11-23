@@ -25,28 +25,26 @@ class Mapa:
             1: (0, 0),  # Esquina superior izquierda
             2: (16, 0),  # Esquina superior derecha
             3: (0, 16),  # Esquina inferior izquierda
-            4: (8, 16),  # Esquina inferior derecha
-            5: (16,9),  # Borde superior 
-            6: (24, 8),  # Borde inferior
-            7: (24, 8),  # Borde izquierdo
-            8: (24, 8),  # Borde derecho
-            9: (32, 8),  # Esquina simple izquierda superior
-            10: (40, 8),  # Esquina simple izquierda inferior
-            11: (32, 16),  # Esquina simple derecha superior
-            12: (40, 16),   # Esquina simple derecha inferior
-            13: (24, 8),   # Borde lateral simple izquierda
-            14: (24, 8),   # Borde lateral simple derecha
-            15: (24, 8),   # Borde superior simple 
-            16: (24, 8),   # Borde inferior simple 
+            4: (16, 16),  # Esquina inferior derecha
+            5: (8, 0),  # Borde superior 
+            6: (8, 16),  # Borde inferior
+            7: (0, 8),  # Borde izquierdo
+            8: (16, 8),  # Borde derecho
+            9: (32, 0),  # Esquina simple izquierda superior
+            10: (32, 16),  # Esquina simple izquierda inferior
+            11: (48, 0),  # Esquina simple derecha superior
+            12: (48, 16),   # Esquina simple derecha inferior
+            13: (32, 8),   # Borde lateral simple izquierda
+            14: (48, 8),   # Borde lateral simple derecha
+            15: (40, 0),   # Borde superior simple 
+            16: (40, 16),   # Borde inferior simple 
             17: (0, 24),   # Salida de los fantasmas
-            18: (16, 24),    # Semi circulo izquierda arriba horizontal
-            19: (32, 24),   # Semi circulo izquierda abajo horizontal
-            20: (0, 32),   # Semi circulo derecha arriba horizontal
-            21: (8, 32),    # Semi circulo derecha abajo horizontal
-            22: (0, 40),   # recta simple arriba horizontal
+            18: (0, 32),    # Semi circulo izquierda arriba horizontal
+            19: (0, 40),   # Semi circulo izquierda abajo horizontal
+            20: (16, 32),   # Semi circulo derecha arriba horizontal
+            21: (16, 40),    # Semi circulo derecha abajo horizontal
+            22: (8, 32),   # recta simple arriba horizontal
             23: (8, 40),   # recta simple abajo horizontal
-            24: (8, 0),
-            
         }
 
         # Dibuja cada celda del mapa en la pantalla
