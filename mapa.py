@@ -29,21 +29,21 @@ class Mapa:
             6: (24, 8),  # Borde laterales
             7: (16, 16),  # Bajada izquierda
             8: (24, 16),  # Bajada derecha
-            9: (24, 8),  # Borde laterales
-            10: (24, 8),  # Borde laterales
-            11: (24, 8),  # Borde laterales
-            12: (24, 8),  # Borde laterales
-            13: (24, 8),  # Borde laterales
-            14: (24, 8),  # Borde laterales
-            15: (24, 8),  # Borde laterales
-            16: (24, 8),  # Borde laterales
-            17: (24, 8),  # Borde laterales
-            18: (24, 8),  # Borde laterales
-            19: (24, 8),  # Borde laterales
-            20: (24, 8),  # Borde laterales
-            21: (24, 8),  # Borde laterales
-            22: (24, 8),  # Borde laterales
-            23: (24, 8),  # Borde laterales
+            9: (32, 8),  # U izquierda
+            10: (40, 8),  # U derecha
+            11: (32, 16),  # U abajo izquierda
+            12: (40, 16),  # U abajo derecha
+            13: (24, 8),  # Barra abajo 
+            14: (24, 8),  # Barra arriba 
+            15: (24, 8),  # Barra izquierda 
+            16: (24, 8),  # Barra derecha 
+            17: (24, 8),  # Borde 
+            18: (24, 8),  # Borde 
+            19: (24, 8),  # Borde 
+            20: (24, 8),  # Borde 
+            21: (24, 8),  # Borde 
+            22: (24, 8),  # Borde 
+            23: (24, 8),  # Borde 
         }
 
         # Dibuja cada celda del mapa en la pantalla
