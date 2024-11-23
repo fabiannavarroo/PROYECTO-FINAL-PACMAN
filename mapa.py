@@ -1,7 +1,7 @@
 import pyxel
 
 class Mapa:
-    def __init__(self): 
+    def __init__(self):
         # Matriz que define el diseño del mapa
         self.mapa = [
             [1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 24, 25, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 2],  # Fila 1
@@ -67,6 +67,15 @@ class Mapa:
             21: (16, 40),    # Semi circulo derecha abajo horizontal
             22: (8, 32),   # recta simple arriba horizontal
             23: (8, 40),   # recta simple abajo horizontal
+            24: (8, 24),  # giro abjo con borde izquierda
+            25: (16, 24),   # giro abjo con borde derecha
+            27: (8, 56),  # cambio de sentido hacia abjo izquierda
+            28: (8, 64),   # recta abajo simple para cambio de sentido izquierda
+            29: (8, 72),  # cambio de sentido hacia izquierda abajo
+            30: (16, 72),   # recta abajo cambio de sentido
+            31: (24, 72),  # cambio de sentido hacia arriba derecha
+            32: (24, 56),  # cambio de sentido hacia derecha derecha
+            33: (24, 64)  # recta simple cambio de sentido derecha
         }
 
         # Dibuja cada celda del mapa en la pantalla
