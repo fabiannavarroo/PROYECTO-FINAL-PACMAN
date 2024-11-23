@@ -37,7 +37,7 @@ class Mapa:
             14: (24, 8),  # Barra arriba 
             15: (24, 8),  # Barra izquierda 
             16: (24, 8),  # Barra derecha 
-            17: (24, 8),  # Borde 
+            17: (0, 24),  # Celda rosa fantasmas 
             18: (24, 8),  # Borde 
             19: (24, 8),  # Borde 
             20: (24, 8),  # Borde 
