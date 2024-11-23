@@ -1,25 +1,48 @@
 import pyxel
 
 class Mapa:
-    def __init__(self):
+    def __init__(self): 
         # Matriz que define el diseño del mapa
         self.mapa = [
-            [1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 2],  # Fila 1
+            [1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 24, 25, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 2],  # Fila 1
             [7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8],  # Fila 2
             [7, 0, 9, 15, 15, 11, 0, 9, 15, 15, 15, 11, 0, 13, 14, 0, 9, 15, 15, 15, 11, 0, 9, 15, 15, 11, 0, 8],  # Fila 3
             [7, 0, 13, 0, 0, 14, 0, 13, 0, 0, 0, 14, 0, 13, 14, 0, 13, 0, 0, 0, 14, 0, 13, 0, 0, 14, 0, 8],  # Fila 4
-            [7, 0, 10, 16, 16, 12, 0, 10, 16, 16, 16, 12, 0, 0, 0, 0, 10, 16, 16, 16, 12, 0, 10, 16, 16, 12, 0, 8],  # Fila 5
+            [7, 0, 10, 16, 16, 12, 0, 10, 16, 16, 16, 12, 0, 10, 12, 0, 10, 16, 16, 16, 12, 0, 10, 16, 16, 12, 0, 8],  # Fila 5
             [7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8],  # Fila 6
             [7, 0, 18, 22, 22, 20, 0, 9, 11, 0, 18, 22, 22, 22, 22, 22, 22, 20, 0, 9, 11, 0, 18, 22, 22, 20, 0, 8],  # Fila 7
-            [7, 0, 19, 23, 23, 21, 0, 13, 14, 0, 19, 23, 23, ],  # Fila 8
-            
+            [7, 0, 19, 23, 23, 21, 0, 13, 14, 0, 19, 23, 23, 27, 32, 23, 23, 21, 0, 13, 14, 0, 19, 23, 23, 21, 0, 8],  # Fila 8
+            [7, 0, 0, 0, 0, 0, 0, 13, 14, 0, 0, 0, 0, 13, 14, 0, 0, 0, 0, 13, 14, 0, 0, 0, 0, 0, 0, 8],  # Fila 9
+            [],  # Fila 10
+            [],  # Fila 11
+            [],  # Fila 12
+            [],  # Fila 13
+            [],  # Fila 14
+            [],  # Fila 15
+            [],  # Fila 16
+            [],  # Fila 17
+            [],  # Fila 18
+            [],  # Fila 19
+            [],  # Fila 20
+            [],  # Fila 21
+            [],  # Fila 22
+            [],  # Fila 23
+            [],  # Fila 24
+            [],  # Fila 25
+            [],  # Fila 26
+            [],  # Fila 27
+            [],  # Fila 28
+            [],  # Fila 29
+            [],  # Fila 30
+            [],  # Fila 31
+            []  # Fila 32
         ]
 
     def draw(self):
         # Tamaño de cada sprite en píxeles
         sprite_size = 8
 
-        # Diccionario que mapea valores de la matriz a coordenadas en el archivo de recursos
+        # Diccionario que da valores de la matriz a coordenadas en el archivo de recursos
         sprites = {
             1: (0, 0),  # Esquina superior izquierda
             2: (16, 0),  # Esquina superior derecha
@@ -44,7 +67,6 @@ class Mapa:
             21: (16, 40),    # Semi circulo derecha abajo horizontal
             22: (8, 32),   # recta simple arriba horizontal
             23: (8, 40),   # recta simple abajo horizontal
-            
         }
 
         # Dibuja cada celda del mapa en la pantalla
