@@ -28,6 +28,8 @@ class Mapa:
             4: (8, 16),  # Esquina inferior derecha
             5: (16,9),  # Borde superior 
             6: (24, 8),  # Borde inferior
+            7: (24, 8),  # Borde izquierdo
+            8: (24, 8),  # Borde derecho
             9: (32, 8),  
             10: (40, 8),  
             11: (32, 16),  
