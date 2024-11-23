@@ -30,21 +30,23 @@ class Mapa:
             6: (24, 8),  # Borde inferior
             7: (24, 8),  # Borde izquierdo
             8: (24, 8),  # Borde derecho
-            9: (32, 8),  
-            10: (40, 8),  
-            11: (32, 16),  
-            12: (40, 16),  
-            13: (24, 8),  
-            14: (24, 8),  
-            15: (24, 8),  
-            16: (24, 8),  
-            17: (0, 24),  
-            18: (16, 24),   
-            19: (32, 24),  
-            20: (0, 32),  
-            21: (8, 32),   
-            22: (0, 40),  
-            23: (8, 40),   
+            9: (32, 8),  # Esquina simple izquierda superior
+            10: (40, 8),  # Esquina simple izquierda inferior
+            11: (32, 16),  # Esquina simple derecha superior
+            12: (40, 16),   # Esquina simple derecha inferior
+            13: (24, 8),   # Borde lateral simple izquierda
+            14: (24, 8),   # Borde lateral simple derecha
+            15: (24, 8),   # Borde superior simple 
+            16: (24, 8),   # Borde inferior simple 
+            17: (0, 24),   # Salida de los fantasmas
+            18: (16, 24),    # Semi circulo izquierda arriba horizontal
+            19: (32, 24),   # Semi circulo izquierda abajo horizontal
+            20: (0, 32),   # Semi circulo derecha arriba horizontal
+            21: (8, 32),    # Semi circulo derecha abajo horizontal
+            22: (0, 40),   # recta simple arriba horizontal
+            23: (8, 40),   # recta simple abajo horizontal
+            24: (8, 0),
+            
         }
 
         # Dibuja cada celda del mapa en la pantalla
