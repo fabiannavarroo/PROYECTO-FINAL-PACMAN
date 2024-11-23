@@ -25,7 +25,7 @@ class Mapa:
             2: (8, 8),  # Esquina superior derecha
             3: (0, 16),  # Esquina inferior izquierda
             4: (8, 16),  # Esquina inferior derecha
-            5:
+            5: (16,9),  
             6:
             7:
             8:
