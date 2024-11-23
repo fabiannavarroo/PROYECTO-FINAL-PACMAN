@@ -25,8 +25,8 @@ class Mapa:
             1: (0, 0),  # Esquina superior izquierda
             2: (16, 0),  # Esquina superior derecha
             3: (0, 16),  # Esquina inferior izquierda
-            4: (16, 16),  # Esquina inferior derecha
-            5: (16,9),  # Borde superior e inferior
+            4: (8, 16),  # Esquina inferior derecha
+            5: (16,9),  # Borde superior 
             6: (24, 8),  # Borde laterales
             7: (16, 16),  # Bajada izquierda
             8: (24, 16),  # Bajada derecha
@@ -42,9 +42,9 @@ class Mapa:
             18: (16, 24),  # Subida izquierda 
             19: (32, 24),  # Subida derecha 
             20: (0, 32),  # Giro izquierda arriba 
-            21: (8, 32),  # Giro derecha arriba  
-            22: (0, 40),  # Giro izquierda abajo  
-            23: (8, 40),  # Giro derecha abajo  
+            21: (8, 32),   
+            22: (0, 40),  
+            23: (8, 40),   
         }
 
         # Dibuja cada celda del mapa en la pantalla
