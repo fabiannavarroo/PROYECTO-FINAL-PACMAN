@@ -40,10 +40,10 @@ class Mapa:
             17: (0, 24),  # Celda rosa fantasmas 
             18: (16, 24),  # Subida izquierda 
             19: (32, 24),  # Subida derecha 
-            20: (24, 8),  # Borde 
-            21: (24, 8),  # Borde 
-            22: (24, 8),  # Borde 
-            23: (24, 8),  # Borde 
+            20: (0, 32),  # Giro izquierda arriba 
+            21: (8, 32),  # Giro derecha arriba  
+            22: (0, 40),  # Giro izquierda abajo  
+            23: (8, 40),  # Giro derecha abajo  
         }
 
         # Dibuja cada celda del mapa en la pantalla
