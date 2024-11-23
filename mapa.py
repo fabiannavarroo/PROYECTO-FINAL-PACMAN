@@ -23,18 +23,27 @@ class Mapa:
         sprites = {
             1: (0, 8),  # Esquina superior izquierda
             2: (8, 8),  # Esquina superior derecha
-            5: (16, 8), # Borde horizontal
-            6: (0, 16), # Borde vertical
-            7: (0, 24), # Intersección superior
-            8: (8, 24), # Intersección inferior
-            9: (16, 24), # Borde inferior izquierdo
-            10: (24, 24), # Borde inferior derecho
-            11: (0, 32), # Esquina interior superior izquierda
-            12: (8, 32), # Esquina interior superior derecha
-            13: (16, 32), # Esquina interior inferior izquierda
-            14: (24, 32), # Esquina interior inferior derecha
-            15: (32, 32), # Centro vacío
-            16: (40, 32)  # Relleno especial
+            3: (0, 16),  # Esquina inferior izquierda
+            4: (8, 16),  # Esquina inferior derecha
+            5:
+            6:
+            7:
+            8:
+            9:
+            10:
+            11:
+            12:
+            13:
+            14:
+            15:
+            16:
+            17:
+            18:
+            19:
+            20:
+            21:
+            22:
+            23:
         }
 
         # Dibuja cada celda del mapa en la pantalla
