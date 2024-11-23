@@ -22,10 +22,10 @@ class Mapa:
 
         # Diccionario que mapea valores de la matriz a coordenadas en el archivo de recursos
         sprites = {
-            1: (0, 8),  # Esquina superior izquierda
-            2: (8, 8),  # Esquina superior derecha
+            1: (0, 0),  # Esquina superior izquierda
+            2: (16, 0),  # Esquina superior derecha
             3: (0, 16),  # Esquina inferior izquierda
-            4: (8, 16),  # Esquina inferior derecha
+            4: (16, 16),  # Esquina inferior derecha
             5: (16,9),  # Borde superior e inferior
             6: (24, 8),  # Borde laterales
             7: (16, 16),  # Bajada izquierda
