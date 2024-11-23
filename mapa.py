@@ -51,7 +51,7 @@ class Mapa:
 class App:
     def __init__(self):
         # Inicializa Pyxel con el tamaño de la ventana
-        pyxel.init(224, 224)
+        pyxel.init(225, 224)
         # Establece el título de la ventana
         pyxel.title = "Pacman"
         # Carga los recursos del archivo .pyxres
