@@ -72,7 +72,6 @@ class Mapa:
             27: (8, 56),  # cambio de sentido hacia abjo izquierda
             28: (8, 64),   # recta abajo simple para cambio de sentido izquierda
             29: (8, 72),  # cambio de sentido hacia izquierda abajo
-            30: (16, 72),   # recta abajo cambio de sentido
             31: (24, 72),  # cambio de sentido hacia arriba derecha
             32: (24, 56),  # cambio de sentido hacia derecha derecha
             33: (24, 64),  # recta simple cambio de sentido derecha
