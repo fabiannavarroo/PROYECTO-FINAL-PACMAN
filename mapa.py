@@ -76,6 +76,7 @@ class Mapa:
             31: (24, 72),  # cambio de sentido hacia arriba derecha
             32: (24, 56),  # cambio de sentido hacia derecha derecha
             33: (24, 64)  # recta simple cambio de sentido derecha
+            34:
         }
 
         # Dibuja cada celda del mapa en la pantalla
