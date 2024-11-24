@@ -34,8 +34,7 @@ class Mapa:
             [],  # Fila 28
             [],  # Fila 29
             [],  # Fila 30
-            [],  # Fila 31
-            []  # Fila 32
+            [3,],  # Fila 31
         ]
 
     def draw(self):
