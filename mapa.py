@@ -75,9 +75,11 @@ class Mapa:
             30: (16, 72),   # recta abajo cambio de sentido
             31: (24, 72),  # cambio de sentido hacia arriba derecha
             32: (24, 56),  # cambio de sentido hacia derecha derecha
-            33: (24, 64)  # recta simple cambio de sentido derecha
-            34:
-            35:
+            33: (24, 64),  # recta simple cambio de sentido derecha
+            34: (0, 80),  # giro de borde izquierda superior
+            35: (8,80),  # giro de borde derecha superior
+            36: (0, 88),  # giro de borde izquierda inferior
+            37: (8, 88)  # giro de borde derecha inferior
         }
 
         # Dibuja cada celda del mapa en la pantalla
