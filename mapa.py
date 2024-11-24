@@ -92,7 +92,7 @@ class Mapa:
             49: (32, 88)  # semicirculo abjo derecha
         }
 
-        # Dibuja cada celda del mapa en la pantalla
+        # Dibuja cada celda del mapa en la panta
         for y, row in enumerate(self.mapa):
             for x, cell in enumerate(row):
                 if cell in sprites:
