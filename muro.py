@@ -15,7 +15,7 @@ class Muro:
         ]
 
         # Tamaño de cada celda (en píxeles)
-        self.celda = 16
+        self.celda = 8
 
         # Diccionario para mapear tipos de muros a sprites
         self.sprites = {
