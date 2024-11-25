@@ -1,5 +1,4 @@
-
-
+from constantes import PACMAN, PACMAN_ARRIBA, PACMAN_ABAJO, PACMAN_IZQUIERDA, PACMAN_DERECHA
 import pyxel
 
 class Pacman:
@@ -29,4 +28,4 @@ class Pacman:
             self.y = nueva_y
 
     def draw(self):
-        pyxel.blt(self.x, self.y, 0, 0, 0, 16, 16, colkey=0)
+        pyxel.blt(self.x, self.y, 0, *PACMAN, 16, 16, colkey=0)
