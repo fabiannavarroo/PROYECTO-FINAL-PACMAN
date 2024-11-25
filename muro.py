@@ -19,16 +19,30 @@ class Muro:
         self.celda_tamaño = 16  # Escala el tamaño de las celdas
 
     def colision(self, x, y):
+    
+        #Comprueba si hay un muro en la posición (x, y) considerando el tamaño del sprite.
+        # Tamaño del sprite de Pac-Man
+        sprite_tamaño = 16
 
-        #Comprueba si hay un muro en la posición (x, y).
+        # Convertir las coordenadas de los bordes del sprite a índices de la matriz
+        puntos_a_verificar = [
+            (x, y),  # Esquina superior izquierda
+            (x + sprite_tamaño - 1, y),  # Esquina superior derecha
+            (x, y + sprite_tamaño - 1),  # Esquina inferior izquierda
+            (x + sprite_tamaño - 1, y + sprite_tamaño - 1),  # Esquina inferior derecha
+        ]
 
-        fila = y // self.celda_tamaño
-        columna = x // self.celda_tamaño
+        for px, py in puntos_a_verificar:
+            fila = py // self.celda_tamano
+            columna = px // self.celda_tamano
 
-        # Comprobar si está dentro de los límites del mapa
-        if 0 <= fila < len(self.mapa) and 0 <= columna < len(self.mapa[0]):
-            return self.mapa[fila][columna] != 0
-        return False
+            # Comprobar si está dentro de los límites del mapa
+            if 0 <= fila < len(self.mapa) and 0 <= columna < len(self.mapa[0]):
+                # Si hay un muro, devuelve True
+                if self.mapa[fila][columna] != 0:
+                    return True
+        return False  # No hay colisión
+
 
     def draw(self):
     
