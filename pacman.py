@@ -17,6 +17,14 @@ class Pacman:
             self.x -= self.velocidad
         if pyxel.btn(pyxel.KEY_RIGHT):
             self.x += self.velocidad
+        if pyxel.btn(pyxel.KEY_W):
+            self.y -= self.velocidad
+        if pyxel.btn(pyxel.KEY_S):
+            self.y += self.velocidad
+        if pyxel.btn(pyxel.KEY_A):
+            self.x -= self.velocidad
+        if pyxel.btn(pyxel.KEY_D):
+            self.x += self.velocidad
 
     def dibujar(self):
         # Dibuja a Pacman con escala
