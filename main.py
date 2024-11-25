@@ -10,7 +10,8 @@ class App:
         # Inicializa Pyxel
         pyxel.init(224, 248)  # Tamaño de la ventana
         pyxel.title = "Pacman"
-        # Carga los recursos desde el archivo recursos.pyxres
+        
+        # Carga los recursos desde recursos.pyxres
         pyxel.load("assets/recursos.pyxres")
 
         # Inicializa los objetos
@@ -34,10 +35,14 @@ class App:
 
     def draw(self):
         pyxel.cls(0)  # Limpia la pantalla
-        self.mapa.draw()  # Dibuja el mapa
-        self.pacman.dibujar()  # Dibuja a Pacman
+
+        # Dibuja el mapa (página 1)
+        self.mapa.draw()
+
+        # Dibuja Pacman y los fantasmas (página 0)
+        self.pacman.dibujar()
         for fantasma in self.fantasmas:
-            fantasma.dibujar()  # Dibuja los fantasmas
+            fantasma.dibujar()
 
 # Ejecuta la aplicación
 App()
