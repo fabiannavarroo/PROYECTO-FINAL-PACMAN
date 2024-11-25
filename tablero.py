@@ -34,7 +34,17 @@ class Tablero:
         self.muro.draw()  # Dibujar los muros
         self.pacman.draw()  # Dibujar Pac-Man
         for fantasma in self.fantasmas:
-            fantasma.draw()  # Dibujar fantasmas
+            # Asignar el sprite correspondiente según el fantasma
+            if isinstance(fantasma, FantasmaRojo):
+                sprite = FANTASMA_ROJO_ABAJO
+            elif isinstance(fantasma, FantasmaRosa):
+                sprite = FANTASMA_ROSA_ABAJO
+            elif isinstance(fantasma, FantasmaAzul):
+                sprite = FANTASMA_AZUL_ABAJO
+            elif isinstance(fantasma, FantasmaNaranja):
+                sprite = FANTASMA_NARANJA_ABAJO
+            
+            pyxel.blt(fantasma.x, fantasma.y, 0, *sprite, 16, 16, colkey=0)
 
 # Ejecutar la aplicación
 Tablero()
