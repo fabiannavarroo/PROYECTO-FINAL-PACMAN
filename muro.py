@@ -12,9 +12,27 @@ class Muro:
             [4, 5, 5, 5, 6],
         ]
 
-    def draw(self):
+    def colision(self, x, y):
+        """
+        Comprueba si hay un muro en la posición (x, y).
+        :param x: Coordenada x en píxeles.
+        :param y: Coordenada y en píxeles.
+        :return: True si hay colisión con un muro, False en caso contrario.
+        """
+        # Convertir coordenadas de píxeles a índices de la matriz
+        fila = y // 8  # Cada celda del mapa tiene 8 píxeles de alto
+        columna = x // 8  # Cada celda del mapa tiene 8 píxeles de ancho
 
-        #Dibuja los muros en la pantalla adaptando el tamaño de los sprites.
+        # Comprobar si está dentro de los límites del mapa
+        if 0 <= fila < len(self.mapa) and 0 <= columna < len(self.mapa[0]):
+            # Si el valor de la celda no es 0, hay un muro
+            return self.mapa[fila][columna] != 0
+        return False
+
+    def draw(self):
+        """
+        Dibuja los muros en la pantalla adaptando el tamaño de los sprites.
+        """
         for fila in range(len(self.mapa)):
             for columna in range(len(self.mapa[0])):
                 tipo_muro = self.mapa[fila][columna]
