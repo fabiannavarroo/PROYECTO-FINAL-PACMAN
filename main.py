@@ -45,5 +45,4 @@ class App:
             fantasma.dibujar()
 
 # Ejecuta la aplicación
-if __name__ == "__main__":
-    App()
+App()
