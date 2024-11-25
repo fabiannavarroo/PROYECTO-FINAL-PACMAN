@@ -5,19 +5,17 @@ class Muro:
     def __init__(self):
         # Matriz que representa el mapa usando números
         self.mapa = [
-            [11,2,2,2,2,2,2,2,2,2,2,2,2,7,2,2,2,2,2,2,2,2,2,2,2,2,12]
+            [11,2,2,2,2,2,2,2,2,2,2,2,2,7,2,2,2,2,2,2,2,2,2,2,2,2,12],
+            
         ]
 
         # Tamaño de cada celda en píxeles
-        self.celda_tamano = 16  # Escala el tamaño de las celdas
+        self.celda_tamaño = 16  # Escala el tamaño de las celdas
 
     def colision(self, x, y):
-        """
-        Comprueba si hay un muro en la posición (x, y).
-        :param x: Coordenada x en píxeles.
-        :param y: Coordenada y en píxeles.
-        :return: True si hay colisión con un muro, False en caso contrario.
-        """
+
+        #Comprueba si hay un muro en la posición (x, y).
+
         fila = y // self.celda_tamano
         columna = x // self.celda_tamano
 
@@ -27,9 +25,8 @@ class Muro:
         return False
 
     def draw(self):
-        """
-        Dibuja los muros en la pantalla adaptando el tamaño de los sprites.
-        """
+    
+        #Dibuja los muros en la pantalla
         for fila in range(len(self.mapa)):
             for columna in range(len(self.mapa[0])):
                 tipo_muro = self.mapa[fila][columna]
