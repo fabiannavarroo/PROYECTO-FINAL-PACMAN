@@ -97,5 +97,4 @@ class Mapa:
         for y, row in enumerate(self.mapa):
             for x, cell in enumerate(row):
                 if cell in sprites:
-                    sprite_x, sprite_y = sprites[cell]
-                    pyxel.blt(x * sprite_size, y * sprite_size, 1, sprite_x, sprite_y, sprite_size, sprite_size, colkey=0)
+                    pyxel.blt(x * sprite_size, y * sprite_size, 1, *sprites[cell], sprite_size, sprite_size, colkey=0)
