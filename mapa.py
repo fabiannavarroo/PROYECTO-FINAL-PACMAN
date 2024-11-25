@@ -40,7 +40,7 @@ class Mapa:
 
         ]
 
-    def draw(self):
+    def dibujar(self):
         # Diccionario que da valores de la matriz a coordenadas en el archivo de recursos
         sprites = {
             1: (0, 120),  # Esquina superior izquierda
