@@ -14,12 +14,12 @@ class Fantasma:
         # Movimiento horizontal básico
         self.x += self.direccion * self.velocidad
 
-        # Cambiar de dirección si alcanza los bordes de la pantalla
+        # Cambiar de dirección si alcanza los bordes
         if self.x < 0 or self.x > pyxel.width - 16:
             self.direccion *= -1
 
     def dibujar(self):
-        # Dibuja al fantasma según su color
+        # Dibuja al fantasma según su color desde la página 0
         if self.color == "rojo":
             pyxel.blt(self.x, self.y, 0, 16, 0, 16, 16, 0)  # Sprite en (16, 0)
         elif self.color == "rosa":
@@ -29,7 +29,7 @@ class Fantasma:
         elif self.color == "naranja":
             pyxel.blt(self.x, self.y, 0, 64, 0, 16, 16, 0)  # Sprite en (64, 0)
 
-# Subclases para cada fantasma si se necesita lógica específica
+# Subclases para cada fantasma
 class FantasmaRojo(Fantasma):
     def __init__(self, x, y):
         super().__init__(x, y, "rojo")
