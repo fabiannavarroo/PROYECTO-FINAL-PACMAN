@@ -14,7 +14,7 @@ class Fantasma:
         self.y = y
         self.sprites = sprites  # Diccionario con las direcciones del sprite
         self.direccion_actual = self.sprites["DERECHA"]
-        self.velocidad = 1
+        self.velocidad = 1.5
 
     def mover(self):
         # Movimiento horizontal básico
