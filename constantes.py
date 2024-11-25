@@ -31,27 +31,27 @@ FANTASMA_ROSA_DERECHA = (32, 96)  # Coordenadas del fantasma rosa al moverse a l
 
 #---------MUROS---------#
 MUROS = {
-    1: {"Coordenadas": (0, 0), "Tamaño": (16, 16)},  # Esquina superior izquierda horizontal
-    2: {"Coordenadas": (8, 0), "Tamaño": (16, 16)},  # Borde superior horizontal
-    3: {"Coordenadas": (24, 0), "Tamaño": (16, 16)},  # Esquina superior derecha horizontal
-    4: {"Coordenadas": (0, 8), "Tamaño": (16, 16)},  # Esquina inferior izquierda horizontal
-    5: {"Coordenadas": (8, 8), "Tamaño": (16, 16)},  # Borde inferior horizontal
-    6: {"Coordenadas": (24, 8), "Tamaño": (16,16)},  # Esquina inferior derecha horizontal
-    7: {"Coordenadas": (48, 0), "Tamaño": (16,16)},  # Esquina superior izquierda vertical
-    8: {"Coordenadas": (56, 0), "Tamaño": (16,16)},  # Esquina superior derecha vertical
-    9: {"Coordenadas": (48, 8), "Tamaño": (16,16)},  # Borde izquierdo vertical
-    10: {"Coordenadas": (56, 8), "Tamaño": (16,16)},  # Borde derecho vertical
-    11: {"Coordenadas": (48, 24), "Tamaño": (16,16)},  # Esquina inferior izquierda vertical
-    12: {"Coordenadas": (56, 24), "Tamaño": (16,16)},  # Esquina inferior derecha vertical
-    13: {"Coordenadas": (0, 16), "Tamaño": (16,16)},  # Cruce en T hacia arriba izquierda
-    14: {"Coordenadas": (8, 16), "Tamaño": (16,16)},  # Cruce en T hacia arriba derecha
-    15: {"Coordenadas": (16, 24), "Tamaño": (16,16)},  # Cruce en T hacia abajo izquierda
-    16: {"Coordenadas": (24, 24), "Tamaño": (16,16)},  # Cruce en T hacia abajo derecha
-    17: {"Coordenadas": (0, 32), "Tamaño": (16,16)},  # Esquina borde superior izquierda
-    18: {"Coordenadas": (24, 32), "Tamaño": (16,16)},  # Esquina borde superior derecha
-    19: {"Coordenadas": (0, 56), "Tamaño": (16,16)},  # Esquina borde inferior izquierda
-    20: {"Coordenadas": (24, 56), "Tamaño": (16,16)},  # Esquina borde inferior derecha
-    21: {"Coordenadas": (8, 72), "Tamaño": (16,16)},  # Esquina superior izquierda trampa fantasmas
-    22: {"Coordenadas": (48, 72), "Tamaño": (16,16)},  # Esquina superior derecha trampa fantasmas
+    1: {"Coordenadas": (0, 0), "Tamaño": (16, 16)},  # Esquina izquierda horizontal
+    2: {"Coordenadas": (8, 0), "Tamaño": (16, 16)},  # Borde horizontal
+    3: {"Coordenadas": (24, 0), "Tamaño": (16, 16)},  # Esquina derecha horizontal
+    4: {"Coordenadas": (0, 8), "Tamaño": (16, 16)},  # Esquina superior vertical
+    5: {"Coordenadas": (8, 8), "Tamaño": (16, 16)},  # Borde vertical
+    6: {"Coordenadas": (24, 8), "Tamaño": (16,16)},  # Esquina inferior vertical
+    7: {"Coordenadas": (48, 0), "Tamaño": (16,16)},  # Cruce en T hacia abajo
+    8: {"Coordenadas": (56, 0), "Tamaño": (16,16)},  # Cruce en T hacia arriba
+    9: {"Coordenadas": (48, 8), "Tamaño": (16,16)},  # Cruce en T hacia derecha
+    10: {"Coordenadas": (56, 8), "Tamaño": (16,16)},  # Cruce en T hacia dizquierda
+    11: {"Coordenadas": (48, 24), "Tamaño": (16,16)},  # Borde esquina superior izquieda
+    12: {"Coordenadas": (56, 24), "Tamaño": (16,16)},  # Borde esquina superior derecha
+    13: {"Coordenadas": (0, 16), "Tamaño": (16,16)},  #  Borde esquina inferior izquieda
+    14: {"Coordenadas": (8, 16), "Tamaño": (16,16)},  # Borde esquina inferior derecha
+    15: {"Coordenadas": (16, 24), "Tamaño": (16,16)},  # Esquina izquierda superior trampa fantasmas
+    16: {"Coordenadas": (24, 24), "Tamaño": (16,16)},  # Puerta salida de fantasmas
+    17: {"Coordenadas": (0, 32), "Tamaño": (16,16)},  # Esquina derecha superior trampa fantasmas
+    18: {"Coordenadas": (24, 32), "Tamaño": (16,16)},  # Esquina borde derecha
+    19: {"Coordenadas": (0, 56), "Tamaño": (16,16)},  # Esquina borde izquierda
+    20: {"Coordenadas": (24, 56), "Tamaño": (16,16)},  # Esquina borde derecha
+    21: {"Coordenadas": (8, 72), "Tamaño": (16,16)},  # Esquina izquierda trampa fantasmas
+    22: {"Coordenadas": (48, 72), "Tamaño": (16,16)},  # Esquina derecha trampa fantasmas
 
 }
