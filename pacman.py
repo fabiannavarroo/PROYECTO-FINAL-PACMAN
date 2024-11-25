@@ -20,5 +20,15 @@ class Pacman:
             self.x += self.velocidad
 
     def dibujar(self):
-        # Dibuja a Pacman desde la página 0 del banco 0
-        pyxel.blt(self.x, self.y, 0, 0, 0, 16, 16, 0)  # Usa el sprite de Pacman
+        # Dibuja a Pacman desde la página 0, pero más pequeño
+        escala = 0.5  # Escala del sprite (50% del tamaño original)
+        ancho_original = 16  # Ancho original del sprite
+        alto_original = 16  # Alto original del sprite
+
+        ancho_reducido = int(ancho_original * escala)
+        alto_reducido = int(alto_original * escala)
+
+        pyxel.blt(
+            self.x, self.y, 0, 0, 0,
+            ancho_reducido, alto_reducido, 0
+        )
