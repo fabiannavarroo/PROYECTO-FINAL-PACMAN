@@ -33,7 +33,12 @@ FANTASMA_ROSA_DERECHA =
 Esquina superior izquierda
 Borde superior horizontal
 Esquina superior derecha
-Borde lateral izquierdoSegmento central horizontalBorde lateral derechoBorde superior delgado verticalEsquina superior derecha estrechaBorde lateral delgado izquierdo
+Borde lateral izquierdo
+Segmento central horizontal
+Borde lateral derecho
+Borde superior delgado vertical
+Esquina superior derecha estrecha
+Borde lateral delgado izquierdo
 Segmento central vertical estrecho
 Borde lateral delgado derecho
 Esquina inferior derecha estrecha
