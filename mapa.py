@@ -3,6 +3,19 @@ import pyxel
 class Mapa:
     def __init__(self):
         # Matriz que define el diseño del mapa
+        
+
+    def draw(self):
+        # Tamaño de cada sprite en píxeles
+        sprite_size = 8
+
+        # Diccionario que da valores de la matriz a coordenadas en el archivo de recursos
+        
+    import pyxel
+
+class Mapa:
+    def __init__(self):
+        # Matriz que define el diseño del mapa
         self.mapa = [
             [1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 24, 25, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 2],  # Fila 1
             [7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8],  # Fila 2
@@ -98,25 +111,3 @@ class Mapa:
                 if cell in sprites:
                     sprite_x, sprite_y = sprites[cell]
                     pyxel.blt(x * sprite_size, y * sprite_size, 0, sprite_x, sprite_y, sprite_size, sprite_size)
-
-class App:
-    def __init__(self):
-        # Inicializa Pyxel con el tamaño de la ventana
-        pyxel.init(224 , 248)
-        # Establece el título de la ventana
-        pyxel.title = "Pacman"
-        # Carga los recursos del archivo .pyxres
-        pyxel.load("assets/map.pyxres")
-        self.mapa = Mapa()
-        # Ejecuta el bucle principal
-        pyxel.run(self.update, self.draw)
-
-    def update(self):
-        pass
-
-    def draw(self):
-        pyxel.cls(0)  # Limpia la pantalla
-        self.mapa.draw()  # Dibuja el mapa
-
-# Inicia la aplicación
-App()
