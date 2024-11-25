@@ -31,11 +31,11 @@ FANTASMA_ROSA_DERECHA = (32, 96)  # Coordenadas del fantasma rosa al moverse a l
 
 #---------MUROS---------#
 MUROS = {
-    1: {"Coordenadas": (0, 0), "Tamaño": (8, 8)},  # Esquina superior izquierda horizontal
-    2: {"Coordenadas": (8, 0), "Tamaño": (8, 8)},  # Borde superior horizontal
-    3: {"Coordenadas": (24, 0), "Tamaño": (8, 8)},  # Esquina superior derecha horizontal
-    4: {"Coordenadas": (0, 8), "Tamaño": (8, 8)},  # Esquina inferior izquierda horizontal
-    5: {"Coordenadas": (8, 8), "Tamaño": (8, 8)},  # Borde inferior horizontal
+    1: {"Coordenadas": (0, 0), "Tamaño": (16, 16)},  # Esquina superior izquierda horizontal
+    2: {"Coordenadas": (8, 0), "Tamaño": (16, 16)},  # Borde superior horizontal
+    3: {"Coordenadas": (24, 0), "Tamaño": (16, 16)},  # Esquina superior derecha horizontal
+    4: {"Coordenadas": (0, 8), "Tamaño": (16, 16)},  # Esquina inferior izquierda horizontal
+    5: {"Coordenadas": (8, 8), "Tamaño": (16, 16)},  # Borde inferior horizontal
     6: {"Coordenadas": (24, 8), "Tamaño": (8, 8)},  # Esquina inferior derecha horizontal
     7: {"Coordenadas": (48, 0), "Tamaño": (8, 8)},  # Esquina superior izquierda vertical
     8: {"Coordenadas": (56, 0), "Tamaño": (8, 8)},  # Esquina superior derecha vertical
