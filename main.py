@@ -1,3 +1,5 @@
+
+
 from mapa import Mapa
 import pyxel
 
