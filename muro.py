@@ -14,7 +14,7 @@ class Muro:
 
         # Diccionario para mapear tipos de muros a sprites y tamaños
         self.sprites = {
-            1: {"ubicacion": (0, 0), "tamaño": (16, 32)},  # Muro vertical, alto
+            1: {"ubicacion": (48, 8), "tamaño": (16, 16)},  # Muro vertical, alto
             2: {"ubicacion": (16, 0), "tamaño": (32, 16)},  # Muro horizontal, ancho
             3: {"ubicacion": (32, 0), "tamaño": (16, 16)},  # Esquina superior izquierda
             4: {"ubicacion": (48, 0), "tamaño": (16, 16)},  # Esquina superior derecha
