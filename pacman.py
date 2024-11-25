@@ -1,5 +1,3 @@
-
-
 import pyxel
 
 class Pacman:
@@ -20,7 +18,7 @@ class Pacman:
             self.x += self.velocidad
 
     def dibujar(self):
-        # Dibuja a Pacman desde la página 0, pero más pequeño
+        # Escala del sprite (más pequeño)
         escala = 0.5  # Escala del sprite (50% del tamaño original)
         ancho_original = 16  # Ancho original del sprite
         alto_original = 16  # Alto original del sprite
