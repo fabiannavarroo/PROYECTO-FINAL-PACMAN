@@ -13,7 +13,7 @@ class Muro:
         ]
 
         # Tamaño de cada celda en píxeles
-        self.celda_tamano = 16  # Escala el tamaño de las celdas a 16x16 píxeles
+        self.celda_tamano = 32  # Escala el tamaño de las celdas a 16x16 píxeles
 
     def colision(self, x, y):
         """
