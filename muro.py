@@ -42,7 +42,7 @@ class Muro:
                     sprite_w, sprite_h = sprite["Tamaño"]
                     pyxel.blt(
                         columna * 8, fila * 8,  # Coordenadas donde se dibuja el muro
-                        0,  # Banco de imágenes
+                        1,  # Banco de imágenes
                         sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
                         sprite_w, sprite_h,  # Tamaño del sprite
                         colkey=0  # Transparencia
