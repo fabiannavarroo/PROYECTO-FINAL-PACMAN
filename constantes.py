@@ -30,5 +30,5 @@ FANTASMA_ROSA_IZQUIERDA =
 FANTASMA_ROSA_DERECHA =
 
 #---------MUROS---------#
-
+    
 
