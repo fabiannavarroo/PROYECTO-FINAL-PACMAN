@@ -5,7 +5,7 @@ class Muro:
     def __init__(self):
         # Matriz que representa el mapa usando números
         self.mapa = [
-            [], # Fila 1
+            [17,2,2,2,2,2,2,2,2,2,2,2,2,15,16,2,2,2,2,2,2,2,2,2,2,2,2,18], # Fila 1
             [], # Fila 2
             [], # Fila 3
             [], # Fila 5
@@ -30,7 +30,8 @@ class Muro:
             [], # Fila 24
             [], # Fila 25
             [], # Fila 26
-            [], # Fila 27
+    
+        [], # Fila 27
             [], # Fila 28
             [], # Fila 29
             [], # Fila 30
@@ -41,12 +42,8 @@ class Muro:
         self.celda_tamano = 32  # Escala el tamaño de las celdas a 16x16 píxeles
 
     def colision(self, x, y):
-        """
-        Comprueba si hay un muro en la posición (x, y).
-        :param x: Coordenada x en píxeles.
-        :param y: Coordenada y en píxeles.
-        :return: True si hay colisión con un muro, False en caso contrario.
-        """
+
+        #Comprueba si hay un muro en la posición (x, y)
         # Convertir coordenadas de píxeles a índices de la matriz
         fila = y // 8  # Cada celda del mapa tiene 8 píxeles de alto
         columna = x // 8  # Cada celda del mapa tiene 8 píxeles de ancho
