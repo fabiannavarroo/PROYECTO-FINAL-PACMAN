@@ -16,7 +16,7 @@ class Fantasma:
         if self.x < 0 or self.x > pyxel.width - 16:
             self.direccion *= -1
 
-    def dibujar(self):
+    def draw(self):
         # Coordenadas del sprite según el color
         sprite_coords = {
             "rojo": (0, 64),
