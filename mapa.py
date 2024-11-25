@@ -94,7 +94,4 @@ class Mapa:
         }
 
         # Dibuja cada celda del mapa en la pantalla
-        for y, row in enumerate(self.mapa):
-            for x, cell in enumerate(row):
-                if cell in sprites:
-                    pyxel.blt(x * sprite_size, y * sprite_size, 1, *sprites[cell], sprite_size, sprite_size, colkey=0)
+        
