@@ -20,8 +20,8 @@ class Muro:
         # Diccionario para mapear tipos de muros a sprites
         self.sprites = {
             1: (0, 0),   # Muro vertical
-            2: (16, 0),  # Muro horizontal
-            3: (32, 0),  # Esquina superior izquierda
+            2: (8, 0),  # Muro horizontal
+            3: (0, 32),  # Esquina superior izquierda
             4: (48, 0),  # Esquina superior derecha
             5: (32, 16), # Esquina inferior izquierda
             6: (48, 16), # Esquina inferior derecha
