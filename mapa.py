@@ -72,10 +72,9 @@ class Mapa:
             24: (64, 0),  # giro abjo con borde izquierda
             25: (80, 0),   # giro abjo con borde derecha
             27: (64, 120),  # cambio de sentido hacia abjo izquierda
-            28: (, 64),   # recta abajo simple para cambio de sentido izquierda
-            29: (8, 72),  # cambio de sentido hacia izquierda abajo
-            31: (24, 72),  # cambio de sentido hacia arriba derecha
-            32: (24, 56),  # cambio de sentido hacia derecha derecha
+            29: (72, 144),  # cambio de sentido hacia izquierda abajo
+            31: (96, 144),  # cambio de sentido hacia arriba derecha
+            32: (104, 120),  # cambio de sentido hacia derecha derecha
             33: (24, 64),  # recta simple cambio de sentido derecha
             34: (40, 24),  # giro de borde izquierda superior
             35: (48, 24),  # giro de borde derecha superior
