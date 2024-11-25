@@ -34,7 +34,7 @@ class Tablero:
         self.muro.draw()  # Dibujar los muros
         self.pacman.draw()  # Dibujar Pac-Man
         for fantasma in self.fantasmas:
-            fantasma.dibujar()  # Dibujar fantasmas
+            fantasma.draw()  # Dibujar fantasmas
 
 # Ejecutar la aplicación
 Tablero()
