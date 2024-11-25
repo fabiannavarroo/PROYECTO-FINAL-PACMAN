@@ -30,30 +30,5 @@ FANTASMA_ROSA_IZQUIERDA =
 FANTASMA_ROSA_DERECHA =
 
 #---------MUROS---------#
-Esquina superior izquierda
-Borde superior horizontal
-Esquina superior derecha
-Borde lateral izquierdo
-Segmento central horizontal
-Borde lateral derecho
-Borde superior delgado vertical
-Esquina superior derecha estrecha
-Borde lateral delgado izquierdo
-Segmento central vertical estrecho
-Borde lateral delgado derecho
-Esquina inferior derecha estrecha
-Esquina interior superior izquierda
-Cruce en forma de T hacia arriba
-Cruce en forma de T hacia la izquierda
-Cruce en forma de T hacia la derecha
-Cruce en forma de T hacia abajo
-Esquina interior inferior derecha
-Esquina superior izquierda cuadrada
-Segmento cuadrado superior horizontal
-Segmento cuadrado lateral izquierdo
-Centro cuadrado interior
-Esquina inferior izquierda rectangular
-Esquina superior derecha rectangular
-Esquina inferior izquierda rectangular inferior
-Esquina inferior derecha rectangular inferior
+1= ()
 
