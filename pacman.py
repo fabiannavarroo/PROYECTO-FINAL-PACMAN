@@ -1,3 +1,6 @@
+
+
+
 import pyxel
 
 class Pacman:
@@ -5,7 +8,6 @@ class Pacman:
         self.x = x  # Posición inicial en X
         self.y = y  # Posición inicial en Y
         self.velocidad = 2  # Velocidad de movimiento
-        self.escala = 0.5  # Escala de Pacman (50% más pequeño)
 
     def mover(self):
         # Control de movimiento usando teclas
@@ -27,18 +29,16 @@ class Pacman:
             self.x += self.velocidad
 
     def dibujar(self):
-        # Dibuja a Pacman con escala
+        # Dibuja a Pacman sin reducir el tamaño
         sprite_x = 0  # Coordenada X en el recurso
         sprite_y = 0  # Coordenada Y en el recurso
-        sprite_w = 16  # Ancho original
-        sprite_h = 16  # Alto original
+        sprite_w = 16  # Ancho del sprite
+        sprite_h = 16  # Alto del sprite
 
-        # Dibuja el sprite con transformación
         pyxel.blt(
-            int(self.x), int(self.y), 
+            self.x, self.y, 
             0,  # Banco de imágenes
             sprite_x, sprite_y, 
-            int(sprite_w * self.escala),  # Ancho escalado
-            int(sprite_h * self.escala),  # Alto escalado
+            sprite_w, sprite_h, 
             colkey=0  # Transparencia
         )
