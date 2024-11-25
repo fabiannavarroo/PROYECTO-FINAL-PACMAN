@@ -54,5 +54,5 @@ FANTASMA_ROSA_DERECHA = (0, 304)  # Coordenadas del fantasma rosa al moverse a l
 22 = {"Coordenadas": (16, 160), "Tamaño": (16, 16)}  # Esquina superior derecha trampa fantasmas 
 23 = {"Coordenadas": (0, 176), "Tamaño": (16, 16)}  # Esquina inferior izquierda trampa fantasmas
 24 = {"Coordenadas": (16, 176), "Tamaño": (16, 16)}  # Esquina inferior derecha trampa fantasmas
-25 = {"Coordenadas": (0, 192), "Tamaño": (16, 16)}  # 
+25 = {"Coordenadas": (0, 192), "Tamaño": (16, 16)}  # Puerta de salida fantasmas
 
