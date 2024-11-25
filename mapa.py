@@ -67,12 +67,12 @@ class Mapa:
             19: (0, 88),   # Semi circulo izquierda abajo horizontal
             20: (32, 56),   # Semi circulo derecha arriba horizontal
             21: (32, 88),    # Semi circulo derecha abajo horizontal
-            22: (8, 32),   # recta simple arriba horizontal
-            23: (8, 40),   # recta simple abajo horizontal
-            24: (40, 40),  # giro abjo con borde izquierda
-            25: (48, 40),   # giro abjo con borde derecha
-            27: (8, 56),  # cambio de sentido hacia abjo izquierda
-            28: (8, 64),   # recta abajo simple para cambio de sentido izquierda
+            22: (16, 56),   # recta simple arriba horizontal
+            23: (16, 88),   # recta simple abajo horizontal
+            24: (64, 0),  # giro abjo con borde izquierda
+            25: (80, 0),   # giro abjo con borde derecha
+            27: (64, 120),  # cambio de sentido hacia abjo izquierda
+            28: (, 64),   # recta abajo simple para cambio de sentido izquierda
             29: (8, 72),  # cambio de sentido hacia izquierda abajo
             31: (24, 72),  # cambio de sentido hacia arriba derecha
             32: (24, 56),  # cambio de sentido hacia derecha derecha
