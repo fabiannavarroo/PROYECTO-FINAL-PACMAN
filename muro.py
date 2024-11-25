@@ -16,19 +16,12 @@ class Muro:
         
 
     def colision(self, x, y):
-        """
-        Comprueba si hay un muro en la posición (x, y).
-        :param x: Posición x (en píxeles).
-        :param y: Posición y (en píxeles).
-        :return: True si hay colisión con un muro, False en caso contrario.
-        """
+        
+        #Comprueba si hay un muro en la posición (x, y).
+        
         fila = y // 16
         columna = x // 16
 
-        # Comprobar si está dentro de los límites del mapa
-        if 0 <= fila < len(self.mapa) and 0 <= columna < len(self.mapa[0]):
-            return self.mapa[fila][columna] != 0  # Cualquier número distinto de 0 es un muro
-        return False
 
     def draw(self):
         """
