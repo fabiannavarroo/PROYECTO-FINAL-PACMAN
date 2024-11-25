@@ -33,27 +33,22 @@ FANTASMA_ROSA_DERECHA =
 Esquina superior izquierda
 Borde superior horizontal
 Esquina superior derecha
-Borde lateral izquierdo
-	5.	Segmento central horizontal
-	6.	Borde lateral derecho
-	7.	Borde superior delgado vertical
-	8.	Esquina superior derecha estrecha
-	9.	Borde lateral delgado izquierdo
-	10.	Segmento central vertical estrecho
-	11.	Borde lateral delgado derecho
-	12.	Esquina inferior derecha estrecha
-	13.	Esquina interior superior izquierda
-	14.	Cruce en forma de T hacia arriba
-	15.	Cruce en forma de T hacia la izquierda
-	16.	Cruce en forma de T hacia la derecha
-	17.	Cruce en forma de T hacia abajo
-	18.	Esquina interior inferior derecha
-	19.	Esquina superior izquierda cuadrada
-	20.	Segmento cuadrado superior horizontal
-	21.	Segmento cuadrado lateral izquierdo
-	22.	Centro cuadrado interior
-	23.	Esquina inferior izquierda rectangular
-	24.	Esquina superior derecha rectangular
-	25.	Esquina inferior izquierda rectangular inferior
-	26.	Esquina inferior derecha rectangular inferior
+Borde lateral izquierdoSegmento central horizontalBorde lateral derechoBorde superior delgado verticalEsquina superior derecha estrechaBorde lateral delgado izquierdo
+Segmento central vertical estrecho
+Borde lateral delgado derecho
+Esquina inferior derecha estrecha
+Esquina interior superior izquierda
+Cruce en forma de T hacia arriba
+Cruce en forma de T hacia la izquierda
+Cruce en forma de T hacia la derecha
+Cruce en forma de T hacia abajo
+Esquina interior inferior derecha
+Esquina superior izquierda cuadrada
+Segmento cuadrado superior horizontal
+Segmento cuadrado lateral izquierdo
+Centro cuadrado interior
+Esquina inferior izquierda rectangular
+Esquina superior derecha rectangular
+Esquina inferior izquierda rectangular inferior
+Esquina inferior derecha rectangular inferior
 
