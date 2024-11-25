@@ -1,4 +1,7 @@
+
+
 from constantes import *
+import pyxel
 
 class Muro:
     def __init__(self):
