@@ -5,7 +5,7 @@ class Muro:
     def __init__(self):
         # Matriz que representa el mapa usando números
         self.mapa = [
-            [11,2,2,2,2,2,2,7,2,2,2,2,2,2,12]
+            [11,2,2,2,2,2,2,2,2,2,2,2,2,7,2,2,2,2,2,2,2,2,2,2,2,2,12]
         ]
 
         # Tamaño de cada celda en píxeles
