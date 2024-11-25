@@ -30,5 +30,25 @@ FANTASMA_ROSA_IZQUIERDA = (0, 288)  # Coordenadas del sprite del fantasma rosa a
 FANTASMA_ROSA_DERECHA = (0, 304)  # Coordenadas del sprite del fantasma rosa al moverse a la derecha
 
 #---------MUROS---------#
-MURO = (0, 320)  # Coordenadas del sprite del muro
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
 
