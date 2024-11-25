@@ -16,7 +16,7 @@ class App:
 
         # Inicializa los objetos
         self.mapa = Mapa()
-        self.pacman = Pacman(112, 184)  # Coordenadas iniciales de Pacman
+        self.pacman = Pacman(112, 180)  # Coordenadas iniciales de Pacman
         self.fantasmas = [
             FantasmaRojo(50, 50),
             FantasmaRosa(70, 50),
