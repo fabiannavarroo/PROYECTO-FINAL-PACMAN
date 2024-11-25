@@ -55,7 +55,7 @@ class Muro:
                     sprite_x, sprite_y = self.sprites[tipo_muro]
                     pyxel.blt(
                         columna * self.celda, fila * self.celda,
-                        0,  # Banco de imágenes
+                        1,  # Banco de imágenes
                         sprite_x, sprite_y,  # Coordenadas del sprite
                         self.celda, self.celda,  # Tamaño del sprite
                         colkey=0  # Transparencia
