@@ -56,3 +56,17 @@ FANTASMA_ROSA_DERECHA = (32, 96)  # Coordenadas del fantasma rosa al moverse a l
 24 = {"Coordenadas": (48, 96), "Tamaño": (8, 8)}  # Esquina inferior derecha trampa fantasmas
 25 = {"Coordenadas": (24, 72), "Tamaño": (8, 8)}  # Puerta de salida fantasmas
 
+MURO_ESQUINA_SUPERIOR_IZQUIERDA = {"Coordenadas": (0, 0), "Tamaño": (8, 8)}  # Esquina superior izquierda horizontal
+MURO_BORDE_SUPERIOR = {"Coordenadas": (8, 0), "Tamaño": (8, 8)}  # Borde superior horizontal
+MURO_ESQUINA_SUPERIOR_DERECHA = {"Coordenadas": (24, 0), "Tamaño": (8, 8)}  # Esquina superior derecha horizontal
+MURO_ESQUINA_INFERIOR_IZQUIERDA = {"Coordenadas": (0, 8), "Tamaño": (8, 8)}  # Esquina inferior izquierda horizontal
+MURO_BORDE_INFERIOR = {"Coordenadas": (8, 8), "Tamaño": (8, 8)}  # Borde inferior horizontal
+MURO_ESQUINA_INFERIOR_DERECHA = {"Coordenadas": (24, 8), "Tamaño": (8, 8)}  # Esquina inferior derecha horizontal
+MURO_VERTICAL_IZQUIERDO = {"Coordenadas": (48, 8), "Tamaño": (8, 8)}  # Borde izquierdo vertical
+MURO_VERTICAL_DERECHO = {"Coordenadas": (56, 8), "Tamaño": (8, 8)}  # Borde derecho vertical
+MURO_CRUCE_T_ARRIBA = {"Coordenadas": (0, 16), "Tamaño": (8, 8)}  # Cruce en T hacia arriba
+MURO_CRUCE_T_ABAJO = {"Coordenadas": (16, 24), "Tamaño": (8, 8)}  # Cruce en T hacia abajo
+MURO_TRAMPA_FANTASMAS_IZQUIERDA = {"Coordenadas": (8, 72), "Tamaño": (8, 8)}  # Esquina trampa fantasmas izquierda
+MURO_TRAMPA_FANTASMAS_DERECHA = {"Coordenadas": (48, 72), "Tamaño": (8, 8)}  # Esquina trampa fantasmas derecha
+MURO_PUERTA_FANTASMAS = {"Coordenadas": (24, 72), "Tamaño": (8, 8)}  # Puerta de salida fantasmas
+
