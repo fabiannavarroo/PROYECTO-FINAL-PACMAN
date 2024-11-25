@@ -33,9 +33,8 @@ class Muro:
         return False
 
     def draw(self):
-        """
-        Dibuja los muros en la pantalla adaptando el tamaño de los sprites.
-        """
+        
+        #Dibuja los muros en la pantalla adaptando el tamaño de los sprites.
         for fila in range(len(self.mapa)):
             for columna in range(len(self.mapa[0])):
                 tipo_muro = self.mapa[fila][columna]
@@ -44,8 +43,8 @@ class Muro:
                     sprite_x, sprite_y = sprite["Coordenadas"]
                     sprite_w, sprite_h = sprite["Tamaño"]
                     pyxel.blt(
-                        columna * 8, fila * 8,  # Coordenadas donde se dibuja el muro
-                        1,  # Banco de imágenes
+                        columna * self.celda_tamano, fila * self.celda_tamano,  # Coordenadas donde se dibuja el muro
+                        0,  # Banco de imágenes
                         sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
                         sprite_w, sprite_h,  # Tamaño del sprite
                         colkey=0  # Transparencia
