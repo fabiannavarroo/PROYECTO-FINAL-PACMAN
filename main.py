@@ -1,30 +1,43 @@
 
 
 from mapa import Mapa
+from pacman import Pacman
+from fantasmas import FantasmaRojo, FantasmaRosa, FantasmaAzul, FantasmaNaranja
 import pyxel
 
 class App:
     def __init__(self):
-        # Inicializa Pyxel con el tamaño de la ventana
-        pyxel.init(224, 248)  # Dimensiones basadas en tu matriz del mapa (28x31 celdas de 8px)
-        # Establece el título de la ventana
+        # Inicializa Pyxel
+        pyxel.init(224, 248)  # Tamaño de la ventana
         pyxel.title = "Pacman"
-        # Carga los recursos del archivo .pyxres
-        pyxel.load("assets/map.pyxres")
-        # Inicializa la clase del mapa
+        # Carga los recursos desde el archivo recursos.pyxres
+        pyxel.load("assets/recursos.pyxres")
+
+        # Inicializa los objetos
         self.mapa = Mapa()
-        # Ejecuta el bucle principal
+        self.pacman = Pacman(112, 184)  # Coordenadas iniciales de Pacman
+        self.fantasmas = [
+            FantasmaRojo(50, 50),
+            FantasmaRosa(70, 50),
+            FantasmaAzul(90, 50),
+            FantasmaNaranja(110, 50)
+        ]
+
+        # Inicia el bucle principal
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        # Aquí podrías manejar eventos de teclado u otras actualizaciones
-        pass
+        # Actualiza los movimientos
+        self.pacman.mover()
+        for fantasma in self.fantasmas:
+            fantasma.mover()
 
     def draw(self):
-        # Limpia la pantalla con el color de fondo
-        pyxel.cls(0)
-        # Dibuja el mapa
-        self.mapa.draw()
+        pyxel.cls(0)  # Limpia la pantalla
+        self.mapa.draw()  # Dibuja el mapa
+        self.pacman.dibujar()  # Dibuja a Pacman
+        for fantasma in self.fantasmas:
+            fantasma.dibujar()  # Dibuja los fantasmas
 
-# Inicia la aplicación
+# Ejecuta la aplicación
 App()
