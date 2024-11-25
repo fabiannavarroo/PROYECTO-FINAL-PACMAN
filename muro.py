@@ -13,26 +13,7 @@ class Muro:
         ]
 
         # Diccionario para mapear tipos de muros a sprites y tamaños
-        self.sprites = {
-            1: {"ubicacion": (48, 8), "tamaño": (16, 16)},  # Muro vertical, alto
-            2: {"ubicacion": (16, 0), "tamaño": (32, 16)},  # Muro horizontal, ancho
-            3: {"ubicacion": (32, 0), "tamaño": (16, 16)},  # Esquina superior izquierda
-            4: {"ubicacion": (48, 0), "tamaño": (16, 16)},  # Esquina superior derecha
-            5: {"ubicacion": (32, 16), "tamaño": (16, 16)}, # Esquina inferior izquierda
-            6: {"ubicacion": (48, 16), "tamaño": (16, 16)},
-            7: {"ubicacion": (48, 8), "tamaño": (16, 16)},  # Muro vertical, alto
-            8: {"ubicacion": (16, 0), "tamaño": (32, 16)},  # Muro horizontal, ancho
-            9: {"ubicacion": (32, 0), "tamaño": (16, 16)},  # Esquina superior izquierda
-            10: {"ubicacion": (48, 0), "tamaño": (16, 16)},  # Esquina superior derecha
-            11: {"ubicacion": (32, 16), "tamaño": (16, 16)}, # Esquina inferior izquierda
-            12: {"ubicacion": (48, 16), "tamaño": (16, 16)},
-            13: {"ubicacion": (48, 8), "tamaño": (16, 16)},  # Muro vertical, alto
-            14: {"ubicacion": (16, 0), "tamaño": (32, 16)},  # Muro horizontal, ancho
-            15: {"ubicacion": (32, 0), "tamaño": (16, 16)},  # Esquina superior izquierda
-            16: {"ubicacion": (48, 0), "tamaño": (16, 16)},  # Esquina superior derecha
-            17: {"ubicacion": (32, 16), "tamaño": (16, 16)}, # Esquina inferior izquierda
-            18: {"ubicacion": (48, 16), "tamaño": (16, 16)}, # Esquina inferior derecha
-        }
+        
 
     def colision(self, x, y):
         """
