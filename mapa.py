@@ -52,14 +52,14 @@ class Mapa:
             4: (32, 152),  # Esquina inferior derecha
             5: (16, 120),  # Borde superior 
             6: (16, 152),  # Borde inferior
-            7: (0, 8),  # Borde izquierdo
-            8: (16, 8),  # Borde derecho
-            9: (32, 0),  # Esquina simple izquierda superior
-            10: (32, 16),  # Esquina simple izquierda inferior
-            11: (48, 0),  # Esquina simple derecha superior
-            12: (48, 16),   # Esquina simple derecha inferior
-            13: (32, 8),   # Borde lateral simple izquierda
-            14: (48, 8),   # Borde lateral simple derecha
+            7: (0, 136),  # Borde izquierdo
+            8: (40, 136),  # Borde derecho
+            9: (0, 184),  # Esquina simple izquierda superior
+            10: (0, 216),  # Esquina simple izquierda inferior
+            11: (32, 184),  # Esquina simple derecha superior
+            12: (32, 216),   # Esquina simple derecha inferior
+            13: (0, 192),   # Borde lateral simple izquierda
+            14: (32, 192),   # Borde lateral simple derecha
             15: (40, 0),   # Borde superior simple 
             16: (40, 16),   # Borde inferior simple 
             17: (0, 24),   # Salida de los fantasmas
