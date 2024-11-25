@@ -30,10 +30,10 @@ FANTASMA_ROSA_IZQUIERDA = (16, 96)  # Coordenadas del fantasma rosa al moverse a
 FANTASMA_ROSA_DERECHA = (32, 96)  # Coordenadas del fantasma rosa al moverse a la derecha
 
 #---------MUROS---------#
-1 = {"Coordenadas": (0, 0), "Tamaño": (8, 8)}  # Esquina superior izquierda horizontal
-2 = {"Coordenadas": (8, 0), "Tamaño": (8, 8)}  # Borde superior horizontal
-3 = {"Coordenadas": (24, 0), "Tamaño": (8, 8)}  # Esquina superior derecha horizontal
-3 = {"Coordenadas": (0, 8), "Tamaño": (8, 8)}  # Esquina inferior izquierda horizontal
+MURO_ESQUINA_SUPERIOR_IZQUIERDA = {"Coordenadas": (0, 0), "Tamaño": (8, 8)}  # Esquina superior izquierda horizontal
+MURO_BORDE_SUPERIOR = {"Coordenadas": (8, 0), "Tamaño": (8, 8)}  # Borde superior horizontal
+MURO_ESQUINA_SUPERIOR_DERECHA = {"Coordenadas": (24, 0), "Tamaño": (8, 8)}  # Esquina superior derecha horizontal
+MURO_ESQUINA_INFERIOR_IZQUIERDA = {"Coordenadas": (0, 8), "Tamaño": (8, 8)}  # Esquina inferior izquierda horizontal
 MURO_BORDE_INFERIOR = {"Coordenadas": (8, 8), "Tamaño": (8, 8)}  # Borde inferior horizontal
 MURO_ESQUINA_INFERIOR_DERECHA = {"Coordenadas": (24, 8), "Tamaño": (8, 8)}  # Esquina inferior derecha horizontal
 MURO_VERTICAL_SUPERIOR_IZQUIERDA = {"Coordenadas": (48, 0), "Tamaño": (8, 8)}  # Esquina superior izquierda vertical
