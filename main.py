@@ -1,22 +1,20 @@
-
-
-from mapa import Mapa
+from muro import Muro
 from pacman import Pacman
 from fantasmas import FantasmaRojo, FantasmaRosa, FantasmaAzul, FantasmaNaranja
 import pyxel
 
 class App:
     def __init__(self):
-        
-        pyxel.init(450, 540)  # Tamaño de la ventana
-        pyxel.title = "Pacman"
-        
-        # Carga los recursos desde recursos.pyxres
+        pyxel.init(450, 540, title="Pacman")
         pyxel.load("assets/recursos.pyxres")
 
-        # Inicializa los objetos
-        self.mapa = Mapa()
-        self.pacman = Pacman(105, 182)  # Coordenadas iniciales de Pacman
+        # Inicializar el mapa (muros)
+        self.muro = Muro()
+
+        # Inicializar a Pac-Man
+        self.pacman = Pacman(105, 182, self.muro)
+
+        # Inicializar los fantasmas
         self.fantasmas = [
             FantasmaRojo(50, 50),
             FantasmaRosa(70, 50),
@@ -24,25 +22,19 @@ class App:
             FantasmaNaranja(110, 50)
         ]
 
-        # Inicia el bucle principal
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        # Actualiza los movimientos
         self.pacman.mover()
         for fantasma in self.fantasmas:
             fantasma.mover()
 
     def draw(self):
-        pyxel.cls(0)  # Limpia la pantalla
-
-        # Dibuja el mapa 
-        self.mapa.draw()
-
-        # Dibuja Pacman y los fantasmas
-        self.pacman.draw()
+        pyxel.cls(0)
+        self.muro.draw()  # Dibujar los muros
+        self.pacman.draw()  # Dibujar Pac-Man
         for fantasma in self.fantasmas:
-            fantasma.dibujar()
+            fantasma.dibujar()  # Dibujar fantasmas
 
-# Ejecuta la aplicación
+# Ejecutar la aplicación
 App()
