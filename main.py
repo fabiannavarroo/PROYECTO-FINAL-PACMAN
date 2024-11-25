@@ -36,11 +36,11 @@ class App:
     def draw(self):
         pyxel.cls(0)  # Limpia la pantalla
 
-        # Dibuja el mapa (página 1)
-        self.mapa.dibujar()
+        # Dibuja el mapa 
+        self.mapa.draw()
 
-        # Dibuja Pacman y los fantasmas (página 0)
-        self.pacman.draw()
+        # Dibuja Pacman y los fantasmas
+        self.pacman.dibujar()
         for fantasma in self.fantasmas:
             fantasma.dibujar()
 
