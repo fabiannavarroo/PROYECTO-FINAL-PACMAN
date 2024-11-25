@@ -46,12 +46,12 @@ class Mapa:
 
         # Diccionario que da valores de la matriz a coordenadas en el archivo de recursos
         sprites = {
-            1: (0, 0),  # Esquina superior izquierda
-            2: (16, 0),  # Esquina superior derecha
-            3: (0, 16),  # Esquina inferior izquierda
-            4: (16, 16),  # Esquina inferior derecha
-            5: (8, 0),  # Borde superior 
-            6: (8, 16),  # Borde inferior
+            1: (0, 120),  # Esquina superior izquierda
+            2: (32, 120),  # Esquina superior derecha
+            3: (0, 152),  # Esquina inferior izquierda
+            4: (32, 152),  # Esquina inferior derecha
+            5: (16, 120),  # Borde superior 
+            6: (16, 152),  # Borde inferior
             7: (0, 8),  # Borde izquierdo
             8: (16, 8),  # Borde derecho
             9: (32, 0),  # Esquina simple izquierda superior
