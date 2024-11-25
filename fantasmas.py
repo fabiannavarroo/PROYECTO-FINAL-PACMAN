@@ -55,7 +55,7 @@ class FantasmaRojo(Fantasma):
         super().__init__(x, y, "rojo")
 
 class FantasmaRosa(Fantasma):
-    def __init__(x, y):
+    def __init__(self, x, y):
         super().__init__(x, y, "rosa")
 
 class FantasmaAzul(Fantasma):
