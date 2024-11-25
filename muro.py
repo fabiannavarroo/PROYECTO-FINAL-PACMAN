@@ -39,7 +39,7 @@ class Muro:
                 if tipo_muro != 0:  # Si no es un espacio vacío
                     sprite = MUROS[tipo_muro]
                     sprite_x, sprite_y = sprite["Coordenadas"]
-                    sprite_w, sprite_h = self.celda_tamaño
+                    sprite_w, sprite_h = sprite["Tamaño"]
                     pyxel.blt(
                         columna * self.celda_tamaño, fila * self.celda_tamaño,  # Coordenadas donde se dibuja el muro
                         1,  # Banco de imágenes
