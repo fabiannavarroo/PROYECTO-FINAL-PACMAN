@@ -1,5 +1,6 @@
 
 
+
 from muro import Muro
 from pacman import Pacman
 from fantasmas import FantasmaRojo, FantasmaRosa, FantasmaAzul, FantasmaNaranja
@@ -8,7 +9,7 @@ import pyxel
 
 class Tablero:
     def __init__(self):
-        pyxel.init(450, 540, title="Pacman")
+        pyxel.init(448, 496, title="Pacman")  # Dimensiones ajustadas al mapa clásico
         pyxel.load("assets/recursos.pyxres")
 
         # Inicializar el mapa (muros)
