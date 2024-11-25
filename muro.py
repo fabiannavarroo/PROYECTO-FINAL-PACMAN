@@ -7,11 +7,8 @@ class Muro:
     def __init__(self):
         # Matriz que representa el mapa usando constantes
         self.mapa = [
-            [MURO_ESQUINA_SUPERIOR_IZQUIERDA, MURO_BORDE_SUPERIOR, MURO_BORDE_SUPERIOR, MURO_BORDE_SUPERIOR, MURO_ESQUINA_SUPERIOR_DERECHA],
-            [MURO_VERTICAL_IZQUIERDO, None, None, None, MURO_VERTICAL_DERECHO],
-            [MURO_VERTICAL_IZQUIERDO, None, MURO_CRUCE_T_ARRIBA, None, MURO_VERTICAL_DERECHO],
-            [MURO_VERTICAL_IZQUIERDO, None, None, None, MURO_VERTICAL_DERECHO],
-            [MURO_ESQUINA_INFERIOR_IZQUIERDA, MURO_BORDE_INFERIOR, MURO_BORDE_INFERIOR, MURO_BORDE_INFERIOR, MURO_ESQUINA_INFERIOR_DERECHA],
+            [1,0,1,2,3],
+            [0,0,0,1,1]
         ]
 
     def draw(self):
