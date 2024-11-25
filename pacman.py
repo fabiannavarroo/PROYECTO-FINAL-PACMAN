@@ -1,5 +1,3 @@
-
-
 from constantes import PACMAN, PACMAN_ARRIBA, PACMAN_ABAJO, PACMAN_IZQUIERDA, PACMAN_DERECHA
 import pyxel
 
