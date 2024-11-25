@@ -5,12 +5,36 @@ class Muro:
     def __init__(self):
         # Matriz que representa el mapa usando números
         self.mapa = [
-            [, , , , ], # Fila 1
-            [, , , , ], # Fila 2
-            [, , , , ], # Fila 3
-            [, , , , ], # Fila 5
-            [, , , , ], # Fila 6
-            
+            [], # Fila 1
+            [], # Fila 2
+            [], # Fila 3
+            [], # Fila 5
+            [], # Fila 6
+            [], # Fila 7
+            [], # Fila 8
+            [], # Fila 9
+            [], # Fila 10
+            [], # Fila 11
+            [], # Fila 12
+            [], # Fila 13
+            [], # Fila 14
+            [], # Fila 15
+            [], # Fila 16
+            [], # Fila 17
+            [], # Fila 18
+            [], # Fila 19
+            [], # Fila 20
+            [], # Fila 21
+            [], # Fila 22
+            [], # Fila 23
+            [], # Fila 24
+            [], # Fila 25
+            [], # Fila 26
+            [], # Fila 27
+            [], # Fila 28
+            [], # Fila 29
+            [], # Fila 30
+            [], # Fila 31
         ]
 
         # Tamaño de cada celda en píxeles
