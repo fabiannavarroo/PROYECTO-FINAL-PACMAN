@@ -1,17 +1,6 @@
+
+
 import pyxel
-
-class Mapa:
-    def __init__(self):
-        # Matriz que define el diseño del mapa
-        
-
-    def draw(self):
-        # Tamaño de cada sprite en píxeles
-        sprite_size = 8
-
-        # Diccionario que da valores de la matriz a coordenadas en el archivo de recursos
-        
-    import pyxel
 
 class Mapa:
     def __init__(self):
