@@ -24,3 +24,4 @@ class Muro:
 
     def draw(self):
         #Dibuja los muros en la pantalla adaptando el tamaño de los sprites.
+        

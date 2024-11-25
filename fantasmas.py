@@ -1,12 +1,10 @@
-from constantes import (FANTASMA_ROJO_ABAJO, FANTASMA_ROSA_ABAJO, 
-                        FANTASMA_AZUL_ABAJO, FANTASMA_NARANJA_ABAJO)
 import pyxel
 
 class Fantasma:
     def __init__(self, x, y, color):
         self.x = x
         self.y = y
-        self.color = color  # Identifica al fantasma
+        self.color = color  # Identifica al fantasma (rojo, rosa, azul, naranja)
         self.direccion = 1  # Dirección inicial: 1 (derecha), -1 (izquierda)
         self.velocidad = 1
 
@@ -19,17 +17,25 @@ class Fantasma:
             self.direccion *= -1
 
     def draw(self):
-        # Dibuja el fantasma según su color
-        if self.color == "rojo":
-            sprite = FANTASMA_ROJO_ABAJO
-        elif self.color == "rosa":
-            sprite = FANTASMA_ROSA_ABAJO
-        elif self.color == "azul":
-            sprite = FANTASMA_AZUL_ABAJO
-        elif self.color == "naranja":
-            sprite = FANTASMA_NARANJA_ABAJO
-        
-        pyxel.blt(self.x, self.y, 0, *sprite, 16, 16, colkey=0)
+        # Coordenadas del sprite según el color
+        sprite_coords = {
+            "rojo": (0, 64),
+            "rosa": (0, 96),
+            "azul": (0, 48),
+            "naranja": (0, 80)
+        }
+        sprite_x, sprite_y = sprite_coords[self.color]
+        sprite_w = 16  # Ancho del sprite
+        sprite_h = 16  # Alto del sprite
+
+        # Dibuja el fantasma sin reducir el tamaño
+        pyxel.blt(
+            self.x, self.y, 
+            0,  # Banco de imágenes
+            sprite_x, sprite_y, 
+            sprite_w, sprite_h, 
+            colkey=0  # Transparencia
+        )
 
 # Subclases para cada fantasma
 class FantasmaRojo(Fantasma):
