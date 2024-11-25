@@ -8,7 +8,7 @@ import pyxel
 class App:
     def __init__(self):
         # Inicializa Pyxel
-        pyxel.init(496, 448)  # Tamaño de la ventana
+        pyxel.init(600, 438)  # Tamaño de la ventana
         pyxel.title = "Pacman"
         
         # Carga los recursos desde recursos.pyxres
