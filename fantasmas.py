@@ -15,19 +15,39 @@ class Fantasma:
         self.x += self.direccion * self.velocidad
 
         # Cambiar de dirección si alcanza los bordes
-        if self.x < 0 or self.x > pyxel.width - 16:
+        if self.x < 0 or self.x > pyxel.width - 8:  # Ajustado al nuevo tamaño
             self.direccion *= -1
 
     def dibujar(self):
+        # Escala del sprite (más pequeño)
+        escala = 0.5  # Escala del sprite (50% del tamaño original)
+        ancho_original = 16  # Ancho original del sprite
+        alto_original = 16  # Alto original del sprite
+
+        ancho_reducido = int(ancho_original * escala)
+        alto_reducido = int(alto_original * escala)
+
         # Dibuja al fantasma según su color desde la página 0
         if self.color == "rojo":
-            pyxel.blt(self.x, self.y, 0, 0, 64, 16, 16, 0)  # Sprite en (16, 0)
+            pyxel.blt(
+                self.x, self.y, 0, 0, 64,
+                ancho_reducido, alto_reducido, 0
+            )
         elif self.color == "rosa":
-            pyxel.blt(self.x, self.y, 0, 0, 96, 16, 16, 0)  # Sprite en (32, 0)
+            pyxel.blt(
+                self.x, self.y, 0, 0, 96,
+                ancho_reducido, alto_reducido, 0
+            )
         elif self.color == "azul":
-            pyxel.blt(self.x, self.y, 0, 0, 48, 16, 16, 0)  # Sprite en (48, 0)
+            pyxel.blt(
+                self.x, self.y, 0, 0, 48,
+                ancho_reducido, alto_reducido, 0
+            )
         elif self.color == "naranja":
-            pyxel.blt(self.x, self.y, 0, 0, 80, 16, 16, 0)  # Sprite en (64, 0)
+            pyxel.blt(
+                self.x, self.y, 0, 0, 80,
+                ancho_reducido, alto_reducido, 0
+            )
 
 # Subclases para cada fantasma
 class FantasmaRojo(Fantasma):
@@ -35,7 +55,7 @@ class FantasmaRojo(Fantasma):
         super().__init__(x, y, "rojo")
 
 class FantasmaRosa(Fantasma):
-    def __init__(self, x, y):
+    def __init__(x, y):
         super().__init__(x, y, "rosa")
 
 class FantasmaAzul(Fantasma):
