@@ -21,13 +21,13 @@ class Fantasma:
     def dibujar(self):
         # Dibuja al fantasma según su color desde la página 0
         if self.color == "rojo":
-            pyxel.blt(self.x, self.y, 0, 16, 0, 16, 16, 0)  # Sprite en (16, 0)
+            pyxel.blt(self.x, self.y, 0, 0, 64, 16, 16, 0)  # Sprite en (16, 0)
         elif self.color == "rosa":
-            pyxel.blt(self.x, self.y, 0, 32, 0, 16, 16, 0)  # Sprite en (32, 0)
+            pyxel.blt(self.x, self.y, 0, 0, 96, 16, 16, 0)  # Sprite en (32, 0)
         elif self.color == "azul":
-            pyxel.blt(self.x, self.y, 0, 48, 0, 16, 16, 0)  # Sprite en (48, 0)
+            pyxel.blt(self.x, self.y, 0, 0, 48, 16, 16, 0)  # Sprite en (48, 0)
         elif self.color == "naranja":
-            pyxel.blt(self.x, self.y, 0, 64, 0, 16, 16, 0)  # Sprite en (64, 0)
+            pyxel.blt(self.x, self.y, 0, 0, 80, 16, 16, 0)  # Sprite en (64, 0)
 
 # Subclases para cada fantasma
 class FantasmaRojo(Fantasma):
