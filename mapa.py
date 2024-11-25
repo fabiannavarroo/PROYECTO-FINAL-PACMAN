@@ -79,9 +79,9 @@ class Mapa:
             35: (16, 24),  # giro de borde derecha superior
             36: (0, 40),  # giro de borde izquierda inferior
             37: (16, 40),  # giro de borde derecha inferior
-            38: (40, 48),  # giro abajo con borde izquierda
-            39: (48, 48),  # giro abjo con borde derecha
-            40: (40, 56),  # giro izquierda con borde izquierda
+            38: (64, 16),  # giro abajo con borde izquierda
+            39: (80, 16),  # giro abjo con borde derecha
+            40: (56, 40),  # giro izquierda con borde izquierda
             41: (48, 56),  # giro derecha con borde derecha
             42: (40, 64),  # giro izquierda con borde izquierda
             43: (48, 64),  # giro derecha con borde derecha
