@@ -62,7 +62,7 @@ class Mapa:
             14: (32, 200),   # Borde lateral simple derecha
             15: (16, 176),   # Borde superior simple 
             16: (16, 224),   # Borde inferior simple 
-            17: (0, 24),   # Salida de los fantasmas
+            17: (40, 16),   # Salida de los fantasmas
             18: (0, 32),    # Semi circulo izquierda arriba horizontal
             19: (0, 40),   # Semi circulo izquierda abajo horizontal
             20: (16, 32),   # Semi circulo derecha arriba horizontal
