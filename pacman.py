@@ -41,4 +41,4 @@ class Pacman:
             sprite_x, sprite_y, 
             sprite_w, sprite_h, 
             colkey=0  # Transparencia
-        )
+            )
