@@ -30,8 +30,7 @@ class Muro:
             [], # Fila 24
             [], # Fila 25
             [], # Fila 26
-    
-        [], # Fila 27
+            [], # Fila 27
             [], # Fila 28
             [], # Fila 29
             [], # Fila 30
