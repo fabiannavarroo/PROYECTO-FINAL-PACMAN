@@ -92,3 +92,4 @@ class Mapa:
 
         # Dibuja cada celda del mapa en la pantalla
         
+        

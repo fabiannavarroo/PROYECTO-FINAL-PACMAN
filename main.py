@@ -33,11 +33,11 @@ class App:
         for fantasma in self.fantasmas:
             fantasma.mover()
 
-    def draw(self):
+    def dibujar(self):
         pyxel.cls(0)  # Limpia la pantalla
 
         # Dibuja el mapa (página 1)
-        self.mapa.draw()
+        self.mapa.dibujar()
 
         # Dibuja Pacman y los fantasmas (página 0)
         self.pacman.dibujar()
