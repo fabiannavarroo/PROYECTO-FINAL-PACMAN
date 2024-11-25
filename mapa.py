@@ -82,15 +82,15 @@ class Mapa:
             38: (64, 16),  # giro abajo con borde izquierda
             39: (80, 16),  # giro abjo con borde derecha
             40: (56, 40),  # giro izquierda con borde izquierda
-            41: (48, 56),  # giro derecha con borde derecha
-            42: (40, 64),  # giro izquierda con borde izquierda
-            43: (48, 64),  # giro derecha con borde derecha
-            44: (0, 88),   #recta media izquierda cerrado
-            45: (16 , 88),  #recta media derecha cerrado
-            46: (24, 80),  # semicirculo arriba izquierda
-            47: (24, 88),  # semicirculo abajo izquierda
-            48: (32, 80),  # semicirculo arriba derecha
-            49: (32, 88)  # semicirculo abjo derecha
+            41: (72, 40),  # giro derecha con borde derecha
+            42: (56, 56),  # giro izquierda con borde izquierda
+            43: (72, 56),  # giro derecha con borde derecha
+            44: (0, 72),   #recta media izquierda cerrado
+            45: (32 , 72),  #recta media derecha cerrado
+            46: (56, 80),  # semicirculo arriba izquierda
+            47: (56, 96),  # semicirculo abajo izquierda
+            48: (72, 80),  # semicirculo arriba derecha
+            49: (72, 96)  # semicirculo abjo derecha
         }
 
         # Dibuja cada celda del mapa en la pantalla
