@@ -18,8 +18,8 @@ class Muro:
 
         #Comprueba si hay un muro en la posición (x, y).
 
-        fila = y // self.celda_tamano
-        columna = x // self.celda_tamano
+        fila = y // self.celda_tamaño
+        columna = x // self.celda_tamaño
 
         # Comprobar si está dentro de los límites del mapa
         if 0 <= fila < len(self.mapa) and 0 <= columna < len(self.mapa[0]):
@@ -37,7 +37,7 @@ class Muro:
                     sprite_x, sprite_y = sprite["Coordenadas"]
                     sprite_w, sprite_h = sprite["Tamaño"]
                     pyxel.blt(
-                        columna * self.celda_tamano, fila * self.celda_tamano,  # Coordenadas donde se dibuja el muro
+                        columna * self.celda_tamaño, fila * self.celda_tamaño,  # Coordenadas donde se dibuja el muro
                         1,  # Banco de imágenes
                         sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
                         sprite_w, sprite_h,  # Tamaño del sprite
