@@ -18,10 +18,10 @@ class App:
         self.mapa = Mapa()
         self.pacman = Pacman(112, 184)  # Coordenadas iniciales de Pacman
         self.fantasmas = [
-            FantasmaRojo(50, 50),
-            FantasmaRosa(70, 50),
-            FantasmaAzul(90, 50),
-            FantasmaNaranja(110, 50)
+            FantasmaRojo(0, 56),
+            FantasmaRosa(0, 96),
+            FantasmaAzul(0, 48),
+            FantasmaNaranja(0, 80)
         ]
 
         # Inicia el bucle principal
