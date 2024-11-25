@@ -28,7 +28,7 @@ class Pacman:
         if pyxel.btn(pyxel.KEY_D):
             self.x += self.velocidad
 
-    def dibujar(self):
+    def draw(self):
         # Dibuja a Pacman sin reducir el tamaño
         sprite_x = 0  # Coordenada X en el recurso
         sprite_y = 0  # Coordenada Y en el recurso

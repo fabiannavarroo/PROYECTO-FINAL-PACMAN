@@ -40,7 +40,7 @@ class App:
         self.mapa.draw()
 
         # Dibuja Pacman y los fantasmas
-        self.pacman.dibujar()
+        self.pacman.draw()
         for fantasma in self.fantasmas:
             fantasma.dibujar()
 
