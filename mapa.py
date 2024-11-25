@@ -58,7 +58,7 @@ class Mapa:
             10: (0, 216),  # Esquina simple izquierda inferior
             11: (32, 184),  # Esquina simple derecha superior
             12: (32, 216),   # Esquina simple derecha inferior
-            13: (0, 192),   # Borde lateral simple izquierda
+            13: (0, 200),   # Borde lateral simple izquierda
             14: (32, 192),   # Borde lateral simple derecha
             15: (40, 0),   # Borde superior simple 
             16: (40, 16),   # Borde inferior simple 
