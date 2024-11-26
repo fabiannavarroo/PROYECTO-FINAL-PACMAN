@@ -39,6 +39,3 @@ class Tablero:
         self.pacman.draw()  # Dibujar Pac-Man
         for fantasma in self.fantasmas:
             fantasma.draw()  # Dibujar fantasmas
-
-# Ejecutar la aplicación
-Tablero()
