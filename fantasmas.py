@@ -21,13 +21,32 @@ class Fantasma:
             if self.y < 192:  # Coordenada para salir de la trampa
                 self.en_trampa = False
         else:
-            # Movimiento aleatorio fuera de la trampa
-            direcciones = [(self.velocidad, 0), (-self.velocidad, 0), (0, self.velocidad), (0, -self.velocidad)]
-            for dx, dy in direcciones:
-                nueva_x, nueva_y = self.x + dx, self.y + dy
-                if not self.muro.colision(nueva_x, nueva_y):
-                    self.x, self.y = nueva_x, nueva_y
-                    break
+            # Obtener las posibles direcciones
+            direcciones = {
+                "DERECHA": (self.velocidad, 0),
+                "IZQUIERDA": (-self.velocidad, 0),
+                "ARRIBA": (0, -self.velocidad),
+                "ABAJO": (0, self.velocidad),
+            }
+
+            # Intentar moverse en la dirección actual
+            dx, dy = direcciones[self.direccion_actual]
+            nueva_x, nueva_y = self.x + dx, self.y + dy
+
+            # Si hay colisión, elegir una nueva dirección aleatoria válida
+            if self.muro.colision(nueva_x, nueva_y):
+                direcciones_validas = [
+                    direccion
+                    for direccion, (dx, dy) in direcciones.items()
+                    if not self.muro.colision(self.x + dx, self.y + dy)
+                ]
+                if direcciones_validas:
+                    self.direccion_actual = random.choice(direcciones_validas)
+                    dx, dy = direcciones[self.direccion_actual]
+
+            # Actualizar posición
+            self.x += dx
+            self.y += dy
 
     def draw(self):
         sprite_x, sprite_y = self.direccion_actual
