@@ -11,13 +11,21 @@ else
     exit 1
 fi
 
+# Guardar los cambios locales no confirmados
+echo "Guardando cambios locales no confirmados..."
+git stash
+
 # Actualizar el repositorio desde GitHub
 echo "Descargando los últimos cambios del repositorio remoto..."
 git fetch origin
 
-# Forzar la sincronización de la rama local con la remota
+# Reemplazar la rama local con la remota
 echo "Reemplazando la rama local con la versión remota..."
 git reset --hard origin/main
+
+# Recuperar los cambios locales
+echo "Recuperando cambios locales guardados..."
+git stash pop
 
 # Abrir el proyecto en Cursor (o Visual Studio Code)
 echo "Abriendo el proyecto en Cursor..."
