@@ -1,31 +1,20 @@
 @echo off
-echo Guardando cambios locales no confirmados...
-git stash
-
-echo Añadiendo todos los cambios locales...
+echo Añadiendo cambios al repositorio...
 git add .
-
-echo Haciendo commit...
 git commit -m "Auto-commit: %date% %time%"
-
-echo Sincronizando con el repositorio remoto...
-git fetch origin
-
-echo Fusionando con los cambios remotos...
-git reset --hard origin/main
-
-echo Recuperando cambios locales guardados...
-git stash pop
-
-echo Subiendo los cambios locales al repositorio remoto...
-git push origin main
-
 if %errorlevel% neq 0 (
-    echo Error al subir cambios. Por favor, verifica tu conexión o conflictos.
+    echo Error al realizar el commit. Verifica el estado del repositorio.
+    pause
+    exit /b
+)
+
+echo Subiendo los cambios al repositorio remoto...
+git push origin main
+if %errorlevel% neq 0 (
+    echo Error al subir los cambios. Verifica la conexión o el estado del repositorio remoto.
     pause
     exit /b
 )
 
 echo Cambios subidos correctamente.
 pause
-exit
