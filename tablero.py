@@ -15,8 +15,8 @@ class Tablero:
         # Inicializar el mapa (muros)
         self.muro = Muro()
 
-        # Inicializar a Pac-Man #Pacman(208, 240, self.muro)
-        self.pacman = Pacman(176, 145, self.muro)
+        # Inicializar a Pac-Man
+        self.pacman = Pacman(208, 240, self.muro)
 
         # Inicializar los fantasmas
         self.fantasmas = [
