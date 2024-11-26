@@ -21,9 +21,9 @@ class Tablero:
         # Inicializar los fantasmas
         self.fantasmas = [
             FantasmaRojo(160, 145, self.muro),  # Coordenadas iniciales en la trampa
-            FantasmaRosa(224, 184, self.muro),
-            FantasmaAzul(240, 184, self.muro),
-        FantasmaNaranja(256, 184, self.muro)
+            FantasmaRosa(176, 145, self.muro),
+            FantasmaAzul(240, 145, self.muro),
+        FantasmaNaranja(256, 145, self.muro)
         ]
 
         pyxel.run(self.update, self.draw)
