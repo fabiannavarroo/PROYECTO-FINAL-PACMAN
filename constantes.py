@@ -5,6 +5,7 @@ PACMAN_ABAJO = (0, 0)  # Coordenadas de Pacman al moverse abajo
 PACMAN_IZQUIERDA = (32, 0)  # Coordenadas de Pacman al moverse a la izquierda
 PACMAN_DERECHA = (16, 0)  # Coordenadas de Pacman al moverse a la derecha
 REFRESH = 5
+
 #---------FANTASMAS---------# 
 FANTASMA_ROJO = {
     "ARRIBA": (48, 64), # Coordenadas del fantasma rojo al moverse arriba
