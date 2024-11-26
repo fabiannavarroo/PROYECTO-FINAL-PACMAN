@@ -16,7 +16,7 @@ class Fantasma:
             # Salir de la trampa
             if not self.muro.colision(self.x, self.y - self.velocidad):
                 self.y -= self.velocidad
-            if self.y < 192:  # Límites de la trampa (ajustar según sea necesario)
+            if self.y < 192:  # Límites de la trampa 
                 self.en_trampa = False
         else:
             # Movimiento fuera de la trampa
