@@ -9,7 +9,7 @@ import pyxel
 
 class Tablero:
     def __init__(self):
-        pyxel.init(430, 490, title="Pacman")  # Dimensiones ajustadas al mapa 
+        pyxel.init(430, 450, title="Pacman")  # Dimensiones ajustadas al mapa 
         pyxel.load("assets/recursos.pyxres")
 
         # Inicializar el mapa (muros)
