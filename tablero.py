@@ -30,6 +30,8 @@ class Tablero:
 
     def update(self):
         self.pacman.mover()
+        if pyxel.frame_count() %  == 0:
+
         for fantasma in self.fantasmas:
             fantasma.mover()
 
