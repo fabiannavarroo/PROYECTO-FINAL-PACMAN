@@ -5,7 +5,7 @@ import pyxel
 
 class Tablero:
     def __init__(self):
-        pyxel.init(256, 256, title="Pacman")
+        pyxel.init(430, 333, title="Pacman")
         pyxel.load("assets/recursos.pyxres")
 
         self.muro = Muro()
