@@ -21,6 +21,7 @@ class Pacman:
                 contador+=1
             while contador%2==0:
                 self.direccion_actual=PACMAN
+                contador+=1
         if pyxel.btn(pyxel.KEY_DOWN):
             nueva_y += self.velocidad
             self.direccion_actual = PACMAN_ABAJO
