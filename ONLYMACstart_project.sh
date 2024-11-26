@@ -32,8 +32,8 @@ if [ $? -ne 0 ]; then
     echo "Advertencia: No se pudieron aplicar los cambios locales guardados. Puede haber conflictos."
 fi
 
-echo "Abriendo el proyecto en Visual Studio Code..."
-open -a "Visual Studio Code" .
+echo "Abriendo el proyecto en Cursor..."
+open -a "Cursor" .
 
 echo "¡Todo listo!"
 exit 0
