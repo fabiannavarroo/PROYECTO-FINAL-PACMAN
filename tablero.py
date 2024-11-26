@@ -20,10 +20,10 @@ class Tablero:
 
         # Inicializar los fantasmas
         self.fantasmas = [
-            FantasmaRojo(50, 50),
-            FantasmaRosa(70, 50),
-            FantasmaAzul(90, 50),
-            FantasmaNaranja(110, 50)
+            FantasmaRojo(208, 184, self.muro),  # Coordenadas iniciales en la trampa
+            FantasmaRosa(224, 184, self.muro),
+            FantasmaAzul(240, 184, self.muro),
+        FantasmaNaranja(256, 184, self.muro)
         ]
 
         pyxel.run(self.update, self.draw)
