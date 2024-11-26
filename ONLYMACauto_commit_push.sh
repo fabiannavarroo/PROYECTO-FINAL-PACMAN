@@ -1,22 +1,39 @@
 #!/bin/bash
 
+# Ruta del repositorio
+REPO_PATH="/Users/fabiannavarrofonte/Documents/Uni/Programación/PROYECTO-FINAL-PACMAN"
+
+# Cambiar al directorio del repositorio
+if cd "$REPO_PATH"; then
+    echo "Cambiado al directorio del repositorio: $REPO_PATH"
+else
+    echo "Error: No se pudo acceder al directorio $REPO_PATH"
+    exit 1
+fi
+
+# Añadir todos los cambios locales
 echo "Añadiendo todos los cambios locales..."
 git add .
 
-echo "Haciendo commit..."
-git commit -m "Auto-commit: $(date)"
+# Hacer commit con la fecha y hora actual
+COMMIT_MESSAGE="Auto-commit: $(date)"
+echo "Haciendo commit con mensaje: '$COMMIT_MESSAGE'"
+git commit -m "$COMMIT_MESSAGE"
 
-echo "Sincronizando con el repositorio remoto..."
+# Sincronizar con la rama remota
+echo "Sincronizando con la rama remota..."
 git fetch origin
 
-echo "Reemplazando la rama local con la remota si hay conflictos..."
+# Forzar la sincronización de la rama local con la remota
+echo "Reemplazando la rama local con la versión remota..."
 git reset --hard origin/main
 
-echo "Subiendo los cambios locales..."
+# Subir los cambios locales
+echo "Subiendo los cambios locales al repositorio remoto..."
 git push origin main
 
 if [ $? -ne 0 ]; then
-    echo "Error al subir cambios. Por favor, verifica tu conexión."
+    echo "Error al subir cambios. Por favor, verifica tu conexión o conflictos."
     exit 1
 fi
 
