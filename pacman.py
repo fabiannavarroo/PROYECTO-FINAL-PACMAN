@@ -7,7 +7,7 @@ class Pacman:
         self.y = y
         self.velocidad = 2
         self.muro = muro  # Referencia a la clase Muro
-        self.direccion_actual = PACMAN_DERECHA  # Dirección inicial
+        self.direccion_actual = PACMAN  # Dirección inicial
 
     def mover(self):
         nueva_x, nueva_y = self.x, self.y
@@ -23,6 +23,18 @@ class Pacman:
             nueva_x -= self.velocidad
             self.direccion_actual = PACMAN_IZQUIERDA
         if pyxel.btn(pyxel.KEY_RIGHT):
+            nueva_x += self.velocidad
+            self.direccion_actual = PACMAN_DERECHA
+        if pyxel.btn(pyxel.KEY_W):
+            nueva_y -= self.velocidad
+            self.direccion_actual = PACMAN_ARRIBA
+        if pyxel.btn(pyxel.KEY_S):
+            nueva_y += self.velocidad
+            self.direccion_actual = PACMAN_ABAJO
+        if pyxel.btn(pyxel.KEY_A):
+            nueva_x -= self.velocidad
+            self.direccion_actual = PACMAN_IZQUIERDA
+        if pyxel.btn(pyxel.KEY_D):
             nueva_x += self.velocidad
             self.direccion_actual = PACMAN_DERECHA
 

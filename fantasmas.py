@@ -1,72 +1,48 @@
-
-
-from constantes import (
-    FANTASMA_ROJO_ARIBA, FANTASMA_ROJO_ABAJO, FANTASMA_ROJO_IZQUIERDA, FANTASMA_ROJO_DERECHA,
-    FANTASMA_AZUL_ARIBA, FANTASMA_AZUL_ABAJO, FANTASMA_AZUL_IZQUIERDA, FANTASMA_AZUL_DERECHA,
-    FANTASMA_NARANJA_ARIBA, FANTASMA_NARANJA_ABAJO, FANTASMA_NARANJA_IZQUIERDA, FANTASMA_NARANJA_DERECHA,
-    FANTASMA_ROSA_ARIBA, FANTASMA_ROSA_ABAJO, FANTASMA_ROSA_IZQUIERDA, FANTASMA_ROSA_DERECHA,
-)
 import pyxel
+from constantes import FANTASMA_ROJO, FANTASMA_ROSA, FANTASMA_AZUL, FANTASMA_NARANJA
 
 class Fantasma:
-    def __init__(self, x, y, sprites):
+    def __init__(self, x, y, sprites, muro):
         self.x = x
         self.y = y
-        self.sprites = sprites  # Diccionario con las direcciones del sprite
+        self.sprites = sprites
+        self.muro = muro
+        self.velocidad = 1
         self.direccion_actual = self.sprites["DERECHA"]
-        self.velocidad = 1.5
+        self.en_trampa = True
 
     def mover(self):
-        # Movimiento horizontal básico
-        self.x += self.velocidad
-        self.direccion_actual = self.sprites["DERECHA"]
-
-        # Cambiar de dirección si alcanza los bordes
-        if self.x < 0 or self.x > pyxel.width - 16:
-            self.velocidad *= -1
-            self.direccion_actual = self.sprites["IZQUIERDA"]
+        if self.en_trampa:
+            # Salir de la trampa
+            if not self.muro.colision(self.x, self.y - self.velocidad):
+                self.y -= self.velocidad
+            if self.y < 192:  # Límites de la trampa 
+                self.en_trampa = False
+        else:
+            # Movimiento fuera de la trampa
+            direcciones = [(self.velocidad, 0), (-self.velocidad, 0), (0, self.velocidad), (0, -self.velocidad)]
+            for dx, dy in direcciones:
+                nueva_x, nueva_y = self.x + dx, self.y + dy
+                if not self.muro.colision(nueva_x, nueva_y):
+                    self.x, self.y = nueva_x, nueva_y
+                    break
 
     def draw(self):
         sprite_x, sprite_y = self.direccion_actual
         pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
 
-# Subclases para cada fantasma
 class FantasmaRojo(Fantasma):
-    def __init__(self, x, y):
-        sprites = {
-            "ARRIBA": FANTASMA_ROJO_ARIBA,
-            "ABAJO": FANTASMA_ROJO_ABAJO,
-            "IZQUIERDA": FANTASMA_ROJO_IZQUIERDA,
-            "DERECHA": FANTASMA_ROJO_DERECHA,
-        }
-        super().__init__(x, y, sprites)
+    def __init__(self, x, y, muro):
+        super().__init__(x, y, FANTASMA_ROJO, muro)
 
 class FantasmaRosa(Fantasma):
-    def __init__(self, x, y):
-        sprites = {
-            "ARRIBA": FANTASMA_ROSA_ARIBA,
-            "ABAJO": FANTASMA_ROSA_ABAJO,
-            "IZQUIERDA": FANTASMA_ROSA_IZQUIERDA,
-            "DERECHA": FANTASMA_ROSA_DERECHA,
-        }
-        super().__init__(x, y, sprites)
+    def __init__(self, x, y, muro):
+        super().__init__(x, y, FANTASMA_ROSA, muro)
 
 class FantasmaAzul(Fantasma):
-    def __init__(self, x, y):
-        sprites = {
-            "ARRIBA": FANTASMA_AZUL_ARIBA,
-            "ABAJO": FANTASMA_AZUL_ABAJO,
-            "IZQUIERDA": FANTASMA_AZUL_IZQUIERDA,
-            "DERECHA": FANTASMA_AZUL_DERECHA,
-        }
-        super().__init__(x, y, sprites)
+    def __init__(self, x, y, muro):
+        super().__init__(x, y, FANTASMA_AZUL, muro)
 
 class FantasmaNaranja(Fantasma):
-    def __init__(self, x, y):
-        sprites = {
-            "ARRIBA": FANTASMA_NARANJA_ARIBA,
-            "ABAJO": FANTASMA_NARANJA_ABAJO,
-            "IZQUIERDA": FANTASMA_NARANJA_IZQUIERDA,
-            "DERECHA": FANTASMA_NARANJA_DERECHA,
-        }
-        super().__init__(x, y, sprites)
+    def __init__(self, x, y, muro):
+        super().__init__(x, y, FANTASMA_NARANJA, muro)
