@@ -9,8 +9,8 @@ class Fantasma:
         self.y = y
         self.sprites = sprites
         self.muro = muro
-        self.direccion_actual = sprites["DERECHA"]
         self.velocidad = 1
+        self.direccion_actual = "DERECHA"  # Cambiado a clave válida
         self.en_trampa = True
 
     def mover(self):
@@ -49,7 +49,7 @@ class Fantasma:
             self.y += dy
 
     def draw(self):
-        sprite_x, sprite_y = self.direccion_actual
+        sprite_x, sprite_y = self.sprites[self.direccion_actual]
         pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
 
 class FantasmaRojo(Fantasma):
