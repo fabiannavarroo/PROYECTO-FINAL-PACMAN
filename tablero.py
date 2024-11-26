@@ -23,7 +23,7 @@ class Tablero:
             FantasmaRojo(160, 145, self.muro),  # Coordenadas iniciales en la trampa
             FantasmaRosa(176, 145, self.muro),
             FantasmaAzul(192, 145, self.muro),
-        FantasmaNaranja(208, 145, self.muro)
+            FantasmaNaranja(208, 145, self.muro)
         ]
 
         pyxel.run(self.update, self.draw)
