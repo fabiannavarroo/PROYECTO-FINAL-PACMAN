@@ -9,7 +9,7 @@ LAST_RUN_FILE=/tmp/last_git_run
 # Intervalo mínimo entre ejecuciones (en segundos)
 MIN_INTERVAL=10
 
-git config pull.rebase false
+
 # Verificar si ha pasado suficiente tiempo desde la última ejecución
 if [[ -f "$LAST_RUN_FILE" ]]; then
     LAST_RUN=$(cat "$LAST_RUN_FILE")
