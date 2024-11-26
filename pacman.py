@@ -7,7 +7,8 @@ class Pacman:
         self.y = y
         self.velocidad = 2
         self.muro = muro  # Referencia a la clase Muro
-        self.direccion_actual = PACMAN  # Dirección inicial
+        self.direccion_actual = PACMAN
+        self.sprite_actual = 0  # Dirección inicial
 
     def mover(self):
         nueva_x, nueva_y = self.x, self.y
