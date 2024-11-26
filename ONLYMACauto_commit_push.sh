@@ -4,44 +4,33 @@
 REPO_PATH="/Users/fabiannavarrofonte/Documents/Uni/Programación/PROYECTO-FINAL-PACMAN"
 
 # Cambiar al directorio del repositorio
-if cd "$REPO_PATH"; then
-    echo "Cambiado al directorio del repositorio: $REPO_PATH"
-else
-    echo "Error: No se pudo acceder al directorio $REPO_PATH"
+cd "$REPO_PATH" || { echo "Error: No se pudo acceder al directorio"; exit 1; }
+
+echo "Verificando el estado del repositorio..."
+git status
+if [ $? -ne 0 ]; then
+    echo "Error: No se pudo verificar el estado del repositorio. Revisa si existe y está bien configurado."
     exit 1
 fi
 
-# Guardar los cambios locales no confirmados
-echo "Guardando cambios locales no confirmados..."
-git stash
-
-# Añadir todos los cambios locales
 echo "Añadiendo todos los cambios locales..."
 git add .
-
-# Hacer commit con la fecha y hora actual
-COMMIT_MESSAGE="Auto-commit: $(date)"
-echo "Haciendo commit con mensaje: '$COMMIT_MESSAGE'"
-git commit -m "$COMMIT_MESSAGE"
-
-# Sincronizar con la rama remota
-echo "Sincronizando con la rama remota..."
-git fetch origin
-
-# Reemplazar la rama local con la remota
-echo "Reemplazando la rama local con la versión remota..."
-git reset --hard origin/main
-
-# Recuperar los cambios locales guardados
-echo "Recuperando cambios locales guardados..."
-git stash pop
-
-# Subir los cambios locales
-echo "Subiendo los cambios locales al repositorio remoto..."
-git push origin main
-
 if [ $? -ne 0 ]; then
-    echo "Error al subir cambios. Por favor, verifica tu conexión o conflictos."
+    echo "Error: No se pudieron añadir los cambios. Revisa el estado de los archivos."
+    exit 1
+fi
+
+echo "Realizando el commit..."
+git commit -m "Auto-commit: $(date)"
+if [ $? -ne 0 ]; then
+    echo "Error: No se pudo realizar el commit. Asegúrate de que hay cambios para confirmar."
+    exit 1
+fi
+
+echo "Subiendo los cambios al repositorio remoto..."
+git push origin main
+if [ $? -ne 0 ]; then
+    echo "Error: No se pudieron subir los cambios. Revisa la conexión y los permisos del repositorio."
     exit 1
 fi
 
