@@ -9,6 +9,6 @@ echo "Forzando la sincronización de la rama local con la remota..."
 git reset --hard origin/main
 
 echo "Proyecto actualizado correctamente. Abriendo el editor..."
-open -a "Cursor" .
+code .
 
 exit 0
