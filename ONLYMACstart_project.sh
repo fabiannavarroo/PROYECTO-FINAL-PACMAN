@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# Cambiar al directorio del repositorio
-cd /Users/fabiannavarrofonte/Documents/Uni/Programación/PROYECTO-FINAL-PACMAN
+echo "Actualizando el proyecto..."
 
-# Actualizar el repositorio desde GitHub
-echo "Actualizando el repositorio..."
-git pull origin main
+echo "Descargando los últimos cambios del repositorio remoto..."
+git fetch origin
 
-# Abrir el proyecto en Cursor
-echo "Abriendo el proyecto en Cursor..."
-open -a "Cursor" .
+echo "Forzando la sincronización de la rama local con la remota..."
+git reset --hard origin/main
 
-echo "¡Todo listo!"
+echo "Proyecto actualizado correctamente. Abriendo el editor..."
+open -a "Visual Studio Code" .
+
+exit 0
