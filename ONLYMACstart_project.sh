@@ -23,7 +23,7 @@ git fetch origin
 echo "Reemplazando la rama local con la versión remota..."
 git reset --hard origin/main
 
-# Recuperar los cambios locales
+# Recuperar los cambios locales guardados
 echo "Recuperando cambios locales guardados..."
 git stash pop
 
