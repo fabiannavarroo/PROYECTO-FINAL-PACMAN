@@ -1,4 +1,6 @@
 import pyxel
+from constantes import FANTASMA_ROJO, FANTASMA_ROSA, FANTASMA_AZUL, FANTASMA_NARANJA
+
 
 class Fantasma:
     def __init__(self, x, y, sprites, muro):
