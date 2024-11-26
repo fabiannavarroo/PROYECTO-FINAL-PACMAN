@@ -7,19 +7,19 @@ class Fantasma:
         self.y = y
         self.sprites = sprites
         self.muro = muro
+        self.direccion_actual = sprites["DERECHA"]
         self.velocidad = 1
-        self.direccion_actual = self.sprites["DERECHA"]
         self.en_trampa = True
 
     def mover(self):
         if self.en_trampa:
-            # Salir de la trampa
+            # Movimiento para salir de la trampa
             if not self.muro.colision(self.x, self.y - self.velocidad):
                 self.y -= self.velocidad
-            if self.y < 192:  # Límites de la trampa 
+            if self.y < 192:  # Coordenada para salir de la trampa
                 self.en_trampa = False
         else:
-            # Movimiento fuera de la trampa
+            # Movimiento aleatorio fuera de la trampa
             direcciones = [(self.velocidad, 0), (-self.velocidad, 0), (0, self.velocidad), (0, -self.velocidad)]
             for dx, dy in direcciones:
                 nueva_x, nueva_y = self.x + dx, self.y + dy
