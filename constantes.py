@@ -1,7 +1,7 @@
 #---------PACMAN---------#
 PACMAN = (0, 0)  # Coordenadas de Pacman
 PACMAN_ARRIBA = (48, 0)  # Coordenadas de Pacman al moverse arriba
-PACMAN_ABAJO = (0, 0)  # Coordenadas de Pacman al moverse abajo
+PACMAN_ABAJO = (16, 32)  # Coordenadas de Pacman al moverse abajo
 PACMAN_IZQUIERDA = (32, 0)  # Coordenadas de Pacman al moverse a la izquierda
 PACMAN_DERECHA = (16, 0)  # Coordenadas de Pacman al moverse a la derecha
 REFRESH = 5

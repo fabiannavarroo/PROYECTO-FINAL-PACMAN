@@ -2,7 +2,6 @@
 
 
 from muro import Muro
-from constantes import *
 from pacman import Pacman
 from fantasmas import FantasmaRojo, FantasmaRosa, FantasmaAzul, FantasmaNaranja
 import pyxel
@@ -31,8 +30,6 @@ class Tablero:
 
     def update(self):
         self.pacman.mover()
-        if pyxel.frame_count() % REFRESH == 0:
-            
         for fantasma in self.fantasmas:
             fantasma.mover()
 
