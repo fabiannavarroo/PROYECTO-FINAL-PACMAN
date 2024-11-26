@@ -11,17 +11,12 @@ class Pacman:
 
     def mover(self):
         nueva_x, nueva_y = self.x, self.y
-        contador=1
 
+        
         # Control de movimiento usando teclas
         if pyxel.btn(pyxel.KEY_UP):
             nueva_y -= self.velocidad
-            while contador%2!=0:
-                self.direccion_actual = PACMAN_ARRIBA
-                contador+=1
-            while contador%2==0:
-                self.direccion_actual=PACMAN
-                contador+=1
+            self.direccion_actual = PACMAN_ARRIBA
         if pyxel.btn(pyxel.KEY_DOWN):
             nueva_y += self.velocidad
             self.direccion_actual = PACMAN_ABAJO
