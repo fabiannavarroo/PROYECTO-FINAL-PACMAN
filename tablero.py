@@ -30,7 +30,8 @@ class Tablero:
 
     def update(self):
         self.pacman.mover()
-        
+        if self.pacman.frame_count() % REFRESH == 0:
+            self.pacman.update()
         for fantasma in self.fantasmas:
             fantasma.mover()
 
