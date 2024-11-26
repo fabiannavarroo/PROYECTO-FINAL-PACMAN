@@ -19,7 +19,7 @@ class Fantasma:
     def mover(self):
         nueva_x, nueva_y = self.x, self.y
 
-        # Lógica de movimiento básico (puedes implementar IA avanzada)
+        # Lógica de movimiento básico 
         if pyxel.frame_count % 60 < 30:  # Alternar entre direcciones
             nueva_x += self.velocidad
             self.direccion_actual = self.sprites["DERECHA"]
@@ -38,9 +38,8 @@ class Fantasma:
             self.en_trampa = False  # Sale de la trampa y no puede volver a entrar
 
     def puede_salir(self, x, y):
-        """
-        Permite que el fantasma atraviese la puerta de la trampa.
-        """
+
+        #Permite que el fantasma atraviese la puerta de la trampa.
         puerta_fila = 9  # Fila de la puerta de salida
         puerta_columna = 12  # Columna de la puerta de salida
         fila = y // self.muro.celda_tamaño
