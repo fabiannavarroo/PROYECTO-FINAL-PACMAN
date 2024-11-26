@@ -51,4 +51,6 @@ MUROS = {
     18: {"Coordenadas": (8, 88), "Tamaño": (16,16)},  # Esquina izquierda inferior trampa fantasmas
     19: {"Coordenadas": (24, 88), "Tamaño": (16,16)},  # Borde inferior trampa fantasma
     20: {"Coordenadas": (40, 88), "Tamaño": (16,16)},  # Esquina derecha inferior trampa fantasmas
+    21: {"Coordenadas": (8, 80), "Tamaño": (16,16)},  # Borde derecha trampa fantasmas
+    22: {"Coordenadas": (48, 80), "Tamaño": (16,16)},  # Borde izquierda trampa fantasmas
 }
