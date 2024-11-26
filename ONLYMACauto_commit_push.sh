@@ -20,13 +20,21 @@ COMMIT_MESSAGE="Auto-commit: $(date)"
 echo "Haciendo commit con mensaje: '$COMMIT_MESSAGE'"
 git commit -m "$COMMIT_MESSAGE"
 
+# Guardar los cambios locales no confirmados
+echo "Guardando cambios locales no confirmados..."
+git stash
+
 # Sincronizar con la rama remota
 echo "Sincronizando con la rama remota..."
 git fetch origin
 
-# Forzar la sincronización de la rama local con la remota
+# Reemplazar la rama local con la remota
 echo "Reemplazando la rama local con la versión remota..."
 git reset --hard origin/main
+
+# Recuperar los cambios locales
+echo "Recuperando cambios locales guardados..."
+git stash pop
 
 # Subir los cambios locales
 echo "Subiendo los cambios locales al repositorio remoto..."
