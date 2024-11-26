@@ -1,18 +1,35 @@
 @echo off
-echo Guardando cambios locales no confirmados...
+echo Verificando el estado del repositorio...
+git status
+if %errorlevel% neq 0 (
+    echo Error al verificar el estado. Asegúrate de que el repositorio existe y está bien configurado.
+    pause
+    exit /b
+)
+
+echo Limpiando cambios locales no confirmados...
 git stash
+if %errorlevel% neq 0 (
+    echo No se pudieron guardar los cambios locales. Por favor, verifica manualmente.
+    pause
+    exit /b
+)
 
-echo Descargando los últimos cambios del repositorio remoto...
-git fetch origin
+echo Actualizando el repositorio con los últimos cambios...
+git pull origin main --rebase
+if %errorlevel% neq 0 (
+    echo Error al actualizar el repositorio. Verifica posibles conflictos.
+    pause
+    exit /b
+)
 
-echo Reemplazando la rama local con la versión remota...
-git reset --hard origin/main
-
-echo Recuperando cambios locales guardados...
+echo Aplicando cambios locales guardados, si los hubiera...
 git stash pop
+if %errorlevel% neq 0 (
+    echo No se pudieron aplicar los cambios locales guardados. Puede haber conflictos.
+    pause
+)
 
-echo Proyecto actualizado correctamente. Abriendo el editor...
+echo Iniciando el proyecto...
 start code .
-
-pause
 exit
