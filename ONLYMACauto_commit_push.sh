@@ -11,6 +11,10 @@ else
     exit 1
 fi
 
+# Guardar los cambios locales no confirmados
+echo "Guardando cambios locales no confirmados..."
+git stash
+
 # Añadir todos los cambios locales
 echo "Añadiendo todos los cambios locales..."
 git add .
@@ -20,10 +24,6 @@ COMMIT_MESSAGE="Auto-commit: $(date)"
 echo "Haciendo commit con mensaje: '$COMMIT_MESSAGE'"
 git commit -m "$COMMIT_MESSAGE"
 
-# Guardar los cambios locales no confirmados
-echo "Guardando cambios locales no confirmados..."
-git stash
-
 # Sincronizar con la rama remota
 echo "Sincronizando con la rama remota..."
 git fetch origin
@@ -32,7 +32,7 @@ git fetch origin
 echo "Reemplazando la rama local con la versión remota..."
 git reset --hard origin/main
 
-# Recuperar los cambios locales
+# Recuperar los cambios locales guardados
 echo "Recuperando cambios locales guardados..."
 git stash pop
 
