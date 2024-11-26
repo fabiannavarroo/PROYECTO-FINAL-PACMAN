@@ -4,32 +4,36 @@
 REPO_PATH="/Users/fabiannavarrofonte/Documents/Uni/Programación/PROYECTO-FINAL-PACMAN"
 
 # Cambiar al directorio del repositorio
-if cd "$REPO_PATH"; then
-    echo "Cambiado al directorio del repositorio: $REPO_PATH"
-else
-    echo "Error: No se pudo acceder al directorio $REPO_PATH"
+cd "$REPO_PATH" || { echo "Error: No se pudo acceder al directorio"; exit 1; }
+
+echo "Verificando el estado del repositorio..."
+git status
+if [ $? -ne 0 ]; then
+    echo "Error: No se pudo verificar el estado del repositorio. Revisa si existe y está bien configurado."
     exit 1
 fi
 
-# Guardar los cambios locales no confirmados
-echo "Guardando cambios locales no confirmados..."
+echo "Guardando cambios locales no confirmados (si los hubiera)..."
 git stash
+if [ $? -ne 0 ]; then
+    echo "Advertencia: No se pudieron guardar los cambios locales. Verifica manualmente."
+fi
 
-# Actualizar el repositorio desde GitHub
-echo "Descargando los últimos cambios del repositorio remoto..."
-git fetch origin
+echo "Actualizando el repositorio con los últimos cambios..."
+git pull origin main --rebase
+if [ $? -ne 0 ]; then
+    echo "Error: Hubo un problema al actualizar el repositorio. Revisa posibles conflictos."
+    exit 1
+fi
 
-# Reemplazar la rama local con la remota
-echo "Reemplazando la rama local con la versión remota..."
-git reset --hard origin/main
-
-# Recuperar los cambios locales guardados
-echo "Recuperando cambios locales guardados..."
+echo "Restaurando cambios locales guardados..."
 git stash pop
+if [ $? -ne 0 ]; then
+    echo "Advertencia: No se pudieron aplicar los cambios locales guardados. Puede haber conflictos."
+fi
 
-# Abrir el proyecto en Cursor (o Visual Studio Code)
-echo "Abriendo el proyecto en Cursor..."
-open -a "Cursor" "$REPO_PATH"
+echo "Abriendo el proyecto en Visual Studio Code..."
+open -a "Visual Studio Code" .
 
 echo "¡Todo listo!"
 exit 0
