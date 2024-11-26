@@ -25,6 +25,18 @@ class Pacman:
         if pyxel.btn(pyxel.KEY_RIGHT):
             nueva_x += self.velocidad
             self.direccion_actual = PACMAN_DERECHA
+        if pyxel.btn(pyxel.KEY_W):
+            nueva_y -= self.velocidad
+            self.direccion_actual = PACMAN_ARRIBA
+        if pyxel.btn(pyxel.KEY_S):
+            nueva_y += self.velocidad
+            self.direccion_actual = PACMAN_ABAJO
+        if pyxel.btn(pyxel.KEY_A):
+            nueva_x -= self.velocidad
+            self.direccion_actual = PACMAN_IZQUIERDA
+        if pyxel.btn(pyxel.KEY_D):
+            nueva_x += self.velocidad
+            self.direccion_actual = PACMAN_DERECHA
 
         # Verificar colisión antes de actualizar la posición
         if not self.muro.colision(nueva_x, self.y):
