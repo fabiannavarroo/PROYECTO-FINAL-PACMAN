@@ -44,7 +44,7 @@ def play_melody():
     """
     Reproduce la melodía configurada en bucle.
     """
-    pyxel.play(0, [0, 1, 2, 3], loop=True)
+    pyxel.play(0, [0], loop=True)
 
 class App:
     def __init__(self):
