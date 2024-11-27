@@ -3,39 +3,57 @@ import pyxel
 def setup_melody():
     # Frase 1: "We wish you a Merry Christmas"
     pyxel.sounds[0].set(
-        "G3E3F3G3G3G3F3E3",  # Notes
-        "T",                # Tone
-        "4",                # Volume
-        "N",                # Effect
-        35                  # Speed
+        notes="G3G3A3G3C4B3",  # Notas de la frase
+        tones="T",
+        volumes="4",
+        effects="N",
+        speed=25  # Velocidad ajustada para la melodía
     )
 
-    # Frase 2: "And a Happy New Year"
+    # Frase 2: "We wish you a Merry Christmas"
     pyxel.sounds[1].set(
-        "A3F3G3A3B3B3C4",
-        "T",
-        "4",
-        "N",
-        35
+        notes="G3G3A3G3D4C4",
+        tones="T",
+        volumes="4",
+        effects="N",
+        speed=25
     )
 
-    # Frase 3: Final repetitivo
+    # Frase 3: "Good tidings we bring"
     pyxel.sounds[2].set(
-        "C4B3A3G3",
-        "T",
-        "4",
-        "N",
-        40
+        notes="E4E4F4E4G4F4",
+        tones="T",
+        volumes="4",
+        effects="N",
+        speed=25
+    )
+
+    # Frase 4: "To you and your kin"
+    pyxel.sounds[3].set(
+        notes="D4D4E4D4C4B3",
+        tones="T",
+        volumes="4",
+        effects="N",
+        speed=25
+    )
+
+    # Frase 5: "We wish you a Merry Christmas and a Happy New Year"
+    pyxel.sounds[4].set(
+        notes="G3G3A3G3C4B3 G3G3A3G3D4C4",
+        tones="T",
+        volumes="4",
+        effects="N",
+        speed=25
     )
 
 def play_melody():
     # Reproducir las frases en secuencia
-    pyxel.play(0, [0, 1, 2], loop=True)  # Reproducir en bucle
+    pyxel.play(0, [0, 1, 2, 3, 4], loop=True)
 
 class App:
     def __init__(self):
-        pyxel.init(160, 120, title="Merry Christmas Melody")
-        setup_melody()  # Configurar los sonidos
+        pyxel.init(160, 120, title="We Wish You a Merry Christmas")
+        setup_melody()  # Configurar la melodía
         play_melody()   # Reproducir la melodía
         pyxel.run(self.update, self.draw)
 
@@ -46,6 +64,6 @@ class App:
 
     def draw(self):
         pyxel.cls(0)
-        pyxel.text(40, 60, "Playing: Merry Christmas", pyxel.frame_count % 16)
+        pyxel.text(10, 50, "Playing: We Wish You a Merry Christmas", 7)
 
 App()
