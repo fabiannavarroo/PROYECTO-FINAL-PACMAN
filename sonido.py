@@ -1,3 +1,3 @@
 import pyxel
 
-pyxel.sound(,)
+pyxel.sounds[0].speed = 60
