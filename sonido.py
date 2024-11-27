@@ -8,7 +8,7 @@ def setup_melody():
     pyxel.sounds[0].set(
         notes="G4R G4A4G4F4E4R C4C4D4C4B4A4R",  # Incluye silencios entre frases
         tones="T",
-        volumes="6666666666666",
+        volumes="33333333333333",
         effects="N",
         speed=20
     )
@@ -17,7 +17,7 @@ def setup_melody():
     pyxel.sounds[1].set(
         notes="D4R D4E4D4C4B4R G4G4A4G4F4E4R",  # Silencios tras repeticiones
         tones="T",
-        volumes="6666666666666",
+        volumes="33333333333333",
         effects="N",
         speed=20
     )
@@ -26,7 +26,7 @@ def setup_melody():
     pyxel.sounds[2].set(
         notes="C4D4E4F4G4R G4A4B4C4R B4A4G4F4R",
         tones="T",
-        volumes="6666666666666",
+        volumes="33333333333333",
         effects="N",
         speed=20
     )
@@ -35,7 +35,7 @@ def setup_melody():
     pyxel.sounds[3].set(
         notes="D4R D4E4D4C4B4R G4G4A4G4F4E4R",
         tones="T",
-        volumes="6666666666666",
+        volumes="33333333333333",
         effects="N",
         speed=20
     )
