@@ -51,7 +51,8 @@ class Fantasma:
             #Portal
             if (self.x,self.y)in PORTALES:
                 self.x,self.y = PORTALES[(self.x,self.y)]
-
+                
+    # Dibujar el sprite del fantasma en la dirección correspondiente.
     def draw(self):
         sprite_x, sprite_y = self.sprites[self.direccion_actual]
         pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
