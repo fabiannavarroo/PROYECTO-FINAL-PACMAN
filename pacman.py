@@ -78,5 +78,5 @@ class Pacman:
             # Dibujar Pac-Man con la boca abierta en la dirección actual
             sprite_x, sprite_y = self.direccion_actual
 
-        # Dibujar el sprite correspondiente
+        # Dibujar el sprite de PacMan
         pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
