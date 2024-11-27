@@ -31,7 +31,3 @@ class Tablero:
         self.pacman.draw()
         for fantasma in self.fantasmas:
             fantasma.draw()
-    
-    def tunel(self):
-        if self.x == self.mapa[10][0]:
-            self.x == self.mapa[10][27]
