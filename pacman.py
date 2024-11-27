@@ -39,6 +39,16 @@ class Pacman:
             nueva_x += self.velocidad
             self.direccion_actual = PACMAN_DERECHA
 
+        # Continuar moviéndose en la dirección actual
+        if self.direccion_actual == PACMAN_ARRIBA:
+            nueva_y -= self.velocidad
+        elif self.direccion_actual == PACMAN_ABAJO:
+            nueva_y += self.velocidad
+        elif self.direccion_actual == PACMAN_IZQUIERDA:
+            nueva_x -= self.velocidad
+        elif self.direccion_actual == PACMAN_DERECHA:
+            nueva_x += self.velocidad
+
         # Verificar colisión antes de actualizar la posición
         if not self.muro.colision(nueva_x, self.y):
             self.x = nueva_x
