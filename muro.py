@@ -50,6 +50,7 @@ class Muro:
             (x + sprite_tamaño - 1, y + sprite_tamaño - 1),  # Esquina inferior derecha
         ]
 
+        # Consegu
         for py in range(y, y + sprite_tamaño, sprite_tamaño - 1):
             for px in range(x, x + sprite_tamaño, sprite_tamaño - 1):
                 fila = int(py // self.celda_tamaño)
