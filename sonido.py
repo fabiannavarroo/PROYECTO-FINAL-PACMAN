@@ -4,38 +4,38 @@ def setup_melody():
     """
     Configura la melodía del Cara al Sol en Pyxel.
     """
-    # Frase 1
+    # Frase 1: "Cara al sol con la camisa nueva..."
     pyxel.sounds[0].set(
-        notes="G4G4G4G4RG4F4E4RG4G4G4G4RG4F4E4R",  # Primera parte
+        notes="G4G4G4G4A4B4C5C5RG4G4G4RG4G4G4F4",  
+        tones="T",
+        volumes="6666666666666666",
+        effects="N",
+        speed=20
+    )
+
+    # Frase 2: "Que tú bordaste en rojo ayer..."
+    pyxel.sounds[1].set(
+        notes="F4F4F4G4A4A4G4F4RG4F4E4D4C4RG4A4",
+        tones="T",
+        volumes="6666666666666666",
+        effects="N",
+        speed=20
+    )
+
+    # Frase 3: "Me hallará la muerte si me llega..."
+    pyxel.sounds[2].set(
+        notes="B3C4D4E4F4F4E4D4C4RG4A4B4C5D5RG4",
+        tones="T",
+        volumes="6666666666666666",
+        effects="N",
+        speed=20
+    )
+
+    # Frase 4: Final "Y no te vuelvo a ver..."
+    pyxel.sounds[3].set(
+        notes="E4F4G4A4B4C5B4A4G4F4E4F4G4A4R",
         tones="T",
         volumes="666666666666666",
-        effects="N",
-        speed=20
-    )
-
-    # Frase 2
-    pyxel.sounds[1].set(
-        notes="F4E4D4E4RF4D4C4RG4F4E4RG4F4E4",  # Segunda parte
-        tones="T",
-        volumes="66666666666666",
-        effects="N",
-        speed=20
-    )
-
-    # Frase 3
-    pyxel.sounds[2].set(
-        notes="C4C4C4C4RE4F4E4RD4E4F4E4RD4C4",  # Tercera parte
-        tones="T",
-        volumes="66666666666666",
-        effects="N",
-        speed=20
-    )
-
-    # Frase 4 (final)
-    pyxel.sounds[3].set(
-        notes="C4RD4RE4F4RG4F4RD4C4R",  # Final
-        tones="T",
-        volumes="66666666",
         effects="N",
         speed=20
     )
