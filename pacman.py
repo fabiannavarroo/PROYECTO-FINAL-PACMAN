@@ -48,6 +48,7 @@ class Pacman:
             self.x=self.muro[10][27]
         if self.x==self.muro[10][27]:
             self.x=self.muro[10][0]
+            
     def draw(self):
         sprite_x, sprite_y = self.direccion_actual
         pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
