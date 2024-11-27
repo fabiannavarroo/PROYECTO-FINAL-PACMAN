@@ -13,7 +13,7 @@ class Tablero:
 
         self.fantasmas = [
             FantasmaRojo(160, 115, self.muro),  # Coordenadas iniciales en la trampa
-            FantasmaRosa(126, 192, self.muro),
+            FantasmaRosa(176, 145, self.muro),
             FantasmaAzul(192, 145, self.muro),
             FantasmaNaranja(208, 145, self.muro)
         ]
