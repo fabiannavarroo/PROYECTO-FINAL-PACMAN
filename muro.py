@@ -62,7 +62,7 @@ class Muro:
                 # Si hay un muro, devuelve True
                 if self.mapa[fila][columna] != 0:
                     return True
-        print(f"Fila: {fila}, Columna: {columna}, Valor: {self.mapa[fila][columna]}")
+        
         return False  # No hay colisión
     
     def draw(self):
