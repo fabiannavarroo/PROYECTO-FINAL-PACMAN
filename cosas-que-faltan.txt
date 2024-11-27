@@ -1,5 +1,7 @@
 Sistema de puntos
 
+Sistema de Vidas
+
 Que lo fantasmas salgan de la trampa
 
 Que los fantasmas persigan al Pacman
