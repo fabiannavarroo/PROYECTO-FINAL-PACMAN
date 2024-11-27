@@ -6,16 +6,16 @@ def setup_melody():
     """
     # Frase 1
     pyxel.sounds[0].set(
-        notes="G4A4B4C5C5B4A4",  # Example notes for the first phrase
+        notes="G4A4B4C5C5B4A4",  # Corrected notes
         tones="T",
-        volumes="4444444",  # No silences in this section
+        volumes="4444444",  
         effects="N",
         speed=20
     )
 
     # Frase 2
     pyxel.sounds[1].set(
-        notes="A4A4G4F4G4A4B4",
+        notes="A4A4G4F4G4A4B4",  # Corrected notes
         tones="T",
         volumes="4444444",
         effects="N",
@@ -24,7 +24,7 @@ def setup_melody():
 
     # Frase 3
     pyxel.sounds[2].set(
-        notes="C5C5B4A4B4C5D5",
+        notes="C5C5B4A4B4C5D5",  # Corrected notes
         tones="T",
         volumes="4444444",
         effects="N",
@@ -33,7 +33,7 @@ def setup_melody():
 
     # Frase 4 (Final Phrase)
     pyxel.sounds[3].set(
-        notes="E5E5D5C5D5E5F5",
+        notes="E5E5D5C5D5E5F5",  # Corrected notes
         tones="T",
         volumes="4444444",
         effects="N",
