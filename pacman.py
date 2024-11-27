@@ -52,8 +52,10 @@ class Pacman:
 
     def draw(self):
         sprite_x, sprite_y = self.direccion_actual
-        #if pyxel.frame_count()
-        pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
+        if pyxel.frame_count():
+            pyxel.blt(self.x,self.y, 0, PACMAN["Coordenadas"][0],PACMAN["Coordenadas"][1], 16,16, colkey=0)
+        else:
+            pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
 
     def draw_death(self):
         
