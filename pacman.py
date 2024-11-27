@@ -52,7 +52,7 @@ class Pacman:
 
     def draw(self):
         # Alternar entre sprites para la animación
-        if pyxel.frame_count // REFRESH % 2 == 0:
+        if pyxel.frame_count // REFRESH % 10 == 0:
             # Dibujar Pac-Man con la boca cerrada
             sprite_x, sprite_y = PACMAN
         else:
