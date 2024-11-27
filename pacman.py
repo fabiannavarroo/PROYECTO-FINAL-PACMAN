@@ -52,8 +52,5 @@ class Pacman:
 
     def draw(self):
         sprite_x, sprite_y = self.direccion_actual
-        if (pyxel.frame_count()/2) %2 == 0:
-            sprite_x, sprite_y = PACMAN
-        else:
-            sprite_x,sprite_y = self.direccion_actual
+        #if pyxel.frame_count()
         pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
