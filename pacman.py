@@ -1,18 +1,18 @@
-import pyxel
 from constantes import PACMAN, PACMAN_ARRIBA, PACMAN_ABAJO, PACMAN_IZQUIERDA, PACMAN_DERECHA
+import pyxel
 
 class Pacman:
     def __init__(self, x, y, muro):
         self.x = x
         self.y = y
         self.velocidad = 2
-        self.muro = muro
-        self.direccion_actual = PACMAN
+        self.muro = muro  # Referencia a la clase Muro
+        self.direccion_actual = PACMAN  # Dirección inicial
 
     def mover(self):
         nueva_x, nueva_y = self.x, self.y
 
-        # Control de movimiento
+        # Control de movimiento usando teclas
         if pyxel.btn(pyxel.KEY_UP):
             nueva_y -= self.velocidad
             self.direccion_actual = PACMAN_ARRIBA
@@ -38,7 +38,7 @@ class Pacman:
             nueva_x += self.velocidad
             self.direccion_actual = PACMAN_DERECHA
 
-        # Verificar colisiones antes de actualizar posición
+        # Verificar colisión antes de actualizar la posición
         if not self.muro.colision(nueva_x, self.y):
             self.x = nueva_x
         if not self.muro.colision(self.x, nueva_y):

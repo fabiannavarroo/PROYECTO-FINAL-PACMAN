@@ -55,8 +55,10 @@ class Muro:
                 if self.mapa[fila][columna] != 0:
                     return True
         return False  # No hay colisión
-
-
+    def tunel(self):
+        if self.x == self.mapa[10][0]:
+            self.x == self.mapa[10][27]
+    
     def draw(self):
     
         #Dibuja los muros en la pantalla
