@@ -5,6 +5,7 @@ PACMAN_ABAJO = (16, 32)  # Coordenadas de Pacman al moverse abajo
 PACMAN_IZQUIERDA = (32, 0)  # Coordenadas de Pacman al moverse a la izquierda
 PACMAN_DERECHA = (16, 0)  # Coordenadas de Pacman al moverse a la derecha
 REFRESH = 5
+TEXTO_M = "HAS PERDIDO TODAS LAS VIDADAS"
 
 
 #---------FANTASMAS---------# 
