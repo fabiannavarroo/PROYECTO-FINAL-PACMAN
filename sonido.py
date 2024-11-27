@@ -48,7 +48,7 @@ def setup_melody():
 
 def play_melody():
     # Reproducir las frases en secuencia
-    pyxel.play(0, loop=True)
+    pyxel.play(0, [0, 1, 2, 3, 4], loop=True)
 
 class App:
     def __init__(self):
