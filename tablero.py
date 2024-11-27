@@ -12,7 +12,7 @@ class Tablero:
         self.pacman = Pacman(208, 240, self.muro)
 
         self.fantasmas = [
-            FantasmaRojo(160, 145, self.muro),  # Coordenadas iniciales en la trampa
+            FantasmaRojo(160, 115, self.muro),  # Coordenadas iniciales en la trampa
             FantasmaRosa(176, 145, self.muro),
             FantasmaAzul(192, 145, self.muro),
             FantasmaNaranja(208, 145, self.muro)
