@@ -51,11 +51,16 @@ class Pacman:
         print("Pacman:",self.x,self.y,end="\n")
 
     def draw(self):
-        sprite_x, sprite_y = self.direccion_actual
-        if pyxel.frame_count()//REFRESH:
-            pyxel.blt(self.x,self.y, 0, PACMAN["Coordenadas"][0],PACMAN["Coordenadas"][1], 16,16, colkey=0)
+        # Alternar entre sprites para la animación
+        if pyxel.frame_count // REFRESH % 2 == 0:
+            # Dibujar Pac-Man con la boca cerrada
+            sprite_x, sprite_y = PACMAN
         else:
-            pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
+            # Dibujar Pac-Man con la boca abierta en la dirección actual
+            sprite_x, sprite_y = self.direccion_actual
+
+    # Dibujar el sprite correspondiente
+    pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
 
     def draw_death(self):
         
