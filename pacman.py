@@ -8,6 +8,7 @@ class Pacman:
         self.velocidad = 2
         self.muro = muro  # Referencia a la clase Muro
         self.direccion_actual = PACMAN  # Dirección inicial
+    
 
     def mover(self):
         nueva_x, nueva_y = self.x, self.y
@@ -43,7 +44,7 @@ class Pacman:
             self.x = nueva_x
         if not self.muro.colision(self.x, nueva_y):
             self.y = nueva_y
-            
+
         #Portal
         if (self.x,self.y)in PORTALES:
             self.x,self.y = PORTALES[(self.x,self.y)]
