@@ -4,9 +4,6 @@ PACMAN_ARRIBA = (48, 0)  # Coordenadas de Pacman al moverse arriba
 PACMAN_ABAJO = (16, 32)  # Coordenadas de Pacman al moverse abajo
 PACMAN_IZQUIERDA = (32, 0)  # Coordenadas de Pacman al moverse a la izquierda
 PACMAN_DERECHA = (16, 0)  # Coordenadas de Pacman al moverse a la derecha
-REFRESH = 5
-TEXTO_M = "HAS PERDIDO TODAS LAS VIDADAS"
-
 
 #---------FANTASMAS---------# 
 FANTASMA_ROJO = {
@@ -66,3 +63,6 @@ PORTALES={
     (-16,192):(430,192), # Portal izquierda
     (430,192):(-16,192)  # Portal derecha
 }
+
+#--------OTROS---------#
+REFRESH = 5
