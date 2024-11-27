@@ -3,7 +3,7 @@ import pyxel
 def setup_melody():
     # Frase 1: "We wish you a Merry Christmas"
     pyxel.sounds[0].set(
-        notes="E4D4C4C4C4G3C4D4E4D4C4           C4F4            F4E4D4C4E4D4",  # Notas de la frase
+        notes="E4D4C4C4C4G3C4D4E4D4C4 C4F4 F4E4D4C4E4D4",  # Notas de la frase
         tones="T",
         volumes="4",
         effects="N",
