@@ -3,7 +3,7 @@ import pyxel
 def setup_melody():
     # Frase 1: "We wish you a Merry Christmas"
     pyxel.sounds[0].set(
-        notes="G3G3A3G3C4B3",  # Notas de la frase
+        notes="E5D5C5C5C5G4C5D5E5D5C5 C5F5 F5E5D5C5E5D5",  # Notas de la frase
         tones="T",
         volumes="4",
         effects="N",
@@ -48,7 +48,7 @@ def setup_melody():
 
 def play_melody():
     # Reproducir las frases en secuencia
-    pyxel.play(0, [0, 1, 2, 3, 4], loop=True)
+    pyxel.play([0], loop=True)
 
 class App:
     def __init__(self):
