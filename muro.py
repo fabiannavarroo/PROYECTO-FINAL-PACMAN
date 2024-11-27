@@ -51,17 +51,19 @@ class Muro:
         ]
 
         # Convertir la posición vertical y horizontal a un indice de la matriz
-        for py in puntos_a_verificar:
-            for px in puntos_a_verificar:
-                fila = (py // self.celda_tamaño)
-                columna = (px // self.celda_tamaño)
+        for px, py in puntos_a_verificar:
+            fila = int(py // self.celda_tamaño) 
+            columna = int(px // self.celda_tamaño)  
 
-            # Comprobar si está dentro de los límites del mapa
-            if 0 <= fila < len(self.mapa) and 0 <= columna < len(self.mapa[0]):
-                # Si hay un muro, devuelve True
-                if self.mapa[fila][columna] != 0:
-                    return True
-        return False  # No hay colisión
+        # Comprobar si está dentro de los límites del mapa
+        if 0 <= fila < len(self.mapa) and 0 <= columna < len(self.mapa[0]):
+            # Si hay un muro, devuelve True
+            if self.mapa[fila][columna] != 0:
+                return True
+        else:
+            print(f"Coordenadas fuera de rango: fila={fila}, columna={columna}")
+
+    return False  # No hay colisión
     
     def draw(self):
     
