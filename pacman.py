@@ -64,4 +64,4 @@ class Pacman:
         for i, text in enumerate(display_text):
             y_offset = (pyxel.FONT_HEIGHT + 2) * i
             text_x = self.center_text(text, 430)
-            pyxel.text(text_x, y_offset, text,)
+            pyxel.text(text_x, y_offset, text,15)
