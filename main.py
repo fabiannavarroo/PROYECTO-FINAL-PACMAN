@@ -6,4 +6,3 @@ print("Juego")
 
 Tablero()
 
-aghdfadfadagvdah
