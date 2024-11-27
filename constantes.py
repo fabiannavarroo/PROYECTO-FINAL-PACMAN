@@ -61,6 +61,6 @@ MUROS = {
 }
 #-----------PORTALES-----------#
 PORTALES={
-    (0,144):(333,144), # Portal izquierda
-    (333,144):(0,144)  # Portal derecha
+    (0,144):(420,144), # Portal izquierda
+    (420,144):(0,144)  # Portal derecha
 }
