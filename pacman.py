@@ -14,28 +14,28 @@ class Pacman:
         nueva_x, nueva_y = self.x, self.y
 
         # Control de movimiento usando teclas
-        if pyxel.btn(pyxel.KEY_UP):
+        if pyxel.btnp(pyxel.KEY_UP):
             nueva_y -= self.velocidad
             self.direccion_actual = PACMAN_ARRIBA
-        if pyxel.btn(pyxel.KEY_DOWN):
+        if pyxel.btnp(pyxel.KEY_DOWN):
             nueva_y += self.velocidad
             self.direccion_actual = PACMAN_ABAJO
-        if pyxel.btn(pyxel.KEY_LEFT):
+        if pyxel.btnp(pyxel.KEY_LEFT):
             nueva_x -= self.velocidad
             self.direccion_actual = PACMAN_IZQUIERDA
-        if pyxel.btn(pyxel.KEY_RIGHT):
+        if pyxel.btnp(pyxel.KEY_RIGHT):
             nueva_x += self.velocidad
             self.direccion_actual = PACMAN_DERECHA
-        if pyxel.btn(pyxel.KEY_W):
+        if pyxel.btnp(pyxel.KEY_W):
             nueva_y -= self.velocidad
             self.direccion_actual = PACMAN_ARRIBA
-        if pyxel.btn(pyxel.KEY_S):
+        if pyxel.btnp(pyxel.KEY_S):
             nueva_y += self.velocidad
             self.direccion_actual = PACMAN_ABAJO
-        if pyxel.btn(pyxel.KEY_A):
+        if pyxel.btnp(pyxel.KEY_A):
             nueva_x -= self.velocidad
             self.direccion_actual = PACMAN_IZQUIERDA
-        if pyxel.btn(pyxel.KEY_D):
+        if pyxel.btnp(pyxel.KEY_D):
             nueva_x += self.velocidad
             self.direccion_actual = PACMAN_DERECHA
 
