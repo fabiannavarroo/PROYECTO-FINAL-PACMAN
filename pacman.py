@@ -63,5 +63,5 @@ class Pacman:
         #display_text.insert(1, f"{self.score:04}")
         for i, text in enumerate(display_text):
             y_offset = (pyxel.FONT_HEIGHT + 2) * i
-            text_x = self.center_text(text, WIDTH)
-            pyxel.text(text_x, HEIGHT_DEATH + y_offset, text, COL_TEXT_DEATH)
+            text_x = self.center_text(text, 430)
+            pyxel.text(text_x, y_offset, text,)
