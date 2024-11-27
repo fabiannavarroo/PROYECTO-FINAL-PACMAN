@@ -31,7 +31,7 @@ class Pacman:
         elif pyxel.btnp(pyxel.KEY_D):
             self.direccion_pendiente = PACMAN_DERECHA
 
-        # Verificar si la dirección pendiente es válida (sin colisión)
+        # Verificar si la dirección pendiente no tiene colisión
         if self.direccion_pendiente:
             if self.direccion_pendiente == PACMAN_ARRIBA and not self.muro.colision(self.x, self.y - self.velocidad):
                 self.direccion_actual = self.direccion_pendiente
