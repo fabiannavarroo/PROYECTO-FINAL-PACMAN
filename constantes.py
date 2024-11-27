@@ -60,6 +60,7 @@ MUROS = {
     22: {"Coordenadas": (40, 80), "Tamaño": (16,16)},  # Borde izquierda trampa fantasmas
     23: {"Coordenadas": (24, 88), "Tamaño": (16,16)},  # Borde inferior trampa fantasma
 }
+
 #-----------PORTALES-----------#
 PORTALES={
     (-16,192):(430,192), # Portal izquierda
