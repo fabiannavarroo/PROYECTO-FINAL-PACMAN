@@ -1,5 +1,5 @@
 import pyxel
-from constantes import FANTASMA_ROJO, FANTASMA_ROSA, FANTASMA_AZUL, FANTASMA_NARANJA
+from constantes import FANTASMA_ROJO, FANTASMA_ROSA, FANTASMA_AZUL, FANTASMA_NARANJA,PORTALES
 import random
 
 
@@ -47,6 +47,10 @@ class Fantasma:
             # Actualizar posición
             self.x += dx
             self.y += dy
+
+            #Portal
+            if (self.x,self.y)in PORTALES:
+                self.x,self.y = PORTALES[(self.x,self.y)]
 
     def draw(self):
         sprite_x, sprite_y = self.sprites[self.direccion_actual]
