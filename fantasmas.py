@@ -10,7 +10,7 @@ class Fantasma:
         self.sprites = sprites
         self.muro = muro
         self.velocidad = 1
-        self.direccion_actual = "DERECHA"  # Cambiado a clave válida
+        self.direccion_actual = "DERECHA"  
         self.en_trampa = True
 
     def mover(self):
