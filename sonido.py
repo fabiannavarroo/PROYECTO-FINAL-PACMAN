@@ -6,7 +6,7 @@ def setup_melody():
     """
     # Frase 1
     pyxel.sounds[0].set(
-        notes="C4RE4RG4RA4RA4RG4RF4",  # Primera parte simplificada
+        notes="C4E4G4A4A4G4F4",  # Primera parte simplificada
         tones="T",              # Tono: Triangular
         volumes="6666666",      # Volumen constante
         effects="N",            # Sin efectos
@@ -44,7 +44,7 @@ def play_melody():
     """
     Reproduce la melodía configurada en bucle.
     """
-    pyxel.play(0, [0], loop=True)
+    pyxel.play(0, [0, 1, 2, 3], loop=True)
 
 class App:
     def __init__(self):
