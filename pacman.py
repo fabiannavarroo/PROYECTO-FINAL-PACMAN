@@ -8,38 +8,37 @@ class Pacman:
         self.velocidad = 2
         self.muro = muro  # Referencia a la clase Muro
         self.direccion_actual = PACMAN  # Dirección inicial
-    
+        self.direccion_pendiente = None  # Dirección seleccionada por el jugador
 
     def mover(self):
         nueva_x, nueva_y = self.x, self.y
 
-        # Control de movimiento usando teclas
+        # Detectar entrada del jugador para cambiar dirección pendiente
         if pyxel.btnp(pyxel.KEY_UP):
-            nueva_y -= self.velocidad
-            self.direccion_actual = PACMAN_ARRIBA
-        if pyxel.btnp(pyxel.KEY_DOWN):
-            nueva_y += self.velocidad
-            self.direccion_actual = PACMAN_ABAJO
-        if pyxel.btnp(pyxel.KEY_LEFT):
-            nueva_x -= self.velocidad
-            self.direccion_actual = PACMAN_IZQUIERDA
-        if pyxel.btnp(pyxel.KEY_RIGHT):
-            nueva_x += self.velocidad
-            self.direccion_actual = PACMAN_DERECHA
-        if pyxel.btnp(pyxel.KEY_W):
-            nueva_y -= self.velocidad
-            self.direccion_actual = PACMAN_ARRIBA
-        if pyxel.btnp(pyxel.KEY_S):
-            nueva_y += self.velocidad
-            self.direccion_actual = PACMAN_ABAJO
-        if pyxel.btnp(pyxel.KEY_A):
-            nueva_x -= self.velocidad
-            self.direccion_actual = PACMAN_IZQUIERDA
-        if pyxel.btnp(pyxel.KEY_D):
-            nueva_x += self.velocidad
-            self.direccion_actual = PACMAN_DERECHA
+            self.direccion_pendiente = PACMAN_ARRIBA
+        elif pyxel.btnp(pyxel.KEY_DOWN):
+            self.direccion_pendiente = PACMAN_ABAJO
+        elif pyxel.btnp(pyxel.KEY_LEFT):
+            self.direccion_pendiente = PACMAN_IZQUIERDA
+        elif pyxel.btnp(pyxel.KEY_RIGHT):
+            self.direccion_pendiente = PACMAN_DERECHA
 
-        # Continuar moviéndose en la dirección actual
+        # Verificar si la dirección pendiente es válida (sin colisión)
+        if self.direccion_pendiente:
+            if self.direccion_pendiente == PACMAN_ARRIBA and not self.muro.colision(self.x, self.y - self.velocidad):
+                self.direccion_actual = self.direccion_pendiente
+                self.direccion_pendiente = None
+            elif self.direccion_pendiente == PACMAN_ABAJO and not self.muro.colision(self.x, self.y + self.velocidad):
+                self.direccion_actual = self.direccion_pendiente
+                self.direccion_pendiente = None
+            elif self.direccion_pendiente == PACMAN_IZQUIERDA and not self.muro.colision(self.x - self.velocidad, self.y):
+                self.direccion_actual = self.direccion_pendiente
+                self.direccion_pendiente = None
+            elif self.direccion_pendiente == PACMAN_DERECHA and not self.muro.colision(self.x + self.velocidad, self.y):
+                self.direccion_actual = self.direccion_pendiente
+                self.direccion_pendiente = None
+
+        # Mover en la dirección actual
         if self.direccion_actual == PACMAN_ARRIBA:
             nueva_y -= self.velocidad
         elif self.direccion_actual == PACMAN_ABAJO:
@@ -55,10 +54,11 @@ class Pacman:
         if not self.muro.colision(self.x, nueva_y):
             self.y = nueva_y
 
-        #Portal
-        if (self.x,self.y)in PORTALES:
-            self.x,self.y = PORTALES[(self.x,self.y)]
-        print("Pacman:",self.x,self.y,end="\n")
+        # Portal
+        if (self.x, self.y) in PORTALES:
+            self.x, self.y = PORTALES[(self.x, self.y)]
+
+        print("Pacman:", self.x, self.y, end="\n")
 
     def draw(self):
         # Alternar entre sprites para la animación
@@ -71,13 +71,3 @@ class Pacman:
 
         # Dibujar el sprite correspondiente
         pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
-
-    def draw_death(self):
-        
-        pyxel.cls(col=0)
-        display_text = TEXTO_M
-        #display_text.insert(1, f"{self.score:04}")
-        for i, text in enumerate(display_text):
-            y_offset = (pyxel.FONT_HEIGHT + 2) * i
-            text_x = self.center_text(text, 430)
-            pyxel.text(text_x, y_offset, text,15)
