@@ -6,7 +6,7 @@ def setup_melody():
     """
     # Frase 1
     pyxel.sounds[0].set(
-        notes="G4A4B4C5C5B4A4",  # Corrected notes
+        notes="G3A3B3C4C4B3A3",  # Corrected notes
         tones="T",
         volumes="4444444",  
         effects="N",
