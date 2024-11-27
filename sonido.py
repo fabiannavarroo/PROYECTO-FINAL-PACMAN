@@ -7,7 +7,7 @@ def setup_melody():
         "T",                # Tone
         "4",                # Volume
         "N",                # Effect
-        10                  # Speed
+        40                  # Speed
     )
 
     # Frase 2: "And a Happy New Year"
@@ -16,7 +16,7 @@ def setup_melody():
         "T",
         "4",
         "N",
-        10
+        40
     )
 
     # Frase 3: Final repetitivo
@@ -25,7 +25,7 @@ def setup_melody():
         "T",
         "4",
         "N",
-        15
+        40
     )
 
 def play_melody():
