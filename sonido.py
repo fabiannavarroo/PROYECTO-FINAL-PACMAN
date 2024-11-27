@@ -1,58 +1,54 @@
 import pyxel
 
 def setup_melody():
-    # Frase 1: "We wish you a Merry Christmas"
+    """
+    Configura la melodía del Cara al Sol en Pyxel.
+    """
+    # Frase 1
     pyxel.sounds[0].set(
-        notes="E4D4C4C4C4G3C4D4E4D4C4C4F4F4E4D4C4E4D4",  # Removed '-'
+        notes="G4A4B4C5C5B4A4",  # Example notes for the first phrase
         tones="T",
-        volumes="40404040404040404040",  # 0 indicates silence
+        volumes="4444444",  # No silences in this section
         effects="N",
-        speed=25
+        speed=20
     )
 
-    # Frase 2: "We wish you a Merry Christmas"
+    # Frase 2
     pyxel.sounds[1].set(
-        notes="G3G3A3G3D4C4",
+        notes="A4A4G4F4G4A4B4",
         tones="T",
-        volumes="40404040",
+        volumes="4444444",
         effects="N",
-        speed=25
+        speed=20
     )
 
-    # Frase 3: "Good tidings we bring"
+    # Frase 3
     pyxel.sounds[2].set(
-        notes="E4E4F4E4G4F4",
+        notes="C5C5B4A4B4C5D5",
         tones="T",
-        volumes="40404040",
+        volumes="4444444",
         effects="N",
-        speed=25
+        speed=20
     )
 
-    # Frase 4: "To you and your kin"
+    # Frase 4 (Final Phrase)
     pyxel.sounds[3].set(
-        notes="D4D4E4D4C4B3",
+        notes="E5E5D5C5D5E5F5",
         tones="T",
-        volumes="40404040",
+        volumes="4444444",
         effects="N",
-        speed=25
-    )
-
-    # Frase 5: "We wish you a Merry Christmas and a Happy New Year"
-    pyxel.sounds[4].set(
-        notes="G3G3A3G3C4B3G3G3A3G3D4C4",
-        tones="T",
-        volumes="4040404040",
-        effects="N",
-        speed=25
+        speed=20
     )
 
 def play_melody():
-    # Reproducir las frases en secuencia
-    pyxel.play(0, [0], loop=True)
+    """
+    Reproduce la melodía configurada en bucle.
+    """
+    pyxel.play(0, [0, 1, 2, 3], loop=True)
 
 class App:
     def __init__(self):
-        pyxel.init(160, 120, title="We Wish You a Merry Christmas")
+        pyxel.init(160, 120, title="Cara al Sol")
         setup_melody()  # Configurar la melodía
         play_melody()   # Reproducir la melodía
         pyxel.run(self.update, self.draw)
@@ -64,6 +60,6 @@ class App:
 
     def draw(self):
         pyxel.cls(0)
-        pyxel.text(10, 50, "Playing: We Wish You a Merry Christmas", 7)
+        pyxel.text(10, 50, "Playing: Cara al Sol", 7)
 
 App()
