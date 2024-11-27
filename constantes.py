@@ -6,6 +6,7 @@ PACMAN_IZQUIERDA = (32, 0)  # Coordenadas de Pacman al moverse a la izquierda
 PACMAN_DERECHA = (16, 0)  # Coordenadas de Pacman al moverse a la derecha
 REFRESH = 5
 
+
 #---------FANTASMAS---------# 
 FANTASMA_ROJO = {
     "ARRIBA": (48, 64), # Coordenadas del fantasma rojo al moverse arriba
@@ -57,4 +58,9 @@ MUROS = {
     21: {"Coordenadas": (8, 80), "Tamaño": (16,16)},  # Borde derecha trampa fantasmas
     22: {"Coordenadas": (40, 80), "Tamaño": (16,16)},  # Borde izquierda trampa fantasmas
     23: {"Coordenadas": (24, 88), "Tamaño": (16,16)},  # Borde inferior trampa fantasma
+}
+#-----------PORTALES-----------#
+PORTALES={
+    (0,96):(256,96), # Portal izquierda
+    (256,96):(0,96)  # Portal derecha
 }
