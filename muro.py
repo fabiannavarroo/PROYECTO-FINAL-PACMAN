@@ -63,7 +63,7 @@ class Muro:
         else:
             print(f"Coordenadas fuera de rango: fila={fila}, columna={columna}")
 
-    return False  # No hay colisión
+        return False  # No hay colisión
     
     def draw(self):
     
