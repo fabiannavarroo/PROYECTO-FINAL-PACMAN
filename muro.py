@@ -50,9 +50,10 @@ class Muro:
             (x + sprite_tamaño - 1, y + sprite_tamaño - 1),  # Esquina inferior derecha
         ]
 
-        for px, py in puntos_a_verificar:
-            fila = int(py // self.celda_tamaño)
-            columna = int(px // self.celda_tamaño)
+        for py in range(y, y + sprite_tamaño, sprite_tamaño - 1):
+            for px in range(x, x + sprite_tamaño, sprite_tamaño - 1):
+                fila = int(py // self.celda_tamaño)
+                columna = int(px // self.celda_tamaño)
 
             # Comprobar si está dentro de los límites del mapa
             if 0 <= fila < len(self.mapa) and 0 <= columna < len(self.mapa[0]):
