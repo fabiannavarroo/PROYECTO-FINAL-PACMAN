@@ -56,8 +56,7 @@ class Pacman:
         pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
 
     def draw_death(self):
-        """Draw a blank screen with some text."""
-
+        
         pyxel.cls(col=0)
         display_text = TEXTO_M
         #display_text.insert(1, f"{self.score:04}")
