@@ -45,8 +45,8 @@ class Pacman:
             self.y = nueva_y
         
         if self.x==self.muro.mapa[10][0]:
-            self.x=self.muro.mapa[10][27]
-        if self.x==self.muro.mapa[10][27]:
+            self.x=self.muro.mapa[10][26]
+        if self.x==self.muro.mapa[10][26]:
             self.x=self.muro.mapa[10][0]
 
     def draw(self):
