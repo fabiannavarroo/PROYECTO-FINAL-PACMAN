@@ -62,4 +62,5 @@ class App:
         pyxel.cls(0)
         pyxel.text(10, 50, "Playing: Cara al Sol", 7)
 
-# Ejecut
+# Ejecutar la aplicación
+App()
