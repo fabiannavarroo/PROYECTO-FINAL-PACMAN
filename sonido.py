@@ -3,18 +3,18 @@ import pyxel
 def setup_melody():
     # Frase 1: "We wish you a Merry Christmas"
     pyxel.sounds[0].set(
-        notes="E4-D4-C4--C4--C4--G3-C4-D4-E4--D4-C4--C4-F4--F4-E4-D4-C4--E4-D4",  # Notas de la frase
+        notes="E4D4C4C4C4G3C4D4E4D4C4C4F4F4E4D4C4E4D4",  # Removed '-'
         tones="T",
-        volumes="4",
+        volumes="40404040404040404040",  # 0 indicates silence
         effects="N",
-        speed=25  # Velocidad ajustada para la melodía
+        speed=25
     )
 
     # Frase 2: "We wish you a Merry Christmas"
     pyxel.sounds[1].set(
         notes="G3G3A3G3D4C4",
         tones="T",
-        volumes="4",
+        volumes="40404040",
         effects="N",
         speed=25
     )
@@ -23,7 +23,7 @@ def setup_melody():
     pyxel.sounds[2].set(
         notes="E4E4F4E4G4F4",
         tones="T",
-        volumes="4",
+        volumes="40404040",
         effects="N",
         speed=25
     )
@@ -32,16 +32,16 @@ def setup_melody():
     pyxel.sounds[3].set(
         notes="D4D4E4D4C4B3",
         tones="T",
-        volumes="4",
+        volumes="40404040",
         effects="N",
         speed=25
     )
 
     # Frase 5: "We wish you a Merry Christmas and a Happy New Year"
     pyxel.sounds[4].set(
-        notes="G3G3A3G3C4B3 G3G3A3G3D4C4",
+        notes="G3G3A3G3C4B3G3G3A3G3D4C4",
         tones="T",
-        volumes="4",
+        volumes="4040404040",
         effects="N",
         speed=25
     )
