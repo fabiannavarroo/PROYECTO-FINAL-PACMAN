@@ -2,30 +2,30 @@ import pyxel
 
 def setup_melody():
     # Frase 1: "We wish you a Merry Christmas"
-    pyxel.sound(0).set(
-        note="G3E3F3G3G3G3F3E3",  # Notas principales
-        tone="T",                # Triángulo
-        volume="4",              # Volumen
-        effect="N",              # Sin efecto
-        speed=10                 # Velocidad
+    pyxel.sounds[0].set(
+        "G3E3F3G3G3G3F3E3",  # Notes
+        "T",                # Tone
+        "4",                # Volume
+        "N",                # Effect
+        10                  # Speed
     )
 
     # Frase 2: "And a Happy New Year"
-    pyxel.sound(1).set(
-        note="A3F3G3A3B3B3C4",   # Notas principales
-        tone="T",
-        volume="4",
-        effect="N",
-        speed=10
+    pyxel.sounds[1].set(
+        "A3F3G3A3B3B3C4",
+        "T",
+        "4",
+        "N",
+        10
     )
 
     # Frase 3: Final repetitivo
-    pyxel.sound(2).set(
-        note="C4B3A3G3",         # Final
-        tone="T",
-        volume="4",
-        effect="N",
-        speed=15
+    pyxel.sounds[2].set(
+        "C4B3A3G3",
+        "T",
+        "4",
+        "N",
+        15
     )
 
 def play_melody():
