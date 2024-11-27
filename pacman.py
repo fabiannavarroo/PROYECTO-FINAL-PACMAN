@@ -54,3 +54,14 @@ class Pacman:
         sprite_x, sprite_y = self.direccion_actual
         #if pyxel.frame_count()
         pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
+
+    def draw_death(self):
+        """Draw a blank screen with some text."""
+
+        pyxel.cls(col=0)
+        display_text = TEXTO_M
+        #display_text.insert(1, f"{self.score:04}")
+        for i, text in enumerate(display_text):
+            y_offset = (pyxel.FONT_HEIGHT + 2) * i
+            text_x = self.center_text(text, WIDTH)
+            pyxel.text(text_x, HEIGHT_DEATH + y_offset, text, COL_TEXT_DEATH)
