@@ -44,11 +44,11 @@ class Pacman:
         if not self.muro.colision(self.x, nueva_y):
             self.y = nueva_y
         
-        if self.x==self.muro[10][0]:
-            self.x=self.muro[10][27]
-        if self.x==self.muro[10][27]:
-            self.x=self.muro[10][0]
-            
+        if self.x==self.muro.mapa[10][0]:
+            self.x=self.muro.mapa[10][27]
+        if self.x==self.muro.mapa[10][27]:
+            self.x=self.muro.mapa[10][0]
+
     def draw(self):
         sprite_x, sprite_y = self.direccion_actual
         pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
