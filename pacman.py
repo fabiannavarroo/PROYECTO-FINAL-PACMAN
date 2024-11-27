@@ -52,7 +52,7 @@ class Pacman:
 
     def draw(self):
         sprite_x, sprite_y = self.direccion_actual
-        if int(pyxel.frame_count()/5) %2 == 0:
+        if int(pyxel.frame_count()/2) %2 == 0:
             sprite_x, sprite_y = PACMAN
         else:
             sprite_x,sprite_y = self.direccion_actual
