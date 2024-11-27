@@ -2,6 +2,8 @@ Sistema de puntos
 
 Sistema de Vidas
 
+Sistema de comer fantasmas
+
 Que lo fantasmas salgan de la trampa
 
 Que los fantasmas persigan al Pacman
