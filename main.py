@@ -2,7 +2,7 @@
 
 from tablero import Tablero
 
-print("Juego")
+print("Jueg")
 
 Tablero()
 
