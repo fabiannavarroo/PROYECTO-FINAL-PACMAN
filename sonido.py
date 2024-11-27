@@ -6,36 +6,36 @@ def setup_melody():
     """
     # Frase 1
     pyxel.sounds[0].set(
-        notes="C4RE4RRG4RA4RA4RG4RF4",  # Primera parte simplificada
-        tones="T",              # Tono: Triangular
-        volumes="6666666",      # Volumen constante
-        effects="N",            # Sin efectos
-        speed=20                # Velocidad
+        notes="G4G4G4G4RG4F4E4RG4G4G4G4RG4F4E4R",  # Primera parte
+        tones="T",
+        volumes="666666666666666",
+        effects="N",
+        speed=20
     )
 
     # Frase 2
     pyxel.sounds[1].set(
-        notes="RRG3RRA3RRB3RC4RC4RB3RRA3RR",  # Segunda parte
+        notes="F4E4D4E4RF4D4C4RG4F4E4RG4F4E4",  # Segunda parte
         tones="T",
-        volumes="6666666",
+        volumes="66666666666666",
         effects="N",
         speed=20
     )
 
     # Frase 3
     pyxel.sounds[2].set(
-        notes="D4RF4RA4RG4RA4RF4RE4",  # Tercera parte
+        notes="C4C4C4C4RE4F4E4RD4E4F4E4RD4C4",  # Tercera parte
         tones="T",
-        volumes="6666666",
+        volumes="66666666666666",
         effects="N",
         speed=20
     )
 
     # Frase 4 (final)
     pyxel.sounds[3].set(
-        notes="C4RC4RD4RE4RF4RG4RA4",  # Final
+        notes="C4RD4RE4F4RG4F4RD4C4R",  # Final
         tones="T",
-        volumes="6666666",
+        volumes="66666666",
         effects="N",
         speed=20
     )
