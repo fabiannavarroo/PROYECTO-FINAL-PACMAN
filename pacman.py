@@ -48,6 +48,7 @@ class Pacman:
         #Portal
         if (self.x,self.y)in PORTALES:
             self.x,self.y = PORTALES[(self.x,self.y)]
+        print("Pacman:",self.x,self.y,end="\n")
 
     def draw(self):
         sprite_x, sprite_y = self.direccion_actual
