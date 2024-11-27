@@ -6,7 +6,7 @@ def setup_melody():
     """
     # Frase 1: "Cara al sol con la camisa nueva..."
     pyxel.sounds[0].set(
-        notes="G4G4G4G4A4B4C5C5RG4G4G4RG4G4G4F4",  
+        notes="G4G4G4G4A4B4C4C4RG4G4G4RG4G4G4F4",  
         tones="T",
         volumes="6666666666666666",
         effects="N",
@@ -24,7 +24,7 @@ def setup_melody():
 
     # Frase 3: "Me hallará la muerte si me llega..."
     pyxel.sounds[2].set(
-        notes="B3C4D4E4F4F4E4D4C4RG4A4B4C5D5RG4",
+        notes="B3C4D4E4F4F4E4D4C4RG4A4B4C4D4RG4",
         tones="T",
         volumes="6666666666666666",
         effects="N",
@@ -33,7 +33,7 @@ def setup_melody():
 
     # Frase 4: Final "Y no te vuelvo a ver..."
     pyxel.sounds[3].set(
-        notes="E4F4G4A4B4C5B4A4G4F4E4F4G4A4R",
+        notes="E4F4G4A4B4C4B4A4G4F4E4F4G4A4R",
         tones="T",
         volumes="666666666666666",
         effects="N",
