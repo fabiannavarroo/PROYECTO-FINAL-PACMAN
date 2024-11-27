@@ -6,9 +6,9 @@ def setup_melody():
     """
     # Frase 1
     pyxel.sounds[0].set(
-        notes="G4A4B4C5B4A4",  # Removed duplicate C5
+        notes="G4A4B4C5C5B4A4",  # Corrected notes
         tones="T",
-        volumes="555555",  # Matched volumes to the notes
+        volumes="4444444",  
         effects="N",
         speed=20
     )
@@ -17,25 +17,25 @@ def setup_melody():
     pyxel.sounds[1].set(
         notes="A4A4G4F4G4A4B4",  # Corrected notes
         tones="T",
-        volumes="5555555",  # Matched volumes to the notes
+        volumes="4444444",
         effects="N",
         speed=20
     )
 
     # Frase 3
     pyxel.sounds[2].set(
-        notes="C5B4A4B4C5D5",  # Removed extra C5
+        notes="C4C4B3A3B3C4D4",  # Corrected notes
         tones="T",
-        volumes="555555",  # Matched volumes to the notes
+        volumes="4444444",
         effects="N",
         speed=20
     )
 
     # Frase 4 (Final Phrase)
     pyxel.sounds[3].set(
-        notes="E5D5C5D5E5F5",  # Corrected the sequence
+        notes="E4E4D4C4D4E4F4",  # Corrected notes
         tones="T",
-        volumes="555555",  # Matched volumes to the notes
+        volumes="4444444",
         effects="N",
         speed=20
     )
