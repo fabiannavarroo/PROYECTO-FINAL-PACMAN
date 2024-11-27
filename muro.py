@@ -18,7 +18,7 @@ class Muro:
             [0, 0,  0,  0,  0,  5,  0,  5,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  5,  0,  5,  0,  0,  0,  0,  0,  0],  # Fila 8
             [2, 2,  2,  2,  2,  14, 0,  6,  0,  15, 19, 19, 16, 16, 19, 19, 17, 0,  6,  0,  13, 2,  2,  2,  2,  2,  2],  # Fila 9
             [0, 0,  0,  0,  0,  0,  0,  0,  0,  21, 0,  0,  0,  0,  0,  0,  22, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],  # Fila 10
-            [2, 2,  2,  2,  2,  12, 0,  4,  0,  18, 23, 23, 23, 23, 23, 23, 20, 0,  4,  0,  11, 2,  2,  2,  2,  2,  2],  # Fila 11
+            [2, 2,  2,  2,  2,  12, 0,  4,  2,  18, 23, 23, 23, 23, 23, 23, 20, 0,  4,  0,  11, 2,  2,  2,  2,  2,  2],  # Fila 11
             [0, 0,  0,  0,  0,  5,  0,  5,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  5,  0,  5,  0,  0,  0,  0,  0,  0],  # Fila 12
             [11,2,  2,  2,  2,  14, 0,  6,  0,  1,  2,  2,  2,  7,  2,  2,  3,  0,  6,  0,  13, 2,  2,  2,  2,  2,  12],  # Fila 13
             [5, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  5,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  5],  # Fila 14
@@ -50,19 +50,15 @@ class Muro:
             (x + sprite_tamaño - 1, y + sprite_tamaño - 1),  # Esquina inferior derecha
         ]
 
-        # Convertir la posición vertical y horizontal a un indice de la matriz
         for px, py in puntos_a_verificar:
-            fila = int(py // self.celda_tamaño) 
-            columna = int(px // self.celda_tamaño)  
+            fila = int(py // self.celda_tamaño)
+            columna = int(px // self.celda_tamaño)
 
-        # Comprobar si está dentro de los límites del mapa
-        if 0 <= fila < len(self.mapa) and 0 <= columna < len(self.mapa[0]):
-            # Si hay un muro, devuelve True
-            if self.mapa[fila][columna] != 0:
-                return True
-        else:
-            print(f"Coordenadas fuera de rango: fila={fila}, columna={columna}")
-
+            # Comprobar si está dentro de los límites del mapa
+            if 0 <= fila < len(self.mapa) and 0 <= columna < len(self.mapa[0]):
+                # Si hay un muro, devuelve True
+                if self.mapa[fila][columna] != 0:
+                    return True
         return False  # No hay colisión
     
     def draw(self):
