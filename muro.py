@@ -51,8 +51,8 @@ class Muro:
         ]
 
         # Convertir la posición vertical y horizontal a un indice de la matriz
-        for py in range(y, y + sprite_tamaño, sprite_tamaño - 1):
-            for px in range(x, x + sprite_tamaño, sprite_tamaño - 1):
+        for py in puntos_a_verificar:
+            for px in puntos_a_verificar:
                 fila = int(py // self.celda_tamaño)
                 columna = int(px // self.celda_tamaño)
 
