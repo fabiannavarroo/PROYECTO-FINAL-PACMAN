@@ -5,11 +5,11 @@ import pyxel
 
 class Tablero:
     def __init__(self):
-        pyxel.init(430, 415, title="Pacman")
+        pyxel.init(430, 415, title="Pacman")  # Tamaño de la Pantalla
         pyxel.load("assets/recursos.pyxres")
 
         self.muro = Muro()
-        self.pacman = Pacman(208, 224, self.muro)
+        self.pacman = Pacman(208, 224, self.muro)  # Coordenadas iniciales del Pacman
 
         self.fantasmas = [
             FantasmaRojo(160, 115, self.muro),  # Coordenadas iniciales en la trampa
