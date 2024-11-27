@@ -1,4 +1,4 @@
-from constantes import PACMAN, PACMAN_ARRIBA, PACMAN_ABAJO, PACMAN_IZQUIERDA, PACMAN_DERECHA
+from constantes import PACMAN, PACMAN_ARRIBA, PACMAN_ABAJO, PACMAN_IZQUIERDA, PACMAN_DERECHA,PORTALES
 import pyxel
 
 class Pacman:
@@ -44,10 +44,8 @@ class Pacman:
         if not self.muro.colision(self.x, nueva_y):
             self.y = nueva_y
         
-        if self.x==self.muro.mapa[10][0]:
-            self.x=self.muro.mapa[10][26]
-        if self.x==self.muro.mapa[10][26]:
-            self.x=self.muro.mapa[10][0]
+        if (self.x,self.y)in PORTALES:
+            self.x,self.y = PORTALES[(self.x,self.y)]
 
     def draw(self):
         sprite_x, sprite_y = self.direccion_actual
