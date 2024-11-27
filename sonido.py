@@ -2,40 +2,40 @@ import pyxel
 
 def setup_melody():
     """
-    Configura la melodía del Cara al Sol en Pyxel.
+    Configura la melodía de 'We Wish You a Merry Christmas' con silencios.
     """
-    # Frase 1: "Cara al sol con la camisa nueva..."
+    # Frase 1: "We wish you a Merry Christmas..."
     pyxel.sounds[0].set(
-        notes="G4G4G4G4A4B4C4C4RG4G4G4RG4G4G4F4",  
+        notes="G4R G4A4G4F4E4R C4C4D4C4B4A4R",  # Incluye silencios entre frases
         tones="T",
-        volumes="6666666666666666",
+        volumes="6666666666666",
         effects="N",
         speed=20
     )
 
-    # Frase 2: "Que tú bordaste en rojo ayer..."
+    # Frase 2: "And a Happy New Year..."
     pyxel.sounds[1].set(
-        notes="F4F4F4G4A4A4G4F4RG4F4E4D4C4RG4A4",
+        notes="D4R D4E4D4C4B4R G4G4A4G4F4E4R",  # Silencios tras repeticiones
         tones="T",
-        volumes="6666666666666666",
+        volumes="6666666666666",
         effects="N",
         speed=20
     )
 
-    # Frase 3: "Me hallará la muerte si me llega..."
+    # Frase 3: Final "Good tidings we bring..."
     pyxel.sounds[2].set(
-        notes="B3C4D4E4F4F4E4D4C4RG4A4B4C4D4RG4",
+        notes="C4D4E4F4G4R G4A4B4C4R B4A4G4F4R",
         tones="T",
-        volumes="6666666666666666",
+        volumes="6666666666666",
         effects="N",
         speed=20
     )
 
-    # Frase 4: Final "Y no te vuelvo a ver..."
+    # Frase 4: Final repetitivo
     pyxel.sounds[3].set(
-        notes="E4F4G4A4B4C4B4A4G4F4E4F4G4A4R",
+        notes="D4R D4E4D4C4B4R G4G4A4G4F4E4R",
         tones="T",
-        volumes="666666666666666",
+        volumes="6666666666666",
         effects="N",
         speed=20
     )
@@ -48,19 +48,19 @@ def play_melody():
 
 class App:
     def __init__(self):
-        pyxel.init(160, 120, title="Cara al Sol")
+        pyxel.init(160, 120, title="Merry Christmas")
         setup_melody()  # Configura la melodía
         play_melody()   # Reproduce la melodía
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        # Salir del programa con la tecla Q
+        # Salir con la tecla Q
         if pyxel.btnp(pyxel.KEY_Q):
             pyxel.quit()
 
     def draw(self):
         pyxel.cls(0)
-        pyxel.text(10, 50, "Playing: Cara al Sol", 7)
+        pyxel.text(10, 50, "Playing: Merry Christmas", 7)
 
 # Ejecutar la aplicación
 App()
