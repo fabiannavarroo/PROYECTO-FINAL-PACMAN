@@ -51,21 +51,16 @@ class Muro:
         ]
 
         # Convertir la posición vertical y horizontal a un indice de la matriz
-        margen = 2
         for py in range(y, y + sprite_tamaño, sprite_tamaño - 1):
             for px in range(x, x + sprite_tamaño, sprite_tamaño - 1):
-                fila = int(py + margen // self.celda_tamaño)
-                columna = int(px + margen // self.celda_tamaño)
+                fila = int(py // self.celda_tamaño)
+                columna = int(px // self.celda_tamaño)
 
-            
-            print(f"Fila: {fila}, Columna: {columna}, Valor: {self.mapa[fila][columna]}")
-        
             # Comprobar si está dentro de los límites del mapa
             if 0 <= fila < len(self.mapa) and 0 <= columna < len(self.mapa[0]):
                 # Si hay un muro, devuelve True
                 if self.mapa[fila][columna] != 0:
                     return True
-        
         return False  # No hay colisión
     
     def draw(self):
