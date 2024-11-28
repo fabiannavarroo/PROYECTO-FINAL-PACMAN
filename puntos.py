@@ -1,4 +1,4 @@
-from constantes import OBJETOS
+from constantes import OBJETOS, REFRESH
 from muro import Muro
 import pyxel
 
@@ -33,3 +33,5 @@ class Puntos:
                         sprite_w, sprite_h,  # Tamaño del sprite
                         colkey=0  # Transparencia
                     )
+                    if pyxel.frame_count // REFRESH % 3:
+                        sprite =
