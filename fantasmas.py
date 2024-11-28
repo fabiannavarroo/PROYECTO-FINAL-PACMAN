@@ -2,6 +2,7 @@ import pyxel
 from constantes import FANTASMA_ROJO, FANTASMA_ROSA, FANTASMA_AZUL, FANTASMA_NARANJA,PORTALES
 import random
 
+
 class Fantasma:
     def __init__(self, x, y, sprites, muro):
         self.x = x
@@ -9,68 +10,47 @@ class Fantasma:
         self.sprites = sprites
         self.muro = muro
         self.velocidad = 1
-        self.direccion_actual = self.sprites["DERECHA"]
-        self.en_trampa = True  # Indica si el fantasma está dentro de la trampa
+        self.direccion_actual = "DERECHA"  
+        self.en_trampa = True
 
     def mover(self):
-        # Diccionario de posibles direcciones
-        DIRECCIONES = {
-            "ARRIBA": (0, -self.velocidad),
-            "ABAJO": (0, self.velocidad),
-            "IZQUIERDA": (-self.velocidad, 0),
-            "DERECHA": (self.velocidad, 0),
-        }
-
-        # Verificar si el fantasma está en la trampa
-        fila = self.y // self.muro.celda_tamaño
-        columna = self.x // self.muro.celda_tamaño
-        valor_celda = self.muro.mapa[fila][columna]
-
         if self.en_trampa:
-            # Si está en la trampa y en la salida (16), sale de la trampa
-            if valor_celda == 16:
+            # Movimiento para salir de la trampa
+            if not self.muro.colision(self.x, self.y - self.velocidad):
+                self.y -= self.velocidad
+            if self.y < 192:  # Coordenada para salir de la trampa
                 self.en_trampa = False
-            else:
-                # Movimiento aleatorio dentro de la trampa
-                direcciones_validas = []
-                for direccion, (dx, dy) in DIRECCIONES.items():
-                    nueva_x = self.x + dx
-                    nueva_y = self.y + dy
-                    fila_nueva = nueva_y // self.muro.celda_tamaño
-                    columna_nueva = nueva_x // self.muro.celda_tamaño
-                    if (
-                        0 <= fila_nueva < len(self.muro.mapa)
-                        and 0 <= columna_nueva < len(self.muro.mapa[0])
-                        and self.muro.mapa[fila_nueva][columna_nueva] in [15, 19, 16, 17]
-                    ):
-                        direcciones_validas.append(direccion)
+        else:
+            # Obtener las posibles direcciones
+            direcciones = {
+                "DERECHA": (self.velocidad, 0),
+                "IZQUIERDA": (-self.velocidad, 0),
+                "ARRIBA": (0, -self.velocidad),
+                "ABAJO": (0, self.velocidad),
+            }
 
-                # Elegir una dirección válida aleatoria
+            # Intentar moverse en la dirección actual
+            dx, dy = direcciones[self.direccion_actual]
+            nueva_x, nueva_y = self.x + dx, self.y + dy
+
+            # Si hay colisión, elegir una nueva dirección aleatoria válida
+            if self.muro.colision(nueva_x, nueva_y):
+                direcciones_validas = [
+                    direccion
+                    for direccion, (dx, dy) in direcciones.items()
+                    if not self.muro.colision(self.x + dx, self.y + dy)
+                ]
                 if direcciones_validas:
                     self.direccion_actual = random.choice(direcciones_validas)
+                    dx, dy = direcciones[self.direccion_actual]
 
-        else:
-            # Movimiento aleatorio fuera de la trampa
-            direcciones_validas = []
-            for direccion, (dx, dy) in DIRECCIONES.items():
-                nueva_x = self.x + dx
-                nueva_y = self.y + dy
-                if not self.muro.colision(nueva_x, nueva_y):
-                    direcciones_validas.append(direccion)
-
-            # Elegir una dirección válida aleatoria
-            if direcciones_validas:
-                self.direccion_actual = random.choice(direcciones_validas)
+            # Actualizar posición
+            self.x += dx
+            self.y += dy
 
             #Portal
             if (self.x,self.y)in PORTALES:
                 self.x,self.y = PORTALES[(self.x,self.y)]
-
-        # Actualizar la posición del fantasma
-        dx, dy = DIRECCIONES[self.direccion_actual]
-        self.x += dx
-        self.y += dy
-            
                 
     # Dibujar el sprite del fantasma en la dirección correspondiente.
     def draw(self):
