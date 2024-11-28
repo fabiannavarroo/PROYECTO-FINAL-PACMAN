@@ -73,14 +73,15 @@ class Pacman:
         # Alternar entre sprites para la animación
         if pyxel.frame_count // REFRESH % 2 == 0:
             # Dibujar Pac-Man con la boca cerrada
-            if self.direccion_actual == PACMAN_ARRIBA:
-                sprite_x, sprite_y = PACMAN_ARRIBA_CERRADA
-            elif self.direccion_actual == PACMAN_ABAJO:
-                sprite_x,sprite_y = PACMAN_ABAJO_CERRADA
-            elif self.direccion_actual == PACMAN_IZQUIERDA:
-                sprite_x,sprite_y = PACMAN_IZQUIERDA
-            elif self.direccion_actual == PACMAN_DERECHA:
-                sprite_x,sprite_y = PACMAN_DERECHA_CERRADA
+            sprite_x,sprite_y = PACMAN
+            #if self.direccion_actual == PACMAN_ARRIBA:
+            #   sprite_x, sprite_y = PACMAN_ARRIBA_CERRADA
+            #elif self.direccion_actual == PACMAN_ABAJO:
+            #    sprite_x,sprite_y = PACMAN_ABAJO_CERRADA
+            #elif self.direccion_actual == PACMAN_IZQUIERDA:
+            #    sprite_x,sprite_y = PACMAN_IZQUIERDA
+            #elif self.direccion_actual == PACMAN_DERECHA:
+            #    sprite_x,sprite_y = PACMAN_DERECHA_CERRADA
         else:
             # Dibujar Pac-Man con la boca abierta en la dirección actual
             sprite_x, sprite_y = self.direccion_actual
