@@ -11,7 +11,7 @@ class Tablero:
         pyxel.load("assets/recursos.pyxres")
 
         self.muro = Muro()
-        self.pacman = Pacman(208, 288, self.muro)  # Coordenadas iniciales del Pacman
+        self.pacman = Pacman(208, 288, self.muro,)  # Coordenadas iniciales del Pacman
         self.puntos= Puntos(self.muro, OBJETOS)
         self.fantasmas = [
             FantasmaRojo(160, 190, self.muro),  # Coordenadas iniciales en la trampa
