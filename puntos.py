@@ -1,4 +1,4 @@
-from constantes import OBJETOS, REFRESH_REGALOS
+from constantes import OBJETOS, REFRESH_REGALOS, TEXTO, NUMEROS
 from muro import Muro
 import pyxel
 
@@ -41,5 +41,8 @@ class Puntos:
                             sprite_w, sprite_h,  # Tamaño del sprite
                             colkey=0  # Transparencia
                         )
-    
+                if self.muro.mapa[y][x]==97:
+                    sprite = NUMEROS["0"]
+                    sprite_x,sprite_y = sprite["Coordenadas"]
+                    sprite_w,sprite_h = sprite["Tamaño"]
     
