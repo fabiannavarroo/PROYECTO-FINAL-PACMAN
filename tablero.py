@@ -29,8 +29,9 @@ class Tablero:
 
     def draw(self):
         pyxel.cls(0)
+        self.puntos.draw()
         self.muro.draw()
         self.pacman.draw()
         for fantasma in self.fantasmas:
             fantasma.draw()
-        self.puntos.draw()
+        
