@@ -3,11 +3,11 @@ PACMAN = (0, 0)  # Coordenadas de Pacman
 PACMAN_ARRIBA = (48, 0)  # Coordenadas de Pacman al moverse arriba
 PACMAN_ARRIBA_CERRADA = (64, 16) # por la orientación con la cornamenta
 PACMAN_ABAJO = (16, 32)  # Coordenadas de Pacman al moverse abajo
-PACMAN_ABAJO_CERRADA = (80, 16)
+PACMAN_ABAJO_CERRADA = (80, 16) # por la orientación con la cornamenta
 PACMAN_IZQUIERDA = (32, 0)  # Coordenadas de Pacman al moverse a la izquierda
-PACMAN_IZQUIERDA_CERRADA = (80, 0)
+PACMAN_IZQUIERDA_CERRADA = (80, 0) # por la orientación con la cornamenta
 PACMAN_DERECHA = (16, 0)  # Coordenadas de Pacman al moverse a la derecha
-PACMAN_DERECHA_CERRADA = (64, 0)
+PACMAN_DERECHA_CERRADA = (64, 0) # por la orientación con la cornamenta
 
 #---------FANTASMAS---------# 
 FANTASMA_ROJO = {
