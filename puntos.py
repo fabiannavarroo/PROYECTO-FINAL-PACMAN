@@ -42,7 +42,7 @@ class Puntos:
                             colkey=0  # Transparencia
                         )
                 if self.muro.mapa[y][x]==97:
-                    sprite = NUMEROS["0"]
+                    sprite = TEXTO["H_BLANCO"]
                     sprite_x,sprite_y = sprite["Coordenadas"]
                     sprite_w,sprite_h = sprite["Tamaño"]
                     pyxel.blt( # Dibujar los imagenes de los regalos
