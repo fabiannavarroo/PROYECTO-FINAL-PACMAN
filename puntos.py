@@ -74,7 +74,7 @@ class Puntos:
                             sprite_w, sprite_h,  # Tamaño del sprite
                             colkey=0  # Transparencia
                         )
-                if self.muro.mapa[y][x]==96:
+                if self.muro.mapa[y][x]==94:
                     sprite = TEXTO["H_BLANCO"]
                     sprite_x,sprite_y = sprite["Coordenadas"]
                     sprite_w,sprite_h = sprite["Tamaño"]
@@ -85,7 +85,7 @@ class Puntos:
                             sprite_w, sprite_h,  # Tamaño del sprite
                             colkey=0  # Transparencia
                         )
-                if self.muro.mapa[y][x]==95:
+                if self.muro.mapa[y][x]==93:
                     sprite = TEXTO["S_BLANCO"]
                     sprite_x,sprite_y = sprite["Coordenadas"]
                     sprite_w,sprite_h = sprite["Tamaño"]
@@ -96,7 +96,7 @@ class Puntos:
                             sprite_w, sprite_h,  # Tamaño del sprite
                             colkey=0  # Transparencia
                         )
-                if self.muro.mapa[y][x]==94:
+                if self.muro.mapa[y][x]==92:
                     sprite = TEXTO["C_BLANCO"]
                     sprite_x,sprite_y = sprite["Coordenadas"]
                     sprite_w,sprite_h = sprite["Tamaño"]
@@ -107,7 +107,7 @@ class Puntos:
                             sprite_w, sprite_h,  # Tamaño del sprite
                             colkey=0  # Transparencia
                         )
-                if self.muro.mapa[y][x]==93:
+                if self.muro.mapa[y][x]==91:
                     sprite = TEXTO["O_BLANCO"]
                     sprite_x,sprite_y = sprite["Coordenadas"]
                     sprite_w,sprite_h = sprite["Tamaño"]
@@ -118,7 +118,7 @@ class Puntos:
                             sprite_w, sprite_h,  # Tamaño del sprite
                             colkey=0  # Transparencia
                         )
-                if self.muro.mapa[y][x]==92:
+                if self.muro.mapa[y][x]==90:
                     sprite = TEXTO["R_BLANCO"]
                     sprite_x,sprite_y = sprite["Coordenadas"]
                     sprite_w,sprite_h = sprite["Tamaño"]
@@ -129,7 +129,7 @@ class Puntos:
                             sprite_w, sprite_h,  # Tamaño del sprite
                             colkey=0  # Transparencia
                         )
-                if self.muro.mapa[y][x]==91:
+                if self.muro.mapa[y][x]==89:
                     sprite = TEXTO["E_BLANCO"]
                     sprite_x,sprite_y = sprite["Coordenadas"]
                     sprite_w,sprite_h = sprite["Tamaño"]
