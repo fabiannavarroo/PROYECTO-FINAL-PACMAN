@@ -81,7 +81,7 @@ class Pacman:
             elif self.direccion_actual == PACMAN_ABAJO:
                 sprite_x, sprite_y = PACMAN_ABAJO_CERRADA
             elif self.direccion_actual == PACMAN_IZQUIERDA:
-                sprite_x, sprite_y = PACMAN_IZQUIERDA
+                sprite_x, sprite_y = PACMAN_IZQUIERDA_CERRADA
             elif self.direccion_actual == PACMAN_DERECHA:
                 sprite_x, sprite_y = PACMAN_DERECHA_CERRADA
             else:
