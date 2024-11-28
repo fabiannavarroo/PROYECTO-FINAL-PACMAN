@@ -33,7 +33,7 @@ class Puntos:
                         sprite_x, sprite_y = sprite["Coordenadas"]
                         sprite_w, sprite_h = 16, 16 # Ancho y largo del sprite
                     
-                    pyxel.blt( # Dibujar los imagenes
+                    pyxel.blt( # Dibujar los imagenes de los regalos
                             x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,  # Coordenadas donde se dibuja el punto
                             0,  # Banco de imágenes
                             sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
