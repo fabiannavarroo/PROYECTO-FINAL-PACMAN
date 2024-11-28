@@ -13,15 +13,27 @@ class Fantasma:
         self.direccion_actual = "DERECHA"  
         self.en_trampa = True
 
+    import random
+
+class Fantasma:
+    def __init__(self, x, y, sprites, muro):
+        self.x = x
+        self.y = y
+        self.sprites = sprites
+        self.muro = muro
+        self.velocidad = 1
+        self.direccion_actual = "DERECHA"  # Comienza moviéndose hacia la derecha
+        self.en_trampa = True  # El fantasma empieza en la trampa
+
     def mover(self):
         if self.en_trampa:
-            # Movimiento para salir de la trampa
+            # Movimiento básico para salir de la trampa
             if not self.muro.colision(self.x, self.y - self.velocidad):
                 self.y -= self.velocidad
-            if self.y < 192:  # Coordenada para salir de la trampa
+            if self.y < 192:  # Coordenada límite para salir de la trampa
                 self.en_trampa = False
         else:
-            # Obtener las posibles direcciones
+            # Direcciones básicas: derecha, izquierda, arriba, abajo
             direcciones = {
                 "DERECHA": (self.velocidad, 0),
                 "IZQUIERDA": (-self.velocidad, 0),
@@ -29,22 +41,22 @@ class Fantasma:
                 "ABAJO": (0, self.velocidad),
             }
 
-            # Intentar moverse en la dirección actual
+            # Movimiento en la dirección actual
             dx, dy = direcciones[self.direccion_actual]
-            nueva_x, nueva_y = self.x + dx, self.y + dy
+            nueva_x = self.x + dx
+            nueva_y = self.y + dy
 
-            # Si hay colisión, elegir una nueva dirección aleatoria válida
+            # Si choca con un muro, elige una nueva dirección aleatoria
             if self.muro.colision(nueva_x, nueva_y):
-                direcciones_validas = [
-                    direccion
-                    for direccion, (dx, dy) in direcciones.items()
-                    if not self.muro.colision(self.x + dx, self.y + dy)
-                ]
+                direcciones_validas = []
+                for direccion, (dx, dy) in direcciones.items():
+                    if not self.muro.colision(self.x + dx, self.y + dy):
+                        direcciones_validas.append(direccion)
                 if direcciones_validas:
                     self.direccion_actual = random.choice(direcciones_validas)
                     dx, dy = direcciones[self.direccion_actual]
 
-            # Actualizar posición
+            # Actualiza la posición
             self.x += dx
             self.y += dy
 
