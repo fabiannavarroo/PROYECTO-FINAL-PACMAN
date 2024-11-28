@@ -15,8 +15,10 @@ class Fantasma:
 
     def mover(self):
         nueva_x, nueva_y = self.x, self.y
+
         if self.en_trampa:
             #
+
         else:
             # Obtener las posibles direcciones
             DIRECCIONES = {
