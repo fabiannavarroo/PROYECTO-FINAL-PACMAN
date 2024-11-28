@@ -34,15 +34,16 @@ FANTASMA_NARANJA = {
 #--------PUNTOS Y FRUTAS---------#
 BASTON = (48, 16)
 OBJETOS = {
+    "REGALO": {"Coordenadas": (48,16), "Puntos": 5},
     "BASTON": {"Coordenadas": (48,16), "Puntos": 10},
     "CEREZA" : {"Coordenadas": (0, 128), "Puntos": 20},
-    "FRESA" : {(16, 128)},
-    "NARANJA" : {(32, 128)},
-    "MANZANA" : (48, 128),
-    "MELON" : (0, 144),
-    "PARAGUAS" : (16, 144), 
-    "CAMPANA" : (32, 144),
-    "LLAVE" : (48, 144),
+    "FRESA" : {"Coordenadas":(16, 128), "Puntos": 30},
+    "NARANJA" : {"Coordenadas":(32, 128), "Puntos": 30},
+    "MANZANA" : {"Coordenadas":(48, 128), "Puntos": 30},
+    "MELON" : {"Coordenadas":(0, 144), "Puntos": 30},
+    "PARAGUAS" : {"Coordenadas":(16, 144), "Puntos": 30}, 
+    "CAMPANA" : {"Coordenadas":(32, 144), "Puntos": 30},
+    "LLAVE" : {"Coordenadas":(48, 144), "Puntos": 30},
     }
 
 #---------MUROS---------#
