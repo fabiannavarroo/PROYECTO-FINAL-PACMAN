@@ -10,4 +10,5 @@ class Puntos:
         self.muro.mapa
         for y in range(self.muro.mapa):
             for x in range(self.muro.mapa[y]):
-                if 
+                if self.muro.mapa[y][x] == 0:
+                    
