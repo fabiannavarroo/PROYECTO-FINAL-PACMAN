@@ -6,6 +6,7 @@ class Puntos:
     def __init__(self,muro,sprite):
         self.muro = muro
         self.sprite = sprite
+        self.puntos = 0
 
     def draw(self):
 
