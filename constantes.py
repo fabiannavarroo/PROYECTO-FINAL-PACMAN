@@ -87,19 +87,12 @@ PORTALES={
 #---------------TEXTO--------------#
 TEXTO={
     "RE_AMARILLO": {"Coordenadas": (32, 192), "Tamaño": (16, 16)},
-    #"E_AMARILLO": {"Coordenadas": (8, 160), "Tamaño": (8, 8)},  <--- BACKUP
     "AD_AMARILLO": {"Coordenadas": (48, 192), "Tamaño": (16, 16)},
-    #"D_AMARILLO": {"Coordenadas": (24, 160), "Tamaño": (8, 8)},
     "Y!_AMARILLO": {"Coordenadas": (64, 192), "Tamaño": (16, 16)},  
-    #"!_AMARILLO": {"Coordenadas": (40, 160), "Tamaño": (8, 8)},
     "HI_BLANCO":   {"Coordenadas": (0, 168), "Tamaño": (16, 16)},
-    #"I_BLANCO":   {"Coordenadas": (8, 168), "Tamaño": (8, 8)},
     "GH_BLANCO":   {"Coordenadas": (16, 168), "Tamaño": (16, 16)},
-    #"H_BLANCO":   {"Coordenadas": (24, 168), "Tamaño": (8, 8)},
     "SC_BLANCO":   {"Coordenadas": (32, 168), "Tamaño": (16, 16)},
-    #"C_BLANCO":   {"Coordenadas": (40, 168), "Tamaño": (8, 8)},
     "OR_BLANCO":   {"Coordenadas": (48, 168), "Tamaño": (16, 16)},
-    #"R_BLANCO":   {"Coordenadas": (56, 168), "Tamaño": (8, 8)},
     "E_BLANCO":   {"Coordenadas": (64, 168), "Tamaño": (8, 8)},
     "G_ROJO":     {"Coordenadas": (0, 192), "Tamaño": (8, 8)},
     "A_ROJO":     {"Coordenadas": (8, 192), "Tamaño": (8, 8)},
