@@ -32,7 +32,11 @@ FANTASMA_NARANJA = {
 }
 
 #--------PUNTOS Y FRUTAS---------#
-MINI_PUNTOS = (0, 32)
+BASTON = (0, 32)
+CEREZA =
+FRESA =
+NARANJA =
+MANZANA =
 
 
 #---------MUROS---------#
