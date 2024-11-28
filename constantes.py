@@ -81,5 +81,5 @@ PORTALES={
 
 #--------OTROS---------#
 REFRESH = 4
-REFRESH_REGALOS = 10
+REFRESH_REGALOS = 35
 TEXTO_MUERTE = ["Te has quedado sin vidas", "(ESC)Salir"]
