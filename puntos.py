@@ -42,7 +42,7 @@ class Puntos:
                             colkey=0  # Transparencia
                         )
                 if self.muro.mapa[y][x]==97:
-                    sprite = TEXTO["H_BLANCO"]
+                    sprite = TEXTO["HI_BLANCO"]
                     sprite_x,sprite_y = sprite["Coordenadas"]
                     sprite_w,sprite_h = sprite["Tamaño"]
                     pyxel.blt( # Dibujar los imagenes de los regalos
@@ -53,7 +53,7 @@ class Puntos:
                             colkey=0  # Transparencia
                         )
                 if self.muro.mapa[y][x]==96:
-                    sprite = TEXTO["I_BLANCO"]
+                    sprite = TEXTO["GH_BLANCO"]
                     sprite_x,sprite_y = sprite["Coordenadas"]
                     sprite_w,sprite_h = sprite["Tamaño"]
                     pyxel.blt( # Dibujar los imagenes de los regalos
@@ -64,7 +64,7 @@ class Puntos:
                             colkey=0  # Transparencia
                         )
                 if self.muro.mapa[y][x]==95:
-                    sprite = TEXTO["G_BLANCO"]
+                    sprite = TEXTO["SC_BLANCO"]
                     sprite_x,sprite_y = sprite["Coordenadas"]
                     sprite_w,sprite_h = sprite["Tamaño"]
                     pyxel.blt( # Dibujar los imagenes de los regalos
@@ -75,7 +75,7 @@ class Puntos:
                             colkey=0  # Transparencia
                         )
                 if self.muro.mapa[y][x]==94:
-                    sprite = TEXTO["H_BLANCO"]
+                    sprite = TEXTO["OR_BLANCO"]
                     sprite_x,sprite_y = sprite["Coordenadas"]
                     sprite_w,sprite_h = sprite["Tamaño"]
                     pyxel.blt( # Dibujar los imagenes de los regalos
@@ -86,7 +86,7 @@ class Puntos:
                             colkey=0  # Transparencia
                         )
                 if self.muro.mapa[y][x]==93:
-                    sprite = TEXTO["S_BLANCO"]
+                    sprite = TEXTO["E_BLANCO"]
                     sprite_x,sprite_y = sprite["Coordenadas"]
                     sprite_w,sprite_h = sprite["Tamaño"]
                     pyxel.blt( # Dibujar los imagenes de los regalos
@@ -97,7 +97,7 @@ class Puntos:
                             colkey=0  # Transparencia
                         )
                 if self.muro.mapa[y][x]==92:
-                    sprite = TEXTO["C_BLANCO"]
+                    sprite = TEXTO["RE_BLANCO"]
                     sprite_x,sprite_y = sprite["Coordenadas"]
                     sprite_w,sprite_h = sprite["Tamaño"]
                     pyxel.blt( # Dibujar los imagenes de los regalos
@@ -108,7 +108,7 @@ class Puntos:
                             colkey=0  # Transparencia
                         )
                 if self.muro.mapa[y][x]==91:
-                    sprite = TEXTO["O_BLANCO"]
+                    sprite = TEXTO["AD_BLANCO"]
                     sprite_x,sprite_y = sprite["Coordenadas"]
                     sprite_w,sprite_h = sprite["Tamaño"]
                     pyxel.blt( # Dibujar los imagenes de los regalos
@@ -119,7 +119,7 @@ class Puntos:
                             colkey=0  # Transparencia
                         )
                 if self.muro.mapa[y][x]==90:
-                    sprite = TEXTO["R_BLANCO"]
+                    sprite = TEXTO["Y!_BLANCO"]
                     sprite_x,sprite_y = sprite["Coordenadas"]
                     sprite_w,sprite_h = sprite["Tamaño"]
                     pyxel.blt( # Dibujar los imagenes de los regalos
