@@ -101,13 +101,14 @@ TEXTO={
     "O_BLANCO":   {"Coordenadas": (48, 168), "Tamaño": (16, 16)},
     "R_BLANCO":   {"Coordenadas": (56, 168), "Tamaño": (16, 16)},
     "E_BLANCO":   {"Coordenadas": (64, 168), "Tamaño": (16, 16)},
-    "G_ROJO":     {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
-    "A_ROJO":     {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
-    "M_ROJO":     {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
-    "E_ROJO":     {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
-    "O_ROJO":     {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
-    "V_ROJO":     {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
-    "R_ROJO":     {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+    "G_ROJO":     {"Coordenadas": (0, 192), "Tamaño": (16, 16)},
+    "A_ROJO":     {"Coordenadas": (8, 192), "Tamaño": (16, 16)},
+    "M_ROJO":     {"Coordenadas": (16, 192), "Tamaño": (16, 16)},
+    "E_ROJO":     {"Coordenadas": (24, 192), "Tamaño": (16, 16)},
+    "O_ROJO":     {"Coordenadas": (0, 200), "Tamaño": (16, 16)},
+    "V_ROJO":     {"Coordenadas": (8, 200), "Tamaño": (16, 16)},
+    "E_ROJO":     {"Coordenadas": (16, 200), "Tamaño": (16, 16)},
+    "R_ROJO":     {"Coordenadas": (24, 200), "Tamaño": (16, 16)},
 }
 
 #--------NÚMEROS--------#
