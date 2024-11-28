@@ -108,6 +108,20 @@ TEXTO={
     "V_ROJO":     {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
     "R_ROJO":     {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
 }
+
+#--------NÚMEROS--------#
+NUMEROS={
+    "1": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
+    "2": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
+    "3": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
+    "4": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
+    "5": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
+    "6": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
+    "7": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
+    "8": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
+    "9": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
+    "0": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
+}
 #--------OTROS---------#
 REFRESH = 4
 REFRESH_REGALOS = 35
