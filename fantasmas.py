@@ -9,6 +9,7 @@ class Fantasma:
         self.sprites = sprites
         self.muro = muro
         self.direccion_actual = "DERECHA"
+        self.velocidad = 1.5
         self.en_trampa = True  # Comienza dentro de la trampa
         self.ha_salido = False  # Indica si el fantasma ya salió y no puede volver a entrar
 
@@ -18,8 +19,8 @@ class Fantasma:
             direcciones = [(0, -1), (-1, 0), (1, 0), (0, 1)]  # Arriba, izquierda, derecha, abajo
             random.shuffle(direcciones)
             for dx, dy in direcciones:
-                nueva_x = self.x + dx * 2
-                nueva_y = self.y + dy * 2
+                nueva_x = self.x + dx * self.velocidad
+                nueva_y = self.y + dy * self.velocidad
                 # Si no hay colisión y es la puerta de salida, salir
                 if not self.muro.colision(nueva_x, nueva_y):
                     self.x = nueva_x
@@ -51,16 +52,16 @@ class Fantasma:
     def perseguir_pacman(self, pacman_x, pacman_y):
         # Perseguir directamente a PacMan
         if self.x < pacman_x and not self.muro.colision(self.x + 16, self.y):
-            self.x += 1
+            self.x += self.velocidad
             self.direccion_actual = "DERECHA"
         elif self.x > pacman_x and not self.muro.colision(self.x - 16, self.y):
-            self.x -= 1
+            self.x -= self.velocidad
             self.direccion_actual = "IZQUIERDA"
         elif self.y < pacman_y and not self.muro.colision(self.x, self.y + 16):
-            self.y += 1
+            self.y += self.velocidad
             self.direccion_actual = "ABAJO"
         elif self.y > pacman_y and not self.muro.colision(self.x, self.y - 16):
-            self.y -= 1
+            self.y -= self.velocidad
             self.direccion_actual = "ARRIBA"
 
     def emboscar_pacman(self, pacman_x, pacman_y):
@@ -80,8 +81,8 @@ class Fantasma:
                 "IZQUIERDA": (-1, 0),
                 "DERECHA": (1, 0),
             }[direccion]
-            nueva_x = self.x + dx * 16
-            nueva_y = self.y + dy * 16
+            nueva_x = self.x + dx * self.velocidad
+            nueva_y = self.y + dy * self.velocidad
             if not self.muro.colision(nueva_x, nueva_y):
                 self.x = nueva_x
                 self.y = nueva_y
@@ -98,8 +99,8 @@ class Fantasma:
             "IZQUIERDA": (-1, 0),
             "DERECHA": (1, 0),
         }[direccion]
-        nueva_x = self.x + dx * 16
-        nueva_y = self.y + dy * 16
+        nueva_x = self.x + dx * self.velocidad
+        nueva_y = self.y + dy * self.velocidad
         if not self.muro.colision(nueva_x, nueva_y):
             self.x = nueva_x
             self.y = nueva_y
