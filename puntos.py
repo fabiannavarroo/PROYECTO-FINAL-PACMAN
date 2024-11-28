@@ -129,17 +129,7 @@ class Puntos:
                             sprite_w, sprite_h,  # Tamaño del sprite
                             colkey=0  # Transparencia
                         )
-                if self.muro.mapa[y][x]==89:
-                    sprite = TEXTO["E_BLANCO"]
-                    sprite_x,sprite_y = sprite["Coordenadas"]
-                    sprite_w,sprite_h = sprite["Tamaño"]
-                    pyxel.blt( # Dibujar los imagenes de los regalos
-                            x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,  # Coordenadas donde se dibuja el punto
-                            0,  # Banco de imágenes
-                            sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
-                            sprite_w, sprite_h,  # Tamaño del sprite
-                            colkey=0  # Transparencia
-                        )
+                
                 if self.muro.mapa[y][x]==88:
                     sprite = NUMEROS["0"]
                     sprite_x,sprite_y = sprite["Coordenadas"]
