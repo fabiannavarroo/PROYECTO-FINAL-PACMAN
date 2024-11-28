@@ -2,6 +2,7 @@ from muro import Muro
 from pacman import Pacman
 from fantasmas import FantasmaRojo, FantasmaRosa, FantasmaAzul, FantasmaNaranja
 from puntos import Puntos
+from constantes import *
 import pyxel
 
 class Tablero:
@@ -11,7 +12,7 @@ class Tablero:
 
         self.muro = Muro()
         self.pacman = Pacman(208, 288, self.muro)  # Coordenadas iniciales del Pacman
-        self.Puntos(self.muro, self.)
+        self.Puntos(self.muro, OBJECTOS)
         self.fantasmas = [
             FantasmaRojo(160, 190, self.muro),  # Coordenadas iniciales en la trampa
             FantasmaRosa(176, 190, self.muro),
