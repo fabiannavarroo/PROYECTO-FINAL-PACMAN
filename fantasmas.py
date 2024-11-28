@@ -18,8 +18,8 @@ class Fantasma:
             direcciones = [(0, -1), (-1, 0), (1, 0), (0, 1)]  # Arriba, izquierda, derecha, abajo
             random.shuffle(direcciones)
             for dx, dy in direcciones:
-                nueva_x = self.x + dx * 16
-                nueva_y = self.y + dy * 16
+                nueva_x = self.x + dx * 2
+                nueva_y = self.y + dy * 2
                 # Si no hay colisión y es la puerta de salida, salir
                 if not self.muro.colision(nueva_x, nueva_y):
                     self.x = nueva_x
