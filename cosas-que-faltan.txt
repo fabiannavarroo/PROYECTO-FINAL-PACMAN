@@ -1,5 +1,7 @@
 Sistema de puntos
 
+Sistema de muerte del PacMan
+
 Sistema de Vidas
 
 Sistema de comer fantasmas
