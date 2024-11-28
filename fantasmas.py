@@ -41,34 +41,6 @@ class Fantasma:
         sprite_x, sprite_y = self.sprites[self.direccion_actual]
         pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
 
-    def perseguir_pacman(self, pacman_x, pacman_y):
-        if self.x < pacman_x:
-            self.x += 1
-        elif self.x > pacman_x:
-            self.x -= 1
-        if self.y < pacman_y:
-            self.y += 1
-        elif self.y > pacman_y:
-            self.y -= 1
-
-    def emboscar_pacman(self, pacman_x, pacman_y):
-        if pacman_x % 2 == 0:
-            self.perseguir_pacman(pacman_x + 16, pacman_y)
-        else:
-            self.perseguir_pacman(pacman_x, pacman_y + 16)
-
-    def mover_erratico(self):
-        direcciones = [(0, -1), (-1, 0), (1, 0), (0, 1)]
-        random.shuffle(direcciones)
-        dx, dy = direcciones[0]
-        self.x += dx * 16
-        self.y += dy * 16
-
-    def mover_aleatorio(self):
-        direcciones = [(0, -1), (-1, 0), (1, 0), (0, 1)]
-        dx, dy = random.choice(direcciones)
-        self.x += dx * 16
-        self.y += dy * 16
 
 class FantasmaRojo(Fantasma):
     def __init__(self, x, y, muro):
