@@ -79,11 +79,13 @@ class Pacman:
             if self.direccion_actual == PACMAN_ARRIBA:
                sprite_x, sprite_y = PACMAN_ARRIBA_CERRADA
             elif self.direccion_actual == PACMAN_ABAJO:
-                sprite_x,sprite_y = PACMAN_ABAJO_CERRADA
+                sprite_x, sprite_y = PACMAN_ABAJO_CERRADA
             elif self.direccion_actual == PACMAN_IZQUIERDA:
-                sprite_x,sprite_y = PACMAN_IZQUIERDA
+                sprite_x, sprite_y = PACMAN_IZQUIERDA
             elif self.direccion_actual == PACMAN_DERECHA:
-                sprite_x,sprite_y = PACMAN_DERECHA_CERRADA
+                sprite_x, sprite_y = PACMAN_DERECHA_CERRADA
+            else:
+                sprite_x, sprite_y = PACMAN
 
         # Dibujar el sprite de PacMan
         pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
