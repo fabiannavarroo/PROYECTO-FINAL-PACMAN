@@ -7,16 +7,16 @@ class Puntos:
         self.muro = muro
         self.sprite = sprite
 
-    def pintar_puntos(self):
-        self.muro.mapa
+    def draw(self):
+
         for y in range(self.muro.mapa):
             for x in range(self.muro.mapa[y]):
                 if self.muro.mapa[y][x] == 0:
                     sprite = OBJETOS
                     sprite_x, sprite_y = sprite["Coordenadas"]
-                    sprite_w, sprite_h = sprite["Tamaño"]
+                    sprite_w, sprite_h = 16
                     pyxel.blt(
-                        y * self.muro.celda_tamaño, x * self.muro.celda_tamaño,  # Coordenadas donde se dibuja el muro
+                        y * self.muro.celda_tamaño, x * self.muro.celda_tamaño,  # Coordenadas donde se dibuja el punto
                         1,  # Banco de imágenes
                         sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
                         sprite_w, sprite_h,  # Tamaño del sprite
