@@ -23,7 +23,8 @@ class Tablero:
     def update(self):
         self.pacman.mover()
         for fantasma in self.fantasmas:
-            fantasma.mover()
+            # Pasar las coordenadas de PacMan a los fantasmas
+            fantasma.mover(self.pacman.x, self.pacman.y)
 
     def draw(self):
         pyxel.cls(0)
