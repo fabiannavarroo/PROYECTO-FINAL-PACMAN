@@ -12,7 +12,7 @@ class Puntos:
         for y in range (len(self.muro.mapa)):
             for x in range(len(self.muro.mapa[y])):
                 if self.muro.mapa[y][x] == 0:
-                    sprite = OBJETOS["REGALOS"]
+                    sprite = OBJETOS["REGALO"]
                     sprite_x, sprite_y = sprite["Coordenadas"]
                     sprite_w, sprite_h = 16 # Ancho y largo del sprite
                     pyxel.blt(
