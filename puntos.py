@@ -14,7 +14,7 @@ class Puntos:
                 if self.muro.mapa[y][x] == 0:
                     sprite = OBJETOS["REGALO"]
                     sprite_x, sprite_y = sprite["Coordenadas"]
-                    sprite_w, sprite_h = 16 # Ancho y largo del sprite
+                    sprite_w, sprite_h = 16, 16 # Ancho y largo del sprite
                     pyxel.blt(
                         y * self.muro.celda_tamaño, x * self.muro.celda_tamaño,  # Coordenadas donde se dibuja el punto
                         1,  # Banco de imágenes
