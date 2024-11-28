@@ -74,7 +74,7 @@ class Pacman:
         if pyxel.frame_count // REFRESH % 2 == 0:
             # Dibujar Pac-Man con la boca cerrada
             if self.direccion_actual == PACMAN_ARRIBA:
-                sprite_x, sprite_y = PACMAN_ARRIBA_CERRADA
+                sprite_x, sprite_y = (64, 16) #PACMAN_ARRIBA_CERRADA
             elif self.direccion_actual == PACMAN_ABAJO:
                 sprite_x,sprite_y = PACMAN_ABAJO_CERRADA
             elif self.direccion_actual == PACMAN_IZQUIERDA:
