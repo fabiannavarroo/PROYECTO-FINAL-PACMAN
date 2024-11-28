@@ -2,8 +2,8 @@ from constantes import MINI_PUNTOS
 from muro import MURO
 
 class Puntos:
-    def __init__(self,muro):
+    def __init__(self,muro,sprite):
         self.muro = muro
-        self.sprite = MINI_PUNTOS
+        self.sprite = sprite
 
     def 
