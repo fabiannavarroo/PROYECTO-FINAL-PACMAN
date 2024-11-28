@@ -19,7 +19,9 @@ class Fantasma:
             #
         else:
             # Obtener las posibles direcciones
-            
+            DIRECCIONES: {
+
+            }
 
             # Intentar moverse en la dirección actual
             
