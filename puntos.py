@@ -52,4 +52,92 @@ class Puntos:
                             sprite_w, sprite_h,  # Tamaño del sprite
                             colkey=0  # Transparencia
                         )
+                if self.muro.mapa[y][x]==96:
+                    sprite = TEXTO["I_BLANCO"]
+                    sprite_x,sprite_y = sprite["Coordenadas"]
+                    sprite_w,sprite_h = sprite["Tamaño"]
+                    pyxel.blt( # Dibujar los imagenes de los regalos
+                            x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,  # Coordenadas donde se dibuja el punto
+                            0,  # Banco de imágenes
+                            sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
+                            sprite_w, sprite_h,  # Tamaño del sprite
+                            colkey=0  # Transparencia
+                        )
+                if self.muro.mapa[y][x]==95:
+                    sprite = TEXTO["G_BLANCO"]
+                    sprite_x,sprite_y = sprite["Coordenadas"]
+                    sprite_w,sprite_h = sprite["Tamaño"]
+                    pyxel.blt( # Dibujar los imagenes de los regalos
+                            x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,  # Coordenadas donde se dibuja el punto
+                            0,  # Banco de imágenes
+                            sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
+                            sprite_w, sprite_h,  # Tamaño del sprite
+                            colkey=0  # Transparencia
+                        )
+                if self.muro.mapa[y][x]==96:
+                    sprite = TEXTO["H_BLANCO"]
+                    sprite_x,sprite_y = sprite["Coordenadas"]
+                    sprite_w,sprite_h = sprite["Tamaño"]
+                    pyxel.blt( # Dibujar los imagenes de los regalos
+                            x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,  # Coordenadas donde se dibuja el punto
+                            0,  # Banco de imágenes
+                            sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
+                            sprite_w, sprite_h,  # Tamaño del sprite
+                            colkey=0  # Transparencia
+                        )
+                if self.muro.mapa[y][x]==95:
+                    sprite = TEXTO["S_BLANCO"]
+                    sprite_x,sprite_y = sprite["Coordenadas"]
+                    sprite_w,sprite_h = sprite["Tamaño"]
+                    pyxel.blt( # Dibujar los imagenes de los regalos
+                            x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,  # Coordenadas donde se dibuja el punto
+                            0,  # Banco de imágenes
+                            sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
+                            sprite_w, sprite_h,  # Tamaño del sprite
+                            colkey=0  # Transparencia
+                        )
+                if self.muro.mapa[y][x]==94:
+                    sprite = TEXTO["C_BLANCO"]
+                    sprite_x,sprite_y = sprite["Coordenadas"]
+                    sprite_w,sprite_h = sprite["Tamaño"]
+                    pyxel.blt( # Dibujar los imagenes de los regalos
+                            x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,  # Coordenadas donde se dibuja el punto
+                            0,  # Banco de imágenes
+                            sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
+                            sprite_w, sprite_h,  # Tamaño del sprite
+                            colkey=0  # Transparencia
+                        )
+                if self.muro.mapa[y][x]==93:
+                    sprite = TEXTO["O_BLANCO"]
+                    sprite_x,sprite_y = sprite["Coordenadas"]
+                    sprite_w,sprite_h = sprite["Tamaño"]
+                    pyxel.blt( # Dibujar los imagenes de los regalos
+                            x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,  # Coordenadas donde se dibuja el punto
+                            0,  # Banco de imágenes
+                            sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
+                            sprite_w, sprite_h,  # Tamaño del sprite
+                            colkey=0  # Transparencia
+                        )
+                if self.muro.mapa[y][x]==92:
+                    sprite = TEXTO["R_BLANCO"]
+                    sprite_x,sprite_y = sprite["Coordenadas"]
+                    sprite_w,sprite_h = sprite["Tamaño"]
+                    pyxel.blt( # Dibujar los imagenes de los regalos
+                            x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,  # Coordenadas donde se dibuja el punto
+                            0,  # Banco de imágenes
+                            sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
+                            sprite_w, sprite_h,  # Tamaño del sprite
+                            colkey=0  # Transparencia
+                        )
+                if self.muro.mapa[y][x]==91:
+                    sprite = TEXTO["E_BLANCO"]
+                    sprite_x,sprite_y = sprite["Coordenadas"]
+                    sprite_w,sprite_h = sprite["Tamaño"]
+                    pyxel.blt( # Dibujar los imagenes de los regalos
+                            x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,  # Coordenadas donde se dibuja el punto
+                            0,  # Banco de imágenes
+                            sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
+                            sprite_w, sprite_h,  # Tamaño del sprite
+                            colkey=0  # Transparencia
+                        )
     
