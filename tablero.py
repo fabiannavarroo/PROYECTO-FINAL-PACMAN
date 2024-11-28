@@ -33,3 +33,4 @@ class Tablero:
         self.pacman.draw()
         for fantasma in self.fantasmas:
             fantasma.draw()
+        self.puntos.draw()
