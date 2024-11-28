@@ -62,9 +62,9 @@ class Fantasma:
             if direcciones_validas:
                 self.direccion_actual = random.choice(direcciones_validas)
 
-        #Portal
-        if (self.x,self.y)in PORTALES:
-            self.x,self.y = PORTALES[(self.x,self.y)]
+            #Portal
+            if (self.x,self.y)in PORTALES:
+                self.x,self.y = PORTALES[(self.x,self.y)]
 
         # Actualizar la posición del fantasma
         dx, dy = DIRECCIONES[self.direccion_actual]
