@@ -9,8 +9,8 @@ class Puntos:
 
     def draw(self):
 
-        for y in (self.muro.mapa):
-            for x in (self.muro.mapa[y]):
+        for y in range (len(self.muro.mapa)):
+            for x in range(len(self.muro.mapa[y])):
                 if self.muro.mapa[y][x] == 0:
                     sprite = OBJETOS
                     sprite_x, sprite_y = sprite["Coordenadas"]
