@@ -1,6 +1,7 @@
 from muro import Muro
 from pacman import Pacman
 from fantasmas import FantasmaRojo, FantasmaRosa, FantasmaAzul, FantasmaNaranja
+from puntos import Puntos
 import pyxel
 
 class Tablero:
