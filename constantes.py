@@ -124,6 +124,7 @@ NUMEROS={
     "8": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
     "9": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
 }
+
 #--------OTROS---------#
 REFRESH = 4
 REFRESH_REGALOS = 35
