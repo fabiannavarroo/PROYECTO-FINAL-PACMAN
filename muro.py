@@ -68,7 +68,7 @@ class Muro:
         for fila in range(len(self.mapa)):
             for columna in range(len(self.mapa[0])):
                 tipo_muro = self.mapa[fila][columna]
-                if tipo_muro not in [0,99]:  # Si no es un espacio vacío
+                if tipo_muro not in [0,98,99]:  # Si no es un espacio vacío
                     sprite = MUROS[tipo_muro]
                     sprite_x, sprite_y = sprite["Coordenadas"]
                     sprite_w, sprite_h = sprite["Tamaño"]
