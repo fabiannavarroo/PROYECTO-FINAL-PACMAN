@@ -7,21 +7,9 @@ class Fantasma:
     def __init__(self, x, y, sprites, muro):
         self.x = x
         self.y = y
-        self.sprites = sprites
-        self.muro = muro
-        self.velocidad = 1
-        self.direccion_actual = "DERECHA"  
-        self.en_trampa = True
-
-    import random
-
-class Fantasma:
-    def __init__(self, x, y, sprites, muro):
-        self.x = x
-        self.y = y
-        self.sprites = sprites
-        self.muro = muro
-        self.velocidad = 1
+        self.sprites = sprites  # Imagenes de los fantasmas
+        self.muro = muro # Referencia a la clase Muro
+        self.velocidad = 1  # Velocidad de los fantasmas
         self.direccion_actual = "DERECHA"  # Comienza moviéndose hacia la derecha
         self.en_trampa = True  # El fantasma empieza en la trampa
 
@@ -33,7 +21,7 @@ class Fantasma:
             if self.y < 192:  # Coordenada límite para salir de la trampa
                 self.en_trampa = False
         else:
-            # Direcciones básicas: derecha, izquierda, arriba, abajo
+            # Direcciones: derecha, izquierda, arriba, abajo
             direcciones = {
                 "DERECHA": (self.velocidad, 0),
                 "IZQUIERDA": (-self.velocidad, 0),
@@ -55,14 +43,16 @@ class Fantasma:
                 if direcciones_validas:
                     self.direccion_actual = random.choice(direcciones_validas)
                     dx, dy = direcciones[self.direccion_actual]
-
+            
+            #Portal
+            if (self.x,self.y)in PORTALES:
+                self.x,self.y = PORTALES[(self.x,self.y)]
+            
             # Actualiza la posición
             self.x += dx
             self.y += dy
 
-            #Portal
-            if (self.x,self.y)in PORTALES:
-                self.x,self.y = PORTALES[(self.x,self.y)]
+            
                 
     # Dibujar el sprite del fantasma en la dirección correspondiente.
     def draw(self):
