@@ -23,7 +23,7 @@ class Puntos:
                         colkey=0  # Transparencia
                     )
                 if self.muro.mapa[y][x] == 98:
-                    if pyxel.frame_count // REFRESH % 15:
+                    if pyxel.frame_count // REFRESH % 1:
                         sprite = (256,256)
                     else:
                         sprite = OBJETOS["REGALO"]
