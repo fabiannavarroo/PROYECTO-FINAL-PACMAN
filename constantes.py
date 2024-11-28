@@ -113,7 +113,7 @@ TEXTO={
 
 #--------NÚMEROS--------#
 NUMEROS={
-    "0": {"Coordenadas": (0, 176), "Tamaño": (4, 4)},
+    "0": {"Coordenadas": (0, 176), "Tamaño": (8, 8)},
     "1": {"Coordenadas": (8, 176), "Tamaño": (8, 8)},
     "2": {"Coordenadas": (16, 176), "Tamaño": (8, 8)},
     "3": {"Coordenadas": (24, 176), "Tamaño": (8, 8)},
