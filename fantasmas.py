@@ -1,6 +1,6 @@
 import pyxel
-from constantes import FANTASMA_ROJO, FANTASMA_ROSA, FANTASMA_AZUL, FANTASMA_NARANJA, PORTALES
 import random
+from constantes import FANTASMA_ROJO, FANTASMA_ROSA, FANTASMA_AZUL, FANTASMA_NARANJA
 
 class Fantasma:
     def __init__(self, x, y, sprites, muro):
@@ -8,56 +8,67 @@ class Fantasma:
         self.y = y
         self.sprites = sprites
         self.muro = muro
-        self.velocidad = 1
-        self.direccion_actual = "DERECHA"  # Comienza moviéndose hacia la derecha
-        self.en_trampa = True  # El fantasma empieza en la trampa
+        self.direccion_actual = "DERECHA"
+        self.en_trampa = True  # Inicia dentro de la trampa
 
-    def mover(self):
+    def mover(self, pacman_x, pacman_y):
         if self.en_trampa:
-            # Movimiento básico para salir de la trampa
-            if not self.muro.colision(self.x, self.y - self.velocidad):
-                self.y -= self.velocidad
-            if self.y < 192:  # Coordenada límite para salir de la trampa
-                self.en_trampa = False
+            # Movimiento dentro de la trampa
+            direcciones = [(0, -1), (-1, 0), (1, 0), (0, 1)]  # Arriba, izquierda, derecha, abajo
+            random.shuffle(direcciones)
+            for dx, dy in direcciones:
+                nueva_x = self.x + dx * 16
+                nueva_y = self.y + dy * 16
+                # Si no hay colisión y es la puerta, salir
+                if not self.muro.colision(nueva_x, nueva_y):
+                    self.x = nueva_x
+                    self.y = nueva_y
+                    if self.muro.es_puerta_salida(nueva_x, nueva_y):
+                        self.en_trampa = False  # Fantasma ha salido
+                    return
         else:
-            # Direcciones básicas: derecha, izquierda, arriba, abajo
-            if self.direccion_actual == "DERECHA":
-                nueva_x = self.x + self.velocidad
-                nueva_y = self.y
-                if not self.muro.colision(nueva_x, nueva_y):
-                    self.x = nueva_x
-                else:
-                    self.direccion_actual = random.choice(["ARRIBA", "ABAJO", "IZQUIERDA"])
-            elif self.direccion_actual == "IZQUIERDA":
-                nueva_x = self.x - self.velocidad
-                nueva_y = self.y
-                if not self.muro.colision(nueva_x, nueva_y):
-                    self.x = nueva_x
-                else:
-                    self.direccion_actual = random.choice(["ARRIBA", "ABAJO", "DERECHA"])
-            elif self.direccion_actual == "ARRIBA":
-                nueva_x = self.x
-                nueva_y = self.y - self.velocidad
-                if not self.muro.colision(nueva_x, nueva_y):
-                    self.y = nueva_y
-                else:
-                    self.direccion_actual = random.choice(["DERECHA", "ABAJO", "IZQUIERDA"])
-            elif self.direccion_actual == "ABAJO":
-                nueva_x = self.x
-                nueva_y = self.y + self.velocidad
-                if not self.muro.colision(nueva_x, nueva_y):
-                    self.y = nueva_y
-                else:
-                    self.direccion_actual = random.choice(["DERECHA", "ARRIBA", "IZQUIERDA"])
-
-            # Teletransporte si está en un portal
-            if (self.x, self.y) in PORTALES:
-                self.x, self.y = PORTALES[(self.x, self.y)]
+            # Movimiento fuera de la trampa
+            if isinstance(self, FantasmaRojo):
+                self.perseguir_pacman(pacman_x, pacman_y)
+            elif isinstance(self, FantasmaRosa):
+                self.emboscar_pacman(pacman_x, pacman_y)
+            elif isinstance(self, FantasmaAzul):
+                self.mover_erratico()
+            elif isinstance(self, FantasmaNaranja):
+                self.mover_aleatorio()
 
     def draw(self):
-        # Dibujar el sprite del fantasma según su dirección
         sprite_x, sprite_y = self.sprites[self.direccion_actual]
         pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
+
+    def perseguir_pacman(self, pacman_x, pacman_y):
+        if self.x < pacman_x:
+            self.x += 1
+        elif self.x > pacman_x:
+            self.x -= 1
+        if self.y < pacman_y:
+            self.y += 1
+        elif self.y > pacman_y:
+            self.y -= 1
+
+    def emboscar_pacman(self, pacman_x, pacman_y):
+        if pacman_x % 2 == 0:
+            self.perseguir_pacman(pacman_x + 16, pacman_y)
+        else:
+            self.perseguir_pacman(pacman_x, pacman_y + 16)
+
+    def mover_erratico(self):
+        direcciones = [(0, -1), (-1, 0), (1, 0), (0, 1)]
+        random.shuffle(direcciones)
+        dx, dy = direcciones[0]
+        self.x += dx * 16
+        self.y += dy * 16
+
+    def mover_aleatorio(self):
+        direcciones = [(0, -1), (-1, 0), (1, 0), (0, 1)]
+        dx, dy = random.choice(direcciones)
+        self.x += dx * 16
+        self.y += dy * 16
 
 class FantasmaRojo(Fantasma):
     def __init__(self, x, y, muro):
