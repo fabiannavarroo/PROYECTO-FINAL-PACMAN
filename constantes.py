@@ -32,7 +32,7 @@ FANTASMA_NARANJA = {
 }
 
 #--------PUNTOS Y FRUTAS---------#
-
+MINI_PUNTOS = (0, 32)
 
 
 #---------MUROS---------#
