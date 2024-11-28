@@ -58,22 +58,10 @@ class Muro:
             # Comprobar si está dentro de los límites del mapa
             if 0 <= fila < len(self.mapa) and 0 <= columna < len(self.mapa[0]):
                 # Si hay un muro, devuelve True
-                if self.mapa[fila][columna] not in [0,16]: #Permitir paso por la salida y donde haya ceros
+                if self.mapa[fila][columna] != 0:
                     return True
         return False  # No hay colisión
     
-    def es_puerta_salida(self, x, y):
-
-        fila = int(y // self.celda_tamaño)
-        columna = int(x // self.celda_tamaño)
-        return self.mapa[fila][columna] == 16  # 16 es la puerta de salida
-
-    def es_trampa(self, x, y):
-
-        fila = int(y // self.celda_tamaño)
-        columna = int(x // self.celda_tamaño)
-        return self.mapa[fila][columna] in [15, 16, 17, 18, 19,20,21,22,23]  # Números de la trampa
-
     def draw(self):
     
         #Dibuja los muros en la pantalla
