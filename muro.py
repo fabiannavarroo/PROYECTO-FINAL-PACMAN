@@ -62,6 +62,18 @@ class Muro:
                     return True
         return False  # No hay colisión
     
+    def es_puerta_salida(self, x, y):
+        
+        fila = int(y // self.celda_tamaño)
+        columna = int(x // self.celda_tamaño)
+        return self.mapa[fila][columna] == 16  # 16 es la puerta de salida
+
+    def es_trampa(self, x, y):
+
+        fila = int(y // self.celda_tamaño)
+        columna = int(x // self.celda_tamaño)
+        return self.mapa[fila][columna] in [15, 16, 17, 19]  # Números de la trampa
+
     def draw(self):
     
         #Dibuja los muros en la pantalla
