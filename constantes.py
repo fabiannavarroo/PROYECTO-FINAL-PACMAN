@@ -92,7 +92,7 @@ TEXTO={
     "D_AMARILLO": {"Coordenadas": (24, 160), "Tamaño": (8, 8)},
     "Y_AMARILLO": {"Coordenadas": (32, 160), "Tamaño": (8, 8)},  
     "!_AMARILLO": {"Coordenadas": (40, 160), "Tamaño": (8, 8)},
-    "H_BLANCO":   {"Coordenadas": (0, 168), "Tamaño": (64, 8)},
+    "H_BLANCO":   {"Coordenadas": (0, 168), "Tamaño": (16, 8)},
     "I_BLANCO":   {"Coordenadas": (8, 168), "Tamaño": (8, 8)},
     "G_BLANCO":   {"Coordenadas": (16, 168), "Tamaño": (8, 8)},
     "H_BLANCO":   {"Coordenadas": (24, 168), "Tamaño": (8, 8)},
