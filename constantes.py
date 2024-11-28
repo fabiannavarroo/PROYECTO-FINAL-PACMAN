@@ -87,11 +87,11 @@ PORTALES={
 #---------------TEXTO--------------#
 TEXTO={
     "R_AMARILLO": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
-    "E_AMARILLO": {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
-    "A_AMARILLO": {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
-    "D_AMARILLO": {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
-    "Y_AMARILLO": {"Coordenadas": (0, 0), "Tamaño": (16, 16)},  
-    "!_AMARILLO": {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+    "E_AMARILLO": {"Coordenadas": (8, 160), "Tamaño": (16, 16)},
+    "A_AMARILLO": {"Coordenadas": (16, 160), "Tamaño": (16, 16)},
+    "D_AMARILLO": {"Coordenadas": (24, 160), "Tamaño": (16, 16)},
+    "Y_AMARILLO": {"Coordenadas": (32, 160), "Tamaño": (16, 16)},  
+    "!_AMARILLO": {"Coordenadas": (40, 160), "Tamaño": (16, 16)},
     "H_BLANCO":   {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
     "I_BLANCO":   {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
     "G_BLANCO":   {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
