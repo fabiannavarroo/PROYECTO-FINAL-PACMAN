@@ -65,5 +65,5 @@ PORTALES={
 }
 
 #--------OTROS---------#
-REFRESH = 5
+REFRESH = 8
 TEXTO_MUERTE = ["Te has quedado sin vidas", "(ESC)Salir"]
