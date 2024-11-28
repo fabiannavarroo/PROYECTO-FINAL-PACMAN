@@ -31,6 +31,10 @@ FANTASMA_NARANJA = {
     "DERECHA": (32, 80) # Coordenadas del fantasma naranja al moverse a la derecha
 }
 
+#--------PUNTOS Y FRUTAS---------#
+
+
+
 #---------MUROS---------#
 MUROS = {
     1: {"Coordenadas": (0, 0), "Tamaño": (16, 16)},  # Esquina izquierda horizontal
