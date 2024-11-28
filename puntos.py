@@ -27,18 +27,13 @@ class Puntos:
                         sprite = OBJETOS["REGALO_BRILLANTE"]
                         sprite_x, sprite_y = sprite["Coordenadas"]
                         sprite_w, sprite_h = 16, 16 # Ancho y largo del sprite
-                        pyxel.blt(
-                            x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,  # Coordenadas donde se dibuja el punto
-                            0,  # Banco de imágenes
-                            sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
-                            sprite_w, sprite_h,  # Tamaño del sprite
-                            colkey=0  # Transparencia
-                        )
+                        
                     else:
                         sprite = OBJETOS["REGALO"]
                         sprite_x, sprite_y = sprite["Coordenadas"]
                         sprite_w, sprite_h = 16, 16 # Ancho y largo del sprite
-                        pyxel.blt(
+                    
+                    pyxel.blt(
                             x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,  # Coordenadas donde se dibuja el punto
                             0,  # Banco de imágenes
                             sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
