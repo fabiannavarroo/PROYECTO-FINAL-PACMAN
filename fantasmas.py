@@ -52,16 +52,16 @@ class Fantasma:
     def perseguir_pacman(self, pacman_x, pacman_y):
         # Perseguir directamente a PacMan
         if self.x < pacman_x and not self.muro.colision(self.x + 16, self.y):
-            self.x += self.velocidad
+            self.x += 1
             self.direccion_actual = "DERECHA"
         elif self.x > pacman_x and not self.muro.colision(self.x - 16, self.y):
-            self.x -= self.velocidad
+            self.x -= 1
             self.direccion_actual = "IZQUIERDA"
         elif self.y < pacman_y and not self.muro.colision(self.x, self.y + 16):
-            self.y += self.velocidad
+            self.y += 1
             self.direccion_actual = "ABAJO"
         elif self.y > pacman_y and not self.muro.colision(self.x, self.y - 16):
-            self.y -= self.velocidad
+            self.y -= 1
             self.direccion_actual = "ARRIBA"
 
     def emboscar_pacman(self, pacman_x, pacman_y):
