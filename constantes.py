@@ -84,6 +84,30 @@ PORTALES={
     (430,192):(-16,192)  # Portal derecha
 }
 
+#---------------TEXTO--------------#
+TEXTO={
+    "R_AMARILLO": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
+    "E_AMARILLO": {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+    "A_AMARILLO": {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+    "D_AMARILLO": {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+    "Y_AMARILLO": {"Coordenadas": (0, 0), "Tamaño": (16, 16)},  
+    "!_AMARILLO": {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+    "H_BLANCO":   {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+    "I_BLANCO":   {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+    "G_BLANCO":   {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+    "S_BLANCO":   {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+    "C_BLANCO":   {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+    "O_BLANCO":   {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+    "R_BLANCO":   {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+    "E_BLANCO":   {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+    "G_ROJO":     {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+    "A_ROJO":     {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+    "M_ROJO":     {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+    "E_ROJO":     {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+    "O_ROJO":     {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+    "V_ROJO":     {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+    "R_ROJO":     {"Coordenadas": (0, 0), "Tamaño": (16, 16)},
+}
 #--------OTROS---------#
 REFRESH = 4
 REFRESH_REGALOS = 35
