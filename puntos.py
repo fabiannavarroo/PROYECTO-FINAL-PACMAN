@@ -8,3 +8,6 @@ class Puntos:
 
     def pintar_puntos(self):
         self.muro.mapa
+        for y in range(self.muro.mapa):
+            for x in range(self.muro.mapa[y]):
+                if 
