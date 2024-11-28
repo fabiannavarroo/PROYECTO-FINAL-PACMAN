@@ -33,13 +33,13 @@ class Fantasma:
             
 
             # Actualizar posición
-            if self.direccion_actual == DIRECCIONES["ARRIBA"] and not self.muro.colision(self.x, self.y - self.velocidad):
+            if self.direccion_actual == DIRECCIONES["ARRIBA"] and not self.muro.colision(self.x, self.y + DIRECCIONES["ARRIBA"]):
                 nueva_y -= self.velocidad
-            elif self.direccion_actual ==:
+            elif self.direccion_actual == DIRECCIONES["ABAJO"] and not self.muro.colision(self.x, self.y + DIRECCIONES["ABAJO"]):
                 nueva_y += self.velocidad
-            elif self.direccion_actual == :
+            elif self.direccion_actual == DIRECCIONES["IZQUIERDA"] and not self.muro.colision(self.x, self.y + DIRECCIONES["IZQUIERDA"]):
                 nueva_x -= self.velocidad
-            elif self.direccion_actual == :
+            elif self.direccion_actual == DIRECCIONES["DERECHA"] and not self.muro.colision(self.x, self.y + DIRECCIONES["DERECHA"]):
                 nueva_x += self.velocidad
 
             #Portal
