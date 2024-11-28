@@ -6,4 +6,5 @@ class Puntos:
         self.muro = muro
         self.sprite = sprite
 
-    def 
+    def pintar_puntos(self):
+        self.muro.mapa
