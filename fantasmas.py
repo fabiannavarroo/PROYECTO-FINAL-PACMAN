@@ -14,6 +14,7 @@ class Fantasma:
         self.en_trampa = True
 
     def mover(self):
+        nueva_x, nueva_y = self.x, self.y
         if self.en_trampa:
             #
         else:
@@ -27,7 +28,14 @@ class Fantasma:
             
 
             # Actualizar posición
-            
+            if self.direccion_actual == :
+                nueva_y -= self.velocidad
+            elif self.direccion_actual ==:
+                nueva_y += self.velocidad
+            elif self.direccion_actual == :
+                nueva_x -= self.velocidad
+            elif self.direccion_actual == :
+                nueva_x += self.velocidad
 
             #Portal
             if (self.x,self.y)in PORTALES:
