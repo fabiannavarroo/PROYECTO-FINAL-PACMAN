@@ -58,7 +58,7 @@ class Muro:
             # Comprobar si está dentro de los límites del mapa
             if 0 <= fila < len(self.mapa) and 0 <= columna < len(self.mapa[0]):
                 # Si hay un muro, devuelve True
-                if self.mapa[fila][columna] != 0:
+                if self.mapa[fila][columna] not in [0,99]:
                     return True
         return False  # No hay colisión
     
