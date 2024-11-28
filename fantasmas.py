@@ -19,8 +19,11 @@ class Fantasma:
             #
         else:
             # Obtener las posibles direcciones
-            DIRECCIONES: {
-
+            DIRECCIONES = {
+                "DERECHA": (self.velocidad, 0),
+                "IZQUIERDA": (-self.velocidad, 0),
+                "ARRIBA": (0, -self.velocidad),
+                "ABAJO": (0, self.velocidad),
             }
 
             # Intentar moverse en la dirección actual
@@ -30,7 +33,7 @@ class Fantasma:
             
 
             # Actualizar posición
-            if self.direccion_actual == :
+            if self.direccion_actual == DIRECCIONES["ARRIBA"] and not self.muro.colision(self.x, self.y - self.velocidad):
                 nueva_y -= self.velocidad
             elif self.direccion_actual ==:
                 nueva_y += self.velocidad
