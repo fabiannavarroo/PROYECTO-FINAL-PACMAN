@@ -32,14 +32,15 @@ FANTASMA_NARANJA = {
 }
 
 #--------PUNTOS Y FRUTAS---------#
-BASTON = (0, 32)
-CEREZA =
-FRESA =
-NARANJA =
-MANZANA =
-MELON=
-
-
+BASTON = (48, 16)
+CEREZA = (0, 128)
+FRESA = (16, 128)
+NARANJA = (32, 128)
+MANZANA = (48, 128)
+MELON = (0, 144)
+PARAGUAS = (16, 144) 
+CAMPANA = (32, 144)
+LLAVE = (48, 144)
 
 #---------MUROS---------#
 MUROS = {
