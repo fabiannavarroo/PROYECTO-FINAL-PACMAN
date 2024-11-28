@@ -5,7 +5,7 @@ class Pacman:
     def __init__(self, x, y, muro):
         self.x = x
         self.y = y
-        self.velocidad = 2 # Velocidad
+        self.velocidad = 10 # Velocidad
         self.muro = muro  # Referencia a la clase Muro
         self.direccion_actual = PACMAN  # Dirección inicial
         self.direccion_pendiente = None  # Dirección seleccionada por el jugador
