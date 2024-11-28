@@ -113,6 +113,7 @@ TEXTO={
 
 #--------NÚMEROS--------#
 NUMEROS={
+    "0": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
     "1": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
     "2": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
     "3": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
@@ -122,7 +123,6 @@ NUMEROS={
     "7": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
     "8": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
     "9": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
-    "0": {"Coordenadas": (0, 160), "Tamaño": (0, 8)},
 }
 #--------OTROS---------#
 REFRESH = 4
