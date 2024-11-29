@@ -72,6 +72,9 @@ class FantasmaRojo(Fantasma):
         diferencia_x = pacman_x - self.x
         diferencia_y = pacman_y - self.y
 
+        print(f"Posición fantasma: x={self.x}, y={self.y}")
+        print(f"Diferencia con Pac-Man: dx={diferencia_x}, dy={diferencia_y}")
+
         # Movimiento en el eje X
         if abs(diferencia_x) > abs(diferencia_y):  # Si la distancia en X es mayor
             if diferencia_x > 0:  # Pac-Man está a la derecha
@@ -79,11 +82,17 @@ class FantasmaRojo(Fantasma):
                 if not self.muro.colision(nueva_x, self.y):  # Verificar colisión
                     self.x = nueva_x
                     self.direccion_actual = "DERECHA"
+                    print("Moviendo a la derecha")
+                else:
+                    print("Colisión al mover a la derecha")
             else:  # Pac-Man está a la izquierda
                 nueva_x = self.x - self.velocidad
                 if not self.muro.colision(nueva_x, self.y):  # Verificar colisión
                     self.x = nueva_x
                     self.direccion_actual = "IZQUIERDA"
+                    print("Moviendo a la izquierda")
+                else:
+                    print("Colisión al mover a la izquierda")
 
         # Movimiento en el eje Y
         else:
@@ -92,11 +101,17 @@ class FantasmaRojo(Fantasma):
                 if not self.muro.colision(self.x, nueva_y):  # Verificar colisión
                     self.y = nueva_y
                     self.direccion_actual = "ABAJO"
+                    print("Moviendo hacia abajo")
+                else:
+                    print("Colisión al mover hacia abajo")
             else:  # Pac-Man está arriba
                 nueva_y = self.y - self.velocidad
                 if not self.muro.colision(self.x, nueva_y):  # Verificar colisión
                     self.y = nueva_y
                     self.direccion_actual = "ARRIBA"
+                    print("Moviendo hacia arriba")
+                else:
+                    print("Colisión al mover hacia arriba")
 
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y, muro):
