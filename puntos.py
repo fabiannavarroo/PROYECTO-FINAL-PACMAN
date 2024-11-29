@@ -103,11 +103,10 @@ class Puntos:
             self.muro.mapa[pacman_y][pacman_x] = -1
 
     def ver_puntuacion(self, x, y):
-        # Determina el diccionario de colores basado en la puntuación
+        # Determina el color de los numero
         colores_dispo = [NUMEROS_BLANCOS,NUMEROS_MORADOS,NUMEROS_NARANJAS,NUMEROS_VERDES]
         if self.puntos % 500 == 0:
             color_numeros = random.choice(colores_dispo)
-
         # Convierte la puntuación en una cadena para obtener los dígitos
         puntuacion_str = str(self.puntos)
 
