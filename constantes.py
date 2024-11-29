@@ -91,6 +91,20 @@ TEXTO={
     "GAME OVER":     {"Coordenadas": (0, 192), "Tamaño": (32, 24)},
 }
 
+
+#--------NÚMEROS--------#
+NUMEROS={
+    "0": {"Coordenadas": (0, 176), "Tamaño": (8, 8)},
+    "1": {"Coordenadas": (8, 176), "Tamaño": (8, 8)},
+    "2": {"Coordenadas": (16, 176), "Tamaño": (8, 8)},
+    "3": {"Coordenadas": (24, 176), "Tamaño": (8, 8)},
+    "4": {"Coordenadas": (32, 176), "Tamaño": (8, 8)},
+    "5": {"Coordenadas": (0, 184), "Tamaño": (8, 8)},
+    "6": {"Coordenadas": (8, 184), "Tamaño": (8, 8)},
+    "7": {"Coordenadas": (16, 184), "Tamaño": (8, 8)},
+    "8": {"Coordenadas": (24, 184), "Tamaño": (8, 8)},
+    "9": {"Coordenadas": (32, 184), "Tamaño": (8, 8)},
+}
 #--------OTROS---------#
 REFRESH = 4
 REFRESH_REGALOS = 35
