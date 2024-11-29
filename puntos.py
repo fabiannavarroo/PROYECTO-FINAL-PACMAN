@@ -82,7 +82,7 @@ class Puntos:
                         )
         
                         
-        self.texto_mas_grande(188, 16, str(self.puntos), 7, 2)
+        self.texto_mas_grande(188, 16, str(self.puntos), 7, 1)
                     
     def comer_puntos(self):
         pacman_x = self.pacman.x // self.muro.celda_tamaño  # Índice X en el mapa
