@@ -38,24 +38,24 @@ class FantasmaRojo(Fantasma):
 
         # Mover en el eje X primero si la diferencia es mayor
         if abs(diferencia_x) > abs(diferencia_y):
-            if diferencia_x > 215:  # Pac-Man está a la derecha
+            if diferencia_x > 0:  # Pac-Man está a la derecha
                 nueva_x = self.x + self.velocidad
                 if not self.muro.colision(nueva_x, self.y):  # Si no hay colisión
                     self.x = nueva_x
                 
-            elif diferencia_x < 215:  # Pac-Man está a la izquierda
+            elif diferencia_x < 0:  # Pac-Man está a la izquierda
                 nueva_x = self.x - self.velocidad
                 if not self.muro.colision(nueva_x, self.y):
                     self.x = nueva_x
                     
 
         # Si no puede moverse en X, intentar en el eje Y
-        if diferencia_y > 208:  # Pac-Man está abajo
+        if diferencia_y > 0:  # Pac-Man está abajo
             nueva_y = self.y + self.velocidad
             if not self.muro.colision(self.x, nueva_y):
                 self.y = nueva_y
                 
-        elif diferencia_y < 208:  # Pac-Man está arriba
+        elif diferencia_y < 0:  # Pac-Man está arriba
             nueva_y = self.y - self.velocidad
             if not self.muro.colision(self.x, nueva_y):
                 self.y = nueva_y
