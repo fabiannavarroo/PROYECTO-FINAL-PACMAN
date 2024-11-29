@@ -23,8 +23,9 @@ class Tablero:
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        self.pacman.mover()
         self.puntos.comer_puntos()
+        self.pacman.mover()
+        
         self.fantasmas[0].mover(self.pacman.x, self.pacman.y)
 
     def draw(self):
