@@ -85,9 +85,9 @@ PORTALES={
 
 #---------------TEXTO--------------#
 TEXTO={
-    "READY!": {"Coordenadas": (32, 192), "Tamaño": (64, 16)}, 
-    "HIGHSCORE":{"Coordenadas": (0, 168), "Tamaño": (80, 16)},
-    "GAME OVER": {"Coordenadas": (0, 192), "Tamaño": (32, 24)},
+    "READY!": {"Coordenadas": (32, 192), "Tamaño": (64, 16)}, # 98
+    "HIGHSCORE":{"Coordenadas": (0, 168), "Tamaño": (80, 16)}, #
+    "GAME OVER": {"Coordenadas": (0, 192), "Tamaño": (32, 24)}, #
 }
 
 
