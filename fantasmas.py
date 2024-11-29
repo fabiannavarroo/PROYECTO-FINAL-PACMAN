@@ -68,7 +68,7 @@ class FantasmaRojo(Fantasma):
         super().__init__(x, y, FANTASMA_ROJO, muro)
 
     def mover(self, pacman_x, pacman_y):
-        # Calcula la dirección más directa hacia Pac-Man y actualiza las coordenadas del fantasma.
+        # Calcula la dirección más directa hacia Pac-Man
         diferencia_x = pacman_x - self.x
         diferencia_y = pacman_y - self.y
 
@@ -97,7 +97,6 @@ class FantasmaRojo(Fantasma):
                 if not self.muro.colision(self.x, nueva_y):  # Verificar colisión
                     self.y = nueva_y
                     self.direccion_actual = "ARRIBA"
-            
 
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y, muro):
