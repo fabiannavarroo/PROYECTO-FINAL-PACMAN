@@ -24,6 +24,7 @@ class Tablero:
 
     def update(self):
         self.pacman.mover()
+        self.puntos.comer_puntos()
         self.fantasmas[0].mover(self.pacman.x, self.pacman.y)
 
     def draw(self):
