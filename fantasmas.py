@@ -61,8 +61,7 @@ class FantasmaRojo(Fantasma):
                 self.y = nueva_y
                 return
 
-        # Si no puede moverse en ninguna dirección, intenta moverse aleatoriamente
-        self.cambiar_direccion()
+        
 
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y, muro):
