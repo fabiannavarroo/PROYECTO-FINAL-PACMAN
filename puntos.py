@@ -80,7 +80,7 @@ class Puntos:
                             sprite_w, sprite_h,  # Tamaño del sprite
                             colkey=0  # Transparencia
                         )
-        self.draw_puntuacion(188, 16)  # Mostrar la puntuación
+        self.ver_puntuacion(188, 16)  # Mostrar la puntuación
                     
 
     def comer_puntos(self):
@@ -101,7 +101,7 @@ class Puntos:
             # Eliminar el objeto del mapa
             self.muro.mapa[pacman_y][pacman_x] = -1
 
-    def draw_puntuacion(self, x, y):
+    def ver_puntuacion(self, x, y):
         # Convierte la puntuación en una cadena para obtener los dígitos
         puntuacion_str = str(self.puntos)
         
