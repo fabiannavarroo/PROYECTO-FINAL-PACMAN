@@ -80,7 +80,7 @@ class Puntos:
                             sprite_w, sprite_h,  # Tamaño del sprite
                             colkey=0  # Transparencia
                         )
-        pyxel.text(188, 16,str(self.puntos), 7)  # (x, y, texto, color)
+        self.draw_puntuacion(188, 16)  # Mostrar la puntuación
                     
 
     def comer_puntos(self):
@@ -101,5 +101,31 @@ class Puntos:
             # Eliminar el objeto del mapa
             self.muro.mapa[pacman_y][pacman_x] = -1
 
-            # Mostrar puntuación en la esquina superior izquierda
+    def draw_puntuacion(self, x, y):
+        # Convierte la puntuación en una cadena para obtener los dígitos
+        puntuacion_str = str(self.puntos)
+        
+        # Coordenada inicial para el primer dígito
+        pos_x = x
+
+        for digito in puntuacion_str:
+            # Convierte el carácter a un entero
+            digito = int(digito)
+
+            # Obtiene el sprite correspondiente al dígito
+            sprite = TEXTO[str(digito)]
+            sprite_x, sprite_y = sprite["Coordenadas"]
+            sprite_w, sprite_h = sprite["Tamaño"]
+
+            # Dibuja el dígito
+            pyxel.blt(
+                pos_x, y,           # Coordenadas en pantalla
+                0,                  # Banco de imágenes
+                sprite_x, sprite_y, # Coordenadas del sprite en el banco
+                sprite_w, sprite_h, # Tamaño del sprite
+                colkey=0            # Color transparente
+            )
+
+            # Incrementa la posición x para el siguiente dígito
+            pos_x += sprite_w + 2  # Espacio entre los dígitos
         
