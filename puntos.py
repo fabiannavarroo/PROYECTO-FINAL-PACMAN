@@ -14,6 +14,10 @@ class Puntos:
         self.puntos_alcanzados = 0  # Rango de 500 en 500 de la última meta alcanzada de puntos
         self.color_actual = NUMEROS_BLANCOS  # Color inicial de los números
         self.ultimo_tiempo_fruta = time.time()  # Marca de tiempo de la última fruta
+        self.fruta_actual = None  # Información de la fruta actual
+        self.posicion_actual = None  # Posición actual de la fruta
+        self.posicion_destino = None  # Posición destino de la fruta
+
 
     def draw(self):
         # Poner los puntos en el mapa
@@ -48,6 +52,18 @@ class Puntos:
                         sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
                         sprite_w, sprite_h,  # Tamaño del sprite
                         colkey=0  # Transparencia
+                    )
+
+                # Dibuja la fruta si existe
+                if self.fruta_actual and self.posicion_actual:
+                    sprite = OBJETOS[self.fruta_actual]
+                    sprite_x, sprite_y = sprite["Coordenadas"]
+                    sprite_w, sprite_h = 16, 16
+                    x_pixel = self.posicion_actual[0] * self.muro.celda_tamaño
+                    y_pixel = self.posicion_actual[1] * self.muro.celda_tamaño
+                    pyxel.blt(
+                        x_pixel, y_pixel, 0,
+                        sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
                     )
 
                     self.dibujar_letras_mapa(69, "READY!")
