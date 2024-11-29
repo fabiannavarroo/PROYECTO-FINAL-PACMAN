@@ -80,7 +80,13 @@ class Puntos:
                             sprite_w, sprite_h,  # Tamaño del sprite
                             colkey=0  # Transparencia
                         )
-        pyxel.text(188, 16,str(self.puntos), 7)  # (x, y, texto, color)
+        def draw_text_scaled(x, y, text, color, scale):
+            for i, char in enumerate(text):
+                for dx in range(scale):
+                    for dy in range(scale):
+                        pyxel.text(x + i * 4 * scale + dx, y + dy, char, color)
+                        
+        draw_text_scaled(50, 20, (self.puntos), 7, 3)  # Escala 3 veces más grande # (x, y, texto, color)
                     
 
     def comer_puntos(self):
