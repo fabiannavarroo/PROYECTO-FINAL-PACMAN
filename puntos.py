@@ -4,6 +4,7 @@ import time
 from muro import Muro
 import pyxel
 
+
 class Puntos:
     def __init__(self, muro, sprite, pacman):
         self.muro = muro
@@ -12,6 +13,7 @@ class Puntos:
         self.puntos = 0
         self.puntos_alcanzados = 0  # Rango de 500 en 500 de la última meta alcanzada de puntos
         self.color_actual = NUMEROS_BLANCOS  # Color inicial de los números
+        self.ultimo_tiempo_fruta = time.time()  # Marca de tiempo de la última fruta
 
     def draw(self):
         # Poner los puntos en el mapa
