@@ -137,3 +137,5 @@ class Puntos:
             )
             # Incrementa la posición x para el siguiente dígito
             pos_x += sprite_w + 1  # Espacio entre los dígitos
+
+    def aparecer_frutas(self, x, y):
