@@ -36,35 +36,28 @@ class FantasmaRojo(Fantasma):
         diferencia_x = pacman_x - self.x
         diferencia_y = pacman_y - self.y
 
-        # Crear una lista de direcciones posibles, ordenadas por proximidad a Pac-Man
-        direcciones = []
-        if abs(diferencia_x) > abs(diferencia_y):  # Prioridad al eje X
-            if diferencia_x > 0:
-                direcciones.append(("DERECHA", self.x + self.velocidad, self.y))
-            else:
-                direcciones.append(("IZQUIERDA", self.x - self.velocidad, self.y))
-            if diferencia_y > 0:
-                direcciones.append(("ABAJO", self.x, self.y + self.velocidad))
-            else:
-                direcciones.append(("ARRIBA", self.x, self.y - self.velocidad))
-        else:  # Prioridad al eje Y
-            if diferencia_y > 0:
-                direcciones.append(("ABAJO", self.x, self.y + self.velocidad))
-            else:
-                direcciones.append(("ARRIBA", self.x, self.y - self.velocidad))
-            if diferencia_x > 0:
-                direcciones.append(("DERECHA", self.x + self.velocidad, self.y))
-            else:
-                direcciones.append(("IZQUIERDA", self.x - self.velocidad, self.y))
+        # Direcciones posibles y sus respectivas coordenadas de movimiento
+        direcciones = {
+            "DERECHA": (self.x + self.velocidad, self.y),
+            "IZQUIERDA": (self.x - self.velocidad, self.y),
+            "ARRIBA": (self.x, self.y - self.velocidad),
+            "ABAJO": (self.x, self.y + self.velocidad),
+        }
 
-        # Intentar moverse en cada dirección en orden de prioridad
-        for direccion, nueva_x, nueva_y in direcciones:
-            if not self.muro.colision(nueva_x, nueva_y):  # Si no hay colisión, moverse
+        # Ordenar las direcciones por proximidad a Pac-Man
+        direcciones_ordenadas = sorted(
+            direcciones.items(),
+            key=lambda d: abs(pacman_x - d[1][0]) + abs(pacman_y - d[1][1])
+        )
+
+        # Intentar moverse en la dirección más cercana
+        for direccion, (nueva_x, nueva_y) in direcciones_ordenadas:
+            if not self.muro.colision(nueva_x, nueva_y):  # Si la dirección es transitable
                 self.x, self.y = nueva_x, nueva_y
                 self.direccion_actual = direccion
                 return
 
-        # Si todas las direcciones están bloqueadas, cambiar dirección aleatoria
+        # Si todas las direcciones están bloqueadas, recalcular dirección
         self.cambiar_direccion()
 
 class FantasmaRosa(Fantasma):
