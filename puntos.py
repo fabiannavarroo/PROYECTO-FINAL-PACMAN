@@ -18,12 +18,12 @@ class Puntos:
         self.posicion_actual = None  # Posición actual de la fruta
         self.posicion_destino = None  # Posición destino de la fruta
 
-
     def draw(self):
         # Poner los puntos en el mapa
         for y in range(len(self.muro.mapa)):
             for x in range(len(self.muro.mapa[y])):
                 if self.muro.mapa[y][x] == 0:
+                    # Dibuja los puntos
                     sprite = OBJETOS["BASTON"]
                     sprite_x, sprite_y = sprite["Coordenadas"]
                     sprite_w, sprite_h = 16, 16  # Ancho y largo del sprite
@@ -45,43 +45,45 @@ class Puntos:
                         sprite = OBJETOS["REGALO"]
                         sprite_x, sprite_y = sprite["Coordenadas"]
                         sprite_w, sprite_h = 16, 16  # Ancho y largo del sprite
-                    #Dibujar el regalo
+                    # Dibuja el regalo
                     pyxel.blt(
-                        x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,  # Coordenadas donde se dibuja el punto
-                        0,  # Banco de imágenes
-                        sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
-                        sprite_w, sprite_h,  # Tamaño del sprite
-                        colkey=0  # Transparencia
+                        x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,
+                        0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
                     )
 
-                # Dibuja la fruta si existe
-                if self.fruta_actual and self.posicion_actual:
-                    sprite = OBJETOS[self.fruta_actual]
-                    sprite_x, sprite_y = sprite["Coordenadas"]
-                    sprite_w, sprite_h = 16, 16
-                    x_pixel = self.posicion_actual[0] * self.muro.celda_tamaño
-                    y_pixel = self.posicion_actual[1] * self.muro.celda_tamaño
-                    pyxel.blt(
-                        x_pixel, y_pixel, 0,
-                        sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
-                    )
+        # Dibuja las letras
+        self.dibujar_letras_mapa(69, "READY!")
+        self.dibujar_letras_mapa(70, "HIGHSCORE")
 
-                    self.dibujar_letras_mapa(69, "READY!")
-                    self.dibujar_letras_mapa(70, "HIGHSCORE")
+        # Dibuja la fruta si existe
+        if self.fruta_actual and self.posicion_actual:
+            sprite = OBJETOS[self.fruta_actual]
+            sprite_x, sprite_y = sprite["Coordenadas"]
+            sprite_w, sprite_h = 16, 16
+            x_pixel = self.posicion_actual[0] * self.muro.celda_tamaño
+            y_pixel = self.posicion_actual[1] * self.muro.celda_tamaño
+            pyxel.blt(
+                x_pixel, y_pixel, 0,
+                sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
+            )
 
         self.ver_puntuacion(188, 16)  # Mostrar la puntuación
 
-    def dibujar_letras_mapa (self, num, sprite):
+    def dibujar_letras_mapa(self, num, sprite):
+        # Dibuja las letras en las posiciones indicadas por el mapa
         for y in range(len(self.muro.mapa)):
             for x in range(len(self.muro.mapa[y])):
                 if self.muro.mapa[y][x] == num:
                     sprite = TEXTO[sprite]
                     sprite_x, sprite_y = sprite["Coordenadas"]
                     sprite_w, sprite_h = sprite["Tamaño"]
-                    pyxel.blt(x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,0,sprite_x, sprite_y,sprite_w, sprite_h,colkey=0)
+                    pyxel.blt(
+                        x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,
+                        0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
+                    )
 
-        
     def comer_puntos(self):
+        # Detectar si Pacman come puntos o regalos
         pacman_x = self.pacman.x // self.muro.celda_tamaño  # Índice X en el mapa
         pacman_y = self.pacman.y // self.muro.celda_tamaño  # Índice Y en el mapa
 
@@ -98,9 +100,8 @@ class Puntos:
             self.muro.mapa[pacman_y][pacman_x] = -1
 
     def ver_puntuacion(self, x, y):
-        colores_dispo = [NUMEROS_BLANCOS, NUMEROS_MORADOS, NUMEROS_NARANJAS, NUMEROS_VERDES]
-
         # Cambia el color solo cuando se supera un nuevo múltiplo de 500
+        colores_dispo = [NUMEROS_BLANCOS, NUMEROS_MORADOS, NUMEROS_NARANJAS, NUMEROS_VERDES]
         if self.puntos // 500 > self.puntos_alcanzados:
             self.puntos_alcanzados = self.puntos // 500  # Actualiza los puntos alcanzados
             self.color_actual = random.choice(colores_dispo)  # Elige un nuevo color aleatorio
@@ -116,25 +117,24 @@ class Puntos:
             sprite_w, sprite_h = sprite["Tamaño"]
 
             pyxel.blt(
-                pos_x, y,           # Coordenadas en pantalla
-                0,                  # Banco de imágenes
-                sprite_x, sprite_y, # Coordenadas del sprite en el banco
-                sprite_w, sprite_h, # Tamaño del sprite
-                colkey=0            # Color transparente
+                pos_x, y,
+                0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
             )
             pos_x += sprite_w + 1  # Espacio entre los dígitos
 
     def encontrar_celdas_vacias(self):
+        # Encuentra celdas vacías en el mapa
         celdas_vacias = []
         for y in range(len(self.muro.mapa)):
             for x in range(len(self.muro.mapa[y])):
                 if self.muro.mapa[y][x] == -1:
-                    celdas_vacias.append((x, y))  # Guarda las coordenadas de las celdas vacías
+                    celdas_vacias.append((x, y))
         return celdas_vacias
 
     def mover_fruta(self):
+        # Mueve la fruta hacia su destino
         if not self.posicion_actual or not self.posicion_destino:
-            return  # Nada que mover
+            return
 
         x_actual, y_actual = self.posicion_actual
         x_destino, y_destino = self.posicion_destino
