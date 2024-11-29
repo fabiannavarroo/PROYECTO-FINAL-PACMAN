@@ -1,4 +1,4 @@
-from constantes import OBJETOS, REFRESH_REGALOS, TEXTO
+from constantes import OBJETOS, REFRESH_REGALOS, TEXTO, NUMEROS
 from muro import Muro
 import pyxel
 
@@ -81,7 +81,33 @@ class Puntos:
                             colkey=0  # Transparencia
                         )
         
-         
+    def draw_puntuacion(self, x, y):
+    # Convierte la puntuación en una cadena para iterar sobre los dígitos
+    puntuacion_str = str(self.puntos)
+
+    # Posición inicial donde empezar a dibujar
+    pos_x = x
+
+    for digito in puntuacion_str:
+        # Convertir el carácter a un entero
+        digito = int(digito)
+
+        # Obtener los datos del sprite del dígito
+        sprite = NUMEROS[digito]
+        sprite_x, sprite_y = sprite["Coordenadas"]
+        sprite_w, sprite_h = sprite["Tamaño"]
+
+        # Dibujar el dígito
+        pyxel.blt(
+            pos_x, y,  # Coordenadas donde se dibuja el dígito
+            0,  # Banco de imágenes
+            sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
+            sprite_w, sprite_h,  # Tamaño del sprite
+            colkey=0  # Transparencia
+        )
+
+        # Mover la posición para el siguiente dígito
+        pos_x += sprite_w + 2  # Separación entre los dígitos 
         
                     
     def comer_puntos(self):
