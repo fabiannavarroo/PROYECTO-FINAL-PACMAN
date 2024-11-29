@@ -21,7 +21,7 @@ class Fantasma:
         nueva_direccion = random.choice(DIRECCIONES) # De forma aleatoria se escoge una direccion
         self.direccion_actual = nueva_direccion # Se le asigna esa direccion a la actual del fantasmas
 
-    def mover(self):
+    def movimiento_basico(self):
         # Movimiento segun la direccion del fantasma
         # Movimiento hacia la derecha
         if self.direccion_actual == "DERECHA":
