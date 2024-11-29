@@ -55,9 +55,6 @@ class Fantasma:
             else:
                 self.cambiar_direccion()
 
-
-    
-                
     # Dibujar el sprite del fantasma en la dirección correspondiente.
     def draw(self):
         sprite_x, sprite_y = self.sprites[self.direccion_actual]
