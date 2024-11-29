@@ -56,7 +56,18 @@ class Fantasma:
                 self.cambiar_direccion()
 
 
-    def perseguir(self, pacman_x, pacman_y):
+    
+                
+    # Dibujar el sprite del fantasma en la dirección correspondiente.
+    def draw(self):
+        sprite_x, sprite_y = self.sprites[self.direccion_actual]
+        pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
+
+class FantasmaRojo(Fantasma):
+    def __init__(self, x, y, muro):
+        super().__init__(x, y, FANTASMA_ROJO, muro)
+
+    def mover(self, pacman_x, pacman_y):
         # Calcula la dirección más directa hacia Pac-Man y actualiza las coordenadas del fantasma.
         diferencia_x = pacman_x - self.x
         diferencia_y = pacman_y - self.y
@@ -87,18 +98,6 @@ class Fantasma:
                     self.y = nueva_y
                     self.direccion_actual = "ARRIBA"
             
-                
-    # Dibujar el sprite del fantasma en la dirección correspondiente.
-    def draw(self):
-        sprite_x, sprite_y = self.sprites[self.direccion_actual]
-        pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
-
-class FantasmaRojo(Fantasma):
-    def __init__(self, x, y, muro):
-        super().__init__(x, y, FANTASMA_ROJO, muro)
-
-    def mover(self, pacman_x, pacman_y):
-        self.perseguir(pacman_x, pacman_y)
 
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y, muro):
