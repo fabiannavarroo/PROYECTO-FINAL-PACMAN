@@ -84,10 +84,4 @@ class Puntos:
         for y in range (len(self.muro.mapa)):
             for x in range(len(self.muro.mapa[y])):
                 if self.muro.mapa[y][x] == 0 and self.pacman.x == x and self.pacman.y == y:
-                    pyxel.blt( # Dibujar los imagenes de los regalos
-                            x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,  # Coordenadas donde se dibuja el punto
-                            0,  # Banco de imágenes
-                            0, 0,  # Coordenadas del sprite en recursos.pyxres
-                            0, 0,  # Tamaño del sprite
-                            colkey=0  # Transparencia
-                        )
+                    self.muro.mapa[y][x] = -1
