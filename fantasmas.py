@@ -15,7 +15,7 @@ class Fantasma:
 
     #def salir_trampa(self):
     
-    def cambiar_direccion(self):
+    '''def cambiar_direccion(self):
         # Direcciones que puede tener los fantasmas
         DIRECCIONES = ["ARRIBA", "ABAJO", "DERECHA", "IZQUIERDA"]
         nueva_direccion = random.choice(DIRECCIONES) # De forma aleatoria se escoge una direccion
@@ -53,7 +53,7 @@ class Fantasma:
             if not self.muro.colision:
                 self.y = nueva_y
             else:
-                self.cambiar_direccion()
+                self.cambiar_direccion()'''
 
     # Dibujar el sprite del fantasma en la dirección correspondiente.
     def draw(self):
