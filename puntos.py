@@ -110,7 +110,7 @@ class Puntos:
         # Cambia el color solo cuando se supera un nuevo múltiplo de 500
         if self.puntos // 500 > self.puntos_alcanzados:
             self.puntos_alcanzados = self.puntos // 500  # Actualiza los puntos alcanzados
-            self.color_actual = random.choice(colores_dispo)  # Elige un nuevo color aleatorio
+            color_numeros = random.choice(colores_dispo)  # Elige un nuevo color aleatorio
         # Convierte la puntuación en una cadena para obtener los numeros
         puntuacion_str = str(self.puntos)
 
