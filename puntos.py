@@ -1,4 +1,4 @@
-from constantes import OBJETOS, REFRESH_REGALOS, TEXTO
+from constantes import OBJETOS, REFRESH_REGALOS, TEXTO, NUMEROS
 from muro import Muro
 import pyxel
 
@@ -113,7 +113,7 @@ class Puntos:
             num = int(num)
 
             # Obtiene el sprite correspondiente al dígito
-            sprite = TEXTO[str(num)]
+            sprite = NUMEROS[str(num)]
             sprite_x, sprite_y = sprite["Coordenadas"]
             sprite_w, sprite_h = sprite["Tamaño"]
 
