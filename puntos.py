@@ -81,8 +81,8 @@ class Puntos:
                             colkey=0  # Transparencia
                         )
         
-                        
-        self.texto_mas_grande(188, 16, str(self.puntos), 7, 1)
+         
+        
                     
     def comer_puntos(self):
         pacman_x = self.pacman.x // self.muro.celda_tamaño  # Índice X en el mapa
@@ -101,11 +101,4 @@ class Puntos:
 
             # Eliminar el objeto del mapa
             self.muro.mapa[pacman_y][pacman_x] = -1
-
-    # Hacer texto más grandes
-    def texto_mas_grande(self, x, y, text, color, tamaño):
-        for i, char in enumerate(text):
-            for dx in range(tamaño):
-                for dy in range(tamaño):
-                    pyxel.text(x + i * 4 * tamaño + dx, y + dy, char, color)
         
