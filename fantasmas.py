@@ -66,9 +66,9 @@ class FantasmaRojo(Fantasma):
                     self.x -= self.velocidad
                     self.direccion_actual = "IZQUIERDA"
 
-    # Si no puede moverse en ninguna dirección, cambia de dirección aleatoria
-    if self.direccion_actual == "":
-        self.cambiar_direccion()        
+        # Si no puede moverse en ninguna dirección, cambia de dirección aleatoria
+        if self.direccion_actual == "":
+            self.cambiar_direccion()        
 
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y, muro):
