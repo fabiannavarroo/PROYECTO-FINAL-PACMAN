@@ -93,16 +93,16 @@ TEXTO={
 
 #--------NÚMEROS--------#
 NUMEROS={
-    "0": {"Coordenadas": (0, 176), "Tamaño": (8, 8)},
-    "1": {"Coordenadas": (8, 176), "Tamaño": (8, 8)},
-    "2": {"Coordenadas": (16, 176), "Tamaño": (8, 8)},
-    "3": {"Coordenadas": (24, 176), "Tamaño": (8, 8)},
-    "4": {"Coordenadas": (32, 176), "Tamaño": (8, 8)},
-    "5": {"Coordenadas": (0, 184), "Tamaño": (8, 8)},
-    "6": {"Coordenadas": (8, 184), "Tamaño": (8, 8)},
-    "7": {"Coordenadas": (16, 184), "Tamaño": (8, 8)},
-    "8": {"Coordenadas": (24, 184), "Tamaño": (8, 8)},
-    "9": {"Coordenadas": (32, 184), "Tamaño": (8, 8)},
+    "0": {"Coordenadas": (0, 216), "Tamaño": (8, 8)},
+    "1": {"Coordenadas": (8, 216), "Tamaño": (8, 8)},
+    "2": {"Coordenadas": (16, 216), "Tamaño": (8, 8)},
+    "3": {"Coordenadas": (24, 216), "Tamaño": (8, 8)},
+    "4": {"Coordenadas": (32, 216), "Tamaño": (8, 8)},
+    "5": {"Coordenadas": (40, 216), "Tamaño": (8, 8)},
+    "6": {"Coordenadas": (48, 216), "Tamaño": (8, 8)},
+    "7": {"Coordenadas": (56, 216), "Tamaño": (8, 8)},
+    "8": {"Coordenadas": (64, 216), "Tamaño": (8, 8)},
+    "9": {"Coordenadas": (72, 216), "Tamaño": (8, 8)},
 }
 
 #--------OTROS---------#
