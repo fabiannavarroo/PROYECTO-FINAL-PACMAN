@@ -123,8 +123,8 @@ class Puntos:
             return
 
         # Generar una posición inicial en el borde del mapa (por ejemplo, lado izquierdo)
-        x_inicial = 0  # Siempre en la columna 0
-        y_inicial = random.randint(0, len(self.muro.mapa) - 1)
+        x_inicial = random.choice(0, )  # Siempre en la columna 0
+        y_inicial = 13
 
         # Elegir un destino aleatorio entre las celdas vacías
         x_destino, y_destino = random.choice(celdas_vacias)
