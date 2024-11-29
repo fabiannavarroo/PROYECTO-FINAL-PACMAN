@@ -16,7 +16,7 @@ class Fantasma:
     #def salir_trampa(self):
     
     def perseguir(self, pacman_x, pacman_y):
-        
+        # Calcula la dirección más directa hacia Pac-Man y actualiza las coordenadas del fantasma.
 
             
                 
