@@ -105,7 +105,7 @@ class Puntos:
 
             if self.puntos // 500 > self.puntos_superados:
                 self.puntos_superados = self.puntos // 500
-                self.animacion_frames = 30  # Activa la animación
+                self.animacion_frames = 3  # Activa la animación
 
     def ver_puntuacion(self, x, y):
         # Si la animación está activa, alternar visibilidad
