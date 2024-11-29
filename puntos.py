@@ -80,3 +80,4 @@ class Puntos:
                             colkey=0  # Transparencia
                         )
     def comer_puntos (self):
+        if self.pacman.x ==  and self.pacman.y:
