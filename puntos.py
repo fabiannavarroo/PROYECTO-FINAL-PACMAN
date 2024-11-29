@@ -25,7 +25,7 @@ class Puntos:
                         colkey=0  # Transparencia
                     )
                 
-                # Poner los pastillas de Poder
+                # Poner los pastillas de Poder, con su animación
                 if self.muro.mapa[y][x] == 98:
                     if pyxel.frame_count // REFRESH_REGALOS % 2:
                         sprite = OBJETOS["REGALO_BRILLANTE"]
