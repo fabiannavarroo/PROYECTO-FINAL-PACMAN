@@ -81,18 +81,18 @@ class Puntos:
                             colkey=0  # Transparencia
                         )
     def comer_puntos(self):
-        pacman_x = self.pacman.x // self.muro.celda_tamaño
-        pacman_y = self.pacman.y // self.muro.celda_tamaño
-        for y in range(len(self.muro.mapa)):
-            for x in range(len(self.muro.mapa[y])):
-                if self.muro.mapa[y][x] in [0, 98] and self.pacman.x == x and self.pacman.y == y:
-                    print("COMIDA")
-                    if self.muro.mapa[y][x] == 0:
-                        tipo_consumible = "BASTON"
-                    elif self.muro.mapa[y][x] == 98:
-                        tipo_consumible = "REGALO"
-                    
-                    self.puntos += OBJETOS[tipo_consumible]["Puntos"]
-                    
-                    # Actualiza el mapa para indicar que el punto fue consumido
-                    self.muro.mapa[y][x] = -1  # Usa un valor que indique que el espacio está vacío
+        pacman_x = self.pacman.x // self.muro.celda_tamaño  # Índice X en el mapa
+        pacman_y = self.pacman.y // self.muro.celda_tamaño  # Índice Y en el mapa
+
+        if self.muro.mapa[pacman_y][pacman_x] in [0, 98]:
+            print("COMIDA")
+            if self.muro.mapa[pacman_y][pacman_x] == 0:
+                tipo_consumible = "BASTON"
+            elif self.muro.mapa[pacman_y][pacman_x] == 98:
+                tipo_consumible = "REGALO"
+
+            # Sumar puntos
+            self.puntos += OBJETOS[tipo_consumible]["Puntos"]
+
+            # Eliminar el objeto del mapa
+            self.muro.mapa[pacman_y][pacman_x] = -1
