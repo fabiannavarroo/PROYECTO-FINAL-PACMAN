@@ -105,6 +105,43 @@ NUMEROS_BLANCOS={
     "8": {"Coordenadas": (64, 216), "Tamaño": (8, 8)},
     "9": {"Coordenadas": (72, 216), "Tamaño": (8, 8)},
 }
+NUMEROS_NARANJAS={
+    "0": {"Coordenadas": (0, 216), "Tamaño": (8, 8)},
+    "1": {"Coordenadas": (8, 216), "Tamaño": (8, 8)},
+    "2": {"Coordenadas": (16, 216), "Tamaño": (8, 8)},
+    "3": {"Coordenadas": (24, 216), "Tamaño": (8, 8)},
+    "4": {"Coordenadas": (32, 216), "Tamaño": (8, 8)},
+    "5": {"Coordenadas": (40, 216), "Tamaño": (8, 8)},
+    "6": {"Coordenadas": (48, 216), "Tamaño": (8, 8)},
+    "7": {"Coordenadas": (56, 216), "Tamaño": (8, 8)},
+    "8": {"Coordenadas": (64, 216), "Tamaño": (8, 8)},
+    "9": {"Coordenadas": (72, 216), "Tamaño": (8, 8)},
+}
+NUMEROS_VERDES={
+    "0": {"Coordenadas": (0, 216), "Tamaño": (8, 8)},
+    "1": {"Coordenadas": (8, 216), "Tamaño": (8, 8)},
+    "2": {"Coordenadas": (16, 216), "Tamaño": (8, 8)},
+    "3": {"Coordenadas": (24, 216), "Tamaño": (8, 8)},
+    "4": {"Coordenadas": (32, 216), "Tamaño": (8, 8)},
+    "5": {"Coordenadas": (40, 216), "Tamaño": (8, 8)},
+    "6": {"Coordenadas": (48, 216), "Tamaño": (8, 8)},
+    "7": {"Coordenadas": (56, 216), "Tamaño": (8, 8)},
+    "8": {"Coordenadas": (64, 216), "Tamaño": (8, 8)},
+    "9": {"Coordenadas": (72, 216), "Tamaño": (8, 8)},
+}
+NUMEROS_MORADOS={
+    "0": {"Coordenadas": (0, 216), "Tamaño": (8, 8)},
+    "1": {"Coordenadas": (8, 216), "Tamaño": (8, 8)},
+    "2": {"Coordenadas": (16, 216), "Tamaño": (8, 8)},
+    "3": {"Coordenadas": (24, 216), "Tamaño": (8, 8)},
+    "4": {"Coordenadas": (32, 216), "Tamaño": (8, 8)},
+    "5": {"Coordenadas": (40, 216), "Tamaño": (8, 8)},
+    "6": {"Coordenadas": (48, 216), "Tamaño": (8, 8)},
+    "7": {"Coordenadas": (56, 216), "Tamaño": (8, 8)},
+    "8": {"Coordenadas": (64, 216), "Tamaño": (8, 8)},
+    "9": {"Coordenadas": (72, 216), "Tamaño": (8, 8)},
+}
+
 #--------OTROS---------#
 REFRESH = 4
 REFRESH_REGALOS = 35
