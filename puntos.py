@@ -119,9 +119,9 @@ class Puntos:
             # Determina el color segun la puntuación
             if self.puntos < 500:
                 color_numeros = NUMEROS_BLANCOS
-            elif self.puntos < 1500:
+            elif self.puntos < 1000:
                 color_numeros = NUMEROS_NARANJAS
-            elif self.puntos < 2000:
+            elif self.puntos < 1500:
                 color_numeros = NUMEROS_VERDES
             else:
                 color_numeros = NUMEROS_MORADOS
