@@ -80,7 +80,7 @@ class Puntos:
                             sprite_w, sprite_h,  # Tamaño del sprite
                             colkey=0  # Transparencia
                         )
-        pyxel.text(120, 16,str(self.puntos), 7)  # (x, y, texto, color)
+        pyxel.text(130, 16,str(self.puntos), 7)  # (x, y, texto, color)
                     
 
     def comer_puntos(self):
