@@ -1,4 +1,4 @@
-from constantes import OBJETOS, REFRESH_REGALOS, TEXTO, NUMEROS_BLANCOS, NUMEROS_NARANJAS, NUMEROS_VERDES, NUMEROS_MORADOS
+from constantes import *
 from muro import Muro
 import pyxel
 
