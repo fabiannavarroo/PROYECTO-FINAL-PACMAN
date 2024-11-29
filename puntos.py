@@ -121,15 +121,17 @@ class Puntos:
         if time.time() - self.ultimo_tiempo_fruta < 30:
             return  # No hacer nada si el cooldown no ha terminado
 
-        objetos_dispo = ["CREZA","FRESA","NARANJA","MANZANA","MELON","PARAGUAS","CAMPANA","LLAVE"]
-        objeto_seleccionado = random.choice(objetos_dispo)
+        
         # Encuentra las celdas vacías
         celdas_vacias = self.encontrar_celdas_vacias()
 
         # Si no hay celdas vacías, no hacer nada
         if not celdas_vacias:
             return
-
+        
+        # Elige una fruta o objeto de forma random
+        objetos_dispo = ["CREZA","FRESA","NARANJA","MANZANA","MELON","PARAGUAS","CAMPANA","LLAVE"]
+        objeto_seleccionado = random.choice(objetos_dispo)
         # Generar una posición inicial en los portales del mapa
         x_inicial = random.choice(0, 27)  
         y_inicial = 13
