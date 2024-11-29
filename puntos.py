@@ -106,7 +106,7 @@ class Puntos:
         # Determina el color de los numero
         colores_dispo = [NUMEROS_BLANCOS,NUMEROS_MORADOS,NUMEROS_NARANJAS,NUMEROS_VERDES]
         color_numeros = NUMEROS_BLANCOS
-        if self.puntos % 500 == 0:
+        if self.puntos // 500 == 0:
             color_numeros = random.choice(colores_dispo)
         # Convierte la puntuación en una cadena para obtener los dígitos
         puntuacion_str = str(self.puntos)
