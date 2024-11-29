@@ -3,9 +3,10 @@ from muro import Muro
 import pyxel
 
 class Puntos:
-    def __init__(self,muro,sprite):
+    def __init__(self,muro,sprite,pacman):
         self.muro = muro
         self.sprite = sprite
+        self.pacman = pacman
         self.puntos = 0
 
     def draw(self):
