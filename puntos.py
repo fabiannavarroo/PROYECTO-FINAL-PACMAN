@@ -52,6 +52,7 @@ class Puntos:
                             sprite_w, sprite_h,  # Tamaño del sprite
                             colkey=0  # Transparencia
                         )
+                    
                 if self.muro.mapa[y][x]==96:
                     sprite = TEXTO["READY!"]
                     sprite_x,sprite_y = sprite["Coordenadas"]
