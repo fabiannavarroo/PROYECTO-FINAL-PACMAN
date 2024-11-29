@@ -22,10 +22,27 @@ class Fantasma:
 
         # Movimiento en el eje X
         if abs(diferencia_x) > abs(diferencia_y): # Si la distancia en X es mayor
-            if diferencia_x > 0:
+            if diferencia_x > 0: # Pacman esta a la derecha
                 nueva_x = self.x + self.velocidad
                 if not self.muro.colision:
+                    self.x = nueva_x
+                    self.direccion_actual = "DERECHA"
+            else: #Pacman esta a la izquierda
+                nueva_x = self.x - self.velocidad
+                if not self.muro.colision:
+                    self.x = nueva_x
+                    self.direccion_actual_ = "IZQUIERDA"
 
+        # Movimiento en el eje y
+        else:
+            if diferencia_y > 0:
+                nueva_y = self.y + self.velocidad
+                if not self.muro.colision:
+                    self.y = nueva_y
+                    self.direccion_actual = "ABAJO"
+            else:
+                nueva_y = self.y - self.velocidad
+                if not self
             
                 
     # Dibujar el sprite del fantasma en la dirección correspondiente.
