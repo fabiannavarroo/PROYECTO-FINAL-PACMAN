@@ -116,7 +116,7 @@ class Puntos:
 
         # Cuando se cumpla se mostraran los números    
         if ver_numeros:
-            # Determina el color según la puntuación
+            # Determina el color segun la puntuación
             if self.puntos < 500:
                 color_numeros = NUMEROS_BLANCOS
             elif self.puntos < 1500:
