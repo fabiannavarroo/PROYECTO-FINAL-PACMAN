@@ -83,5 +83,10 @@ class Puntos:
     def comer_puntos (self):
         for y in range (len(self.muro.mapa)):
             for x in range(len(self.muro.mapa[y])):
-                if self.muro.mapa[y][x] == 0 and self.pacman.x == x and self.pacman.y == y:
+                if self.muro.mapa[y][x] in [0,98] and self.pacman.x == x and self.pacman.y == y:
                     self.muro.mapa[y][x] = -1
+                    if self.muro.mapa[y][x] == 0:
+                        tipo_consumible = "BASTON"
+                    elif self.muro.mapa[y][x] == 98:
+                        tipo_consumible = "REGALO"
+                    self.puntos += OBJETOS[tipo_consumible]["Puntos"]
