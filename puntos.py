@@ -102,48 +102,45 @@ class Puntos:
             # Eliminar el objeto del mapa
             self.muro.mapa[pacman_y][pacman_x] = -1
 
-            # Iniciar animación si se supera un múltiplo de 1000 puntos
-            if self.puntos % 500 == 0:
-                self.animacion_frames = 30 
+            if self.puntos // 500 > self.umbral_actual:
+                self.umbral_actual = self.puntos // 500
+                self.animacion_frames = 30  # Activa la animación
 
     def ver_puntuacion(self, x, y):
-        ver_numeros = True
-        # Si la animación está activa, hace desaparecer y aparecer los numeros
+        # Si la animación está activa, alternar visibilidad
         if self.animacion_frames > 0:
-            if self.animacion_frames % REFRESH < 5:
-                ver_numeros = False  # No dibuja los numeros durante la animación
-            self.animacion_frames -= 1  # Reducir el contador de animación
+            if (self.animacion_frames // 5) % 2 == 0:  # Parpadeo cada 5 frames
+                return  # No dibuja los números
+            self.animacion_frames -= 1  # Reducir contador de animación
 
-        # Cuando se cumpla se mostraran los numeros    
-        if ver_numeros:
-            # Determina el color segun la puntuación
-            if self.puntos < 500:
-                color_numeros = NUMEROS_BLANCOS
-            elif self.puntos < 1000:
-                color_numeros = NUMEROS_NARANJAS
-            elif self.puntos < 1500:
-                color_numeros = NUMEROS_VERDES
-            else:
-                color_numeros = NUMEROS_MORADOS
+        # Determina el color según la puntuación
+        if self.puntos < 500:
+            color_numeros = NUMEROS_BLANCOS
+        elif self.puntos < 1000:
+            color_numeros = NUMEROS_NARANJAS
+        elif self.puntos < 1500:
+            color_numeros = NUMEROS_VERDES
+        else:
+            color_numeros = NUMEROS_MORADOS
 
-            # Convierte la puntuación en una cadena para obtener los dígitos
-            puntuacion_str = str(self.puntos)
+        # Convierte la puntuación en una cadena para obtener los dígitos
+        puntuacion_str = str(self.puntos)
 
-            # Coordenada inicial para el primer dígito
-            pos_x = x
+        # Coordenada inicial para el primer dígito
+        pos_x = x
 
-            for num in puntuacion_str:
-                num = int(num)
-                sprite = color_numeros[str(num)]
-                sprite_x, sprite_y = sprite["Coordenadas"]
-                sprite_w, sprite_h = sprite["Tamaño"]
+        for num in puntuacion_str:
+            num = int(num)
+            sprite = color_numeros[str(num)]
+            sprite_x, sprite_y = sprite["Coordenadas"]
+            sprite_w, sprite_h = sprite["Tamaño"]
 
-                # Dibuja el número
-                pyxel.blt(
-                    pos_x, y,           # Coordenadas en pantalla
-                    0,                  # Banco de imágenes
-                    sprite_x, sprite_y, # Coordenadas del sprite en el banco
-                    sprite_w, sprite_h, # Tamaño del sprite
-                    colkey=0            # Color transparente
-                )
-                pos_x += sprite_w + 1  # Espacio entre los dígitos
+            # Dibuja el número
+            pyxel.blt(
+                pos_x, y,           # Coordenadas en pantalla
+                0,                  # Banco de imágenes
+                sprite_x, sprite_y, # Coordenadas del sprite en el banco
+                sprite_w, sprite_h, # Tamaño del sprite
+                colkey=0            # Color transparente
+            )
+            pos_x += sprite_w + 1  # Espacio entre los dígitos
