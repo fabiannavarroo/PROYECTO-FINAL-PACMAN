@@ -14,17 +14,17 @@ class Tablero:
         self.pacman = Pacman(208, 288, self.muro)  # Coordenadas iniciales del Pacman
         self.puntos= Puntos(self.muro, OBJETOS)
         self.fantasmas = [
-            FantasmaRojo(160, 160, self.muro, self.pacman),  # Coordenadas iniciales en la trampa
-            FantasmaRosa(176, 190, self.muro, self.pacman),
-            FantasmaAzul(192, 190, self.muro, self.pacman),
-            FantasmaNaranja(208, 190, self.muro, self.pacman)
+            FantasmaRojo(160, 160, self.muro),  # Coordenadas iniciales en la trampa
+            FantasmaRosa(176, 190, self.muro),
+            FantasmaAzul(192, 190, self.muro),
+            FantasmaNaranja(208, 190, self.muro)
         ]
 
         pyxel.run(self.update, self.draw)
 
     def update(self):
         self.pacman.mover()
-        self.fantasmas[0].mover()
+        self.fantasmas[0].mover(self.pacman.x, self.pacman.y)
 
     def draw(self):
         pyxel.cls(0)
