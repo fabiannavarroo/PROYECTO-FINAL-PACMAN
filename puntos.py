@@ -82,7 +82,7 @@ class Puntos:
                         )
         
                         
-        print(self.texto_mas_grande(50, 20, (self.puntos), 7, 3))  # Escala 3 veces más grande # (x, y, texto, color)
+        print(self.texto_mas_grande(188, 16, (self.puntos), 7, 3))  # Escala 3 veces más grande # (x, y, texto, color)
                     
 
     def comer_puntos(self):
