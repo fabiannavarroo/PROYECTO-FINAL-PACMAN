@@ -108,10 +108,10 @@ class Puntos:
         colores_dispo = [NUMEROS_BLANCOS,NUMEROS_MORADOS,NUMEROS_NARANJAS,NUMEROS_VERDES]
         color_numeros = NUMEROS_BLANCOS
         # Cambia el color solo cuando se supera un nuevo múltiplo de 500
-        if self.puntos // 500 > self.umbral_actual:
-            self.umbral_actual = self.puntos // 500  # Actualiza el umbral
+        if self.puntos // 500 > self.puntos_alcanzados:
+            self.puntos_alcanzados = self.puntos // 500  # Actualiza los puntos alcanzados
             self.color_actual = random.choice(colores_dispo)  # Elige un nuevo color aleatorio
-        # Convierte la puntuación en una cadena para obtener los dígitos
+        # Convierte la puntuación en una cadena para obtener los numeros
         puntuacion_str = str(self.puntos)
 
         # Coordenada inicial para el primer dígito
