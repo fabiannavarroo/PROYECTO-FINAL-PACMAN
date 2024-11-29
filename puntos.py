@@ -80,6 +80,9 @@ class Puntos:
                             sprite_w, sprite_h,  # Tamaño del sprite
                             colkey=0  # Transparencia
                         )
+
+    # Dibujar la puntuación en la parte superior derecha, por ejemplo
+        self.puntos.draw_puntuacion(10, 10)
         
     def ver_puntuacion(self,x,y):
         # Convierte la puntuación en una str para posteriormente usar una for each y poder pintar cada valor
