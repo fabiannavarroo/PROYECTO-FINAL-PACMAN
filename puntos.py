@@ -99,3 +99,6 @@ class Puntos:
 
             # Eliminar el objeto del mapa
             self.muro.mapa[pacman_y][pacman_x] = -1
+
+            # Mostrar puntuación en la esquina superior izquierda
+        pyxel.text(10, 5, "Puntuación:" + str(self.puntos), 7)  # (x, y, texto, color)
