@@ -133,7 +133,7 @@ class Puntos:
         objetos_dispo = ["CREZA","FRESA","NARANJA","MANZANA","MELON","PARAGUAS","CAMPANA","LLAVE"]
         objeto_seleccionado = random.choice(objetos_dispo)
         # Generar una posición inicial en los portales del mapa
-        x_inicial = random.choice([0, 27])  
+        x_inicial = random.choice([0, 26])  
         y_inicial = 13
 
         # Elegir un destino aleatorio entre las celdas vacías
