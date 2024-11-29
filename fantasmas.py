@@ -52,10 +52,11 @@ class FantasmaRojo(Fantasma):
 
         # Si no puede moverse en X, intentar en el eje Y
         else:  # Pac-Man está abajo
-            nueva_y = self.y + self.velocidad
-            if not self.muro.colision(self.x, nueva_y):
-                self.y = nueva_y
-                self.direccion_actual = "ABAJO"
+            if diferencia_y > 0:
+                nueva_y = self.y + self.velocidad
+                if not self.muro.colision(self.x, nueva_y):
+                    self.y = nueva_y
+                    self.direccion_actual = "ABAJO"
                 
             else:  # Pac-Man está arriba
                 nueva_y = self.y - self.velocidad
