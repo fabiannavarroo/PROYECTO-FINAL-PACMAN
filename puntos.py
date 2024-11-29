@@ -42,7 +42,7 @@ class Puntos:
                             colkey=0  # Transparencia
                         )
                 if self.muro.mapa[y][x]==97:
-                    sprite = TEXTO["HI_BLANCO"]
+                    sprite = TEXTO["HIGHSCORE"]
                     sprite_x,sprite_y = sprite["Coordenadas"]
                     sprite_w,sprite_h = sprite["Tamaño"]
                     pyxel.blt( # Dibujar los imagenes de los regalos
@@ -53,7 +53,7 @@ class Puntos:
                             colkey=0  # Transparencia
                         )
                 if self.muro.mapa[y][x]==96:
-                    sprite = TEXTO["GH_BLANCO"]
+                    sprite = TEXTO["READY!"]
                     sprite_x,sprite_y = sprite["Coordenadas"]
                     sprite_w,sprite_h = sprite["Tamaño"]
                     pyxel.blt( # Dibujar los imagenes de los regalos
