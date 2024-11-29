@@ -102,24 +102,32 @@ class Puntos:
             self.muro.mapa[pacman_y][pacman_x] = -1
 
     def ver_puntuacion(self, x, y):
-
+        # Determina el diccionario de colores basado en la puntuación
+        if self.puntos < 1000:
+            color_numeros = NUMEROS_BLANCOS
+        elif self.puntos < 2000:
+            color_numeros = NUMEROS_NARANJAS
+        elif self.puntos < 3000:
+            color_numeros = NUMEROS_VERDES
+        else:
+            color_numeros = NUMEROS_MORADOS
 
         # Convierte la puntuación en una cadena para obtener los dígitos
         puntuacion_str = str(self.puntos)
-        
+
         # Coordenada inicial para el primer dígito
         pos_x = x
-        
+
         for num in puntuacion_str:
             # Convierte el carácter a un entero
             num = int(num)
 
             # Obtiene el sprite correspondiente al dígito
-            sprite = NUMEROS_BLANCOS[str(num)]
+            sprite = color_numeros[str(num)]
             sprite_x, sprite_y = sprite["Coordenadas"]
             sprite_w, sprite_h = sprite["Tamaño"]
 
-            # Dibuja el numero
+            # Dibuja el número
             pyxel.blt(
                 pos_x, y,           # Coordenadas en pantalla
                 0,                  # Banco de imágenes
@@ -127,9 +135,5 @@ class Puntos:
                 sprite_w, sprite_h, # Tamaño del sprite
                 colkey=0            # Color transparente
             )
-
             # Incrementa la posición x para el siguiente dígito
             pos_x += sprite_w + 1  # Espacio entre los dígitos
-
-        
-        
