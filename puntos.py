@@ -82,7 +82,7 @@ class Puntos:
                         )
 
     # Dibujar la puntuación
-        self.puntos.draw_puntuacion(10, 10)
+        self.puntos.draw_puntuacion(188, 16)
 
     def ver_puntuacion(self,x,y):
         # Convierte la puntuación en una str para posteriormente usar una for each y poder pintar cada valor
