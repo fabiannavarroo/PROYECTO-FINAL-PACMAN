@@ -80,14 +80,17 @@ class Puntos:
                             sprite_w, sprite_h,  # Tamaño del sprite
                             colkey=0  # Transparencia
                         )
+                    
+
     def comer_puntos(self):
         pacman_x = self.pacman.x // self.muro.celda_tamaño  # Índice X en el mapa
         pacman_y = self.pacman.y // self.muro.celda_tamaño  # Índice Y en el mapa
 
         if self.muro.mapa[pacman_y][pacman_x] in [0, 98]:
-            print("COMIDA")
+            # Cuando se tratra de un punto normal
             if self.muro.mapa[pacman_y][pacman_x] == 0:
                 tipo_consumible = "BASTON"
+            # Cuando es es una pastilla de poder
             elif self.muro.mapa[pacman_y][pacman_x] == 98:
                 tipo_consumible = "REGALO"
 
