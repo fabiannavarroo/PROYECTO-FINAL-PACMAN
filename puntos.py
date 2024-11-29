@@ -1,4 +1,5 @@
 from constantes import *
+import random
 from muro import Muro
 import pyxel
 
