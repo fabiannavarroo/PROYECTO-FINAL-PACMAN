@@ -36,7 +36,6 @@ FANTASMA_NARANJA = {
 }
 
 #--------PUNTOS Y FRUTAS---------#
-BASTON = (48, 16)
 OBJETOS = {
     "REGALO": {"Coordenadas": (0,32), "Puntos": 15},
     "REGALO_BRILLANTE": {"Coordenadas": (32,32), "Puntos": 15},
