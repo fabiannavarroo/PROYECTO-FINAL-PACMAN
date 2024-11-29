@@ -1,5 +1,5 @@
 import pyxel
-from constantes import FANTASMA_ROJO, FANTASMA_ROSA, FANTASMA_AZUL, FANTASMA_NARANJA,PORTALES
+from constantes import FANTASMA_ROJO, FANTASMA_ROSA, FANTASMA_AZUL, FANTASMA_NARANJA, PORTALES
 import random
 
 
@@ -7,104 +7,99 @@ class Fantasma:
     def __init__(self, x, y, sprites, muro, pacman):
         self.x = x
         self.y = y
-        self.sprites = sprites  # Imagenes de los fantasmas
-        self.muro = muro # Referencia a la clase Muro
-        self.pacman = pacman
+        self.sprites = sprites  # Imágenes de los fantasmas
+        self.muro = muro  # Referencia a la clase Muro
+        self.pacman = pacman  # Referencia a Pac-Man
         self.velocidad = 1.5  # Velocidad de los fantasmas
-        self.direccion_actual = "DERECHA"  # Comienza moviéndose hacia la derecha
+        self.direccion_actual = "DERECHA"  # Dirección inicial
         self.en_trampa = True  # El fantasma empieza en la trampa
 
-    #def salir_trampa(self):
-    
     def cambiar_direccion(self):
-        # Direcciones que puede tener los fantasmas
+        # Direcciones que puede tomar el fantasma
         DIRECCIONES = ["ARRIBA", "ABAJO", "DERECHA", "IZQUIERDA"]
-        nueva_direccion = random.choice(DIRECCIONES) # De forma aleatoria se escoge una direccion
-        self.direccion_actual = nueva_direccion # Se le asigna esa direccion a la actual del fantasmas
+        nueva_direccion = random.choice(DIRECCIONES)  # Elegir una dirección aleatoria
+        self.direccion_actual = nueva_direccion
 
+    def mover_aleatorio(self):
+        # Movimiento aleatorio si no se persigue a Pac-Man
+        direcciones = {
+            "ARRIBA": (self.x, self.y - self.velocidad),
+            "ABAJO": (self.x, self.y + self.velocidad),
+            "IZQUIERDA": (self.x - self.velocidad, self.y),
+            "DERECHA": (self.x + self.velocidad, self.y)
+        }
 
-    # Dibujar el sprite del fantasma en la dirección correspondiente.
+        # Verificar colisiones y mover en una dirección aleatoria válida
+        direcciones_validas = {
+            d: (nx, ny)
+            for d, (nx, ny) in direcciones.items()
+            if not self.muro.colision(nx, ny)
+        }
+
+        if direcciones_validas:
+            self.direccion_actual, (self.x, self.y) = random.choice(list(direcciones_validas.items()))
+
     def draw(self):
+        # Dibujar el sprite del fantasma
         sprite_x, sprite_y = self.sprites[self.direccion_actual]
         pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
+
 
 class FantasmaRojo(Fantasma):
     def __init__(self, x, y, muro, pacman):
         super().__init__(x, y, FANTASMA_ROJO, muro, pacman)
 
-    def mover(self, pacman_x, pacman_y):
-        # Calcula las diferencias entre las posiciones del fantasma y Pac-Man
+    def mover(self):
+        # Coordenadas de Pac-Man
+        pacman_x, pacman_y = self.pacman.x, self.pacman.y
+
+        # Diferencias entre las posiciones del fantasma y Pac-Man
         diferencia_x = pacman_x - self.x
         diferencia_y = pacman_y - self.y
 
-        if self.direccion_pendiente:
-            if self.direccion_pendiente == "ARRIBA" and not self.muro.colision(self.x, self.y - self.velocidad):
-                self.direccion_actual = self.direccion_pendiente
-                self.direccion_pendiente = None
-            elif self.direccion_pendiente == "ABAJO" and not self.muro.colision(self.x, self.y + self.velocidad):
-                self.direccion_actual = self.direccion_pendiente
-                self.direccion_pendiente = None
-            elif self.direccion_pendiente == "IZQUIERDA" and not self.muro.colision(self.x - self.velocidad, self.y):
-                self.direccion_actual = self.direccion_pendiente
-                self.direccion_pendiente = None
-            elif self.direccion_pendiente == "DERECHA" and not self.muro.colision(self.x + self.velocidad, self.y):
-                self.direccion_actual = self.direccion_pendiente
-                self.direccion_pendiente = None
-
-        # Mover en la dirección actual
-        if self.direccion_actual == "ARRIBA":
-            nueva_y -= self.velocidad
-        elif self.direccion_actual == "ABAJO":
-            nueva_y += self.velocidad
-        elif self.direccion_actual == "IZQUIERDA":
-            nueva_x -= self.velocidad
-        elif self.direccion_actual == "DERECHA":
-            nueva_x += self.velocidad
-
-        # Verificar colisión antes de actualizar la posición
-        if not self.muro.colision(nueva_x, self.y):
-            self.x = nueva_x
-        if not self.muro.colision(self.x, nueva_y):
-            self.y = nueva_y
-
-        # Mover en el eje X primero si la diferencia es mayor
-        if abs(diferencia_x) > abs(diferencia_y):
+        # Lógica de persecución: eje prioritario según la distancia mayor
+        if abs(diferencia_x) > abs(diferencia_y):  # Priorizar movimiento horizontal
             if diferencia_x > 0:  # Pac-Man está a la derecha
                 nueva_x = self.x + self.velocidad
-                if not self.muro.colision(nueva_x, self.y):  # Si no hay colisión
+                if not self.muro.colision(nueva_x, self.y):  # Sin colisión
                     self.x = nueva_x
                     self.direccion_actual = "DERECHA"
-                    
+                else:
+                    self.mover_aleatorio()  # Si está bloqueado, moverse aleatoriamente
             else:  # Pac-Man está a la izquierda
                 nueva_x = self.x - self.velocidad
                 if not self.muro.colision(nueva_x, self.y):
                     self.x = nueva_x
                     self.direccion_actual = "IZQUIERDA"
-
-        # Si no puede moverse en X, intentar en el eje Y
-        else:  # Pac-Man está abajo
-            if diferencia_y > 0:
+                else:
+                    self.mover_aleatorio()
+        else:  # Priorizar movimiento vertical
+            if diferencia_y > 0:  # Pac-Man está abajo
                 nueva_y = self.y + self.velocidad
                 if not self.muro.colision(self.x, nueva_y):
                     self.y = nueva_y
                     self.direccion_actual = "ABAJO"
-                
+                else:
+                    self.mover_aleatorio()
             else:  # Pac-Man está arriba
                 nueva_y = self.y - self.velocidad
                 if not self.muro.colision(self.x, nueva_y):
                     self.y = nueva_y
                     self.direccion_actual = "ARRIBA"
+                else:
+                    self.mover_aleatorio()
 
-        
 
 class FantasmaRosa(Fantasma):
-    def __init__(self, x, y, muro):
-        super().__init__(x, y, FANTASMA_ROSA, muro)
+    def __init__(self, x, y, muro, pacman):
+        super().__init__(x, y, FANTASMA_ROSA, muro, pacman)
+
 
 class FantasmaAzul(Fantasma):
-    def __init__(self, x, y, muro):
-        super().__init__(x, y, FANTASMA_AZUL, muro)
+    def __init__(self, x, y, muro, pacman):
+        super().__init__(x, y, FANTASMA_AZUL, muro, pacman)
+
 
 class FantasmaNaranja(Fantasma):
-    def __init__(self, x, y, muro):
-        super().__init__(x, y, FANTASMA_NARANJA, muro)
+    def __init__(self, x, y, muro, pacman):
+        super().__init__(x, y, FANTASMA_NARANJA, muro, pacman)
