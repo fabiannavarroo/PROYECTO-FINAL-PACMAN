@@ -15,9 +15,9 @@ class Tablero:
         self.puntos= Puntos(self.muro, OBJETOS)
         self.fantasmas = [
             FantasmaRojo(160, 160, self.muro, self.pacman),  # Coordenadas iniciales en la trampa
-            FantasmaRosa(176, 190, self.muro),
-            FantasmaAzul(192, 190, self.muro),
-            FantasmaNaranja(208, 190, self.muro)
+            FantasmaRosa(176, 190, self.muro, self.pacman),
+            FantasmaAzul(192, 190, self.muro, self.pacman),
+            FantasmaNaranja(208, 190, self.muro, self.pacman)
         ]
 
         pyxel.run(self.update, self.draw)
