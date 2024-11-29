@@ -82,9 +82,8 @@ class Puntos:
                         )
         
                         
-        self.texto_mas_grande(188, 16, (self.puntos), 7, 3)  # Escala 3 veces más grande # (x, y, texto, color)
+        self.texto_mas_grande(188, 16, str(self.puntos), 7, 2)
                     
-
     def comer_puntos(self):
         pacman_x = self.pacman.x // self.muro.celda_tamaño  # Índice X en el mapa
         pacman_y = self.pacman.y // self.muro.celda_tamaño  # Índice Y en el mapa
