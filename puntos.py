@@ -57,7 +57,7 @@ class Puntos:
                 if self.muro.mapa[y][x] == num:
                     sprite = TEXTO[sprite]
                     sprite_x, sprite_y = sprite["Coordenadas"]
-                    sprite_w, sprite_h = 16, 16
+                    sprite_w, sprite_h = sprite["Tamaño"]
                     pyxel.blt(x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,0,sprite_x, sprite_y,sprite_w, sprite_h,colkey=0)
 
         
