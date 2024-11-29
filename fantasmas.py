@@ -32,47 +32,43 @@ class FantasmaRojo(Fantasma):
         super().__init__(x, y, FANTASMA_ROJO, muro)
 
     def mover(self, pacman_x, pacman_y):
-        # Calcula la dirección más directa hacia Pac-Man
+        # Calcula la diferencia en X y Y
         diferencia_x = pacman_x - self.x
-        diferencia_y = pacman_y - self.y
+    diferencia_y = pacman_y - self.y
 
-        movimientos_realizados = 0  # Para rastrear intentos exitosos de movimiento
+    # Definir prioridad de movimiento
+    if abs(diferencia_x) > abs(diferencia_y):  # Prioridad al eje X
+        if diferencia_x > 0 and not self.muro.colision(self.x + self.velocidad, self.y):
+            self.x += self.velocidad
+            self.direccion_actual = "DERECHA"
+        elif diferencia_x < 0 and not self.muro.colision(self.x - self.velocidad, self.y):
+            self.x -= self.velocidad
+            self.direccion_actual = "IZQUIERDA"
+        else:  # Si no puede moverse en X, intenta en Y
+            if diferencia_y > 0 and not self.muro.colision(self.x, self.y + self.velocidad):
+                self.y += self.velocidad
+                self.direccion_actual = "ABAJO"
+            elif diferencia_y < 0 and not self.muro.colision(self.x, self.y - self.velocidad):
+                self.y -= self.velocidad
+                self.direccion_actual = "ARRIBA"
+    else:  # Prioridad al eje Y
+        if diferencia_y > 0 and not self.muro.colision(self.x, self.y + self.velocidad):
+            self.y += self.velocidad
+            self.direccion_actual = "ABAJO"
+        elif diferencia_y < 0 and not self.muro.colision(self.x, self.y - self.velocidad):
+            self.y -= self.velocidad
+            self.direccion_actual = "ARRIBA"
+        else:  # Si no puede moverse en Y, intenta en X
+            if diferencia_x > 0 and not self.muro.colision(self.x + self.velocidad, self.y):
+                self.x += self.velocidad
+                self.direccion_actual = "DERECHA"
+            elif diferencia_x < 0 and not self.muro.colision(self.x - self.velocidad, self.y):
+                self.x -= self.velocidad
+                self.direccion_actual = "IZQUIERDA"
 
-        # Prioridad al eje X si la distancia en X es mayor
-        if abs(diferencia_x) > abs(diferencia_y):
-            if diferencia_x > 0:  # Pac-Man está a la derecha
-                nueva_x = self.x + self.velocidad
-                if not self.muro.colision(nueva_x, self.y):
-                    self.x = nueva_x
-                    self.direccion_actual = "DERECHA"
-                    movimientos_realizados += 1
-            else:  # Pac-Man está a la izquierda
-                nueva_x = self.x - self.velocidad
-                if not self.muro.colision(nueva_x, self.y):
-                    self.x = nueva_x
-                    self.direccion_actual = "IZQUIERDA"
-                    movimientos_realizados += 1
-
-        # Intentar moverse en el eje Y si no se logró mover en X
-        if movimientos_realizados == 0:
-            if diferencia_y > 0:  # Pac-Man está abajo
-                nueva_y = self.y + self.velocidad
-                if not self.muro.colision(self.x, nueva_y):
-                    self.y = nueva_y
-                    self.direccion_actual = "ABAJO"
-                    movimientos_realizados += 1
-            else:  # Pac-Man está arriba
-                nueva_y = self.y - self.velocidad
-                if not self.muro.colision(self.x, nueva_y):
-                    self.y = nueva_y
-                    self.direccion_actual = "ARRIBA"
-                    movimientos_realizados += 1
-
-        # Cambiar dirección aleatoriamente si no logró moverse
-        if movimientos_realizados == 0:
-            self.cambiar_direccion()
-
-        
+    # Si no puede moverse en ninguna dirección, cambia de dirección aleatoria
+    if self.direccion_actual == "":
+        self.cambiar_direccion()        
 
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y, muro):
