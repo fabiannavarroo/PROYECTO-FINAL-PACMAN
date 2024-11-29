@@ -24,7 +24,7 @@ class Tablero:
 
     def update(self):
         self.pacman.mover()
-        self.fantasmas[0].mover(self.pacman.x, self.pacman.y)
+        self.fantasmas[0].mover()
 
     def draw(self):
         pyxel.cls(0)
