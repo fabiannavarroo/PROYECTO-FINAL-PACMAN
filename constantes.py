@@ -88,25 +88,7 @@ PORTALES={
 TEXTO={
     "READY!": {"Coordenadas": (32, 192), "Tamaño": (64, 16)}, 
     "HIGHSCORE":   {"Coordenadas": (0, 168), "Tamaño": (80, 16)},
-<<<<<<< HEAD
     "GAME OVER":     {"Coordenadas": (0, 192), "Tamaño": (32, 24)},
-=======
-    "GAME OVER":     {"Coordenadas": (0, 192), "Tamaño": (32, 32)},
-}
-
-#--------NÚMEROS--------#
-NUMEROS={
-    "0": {"Coordenadas": (0, 176), "Tamaño": (8, 8)},
-    "1": {"Coordenadas": (8, 176), "Tamaño": (8, 8)},
-    "2": {"Coordenadas": (16, 176), "Tamaño": (8, 8)},
-    "3": {"Coordenadas": (24, 176), "Tamaño": (8, 8)},
-    "4": {"Coordenadas": (32, 176), "Tamaño": (8, 8)},
-    "5": {"Coordenadas": (0, 184), "Tamaño": (8, 8)},
-    "6": {"Coordenadas": (8, 184), "Tamaño": (8, 8)},
-    "7": {"Coordenadas": (16, 184), "Tamaño": (8, 8)},
-    "8": {"Coordenadas": (24, 184), "Tamaño": (8, 8)},
-    "9": {"Coordenadas": (32, 184), "Tamaño": (8, 8)},
->>>>>>> 4a7f369e54037b98c9efee32d0e2d2ef2c9c9d5a
 }
 
 #--------OTROS---------#
