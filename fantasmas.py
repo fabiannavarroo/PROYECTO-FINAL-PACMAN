@@ -82,7 +82,6 @@ class FantasmaRojo(Fantasma):
                 if not self.muro.colision(nueva_x, self.y):  # Verificar colisión
                     self.x = nueva_x
                     self.direccion_actual = "DERECHA"
-                    print("Moviendo a la derecha")
                 else:
                     print("Colisión al mover a la derecha")
             else:  # Pac-Man está a la izquierda
@@ -90,9 +89,6 @@ class FantasmaRojo(Fantasma):
                 if not self.muro.colision(nueva_x, self.y):  # Verificar colisión
                     self.x = nueva_x
                     self.direccion_actual = "IZQUIERDA"
-                    print("Moviendo a la izquierda")
-                else:
-                    print("Colisión al mover a la izquierda")
 
         # Movimiento en el eje Y
         else:
@@ -101,9 +97,7 @@ class FantasmaRojo(Fantasma):
                 if not self.muro.colision(self.x, nueva_y):  # Verificar colisión
                     self.y = nueva_y
                     self.direccion_actual = "ABAJO"
-                    print("Moviendo hacia abajo")
-                else:
-                    print("Colisión al mover hacia abajo")
+
             else:  # Pac-Man está arriba
                 nueva_y = self.y - self.velocidad
                 if not self.muro.colision(self.x, nueva_y):  # Verificar colisión
