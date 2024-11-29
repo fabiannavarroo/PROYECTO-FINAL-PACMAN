@@ -81,6 +81,8 @@ class Puntos:
                             colkey=0  # Transparencia
                         )
     def comer_puntos(self):
+        pacman_x = self.pacman.x // self.muro.celda_tamaño
+        pacman_y = self.pacman.y // self.muro.celda_tamaño
         for y in range(len(self.muro.mapa)):
             for x in range(len(self.muro.mapa[y])):
                 if self.muro.mapa[y][x] in [0, 98] and self.pacman.x == x and self.pacman.y == y:
