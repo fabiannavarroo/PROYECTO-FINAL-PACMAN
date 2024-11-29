@@ -80,11 +80,7 @@ class Puntos:
                             sprite_w, sprite_h,  # Tamaño del sprite
                             colkey=0  # Transparencia
                         )
-        def draw_text_scaled(x, y, text, color, scale):
-            for i, char in enumerate(text):
-                for dx in range(scale):
-                    for dy in range(scale):
-                        pyxel.text(x + i * 4 * scale + dx, y + dy, char, color)
+        
                         
         draw_text_scaled(50, 20, (self.puntos), 7, 3)  # Escala 3 veces más grande # (x, y, texto, color)
                     
@@ -107,5 +103,10 @@ class Puntos:
             # Eliminar el objeto del mapa
             self.muro.mapa[pacman_y][pacman_x] = -1
 
-            # Mostrar puntuación en la esquina superior izquierda
+    # Hacer texto más grandes
+    def draw_text_scaled(x, y, text, color, scale):
+            for i, char in enumerate(text):
+                for dx in range(scale):
+                    for dy in range(scale):
+                        pyxel.text(x + i * 4 * scale + dx, y + dy, char, color)
         
