@@ -81,7 +81,7 @@ class Puntos:
                             colkey=0  # Transparencia
                         )
         
-    def draw_puntuacion(self,y):
+    def draw_puntuacion(self,x,y):
         # Convierte la puntuación en una str para posteriormente usar una for each y poder pintar cada valor
         puntuacion_str = str(self.puntos)
 
