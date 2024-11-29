@@ -25,7 +25,7 @@ class Tablero:
     def update(self):
         self.puntos.comer_puntos()
         self.pacman.mover()
-        self.puntos.aparecer_fruta()  # Verificar si es momento de generar una fruta
+        self.puntos.mover_fruta()  # Verificar si es momento de generar una fruta
         self.fantasmas[0].mover(self.pacman.x, self.pacman.y)
 
     def draw(self):
