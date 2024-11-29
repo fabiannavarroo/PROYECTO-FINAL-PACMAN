@@ -49,7 +49,7 @@ class Puntos:
                     )
 
                     self.dibujar_letras_mapa(69, "READY!")
-                    self.dibujar_letras_mapa(69, "READY!")
+                    self.dibujar_letras_mapa(69, "HIGHSCORE")
 
         self.ver_puntuacion(188, 16)  # Mostrar la puntuación
 
