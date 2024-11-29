@@ -35,5 +35,5 @@ class Tablero:
         self.pacman.draw()
         for fantasma in self.fantasmas:
             fantasma.draw()
-        print(f"Dimensiones del mapa: {len(self.muro.mapa)} filas x {len(self.muro.mapa[0])} columnas")
+
         
