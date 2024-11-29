@@ -37,17 +37,17 @@ FANTASMA_NARANJA = {
 
 #--------PUNTOS Y FRUTAS---------#
 OBJETOS = {
-    "REGALO": {"Coordenadas": (0,32), "Puntos": 15}, #98
-    "REGALO_BRILLANTE": {"Coordenadas": (32,32), "Puntos": 15}, #98
-    "BASTON": {"Coordenadas": (48,16), "Puntos": 10},
-    "CEREZA" : {"Coordenadas": (0, 128), "Puntos": 20},
-    "FRESA" : {"Coordenadas":(16, 128), "Puntos": 30},
-    "NARANJA" : {"Coordenadas":(32, 128), "Puntos": 30},
-    "MANZANA" : {"Coordenadas":(48, 128), "Puntos": 30},
-    "MELON" : {"Coordenadas":(0, 144), "Puntos": 30},
-    "PARAGUAS" : {"Coordenadas":(16, 144), "Puntos": 30}, 
-    "CAMPANA" : {"Coordenadas":(32, 144), "Puntos": 30},
-    "LLAVE" : {"Coordenadas":(48, 144), "Puntos": 30},
+    "REGALO": {"Coordenadas": (0,32), "Puntos": 15}, # 98
+    "REGALO_BRILLANTE": {"Coordenadas": (32,32), "Puntos": 15}, # 98
+    "BASTON": {"Coordenadas": (48,16), "Puntos": 10}, # 0
+    "CEREZA" : {"Coordenadas": (0, 128), "Puntos": 20}, # 97
+    "FRESA" : {"Coordenadas":(16, 128), "Puntos": 30}, # 9
+    "NARANJA" : {"Coordenadas":(32, 128), "Puntos": 40}, # 9
+    "MANZANA" : {"Coordenadas":(48, 128), "Puntos": 50}, # 9
+    "MELON" : {"Coordenadas":(0, 144), "Puntos": 60}, # 9
+    "PARAGUAS" : {"Coordenadas":(16, 144), "Puntos": 70}, # 9 
+    "CAMPANA" : {"Coordenadas":(32, 144), "Puntos": 80}, # 9
+    "LLAVE" : {"Coordenadas":(48, 144), "Puntos": 90}, # 9
     }
 
 #---------MUROS---------#
