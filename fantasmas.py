@@ -36,34 +36,32 @@ class FantasmaRojo(Fantasma):
         diferencia_x = pacman_x - self.x
         diferencia_y = pacman_y - self.y
 
-        # Si las diferencias son muy pequeñas, ajustar para garantizar precisión
-        if abs(diferencia_x) < self.velocidad:
-            diferencia_x = 0
-        if abs(diferencia_y) < self.velocidad:
-            diferencia_y = 0
+        # Mover en el eje X primero si la diferencia es mayor
+        if abs(diferencia_x) > abs(diferencia_y):
+            if diferencia_x > 0:  # Pac-Man está a la derecha
+                nueva_x = self.x + self.velocidad
+                if not self.muro.colision(nueva_x, self.y):  # Si no hay colisión
+                    self.x = nueva_x
+                    return  # Termina el movimiento
+            elif diferencia_x < 0:  # Pac-Man está a la izquierda
+                nueva_x = self.x - self.velocidad
+                if not self.muro.colision(nueva_x, self.y):
+                    self.x = nueva_x
+                    return
 
-        # Direcciones posibles y sus respectivas coordenadas de movimiento
-        direcciones = {
-            "DERECHA": (self.x + self.velocidad, self.y),
-            "IZQUIERDA": (self.x - self.velocidad, self.y),
-            "ARRIBA": (self.x, self.y - self.velocidad),
-            "ABAJO": (self.x, self.y + self.velocidad),
-        }
-
-        # Ordenar las direcciones por proximidad a Pac-Man
-        direcciones_ordenadas = sorted(
-            direcciones.items(),
-            key=lambda d: abs(pacman_x - d[1][0]) + abs(pacman_y - d[1][1])
-        )
-
-        # Intentar moverse en la dirección más cercana
-        for direccion, (nueva_x, nueva_y) in direcciones_ordenadas:
-            if not self.muro.colision(nueva_x, nueva_y):  # Si la dirección es transitable
-                self.x, self.y = nueva_x, nueva_y
-                self.direccion_actual = direccion
+        # Si no puede moverse en X, intentar en el eje Y
+        if diferencia_y > 0:  # Pac-Man está abajo
+            nueva_y = self.y + self.velocidad
+            if not self.muro.colision(self.x, nueva_y):
+                self.y = nueva_y
+                return
+        elif diferencia_y < 0:  # Pac-Man está arriba
+            nueva_y = self.y - self.velocidad
+            if not self.muro.colision(self.x, nueva_y):
+                self.y = nueva_y
                 return
 
-        # Si todas las direcciones están bloqueadas, recalcular dirección
+        # Si no puede moverse en ninguna dirección, intenta moverse aleatoriamente
         self.cambiar_direccion()
 
 class FantasmaRosa(Fantasma):
