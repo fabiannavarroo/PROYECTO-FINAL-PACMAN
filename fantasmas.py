@@ -17,6 +17,14 @@ class Fantasma:
     
     def perseguir(self, pacman_x, pacman_y):
         # Calcula la dirección más directa hacia Pac-Man y actualiza las coordenadas del fantasma.
+        diferencia_x = pacman_x - self.x
+        diferencia_y = pacman_y - self.y
+
+        # Movimiento en el eje X
+        if abs(diferencia_x) > abs(diferencia_y): # Si la distancia en X es mayor
+            if diferencia_x > 0:
+                nueva_x = self.x + self.velocidad
+                if not self.muro.colision:
 
             
                 
