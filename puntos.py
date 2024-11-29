@@ -49,6 +49,16 @@ class Puntos:
                     )
         self.ver_puntuacion(188, 16)  # Mostrar la puntuación
 
+    def dibujar_letras_mapa (self, num, sprite):
+        for y in range(len(self.muro.mapa)):
+            for x in range(len(self.muro.mapa[y])):
+                if self.muro.mapa[y][x] == num:
+                    sprite = TEXTO[sprite]
+                    sprite_x, sprite_y = sprite["Coordenadas"]
+                    sprite_w, sprite_h = 16, 16
+                    pyxel.blt(x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,0,sprite_x, sprite_y,sprite_w, sprite_h,colkey=0)
+
+        
     def comer_puntos(self):
         pacman_x = self.pacman.x // self.muro.celda_tamaño  # Índice X en el mapa
         pacman_y = self.pacman.y // self.muro.celda_tamaño  # Índice Y en el mapa
