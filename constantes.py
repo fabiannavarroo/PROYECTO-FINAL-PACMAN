@@ -93,7 +93,7 @@ TEXTO={
 
 
 #--------NÚMEROS--------#
-NUMEROS={
+NUMEROS_BLANCOS={
     "0": {"Coordenadas": (0, 216), "Tamaño": (8, 8)},
     "1": {"Coordenadas": (8, 216), "Tamaño": (8, 8)},
     "2": {"Coordenadas": (16, 216), "Tamaño": (8, 8)},
