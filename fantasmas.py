@@ -4,11 +4,12 @@ import random
 
 
 class Fantasma:
-    def __init__(self, x, y, sprites, muro):
+    def __init__(self, x, y, sprites, muro, pacman):
         self.x = x
         self.y = y
         self.sprites = sprites  # Imagenes de los fantasmas
         self.muro = muro # Referencia a la clase Muro
+        self.pacman = pacman
         self.velocidad = 1.5  # Velocidad de los fantasmas
         self.direccion_actual = "DERECHA"  # Comienza moviéndose hacia la derecha
         self.en_trampa = True  # El fantasma empieza en la trampa
