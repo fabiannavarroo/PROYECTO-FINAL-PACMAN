@@ -104,7 +104,7 @@ class Puntos:
             self.muro.mapa[pacman_y][pacman_x] = -1
 
     # Hacer texto más grandes
-    def draw_text_scaled(x, y, text, color, scale):
+    def texto_mas_grande(x, y, text, color, scale):
             for i, char in enumerate(text):
                 for dx in range(scale):
                     for dy in range(scale):
