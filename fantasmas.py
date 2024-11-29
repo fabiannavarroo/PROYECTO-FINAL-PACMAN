@@ -56,8 +56,8 @@ class FantasmaRojo(Fantasma):
     def __init__(self, x, y, muro):
         super().__init__(x, y, FANTASMA_ROJO, muro)
 
-        def mover(self, pacman_x, pacman_y):
-            self.perseguir(pacman_x, pacman_y)
+    def mover(self, pacman_x, pacman_y):
+        self.perseguir(pacman_x, pacman_y)
 
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y, muro):
