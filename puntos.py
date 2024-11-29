@@ -103,8 +103,8 @@ class Puntos:
             # Eliminar el objeto del mapa
             self.muro.mapa[pacman_y][pacman_x] = -1
 
-            if self.puntos // 500 > self.umbral_actual:
-                self.umbral_actual = self.puntos // 500
+            if self.puntos // 500 > self.puntos_superados:
+                self.puntos_superados = self.puntos // 500
                 self.animacion_frames = 30  # Activa la animación
 
     def ver_puntuacion(self, x, y):
