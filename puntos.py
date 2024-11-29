@@ -132,7 +132,7 @@ class Puntos:
         x_destino, y_destino = random.choice(celdas_vacias)
 
         # Colocar la fruta en la posición inicial
-        self.muro.mapa[y_inicial][x_inicial] = random.choice  #
+        self.muro.mapa[y_inicial][x_inicial] = random.choice  # Elige una fruta al azar
 
         # Mover la fruta gradualmente al destino
         while (x_inicial, y_inicial) != (x_destino, y_destino):
