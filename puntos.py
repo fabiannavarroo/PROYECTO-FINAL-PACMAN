@@ -107,7 +107,13 @@ class Puntos:
                 self.animacion_frames = 30 
 
     def ver_puntuacion(self, x, y):
-        # Determina el diccionario de colores basado en la puntuación
+        # Si la animación está activa, hace desaparecer y aparecer los números
+        if self.animacion_frames > 0:
+            if self.animacion_frames % 10 < 5:
+                return  # No dibuja los números durante la animación
+            self.animacion_frames -= 1  # Reducir el contador de animación
+
+        # Determina el color según la puntuación
         if self.puntos < 500:
             color_numeros = NUMEROS_BLANCOS
         elif self.puntos < 1500:
@@ -124,10 +130,7 @@ class Puntos:
         pos_x = x
 
         for num in puntuacion_str:
-            # Convierte el carácter a un entero
             num = int(num)
-
-            # Obtiene el sprite correspondiente al dígito
             sprite = color_numeros[str(num)]
             sprite_x, sprite_y = sprite["Coordenadas"]
             sprite_w, sprite_h = sprite["Tamaño"]
@@ -140,5 +143,4 @@ class Puntos:
                 sprite_w, sprite_h, # Tamaño del sprite
                 colkey=0            # Color transparente
             )
-            # Incrementa la posición x para el siguiente dígito
             pos_x += sprite_w + 1  # Espacio entre los dígitos
