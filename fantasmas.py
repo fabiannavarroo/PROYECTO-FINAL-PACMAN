@@ -13,7 +13,9 @@ class Fantasma:
         self.direccion_actual = "DERECHA"  # Comienza moviéndose hacia la derecha
         self.en_trampa = True  # El fantasma empieza en la trampa
 
-    def salir_trampa(self):
+    #def salir_trampa(self):
+    
+    def perseguir(self, pacman_x, pacman_y):
         
 
             
