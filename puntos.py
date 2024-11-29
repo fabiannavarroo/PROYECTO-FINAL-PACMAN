@@ -108,16 +108,16 @@ class Puntos:
         # Coordenada inicial para el primer dígito
         pos_x = x
 
-        for digito in puntuacion_str:
+        for num in puntuacion_str:
             # Convierte el carácter a un entero
-            digito = int(digito)
+            num = int(num)
 
             # Obtiene el sprite correspondiente al dígito
-            sprite = TEXTO[str(digito)]
+            sprite = TEXTO[str(num)]
             sprite_x, sprite_y = sprite["Coordenadas"]
             sprite_w, sprite_h = sprite["Tamaño"]
 
-            # Dibuja el dígito
+            # Dibuja el numero
             pyxel.blt(
                 pos_x, y,           # Coordenadas en pantalla
                 0,                  # Banco de imágenes
