@@ -41,13 +41,13 @@ OBJETOS = {
     "REGALO_BRILLANTE": {"Coordenadas": (32,32), "Puntos": 15}, # 98
     "BASTON": {"Coordenadas": (48,16), "Puntos": 10}, # 0
     "CEREZA" : {"Coordenadas": (0, 128), "Puntos": 20}, # 97
-    "FRESA" : {"Coordenadas":(16, 128), "Puntos": 30}, # 9
-    "NARANJA" : {"Coordenadas":(32, 128), "Puntos": 40}, # 9
-    "MANZANA" : {"Coordenadas":(48, 128), "Puntos": 50}, # 9
-    "MELON" : {"Coordenadas":(0, 144), "Puntos": 60}, # 9
-    "PARAGUAS" : {"Coordenadas":(16, 144), "Puntos": 70}, # 9 
-    "CAMPANA" : {"Coordenadas":(32, 144), "Puntos": 80}, # 9
-    "LLAVE" : {"Coordenadas":(48, 144), "Puntos": 90}, # 9
+    "FRESA" : {"Coordenadas":(16, 128), "Puntos": 30}, # 96
+    "NARANJA" : {"Coordenadas":(32, 128), "Puntos": 40}, # 95
+    "MANZANA" : {"Coordenadas":(48, 128), "Puntos": 50}, # 94
+    "MELON" : {"Coordenadas":(0, 144), "Puntos": 60}, # 93
+    "PARAGUAS" : {"Coordenadas":(16, 144), "Puntos": 70}, # 92 
+    "CAMPANA" : {"Coordenadas":(32, 144), "Puntos": 80}, # 91
+    "LLAVE" : {"Coordenadas":(48, 144), "Puntos": 90}, # 90
     }
 
 #---------MUROS---------#
