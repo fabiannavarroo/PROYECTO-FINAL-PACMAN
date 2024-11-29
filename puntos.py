@@ -8,6 +8,7 @@ class Puntos:
         self.sprite = sprite
         self.pacman = pacman
         self.puntos = 0
+        self.animacion_frames = 0  # Contador para controlar la animación
 
     def draw(self):
 
@@ -100,6 +101,10 @@ class Puntos:
 
             # Eliminar el objeto del mapa
             self.muro.mapa[pacman_y][pacman_x] = -1
+
+            # Iniciar animación si se supera un múltiplo de 1000 puntos
+            if self.puntos % 1000 == 0:
+                self.animacion_frames = 30 
 
     def ver_puntuacion(self, x, y):
         # Determina el diccionario de colores basado en la puntuación
