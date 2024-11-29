@@ -99,11 +99,11 @@ NUMEROS={
     "2": {"Coordenadas": (16, 216), "Tamaño": (8, 8)},
     "3": {"Coordenadas": (24, 216), "Tamaño": (8, 8)},
     "4": {"Coordenadas": (32, 216), "Tamaño": (8, 8)},
-    "5": {"Coordenadas": (, 216), "Tamaño": (8, 8)},
-    "6": {"Coordenadas": (, 216), "Tamaño": (8, 8)},
-    "7": {"Coordenadas": (, 216), "Tamaño": (8, 8)},
-    "8": {"Coordenadas": (, 216), "Tamaño": (8, 8)},
-    "9": {"Coordenadas": (, 216), "Tamaño": (8, 8)},
+    "5": {"Coordenadas": (40, 216), "Tamaño": (8, 8)},
+    "6": {"Coordenadas": (48, 216), "Tamaño": (8, 8)},
+    "7": {"Coordenadas": (56, 216), "Tamaño": (8, 8)},
+    "8": {"Coordenadas": (64, 216), "Tamaño": (8, 8)},
+    "9": {"Coordenadas": (72, 216), "Tamaño": (8, 8)},
 }
 #--------OTROS---------#
 REFRESH = 4
