@@ -117,6 +117,7 @@ class Puntos:
     def aparecer_fruta(self):
 
         objetos_dispo = ["CREZA","FRESA","NARANJA","MANZANA","MELON","PARAGUAS","CAMPANA","LLAVE"]
+        objeto_seleccionado = random.choice(objetos_dispo)
         # Encuentra las celdas vacías
         celdas_vacias = self.encontrar_celdas_vacias()
 
@@ -132,7 +133,7 @@ class Puntos:
         x_destino, y_destino = random.choice(celdas_vacias)
 
         # Colocar la fruta en la posición inicial
-        self.muro.mapa[y_inicial][x_inicial] = random.choice  # Elige una fruta al azar
+        self.muro.mapa[y_inicial][x_inicial] = objeto_seleccionado  # Pone el objeto en la poscion inical
 
         # Mover la fruta gradualmente al destino
         while (x_inicial, y_inicial) != (x_destino, y_destino):
@@ -146,6 +147,6 @@ class Puntos:
             elif y_inicial > y_destino:
                 y_inicial -= 1
 
-            self.muro.mapa[y_inicial][x_inicial] = 99  # Actualiza la posición de la fruta
+            self.muro.mapa[y_inicial][x_inicial] = objeto_seleccionado  # Actualiza la posición de la fruta
             pyxel.flip()  # Actualiza la pantalla para reflejar el cambio
             time.sleep(0.1)  # Simula el movimiento lento
