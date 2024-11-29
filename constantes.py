@@ -86,7 +86,7 @@ PORTALES={
 
 #---------------TEXTO--------------#
 TEXTO={
-    "RE_AMARILLO": {"Coordenadas": (32, 192), "Tamaño": (16, 16)},
+    "RE_AMARILLO": {"Coordenadas": (32, 192), "Tamaño": (64, 16)},
     "AD_AMARILLO": {"Coordenadas": (48, 192), "Tamaño": (16, 16)},
     "Y!_AMARILLO": {"Coordenadas": (64, 192), "Tamaño": (16, 16)},  
     "HI_BLANCO":   {"Coordenadas": (0, 168), "Tamaño": (16, 16)},
