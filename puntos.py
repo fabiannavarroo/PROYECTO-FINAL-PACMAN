@@ -9,6 +9,7 @@ class Puntos:
         self.sprite = sprite
         self.pacman = pacman
         self.puntos = 0
+        self.puntos_alcanzados = 0
 
     def draw(self):
 
@@ -106,8 +107,10 @@ class Puntos:
         # Determina el color de los numero
         colores_dispo = [NUMEROS_BLANCOS,NUMEROS_MORADOS,NUMEROS_NARANJAS,NUMEROS_VERDES]
         color_numeros = NUMEROS_BLANCOS
-        if self.puntos // 500 == 0:
-            color_numeros = random.choice(colores_dispo)
+        # Cambia el color solo cuando se supera un nuevo múltiplo de 500
+        if self.puntos // 500 > self.umbral_actual:
+            self.umbral_actual = self.puntos // 500  # Actualiza el umbral
+            self.color_actual = random.choice(colores_dispo)  # Elige un nuevo color aleatorio
         # Convierte la puntuación en una cadena para obtener los dígitos
         puntuacion_str = str(self.puntos)
 
