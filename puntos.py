@@ -84,7 +84,7 @@ class Puntos:
         for y in range (len(self.muro.mapa)):
             for x in range(len(self.muro.mapa[y])):
                 if self.muro.mapa[y][x] in [0,98] and self.pacman.x == x and self.pacman.y == y:
-                    self.muro.mapa[y][x] = -1
+                    print("COMIDA")
                     if self.muro.mapa[y][x] == 0:
                         tipo_consumible = "BASTON"
                     elif self.muro.mapa[y][x] == 98:
