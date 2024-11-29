@@ -132,47 +132,27 @@ class Puntos:
                     celdas_vacias.append((x, y))  # Guarda las coordenadas de las celdas vacías
         return celdas_vacias
 
-    def aparecer_fruta(self):
-        # Verificar si han pasado 30 segundos desde la última fruta
-        if time.time() - self.ultimo_tiempo_fruta < 30:
-            return  # No hacer nada si el cooldown no ha terminado
+    def mover_fruta(self):
+        if not self.posicion_actual or not self.posicion_destino:
+            return  # Nada que mover
 
-        
-        # Encuentra las celdas vacías
-        celdas_vacias = self.encontrar_celdas_vacias()
+        x_actual, y_actual = self.posicion_actual
+        x_destino, y_destino = self.posicion_destino
 
-        # Si no hay celdas vacías, no hacer nada
-        if not celdas_vacias:
+        if (x_actual, y_actual) == (x_destino, y_destino):
+            self.posicion_actual = None  # Movimiento completado
+            self.posicion_destino = None
             return
-        
-        # Elige una fruta o objeto de forma random
-        objetos_dispo = ["CREZA","FRESA","NARANJA","MANZANA","MELON","PARAGUAS","CAMPANA","LLAVE"]
-        objeto_seleccionado = random.choice(objetos_dispo)
-        # Generar una posición inicial en los portales del mapa
-        x_inicial = random.choice([0, 26])  
-        y_inicial = 13
 
-        # Elegir un destino aleatorio entre las celdas vacías
-        x_destino, y_destino = random.choice(celdas_vacias)
+        # Mover hacia el destino
+        if x_actual < x_destino:
+            x_actual += 1
+        elif x_actual > x_destino:
+            x_actual -= 1
 
-        # Colocar la fruta en la posición inicial
-        self.muro.mapa[y_inicial][x_inicial] = objeto_seleccionado  # Pone el objeto en la poscion inical
+        if y_actual < y_destino:
+            y_actual += 1
+        elif y_actual > y_destino:
+            y_actual -= 1
 
-        # Mover la fruta gradualmente al destino
-        while (x_inicial, y_inicial) != (x_destino, y_destino):
-            self.muro.mapa[y_inicial][x_inicial] = -1  # Limpia la posición actual
-            if x_inicial < x_destino:
-                x_inicial += 1
-            elif x_inicial > x_destino:
-                x_inicial -= 1
-            if y_inicial < y_destino:
-                y_inicial += 1
-            elif y_inicial > y_destino:
-                y_inicial -= 1
-
-            self.muro.mapa[y_inicial][x_inicial] = objeto_seleccionado  # Actualiza la posición de la fruta
-            pyxel.flip()  # Actualiza la pantalla para reflejar el cambio
-            time.sleep(0.1)  # Simula el movimiento lento
-
-        # Actualiza el tiempo de la última fruta generada
-        self.ultimo_tiempo_fruta = time.time()
+        self.posicion_actual = (x_actual, y_actual)
