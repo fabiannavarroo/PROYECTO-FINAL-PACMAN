@@ -1,4 +1,4 @@
-from constantes import OBJETOS, REFRESH_REGALOS, TEXTO, NUMEROS
+from constantes import OBJETOS, REFRESH_REGALOS, TEXTO, NUMEROS_BLANCOS, NUMEROS_NARANJAS, NUMEROS_VERDES, NUMEROS_MORADOS
 from muro import Muro
 import pyxel
 
@@ -107,13 +107,13 @@ class Puntos:
         
         # Coordenada inicial para el primer dígito
         pos_x = x
-
+        
         for num in puntuacion_str:
             # Convierte el carácter a un entero
             num = int(num)
 
             # Obtiene el sprite correspondiente al dígito
-            sprite = NUMEROS[str(num)]
+            sprite = NUMEROS_BLANCOS[str(num)]
             sprite_x, sprite_y = sprite["Coordenadas"]
             sprite_w, sprite_h = sprite["Tamaño"]
 
