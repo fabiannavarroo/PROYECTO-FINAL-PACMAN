@@ -32,7 +32,7 @@ class Tablero:
         self.puntos.draw()
         self.muro.draw()
         self.pacman.draw()
-        self.puntos.ver_puntuacion(188, 16)
+        self.puntos.ver_puntuacion(10, 10)
         for fantasma in self.fantasmas:
             fantasma.draw()
         
