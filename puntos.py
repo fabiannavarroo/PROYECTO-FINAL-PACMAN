@@ -108,7 +108,7 @@ class Puntos:
 
     def ver_puntuacion(self, x, y):
         ver_numeros = True
-        # Si la animación está activa, hace desaparecer y aparecer los números
+        # Si la animación está activa, hace desaparecer y aparecer los numeros
         if self.animacion_frames > 0:
             if self.animacion_frames % 10 < 5:
                 ver_numeros = False  # No dibuja los numeros durante la animación
