@@ -6,7 +6,7 @@ class Muro:
         # Matriz que representa el mapa usando números
         self.mapa = [
             [99, 99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99],
-            [99, 99,  99,  99,  99,  99,  99,  99,  99,  ,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99],
+            [99, 99,  99,  99,  99,  99,  99,  99,  99,  70,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99],
             [99, 99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99],
             [11,2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  7,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  12],  # Fila 1
             [5, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  5,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  5],  # Fila 2
@@ -58,7 +58,7 @@ class Muro:
             # Comprobar si está dentro de los límites del mapa
             if 0 <= fila < len(self.mapa) and 0 <= columna < len(self.mapa[0]):
                 # Si hay un muro, devuelve True
-                if self.mapa[fila][columna] not in [-1,0,69,98,99]:
+                if self.mapa[fila][columna] not in self.otros_objetos:
                     return True
         return False  # No hay colisión
     
@@ -68,7 +68,7 @@ class Muro:
         for fila in range(len(self.mapa)):
             for columna in range(len(self.mapa[0])):
                 tipo_muro = self.mapa[fila][columna]
-                if tipo_muro not in [-1,0,69,98,99]:  # Si no es un espacio vacío
+                if tipo_muro not in self.otros_objetos:  # Si no es un espacio vacío
                     sprite = MUROS[tipo_muro]
                     sprite_x, sprite_y = sprite["Coordenadas"]
                     sprite_w, sprite_h = sprite["Tamaño"]
