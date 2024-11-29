@@ -1,4 +1,4 @@
-from constantes import OBJETOS, REFRESH_REGALOS, TEXTO, NUMEROS
+from constantes import OBJETOS, REFRESH_REGALOS, TEXTO
 from muro import Muro
 import pyxel
 
@@ -80,36 +80,9 @@ class Puntos:
                             sprite_w, sprite_h,  # Tamaño del sprite
                             colkey=0  # Transparencia
                         )
-
-    def ver_puntuacion(self,x,y):
-        # Convierte la puntuación en una str para posteriormente usar una for each y poder pintar cada valor
-        puntuacion_str = str(self.puntos)
-
-        # Posición inicial donde empezar a dibujar
-        pos_x = x
-
-        for num in puntuacion_str:
-            # Convertir el carácter a un entero
-            num = int(num)
-
-            # Obtener los datos del sprite del dígito
-            sprite = NUMEROS[num]
-            sprite_x, sprite_y = sprite["Coordenadas"]
-            sprite_w, sprite_h = sprite["Tamaño"]
-
-            # Dibujar el dígito
-            pyxel.blt(
-                pos_x, y,  # Coordenadas donde se dibuja el dígito
-                0,  # Banco de imágenes
-                sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
-                sprite_w, sprite_h,  # Tamaño del sprite
-                colkey=0  # Transparencia
-            )
-
-            # Mover la posición para el siguiente dígito
-            pos_x += sprite_w + 2  # Separación entre los dígitos 
-            
+        pyxel.text(188, 16,str(self.puntos), 7)  # (x, y, texto, color)
                     
+
     def comer_puntos(self):
         pacman_x = self.pacman.x // self.muro.celda_tamaño  # Índice X en el mapa
         pacman_y = self.pacman.y // self.muro.celda_tamaño  # Índice Y en el mapa
@@ -127,4 +100,6 @@ class Puntos:
 
             # Eliminar el objeto del mapa
             self.muro.mapa[pacman_y][pacman_x] = -1
+
+            # Mostrar puntuación en la esquina superior izquierda
         
