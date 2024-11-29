@@ -36,6 +36,12 @@ class FantasmaRojo(Fantasma):
         diferencia_x = pacman_x - self.x
         diferencia_y = pacman_y - self.y
 
+        # Si las diferencias son muy pequeñas, ajustar para garantizar precisión
+        if abs(diferencia_x) < self.velocidad:
+            diferencia_x = 0
+        if abs(diferencia_y) < self.velocidad:
+            diferencia_y = 0
+
         # Direcciones posibles y sus respectivas coordenadas de movimiento
         direcciones = {
             "DERECHA": (self.x + self.velocidad, self.y),
