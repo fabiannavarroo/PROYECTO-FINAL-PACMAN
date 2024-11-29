@@ -111,10 +111,10 @@ class Puntos:
         # Si la animación está activa, hace desaparecer y aparecer los números
         if self.animacion_frames > 0:
             if self.animacion_frames % 10 < 5:
-                ver_numeros = False  # No dibuja los números durante la animación
+                ver_numeros = False  # No dibuja los numeros durante la animación
             self.animacion_frames -= 1  # Reducir el contador de animación
 
-        # Cuando se cumpla se mostraran los numeros    
+        # Cuando se cumpla se mostraran los números    
         if ver_numeros:
             # Determina el color según la puntuación
             if self.puntos < 500:
