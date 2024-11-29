@@ -29,8 +29,8 @@ class Fantasma:
         pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
 
 class FantasmaRojo(Fantasma):
-    def __init__(self, x, y, muro):
-        super().__init__(x, y, FANTASMA_ROJO, muro)
+    def __init__(self, x, y, muro, pacman):
+        super().__init__(x, y, FANTASMA_ROJO, muro, pacman)
 
     def mover(self, pacman_x, pacman_y):
         # Calcula las diferencias entre las posiciones del fantasma y Pac-Man
