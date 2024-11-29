@@ -95,7 +95,7 @@ class FantasmaRojo(Fantasma):
                     self.y = nueva_y
                     self.direccion_actual = "ARRIBA"
 
-        self.movimiento_basico()
+        
 
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y, muro):
