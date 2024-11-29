@@ -108,5 +108,5 @@ class Puntos:
             for i, char in enumerate(text):
                 for dx in range(tamaño):
                     for dy in range(tamaño):
-                        pyxel.text(x + i * 4 * scale + dx, y + dy, char, color)
+                        pyxel.text(x + i * 4 * tamaño + dx, y + dy, char, color)
         
