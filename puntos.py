@@ -157,3 +157,6 @@ class Puntos:
             self.muro.mapa[y_inicial][x_inicial] = objeto_seleccionado  # Actualiza la posición de la fruta
             pyxel.flip()  # Actualiza la pantalla para reflejar el cambio
             time.sleep(0.1)  # Simula el movimiento lento
+
+        # Actualiza el tiempo de la última fruta generada
+        self.ultimo_tiempo_fruta = time.time()
