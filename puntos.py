@@ -10,6 +10,7 @@ class Puntos:
 
     def draw(self):
 
+        # Poner Los puntos en el mapa
         for y in range (len(self.muro.mapa)):
             for x in range(len(self.muro.mapa[y])):
                 if self.muro.mapa[y][x] == 0:
@@ -23,6 +24,8 @@ class Puntos:
                         sprite_w, sprite_h,  # Tamaño del sprite
                         colkey=0  # Transparencia
                     )
+                
+                # Poner los pastillas de Poder
                 if self.muro.mapa[y][x] == 98:
                     if pyxel.frame_count // REFRESH_REGALOS % 2:
                         sprite = OBJETOS["REGALO_BRILLANTE"]
