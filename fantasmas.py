@@ -21,6 +21,40 @@ class Fantasma:
         nueva_direccion = random.choice(DIRECCIONES) # De forma aleatoria se escoge una direccion
         self.direccion_actual = nueva_direccion # Se le asigna esa direccion a la actual del fantasmas
 
+    def mover(self):
+        # Movimiento segun la direccion del fantasma
+        # Movimiento hacia la derecha
+        if self.direccion_actual == "DERECHA":
+            nueva_x = self.x + self.velocidad
+            if not self.muro.colision:
+                self.x = nueva_x
+            else:
+                self.cambiar_direccion()
+    
+        # Movimiento hacia la izquierda
+        if self.direccion_actual == "IZQUIERDA":
+            nueva_x = self.x - self.velocidad
+            if not self.muro.colision:
+                self.x = nueva_x
+            else:
+                self.cambiar_direccion()
+
+        # Movimiento hacia arriba
+        if self.direccion_actual == "ARRIBA":
+            nueva_y = self.y - self.velocidad
+            if not self.muro.colision:
+                self.y = nueva_y
+            else:
+                self.cambiar_direccion()
+        
+        # Movimiento hacia abajo
+        if self.direccion_actual == "ABAJO":
+            nueva_y = self.y + self.velocidad
+            if not self.muro.colision:
+                self.y = nueva_y
+            else:
+                self.cambiar_direccion()
+
 
     def perseguir(self, pacman_x, pacman_y):
         # Calcula la dirección más directa hacia Pac-Man y actualiza las coordenadas del fantasma.
