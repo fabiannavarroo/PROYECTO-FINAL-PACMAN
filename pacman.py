@@ -66,9 +66,6 @@ class Pacman:
         if (self.x, self.y) in PORTALES:
             self.x, self.y = PORTALES[(self.x, self.y)]
 
-        #Ver las coordenadas del PacMan en la consola
-        print("Pacman:", self.x, self.y, end="\n")
-
     def draw(self):
         # Alternar entre sprites para la animación
         if pyxel.frame_count // REFRESH % 2 == 0:
