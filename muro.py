@@ -36,7 +36,7 @@ class Muro:
         # Tamaño de cada celda en píxeles
         self.celda_tamaño = 16 
         self.otros_objetos = [-1,0,69,70,98,99]
-        print(f"Dimensiones del mapa: {len(self.muro.mapa)} filas x {len(self.muro.mapa[0])} columnas")
+        
 
 
     def colision(self, x, y):
