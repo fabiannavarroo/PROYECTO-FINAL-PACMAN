@@ -1,6 +1,7 @@
 from constantes import *
 import random
 from muro import Muro
+import time
 import pyxel
 
 class Puntos:
@@ -139,3 +140,5 @@ class Puntos:
             pos_x += sprite_w + 1  # Espacio entre los dígitos
 
     def aparecer_frutas(self, x, y):
+        time.sleep(30)
+        
