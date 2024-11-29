@@ -91,7 +91,7 @@ class Puntos:
             # Cuando se tratra de un punto normal
             if self.muro.mapa[pacman_y][pacman_x] == 0:
                 tipo_consumible = "BASTON"
-            # Cuando es es una pastilla de poder
+            # Cuando es una pastilla de poder
             elif self.muro.mapa[pacman_y][pacman_x] == 98:
                 tipo_consumible = "REGALO"
 
