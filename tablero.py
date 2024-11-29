@@ -25,7 +25,6 @@ class Tablero:
     def update(self):
         self.puntos.comer_puntos()
         self.pacman.mover()
-        
         self.fantasmas[0].mover(self.pacman.x, self.pacman.y)
 
     def draw(self):
@@ -33,6 +32,7 @@ class Tablero:
         self.puntos.draw()
         self.muro.draw()
         self.pacman.draw()
+        self.puntos.ver_puntuacion(188, 16)
         for fantasma in self.fantasmas:
             fantasma.draw()
         
