@@ -114,7 +114,7 @@ class Puntos:
                 ver_numeros = False  # No dibuja los numeros durante la animación
             self.animacion_frames -= 1  # Reducir el contador de animación
 
-        # Cuando se cumpla se mostraran los números    
+        # Cuando se cumpla se mostraran los numeros    
         if ver_numeros:
             # Determina el color segun la puntuación
             if self.puntos < 500:
