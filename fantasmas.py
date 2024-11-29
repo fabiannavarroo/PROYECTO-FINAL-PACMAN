@@ -42,7 +42,9 @@ class Fantasma:
                     self.direccion_actual = "ABAJO"
             else:
                 nueva_y = self.y - self.velocidad
-                if not self
+                if not self.muro.colision:
+                    self.y = nueva_y
+                    self.direccion_actual = "ARRIBA"
             
                 
     # Dibujar el sprite del fantasma en la dirección correspondiente.
