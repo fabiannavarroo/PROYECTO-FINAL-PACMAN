@@ -9,8 +9,8 @@ class Puntos:
         self.sprite = sprite
         self.pacman = pacman
         self.puntos = 0
-        self.puntos_alcanzados = 0
-        self.color_actual = NUMEROS_BLANCOS 
+        self.puntos_alcanzados = 0 # Rango de 500 en 500 de la ultima meta alcanzada de puntos 
+        self.color_actual = NUMEROS_BLANCOS # Color de los numeros
 
     def draw(self):
 
