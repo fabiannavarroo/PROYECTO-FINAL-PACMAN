@@ -55,6 +55,9 @@ class Muro:
             fila = int(py // self.celda_tamaño)
             columna = int(px // self.celda_tamaño)
 
+            # Imprimir las coordenadas y las celdas para verificar la lógica
+            print(f"Verificando colisión en fila={fila}, columna={columna}, valor={self.mapa[fila][columna] if 0 <= fila < len(self.mapa) and 0 <= columna < len(self.mapa[0]) else 'fuera de límites'}")
+
             # Comprobar si está dentro de los límites del mapa
             if 0 <= fila < len(self.mapa) and 0 <= columna < len(self.mapa[0]):
                 # Si hay un muro, devuelve True
