@@ -40,39 +40,45 @@ class FantasmaRojo(Fantasma):
         if abs(diferencia_x) > abs(diferencia_y):
             # Prioriza el movimiento en el eje X
             if diferencia_x > 0:  # Pac-Man está a la derecha
-                nueva_x = self.x + self.velocidad
-                if not self.muro.colision(nueva_x, self.y):
-                    self.x = nueva_x
-                    self.direccion_actual = "DERECHA"
-                else:
-                    # Si hay colisión, intenta mover en Y
-                    self.intentar_mover_en_y(diferencia_y)
+                self.intentar_mover("DERECHA", diferencia_y)
             else:  # Pac-Man está a la izquierda
-                nueva_x = self.x - self.velocidad
-                if not self.muro.colision(nueva_x, self.y):
-                    self.x = nueva_x
-                    self.direccion_actual = "IZQUIERDA"
-                else:
-                    # Si hay colisión, intenta mover en Y
-                    self.intentar_mover_en_y(diferencia_y)
+                self.intentar_mover("IZQUIERDA", diferencia_y)
         else:
             # Prioriza el movimiento en el eje Y
             if diferencia_y > 0:  # Pac-Man está abajo
-                nueva_y = self.y + self.velocidad
-                if not self.muro.colision(self.x, nueva_y):
-                    self.y = nueva_y
-                    self.direccion_actual = "ABAJO"
-                else:
-                    # Si hay colisión, intenta mover en X
-                    self.intentar_mover_en_x(diferencia_x)
+                self.intentar_mover("ABAJO", diferencia_x)
             else:  # Pac-Man está arriba
-                nueva_y = self.y - self.velocidad
-                if not self.muro.colision(self.x, nueva_y):
-                    self.y = nueva_y
-                    self.direccion_actual = "ARRIBA"
-                else:
-                    # Si hay colisión, intenta mover en X
-                    self.intentar_mover_en_x(diferencia_x)
+                self.intentar_mover("ARRIBA", diferencia_x)
+
+    def intentar_mover(self, direccion, diferencia_opuesta):
+        if direccion == "DERECHA":
+            nueva_x = self.x + self.velocidad
+            if not self.muro.colision(nueva_x, self.y):
+                self.x = nueva_x
+                self.direccion_actual = "DERECHA"
+            else:
+                self.intentar_mover_en_y(diferencia_opuesta)
+        elif direccion == "IZQUIERDA":
+            nueva_x = self.x - self.velocidad
+            if not self.muro.colision(nueva_x, self.y):
+                self.x = nueva_x
+                self.direccion_actual = "IZQUIERDA"
+            else:
+                self.intentar_mover_en_y(diferencia_opuesta)
+        elif direccion == "ABAJO":
+            nueva_y = self.y + self.velocidad
+            if not self.muro.colision(self.x, nueva_y):
+                self.y = nueva_y
+                self.direccion_actual = "ABAJO"
+            else:
+                self.intentar_mover_en_x(diferencia_opuesta)
+        elif direccion == "ARRIBA":
+            nueva_y = self.y - self.velocidad
+            if not self.muro.colision(self.x, nueva_y):
+                self.y = nueva_y
+                self.direccion_actual = "ARRIBA"
+            else:
+                self.intentar_mover_en_x(diferencia_opuesta)
 
     def intentar_mover_en_y(self, diferencia_y):
         if diferencia_y > 0:  # Pac-Man está abajo
