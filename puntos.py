@@ -9,6 +9,7 @@ class Puntos:
         self.pacman = pacman
         self.puntos = 0
         self.animacion_frames = 0  # Contador para controlar la animación
+        self.puntos_superados = 0 # Para poder ver en q rango se has superado en los puntos
 
     def draw(self):
 
