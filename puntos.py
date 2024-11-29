@@ -103,7 +103,7 @@ class Puntos:
             self.muro.mapa[pacman_y][pacman_x] = -1
 
             # Iniciar animación si se supera un múltiplo de 1000 puntos
-            if self.puntos % 1000 == 0:
+            if self.puntos % 500 == 0:
                 self.animacion_frames = 30 
 
     def ver_puntuacion(self, x, y):
