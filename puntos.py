@@ -76,4 +76,4 @@ class Puntos:
                             sprite_w, sprite_h,  # Tamaño del sprite
                             colkey=0  # Transparencia
                         )
-                
+    def comer_puntos (self):
