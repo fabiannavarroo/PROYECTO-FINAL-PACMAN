@@ -117,6 +117,9 @@ class Puntos:
         return celdas_vacias
 
     def aparecer_fruta(self):
+        # Verificar si han pasado 30 segundos desde la última fruta
+        if time.time() - self.ultimo_tiempo_fruta < 30:
+            return  # No hacer nada si el cooldown no ha terminado
 
         objetos_dispo = ["CREZA","FRESA","NARANJA","MANZANA","MELON","PARAGUAS","CAMPANA","LLAVE"]
         objeto_seleccionado = random.choice(objetos_dispo)
