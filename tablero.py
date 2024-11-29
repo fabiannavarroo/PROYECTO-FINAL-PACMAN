@@ -19,6 +19,8 @@ class Tablero:
             FantasmaAzul(192, 190, self.muro),
             FantasmaNaranja(208, 190, self.muro)
         ]
+        # Verificar la posición inicial del fantasma rojo
+        print(f"Posición inicial del Fantasma Rojo: x=160, y=158, transitabilidad={not self.muro.colision(160, 158)}")
 
         pyxel.run(self.update, self.draw)
 
