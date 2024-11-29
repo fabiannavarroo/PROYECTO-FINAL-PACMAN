@@ -115,6 +115,8 @@ class Puntos:
         return celdas_vacias
 
     def aparecer_fruta(self):
+
+        objetos_dispo = ["CREZA","FRESA","NARANJA","MANZANA","MELON","PARAGUAS","CAMPANA","LLAVE"]
         # Encuentra las celdas vacías
         celdas_vacias = self.encontrar_celdas_vacias()
 
@@ -130,7 +132,7 @@ class Puntos:
         x_destino, y_destino = random.choice(celdas_vacias)
 
         # Colocar la fruta en la posición inicial
-        self.muro.mapa[y_inicial][x_inicial] = 55  #
+        self.muro.mapa[y_inicial][x_inicial] = random.choice  #
 
         # Mover la fruta gradualmente al destino
         while (x_inicial, y_inicial) != (x_destino, y_destino):
