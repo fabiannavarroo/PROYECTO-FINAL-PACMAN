@@ -47,6 +47,8 @@ class Puntos:
                         sprite_w, sprite_h,  # Tamaño del sprite
                         colkey=0  # Transparencia
                     )
+                    self.dibujar_letras_mapa(69, "READY!")
+
         self.ver_puntuacion(188, 16)  # Mostrar la puntuación
 
     def dibujar_letras_mapa (self, num, sprite):
