@@ -18,8 +18,10 @@ class Fantasma:
     def cambiar_direccion(self):
         # Direcciones que puede tener los fantasmas
         DIRECCIONES = ["ARRIBA", "ABAJO", "DERECHA", "IZQUIERDA"]
-        nueva_direccion = random.choice(DIRECCIONES)
-        self.direccion_actual = nueva_direccion
+        nueva_direccion = random.choice(DIRECCIONES) # De forma aleatoria se escoge una direccion
+        self.direccion_actual = nueva_direccion # Se le asigna esa direccion a la actual del fantasmas
+
+
     def perseguir(self, pacman_x, pacman_y):
         # Calcula la dirección más directa hacia Pac-Man y actualiza las coordenadas del fantasma.
         diferencia_x = pacman_x - self.x
