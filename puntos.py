@@ -80,13 +80,17 @@ class Puntos:
                             sprite_w, sprite_h,  # Tamaño del sprite
                             colkey=0  # Transparencia
                         )
-    def comer_puntos (self):
-        for y in range (len(self.muro.mapa)):
+    def comer_puntos(self):
+        for y in range(len(self.muro.mapa)):
             for x in range(len(self.muro.mapa[y])):
-                if self.muro.mapa[y][x] in [0,98] and self.pacman.x == x and self.pacman.y == y:
+                if self.muro.mapa[y][x] in [0, 98] and self.pacman.x == x and self.pacman.y == y:
                     print("COMIDA")
                     if self.muro.mapa[y][x] == 0:
                         tipo_consumible = "BASTON"
                     elif self.muro.mapa[y][x] == 98:
                         tipo_consumible = "REGALO"
+                    
                     self.puntos += OBJETOS[tipo_consumible]["Puntos"]
+                    
+                    # Actualiza el mapa para indicar que el punto fue consumido
+                    self.muro.mapa[y][x] = -1  # Usa un valor que indique que el espacio está vacío
