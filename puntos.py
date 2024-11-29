@@ -88,12 +88,12 @@ class Puntos:
         # Posición inicial donde empezar a dibujar
         pos_x = x
 
-        for digito in puntuacion_str:
+        for num in puntuacion_str:
             # Convertir el carácter a un entero
-            digito = int(digito)
+            num = int(num)
 
             # Obtener los datos del sprite del dígito
-            sprite = NUMEROS[digito]
+            sprite = NUMEROS[num]
             sprite_x, sprite_y = sprite["Coordenadas"]
             sprite_w, sprite_h = sprite["Tamaño"]
 
