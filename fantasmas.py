@@ -36,31 +36,41 @@ class FantasmaRojo(Fantasma):
         diferencia_x = pacman_x - self.x
         diferencia_y = pacman_y - self.y
 
-        # Movimiento en el eje X
-        if abs(diferencia_x) > abs(diferencia_y):  # Si la distancia en X es mayor
+        movimientos_realizados = 0  # Para rastrear intentos exitosos de movimiento
+
+        # Prioridad al eje X si la distancia en X es mayor
+        if abs(diferencia_x) > abs(diferencia_y):
             if diferencia_x > 0:  # Pac-Man está a la derecha
                 nueva_x = self.x + self.velocidad
-                if not self.muro.colision(nueva_x, self.y):  # Verificar colisión
+                if not self.muro.colision(nueva_x, self.y):
                     self.x = nueva_x
                     self.direccion_actual = "DERECHA"
+                    movimientos_realizados += 1
             else:  # Pac-Man está a la izquierda
                 nueva_x = self.x - self.velocidad
-                if not self.muro.colision(nueva_x, self.y):  # Verificar colisión
+                if not self.muro.colision(nueva_x, self.y):
                     self.x = nueva_x
                     self.direccion_actual = "IZQUIERDA"
+                    movimientos_realizados += 1
 
-        # Movimiento en el eje Y
-        else:
+        # Intentar moverse en el eje Y si no se logró mover en X
+        if movimientos_realizados == 0:
             if diferencia_y > 0:  # Pac-Man está abajo
                 nueva_y = self.y + self.velocidad
-                if not self.muro.colision(self.x, nueva_y):  # Verificar colisión
+                if not self.muro.colision(self.x, nueva_y):
                     self.y = nueva_y
                     self.direccion_actual = "ABAJO"
+                    movimientos_realizados += 1
             else:  # Pac-Man está arriba
                 nueva_y = self.y - self.velocidad
-                if not self.muro.colision(self.x, nueva_y):  # Verificar colisión
+                if not self.muro.colision(self.x, nueva_y):
                     self.y = nueva_y
                     self.direccion_actual = "ARRIBA"
+                    movimientos_realizados += 1
+
+        # Cambiar dirección aleatoriamente si no logró moverse
+        if movimientos_realizados == 0:
+            self.cambiar_direccion()
 
         
 
