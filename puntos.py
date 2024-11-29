@@ -81,34 +81,34 @@ class Puntos:
                             colkey=0  # Transparencia
                         )
         
-    def draw_puntuacion(self, x, y):
-    # Convierte la puntuación en una cadena para iterar sobre los dígitos
-    puntuacion_str = str(self.puntos)
+    def draw_puntuacion(self,y):
+        # Convierte la puntuación en una str para posteriormente usar una for each y poder pintar cada valor
+        puntuacion_str = str(self.puntos)
 
-    # Posición inicial donde empezar a dibujar
-    pos_x = x
+        # Posición inicial donde empezar a dibujar
+        pos_x = x
 
-    for digito in puntuacion_str:
-        # Convertir el carácter a un entero
-        digito = int(digito)
+        for digito in puntuacion_str:
+            # Convertir el carácter a un entero
+            digito = int(digito)
 
-        # Obtener los datos del sprite del dígito
-        sprite = NUMEROS[digito]
-        sprite_x, sprite_y = sprite["Coordenadas"]
-        sprite_w, sprite_h = sprite["Tamaño"]
+            # Obtener los datos del sprite del dígito
+            sprite = NUMEROS[digito]
+            sprite_x, sprite_y = sprite["Coordenadas"]
+            sprite_w, sprite_h = sprite["Tamaño"]
 
-        # Dibujar el dígito
-        pyxel.blt(
-            pos_x, y,  # Coordenadas donde se dibuja el dígito
-            0,  # Banco de imágenes
-            sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
-            sprite_w, sprite_h,  # Tamaño del sprite
-            colkey=0  # Transparencia
-        )
+            # Dibujar el dígito
+            pyxel.blt(
+                pos_x, y,  # Coordenadas donde se dibuja el dígito
+                0,  # Banco de imágenes
+                sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
+                sprite_w, sprite_h,  # Tamaño del sprite
+                colkey=0  # Transparencia
+            )
 
-        # Mover la posición para el siguiente dígito
-        pos_x += sprite_w + 2  # Separación entre los dígitos 
-        
+            # Mover la posición para el siguiente dígito
+            pos_x += sprite_w + 2  # Separación entre los dígitos 
+            
                     
     def comer_puntos(self):
         pacman_x = self.pacman.x // self.muro.celda_tamaño  # Índice X en el mapa
