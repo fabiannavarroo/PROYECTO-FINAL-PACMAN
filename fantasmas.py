@@ -27,7 +27,7 @@ class Fantasma:
     def cambiar_color_asustado(self):
         # Alternar entre azul y blanco si está asustado
         if pyxel.frame_count // REFRESH % 2:  # Últimos 2 segundos
-            if self.color_actual == FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]:
+            self.color_actual == FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]:
         else:
             self.color_actual = FANTASMAS_ASUSTADOS["BLANCO"]["Coordenadas"]
 
