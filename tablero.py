@@ -66,7 +66,7 @@ class Tablero:
         # Eliminar todos los puntos y fantasmas del tablero
         for y in range(len(self.muro.mapa)):
             for x in range(len(self.muro.mapa[y])):
-                if self.muro.mapa[y][x] not in OBJETOS_MURO:
+                if self.muro.mapa[y][x] not in [MUROS, TEXTO]:
                     self.muro.mapa[y][x] = -1
 
     def mostrar_game_over(self):
