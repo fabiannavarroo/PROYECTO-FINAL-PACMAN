@@ -22,9 +22,9 @@ class Tablero:
             FantasmaAzul(192, 190, self.muro),
             FantasmaNaranja(208, 190, self.muro)
         ]
-        
+
         # Iniciar los puntos
-        self.puntos = Puntos(self.muro, OBJETOS, self.pacman) 
+        self.puntos = Puntos(self.muro, OBJETOS, self.pacman, self.fantasmas) 
 
         pyxel.run(self.update, self.draw)
 
