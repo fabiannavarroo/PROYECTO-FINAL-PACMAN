@@ -42,7 +42,7 @@ class Fantasma:
     def draw(self):
         # Dibujar el fantasma en su estado correspondiente
         if self.asustado:
-            # Cambiar entre azul y blanco basado en el contador de frames
+            # Cambiar entre azul y blanco
             if pyxel.frame_count // REFRESH % 2 == 0:
                 sprite = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
             else:
