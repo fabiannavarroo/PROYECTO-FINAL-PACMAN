@@ -106,14 +106,20 @@ class Pacman:
         for fantasma in fantasmas:
             fantasma_x = fantasma.x // self.muro.celda_tamaño
             fantasma_y = fantasma.y // self.muro.celda_tamaño
+
             if pacman_x == fantasma_x and pacman_y == fantasma_y:
                 if fantasma.asustado:
-                    fantasma.volver_a_trampa()  # Si está asustado, regresa a la trampa
+                    fantasma.volver_a_trampa()
                 else:
-                    self.vidas -= 1  # Si no está asustado, Pacman pierde una vida
-                    self.reiniciar_posicion()  # Reiniciar posición
+                    self.vidas -= 1
+                    self.reiniciar_posicion()
+                    # Reiniciar fantasmas
+                    for f in fantasmas:
+                        f.volver_a_trampa()
+                    fantasmas[0].x, fantasmas[0].y = 200, 160  # Rojo fuera de la trampa
+                    pyxel.sleep(2)  # Esperar 2 segundos
                     if self.vidas <= 0:
-                        self.dibujar_letras_mapa(71, "GAME OVER")
+                        self.game_over()
 
     def dibujar_letras_mapa(self, num, sprite):
         # Dibuja las letras en las posiciones indicadas por el mapa
