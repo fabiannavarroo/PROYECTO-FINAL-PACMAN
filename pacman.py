@@ -92,9 +92,6 @@ class Pacman:
             else:
                 sprite_x, sprite_y = PACMAN
 
-        if pyxel.btnp(pyxel.KEY_P):
-            self.vidas = 0
-
         # Dibujar el sprite de PacMan
         pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
 
