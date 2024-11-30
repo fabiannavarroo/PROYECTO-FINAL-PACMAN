@@ -107,8 +107,7 @@ class Pacman:
                     if self.vidas > 0:
                         self.mostrar_posiciones_iniciales(fantasmas)  # Mostrar posiciones iniciales
                         time.sleep(2)  # Pausa de 2 segundos tras la muerte
-                    else:
-                        self.game_over()  # Mostrar Game Over
+                    
 
     def draw(self, fantasmas):
         # Dibujar Pac-Man o animación de muerte
