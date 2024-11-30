@@ -36,6 +36,7 @@ class Tablero:
         for fantasma in self.fantasmas:
             fantasma.trampa()
             fantasma.actualizar_estado()
+        self.pacman.colision_fantasmas
 
     def draw(self):
         pyxel.cls(0)
