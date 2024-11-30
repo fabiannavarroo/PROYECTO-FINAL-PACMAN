@@ -162,7 +162,7 @@ class Puntos:
                 )
             self.animacion_contador += 1
         else:
-            # Detiene la animación y dibuja la fruta normalmente
+            # Detiene la animación y dibuja la fruta 
             self.animacion_activa = False
             sprite = OBJETOS[self.fruta_actual]
             sprite_x, sprite_y = sprite["Coordenadas"]
