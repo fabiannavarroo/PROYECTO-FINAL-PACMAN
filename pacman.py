@@ -13,9 +13,10 @@ class Pacman:
         self.vidas = 3  # Pac-Man empieza con 3 vidas
         self.animacion_frame = 0
         self.en_muerte = False  # Indica si Pac-Man está en animación de muerte
+        self.reiniciando = False  # Estado para evitar colisiones durante el reinicio
 
     def mover(self):
-        if self.vidas <= 0:  # Si no hay vidas, no se mueve
+        if self.vidas <= 0 or self.en_muerte or self.reiniciando:  # Si no hay vidas, está en muerte o reiniciando, no se mueve
             return False
 
         nueva_x, nueva_y = self.x, self.y
@@ -62,7 +63,7 @@ class Pacman:
             self.x, self.y = PORTALES[(self.x, self.y)]
 
     def colision_fantasmas(self, fantasmas):
-        if self.en_muerte or self.vidas <= 0:  # Si está muerto o sin vidas, no verifica colisiones
+        if self.en_muerte or self.reiniciando or self.vidas <= 0:  # Si está muerto, reiniciando o sin vidas, no verifica colisiones
             return False
 
         pacman_x = self.x // self.muro.celda_tamaño
@@ -83,7 +84,7 @@ class Pacman:
         self.en_muerte = True
         self.animacion_frame = 0
 
-    def animar_muerte(self):
+    def animar_muerte(self, fantasmas):
         if not self.en_muerte:
             return False
 
@@ -93,14 +94,22 @@ class Pacman:
             if pyxel.frame_count % 5 == 0:  # Cambiar cada 5 frames
                 self.animacion_frame += 1
         else:
-            self.en_muerte = False  # Finaliza animación de muerte
+            self.en_muerte = False
+            self.reiniciar_posiciones(fantasmas)  # Reiniciar tras la animación
 
-    def draw(self):
+    def reiniciar_posiciones(self, fantasmas):
+        # Reiniciar posiciones de Pac-Man y fantasmas después de la animación
+        self.x, self.y = 208, 288  # Posición inicial de Pac-Man
+        for fantasma in fantasmas:
+            fantasma.volver_a_posicion_inicial()
+        self.reiniciando = False  # Desactivar estado de reinicio
+
+    def draw(self, fantasmas):
         if self.vidas <= 0:  # Si no hay vidas, no se dibuja
             return False 
 
         if self.en_muerte:
-            self.animar_muerte()
+            self.animar_muerte(fantasmas)
         else:
             if pyxel.frame_count // REFRESH % 2 == 0:
                 sprite_x, sprite_y = self.direccion_actual
@@ -117,7 +126,7 @@ class Pacman:
                     sprite_x, sprite_y = PACMAN
 
             pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
-            
+            self.ver_vidas(10, 10)
 
     def ver_vidas(self, x, y):
         # Dibujar las vidas restantes
