@@ -20,6 +20,7 @@ class Puntos:
         self.animacion_activa = False  # Indica si hay animación activa
         self.animacion_contador = 0  # Contador para animación de aparición
         self.modo_diablo_activo = False  # Indica si está activo el modo diablo
+        self.duracion_modo_diablo = 7
         self.tiempo_inicio_modo_diablo = None  # Momento en que se activa el modo diablo
 
 
