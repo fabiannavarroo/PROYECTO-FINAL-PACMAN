@@ -28,6 +28,12 @@ class Fantasma:
         self.modo_asustado = True
         for fantasma in self.lista_fantasmas:
             fantasma.cambiar_color(FANTASMAS_ASUSTADOS)  # Cambiar al color de "asustado"
+        
+    def desactivar_modo_asustado(self):
+        self.modo_asustado = False
+        for fantasma in self.lista_fantasmas:
+            fantasma.cambiar_color(FANTASMAS_NORMALES)  # Cambiar al color normal
+
 
 
     # Dibujar el sprite del fantasma en la dirección correspondiente.
