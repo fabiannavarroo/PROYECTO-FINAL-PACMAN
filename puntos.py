@@ -196,27 +196,29 @@ class Puntos:
             self.fruta_actual = None
             self.posicion_actual = None
 
-    def activar_modo_diablo(self):
-        self.modo_diablo_activo = True
-        self.tiempo_modo_diablo = time.time()
-        self.modo_asustado = True
-        self.tiempo_asustado = 7 * 30  # 7 segundos a 30 FPS
 
-    def desactivar_modo_asustado(self):
-        self.modo_asustado = False
-        self.tiempo_asustado = 0
-    
+    def activar_modo_diablo(self):
+        """Activa el modo diablo y cambia los fantasmas a estado asustado."""
+        self.modo_diablo_activo = True
+        self.tiempo_inicio_modo_diablo = time.time()  # Registra el momento de activación
+        for fantasma in self.fantasmas:
+            fantasma.activar_modo_asustado()
+
+
     def actualizar_modo_diablo(self):
-        # Verifica si el modo diablo está activo
-        if self.modo_diablo_activo:
-            tiempo_restante = 7 - (time.time() - self.tiempo_inicio_modo_diablo)
-            
-            if tiempo_restante <= 0:
-                # Desactivar modo diablo
-                self.modo_diablo_activo = False
-                for fantasma in self.fantasmas:
-                    fantasma.desactivar_modo_asustado()  # Regresar cada fantasma a su estado normal
-            elif tiempo_restante <= 2:
-                # Alternar entre azul y blanco en los últimos 2 segundos
-                for fantasma in self.fantasmas:
-                    fantasma.toggle_asustado_color()
+        """Actualiza el estado del modo diablo, desactivándolo si corresponde."""
+        if not self.modo_diablo_activo:
+            return  # No hacer nada si el modo diablo no está activo
+
+        # Calcula el tiempo restante
+        tiempo_restante = 7 - (time.time() - self.tiempo_inicio_modo_diablo)
+
+        if tiempo_restante <= 0:
+            # Desactiva el modo diablo
+            self.modo_diablo_activo = False
+            for fantasma in self.fantasmas:
+                fantasma.desactivar_modo_asustado()
+        elif tiempo_restante <= 2:
+            # Alterna los colores de los fantasmas asustados
+            for fantasma in self.fantasmas:
+                fantasma.toggle_asustado_color()
