@@ -10,6 +10,7 @@ class Pacman:
         self.muro = muro  # Referencia a Muro
         self.direccion_actual = PACMAN  # Dirección inicial
         self.direccion_pendiente = None  # Dirección seleccionada por el jugador
+        self.vidas = 3  # Pacman empieza con 3 vidas
 
 
     def mover(self):
