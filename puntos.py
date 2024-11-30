@@ -89,6 +89,7 @@ class Puntos:
                 tipo_consumible = "BASTON"
             elif self.muro.mapa[pacman_y][pacman_x] == 98:
                 tipo_consumible = "REGALO"
+                self.activar_modo_diablo()
 
             # Sumar puntos
             self.puntos += OBJETOS[tipo_consumible]["Puntos"]
@@ -191,3 +192,8 @@ class Puntos:
             self.puntos += OBJETOS[self.fruta_actual]["Puntos"]
             self.fruta_actual = None
             self.posicion_actual = None
+
+    def activar_modo_diablo(self):
+        self.modo_diablo_activo = True
+        self.tiempo_modo_diablo = time.time()
+        self.fantasmas.activar_modo_asustado()
