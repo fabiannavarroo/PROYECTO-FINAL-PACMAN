@@ -62,8 +62,8 @@ class Pacman:
         if (self.x, self.y) in PORTALES:
             self.x, self.y = PORTALES[(self.x, self.y)]
 
-    def colision_fantasmas(self, fantasmas):
-        if self.en_muerte or self.reiniciando or self.vidas <= 0:  # Si está muerto, reiniciando o sin vidas, no verifica colisiones
+    def colision_fantasmas(self, fantasmas, puntos):
+        if self.en_muerte or self.reiniciando or self.vidas <= 0:  # Si está muerto, reiniciando o sin vidas, no revisa colisiones
             return False
 
         pacman_x = self.x // self.muro.celda_tamaño
@@ -75,14 +75,12 @@ class Pacman:
 
             if pacman_x == fantasma_x and pacman_y == fantasma_y:
                 if fantasma.asustado:
-                    # Si el fantasma está asustado, Pac-Man lo puede comer
-                    self.puntos.puntos += 200  # Añade puntos por comer un fantasma
-                    fantasma.volver_a_trampa()  # Enviar el fantasma a la trampa
-                    return  False 
-                else:
-                    # Si el fantasma no está asustado, Pac-Man pierde una vida
-                    self.perder_vida()
-                    return False 
+                    puntos.puntos += 200  # Añade puntos por comer un fantasma
+                    fantasma.volver_a_trampa()  # Enviar fantasma a la trampa
+                    return  # No procesar más colisiones para este frame
+                elif not self.en_muerte:  # Si no está asustado y Pac-Man no está ya muriendo
+                    self.perder_vida()  # Pac-Man pierde una vida
+                    return  # Salir del bucle al procesar una colisión
 
     def perder_vida(self):
         self.vidas -= 1
