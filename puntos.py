@@ -194,4 +194,16 @@ class Puntos:
             self.posicion_actual = None
 
 
+    def comer_regalo(self):
+        # Detectar si Pacman está en la posición de un regalo (98)
+        pacman_x = self.pacman.x // self.muro.celda_tamaño
+        pacman_y = self.pacman.y // self.muro.celda_tamaño
+
+        if self.muro.mapa[pacman_y][pacman_x] == 98:
+            # Activar el estado asustado para todos los fantasmas
+            for fantasma in self.fantasmas:
+                fantasma.activar_asustado()
+
+            # Eliminar el regalo del mapa
+            self.muro.mapa[pacman_y][pacman_x] = -1
     
