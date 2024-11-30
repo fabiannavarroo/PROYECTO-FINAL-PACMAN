@@ -29,7 +29,7 @@ class Tablero:
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        if self.pacman.vidas>0:
+        if self.pacman.vidas > 0 and not self.pacman.en_muerte: # En caso de que el pacman tenga vidas y no este en la animacion de muerte
             self.pacman.mover()
             self.puntos.comer_puntos()   # Verificar si Pacman comio un punto
             self.puntos.generar_fruta()  # Generar frutas cada 30 segundos
