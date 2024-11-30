@@ -17,7 +17,7 @@ class Pacman:
 
     def mover(self):
         if self.vidas <= 0 or self.en_muerte or self.reiniciando:  # Si no hay vidas, está en muerte o reiniciando, no se mueve
-            return False
+            return
 
         nueva_x, nueva_y = self.x, self.y
 
@@ -64,7 +64,7 @@ class Pacman:
 
     def colision_fantasmas(self, fantasmas):
         if self.en_muerte or self.reiniciando or self.vidas <= 0:  # Si está muerto, reiniciando o sin vidas, no verifica colisiones
-            return False
+            return
 
         pacman_x = self.x // self.muro.celda_tamaño
         pacman_y = self.y // self.muro.celda_tamaño
@@ -76,8 +76,9 @@ class Pacman:
             if pacman_x == fantasma_x and pacman_y == fantasma_y:
                 if fantasma.asustado:
                     fantasma.volver_a_trampa()  # Enviar fantasma a la trampa
-                else:
+                elif not self.en_muerte:  # Si no está asustado y Pac-Man no está ya muriendo
                     self.perder_vida()  # Pac-Man pierde una vida
+                    return  # Salir del bucle al procesar una colisión
 
     def perder_vida(self):
         self.vidas -= 1
@@ -87,7 +88,7 @@ class Pacman:
 
     def animar_muerte(self, fantasmas):
         if not self.en_muerte:
-            return False
+            return
 
         if self.animacion_frame < len(ANIMACION_MUERTE):
             sprite_x, sprite_y = ANIMACION_MUERTE[self.animacion_frame]
@@ -107,7 +108,7 @@ class Pacman:
 
     def draw(self, fantasmas):
         if self.vidas <= 0:  # Si no hay vidas, no se dibuja
-            return False 
+            return
 
         if self.en_muerte:
             self.animar_muerte(fantasmas)
