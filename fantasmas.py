@@ -18,6 +18,7 @@ class Fantasma:
         self.en_trampa = False
         self.tiempo_en_trampa = 0
 
+
     def activar_asustado(self):
         self.asustado = True
         self.tiempo_asustado = time.time()
@@ -29,8 +30,10 @@ class Fantasma:
         self.en_trampa = True
         self.x, self.y = 192, 192  # Coordenadas en la trampa
 
+
     def ocultar(self):
         self.x, self.y = -100, -100  # Sacar del mapa
+
 
     def actualizar_estado(self):
         if self.asustado and time.time() - self.tiempo_asustado > 6:
@@ -40,10 +43,12 @@ class Fantasma:
         if self.en_trampa and time.time() - self.tiempo_en_trampa > 5:
             self.en_trampa = False  # El fantasma sale de la trampa
 
+
     def trampa(self):
         if not self.en_trampa:
             # Lógica de movimiento aquí
             pass
+
 
     def draw(self):
         # Dibujar el fantasma con el color actual
