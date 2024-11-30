@@ -37,7 +37,7 @@ FANTASMA_NARANJA = {
 
 FANTASMAS_ASUSTADOS = {
     "AZUL": {"Coordenadas": (0,112), "Tamaño": (16, 16)},
-    "BLANCO": {"Coordenadas": (16, 112), "Puntos": (16, 16)}
+    "BLANCO": {"Coordenadas": (16, 112), "Tamaño": (16, 16)}
 }
 
 #--------PUNTOS Y FRUTAS---------#
