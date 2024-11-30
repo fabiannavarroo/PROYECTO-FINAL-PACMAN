@@ -24,7 +24,7 @@ class Fantasma:
         self.asustado = False
         self.color_actual = self.sprites["DERECHA"]  # Restaurar al color normal
 
-    def toggle_asustado_color(self):
+    def cambiar_color_asustado(self):
         # Alternar entre azul y blanco si está asustado
         if self.asustado and self.tiempo_asustado <= 2 * 30:  # Últimos 2 segundos
             if self.color_actual == FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]:
