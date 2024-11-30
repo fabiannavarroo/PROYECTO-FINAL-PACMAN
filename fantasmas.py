@@ -1,5 +1,5 @@
 import pyxel
-from constantes import FANTASMA_ROJO, FANTASMA_ROSA, FANTASMA_AZUL, FANTASMA_NARANJA, FANTASMAS_ASUSTADOS, REFRESH
+from constantes import *
 import random
 import time
 
