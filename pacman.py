@@ -59,7 +59,7 @@ class Pacman:
         # Portal 
         if (self.x, self.y) in PORTALES:
             self.x, self.y = PORTALES[(self.x, self.y)]
-            
+
 
     def colision_fantasmas(self, fantasmas):
         if self.en_muerte:
@@ -73,7 +73,7 @@ class Pacman:
             fantasma_y = fantasma.y // self.muro.celda_tamaño
 
             if pacman_x == fantasma_x and pacman_y == fantasma_y:
-                if fantasma.estado_asustado:
+                if fantasma.asustado:
                     fantasma.volver_a_trampa()
                 else:
                     self.perder_vida()
