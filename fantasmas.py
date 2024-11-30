@@ -11,7 +11,6 @@ class Fantasma:
         self.muro = muro # Referencia a la clase Muro
         self.velocidad = 1.5  # Velocidad de los fantasmas
         self.direccion_actual = "DERECHA"  # Comienza moviéndose hacia la derecha
-        self.modo_comer = False
         self.en_trampa = True  # El fantasma empieza en la trampa
 
 
