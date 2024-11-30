@@ -198,7 +198,7 @@ class Puntos:
 
 
     def activar_modo_diablo(self):
-        """Activa el modo diablo y cambia los fantasmas a estado asustado."""
+        #Activa el modo diablo y cambia los fantasmas a estado asustado
         self.modo_diablo_activo = True
         self.tiempo_inicio_modo_diablo = time.time()  # Registra el momento de activación
         for fantasma in self.fantasmas:
@@ -206,7 +206,7 @@ class Puntos:
 
 
     def actualizar_modo_diablo(self):
-        """Actualiza el estado del modo diablo, desactivándolo si corresponde."""
+        #Actualiza el estado del modo diablo, desactivándolo 
         if not self.modo_diablo_activo:
             return  # No hacer nada si el modo diablo no está activo
 
@@ -218,6 +218,7 @@ class Puntos:
             self.modo_diablo_activo = False
             for fantasma in self.fantasmas:
                 fantasma.desactivar_modo_asustado()
+        
             # Alterna los colores de los fantasmas asustados
             for fantasma in self.fantasmas:
                 fantasma.cambiar_color_asustado()
