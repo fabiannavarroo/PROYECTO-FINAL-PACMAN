@@ -39,10 +39,10 @@ class Muro:
         
 
 
-    def colision(self, x, y,tamaño):
+    def colision(self, x, y):
         #Comprueba si hay un muro en la posición (x, y) considerando el tamaño del sprite.
         # Tamaño del sprite de Pac-Man y Fantasmas
-        sprite_tamaño = tamaño
+        sprite_tamaño = 16
 
         # Convertir las coordenadas de los bordes del sprite a índices de la matriz
         puntos_a_verificar = [
