@@ -30,9 +30,13 @@ class Fantasma:
         self.en_trampa = True
         self.x, self.y = 192, 192  # Coordenadas en la trampa
 
-
     def ocultar(self):
         self.x, self.y = -100, -100  # Sacar del mapa
+
+    def mover(self):
+        if not self.en_trampa:
+            # Lógica de movimiento aquí
+            pass
 
 
     def actualizar_estado(self):
@@ -42,12 +46,6 @@ class Fantasma:
 
         if self.en_trampa and time.time() - self.tiempo_en_trampa > 5:
             self.en_trampa = False  # El fantasma sale de la trampa
-
-
-    def trampa(self):
-        if not self.en_trampa:
-            # Lógica de movimiento aquí
-            pass
 
 
     def draw(self):
