@@ -60,6 +60,7 @@ class Pacman:
         if (self.x, self.y) in PORTALES:
             self.x, self.y = PORTALES[(self.x, self.y)]
 
+
     def colision_fantasmas(self, fantasmas):
         if self.en_muerte:
             return
@@ -77,13 +78,16 @@ class Pacman:
                 else:
                     self.perder_vida()
 
+
     def perder_vida(self):
         self.vidas -= 1
         self.en_muerte = True
         self.animacion_frame = 0
 
+
     def reiniciar_posicion(self):
         self.x, self.y = 208, 288
+
 
     def animar_muerte(self):
         # Realiza la animación de muerte de Pac-Man
@@ -96,6 +100,7 @@ class Pacman:
             else:
                 self.en_muerte = False
                 self.reiniciar_posicion()
+
 
     def draw(self):
         if self.en_muerte:
@@ -118,6 +123,7 @@ class Pacman:
             pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
             self.ver_vidas(10, 10)
 
+
     def ver_vidas(self, x, y):
         sprite_x, sprite_y = PACMAN
         sprite_w, sprite_h = 16, 16
@@ -125,6 +131,7 @@ class Pacman:
         for i in range(self.vidas):
             pyxel.blt(pos_x, y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
             pos_x += sprite_w + 2
+
 
     def game_over(self):
         print("GAME OVER")
