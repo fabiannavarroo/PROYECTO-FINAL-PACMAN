@@ -187,18 +187,18 @@ class Puntos:
         else:
             # Cambiar dirección horizontal si hay colisión
             if x_actual < x_destino:
-                x_destino -= 1
+                x_destino -= 0.5
             elif x_actual > x_destino:
-                x_destino += 1
+                x_destino += 0.5
 
         if not self.muro.colision(x_actual, nuevo_y):  # Movimiento vertical permitido
             y_actual = nuevo_y
         else:
             # Cambiar dirección vertical si hay colisión
             if y_actual < y_destino:
-                y_destino -= 1
+                y_destino -= 0.5
             elif y_actual > y_destino:
-                y_destino += 1
+                y_destino += 0.5
 
         self.posicion_actual = (x_actual, y_actual)
 
