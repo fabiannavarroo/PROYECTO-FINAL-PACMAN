@@ -77,10 +77,10 @@ class Pacman:
                 if fantasma.asustado:
                     puntos.puntos += 200  # Añade puntos por comer un fantasma
                     fantasma.volver_a_trampa()  # Enviar fantasma a la trampa
-                    return  # No procesar más colisiones para este frame
+                    return False # Para que no revise las colisiones
                 elif not self.en_muerte:  # Si no está asustado y Pac-Man no está ya muriendo
                     self.perder_vida()  # Pac-Man pierde una vida
-                    return  # Salir del bucle al procesar una colisión
+                    return False # Para que no revise las colisiones
 
     def perder_vida(self):
         self.vidas -= 1
