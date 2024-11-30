@@ -138,6 +138,6 @@ class Pacman:
         # Manejar Game Over: limpiar mapa y mostrar mensaje
         for y in range(len(self.muro.mapa)):
             for x in range(len(self.muro.mapa[y])):
-                if self.muro.mapa[y][x] not in OBJETOS_MURO:
+                if self.muro.mapa[y][x] not in [MUROS,TEXTO]:
                     self.muro.mapa[y][x] = -1
         self.muro.mapa[12][13] = 71  # Posicionar "GAME OVER"
