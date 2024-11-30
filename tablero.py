@@ -26,49 +26,23 @@ class Tablero:
         pyxel.run(self.update, self.draw)
 
     def update(self):
-
-        if self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
+        if self.pacman.vidas > 0:
             if self.pacman.en_muerte:
-                # Ejecutar animación de muerte
-                self.pacman.animar_muerte(self.fantasmas)
-                if not self.pacman.en_muerte:  # Cuando termine la animación de muerte
-                    self.reiniciar_tablero()  # Reiniciar el tablero inmediatamente
+                self.pacman.animar_muerte()
             else:
-                # Actualizar elementos del juego
-                self.pacman.mover()  # Mover Pacman
-                self.puntos.comer_puntos()  # Detectar puntos comidos
-                self.puntos.comer_fruta()  # Detectar frutas comidas
-                self.puntos.generar_fruta()  # Generar frutas periódicamente
+                self.pacman.mover()
+                self.puntos.comer_puntos()
+                self.puntos.comer_fruta()
                 for fantasma in self.fantasmas:
-                    fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
-                self.pacman.colision_fantasmas(self.fantasmas)  # Manejar colisiones con fantasmas
-        else:
-            self.mostrar_game_over()  # Mostrar "Game Over" si se acaban las vidas
+                    fantasma.actualizar_estado()
+                self.pacman.colision_fantasmas(self.fantasmas)
 
     def draw(self):
-
-        pyxel.cls(0)  # Limpiar pantalla
+        pyxel.cls(0)
         if self.pacman.vidas > 0:
-            self.muro.draw()  # Dibujar el mapa
-            self.puntos.draw()  # Dibujar puntos, frutas y puntuación
-            if not self.pacman.en_muerte:  # Dibujar personajes normalmente si no está en animación de muerte
-                self.pacman.draw(self.fantasmas)  # Dibujar Pacman
+            self.muro.draw()
+            self.puntos.draw()
+            if not self.pacman.en_muerte:
                 for fantasma in self.fantasmas:
-                    fantasma.draw()  # Dibujar fantasmas
-            else:
-                self.pacman.draw([])  # Dibujar solo Pacman (sin fantasmas) durante la animación de muerte
-        elif self.pacman.en_muerte:
-            self.pacman.draw([])  # Solo dibujar Pacman durante la animación de muerte
-
-    def reiniciar_tablero(self):
-
-        self.pacman.reiniciar_posicion()  # Reiniciar posición de Pacman
-        self.pacman.en_muerte = False  # Finalizar estado de muerte
-        self.pacman.animacion_frame = 0  # Reiniciar animación de muerte
-        for fantasma in self.fantasmas:
-            fantasma.volver_a_posicion_inicial()  # Reiniciar posición de los fantasmas
-
-    def mostrar_game_over(self):
-
-        pyxel.cls(0)  # Limpiar pantalla
-        pyxel.text(180, 200, "GAME OVER", pyxel.COLOR_RED)
+                    fantasma.draw()
+            self.pacman.draw()
