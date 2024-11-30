@@ -135,27 +135,28 @@ class Puntos:
         return celdas_vacias
     
     def generar_fruta(self):
-        #Genera una fruta en los bordes izquierdo o derecho en la fila 13.
+        #Genera una fruta en una celda vacía
         if time.time() - self.ultimo_tiempo_fruta < 30:
-            return  # No generar una nueva fruta si no han pasado 30 segundos.
+            return  # No generar una nueva fruta si no han pasado 30 segundos
 
         # Seleccionar un objeto aleatorio sin regalos ni bastones
         objetos_dispo = ["CEREZA", "FRESA", "NARANJA", "MANZANA", "MELON", "PARAGUAS", "CAMPANA", "LLAVE"]
         self.fruta_actual = random.choice(objetos_dispo)
 
-        # Fila inicial fija y columna aleatoria (izquierda o derecha)
+        # Fila inicial y columna aleatoria (izquierda o derecha)
         fila_inicial = 13
         columna_inicial = random.choice([0, len(self.muro.mapa[0]) - 1])
-        self.posicion_actual = (columna_inicial, fila_inicial)
 
         # Elegir un destino aleatorio en celdas vacías 
         celdas_vacias = self.encontrar_celdas_vacias()
-        if celdas_vacias: # Si hay algo en celdas vacia elegira una posicion
-            self.posicion_destino = random.choice(celdas_vacias)
+        if celdas_vacias:
+            self.posicion_actual = random.choice(celdas_vacias)
         else:
-            self.posicion_destino = None
-        # En este momento se genera una fruta
+            self.posicion_actual = None  # No hay espacio libre para generar una fruta
+
+        # Actualiza el tiempo de la última fruta generada
         self.ultimo_tiempo_fruta = time.time()
+        print(f"Fruta generada: {self.fruta_actual} en {self.posicion_actual}")
 
     def comer_fruta(self):
         #Detecta si Pacman está en la posición de la fruta y la consume.
