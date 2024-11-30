@@ -24,7 +24,7 @@ class Fantasma:
             self.tiempo_para_ser_comido = duracion  # Ajustar duración
 
     def volver_a_trampa(self):
-        #Envía al fantasma a la trampa y lo reinicia
+        # Envía al fantasma a la trampa y lo reinicia
         self.en_trampa = True
         if isinstance(self, FantasmaRojo):
             self.x, self.y = 200, 160
