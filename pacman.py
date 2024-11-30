@@ -134,4 +134,11 @@ class Pacman:
                         0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
                     )
 
+    def game_over(self):
+        # Limpiar mapa y objetos
+        self.muro.mapa = [[-1 for _ in fila] for fila in self.muro.mapa]
+        # Mostrar texto "Game Over"
+        self.dibujar_letras_mapa()
+        
+
 
