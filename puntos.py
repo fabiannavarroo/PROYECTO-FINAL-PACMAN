@@ -142,10 +142,10 @@ class Puntos:
 
         # Elegir una posición aleatoria en celdas vacías
         celdas_vacias = self.encontrar_celdas_vacias()
-        if celdas_vacias:
+        if celdas_vacias: # Si existen posiciones vacias genera la fruta y permite que se ejecute la animacion
             self.posicion_actual = random.choice(celdas_vacias)
-            self.animacion_activa = True  # Activa la animación
-            self.animacion_contador = 0  # Reinicia el contador de animación
+            self.animacion_activa = True  # Activa la animacion
+            self.animacion_contador = 0  # Reinicia el contador de la animacion
         else:
             self.posicion_actual = None  # No hay espacio libre para generar una fruta
 
