@@ -109,6 +109,7 @@ class Pacman:
         # Verifica si hay colisiones entre Pacman y los fantasmas
         if self.en_muerte:  # Evitar colisiones durante la animación de muerte
             return False
+        
         pacman_x = self.x // self.muro.celda_tamaño
         pacman_y = self.y // self.muro.celda_tamaño
 
@@ -131,8 +132,10 @@ class Pacman:
 
 
     def iniciar_animacion_muerte(self, fantasmas):
+        # Inicia la animación de muerte de Pacman
         self.animacion_muerte = True
         self.animacion_frame = 0
+        # Ocultar fantasmas y reinica sus posiciones en la trampa
         for fantasma in fantasmas:
             fantasma.ocultar()
     
