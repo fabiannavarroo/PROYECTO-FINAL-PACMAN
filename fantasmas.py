@@ -11,20 +11,20 @@ class Fantasma:
         self.muro = muro
         self.sprites = sprites
         self.direccion_actual = "DERECHA"  # Dirección inicial
-        self.asustado = False
-        self.tiempo_asustado = 0
-        self.tiempo_para_ser_comido = 10  # Tiempo predeterminado para el estado asustado
-        self.en_trampa = False
+        self.asustado = False  # Indica si está en estado asustado
+        self.tiempo_asustado = 0  # Temporizador para estado asustado
+        self.tiempo_para_ser_comido = 10  # Duración por defecto del estado asustado
+        self.en_trampa = False  # Indica si el fantasma está en la trampa
 
     def activar_asustado(self, duracion=None):
-        # Activar el estado asustado
+        """Activa el estado asustado."""
         self.asustado = True
         self.tiempo_asustado = time.time()
         if duracion is not None:
-            self.tiempo_para_ser_comido = duracion  # Ajustar duración dinámica
+            self.tiempo_para_ser_comido = duracion  # Ajustar duración
 
     def volver_a_trampa(self):
-        # Enviar fantasma a su posición inicial (trampa)
+        """Envía al fantasma a la trampa y lo reinicia."""
         self.en_trampa = True
         if isinstance(self, FantasmaRojo):
             self.x, self.y = 200, 160
@@ -34,34 +34,34 @@ class Fantasma:
             self.x, self.y = 192, 190
         elif isinstance(self, FantasmaNaranja):
             self.x, self.y = 208, 190
-        self.asustado = False  # Salir del estado asustado
+        self.asustado = False  # Sale del estado asustado
 
     def volver_a_posicion_inicial(self):
-        # Restaurar la posición inicial del fantasma
+        """Restaura la posición inicial del fantasma."""
         self.x = self.x_inicial
         self.y = self.y_inicial
         self.asustado = False
         self.en_trampa = False
 
     def actualizar_estado(self):
-        # Manejar temporizador del estado asustado
+        """Verifica y actualiza el estado asustado."""
         if self.asustado:
             tiempo_restante = self.tiempo_para_ser_comido - (time.time() - self.tiempo_asustado)
             if tiempo_restante <= 0:
-                self.asustado = False
+                self.asustado = False  # Finaliza el estado asustado
 
     def draw(self):
-        # Dibujar fantasma en su estado actual
+        """Dibuja el fantasma en su estado actual."""
         if self.asustado:
-            # Alternar entre azul y blanco
+            # Alternar entre azul y blanco si está asustado
             if pyxel.frame_count // REFRESH % 2 == 0:
                 sprite = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
             else:
                 sprite = FANTASMAS_ASUSTADOS["BLANCO"]["Coordenadas"]
         else:
-            sprite = self.sprites[self.direccion_actual]
+            sprite = self.sprites[self.direccion_actual]  # Usar sprite según dirección
 
-        # Dibujar el sprite
+        # Dibuja el fantasma
         pyxel.blt(self.x, self.y, 0, sprite[0], sprite[1], 16, 16, colkey=0)
 
 # Subclases de Fantasma
