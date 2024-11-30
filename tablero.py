@@ -23,12 +23,12 @@ class Tablero:
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        self.puntos.comer_puntos()
         self.pacman.mover()
+        self.puntos.comer_puntos()   # Verificar si Pacman comio un punto
         self.puntos.generar_fruta()  # Generar frutas cada 30 segundos.
         self.puntos.mover_fruta()    # Mover la fruta hacia su destino.
-        self.puntos.comer_fruta()    # Verificar si Pacman comió la fruta.
-        self.fantasmas[0].mover(self.pacman.x, self.pacman.y)
+        self.puntos.comer_fruta()    # Verificar si Pacman comio la fruta.
+
 
     def draw(self):
         pyxel.cls(0)
