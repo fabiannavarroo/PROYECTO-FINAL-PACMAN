@@ -169,7 +169,7 @@ class Pacman:
 
     def ver_vidas(self, x, y):
 
-        sprite_pacman = self.color_actual
+        sprite_pacman = PACMAN
         num_vidas = str(self.vidas)
         pos_x = x
 
