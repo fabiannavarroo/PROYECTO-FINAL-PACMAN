@@ -9,7 +9,6 @@ class Pacman:
         self.muro = muro  # Referencia a la clase Muro
         self.direccion_actual = PACMAN  # Dirección inicial
         self.direccion_pendiente = None  # Dirección seleccionada por el jugador
-        self.modo_diablo = False
 
 
     def mover(self):
