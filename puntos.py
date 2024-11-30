@@ -168,6 +168,7 @@ class Puntos:
 
         # Actualiza el tiempo de la última fruta generada
         self.ultimo_tiempo_fruta = time.time()
+        
 
     def comer_fruta(self):
         #Detecta si Pacman está en la posición de la fruta y la consume.
