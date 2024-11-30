@@ -166,7 +166,7 @@ class Pacman:
         sprite = TEXTO["GAME OVER"]
         sprite_x, sprite_y = sprite["Coordenadas"]
         sprite_w, sprite_h = sprite["Tamaño"]
-        pyxel.blt(150, 200, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
+        pyxel.blt(200, 160, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
 
 
 
