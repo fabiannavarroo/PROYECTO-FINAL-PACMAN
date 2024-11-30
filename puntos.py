@@ -67,7 +67,7 @@ class Puntos:
                 x_pixel, y_pixel, 0,
                 sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
             )
-            
+
         # Mostrar la puntuación
         self.ver_puntuacion(188, 16)  
 
@@ -170,14 +170,14 @@ class Puntos:
 
         # Mover hacia el destino
         if x_actual < x_destino:
-            x_actual += 1
+            x_actual += 0.5
         elif x_actual > x_destino:
-            x_actual -= 1
+            x_actual -= 0.5
 
         if y_actual < y_destino:
-            y_actual += 1
+            y_actual += 0.5
         elif y_actual > y_destino:
-            y_actual -= 1
+            y_actual -= 0.5
 
         self.posicion_actual = (x_actual, y_actual)
 
