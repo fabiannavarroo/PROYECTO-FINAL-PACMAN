@@ -45,9 +45,9 @@ OBJETOS = {
     "NARANJA" : {"Coordenadas":(32, 128), "Puntos": 40}, # 95
     "MANZANA" : {"Coordenadas":(48, 128), "Puntos": 50}, # 94
     "MELON" : {"Coordenadas":(0, 144), "Puntos": 60}, # 93
-    "PARAGUAS" : {"Coordenadas":(16, 144), "Puntos": 70}, # 92 
-    "CAMPANA" : {"Coordenadas":(32, 144), "Puntos": 80}, # 91
-    "LLAVE" : {"Coordenadas":(48, 144), "Puntos": 90}, # 90
+    "PARAGUAS" : {"Coordenadas":(16, 144), "Puntos": 100}, # 92 
+    "CAMPANA" : {"Coordenadas":(32, 144), "Puntos": 120}, # 91
+    "LLAVE" : {"Coordenadas":(48, 144), "Puntos": 140}, # 90
     }
 
 #---------MUROS---------#
