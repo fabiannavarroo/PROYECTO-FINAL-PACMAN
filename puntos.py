@@ -17,6 +17,7 @@ class Puntos:
         self.fruta_actual = None  # Información de la fruta actual
         self.posicion_actual = None  # Posición actual de la fruta
         self.posicion_destino = None  # Posición destino de la fruta
+        self.velocidad = 0.25  # Velocidad de la fruta para ir a su posicion
  
 
     def draw(self):
@@ -172,14 +173,14 @@ class Puntos:
         nuevo_x, nuevo_y = x_actual, y_actual
 
         if x_actual < x_destino:
-            nuevo_x += 0.5
+            nuevo_x += self.velocidad
         elif x_actual > x_destino:
-            nuevo_x -= 0.5
+            nuevo_x -= self.velocidad
 
         if y_actual < y_destino:
-            nuevo_y += 0.5
+            nuevo_y += self.velocidad
         elif y_actual > y_destino:
-            nuevo_y -= 0.5
+            nuevo_y -= self.velocidad
 
         # Comprobar colisiones con muros
         if not self.muro.colision(nuevo_x, y_actual):  # Movimiento horizontal permitido
@@ -187,18 +188,18 @@ class Puntos:
         else:
             # Cambiar dirección horizontal si hay colisión
             if x_actual < x_destino:
-                x_destino -= 0.5
+                x_destino -= self.velocidad
             elif x_actual > x_destino:
-                x_destino += 0.5
+                x_destino += self.velocidad
 
         if not self.muro.colision(x_actual, nuevo_y):  # Movimiento vertical permitido
             y_actual = nuevo_y
         else:
             # Cambiar dirección vertical si hay colisión
             if y_actual < y_destino:
-                y_destino -= 0.5
+                y_destino -= self.velocidad
             elif y_actual > y_destino:
-                y_destino += 0.5
+                y_destino += self.velocidad
 
         self.posicion_actual = (x_actual, y_actual)
 
