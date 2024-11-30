@@ -6,6 +6,8 @@ class Fantasma:
     def __init__(self, x, y, muro, sprites):
         self.x = x
         self.y = y
+        self.x_inicial = x  # Guardar posición inicial
+        self.y_inicial = y  # Guardar posición inicial
         self.muro = muro
         self.sprites = sprites
         self.direccion_actual = "DERECHA"  # Dirección inicial
@@ -22,7 +24,7 @@ class Fantasma:
             self.tiempo_para_ser_comido = duracion  # Ajustar duración dinámica
 
     def volver_a_trampa(self):
-        # Enviar fantasma a su posición inicial
+        # Enviar fantasma a su posición inicial (trampa)
         self.en_trampa = True
         if isinstance(self, FantasmaRojo):
             self.x, self.y = 200, 160
@@ -33,6 +35,13 @@ class Fantasma:
         elif isinstance(self, FantasmaNaranja):
             self.x, self.y = 208, 190
         self.asustado = False  # Salir del estado asustado
+
+    def volver_a_posicion_inicial(self):
+        # Restaurar la posición inicial del fantasma
+        self.x = self.x_inicial
+        self.y = self.y_inicial
+        self.asustado = False
+        self.en_trampa = False
 
     def actualizar_estado(self):
         # Manejar temporizador del estado asustado
