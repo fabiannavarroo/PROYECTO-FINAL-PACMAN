@@ -1,6 +1,7 @@
 import pyxel
 from constantes import *
 import time
+from 
 
 class Fantasma:
     def __init__(self, x, y, muro, sprites):
