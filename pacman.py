@@ -105,9 +105,19 @@ class Pacman:
             if pyxel.frame_count // REFRESH % 2 == 0:
                 sprite_x, sprite_y = self.direccion_actual
             else:
-                sprite_x, sprite_y = PACMAN
+                if self.direccion_actual == PACMAN_ARRIBA:
+                    sprite_x, sprite_y = PACMAN_ARRIBA_CERRADA
+                elif self.direccion_actual == PACMAN_ABAJO:
+                    sprite_x, sprite_y = PACMAN_ABAJO_CERRADA
+                elif self.direccion_actual == PACMAN_IZQUIERDA:
+                    sprite_x, sprite_y = PACMAN_IZQUIERDA_CERRADA
+                elif self.direccion_actual == PACMAN_DERECHA:
+                    sprite_x, sprite_y = PACMAN_DERECHA_CERRADA
+                else:
+                    sprite_x, sprite_y = PACMAN
+
             pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
-            self.ver_vidas(10, 10)
+            
 
     def ver_vidas(self, x, y):
         # Dibujar las vidas restantes
