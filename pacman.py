@@ -175,11 +175,8 @@ class Pacman:
         pos_x = x
         # Dibujar una imagen de Pacman por cada vida restante
         for i in range(self.vidas):
-            pyxel.blt(
-                pos_x, y,
-                0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
-            )
-            pos_x += sprite_w + 2  # Espacio entre los sprites de Pacman
+            pyxel.blt(pos_x, y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
+            pos_x += sprite_w + 2  # Espacio entre los sprites
         
 
 
