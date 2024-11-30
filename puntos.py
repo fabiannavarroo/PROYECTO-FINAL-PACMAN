@@ -16,6 +16,7 @@ class Puntos:
         self.ultimo_tiempo_fruta = time.time()  # Tiempo de la última fruta generada
         self.fruta_actual = None  # Información de la fruta actual
         self.posicion_actual = None  # Posición actual de la fruta
+        self.animacion_contador = 0  # Contador para animación de aparición
 
     def draw(self):
         # Poner los puntos en el mapa
@@ -65,6 +66,20 @@ class Puntos:
                 x_pixel, y_pixel, 0,
                 sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
             )
+            # Durante los primeros 30 frames, hacer que parpadee
+            if self.animacion_contador < 30:
+                if self.animacion_contador % 10 < 5:  # Parpadea cada 5 frames
+                    pyxel.blt(
+                        x_pixel, y_pixel, 0,
+                        sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
+                    )
+                self.animacion_contador += 1
+            else:
+                # Dibuja la fruta de manera normal después de la animación
+                pyxel.blt(
+                    x_pixel, y_pixel, 0,
+                    sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
+                )
 
         # Mostrar la puntuación
         self.ver_puntuacion(188, 16)  
@@ -153,7 +168,6 @@ class Puntos:
 
         # Actualiza el tiempo de la última fruta generada
         self.ultimo_tiempo_fruta = time.time()
-        print(f"Fruta generada: {self.fruta_actual} en {self.posicion_actual}")
 
     def comer_fruta(self):
         #Detecta si Pacman está en la posición de la fruta y la consume.
