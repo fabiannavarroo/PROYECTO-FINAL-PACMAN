@@ -24,10 +24,13 @@ class Fantasma:
         self.animacion_asustado = True  # Activar animación
         self.color_actual = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
 
+
     def volver_a_trampa(self):
         self.en_trampa = True
-        self.tiempo_en_trampa = time.time()
-        self.x, self.y = 24 * self.muro.celda_tamaño, 8 * self.muro.celda_tamaño  # Coordenadas de la trampa
+        self.x, self.y = 192, 192  # Coordenadas en la trampa
+
+    def ocultar(self):
+        self.x, self.y = -100, -100  # Sacar del mapa
 
     def actualizar_estado(self):
         if self.asustado and time.time() - self.tiempo_asustado > 6:
