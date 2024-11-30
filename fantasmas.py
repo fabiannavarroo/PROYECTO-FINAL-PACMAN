@@ -52,9 +52,34 @@ class Fantasma:
                 self.desactivar_modo_asustado()
 
 
-class FantasmaRojo(Fantasma):
+class FantasmaRojo:
     def __init__(self, x, y, muro):
-        super().__init__(x, y, FANTASMA_ROJO, muro)
+        self.x = x
+        self.y = y
+        self.muro = muro
+        self.asustado = False
+        self.color_actual = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
+
+    def activar_modo_asustado(self):
+        self.asustado = True
+        self.color_actual = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
+
+    def desactivar_modo_asustado(self):
+        self.asustado = False
+        # Restaurar al color normal del fantasma
+        self.color_actual = FANTASMA_ROJO["DERECHA"]
+
+    def toggle_asustado_color(self):
+        # Alternar entre azul y blanco si está asustado
+        if self.asustado:
+            if self.color_actual == FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]:
+                self.color_actual = FANTASMAS_ASUSTADOS["BLANCO"]["Coordenadas"]
+            else:
+                self.color_actual = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
+
+    def draw(self):
+        sprite_x, sprite_y = self.color_actual
+        pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
 
 
 class FantasmaRosa(Fantasma):
