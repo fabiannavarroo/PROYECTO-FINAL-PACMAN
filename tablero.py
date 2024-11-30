@@ -7,7 +7,7 @@ import pyxel
 
 class Tablero:
     def __init__(self):
-        pyxel.init(430, 415, title="Pacman",display_scale=1)  # Tamaño de la Pantalla
+        pyxel.init(430, 415, title="Pacman",display_scale=1, fps=30)  # Tamaño de la Pantalla
         pyxel.load("assets/recursos.pyxres")
 
         self.muro = Muro()
