@@ -16,7 +16,7 @@ class Pacman:
 
     def mover(self):
         if self.vidas <= 0:  # Si no hay vidas, no se mueve
-            return
+            return False
 
         nueva_x, nueva_y = self.x, self.y
 
@@ -63,7 +63,7 @@ class Pacman:
 
     def colision_fantasmas(self, fantasmas):
         if self.en_muerte or self.vidas <= 0:  # Si está muerto o sin vidas, no verifica colisiones
-            return
+            return False
 
         pacman_x = self.x // self.muro.celda_tamaño
         pacman_y = self.y // self.muro.celda_tamaño
@@ -85,7 +85,7 @@ class Pacman:
 
     def animar_muerte(self):
         if not self.en_muerte:
-            return
+            return False
 
         if self.animacion_frame < len(ANIMACION_MUERTE):
             sprite_x, sprite_y = ANIMACION_MUERTE[self.animacion_frame]
@@ -97,7 +97,7 @@ class Pacman:
 
     def draw(self):
         if self.vidas <= 0:  # Si no hay vidas, no se dibuja
-            return
+            return False 
 
         if self.en_muerte:
             self.animar_muerte()
@@ -107,3 +107,13 @@ class Pacman:
             else:
                 sprite_x, sprite_y = PACMAN
             pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
+            self.ver_vidas(10, 10)
+
+    def ver_vidas(self, x, y):
+        # Dibujar las vidas restantes
+        sprite_x, sprite_y = PACMAN
+        sprite_w, sprite_h = 16, 16
+        pos_x = x
+        for i in range(self.vidas):
+            pyxel.blt(pos_x, y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
+            pos_x += sprite_w + 2
