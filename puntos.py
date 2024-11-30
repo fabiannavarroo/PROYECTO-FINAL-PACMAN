@@ -149,11 +149,11 @@ class Puntos:
 
         # Elegir un destino aleatorio en celdas vacías 
         celdas_vacias = self.encontrar_celdas_vacias()
-        if celdas_vacias:
+        if celdas_vacias: # Si hay algo en celdas vacia elegira una posicion
             self.posicion_destino = random.choice(celdas_vacias)
         else:
             self.posicion_destino = None
-
+        # En este momento se genera una fruta
         self.ultimo_tiempo_fruta = time.time()
 
     def mover_fruta(self):
