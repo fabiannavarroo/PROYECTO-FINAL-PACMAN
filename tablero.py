@@ -26,18 +26,19 @@ class Tablero:
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        if self.pacman.vidas > 0:  # Mientras Pac-Man tenga vidas
+        if self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
             if self.pacman.en_muerte:
                 # Ejecutar animación de muerte
                 self.pacman.animar_muerte(self.fantasmas)
             else:
-                self.pacman.mover()  # Mover Pac-Man
+                # Actualizar elementos del juego
+                self.pacman.mover()  # Mover Pacman
                 self.puntos.comer_puntos()  # Detectar puntos comidos
                 self.puntos.comer_fruta()  # Detectar frutas comidas
-                self.puntos.generar_fruta()  # Generar frutas cada 30s
+                self.puntos.generar_fruta()  # Generar frutas periódicamente
                 for fantasma in self.fantasmas:
                     fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
-                self.pacman.colision_fantasmas(self.fantasmas)  # Colisiones con fantasmas
+                self.pacman.colision_fantasmas(self.fantasmas, self.puntos)  # Colisiones con fantasmas
 
     def draw(self):
         pyxel.cls(0)  # Limpiar pantalla
