@@ -144,7 +144,7 @@ class Puntos:
         self.fruta_actual = random.choice(objetos_dispo)
 
         # Fila inicial y columna aleatoria (izquierda o derecha)
-        fila_inicial = 13
+        fila_inicial = 12
         columna_inicial = random.choice([0, len(self.muro.mapa[0]) - 1])
 
         # Elegir un destino aleatorio en celdas vacías 
