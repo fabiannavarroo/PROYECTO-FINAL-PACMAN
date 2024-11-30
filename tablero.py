@@ -22,6 +22,7 @@ class Tablero:
 
         pyxel.run(self.update, self.draw)
 
+
     def update(self):
         self.pacman.mover()
         self.puntos.comer_puntos()   # Verificar si Pacman comio un punto
