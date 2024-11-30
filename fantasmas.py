@@ -24,24 +24,23 @@ class Fantasma:
         self.animacion_asustado = True  # Activar animación
         self.color_actual = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
 
-    def actualizar_estado(self):
-        if self.asustado:
-            # Alternar entre azul y blanco durante el estado asustado
-            if pyxel.frame_count // REFRESH % 2 == 0:
-                self.color_actual = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
-            else:
-                self.color_actual = FANTASMAS_ASUSTADOS["BLANCO"]["Coordenadas"]
+    def volver_a_trampa(self):
+        self.en_trampa = True
+        self.tiempo_en_trampa = time.time()
+        self.x, self.y = 24 * self.muro.celda_tamaño, 8 * self.muro.celda_tamaño  # Coordenadas de la trampa
 
-            # Verificar si el tiempo del estado asustado terminó
-            if time.time() - self.tiempo_asustado > 6:
-                self.asustado = False
-                self.animacion_asustado = False
-                # Restaurar el color original según la dirección actual
-                self.color_actual = self.sprites[self.direccion_actual]
+    def actualizar_estado(self):
+        if self.asustado and time.time() - self.tiempo_asustado > 6:
+            self.asustado = False
+            self.color_actual = self.sprites[self.direccion_actual]
+
+        if self.en_trampa and time.time() - self.tiempo_en_trampa > 5:
+            self.en_trampa = False  # El fantasma sale de la trampa
 
     def mover(self):
-        # Lógica de movimiento y cambio de dirección
-        pass
+        if not self.en_trampa:
+            # Lógica de movimiento aquí
+            pass
 
     def draw(self):
         # Dibujar el fantasma con el color actual
