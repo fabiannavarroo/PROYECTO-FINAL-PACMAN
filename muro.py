@@ -38,7 +38,6 @@ class Muro:
         self.otros_objetos = [-1,0,69,70,90,91,92,93,94,95,96,97,98,99]
         
 
-
     def colision(self, x, y):
         #Comprueba si hay un muro en la posición (x, y) considerando el tamaño del sprite.
         # Tamaño del sprite de Pac-Man y Fantasmas
@@ -64,8 +63,8 @@ class Muro:
                     return True
         return False  # No hay colisión
     
+
     def draw(self):
-    
         #Dibuja los muros en la pantalla
         for fila in range(len(self.mapa)):
             for columna in range(len(self.mapa[0])):
