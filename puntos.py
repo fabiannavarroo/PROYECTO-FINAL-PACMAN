@@ -157,42 +157,6 @@ class Puntos:
         # En este momento se genera una fruta
         self.ultimo_tiempo_fruta = time.time()
 
-    def mover_fruta(self):
-        #Mueve la fruta hacia su destino, evitando muros.
-        if not self.posicion_actual or not self.posicion_destino:
-            return  # Nada que mover.
-
-        x_actual, y_actual = self.posicion_actual
-        x_destino, y_destino = self.posicion_destino
-
-        if (int(x_actual), int(y_actual)) == (int(x_destino), int(y_destino)):
-            # La fruta llegó al destino y permanece allí hasta que Pacman la coma.
-            return
-
-        # Movimiento tentativo
-        nuevo_x, nuevo_y = x_actual, y_actual
-
-        if x_actual < x_destino and not self.colision(int(x_actual + 1), int(y_actual)):
-            nuevo_x += self.velocidad
-        elif x_actual > x_destino and not self.colision(int(x_actual - 1), int(y_actual)):
-            nuevo_x -= self.velocidad
-        elif y_actual < y_destino and not self.colision(int(x_actual), int(y_actual + 1)):
-            nuevo_y += self.velocidad
-        elif y_actual > y_destino and not self.colision(int(x_actual), int(y_actual - 1)):
-            nuevo_y -= self.velocidad
-        else:
-            # Intentar una dirección alternativa si hay colisión
-            if not self.colision(int(x_actual), int(y_actual + 1)):
-                nuevo_y += self.velocidad
-            elif not self.colision(int(x_actual), int(y_actual - 1)):
-                nuevo_y -= self.velocidad
-            elif not self.colision(int(x_actual + 1), int(y_actual)):
-                nuevo_x += self.velocidad
-            elif not self.colision(int(x_actual - 1), int(y_actual)):
-                nuevo_x -= self.velocidad
-
-        self.posicion_actual = (nuevo_x, nuevo_y)
-
     def comer_fruta(self):
         #Detecta si Pacman está en la posición de la fruta y la consume.
         pacman_x = self.pacman.x // self.muro.celda_tamaño
@@ -203,11 +167,3 @@ class Puntos:
             self.fruta_actual = None
             self.posicion_actual = None
             self.posicion_destino = None
-
-    def colision(self, x, y):
-        #Verifica si la celda (x, y) es un muro.
-        x = int(x)  
-        y = int(y)
-        if 0 <= y < len(self.muro.mapa) and 0 <= x < len(self.muro.mapa[0]):
-            return self.muro.mapa[y][x] in MUROS  
-        return True  # Consideramos fuera del mapa como muro
