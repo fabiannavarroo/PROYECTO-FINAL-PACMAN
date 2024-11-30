@@ -1,6 +1,5 @@
 import pyxel
 from constantes import *
-import random
 import time
 
 
@@ -10,24 +9,18 @@ class Fantasma:
         self.y = y
         self.muro = muro
         self.sprites = sprites
-        self.color_actual = sprites["DERECHA"]  # Inicializar color según dirección
         self.direccion_actual = "DERECHA"  # Dirección inicial
         self.asustado = False
         self.tiempo_asustado = 0
-        self.animacion_asustado = False
         self.en_trampa = False
-        self.tiempo_en_trampa = 0
-
 
     def activar_asustado(self):
+        # Activar el estado asustado
         self.asustado = True
         self.tiempo_asustado = time.time()
-        self.animacion_asustado = True  # Activar animación
-        self.color_actual = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
-
 
     def volver_a_trampa(self):
-        # Envía al fantasma de vuelta a la trampa
+        # Envía al fantasma a su posición inicial según su clase
         self.en_trampa = True
         if isinstance(self, FantasmaRojo):
             self.x, self.y = 200, 160
@@ -38,27 +31,19 @@ class Fantasma:
         elif isinstance(self, FantasmaNaranja):
             self.x, self.y = 208, 190
 
-    def ocultar(self):
-        self.x, self.y = -100, -100  # Sacar del mapa
-
-    def mover(self):
-        if not self.en_trampa:
-            # Lógica de movimiento aquí
-            pass
-
-
     def actualizar_estado(self):
+        # Manejar el temporizador del estado asustado
         if self.asustado and time.time() - self.tiempo_asustado > 6:
             self.asustado = False
-            self.color_actual = self.sprites[self.direccion_actual]
-
-        if self.en_trampa and time.time() - self.tiempo_en_trampa > 5:
-            self.en_trampa = False  # El fantasma sale de la trampa
-
 
     def draw(self):
-        # Dibujar el fantasma con el color actual
-        pyxel.blt(self.x, self.y, 0, self.color_actual[0], self.color_actual[1], 16, 16, colkey=0)
+        # Dibujar el fantasma en su estado correspondiente
+        if self.asustado:
+            sprite = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
+        else:
+            sprite = self.sprites[self.direccion_actual]
+        pyxel.blt(self.x, self.y, 0, sprite[0], sprite[1], 16, 16, colkey=0)
+
 
 # Subclases de Fantasma
 class FantasmaRojo(Fantasma):
