@@ -136,12 +136,22 @@ class Puntos:
         if not self.posicion_actual or not self.posicion_destino:
             return
 
+        # Espaciar el movimiento
+        if not hasattr(self, "ultimo_movimiento_fruta"):
+            self.ultimo_movimiento_fruta = time.time()
+
+        if time.time() - self.ultimo_movimiento_fruta < 0.2:  # Espaciar movimiento a 0.2s
+            return
+
+        self.ultimo_movimiento_fruta = time.time()
+
         x_actual, y_actual = self.posicion_actual
         x_destino, y_destino = self.posicion_destino
 
+        # Verifica si la fruta ya llegó al destino
         if (x_actual, y_actual) == (x_destino, y_destino):
-            self.posicion_actual = None  # Movimiento completado
-            self.posicion_destino = None
+            # Mantener la fruta en su posición hasta que algo la consuma
+            print(f"La fruta llegó a su destino: {self.posicion_destino}")
             return
 
         # Mover hacia el destino
