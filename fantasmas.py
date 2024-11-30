@@ -12,9 +12,10 @@ class Fantasma:
         self.direccion_actual = "DERECHA"  # Dirección inicial
         self.asustado = False
         self.tiempo_asustado = 0
+        self.tiempo_para_ser_comido = 6  # Tiempo predeterminado para el estado asustado
         self.en_trampa = False
 
-    def activar_asustado(self):
+    def activar_asustado(self, duracion=None):
         # Activar el estado asustado
         self.asustado = True
         self.tiempo_asustado = time.time()
@@ -33,11 +34,11 @@ class Fantasma:
         self.asustado = False  # Dejar de estar asustado al regresar a la trampa
 
     def actualizar_estado(self):
-        # Manejar el temporizador del estado asustado
+        # Cambia el estado asustado
         if self.asustado:
-            tiempo_restante = 6 - (time.time() - self.tiempo_asustado)
+            tiempo_restante = self.tiempo_para_ser_comido - (time.time() - self.tiempo_asustado)
             if tiempo_restante <= 0:
-                self.asustado = False
+                self.asustado = False  # El estado asustado termina
 
     def draw(self):
         # Dibujar el fantasma en su estado correspondiente
