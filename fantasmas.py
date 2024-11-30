@@ -31,41 +31,6 @@ class FantasmaRojo(Fantasma):
     def __init__(self, x, y, muro):
         super().__init__(x, y, FANTASMA_ROJO, muro)
 
-    def mover(self, pacman_x, pacman_y):
-        # Calcula las diferencias entre las posiciones del fantasma y Pac-Man
-        diferencia_x = pacman_x - self.x
-        diferencia_y = pacman_y - self.y
-
-        # Mover en el eje X primero si la diferencia es mayor
-        if abs(diferencia_x) > abs(diferencia_y):
-            if diferencia_x > 0:  # Pac-Man está a la derecha
-                nueva_x = self.x + self.velocidad
-                '''if not self.muro.colision(nueva_x, self.y):'''  # Si no hay colisión
-                self.x = nueva_x
-                self.direccion_actual = "DERECHA"
-                    
-            else:  # Pac-Man está a la izquierda
-                nueva_x = self.x - self.velocidad
-                '''if not self.muro.colision(nueva_x, self.y):'''
-                self.x = nueva_x
-                self.direccion_actual = "IZQUIERDA"
-
-        # Si no puede moverse en X, intentar en el eje Y
-        else:  # Pac-Man está abajo
-            if diferencia_y > 0:
-                nueva_y = self.y + self.velocidad
-                '''if not self.muro.colision(self.x, nueva_y):'''
-                self.y = nueva_y
-                self.direccion_actual = "ABAJO"
-                
-            else:  # Pac-Man está arriba
-                nueva_y = self.y - self.velocidad
-                '''if not self.muro.colision(self.x, nueva_y):'''
-                self.y = nueva_y
-                self.direccion_actual = "ARRIBA"
-
-        
-
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y, muro):
         super().__init__(x, y, FANTASMA_ROSA, muro)
