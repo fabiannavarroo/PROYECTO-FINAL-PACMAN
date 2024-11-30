@@ -58,7 +58,7 @@ class Pacman:
         if not self.muro.colision(self.x, nueva_y):
             self.y = nueva_y
 
-        # Manejar portales
+        #  Portales
         if (self.x, self.y) in PORTALES:
             self.x, self.y = PORTALES[(self.x, self.y)]
 
