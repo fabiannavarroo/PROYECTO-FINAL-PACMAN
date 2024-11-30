@@ -85,7 +85,7 @@ class Tablero:
                     self.muro.mapa[y][x] = 0  # Celda vacía
 
     def mostrar_game_over(self):
-        Mostrar el mensaje de 'Game Over' en el mapa.
+        #Mostrar el mensaje de 'Game Over' en el mapa
         if not self.game_over_mostrado:
             self.limpiar_tablero()  # Limpiar puntos y fantasmas del mapa
             self.muro.mapa[12][13] = 71  # Dibujar "GAME OVER" en la posición indicada
