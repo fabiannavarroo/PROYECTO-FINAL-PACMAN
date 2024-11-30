@@ -12,6 +12,8 @@ class Pacman:
         self.direccion_actual = PACMAN  # Dirección inicial
         self.direccion_pendiente = None  # Dirección seleccionada por el jugador
         self.vidas = 3  # Pacman empieza con 3 vidas
+        self.animacion_muerte = False
+        self.animacion_frame = 0 # Contador para animación de muerte de Pacman
 
 
     def mover(self):
