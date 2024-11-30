@@ -1,5 +1,5 @@
 import pyxel
-from constantes import FANTASMA_ROJO, FANTASMA_ROSA, FANTASMA_AZUL, FANTASMA_NARANJA, PORTALES, FANTASMAS_ASUSTADOS
+from constantes import FANTASMA_ROJO, FANTASMA_ROSA, FANTASMA_AZUL, FANTASMA_NARANJA, FANTASMAS_ASUSTADOS
 import random
 
 
@@ -7,39 +7,49 @@ class Fantasma:
     def __init__(self, x, y, sprites, muro):
         self.x = x
         self.y = y
-        self.sprites = sprites  # Imagenes de los fantasmas
-        self.muro = muro # Referencia a la clase Muro
+        self.sprites = sprites  # Imágenes de los fantasmas
+        self.muro = muro  # Referencia a la clase Muro
         self.velocidad = 1.5  # Velocidad de los fantasmas
         self.direccion_actual = "DERECHA"  # Comienza moviéndose hacia la derecha
-        self.en_trampa = True  # El fantasma empieza en la trampa
-        self.modo_asustado = False  # Los fantasmas no estas asustado al empezar
-
-
-    #def salir_trampa(self):
-    
+        self.modo_asustado = False  # Los fantasmas no están asustados al principio
+        self.tiempo_modo_asustado = 0  # Duración restante del modo asustado en frames
 
     def cambiar_direccion(self):
-        # Direcciones que puede tener los fantasmas
+        # Direcciones posibles
         DIRECCIONES = ["ARRIBA", "ABAJO", "DERECHA", "IZQUIERDA"]
-        nueva_direccion = random.choice(DIRECCIONES) # De forma aleatoria se escoge una direccion
-        self.direccion_actual = nueva_direccion # Se le asigna esa direccion a la actual del fantasmas
-    
+        self.direccion_actual = random.choice(DIRECCIONES)  # Escoge una nueva dirección aleatoria
+
     def activar_modo_asustado(self):
         self.modo_asustado = True
-        for fantasma in self.lista_fantasmas:
-            fantasma.cambiar_color(FANTASMAS_ASUSTADOS)  # Cambiar al color de "asustado"
-        
+        self.tiempo_modo_asustado = 7 * 30  # 7 segundos en frames (30 FPS)
+
     def desactivar_modo_asustado(self):
         self.modo_asustado = False
-        for fantasma in self.lista_fantasmas:
-            fantasma.cambiar_color(FANTASMAS_NORMALES)  # Cambiar al color normal
+        self.tiempo_modo_asustado = 0  # Resetear el tiempo restante
 
-
-
-    # Dibujar el sprite del fantasma en la dirección correspondiente.
     def draw(self):
-        sprite_x, sprite_y = self.sprites[self.direccion_actual]
+        if self.modo_asustado:
+            if self.tiempo_modo_asustado <= 60:  # Últimos 2 segundos (30 FPS * 2)
+                # Alternar entre azul y blanco
+                if pyxel.frame_count % 10 < 5:
+                    sprite_x, sprite_y = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
+                else:
+                    sprite_x, sprite_y = FANTASMAS_ASUSTADOS["BLANCO"]["Coordenadas"]
+            else:
+                # Dibujar en azul (asustado)
+                sprite_x, sprite_y = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
+        else:
+            # Dibujar en su color normal
+            sprite_x, sprite_y = self.sprites[self.direccion_actual]
+
         pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
+
+    def update(self):
+        # Actualizar el estado del modo asustado
+        if self.modo_asustado:
+            self.tiempo_modo_asustado -= 1
+            if self.tiempo_modo_asustado <= 0:
+                self.desactivar_modo_asustado()
 
 
 class FantasmaRojo(Fantasma):
