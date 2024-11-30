@@ -17,7 +17,7 @@ class Fantasma:
         self.en_trampa = False  # Indica si el fantasma está en la trampa
 
     def activar_asustado(self, duracion=None):
-        #Activa el estado asustado.#
+        #Activa el estado asustado.
         self.asustado = True
         self.tiempo_asustado = time.time()
         if duracion is not None:
