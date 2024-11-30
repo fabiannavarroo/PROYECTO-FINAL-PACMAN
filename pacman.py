@@ -138,7 +138,7 @@ class Pacman:
         # Limpiar mapa y objetos
         self.muro.mapa = [[-1 for _ in fila] for fila in self.muro.mapa]
         # Mostrar texto "Game Over"
-        self.dibujar_letras_mapa()
+        self.dibujar_letras_mapa(71, "GAME OVER")
         
 
 
