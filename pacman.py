@@ -137,6 +137,7 @@ class Pacman:
         # Inicia la animación de muerte de Pacman
         self.animacion_muerte = True
         self.animacion_frame = 0
+        self.tiempo_muerte = time.time()
         # Ocultar fantasmas y reinica sus posiciones en la trampa
         for fantasma in fantasmas:
             fantasma.ocultar()
