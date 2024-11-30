@@ -64,7 +64,7 @@ class Pacman:
 
     def colision_fantasmas(self, fantasmas):
         if self.en_muerte or self.reiniciando or self.vidas <= 0:  # Si está muerto, reiniciando o sin vidas, no verifica colisiones
-            return
+            return False
 
         pacman_x = self.x // self.muro.celda_tamaño
         pacman_y = self.y // self.muro.celda_tamaño
