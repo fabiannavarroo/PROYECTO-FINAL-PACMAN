@@ -168,22 +168,18 @@ class Pacman:
 
 
     def ver_vidas(self, x, y):
+        sprite_pacman = PACMAN  # Sprite de Pacman
+        sprite_x, sprite_y = sprite_pacman  # Coordenadas del sprite de Pacman
+        sprite_w, sprite_h = 16, 16  # Tamaño del sprite 
 
-        sprite_pacman = PACMAN
-        num_vidas = str(self.vidas)
         pos_x = x
-
-        for num in puntuacion_str:
-            num = int(num)
-            sprite = color_numeros[str(num)]
-            sprite_x, sprite_y = sprite["Coordenadas"]
-            sprite_w, sprite_h = sprite["Tamaño"]
-
+        # Dibujar una imagen de Pacman por cada vida restante
+        for i in range(self.vidas):
             pyxel.blt(
                 pos_x, y,
                 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
             )
-            pos_x += sprite_w + 1  # Espacio entre los dígitos
+            pos_x += sprite_w + 2  # Espacio entre los sprites de Pacman
         
 
 
