@@ -72,6 +72,7 @@ class Pacman:
 
 
     def draw(self):
+        
         # Alternar entre sprites para la animación
         if pyxel.frame_count // REFRESH % 2 == 0:
             # Dibujar Pac-Man con la boca abierta en la dirección actual
@@ -91,3 +92,9 @@ class Pacman:
 
         # Dibujar el sprite de PacMan
         pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
+
+
+    def reiniciar_posicion(self):
+        self.x,self.y = 208,288
+
+    def colision_fantasmas(self, fantasmas)
