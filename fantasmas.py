@@ -16,12 +16,10 @@ class Fantasma:
         self.tiempo_para_ser_comido = 10  # Duración por defecto del estado asustado
         self.en_trampa = False  # Indica si el fantasma está en la trampa
 
-    def activar_asustado(self, duracion=None):
+    def activar_asustado(self):
         #Activa el estado asustado
         self.asustado = True
         self.tiempo_asustado = time.time()
-        if duracion is not None:
-            self.tiempo_para_ser_comido = duracion  # Ajustar duración
 
     def volver_a_trampa(self):
         # Envía al fantasma a la trampa y lo reinicia
