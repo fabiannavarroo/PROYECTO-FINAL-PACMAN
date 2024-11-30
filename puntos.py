@@ -161,7 +161,7 @@ class Puntos:
         # Dibuja la fruta con animación al aparecer
         if self.animacion_activa and self.animacion_contador < 30:
             # Parpadea cada 5 frames
-            if self.animacion_contador % 10 < 5:
+            if self.animacion_contador// REFRESH % 2 == 0:
                 sprite = OBJETOS[self.fruta_actual]
                 sprite_x, sprite_y = sprite["Coordenadas"]
                 sprite_w, sprite_h = 16, 16
