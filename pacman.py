@@ -113,6 +113,19 @@ class Pacman:
                     self.vidas -= 1  # Si no está asustado, Pacman pierde una vida
                     self.reiniciar_posicion()  # Reiniciar posición
                     if self.vidas <= 0:
-                        self.puntos.dibujar_letras_mapa(71, "GAME OVER")
+                        self.dibujar_letras_mapa(71, "GAME OVER")
+
+    def dibujar_letras_mapa(self, num, sprite):
+        # Dibuja las letras en las posiciones indicadas por el mapa
+        for y in range(len(self.muro.mapa)):
+            for x in range(len(self.muro.mapa[y])):
+                if self.muro.mapa[y][x] == num:
+                    sprite = TEXTO[sprite]
+                    sprite_x, sprite_y = sprite["Coordenadas"]
+                    sprite_w, sprite_h = sprite["Tamaño"]
+                    pyxel.blt(
+                        x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,
+                        0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
+                    )
 
 
