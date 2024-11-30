@@ -19,6 +19,7 @@ class Puntos:
         self.animacion_activa = False  # Indica si hay animación activa
         self.animacion_contador = 0  # Contador para animación de aparición
 
+
     def draw(self):
         # Poner los puntos en el mapa
         for y in range(len(self.muro.mapa)):
@@ -63,6 +64,7 @@ class Puntos:
         # Mostrar la puntuación
         self.ver_puntuacion(188, 16)
 
+
     def dibujar_letras_mapa(self, num, sprite):
         # Dibuja las letras en las posiciones indicadas por el mapa
         for y in range(len(self.muro.mapa)):
@@ -75,6 +77,7 @@ class Puntos:
                         x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,
                         0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
                     )
+
 
     def comer_puntos(self):
         # Detectar si Pacman come puntos o regalos
@@ -92,6 +95,7 @@ class Puntos:
 
             # Eliminar el objeto del mapa
             self.muro.mapa[pacman_y][pacman_x] = -1
+
 
     def ver_puntuacion(self, x, y):
         # Cambia el color solo cuando se supera un nuevo múltiplo de 500
@@ -116,6 +120,7 @@ class Puntos:
             )
             pos_x += sprite_w + 1  # Espacio entre los dígitos
 
+
     def encontrar_celdas_vacias(self):
         # Encuentra celdas vacías en el mapa
         celdas_vacias = []
@@ -124,6 +129,7 @@ class Puntos:
                 if self.muro.mapa[y][x] == -1:
                     celdas_vacias.append((x, y))
         return celdas_vacias
+
 
     def generar_fruta(self):
         # Genera una fruta en una celda vacía
@@ -145,6 +151,7 @@ class Puntos:
 
         # Actualiza el tiempo de la última fruta generada
         self.ultimo_tiempo_fruta = time.time()
+
 
     def dibujar_fruta(self):
         # Dibuja la fruta con animación al aparecer
@@ -173,6 +180,7 @@ class Puntos:
                 x_pixel, y_pixel, 0,
                 sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
             )
+
 
     def comer_fruta(self):
         # Detecta si Pacman está en la posición de la fruta y se la come :)
