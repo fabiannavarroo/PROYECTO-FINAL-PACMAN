@@ -1,4 +1,5 @@
-from constantes import PACMAN, PACMAN_ARRIBA, PACMAN_ABAJO, PACMAN_IZQUIERDA, PACMAN_DERECHA,PORTALES, REFRESH, TEXTO_MUERTE, PACMAN_ABAJO_CERRADA, PACMAN_ARRIBA_CERRADA, PACMAN_DERECHA_CERRADA,PACMAN_IZQUIERDA_CERRADA
+from constantes import *
+from puntos import Puntos
 import pyxel
 
 class Pacman:
@@ -113,4 +114,5 @@ class Pacman:
                     self.reiniciar_posicion()  # Reiniciar posición
                     if self.vidas <= 0:
                         self.puntos.dibujar_letras_mapa(71, "GAME OVER")
+
 
