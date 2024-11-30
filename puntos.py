@@ -6,10 +6,11 @@ import pyxel
 
 
 class Puntos:
-    def __init__(self, muro, sprite, pacman):
+    def __init__(self, muro, sprite, pacman,fantsma):
         self.muro = muro
         self.sprite = sprite
         self.pacman = pacman
+        self.fantasma = fantasma
         self.puntos = 0
         self.puntos_alcanzados = 0  # Rango de 500 en 500 de la última meta alcanzada de puntos
         self.color_actual = NUMEROS_BLANCOS  # Color inicial de los números
@@ -89,6 +90,8 @@ class Puntos:
                 tipo_consumible = "BASTON"
             elif self.muro.mapa[pacman_y][pacman_x] == 98:
                 tipo_consumible = "REGALO"
+                self.pacman.modo_diablo = True
+                self.fantasma.modo_comer
 
             # Sumar puntos
             self.puntos += OBJETOS[tipo_consumible]["Puntos"]
