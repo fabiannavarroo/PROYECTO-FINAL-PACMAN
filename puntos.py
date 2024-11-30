@@ -13,10 +13,11 @@ class Puntos:
         self.puntos = 0
         self.puntos_alcanzados = 0  # Rango de 500 en 500 de la última meta alcanzada de puntos
         self.color_actual = NUMEROS_BLANCOS  # Color inicial de los números
-        self.ultimo_tiempo_fruta = time.time()  # Marca de tiempo de la última fruta
+        self.ultimo_tiempo_fruta = time.time()  # Tiempo de la última fruta generada
         self.fruta_actual = None  # Información de la fruta actual
         self.posicion_actual = None  # Posición actual de la fruta
         self.posicion_destino = None  # Posición destino de la fruta
+ 
 
     def draw(self):
         # Poner los puntos en el mapa
@@ -130,4 +131,27 @@ class Puntos:
                 if self.muro.mapa[y][x] == -1:
                     celdas_vacias.append((x, y))
         return celdas_vacias
+    
+    def generar_fruta(self):
+        #Genera una fruta en los bordes izquierdo o derecho en la fila 13.
+        if time.time() - self.ultimo_tiempo_fruta < 30:
+            return  # No generar una nueva fruta si no han pasado 30 segundos.
+
+        # Seleccionar un objeto aleatorio sin regalos ni bastones
+        objetos_dispo = ["CEREZA", "FRESA", "NARANJA", "MANZANA", "MELON", "PARAGUAS", "CAMPANA", "LLAVE"]
+        self.fruta_actual = random.choice(objetos_dispo)
+
+        # Fila inicial fija y columna aleatoria (izquierda o derecha)
+        fila_inicial = 13
+        columna_inicial = random.choice([0, len(self.muro.mapa[0]) - 1])
+        self.posicion_actual = (columna_inicial, fila_inicial)
+
+        # Elegir un destino aleatorio en celdas vacías 
+        celdas_vacias = self.encontrar_celdas_vacias()
+        if celdas_vacias:
+            self.posicion_destino = random.choice(celdas_vacias)
+        else:
+            self.posicion_destino = None
+
+        self.ultimo_tiempo_fruta = time.time()
 
