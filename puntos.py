@@ -158,4 +158,19 @@ class Puntos:
         self.posicion_actual = (x_actual, y_actual)
     
     def aparecer_fruta(self):
-        
+        # Comprobamos que se puede aparecer una fruta
+        if time.time() - self.ultimo_tiempo_fruta < 30:
+            return
+        # Guardamos las celdas que esta vacia
+        celdas_vacias = self.encontrar_celdas_vacias()
+        # Si estan vacia no hacemos nada
+        if not celdas_vacias:
+            return
+        # Los objetos que pueden aparecer
+        objetos_dispo = ["CEREZA", "FRESA", "NARANJA", "MANZANA", "MELON", "PARAGUAS", "CAMPANA", "LLAVE"]
+        self.fruta_actual = random.choice(objetos_dispo)
+        self.posicion_actual = random.choice(celdas_vacias)
+        self.posicion_destino = random.choice(celdas_vacias)
+
+        print(f"Fruta generada: {self.fruta_actual} en {self.posicion_actual}, destino: {self.posicion_destino}")
+        self.ultimo_tiempo_fruta = time.time()
