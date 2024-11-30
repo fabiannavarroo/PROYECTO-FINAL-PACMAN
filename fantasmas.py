@@ -14,15 +14,18 @@ class Fantasma:
         self.asustado = False
         self.tiempo_asustado = 0
 
+
     def activar_asustado(self):
         self.asustado = True
         self.tiempo_asustado = time.time()
         self.color_actual = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]  # Cambiar a color asustado
 
+
     def actualizar_estado(self):
         if self.asustado and time.time() - self.tiempo_asustado > 6:
             self.asustado = False
             self.color_actual = self.sprites["DERECHA"]  # Volver al color inicial
+
 
     def draw(self):
         # Dibujar el fantasma con el color actual
