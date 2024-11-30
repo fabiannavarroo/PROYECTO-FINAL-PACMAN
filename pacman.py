@@ -15,7 +15,7 @@ class Pacman:
         self.animacion_muerte = False
         self.animacion_frame = 0 # Contador para animación de muerte de Pacman
         self.tiempo_muerte = 0
-        self.en_muerte = False
+        self.en_muerte = False # Indica si está en el Pacman esta muerto
 
 
     def mover(self):
