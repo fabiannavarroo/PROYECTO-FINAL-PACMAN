@@ -155,3 +155,28 @@ class Puntos:
 
         self.ultimo_tiempo_fruta = time.time()
 
+    def mover_fruta(self):
+        #Mueve la fruta hacia su destino.
+        if not self.posicion_actual or not self.posicion_destino:
+            return  # Nada que mover.
+
+        x_actual, y_actual = self.posicion_actual
+        x_destino, y_destino = self.posicion_destino
+
+        if (x_actual, y_actual) == (x_destino, y_destino):
+            # La fruta llegó al destino y permanece allí hasta que Pacman la coma.
+            return
+
+        # Mover hacia el destino
+        if x_actual < x_destino:
+            x_actual += 1
+        elif x_actual > x_destino:
+            x_actual -= 1
+
+        if y_actual < y_destino:
+            y_actual += 1
+        elif y_actual > y_destino:
+            y_actual -= 1
+
+        self.posicion_actual = (x_actual, y_actual)
+
