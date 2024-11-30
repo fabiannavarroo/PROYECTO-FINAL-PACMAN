@@ -33,16 +33,16 @@ class Pacman:
 
         # Verificar si la dirección pendiente no tiene colisión
         if self.direccion_pendiente:
-            if self.direccion_pendiente == PACMAN_ARRIBA and not self.muro.colision(self.x, self.y - self.velocidad):
+            if self.direccion_pendiente == PACMAN_ARRIBA and not self.muro.colision(self.x, self.y - self.velocidad, 16):
                 self.direccion_actual = self.direccion_pendiente
                 self.direccion_pendiente = None
-            elif self.direccion_pendiente == PACMAN_ABAJO and not self.muro.colision(self.x, self.y + self.velocidad):
+            elif self.direccion_pendiente == PACMAN_ABAJO and not self.muro.colision(self.x, self.y + self.velocidad, 16):
                 self.direccion_actual = self.direccion_pendiente
                 self.direccion_pendiente = None
-            elif self.direccion_pendiente == PACMAN_IZQUIERDA and not self.muro.colision(self.x - self.velocidad, self.y):
+            elif self.direccion_pendiente == PACMAN_IZQUIERDA and not self.muro.colision(self.x - self.velocidad, self.y, 16):
                 self.direccion_actual = self.direccion_pendiente
                 self.direccion_pendiente = None
-            elif self.direccion_pendiente == PACMAN_DERECHA and not self.muro.colision(self.x + self.velocidad, self.y):
+            elif self.direccion_pendiente == PACMAN_DERECHA and not self.muro.colision(self.x + self.velocidad, self.y, 16):
                 self.direccion_actual = self.direccion_pendiente
                 self.direccion_pendiente = None
 
