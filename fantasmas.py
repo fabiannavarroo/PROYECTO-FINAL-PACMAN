@@ -37,7 +37,7 @@ class Fantasma:
         if self.en_trampa and time.time() - self.tiempo_en_trampa > 5:
             self.en_trampa = False  # El fantasma sale de la trampa
 
-    def mover(self):
+    def trampa(self):
         if not self.en_trampa:
             # Lógica de movimiento aquí
             pass
