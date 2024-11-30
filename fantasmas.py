@@ -21,7 +21,7 @@ class Fantasma:
 
     def activar_modo_asustado(self):
         self.modo_asustado = True
-        self.tiempo_modo_asustado = 7 * 30  # 7 segundos en frames (30 FPS)
+        self.tiempo_modo_asustado = 7 * 30  # 7 segundos en frames
 
     def desactivar_modo_asustado(self):
         self.modo_asustado = False
@@ -29,7 +29,7 @@ class Fantasma:
 
     def draw(self):
         if self.modo_asustado:
-            if self.tiempo_modo_asustado <= 60:  # Últimos 2 segundos (30 FPS * 2)
+            if self.tiempo_modo_asustado <= 2 * 30:  # Últimos 2 segundos en frames
                 # Alternar entre azul y blanco
                 if pyxel.frame_count % 10 < 5:
                     sprite_x, sprite_y = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
