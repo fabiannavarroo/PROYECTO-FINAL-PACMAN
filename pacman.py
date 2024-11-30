@@ -98,7 +98,7 @@ class Pacman:
         # Dibujar el sprite de PacMan
         pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
 
-        self.ver_vidas()
+        self.ver_vidas(120, 418)
 
 
     def reiniciar_posicion(self):
