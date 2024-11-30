@@ -121,6 +121,7 @@ class Pacman:
                     sprite_x, sprite_y = PACMAN
 
             pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
+            
             self.ver_vidas(10, 10)
 
 
