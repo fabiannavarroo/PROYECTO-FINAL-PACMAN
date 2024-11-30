@@ -102,9 +102,13 @@ class Pacman:
 
 
     def reiniciar_posicion(self):
+        # Reinicia la posición de Pacman
         self.x, self.y = 208, 288
 
     def colision_fantasmas(self, fantasmas):
+        # Verifica si hay colisiones entre Pacman y los fantasmas
+        if self.en_muerte:  # Evitar colisiones durante la animación de muerte
+            return False
         pacman_x = self.x // self.muro.celda_tamaño
         pacman_y = self.y // self.muro.celda_tamaño
 
