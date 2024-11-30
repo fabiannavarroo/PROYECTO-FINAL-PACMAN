@@ -190,7 +190,7 @@ class Puntos:
         # Detecta si Pacman está en la posición de la fruta y se la come :)
         pacman_x = self.pacman.x // self.muro.celda_tamaño
         pacman_y = self.pacman.y // self.muro.celda_tamaño
-
+        #Suma los puntos de la fruta/objeto en caso de ser comido
         if self.posicion_actual == (pacman_x, pacman_y):
             self.puntos += OBJETOS[self.fruta_actual]["Puntos"]
             self.fruta_actual = None
