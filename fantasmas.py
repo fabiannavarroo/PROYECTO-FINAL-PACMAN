@@ -15,6 +15,8 @@ class Fantasma:
         self.asustado = False
         self.tiempo_asustado = 0
         self.animacion_asustado = False
+        self.en_trampa = False
+        self.tiempo_en_trampa = 0
 
     def activar_asustado(self):
         self.asustado = True
