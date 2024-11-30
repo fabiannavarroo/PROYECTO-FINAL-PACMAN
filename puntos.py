@@ -183,7 +183,10 @@ class Puntos:
 
     def comer_fruta(self):
         #Detecta si Pacman está en la posición de la fruta y la consume.
-        if self.posicion_actual == (self.pacman.x // self.muro.celda_tamaño, self.pacman.y // self.muro.celda_tamaño):
+        pacman_x = self.pacman.x // self.muro.celda_tamaño
+        pacman_y = self.pacman.y // self.muro.celda_tamaño
+
+        if self.posicion_actual == (pacman_x, pacman_y):
             self.puntos += OBJETOS[self.fruta_actual]["Puntos"]
             self.fruta_actual = None
             self.posicion_actual = None
