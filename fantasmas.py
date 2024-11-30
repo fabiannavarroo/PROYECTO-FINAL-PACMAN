@@ -12,7 +12,7 @@ class Fantasma:
         self.velocidad = 1.5  # Velocidad de los fantasmas
         self.direccion_actual = "DERECHA"  # Comienza moviéndose hacia la derecha
         self.en_trampa = True  # El fantasma empieza en la trampa
-        self.modo_asustado = False  # Los fantasmas empizan en un estado 
+        self.modo_asustado = False  # Los fantasmas no estas asustado al empezar
 
 
     #def salir_trampa(self):
