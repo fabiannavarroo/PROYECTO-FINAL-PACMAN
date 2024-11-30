@@ -29,14 +29,18 @@ class Tablero:
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        self.pacman.mover()
-        self.puntos.comer_puntos()   # Verificar si Pacman comio un punto
-        self.puntos.generar_fruta()  # Generar frutas cada 30 segundos
-        self.puntos.comer_fruta()    # Verificar si Pacman comio la fruta
-        for fantasma in self.fantasmas:
-            fantasma.trampa()
-            fantasma.actualizar_estado()
-        self.pacman.colision_fantasmas(self.fantasmas)
+        if self.pacman.vidas>0:
+            self.pacman.mover()
+            self.puntos.comer_puntos()   # Verificar si Pacman comio un punto
+            self.puntos.generar_fruta()  # Generar frutas cada 30 segundos
+            self.puntos.comer_fruta()    # Verificar si Pacman comio la fruta
+            for fantasma in self.fantasmas:
+                fantasma.trampa()
+                fantasma.actualizar_estado()
+            self.pacman.colision_fantasmas(self.fantasmas)
+        else:
+            # Mostrar Game Over
+            self.pacman.game_over()
 
     def draw(self):
         pyxel.cls(0)
