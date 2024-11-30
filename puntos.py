@@ -156,3 +156,6 @@ class Puntos:
             y_actual -= 1
 
         self.posicion_actual = (x_actual, y_actual)
+    
+    def aparecer_fruta(self):
+        
