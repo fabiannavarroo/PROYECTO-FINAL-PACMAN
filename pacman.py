@@ -7,7 +7,6 @@ class Pacman:
         self.y = y
         self.velocidad = 2 # Velocidad
         self.muro = muro  # Referencia a la clase Muro
-        self.tamaño_sprite = 16
         self.direccion_actual = PACMAN  # Dirección inicial
         self.direccion_pendiente = None  # Dirección seleccionada por el jugador
 
@@ -34,16 +33,16 @@ class Pacman:
 
         # Verificar si la dirección pendiente no tiene colisión
         if self.direccion_pendiente:
-            if self.direccion_pendiente == PACMAN_ARRIBA and not self.muro.colision(self.x, self.y - self.velocidad, self.tamaño_sprite):
+            if self.direccion_pendiente == PACMAN_ARRIBA and not self.muro.colision(self.x, self.y - self.velocidad):
                 self.direccion_actual = self.direccion_pendiente
                 self.direccion_pendiente = None
-            elif self.direccion_pendiente == PACMAN_ABAJO and not self.muro.colision(self.x, self.y + self.velocidad, self.tamaño_sprite):
+            elif self.direccion_pendiente == PACMAN_ABAJO and not self.muro.colision(self.x, self.y + self.velocidad):
                 self.direccion_actual = self.direccion_pendiente
                 self.direccion_pendiente = None
-            elif self.direccion_pendiente == PACMAN_IZQUIERDA and not self.muro.colision(self.x - self.velocidad, self.y, self.tamaño_sprite):
+            elif self.direccion_pendiente == PACMAN_IZQUIERDA and not self.muro.colision(self.x - self.velocidad, self.y):
                 self.direccion_actual = self.direccion_pendiente
                 self.direccion_pendiente = None
-            elif self.direccion_pendiente == PACMAN_DERECHA and not self.muro.colision(self.x + self.velocidad, self.y, self.tamaño_sprite):
+            elif self.direccion_pendiente == PACMAN_DERECHA and not self.muro.colision(self.x + self.velocidad, self.y):
                 self.direccion_actual = self.direccion_pendiente
                 self.direccion_pendiente = None
 
@@ -58,9 +57,9 @@ class Pacman:
             nueva_x += self.velocidad
 
         # Verificar colisión antes de actualizar la posición
-        if not self.muro.colision(nueva_x, self.y, self.tamaño_sprite):
+        if not self.muro.colision(nueva_x, self.y):
             self.x = nueva_x
-        if not self.muro.colision(self.x, nueva_y, self.tamaño_sprite):
+        if not self.muro.colision(self.x, nueva_y):
             self.y = nueva_y
 
         # Portal
@@ -89,4 +88,4 @@ class Pacman:
                 sprite_x, sprite_y = PACMAN
 
         # Dibujar el sprite de PacMan
-        pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, self.tamaño_sprite, self.tamaño_sprite, colkey=0)
+        pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
