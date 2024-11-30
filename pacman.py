@@ -140,11 +140,3 @@ class Pacman:
         for i in range(self.vidas):
             pyxel.blt(pos_x, y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
             pos_x += sprite_w + 2
-
-    def game_over(self):
-        # Manejar Game Over: limpiar mapa y mostrar mensaje
-        for y in range(len(self.muro.mapa)):
-            for x in range(len(self.muro.mapa[y])):
-                if self.muro.mapa[y][x] not in [MUROS, TEXTO]:
-                    self.muro.mapa[y][x] = -1
-        self.muro.mapa[12][13] = 71  # Posicionar "GAME OVER"
