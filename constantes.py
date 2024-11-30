@@ -35,6 +35,8 @@ FANTASMA_NARANJA = {
     "DERECHA": (32, 80) # Coordenadas del fantasma naranja al moverse a la derecha
 }
 
+FANTASMAS_ASUSTADOS
+
 #--------PUNTOS Y FRUTAS---------#
 OBJETOS = {
     "BASTON": {"Coordenadas": (48,16), "Puntos": 10}, # 0
