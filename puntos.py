@@ -168,16 +168,37 @@ class Puntos:
             # La fruta llegó al destino y permanece allí hasta que Pacman la coma.
             return
 
-        # Mover hacia el destino
+        # Posible movimiento
+        nuevo_x, nuevo_y = x_actual, y_actual
+
         if x_actual < x_destino:
-            x_actual += 0.5
+            nuevo_x += 0.5
         elif x_actual > x_destino:
-            x_actual -= 0.5
+            nuevo_x -= 0.5
 
         if y_actual < y_destino:
-            y_actual += 0.5
+            nuevo_y += 0.5
         elif y_actual > y_destino:
-            y_actual -= 0.5
+            nuevo_y -= 0.5
+
+        # Comprobar colisiones con muros
+        if not self.es_muro(int(nuevo_x), int(y_actual)):  # Movimiento horizontal permitido
+            x_actual = nuevo_x
+        else:
+            # Cambiar dirección horizontal si hay colisión
+            if x_actual < x_destino:
+                x_destino -= 1
+            elif x_actual > x_destino:
+                x_destino += 1
+
+        if not self.es_muro(int(x_actual), int(nuevo_y)):  # Movimiento vertical permitido
+            y_actual = nuevo_y
+        else:
+            # Cambiar dirección vertical si hay colisión
+            if y_actual < y_destino:
+                y_destino -= 1
+            elif y_actual > y_destino:
+                y_destino += 1
 
         self.posicion_actual = (x_actual, y_actual)
 
