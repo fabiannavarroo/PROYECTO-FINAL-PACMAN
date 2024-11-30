@@ -14,6 +14,9 @@ class Pacman:
         self.vidas = 3  # Pacman empieza con 3 vidas
         self.animacion_muerte = False
         self.animacion_frame = 0 # Contador para animación de muerte de Pacman
+        self.tiempo_muerte = 0
+        self.en_muerte = False
+
 
 
     def mover(self):
