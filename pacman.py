@@ -1,150 +1,82 @@
-from constantes import *
-from muro import MUROS
-import time
 import pyxel
+from constantes import *
+import time
 
-class Pacman:
-    def __init__(self, x, y, muro):
+class Fantasma:
+    def __init__(self, x, y, muro, sprites):
         self.x = x
         self.y = y
-        self.velocidad = 2  # Velocidad de movimiento
-        self.muro = muro  # Mapa de muros
-        self.direccion_actual = PACMAN  # Dirección inicial
-        self.direccion_pendiente = None  # Dirección elegida por el jugador
-        self.vidas = 3  # Pac-Man empieza con 3 vidas
-        self.animacion_muerte = True
-        self.animacion_frame = 0
-        self.en_muerte = False  # Indica si Pac-Man está en animación de muerte
+        self.x_inicial = x  # Guardar posición inicial
+        self.y_inicial = y  # Guardar posición inicial
+        self.muro = muro
+        self.sprites = sprites
+        self.direccion_actual = "DERECHA"  # Dirección inicial
+        self.asustado = False
+        self.tiempo_asustado = 0
+        self.tiempo_para_ser_comido = 10  # Tiempo predeterminado para el estado asustado
+        self.en_trampa = False
 
-    def mover(self):
-        nueva_x, nueva_y = self.x, self.y
+    def activar_asustado(self, duracion=None):
+        # Activar el estado asustado
+        self.asustado = True
+        self.tiempo_asustado = time.time()
+        if duracion is not None:
+            self.tiempo_para_ser_comido = duracion  # Ajustar duración dinámica
 
-        # Detectar entrada del jugador para cambiar dirección
-        if pyxel.btnp(pyxel.KEY_UP):
-            self.direccion_pendiente = PACMAN_ARRIBA
-        elif pyxel.btnp(pyxel.KEY_DOWN):
-            self.direccion_pendiente = PACMAN_ABAJO
-        elif pyxel.btnp(pyxel.KEY_LEFT):
-            self.direccion_pendiente = PACMAN_IZQUIERDA
-        elif pyxel.btnp(pyxel.KEY_RIGHT):
-            self.direccion_pendiente = PACMAN_DERECHA
+    def volver_a_trampa(self):
+        # Enviar fantasma a su posición inicial (trampa)
+        self.en_trampa = True
+        if isinstance(self, FantasmaRojo):
+            self.x, self.y = 200, 160
+        elif isinstance(self, FantasmaRosa):
+            self.x, self.y = 176, 190
+        elif isinstance(self, FantasmaAzul):
+            self.x, self.y = 192, 190
+        elif isinstance(self, FantasmaNaranja):
+            self.x, self.y = 208, 190
+        self.asustado = False  # Salir del estado asustado
 
-        # Verificar si la dirección pendiente es válida
-        if self.direccion_pendiente:
-            if self.direccion_pendiente == PACMAN_ARRIBA and not self.muro.colision(self.x, self.y - self.velocidad):
-                self.direccion_actual = self.direccion_pendiente
-            elif self.direccion_pendiente == PACMAN_ABAJO and not self.muro.colision(self.x, self.y + self.velocidad):
-                self.direccion_actual = self.direccion_pendiente
-            elif self.direccion_pendiente == PACMAN_IZQUIERDA and not self.muro.colision(self.x - self.velocidad, self.y):
-                self.direccion_actual = self.direccion_pendiente
-            elif self.direccion_pendiente == PACMAN_DERECHA and not self.muro.colision(self.x + self.velocidad, self.y):
-                self.direccion_actual = self.direccion_pendiente
+    def volver_a_posicion_inicial(self):
+        # Restaurar la posición inicial del fantasma
+        self.x = self.x_inicial
+        self.y = self.y_inicial
+        self.asustado = False
+        self.en_trampa = False
 
-        # Mover en la dirección actual
-        if self.direccion_actual == PACMAN_ARRIBA:
-            nueva_y -= self.velocidad
-        elif self.direccion_actual == PACMAN_ABAJO:
-            nueva_y += self.velocidad
-        elif self.direccion_actual == PACMAN_IZQUIERDA:
-            nueva_x -= self.velocidad
-        elif self.direccion_actual == PACMAN_DERECHA:
-            nueva_x += self.velocidad
+    def actualizar_estado(self):
+        # Manejar temporizador del estado asustado
+        if self.asustado:
+            tiempo_restante = self.tiempo_para_ser_comido - (time.time() - self.tiempo_asustado)
+            if tiempo_restante <= 0:
+                self.asustado = False
 
-        # Verificar colisiones
-        if not self.muro.colision(nueva_x, self.y):
-            self.x = nueva_x
-        if not self.muro.colision(self.x, nueva_y):
-            self.y = nueva_y
-
-        # Manejar portales
-        if (self.x, self.y) in PORTALES:
-            self.x, self.y = PORTALES[(self.x, self.y)]
-
-    def colision_fantasmas(self, fantasmas):
-        if self.en_muerte:
-            return  # No manejar colisiones si Pac-Man está muerto
-
-        pacman_x = self.x // self.muro.celda_tamaño
-        pacman_y = self.y // self.muro.celda_tamaño
-
-        for fantasma in fantasmas:
-            fantasma_x = fantasma.x // self.muro.celda_tamaño
-            fantasma_y = fantasma.y // self.muro.celda_tamaño
-
-            if pacman_x == fantasma_x and pacman_y == fantasma_y:
-                if fantasma.asustado:
-                    fantasma.volver_a_trampa()  # Enviar fantasma a la trampa
-                else:
-                    self.perder_vida()  # Pac-Man pierde una vida
-
-    def perder_vida(self):
-        # Reducir las vidas y activar animación de muerte
-        self.vidas -= 1
-        self.en_muerte = True
-        self.animacion_frame = 0
-
-    def reiniciar_posicion(self):
-        # Reiniciar posición de Pac-Man
-        self.x, self.y = 208, 288
-
-    def mostrar_posiciones_iniciales(self, fantasmas):
-        # Mostrar posiciones iniciales de Pac-Man y los fantasmas
-        self.reiniciar_posicion()
-        for fantasma in fantasmas:
-            fantasma.volver_a_posicion_inicial()
-
-    def animar_muerte(self, fantasmas):
-        # Animación de muerte de Pac-Man con fotogramas más lentos
-        if self.en_muerte:
-            frames = ANIMACION_MUERTE
-            if pyxel.frame_count % 5 == 0:  # Cambiar cada 5 frames
-                if self.animacion_frame < len(frames):
-                    sprite_x, sprite_y = frames[self.animacion_frame]
-                    pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
-                    self.animacion_frame += 1
-                else:
-                    self.en_muerte = False
-                    if self.vidas > 0:
-                        self.mostrar_posiciones_iniciales(fantasmas)  # Mostrar posiciones iniciales
-                        time.sleep(2)  # Pausa de 2 segundos tras la muerte
-                    else:
-                        self.game_over()  # Mostrar Game Over
-
-    def draw(self, fantasmas):
-        # Dibujar Pac-Man o animación de muerte
-        if self.en_muerte:
-            self.animar_muerte(fantasmas)
-        else:
+    def draw(self):
+        # Dibujar fantasma en su estado actual
+        if self.asustado:
+            # Alternar entre azul y blanco
             if pyxel.frame_count // REFRESH % 2 == 0:
-                sprite_x, sprite_y = self.direccion_actual
+                sprite = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
             else:
-                if self.direccion_actual == PACMAN_ARRIBA:
-                    sprite_x, sprite_y = PACMAN_ARRIBA_CERRADA
-                elif self.direccion_actual == PACMAN_ABAJO:
-                    sprite_x, sprite_y = PACMAN_ABAJO_CERRADA
-                elif self.direccion_actual == PACMAN_IZQUIERDA:
-                    sprite_x, sprite_y = PACMAN_IZQUIERDA_CERRADA
-                elif self.direccion_actual == PACMAN_DERECHA:
-                    sprite_x, sprite_y = PACMAN_DERECHA_CERRADA
-                else:
-                    sprite_x, sprite_y = PACMAN
+                sprite = FANTASMAS_ASUSTADOS["BLANCO"]["Coordenadas"]
+        else:
+            sprite = self.sprites[self.direccion_actual]
 
-            pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
-            self.ver_vidas(10, 10)
+        # Dibujar el sprite
+        pyxel.blt(self.x, self.y, 0, sprite[0], sprite[1], 16, 16, colkey=0)
 
-    def ver_vidas(self, x, y):
-        # Dibujar las vidas restantes
-        sprite_x, sprite_y = PACMAN
-        sprite_w, sprite_h = 16, 16
-        pos_x = x
-        for i in range(self.vidas):
-            pyxel.blt(pos_x, y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
-            pos_x += sprite_w + 2
+# Subclases de Fantasma
+class FantasmaRojo(Fantasma):
+    def __init__(self, x, y, muro):
+        super().__init__(x, y, muro, FANTASMA_ROJO)
 
-    def game_over(self):
-        # Manejar Game Over: limpiar mapa y mostrar mensaje
-        for y in range(len(self.muro.mapa)):
-            for x in range(len(self.muro.mapa[y])):
-                if self.muro.mapa[y][x] not in [MUROS, TEXTO]:
-                    self.muro.mapa[y][x] = -1
-        self.muro.mapa[12][13] = 71  # Posicionar "GAME OVER"
+class FantasmaRosa(Fantasma):
+    def __init__(self, x, y, muro):
+        super().__init__(x, y, muro, FANTASMA_ROSA)
+
+class FantasmaAzul(Fantasma):
+    def __init__(self, x, y, muro):
+        super().__init__(x, y, muro, FANTASMA_AZUL)
+
+class FantasmaNaranja(Fantasma):
+    def __init__(self, x, y, muro):
+        super().__init__(x, y, muro, FANTASMA_NARANJA)
