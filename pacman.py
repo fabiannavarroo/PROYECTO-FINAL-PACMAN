@@ -165,6 +165,25 @@ class Pacman:
                     self.muro.mapa[y][x] = 0
         # Mostrar texto "Game Over"
         self.dibujar_letras_mapa(71, "GAME OVER")
+
+
+    def ver_vidas(self, x, y):
+
+        sprite_pacman = self.color_actual
+        num_vidas = str(self.vidas)
+        pos_x = x
+
+        for num in puntuacion_str:
+            num = int(num)
+            sprite = color_numeros[str(num)]
+            sprite_x, sprite_y = sprite["Coordenadas"]
+            sprite_w, sprite_h = sprite["Tamaño"]
+
+            pyxel.blt(
+                pos_x, y,
+                0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
+            )
+            pos_x += sprite_w + 1  # Espacio entre los dígitos
         
 
 
