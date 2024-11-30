@@ -75,10 +75,14 @@ class Pacman:
 
             if pacman_x == fantasma_x and pacman_y == fantasma_y:
                 if fantasma.asustado:
-                    fantasma.volver_a_trampa()  # Enviar fantasma a la trampa
-                elif not self.en_muerte:  # Si no está asustado y Pac-Man no está ya muriendo
-                    self.perder_vida()  # Pac-Man pierde una vida
-                    return  # Salir del bucle al procesar una colisión
+                    # Si el fantasma está asustado, Pac-Man lo puede comer
+                    self.puntos.puntos += 200  # Añade puntos por comer un fantasma
+                    fantasma.volver_a_trampa()  # Enviar el fantasma a la trampa
+                    return  False 
+                else:
+                    # Si el fantasma no está asustado, Pac-Man pierde una vida
+                    self.perder_vida()
+                    return False 
 
     def perder_vida(self):
         self.vidas -= 1
