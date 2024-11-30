@@ -221,4 +221,4 @@ class Puntos:
         elif tiempo_restante <= 2:
             # Alterna los colores de los fantasmas asustados
             for fantasma in self.fantasmas:
-                fantasma.toggle_asustado_color()
+                fantasma.cambiar_color_asustado()
