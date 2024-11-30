@@ -158,50 +158,40 @@ class Puntos:
         self.ultimo_tiempo_fruta = time.time()
 
     def mover_fruta(self):
-        #Mueve la fruta hacia su destino.
+        #Mueve la fruta hacia su destino, evitando muros.
         if not self.posicion_actual or not self.posicion_destino:
             return  # Nada que mover.
 
         x_actual, y_actual = self.posicion_actual
         x_destino, y_destino = self.posicion_destino
 
-        if (x_actual, y_actual) == (x_destino, y_destino):
+        if (int(x_actual), int(y_actual)) == (int(x_destino), int(y_destino)):
             # La fruta llegó al destino y permanece allí hasta que Pacman la coma.
             return
 
         # Posible movimiento
         nuevo_x, nuevo_y = x_actual, y_actual
 
-        if x_actual < x_destino:
+        if x_actual < x_destino and not self.muro.colision(int(x_actual + 1), int(y_actual)):
             nuevo_x += self.velocidad
-        elif x_actual > x_destino:
+        elif x_actual > x_destino and not self.muro.colision(int(x_actual - 1), int(y_actual)):
             nuevo_x -= self.velocidad
-
-        if y_actual < y_destino:
+        elif y_actual < y_destino and not self.muro.colision(int(x_actual), int(y_actual + 1)):
             nuevo_y += self.velocidad
-        elif y_actual > y_destino:
+        elif y_actual > y_destino and not self.muro.colision(int(x_actual), int(y_actual - 1)):
             nuevo_y -= self.velocidad
-
-        # Comprobar colisiones con muros
-        if not self.muro.colision(nuevo_x, y_actual):  # Movimiento horizontal permitido
-            x_actual = nuevo_x
         else:
-            # Cambiar dirección horizontal si hay colisión
-            if x_actual < x_destino:
-                x_destino -= self.velocidad
-            elif x_actual > x_destino:
-                x_destino += self.velocidad
+            # Si no puede avanzar directamente, intenta movimientos alternativos
+            if not self.muro.colision(int(x_actual), int(y_actual + 1)):
+                nuevo_y += self.velocidad
+            elif not self.muro.colision(int(x_actual), int(y_actual - 1)):
+                nuevo_y -= self.velocidad
+            elif not self.muro.colision(int(x_actual + 1), int(y_actual)):
+                nuevo_x += self.velocidad
+            elif not self.muro.colision(int(x_actual - 1), int(y_actual)):
+                nuevo_x -= self.velocidad
 
-        if not self.muro.colision(x_actual, nuevo_y):  # Movimiento vertical permitido
-            y_actual = nuevo_y
-        else:
-            # Cambiar dirección vertical si hay colisión
-            if y_actual < y_destino:
-                y_destino -= self.velocidad
-            elif y_actual > y_destino:
-                y_destino += self.velocidad
-
-        self.posicion_actual = (x_actual, y_actual)
+        self.posicion_actual = (nuevo_x, nuevo_y)
 
     def comer_fruta(self):
         #Detecta si Pacman está en la posición de la fruta y la consume.
