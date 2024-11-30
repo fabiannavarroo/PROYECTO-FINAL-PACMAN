@@ -37,7 +37,7 @@ class Tablero:
             for fantasma in self.fantasmas:
                 fantasma.trampa() # Va actulizando si los fantamas se encuentran en la trampa
                 fantasma.actualizar_estado() # Verifica si los fantasmas estas asustados o normal
-            self.pacman.colision_fantasmas(self.fantasmas)
+            self.pacman.colision_fantasmas(self.fantasmas)  # Verifica la colision de pacman con los fantasmas
         else:
             # Mostrar Game Over
             self.pacman.game_over()
