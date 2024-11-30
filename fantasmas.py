@@ -21,11 +21,11 @@ class Fantasma:
 
     def activar_modo_asustado(self):
         self.modo_asustado = True
-        self.tiempo_modo_asustado = 7 * 30  # 7 segundos en frames
+        self.tiempo_asustado = 7 * 30  # 7 segundos a 30 FPS
 
     def desactivar_modo_asustado(self):
         self.modo_asustado = False
-        self.tiempo_modo_asustado = 0  # Resetear el tiempo restante
+        self.tiempo_asustado = 0  # Resetear el tiempo restante
 
     def draw(self):
         if self.modo_asustado:
