@@ -12,7 +12,7 @@ class Fantasma:
         self.direccion_actual = "DERECHA"  # Dirección inicial
         self.asustado = False
         self.tiempo_asustado = 0
-        self.tiempo_para_ser_comido = 6  # Tiempo predeterminado para el estado asustado
+        self.tiempo_para_ser_comido = 10  # Tiempo para el estado asustado
         self.en_trampa = False
 
     def activar_asustado(self, duracion=None):
