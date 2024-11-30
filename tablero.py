@@ -30,7 +30,6 @@ class Tablero:
 
     def update(self):
         self.pacman.mover()
-        self.puntos.comer_regalo()
         self.puntos.comer_puntos()   # Verificar si Pacman comió un punto
         self.puntos.generar_fruta()  # Generar frutas cada 30 segundos
         self.puntos.comer_fruta()    # Verificar si Pacman comió la fruta
