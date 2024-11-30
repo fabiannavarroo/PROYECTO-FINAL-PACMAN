@@ -6,8 +6,8 @@ class Pacman:
         self.x = x
         self.y = y
         self.velocidad = 2 # Velocidad
-        self.muro = muro  # Referencia a la clase Muro
-        self.puntos = puntos
+        self.muro = muro  # Referencia a Muro
+        self.puntos = puntos # Referencia a puntos
         self.direccion_actual = PACMAN  # Dirección inicial
         self.direccion_pendiente = None  # Dirección seleccionada por el jugador
 
