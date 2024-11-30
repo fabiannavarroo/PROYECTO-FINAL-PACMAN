@@ -196,8 +196,14 @@ class Puntos:
             self.posicion_actual = None
 
     def activar_modo_diablo(self):
-        for fantasma in self.fantasmas:
-            fantasma.activar_modo_asustado()
+        self.modo_diablo_activo = True
+        self.tiempo_modo_diablo = time.time()
+        self.modo_asustado = True
+        self.tiempo_asustado = 7 * 30  # 7 segundos a 30 FPS
+
+    def desactivar_modo_asustado(self):
+        self.modo_asustado = False
+        self.tiempo_asustado = 0
     
     def actualizar_modo_diablo(self):
         if self.modo_diablo_activo and time.time() - self.tiempo_modo_diablo > 7:
