@@ -102,3 +102,6 @@ class Pacman:
         pacman_y = self.y // self.muro.celda_tamaño
 
         for fantasma in fantasmas:
+            fantasma_x = fantasma.x // self.muro.celda_tamaño
+            fantasma_y = fantasma.y // self.muro.celda_tamaño
+            
