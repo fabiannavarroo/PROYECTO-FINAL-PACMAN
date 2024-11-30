@@ -40,7 +40,11 @@ class Fantasma:
     def activar_asustado(self):
         self.asustado = True
         self.tiempo_asustado = time.time()
-        self.color_actual = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]  # Cambiar a color asustado
+        if pyxel.frame_count // REFRESH % 2 == 0:
+            self.color_actual = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]  # Cambiar a color asustado
+        else:
+            self.color_actual = FANTASMAS_ASUSTADOS["BLANCO"]["Coordenadas"]  # Cambiar a color asustado
+
 
     def actualizar_estado(self):
         if self.asustado and time.time() - self.tiempo_asustado > 6:
