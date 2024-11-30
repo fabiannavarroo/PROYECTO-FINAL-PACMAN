@@ -118,7 +118,7 @@ class Pacman:
                     for f in fantasmas:
                         f.volver_a_trampa()
                     fantasmas[0].x, fantasmas[0].y = 200, 160  # Rojo fuera de la trampa
-                    pyxel.sleep(2)  # Esperar 2 segundos
+                    time.sleep(2)  # Esperar 2 segundos
                     if self.vidas <= 0:
                         self.game_over()
 
