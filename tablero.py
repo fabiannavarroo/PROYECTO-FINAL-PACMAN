@@ -39,8 +39,7 @@ class Tablero:
                 fantasma.actualizar_estado() # Verifica si los fantasmas estas asustados o normal
             self.pacman.colision_fantasmas(self.fantasmas)  # Verifica la colision de pacman con los fantasmas
         else:
-            # Mostrar Game Over
-            self.pacman.game_over()
+            self.pacman.game_over() # Mostrar Game Over cuando pacman se queda sin vida
 
     def draw(self):
         pyxel.cls(0)
