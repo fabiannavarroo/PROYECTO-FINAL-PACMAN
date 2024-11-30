@@ -60,7 +60,6 @@ class Pacman:
         if (self.x, self.y) in PORTALES:
             self.x, self.y = PORTALES[(self.x, self.y)]
 
-
     def colision_fantasmas(self, fantasmas):
         if self.en_muerte:
             return  # Evitar colisiones mientras Pacman está muerto
@@ -80,27 +79,23 @@ class Pacman:
 
     def perder_vida(self):
         self.vidas -= 1
-        if self.vidas > 0:
-            self.en_muerte = True
-        else:
-            self.game_over()
+        self.en_muerte = True
+        self.animacion_frame = 0  # Reinicia la animación de muerte
 
     def reiniciar_posicion(self):
         self.x, self.y = 208, 288  # Reinicia Pacman en su posición inicial
 
     def animar_muerte(self):
         # Realiza la animación de muerte de Pacman
-        if self.animacion_muerte:
+        if self.en_muerte and self.animacion_muerte:
             frames = ANIMACION_MUERTE
             if self.animacion_frame < len(frames):
                 sprite_x, sprite_y = frames[self.animacion_frame]
                 pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
                 self.animacion_frame += 1
             else:
-                self.animacion_muerte = False
-                time.sleep(2)  # Esperar 2 segundos
-                self.reiniciar_posicion()
                 self.en_muerte = False
+                self.reiniciar_posicion()
 
     def draw(self):
         # Alternar entre sprites para la animación
