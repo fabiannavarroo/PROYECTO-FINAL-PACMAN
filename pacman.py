@@ -97,4 +97,8 @@ class Pacman:
     def reiniciar_posicion(self):
         self.x, self.y = 208, 288
 
-    def colision_fantasmas(self, fantasmas)
+    def colision_fantasmas(self, fantasmas):
+        pacman_x = self.x // self.muro.celda_tamaño
+        pacman_y = self.y // self.muro.celda_tamaño
+
+        for fantasma in fantasmas:
