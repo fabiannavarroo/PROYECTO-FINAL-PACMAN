@@ -16,7 +16,6 @@ class Puntos:
         self.ultimo_tiempo_fruta = time.time()  # Tiempo de la última fruta generada
         self.fruta_actual = None  # Información de la fruta actual
         self.posicion_actual = None  # Posición actual de la fruta
-        self.posicion_destino = None  # Posición destino de la fruta
         self.velocidad = 0.25  # Velocidad de la fruta para ir a su posicion
  
 
@@ -167,4 +166,3 @@ class Puntos:
             self.puntos += OBJETOS[self.fruta_actual]["Puntos"]
             self.fruta_actual = None
             self.posicion_actual = None
-            self.posicion_destino = None
