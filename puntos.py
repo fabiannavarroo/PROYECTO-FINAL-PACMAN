@@ -81,9 +81,9 @@ class Puntos:
 
 
     def comer_puntos(self):
-        # Detectar si Pacman come puntos o regalos
-        pacman_x = self.pacman.x // self.muro.celda_tamaño  # Índice X en el mapa
-        pacman_y = self.pacman.y // self.muro.celda_tamaño  # Índice Y en el mapa
+        # Detectar si Pac-Man come puntos o regalos
+        pacman_x = self.pacman.x // self.muro.celda_tamaño
+        pacman_y = self.pacman.y // self.muro.celda_tamaño
 
         if self.muro.mapa[pacman_y][pacman_x] in [0, 98]:
             if self.muro.mapa[pacman_y][pacman_x] == 0:
