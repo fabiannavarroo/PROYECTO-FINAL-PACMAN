@@ -166,7 +166,7 @@ class Puntos:
         x_destino, y_destino = self.posicion_destino
 
         if (int(x_actual), int(y_actual)) == (int(x_destino), int(y_destino)):
-            # La fruta llegó al destino y permanece allí hasta que Pacman la coma.
+            # La fruta llegó al destino y se queda hasta que Pacman la coma.
             return
 
         # Posible movimiento
