@@ -112,5 +112,5 @@ class Pacman:
                     self.vidas -= 1  # Si no está asustado, Pacman pierde una vida
                     self.reiniciar_posicion()  # Reiniciar posición
                     if self.vidas <= 0:
-                        self.puntos.dibujar_letras_mapa()
+                        self.puntos.dibujar_letras_mapa(71, "GAME OVER")
 
