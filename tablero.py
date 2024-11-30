@@ -4,7 +4,6 @@ from fantasmas import *
 from puntos import Puntos
 from constantes import *
 import pyxel
-import time
 
 class Tablero:
     def __init__(self):
@@ -23,9 +22,6 @@ class Tablero:
         ]
         self.puntos = Puntos(self.muro, OBJETOS, self.pacman, self.fantasmas)  # Controlador de puntos y frutas
 
-        # Temporizador para reinicio después de animación de muerte
-        self.reiniciar_en = None
-
         # Iniciar el bucle principal del juego
         pyxel.run(self.update, self.draw)
 
@@ -35,12 +31,8 @@ class Tablero:
             if self.pacman.en_muerte:
                 # Ejecutar animación de muerte
                 self.pacman.animar_muerte(self.fantasmas)
-                # Manejar temporizador para reiniciar tras la animación
-                if not self.pacman.en_muerte and self.reiniciar_en is None:
-                    self.reiniciar_en = time.time() + 2  # Esperar 2 segundos para reiniciar
-                elif self.reiniciar_en and time.time() >= self.reiniciar_en:
-                    self.reiniciar_tablero()  # Reiniciar posiciones del tablero
-                    self.reiniciar_en = None
+                if not self.pacman.en_muerte:  # Cuando termine la animación de muerte
+                    self.reiniciar_tablero()  # Reiniciar el tablero inmediatamente
             else:
                 # Actualizar elementos del juego
                 self.pacman.mover()  # Mover Pacman
@@ -63,8 +55,10 @@ class Tablero:
                 self.pacman.draw(self.fantasmas)  # Dibujar Pacman
                 for fantasma in self.fantasmas:
                     fantasma.draw()  # Dibujar fantasmas
+            else:
+                self.pacman.draw([])  # Dibujar solo Pacman (sin fantasmas) durante la animación de muerte
         elif self.pacman.en_muerte:
-            self.pacman.draw(self.fantasmas)  # Solo dibujar Pacman durante la animación de muerte
+            self.pacman.draw([])  # Solo dibujar Pacman durante la animación de muerte
 
     def reiniciar_tablero(self):
 
