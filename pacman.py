@@ -2,11 +2,12 @@ from constantes import PACMAN, PACMAN_ARRIBA, PACMAN_ABAJO, PACMAN_IZQUIERDA, PA
 import pyxel
 
 class Pacman:
-    def __init__(self, x, y, muro):
+    def __init__(self, x, y, muro, puntos):
         self.x = x
         self.y = y
         self.velocidad = 2 # Velocidad
         self.muro = muro  # Referencia a la clase Muro
+        self.puntos = puntos
         self.direccion_actual = PACMAN  # Dirección inicial
         self.direccion_pendiente = None  # Dirección seleccionada por el jugador
 
@@ -104,4 +105,11 @@ class Pacman:
         for fantasma in fantasmas:
             fantasma_x = fantasma.x // self.muro.celda_tamaño
             fantasma_y = fantasma.y // self.muro.celda_tamaño
-            
+            if pacman_x == fantasma_x and pacman_y == fantasma_y:
+                if fantasma.asustado:
+                    fantasma.volver_a_trampa()  # Si está asustado, regresa a la trampa
+                else:
+                    self.vidas -= 1  # Si no está asustado, Pacman pierde una vida
+                    self.reiniciar_posicion()  # Reiniciar posición
+                    if self.vidas <= 0:
+
