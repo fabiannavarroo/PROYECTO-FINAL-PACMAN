@@ -124,13 +124,12 @@ class Pacman:
                     fantasma.volver_a_trampa()
                 else:
                     self.vidas -= 1
-                    self.reiniciar_posicion()
-                    # Reiniciar fantasmas
-                    for fantasma in fantasmas:
-                        fantasma.volver_a_trampa()
-                    else:
-                        self.vidas -= 1
+                    if self.vidas > 0:
                         self.iniciar_animacion_muerte(fantasmas)
+                    else:
+                        self.en_muerte = True
+                        self.game_over()
+                    return
 
 
     def iniciar_animacion_muerte(self, fantasmas):
@@ -138,6 +137,7 @@ class Pacman:
         self.animacion_muerte = True
         self.animacion_frame = 0
         self.tiempo_muerte = time.time()
+        self.en_muerte = True
         # Ocultar fantasmas y reinica sus posiciones en la trampa
         for fantasma in fantasmas:
             fantasma.ocultar()
