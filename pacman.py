@@ -139,7 +139,7 @@ class Pacman:
         # Limpiar mapa y objetos
         for y in range(len(self.muro.mapa)):
             for x in range(len(self.muro.mapa[y])):
-                if self.muro.mapa[y][x] in [-1, 98]:
+                if self.muro.mapa[y][x] in [-1,90,91,92,93,94,95,96,97,98]:
                     self.muro.mapa[y][x] = 0
         # Mostrar texto "Game Over"
         self.dibujar_letras_mapa(71, "GAME OVER")
