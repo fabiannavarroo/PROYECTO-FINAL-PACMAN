@@ -45,6 +45,7 @@ class Tablero:
             self.pacman.game_over()  # Mostrar Game Over cuando Pacman se queda sin vida
 
     def draw(self):
+        # Dibuja los elementos del juego
         pyxel.cls(0)
         self.puntos.draw()
         self.muro.draw()
