@@ -53,7 +53,7 @@ class Fantasma:
 
     def draw(self):
         # Dibujar el fantasma con el sprite correspondiente
-        pyxel.blt(self.x, self.y, 0, self.color_actual, 16, 16, colkey=0)
+        pyxel.blt(self.x, self.y, 0, self.color_actual[0], self.color_actual[1], 16, 16, colkey=0)
 
 
 # Subclases de los Fantasmas
