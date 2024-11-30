@@ -218,7 +218,6 @@ class Puntos:
             self.modo_diablo_activo = False
             for fantasma in self.fantasmas:
                 fantasma.desactivar_modo_asustado()
-        elif tiempo_restante <= 2:
             # Alterna los colores de los fantasmas asustados
             for fantasma in self.fantasmas:
                 fantasma.cambiar_color_asustado()
