@@ -16,8 +16,8 @@ class Puntos:
         self.ultimo_tiempo_fruta = time.time()  # Tiempo de la última fruta generada
         self.fruta_actual = None  # Información de la fruta actual
         self.posicion_actual = None  # Posición actual de la fruta
+        self.animacion_activa = False  # Indica si hay animación activa
         self.animacion_contador = 0  # Contador para animación de aparición
-
 
     def draw(self):
         # Poner los puntos en el mapa
@@ -58,33 +58,10 @@ class Puntos:
 
         # Dibuja la fruta si existe
         if self.fruta_actual and self.posicion_actual:
-            sprite = OBJETOS[self.fruta_actual]
-            sprite_x, sprite_y = sprite["Coordenadas"]
-            sprite_w, sprite_h = 16, 16
-            x_pixel = self.posicion_actual[0] * self.muro.celda_tamaño
-            y_pixel = self.posicion_actual[1] * self.muro.celda_tamaño
-            pyxel.blt(
-                x_pixel, y_pixel, 0,
-                sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
-            )
-            # Durante los primeros 30 frames, hacer que parpadee
-            if self.animacion_contador < 30:
-                if self.animacion_contador % 10 < 5:  # Parpadea cada 5 frames
-                    pyxel.blt(
-                        x_pixel, y_pixel, 0,
-                        sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
-                    )
-                self.animacion_contador += 1
-            else:
-                # Dibuja la fruta de manera normal después de la animación
-                pyxel.blt(
-                    x_pixel, y_pixel, 0,
-                    sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
-                )
+            self.dibujar_fruta()
 
         # Mostrar la puntuación
-        self.ver_puntuacion(188, 16)  
-
+        self.ver_puntuacion(188, 16)
 
     def dibujar_letras_mapa(self, num, sprite):
         # Dibuja las letras en las posiciones indicadas por el mapa
@@ -98,7 +75,6 @@ class Puntos:
                         x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,
                         0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
                     )
-
 
     def comer_puntos(self):
         # Detectar si Pacman come puntos o regalos
@@ -116,7 +92,6 @@ class Puntos:
 
             # Eliminar el objeto del mapa
             self.muro.mapa[pacman_y][pacman_x] = -1
-
 
     def ver_puntuacion(self, x, y):
         # Cambia el color solo cuando se supera un nuevo múltiplo de 500
@@ -141,7 +116,6 @@ class Puntos:
             )
             pos_x += sprite_w + 1  # Espacio entre los dígitos
 
-
     def encontrar_celdas_vacias(self):
         # Encuentra celdas vacías en el mapa
         celdas_vacias = []
@@ -150,10 +124,9 @@ class Puntos:
                 if self.muro.mapa[y][x] == -1:
                     celdas_vacias.append((x, y))
         return celdas_vacias
-    
 
     def generar_fruta(self):
-        #Genera una fruta en una celda vacía
+        # Genera una fruta en una celda vacía
         if time.time() - self.ultimo_tiempo_fruta < 30:
             return  # No generar una nueva fruta si no han pasado 30 segundos
 
@@ -161,23 +134,48 @@ class Puntos:
         objetos_dispo = ["CEREZA", "FRESA", "NARANJA", "MANZANA", "MELON", "PARAGUAS", "CAMPANA", "LLAVE"]
         self.fruta_actual = random.choice(objetos_dispo)
 
-        # Fila inicial y columna aleatoria (izquierda o derecha)
-        fila_inicial = 12
-        columna_inicial = random.choice([0, len(self.muro.mapa[0]) - 1])
-
-        # Elegir un destino aleatorio en celdas vacías 
+        # Elegir una posición aleatoria en celdas vacías
         celdas_vacias = self.encontrar_celdas_vacias()
         if celdas_vacias:
             self.posicion_actual = random.choice(celdas_vacias)
+            self.animacion_activa = True  # Activa la animación
+            self.animacion_contador = 0  # Reinicia el contador de animación
         else:
             self.posicion_actual = None  # No hay espacio libre para generar una fruta
 
         # Actualiza el tiempo de la última fruta generada
         self.ultimo_tiempo_fruta = time.time()
 
+    def dibujar_fruta(self):
+        # Dibuja la fruta con animación al aparecer
+        if self.animacion_activa and self.animacion_contador < 30:
+            # Parpadea cada 5 frames
+            if self.animacion_contador % 10 < 5:
+                sprite = OBJETOS[self.fruta_actual]
+                sprite_x, sprite_y = sprite["Coordenadas"]
+                sprite_w, sprite_h = 16, 16
+                x_pixel = self.posicion_actual[0] * self.muro.celda_tamaño
+                y_pixel = self.posicion_actual[1] * self.muro.celda_tamaño
+                pyxel.blt(
+                    x_pixel, y_pixel, 0,
+                    sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
+                )
+            self.animacion_contador += 1
+        else:
+            # Detiene la animación y dibuja la fruta normalmente
+            self.animacion_activa = False
+            sprite = OBJETOS[self.fruta_actual]
+            sprite_x, sprite_y = sprite["Coordenadas"]
+            sprite_w, sprite_h = 16, 16
+            x_pixel = self.posicion_actual[0] * self.muro.celda_tamaño
+            y_pixel = self.posicion_actual[1] * self.muro.celda_tamaño
+            pyxel.blt(
+                x_pixel, y_pixel, 0,
+                sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
+            )
 
     def comer_fruta(self):
-        #Detecta si Pacman está en la posición de la fruta y la consume.
+        # Detecta si Pacman está en la posición de la fruta y se la come :)
         pacman_x = self.pacman.x // self.muro.celda_tamaño
         pacman_y = self.pacman.y // self.muro.celda_tamaño
 
