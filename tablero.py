@@ -12,8 +12,6 @@ class Tablero:
 
         # Iniciar el Mapa
         self.muro = Muro()
-        # Iniciar el Pacman
-        self.pacman = Pacman(208, 288, self.muro)  # Coordenadas iniciales del PacMan
         
         # Iniciar los fantasmas
         self.fantasmas = [
@@ -24,7 +22,10 @@ class Tablero:
         ]
 
         # Iniciar los puntos
-        self.puntos = Puntos(self.muro, OBJETOS, self.pacman, self.fantasmas) 
+        self.puntos = Puntos(self.muro, OBJETOS, self.pacman, self.fantasmas)
+
+        # Iniciar el Pacman
+        self.pacman = Pacman(208, 288, self.muro, self.puntos)  # Coordenadas iniciales del PacMan 
 
         pyxel.run(self.update, self.draw)
 
