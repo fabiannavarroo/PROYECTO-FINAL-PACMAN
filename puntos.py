@@ -169,7 +169,13 @@ class Puntos:
         # Los objetos que pueden aparecer
         objetos_dispo = ["CEREZA", "FRESA", "NARANJA", "MANZANA", "MELON", "PARAGUAS", "CAMPANA", "LLAVE"]
         self.fruta_actual = random.choice(objetos_dispo)
-        self.posicion_actual = random.choice(celdas_vacias)
+        # Fila inicial 
+        fila_inicial = 13
+        # Seleccionamos un borde: izquierdo o derecho
+        columna_inicial = random.choice([0, len(self.muro.mapa[0]) - 1])
+        self.posicion_actual = (columna_inicial, fila_inicial)
+
+        # Elegir un destino aleatorio en celdas vacías
         self.posicion_destino = random.choice(celdas_vacias)
 
         print(f"Fruta generada: {self.fruta_actual} en {self.posicion_actual}, destino: {self.posicion_destino}")
