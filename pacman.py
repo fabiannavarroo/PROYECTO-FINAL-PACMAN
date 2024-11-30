@@ -153,8 +153,9 @@ class Pacman:
                 self.animacion_frame += 1
             else:
                 self.animacion_muerte = False
-                self.en_muerte
+                time.sleep(2)  # Esperar 2 segundos
                 self.reiniciar_posicion()
+                self.en_muerte = False
                 
 
     def game_over(self):
