@@ -206,7 +206,7 @@ class Puntos:
 
     def colision(self, x, y):
         #Verifica si la celda (x, y) es un muro.
-        x = int(x)  # Redondear para evitar errores con coordenadas flotantes
+        x = int(x)  
         y = int(y)
         if 0 <= y < len(self.mapa) and 0 <= x < len(self.mapa[0]):
             return self.mapa[y][x] in MUROS  # MUROS debe contener los identificadores de muros
