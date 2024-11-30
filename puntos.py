@@ -18,6 +18,7 @@ class Puntos:
         self.posicion_actual = None  # Posición actual de la fruta
         self.animacion_activa = False  # Indica si hay animación activa
         self.animacion_contador = 0  # Contador para animación de aparición
+        self.modo_diablo_activo = False  # Hacer que el PacmMan no empice comiendo fantasmas
 
 
     def draw(self):
