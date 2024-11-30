@@ -53,5 +53,9 @@ class Tablero:
                 self.pacman.draw(self.fantasmas)  # Dibujar Pacman
                 for fantasma in self.fantasmas:
                     fantasma.draw()  # Dibujar fantasmas
+            else:
+                self.pacman.draw()
+                for fantasma in self.fantasmas:
+                    fantasma.draw()
         
 
