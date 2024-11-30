@@ -30,18 +30,27 @@ class Fantasma:
             self.x, self.y = 192, 190
         elif isinstance(self, FantasmaNaranja):
             self.x, self.y = 208, 190
+        self.asustado = False  # Dejar de estar asustado al regresar a la trampa
 
     def actualizar_estado(self):
         # Manejar el temporizador del estado asustado
-        if self.asustado and time.time() - self.tiempo_asustado > 6:
-            self.asustado = False
+        if self.asustado:
+            tiempo_restante = 6 - (time.time() - self.tiempo_asustado)
+            if tiempo_restante <= 0:
+                self.asustado = False
 
     def draw(self):
         # Dibujar el fantasma en su estado correspondiente
         if self.asustado:
-            sprite = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
+            # Cambiar entre azul y blanco basado en el contador de frames
+            if pyxel.frame_count // REFRESH % 2 == 0:
+                sprite = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
+            else:
+                sprite = FANTASMAS_ASUSTADOS["BLANCO"]["Coordenadas"]
         else:
             sprite = self.sprites[self.direccion_actual]
+
+        # Dibujar el sprite del fantasma
         pyxel.blt(self.x, self.y, 0, sprite[0], sprite[1], 16, 16, colkey=0)
 
 
