@@ -33,6 +33,8 @@ class Tablero:
         self.puntos.comer_puntos()   # Verificar si Pacman comio un punto
         self.puntos.generar_fruta()  # Generar frutas cada 30 segundos
         self.puntos.comer_fruta()    # Verificar si Pacman comio la fruta
+        for fantasma in self.fantasmas:
+            fantasma.actualizar_estado()
 
     def draw(self):
         pyxel.cls(0)
