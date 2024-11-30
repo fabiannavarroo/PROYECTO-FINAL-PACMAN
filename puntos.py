@@ -6,7 +6,7 @@ import pyxel
 
 
 class Puntos:
-    def __init__(self, muro, sprite, pacman,fantsma):
+    def __init__(self, muro, sprite, pacman, fantasma):
         self.muro = muro
         self.sprite = sprite
         self.pacman = pacman
