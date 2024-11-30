@@ -138,7 +138,7 @@ class Puntos:
     def generar_fruta(self):
         # Genera una fruta en una celda vacía
         if time.time() - self.ultimo_tiempo_fruta < 30:
-            return  # No generar una nueva fruta si no han pasado 30 segundos
+            return False # No generar una nueva fruta si no han pasado 30 segundos
 
         # Seleccionar un objeto aleatorio sin regalos ni bastones
         objetos_dispo = ["CEREZA", "FRESA", "NARANJA", "MANZANA", "MELON", "PARAGUAS", "CAMPANA", "LLAVE"]
