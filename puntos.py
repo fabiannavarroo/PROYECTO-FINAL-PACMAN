@@ -209,5 +209,5 @@ class Puntos:
         x = int(x)  
         y = int(y)
         if 0 <= y < len(self.mapa) and 0 <= x < len(self.mapa[0]):
-            return self.mapa[y][x] in MUROS  # MUROS debe contener los identificadores de muros
+            return self.mapa[y][x] in MUROS  
         return True  # Consideramos fuera del mapa como muro
