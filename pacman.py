@@ -141,6 +141,7 @@ class Pacman:
     
 
     def animar_muerte(self):
+        # Realiza la animación de muerte de pacman
         if self.animacion_muerte:
             frames = ANIMACION_MUERTE
             if self.animacion_frame < len(frames):
@@ -149,8 +150,9 @@ class Pacman:
                 self.animacion_frame += 1
             else:
                 self.animacion_muerte = False
+                self.en_muerte
                 self.reiniciar_posicion()
-                time.sleep(2)  # Esperar 2 segundos antes de poder seguir jugando
+                
                 
 
     def dibujar_letras_mapa(self, num, sprite):
