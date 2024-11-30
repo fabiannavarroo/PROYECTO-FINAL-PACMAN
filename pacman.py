@@ -87,10 +87,11 @@ class Pacman:
         # Reiniciar posición de Pac-Man
         self.x, self.y = 208, 288
 
-    def ocultar_fantasmas(self, fantasmas):
-        # Ocultar fantasmas durante la animación de muerte
+    def mostrar_posiciones_iniciales(self, fantasmas):
+        # Mostrar posiciones iniciales de Pac-Man y los fantasmas
+        self.reiniciar_posicion()
         for fantasma in fantasmas:
-            fantasma.x, fantasma.y = -100, -100  # Posición fuera del mapa
+            fantasma.volver_a_posicion_inicial()
 
     def animar_muerte(self, fantasmas):
         # Animación de muerte de Pac-Man con fotogramas más lentos
@@ -104,15 +105,14 @@ class Pacman:
                 else:
                     self.en_muerte = False
                     if self.vidas > 0:
+                        self.mostrar_posiciones_iniciales(fantasmas)  # Mostrar posiciones iniciales
                         time.sleep(2)  # Pausa de 2 segundos tras la muerte
-                        self.reiniciar_posicion()  # Reiniciar si hay vidas restantes
                     else:
                         self.game_over()  # Mostrar Game Over
 
     def draw(self, fantasmas):
         # Dibujar Pac-Man o animación de muerte
         if self.en_muerte:
-            self.ocultar_fantasmas(fantasmas)
             self.animar_muerte(fantasmas)
         else:
             if pyxel.frame_count // REFRESH % 2 == 0:
@@ -145,6 +145,6 @@ class Pacman:
         # Manejar Game Over: limpiar mapa y mostrar mensaje
         for y in range(len(self.muro.mapa)):
             for x in range(len(self.muro.mapa[y])):
-                if self.muro.mapa[y][x] not in [MUROS, TEXTO] :
+                if self.muro.mapa[y][x] not in [MUROS, TEXTO]:
                     self.muro.mapa[y][x] = -1
         self.muro.mapa[12][13] = 71  # Posicionar "GAME OVER"
