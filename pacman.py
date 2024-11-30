@@ -153,20 +153,6 @@ class Pacman:
                 self.en_muerte
                 self.reiniciar_posicion()
                 
-                
-
-    def dibujar_letras_mapa(self, num, sprite):
-        # Dibuja las letras en las posiciones indicadas por el mapa
-        for y in range(len(self.muro.mapa)):
-            for x in range(len(self.muro.mapa[y])):
-                if self.muro.mapa[y][x] == num:
-                    sprite = TEXTO[sprite]
-                    sprite_x, sprite_y = sprite["Coordenadas"]
-                    sprite_w, sprite_h = sprite["Tamaño"]
-                    pyxel.blt(
-                        x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,
-                        0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
-                    )
 
     def game_over(self):
         # Limpiar mapa y objetos
@@ -174,8 +160,14 @@ class Pacman:
             for x in range(len(self.muro.mapa[y])):
                 if self.muro.mapa[y][x] in [-1,90,91,92,93,94,95,96,97,98]:
                     self.muro.mapa[y][x] = 0
-        # Mostrar texto "Game Over"
+
+        # Dibujar texto "Game Over"
         self.dibujar_letras_mapa(71, "GAME OVER")
+        sprite = TEXTO["GAME OVER"]
+        sprite_x, sprite_y = sprite["Coordenadas"]
+        sprite_w, sprite_h = sprite["Tamaño"]
+        pyxel.blt(150, 200, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
+
 
 
     def ver_vidas(self, x, y):
