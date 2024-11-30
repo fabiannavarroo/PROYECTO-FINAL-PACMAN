@@ -22,6 +22,7 @@ class Tablero:
             FantasmaAzul(192, 190, self.muro),
             FantasmaNaranja(208, 190, self.muro)
         ]
+        
         # Iniciar los puntos
         self.puntos = Puntos(self.muro, OBJETOS, self.pacman) 
 
