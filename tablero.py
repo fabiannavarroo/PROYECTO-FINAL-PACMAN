@@ -50,7 +50,7 @@ class Tablero:
             self.muro.draw()  # Dibujar el mapa
             self.puntos.draw()  # Dibujar puntos, frutas y puntuación
             if not self.pacman.en_muerte:  # Dibujar personajes normalmente si no está en animación de muerte
-                self.pacman.draw(self.fantasmas)  # Dibujar Pacman
+                self.pacman.draw()  # Dibujar Pacman
                 for fantasma in self.fantasmas:
                     fantasma.draw()  # Dibujar fantasmas
             else:
