@@ -22,6 +22,7 @@ class Tablero:
 
         pyxel.run(self.update, self.draw)
 
+
     def update(self):
         if self.pacman.vidas > 0:
             if self.pacman.en_muerte:
@@ -36,6 +37,7 @@ class Tablero:
         else:
             self.reiniciar_tablero()
 
+
     def draw(self):
         pyxel.cls(0)
         self.puntos.draw()
@@ -43,6 +45,7 @@ class Tablero:
         self.pacman.draw()
         for fantasma in self.fantasmas:
             fantasma.draw()
+
 
     def reiniciar_tablero(self):
         self.pacman.reiniciar_posicion()
