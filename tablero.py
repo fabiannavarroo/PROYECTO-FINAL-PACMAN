@@ -26,7 +26,6 @@ class Tablero:
         self.pacman.mover()
         self.puntos.comer_puntos()   # Verificar si Pacman comio un punto
         self.puntos.generar_fruta()  # Generar frutas cada 30 segundos.
-        self.puntos.mover_fruta()    # Mover la fruta hacia su destino.
         self.puntos.comer_fruta()    # Verificar si Pacman comio la fruta.
 
 
