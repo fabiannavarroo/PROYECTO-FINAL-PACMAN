@@ -172,23 +172,23 @@ class Puntos:
         # Movimiento tentativo
         nuevo_x, nuevo_y = x_actual, y_actual
 
-        if x_actual < x_destino and not self.muro.colision(int(x_actual + 1), int(y_actual)):
+        if x_actual < x_destino and not self.colision(int(x_actual + 1), int(y_actual)):
             nuevo_x += self.velocidad
-        elif x_actual > x_destino and not self.muro.colision(int(x_actual - 1), int(y_actual)):
+        elif x_actual > x_destino and not self.colision(int(x_actual - 1), int(y_actual)):
             nuevo_x -= self.velocidad
-        elif y_actual < y_destino and not self.muro.colision(int(x_actual), int(y_actual + 1)):
+        elif y_actual < y_destino and not self.colision(int(x_actual), int(y_actual + 1)):
             nuevo_y += self.velocidad
-        elif y_actual > y_destino and not self.muro.colision(int(x_actual), int(y_actual - 1)):
+        elif y_actual > y_destino and not self.colision(int(x_actual), int(y_actual - 1)):
             nuevo_y -= self.velocidad
         else:
             # Intentar una dirección alternativa si hay colisión
-            if not self.muro.colision(int(x_actual), int(y_actual + 1)):
+            if not self.colision(int(x_actual), int(y_actual + 1)):
                 nuevo_y += self.velocidad
-            elif not self.muro.colision(int(x_actual), int(y_actual - 1)):
+            elif not self.colision(int(x_actual), int(y_actual - 1)):
                 nuevo_y -= self.velocidad
-            elif not self.muro.colision(int(x_actual + 1), int(y_actual)):
+            elif not self.colision(int(x_actual + 1), int(y_actual)):
                 nuevo_x += self.velocidad
-            elif not self.muro.colision(int(x_actual - 1), int(y_actual)):
+            elif not self.colision(int(x_actual - 1), int(y_actual)):
                 nuevo_x -= self.velocidad
 
         self.posicion_actual = (nuevo_x, nuevo_y)
