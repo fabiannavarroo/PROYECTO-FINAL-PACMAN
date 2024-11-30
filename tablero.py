@@ -51,11 +51,11 @@ class Tablero:
             self.puntos.draw()  # Dibujar puntos, frutas y puntuación
             self.pacman.ver_vidas(10, 10) # Ver las vidas restantes
             if not self.pacman.en_muerte:  # Dibujar personajes si no está en animación de muerte
-                self.pacman.draw()  # Dibujar Pacman
+                self.pacman.draw(self.fantasmas)  # Dibujar Pacman
                 for fantasma in self.fantasmas:
                     fantasma.draw()  # Dibujar fantasmas
             else:
-                self.pacman.draw()  # Dibujar solo Pacmandurante la animación de muerte
+                self.pacman.draw(self.fantasmas)  # Dibujar solo Pacmandurante la animación de muerte
         else:
             # No se dibuja nada si las vidas llegan a 0 y no hay animación en curso
             pyxel.cls(0)
