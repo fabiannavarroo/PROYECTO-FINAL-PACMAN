@@ -90,6 +90,9 @@ class Puntos:
                 tipo_consumible = "BASTON"
             elif self.muro.mapa[pacman_y][pacman_x] == 98:
                 tipo_consumible = "REGALO"
+                # Activar el estado asustado para todos los fantasmas
+                for fantasma in self.fantasmas:
+                    fantasma.activar_asustado()
 
             # Sumar puntos
             self.puntos += OBJETOS[tipo_consumible]["Puntos"]
@@ -200,10 +203,7 @@ class Puntos:
         pacman_y = self.pacman.y // self.muro.celda_tamaño
 
         if self.muro.mapa[pacman_y][pacman_x] == 98:
-            # Activar el estado asustado para todos los fantasmas
-            for fantasma in self.fantasmas:
-                fantasma.activar_asustado()
+            
 
-            # Eliminar el regalo del mapa
-            self.muro.mapa[pacman_y][pacman_x] = -1
+
     
