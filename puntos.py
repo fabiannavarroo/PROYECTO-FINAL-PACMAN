@@ -67,8 +67,9 @@ class Puntos:
                 x_pixel, y_pixel, 0,
                 sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
             )
-
-        self.ver_puntuacion(188, 16)  # Mostrar la puntuación
+            
+        # Mostrar la puntuación
+        self.ver_puntuacion(188, 16)  
 
     def dibujar_letras_mapa(self, num, sprite):
         # Dibuja las letras en las posiciones indicadas por el mapa
