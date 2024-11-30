@@ -1,5 +1,3 @@
-Aparecer las frutas en lugares random
-
 Sistema de muerte del PacMan y fantasmas
 
 Sistema de Vidas
