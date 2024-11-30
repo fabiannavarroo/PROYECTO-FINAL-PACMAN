@@ -18,7 +18,6 @@ class Pacman:
         self.en_muerte = False
 
 
-
     def mover(self):
         nueva_x, nueva_y = self.x, self.y
 
