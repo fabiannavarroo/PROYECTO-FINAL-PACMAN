@@ -117,12 +117,11 @@ class Pacman:
                     self.vidas -= 1
                     self.reiniciar_posicion()
                     # Reiniciar fantasmas
-                    for f in fantasmas:
-                        f.volver_a_trampa()
-                    fantasmas[0].x, fantasmas[0].y = 200, 160  # Rojo fuera de la trampa
-                    time.sleep(2)  # Esperar 2 segundos
-                    if self.vidas <= 0:
-                        self.game_over()
+                    for fantasma in fantasmas:
+                        fantasma.volver_a_trampa()
+
+                        fantasmas[0].x, fantasmas[0].y = 200, 160  # Rojo fuera de la trampa
+                
 
     def dibujar_letras_mapa(self, num, sprite):
         # Dibuja las letras en las posiciones indicadas por el mapa
