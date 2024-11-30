@@ -1,5 +1,6 @@
 from constantes import *
 from muro import MUROS
+import time
 import pyxel
 
 class Pacman:
