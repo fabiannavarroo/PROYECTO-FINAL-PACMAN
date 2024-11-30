@@ -1,6 +1,5 @@
 from constantes import *
 from muro import MUROS
-import time
 import pyxel
 
 class Pacman:
@@ -106,7 +105,6 @@ class Pacman:
                     self.en_muerte = False
                     if self.vidas > 0:
                         self.mostrar_posiciones_iniciales(fantasmas)  # Mostrar posiciones iniciales
-                        time.sleep(2)  # Pausa de 2 segundos tras la muerte
                     
 
     def draw(self, fantasmas):
