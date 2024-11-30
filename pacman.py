@@ -19,7 +19,7 @@ class Pacman:
     def mover(self):
         nueva_x, nueva_y = self.x, self.y
 
-        # Detectar entrada del jugador para cambiar la dirección pendiente
+        # Detectar entrada del jugador para cambiar dirección pendiente
         if pyxel.btnp(pyxel.KEY_UP):
             self.direccion_pendiente = PACMAN_ARRIBA
         elif pyxel.btnp(pyxel.KEY_DOWN):
@@ -31,19 +31,35 @@ class Pacman:
 
         # Verificar si la dirección pendiente no tiene colisión
         if self.direccion_pendiente:
-            if not self.muro.colision(self.x, self.y, self.direccion_pendiente):
+            if self.direccion_pendiente == PACMAN_ARRIBA and not self.muro.colision(self.x, self.y - self.velocidad):
                 self.direccion_actual = self.direccion_pendiente
-                self.direccion_pendiente = None
+            elif self.direccion_pendiente == PACMAN_ABAJO and not self.muro.colision(self.x, self.y + self.velocidad):
+                self.direccion_actual = self.direccion_pendiente
+            elif self.direccion_pendiente == PACMAN_IZQUIERDA and not self.muro.colision(self.x - self.velocidad, self.y):
+                self.direccion_actual = self.direccion_pendiente
+            elif self.direccion_pendiente == PACMAN_DERECHA and not self.muro.colision(self.x + self.velocidad, self.y):
+                self.direccion_actual = self.direccion_pendiente
 
         # Mover en la dirección actual
-        if self.direccion_actual:
-            nueva_x, nueva_y = self.muro.mover(self.x, self.y, self.direccion_actual)
+        if self.direccion_actual == PACMAN_ARRIBA:
+            nueva_y -= self.velocidad
+        elif self.direccion_actual == PACMAN_ABAJO:
+            nueva_y += self.velocidad
+        elif self.direccion_actual == PACMAN_IZQUIERDA:
+            nueva_x -= self.velocidad
+        elif self.direccion_actual == PACMAN_DERECHA:
+            nueva_x += self.velocidad
 
-        self.x, self.y = nueva_x, nueva_y
+        # Verificar colisión antes de actualizar la posición
+        if not self.muro.colision(nueva_x, self.y):
+            self.x = nueva_x
+        if not self.muro.colision(self.x, nueva_y):
+            self.y = nueva_y
 
-        # Portal
+        # Portal 
         if (self.x, self.y) in PORTALES:
             self.x, self.y = PORTALES[(self.x, self.y)]
+            
 
     def colision_fantasmas(self, fantasmas):
         if self.en_muerte:
