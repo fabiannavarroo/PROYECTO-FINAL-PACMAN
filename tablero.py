@@ -33,7 +33,7 @@ class Tablero:
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        """Actualizar el estado del juego en cada frame."""
+
         if self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
             if self.pacman.en_muerte:
                 # Ejecutar animación de muerte
@@ -45,7 +45,7 @@ class Tablero:
                     self.reiniciar_tablero()  # Reiniciar posiciones del tablero
                     self.reiniciar_en = None
             else:
-                # Actualizar elementos
+
                 self.pacman.mover()  # Mover Pacman
                 self.puntos.comer_puntos()  # Detectar puntos comidos
                 self.puntos.comer_fruta()  # Detectar frutas comidas
