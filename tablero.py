@@ -13,7 +13,7 @@ class Tablero:
         # Iniciar el Mapa
         self.muro = Muro()
         # Iniciar el Pacman
-        self.pacman = Pacman(208, 288, self.muro, self.puntos)  # Coordenadas iniciales del PacMan
+        self.pacman = Pacman(208, 288, self.muro)  # Coordenadas iniciales del PacMan
         
         # Iniciar los fantasmas
         self.fantasmas = [
