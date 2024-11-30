@@ -119,8 +119,29 @@ class Pacman:
                     # Reiniciar fantasmas
                     for fantasma in fantasmas:
                         fantasma.volver_a_trampa()
+                    else:
+                        self.vidas -= 1
+                        self.iniciar_animacion_muerte(fantasmas)
 
-                        fantasmas[0].x, fantasmas[0].y = 200, 160  # Rojo fuera de la trampa
+
+    def iniciar_animacion_muerte(self, fantasmas):
+        self.animacion_muerte = True
+        self.animacion_frame = 0
+        for fantasma in fantasmas:
+            fantasma.ocultar()
+    
+
+    def animar_muerte(self):
+        if self.animacion_muerte:
+            frames = ANIMACION_MUERTE
+            if self.animacion_frame < len(frames):
+                sprite_x, sprite_y = frames[self.animacion_frame]
+                pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
+                self.animacion_frame += 1
+            else:
+                self.animacion_muerte = False
+                self.reiniciar_posicion()
+                time.sleep(2)  # Esperar 2 segundos antes de poder seguir jugando
                 
 
     def dibujar_letras_mapa(self, num, sprite):
