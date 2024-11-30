@@ -35,11 +35,15 @@ class Tablero:
             self.puntos.generar_fruta()  # Generar frutas cada 30 segundos
             self.puntos.comer_fruta()    # Verificar si Pacman comio la fruta
             for fantasma in self.fantasmas:
-                fantasma.trampa() # Va actulizando si los fantamas se encuentran en la trampa
+                fantasma.mover() # Va actulizando si los fantamas se encuentran en la trampa
                 fantasma.actualizar_estado() # Verifica si los fantasmas estas asustados o normal
             self.pacman.colision_fantasmas(self.fantasmas)  # Verifica la colision de pacman con los fantasmas
-        else:
-            self.pacman.game_over() # Mostrar Game Over cuando pacman se queda sin vida
+
+        elif self.pacman.en_muerte: # Si el pacman se encuentra en una animación de muerte
+            self.pacman.animar_muerte()
+
+        else: # Cuando el Pacman haya muerto y no esta en una animacion
+            self.pacman.game_over()
 
     def draw(self):
         pyxel.cls(0)
