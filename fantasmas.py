@@ -27,8 +27,16 @@ class Fantasma:
 
 
     def volver_a_trampa(self):
+        # Envía al fantasma de vuelta a la trampa
         self.en_trampa = True
-        self.x, self.y = 192, 192  # Coordenadas en la trampa
+        if isinstance(self, FantasmaRojo):
+            self.x, self.y = 200, 160
+        elif isinstance(self, FantasmaRosa):
+            self.x, self.y = 176, 190
+        elif isinstance(self, FantasmaAzul):
+            self.x, self.y = 192, 190
+        elif isinstance(self, FantasmaNaranja):
+            self.x, self.y = 208, 190
 
     def ocultar(self):
         self.x, self.y = -100, -100  # Sacar del mapa
