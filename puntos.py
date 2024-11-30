@@ -172,13 +172,13 @@ class Puntos:
         # Posible movimiento
         nuevo_x, nuevo_y = x_actual, y_actual
 
-        if x_actual < x_destino and not self.muro.colision(x_actual + 1, y_actual):
+        if x_actual < x_destino and not self.muro.colision(x_actual + 1, y_actual, 16):
             nuevo_x += self.velocidad
-        elif x_actual > x_destino and not self.muro.colision(x_actual - 1, y_actual):
+        elif x_actual > x_destino and not self.muro.colision(x_actual - 1, y_actual, 16):
             nuevo_x -= self.velocidad
-        elif y_actual < y_destino and not self.muro.colision(x_actual, y_actual + 1):
+        elif y_actual < y_destino and not self.muro.colision(x_actual, y_actual + 1,16):
             nuevo_y += self.velocidad
-        elif y_actual > y_destino and not self.muro.colision(x_actual, y_actual - 1):
+        elif y_actual > y_destino and not self.muro.colision(x_actual, y_actual - 1,16):
             nuevo_y -= self.velocidad
         else:
             # Si no puede avanzar directamente, intenta movimientos alternativos
