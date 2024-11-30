@@ -30,6 +30,8 @@ class Tablero:
 
     def update(self):
         self.pacman.mover()
+        for fantasma in self.fantasmas:
+            self.fantasmas.fantasma.mover()
         self.puntos.comer_puntos()   # Verificar si Pacman comio un punto
         self.puntos.generar_fruta()  # Generar frutas cada 30 segundos
         self.puntos.comer_fruta()    # Verificar si Pacman comio la fruta
