@@ -56,7 +56,7 @@ class Tablero:
             fantasma.draw()
 
     def reiniciar_tablero(self):
-        # Reinicia las posiciones del juego
+        # Reiniciar las posiciones de todos los elementos
         self.pacman.reiniciar_posicion()
         for fantasma in self.fantasmas:
             fantasma.volver_a_trampa()
