@@ -52,12 +52,12 @@ class Tablero:
                 self.puntos.generar_fruta()  # Generar frutas periódicamente
                 for fantasma in self.fantasmas:
                     fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
-                self.pacman.colision_fantasmas(self.fantasmas)  # Manejar colisiones con fantasmas
+                self.pacman.colision_fantasmas(self.fantasmas)  #  Colisiones con fantasmas
         else:
             self.mostrar_game_over()  # Mostrar "Game Over" si se acaban las vidas
 
     def draw(self):
-        Dibujar todos los elementos del juego.
+        #Dibujar todos los elementos del juego
         pyxel.cls(0)  # Limpiar pantalla
         if self.pacman.vidas > 0:
             self.muro.draw()  # Dibujar el mapa
@@ -70,7 +70,7 @@ class Tablero:
             self.muro.draw()  # Mostrar solo el mapa limpio con "GAME OVER"
 
     def reiniciar_tablero(self):
-        Reiniciar posiciones de todos los elementos del juego.
+        #Reiniciar posiciones de todos los elementos del juego
         self.pacman.reiniciar_posicion()  # Reiniciar posición de Pacman
         self.pacman.en_muerte = False  # Finalizar estado de muerte
         self.pacman.animacion_frame = 0  # Reiniciar animación de muerte
@@ -78,11 +78,11 @@ class Tablero:
             fantasma.volver_a_posicion_inicial()  # Reiniciar posición de los fantasmas
 
     def limpiar_tablero(self):
-        Eliminar todos los puntos y fantasmas del tablero.
+        #Eliminar todos los puntos y fantasmas del tablero
         for y in range(len(self.muro.mapa)):
             for x in range(len(self.muro.mapa[y])):
                 if self.muro.mapa[y][x] not in [MUROS, TEXTO]:  # Mantener muros y texto
-                    self.muro.mapa[y][x] = -1  # Celda vacía
+                    self.muro.mapa[y][x] = 0  # Celda vacía
 
     def mostrar_game_over(self):
         Mostrar el mensaje de 'Game Over' en el mapa.
