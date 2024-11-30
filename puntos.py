@@ -93,7 +93,6 @@ class Puntos:
                 tipo_consumible = "BASTON"
             elif self.muro.mapa[pacman_y][pacman_x] == 98:
                 tipo_consumible = "REGALO"
-                self.activar_modo_diablo()
 
             # Sumar puntos
             self.puntos += OBJETOS[tipo_consumible]["Puntos"]
@@ -198,27 +197,4 @@ class Puntos:
             self.posicion_actual = None
 
 
-    def activar_modo_diablo(self):
-        #Activa el modo diablo y cambia los fantasmas a estado asustado
-        self.modo_diablo_activo = True
-        self.tiempo_inicio_modo_diablo = time.time()  # Registra el momento de activación
-        for fantasma in self.fantasmas:
-            fantasma.activar_modo_asustado()
-
-
-    def actualizar_modo_diablo(self):
-        #Actualiza el estado del modo diablo, desactivándolo 
-        if not self.modo_diablo_activo:
-            return  # No hacer nada si el modo diablo no está activo
-
-        # Calcula el tiempo dedsde 
-        tiempo_transcurrido = time.time() - self.tiempo_inicio_modo_diablo
-        tiempo_restante = self.duracion_modo_diablo - tiempo_transcurrido
-
-        if tiempo_restante <= 0:
-            self.desactivar_modo_diablo()
-        else:
-            # Alternar color durante todo el modo diablo
-            alternar = int(tiempo_transcurrido * 5) % 2 == 0  # Cambia cada 0.2 segundos
-            for fantasma in self.fantasmas:
-                fantasma.cambiar_color_asustado(alternar)
+    
