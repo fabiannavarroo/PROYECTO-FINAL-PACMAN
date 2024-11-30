@@ -13,6 +13,8 @@ class Fantasma:
         self.velocidad = 1.5  # Velocidad de los fantasmas
         self.direccion_actual = "DERECHA"  # Comienza moviéndose hacia la derecha
         self.color_actual = sprites["DERECHA"]  # Color inicial basado en la dirección
+        self.asustado = False
+        self.tiempo_asustado = 0
 
 
     def draw(self):
