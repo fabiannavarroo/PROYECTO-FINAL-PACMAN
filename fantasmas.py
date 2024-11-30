@@ -1,5 +1,5 @@
 import pyxel
-from constantes import FANTASMA_ROJO, FANTASMA_ROSA, FANTASMA_AZUL, FANTASMA_NARANJA,PORTALES
+from constantes import FANTASMA_ROJO, FANTASMA_ROSA, FANTASMA_AZUL, FANTASMA_NARANJA, PORTALES, FANTASMAS_ASUSTADOS
 import random
 
 
@@ -23,6 +23,11 @@ class Fantasma:
         DIRECCIONES = ["ARRIBA", "ABAJO", "DERECHA", "IZQUIERDA"]
         nueva_direccion = random.choice(DIRECCIONES) # De forma aleatoria se escoge una direccion
         self.direccion_actual = nueva_direccion # Se le asigna esa direccion a la actual del fantasmas
+    
+    def activar_modo_asustado(self):
+        self.modo_asustado = True
+        for fantasma in self.lista_fantasmas:
+            fantasma.cambiar_color(FANTASMAS_ASUSTADOS)  # Cambiar al color de "asustado"
 
 
     # Dibujar el sprite del fantasma en la dirección correspondiente.
