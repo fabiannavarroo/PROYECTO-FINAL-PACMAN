@@ -17,14 +17,14 @@ class Fantasma:
         self.en_trampa = False  # Indica si el fantasma está en la trampa
 
     def activar_asustado(self, duracion=None):
-        #Activa el estado asustado.
+        #Activa el estado asustado
         self.asustado = True
         self.tiempo_asustado = time.time()
         if duracion is not None:
             self.tiempo_para_ser_comido = duracion  # Ajustar duración
 
     def volver_a_trampa(self):
-        #Envía al fantasma a la trampa y lo reinicia.
+        #Envía al fantasma a la trampa y lo reinicia
         self.en_trampa = True
         if isinstance(self, FantasmaRojo):
             self.x, self.y = 200, 160
@@ -37,14 +37,14 @@ class Fantasma:
         self.asustado = False  # Sale del estado asustado
 
     def volver_a_posicion_inicial(self):
-        #Restaura la posición inicial del fantasma.
+        #Restaura la posición inicial del fantasma
         self.x = self.x_inicial
         self.y = self.y_inicial
         self.asustado = False
         self.en_trampa = False
 
     def actualizar_estado(self):
-        #Verifica y actualiza el estado asustado.
+        #Verifica y actualiza el estado asustado
         if self.asustado:
             tiempo_restante = self.tiempo_para_ser_comido - (time.time() - self.tiempo_asustado)
             if tiempo_restante <= 0:
