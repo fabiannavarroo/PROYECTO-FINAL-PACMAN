@@ -30,7 +30,7 @@ class Tablero:
         if self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
             if self.pacman.en_muerte:
                 # Ejecutar animación de muerte
-                self.pacman.animar_muerte(self.fantasmas)
+                self.pacman.animar_muerte()
                 if not self.pacman.en_muerte:  # Cuando termine la animación de muerte
                     self.reiniciar_tablero()  # Reiniciar el tablero inmediatamente
             else:
@@ -42,8 +42,6 @@ class Tablero:
                 for fantasma in self.fantasmas:
                     fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
                 self.pacman.colision_fantasmas(self.fantasmas)  # Manejar colisiones con fantasmas
-        else:
-            self.mostrar_game_over()  # Mostrar "Game Over" si se acaban las vidas
 
     def draw(self):
 
@@ -57,11 +55,13 @@ class Tablero:
                     fantasma.draw()  # Dibujar fantasmas
             else:
                 self.pacman.draw([])  # Dibujar solo Pacman (sin fantasmas) durante la animación de muerte
-        elif self.pacman.en_muerte:
-            self.pacman.draw([])  # Solo dibujar Pacman durante la animación de muerte
+        else:
+            # No se dibuja nada si las vidas llegan a 0 y no hay animación en curso
+            pyxel.cls(0)
 
     def reiniciar_tablero(self):
 
+        #Reinicia las posiciones iniciales de los personajes y termina la animación de muerte.
         self.pacman.reiniciar_posicion()  # Reiniciar posición de Pacman
         self.pacman.en_muerte = False  # Finalizar estado de muerte
         self.pacman.animacion_frame = 0  # Reiniciar animación de muerte
