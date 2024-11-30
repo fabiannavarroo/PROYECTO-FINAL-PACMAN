@@ -83,6 +83,7 @@ class Pacman:
         self.vidas -= 1
         self.en_muerte = True
         self.animacion_frame = 0
+        self.reiniciando = True  # Activar estado de reinicio
 
     def animar_muerte(self, fantasmas):
         if not self.en_muerte:
