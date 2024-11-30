@@ -210,15 +210,14 @@ class Puntos:
         if not self.modo_diablo_activo:
             return  # No hacer nada si el modo diablo no está activo
 
-        # Calcula el tiempo restante
-        tiempo_restante = 7 - (time.time() - self.tiempo_inicio_modo_diablo)
+        # Calcula el tiempo dedsde 
+        tiempo_transcurrido = time.time() - self.tiempo_inicio_modo_diablo
+        tiempo_restante = self.duracion_modo_diablo - tiempo_transcurrido
 
         if tiempo_restante <= 0:
-            # Desactiva el modo diablo
-            self.modo_diablo_activo = False
+            self.desactivar_modo_diablo()
+        else:
+            # Alternar color durante todo el modo diablo
+            alternar = int(tiempo_transcurrido * 5) % 2 == 0  # Cambia cada 0.2 segundos
             for fantasma in self.fantasmas:
-                fantasma.desactivar_modo_asustado()
-        
-            # Alterna los colores de los fantasmas asustados
-            for fantasma in self.fantasmas:
-                fantasma.cambiar_color_asustado()
+                fantasma.cambiar_color_asustado(alternar)
