@@ -38,7 +38,7 @@ class Tablero:
                 self.puntos.generar_fruta()  # Generar frutas periódicamente
                 for fantasma in self.fantasmas:
                     fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
-                self.pacman.colision_fantasmas(self.fantasmas)  # Manejar colisiones con fantasmas
+                self.pacman.colision_fantasmas(self.fantasmas)  #  Colisiones de los fantasmas
 
     def draw(self):
         pyxel.cls(0)  # Limpiar pantalla
