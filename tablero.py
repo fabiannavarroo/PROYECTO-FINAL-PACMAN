@@ -10,7 +10,9 @@ class Tablero:
         pyxel.init(430, 415, title="Pacman", display_scale=1, fps=30)  # Tamaño de la Pantalla
         pyxel.load("assets/recursos.pyxres")
 
+        # Iniciar el Mapa
         self.muro = Muro()
+        # Iniciar el Pacman
         self.pacman = Pacman(208, 288, self.muro)  # Coordenadas iniciales del Pacman
         
         # Iniciar los fantasmas
