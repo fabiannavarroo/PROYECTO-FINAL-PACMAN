@@ -26,7 +26,7 @@ class Tablero:
         self.puntos.comer_puntos()
         self.pacman.mover()
         self.puntos.mover_fruta()
-        self.puntos.aparecer_fruta
+        self.puntos.aparecer_fruta()
         self.fantasmas[0].mover(self.pacman.x, self.pacman.y)
 
     def draw(self):
