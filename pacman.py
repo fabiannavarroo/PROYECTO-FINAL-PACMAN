@@ -109,5 +109,8 @@ class Pacman:
         if self.en_muerte:
             self.animar_muerte(fantasmas)
         else:
-            sprite_x, sprite_y = self.direccion_actual
+            if pyxel.frame_count // REFRESH % 2 == 0:
+                sprite_x, sprite_y = PACMAN     
+            else:
+                sprite_x, sprite_y = self.direccion_actual
             pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
