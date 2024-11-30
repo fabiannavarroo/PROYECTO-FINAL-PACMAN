@@ -13,8 +13,10 @@ class Fantasma:
         self.direccion_actual = "DERECHA"  # Comienza moviéndose hacia la derecha
         self.en_trampa = True  # El fantasma empieza en la trampa
 
+
     #def salir_trampa(self):
     
+
     def cambiar_direccion(self):
         # Direcciones que puede tener los fantasmas
         DIRECCIONES = ["ARRIBA", "ABAJO", "DERECHA", "IZQUIERDA"]
@@ -27,17 +29,21 @@ class Fantasma:
         sprite_x, sprite_y = self.sprites[self.direccion_actual]
         pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
 
+
 class FantasmaRojo(Fantasma):
     def __init__(self, x, y, muro):
         super().__init__(x, y, FANTASMA_ROJO, muro)
+
 
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y, muro):
         super().__init__(x, y, FANTASMA_ROSA, muro)
 
+
 class FantasmaAzul(Fantasma):
     def __init__(self, x, y, muro):
         super().__init__(x, y, FANTASMA_AZUL, muro)
+
 
 class FantasmaNaranja(Fantasma):
     def __init__(self, x, y, muro):
