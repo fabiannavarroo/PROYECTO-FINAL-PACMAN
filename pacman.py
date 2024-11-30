@@ -12,13 +12,14 @@ class Pacman:
         self.direccion_actual = PACMAN  # Dirección inicial
         self.direccion_pendiente = None  # Dirección elegida por el jugador
         self.vidas = 3  # Pac-Man empieza con 3 vidas
+        self.animacion_muerte = True
+        self.animacion_frame = 0
         self.en_muerte = False  # Indica si Pac-Man está en animación de muerte
-        self.animacion_frame = 0  # Controla el frame de la animación de muerte
 
     def mover(self):
-        # Lógica de movimiento del Pacman
         nueva_x, nueva_y = self.x, self.y
 
+        # Detectar entrada del jugador para cambiar dirección
         if pyxel.btnp(pyxel.KEY_UP):
             self.direccion_pendiente = PACMAN_ARRIBA
         elif pyxel.btnp(pyxel.KEY_DOWN):
@@ -28,8 +29,8 @@ class Pacman:
         elif pyxel.btnp(pyxel.KEY_RIGHT):
             self.direccion_pendiente = PACMAN_DERECHA
 
+        # Verificar si la dirección pendiente es válida
         if self.direccion_pendiente:
-            # Verifica si la dirección pendiente es válida
             if self.direccion_pendiente == PACMAN_ARRIBA and not self.muro.colision(self.x, self.y - self.velocidad):
                 self.direccion_actual = self.direccion_pendiente
             elif self.direccion_pendiente == PACMAN_ABAJO and not self.muro.colision(self.x, self.y + self.velocidad):
@@ -39,7 +40,7 @@ class Pacman:
             elif self.direccion_pendiente == PACMAN_DERECHA and not self.muro.colision(self.x + self.velocidad, self.y):
                 self.direccion_actual = self.direccion_pendiente
 
-        # Mover Pacman en la dirección actual
+        # Mover en la dirección actual
         if self.direccion_actual == PACMAN_ARRIBA:
             nueva_y -= self.velocidad
         elif self.direccion_actual == PACMAN_ABAJO:
@@ -55,10 +56,13 @@ class Pacman:
         if not self.muro.colision(self.x, nueva_y):
             self.y = nueva_y
 
+        # Manejar portales
+        if (self.x, self.y) in PORTALES:
+            self.x, self.y = PORTALES[(self.x, self.y)]
+
     def colision_fantasmas(self, fantasmas):
-        # Detectar colisiones con fantasmas
         if self.en_muerte:
-            return  # Si está en animación de muerte, no manejar colisiones
+            return  # No manejar colisiones si Pac-Man está muerto
 
         pacman_x = self.x // self.muro.celda_tamaño
         pacman_y = self.y // self.muro.celda_tamaño
@@ -69,38 +73,78 @@ class Pacman:
 
             if pacman_x == fantasma_x and pacman_y == fantasma_y:
                 if fantasma.asustado:
-                    fantasma.volver_a_trampa()  # Si está asustado, ir a la trampa
+                    fantasma.volver_a_trampa()  # Enviar fantasma a la trampa
                 else:
-                    self.perder_vida()  # De lo contrario, Pacman pierde una vida
+                    self.perder_vida()  # Pac-Man pierde una vida
 
     def perder_vida(self):
-        # Lógica de pérdida de vida
+        # Reducir las vidas y activar animación de muerte
         self.vidas -= 1
         self.en_muerte = True
         self.animacion_frame = 0
 
     def reiniciar_posicion(self):
-        # Reinicia la posición del Pacman
+        # Reiniciar posición de Pac-Man
         self.x, self.y = 208, 288
 
+    def mostrar_posiciones_iniciales(self, fantasmas):
+        # Mostrar posiciones iniciales de Pac-Man y los fantasmas
+        self.reiniciar_posicion()
+        for fantasma in fantasmas:
+            fantasma.volver_a_posicion_inicial()
+
     def animar_muerte(self, fantasmas):
-        # Controla la animación de muerte
-        frames = ANIMACION_MUERTE
-        if pyxel.frame_count % 5 == 0:
-            if self.animacion_frame < len(frames):
-                sprite_x, sprite_y = frames[self.animacion_frame]
-                pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
-                self.animacion_frame += 1
-            else:
-                self.en_muerte = False  # Animación terminada
-                if self.vidas > 0:
-                    for fantasma in fantasmas:
-                        fantasma.volver_a_posicion_inicial()
+        # Animación de muerte de Pac-Man con fotogramas más lentos
+        if self.en_muerte:
+            frames = ANIMACION_MUERTE
+            if pyxel.frame_count % 5 == 0:  # Cambiar cada 5 frames
+                if self.animacion_frame < len(frames):
+                    sprite_x, sprite_y = frames[self.animacion_frame]
+                    pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
+                    self.animacion_frame += 1
+                else:
+                    self.en_muerte = False
+                    if self.vidas > 0:
+                        self.mostrar_posiciones_iniciales(fantasmas)  # Mostrar posiciones iniciales
+                        time.sleep(2)  # Pausa de 2 segundos tras la muerte
+                    else:
+                        self.game_over()  # Mostrar Game Over
 
     def draw(self, fantasmas):
-        # Dibuja el Pacman o ejecuta la animación de muerte
+        # Dibujar Pac-Man o animación de muerte
         if self.en_muerte:
             self.animar_muerte(fantasmas)
         else:
-            sprite_x, sprite_y = self.direccion_actual
+            if pyxel.frame_count // REFRESH % 2 == 0:
+                sprite_x, sprite_y = self.direccion_actual
+            else:
+                if self.direccion_actual == PACMAN_ARRIBA:
+                    sprite_x, sprite_y = PACMAN_ARRIBA_CERRADA
+                elif self.direccion_actual == PACMAN_ABAJO:
+                    sprite_x, sprite_y = PACMAN_ABAJO_CERRADA
+                elif self.direccion_actual == PACMAN_IZQUIERDA:
+                    sprite_x, sprite_y = PACMAN_IZQUIERDA_CERRADA
+                elif self.direccion_actual == PACMAN_DERECHA:
+                    sprite_x, sprite_y = PACMAN_DERECHA_CERRADA
+                else:
+                    sprite_x, sprite_y = PACMAN
+
             pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
+            self.ver_vidas(10, 10)
+
+    def ver_vidas(self, x, y):
+        # Dibujar las vidas restantes
+        sprite_x, sprite_y = PACMAN
+        sprite_w, sprite_h = 16, 16
+        pos_x = x
+        for i in range(self.vidas):
+            pyxel.blt(pos_x, y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
+            pos_x += sprite_w + 2
+
+    def game_over(self):
+        # Manejar Game Over: limpiar mapa y mostrar mensaje
+        for y in range(len(self.muro.mapa)):
+            for x in range(len(self.muro.mapa[y])):
+                if self.muro.mapa[y][x] not in [MUROS, TEXTO]:
+                    self.muro.mapa[y][x] = -1
+        self.muro.mapa[12][13] = 71  # Posicionar "GAME OVER"
