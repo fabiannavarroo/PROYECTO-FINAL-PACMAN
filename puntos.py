@@ -208,6 +208,6 @@ class Puntos:
         #Verifica si la celda (x, y) es un muro.
         x = int(x)  
         y = int(y)
-        if 0 <= y < len(self.muro.mapa) and 0 <= x < len(self.mapa[0]):
+        if 0 <= y < len(self.muro.mapa) and 0 <= x < len(self.muro.mapa[0]):
             return self.muro.mapa[y][x] in MUROS  
         return True  # Consideramos fuera del mapa como muro
