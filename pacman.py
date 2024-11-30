@@ -1,5 +1,5 @@
 from constantes import *
-from puntos import Puntos
+from muro import MUROS
 import pyxel
 
 class Pacman:
