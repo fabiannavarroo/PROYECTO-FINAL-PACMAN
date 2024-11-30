@@ -10,6 +10,7 @@ class Pacman:
         self.direccion_actual = PACMAN  # Dirección inicial
         self.direccion_pendiente = None  # Dirección seleccionada por el jugador
 
+
     def mover(self):
         nueva_x, nueva_y = self.x, self.y
 
@@ -68,6 +69,7 @@ class Pacman:
 
         #Ver las coordenadas del PacMan en la consola
         print("Pacman:", self.x, self.y, end="\n")
+
 
     def draw(self):
         # Alternar entre sprites para la animación
