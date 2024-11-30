@@ -26,13 +26,10 @@ class Tablero:
         pyxel.run(self.update, self.draw)
 
     def update(self):
-
         if self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
             if self.pacman.en_muerte:
                 # Ejecutar animación de muerte
-                self.pacman.animar_muerte()
-                if not self.pacman.en_muerte:  # Cuando termine la animación de muerte
-                    self.reiniciar_tablero()  # Reiniciar el tablero inmediatamente
+                self.pacman.animar_muerte(self.fantasmas)
             else:
                 # Actualizar elementos del juego
                 self.pacman.mover()  # Mover Pacman
@@ -44,25 +41,23 @@ class Tablero:
                 self.pacman.colision_fantasmas(self.fantasmas)  # Manejar colisiones con fantasmas
 
     def draw(self):
-
         pyxel.cls(0)  # Limpiar pantalla
         if self.pacman.vidas > 0:
             self.muro.draw()  # Dibujar el mapa
             self.puntos.draw()  # Dibujar puntos, frutas y puntuación
-            self.pacman.ver_vidas(10, 10) # Ver las vidas restantes
+            self.pacman.ver_vidas(10, 10)  # Ver las vidas restantes
             if not self.pacman.en_muerte:  # Dibujar personajes si no está en animación de muerte
                 self.pacman.draw(self.fantasmas)  # Dibujar Pacman
                 for fantasma in self.fantasmas:
                     fantasma.draw()  # Dibujar fantasmas
             else:
-                self.pacman.draw(self.fantasmas)  # Dibujar solo Pacmandurante la animación de muerte
+                self.pacman.draw(self.fantasmas)  # Dibujar solo Pacman durante la animación de muerte
         else:
-            # No se dibuja nada si las vidas llegan a 0 y no hay animación en curso
+            # Limpiar pantalla si las vidas llegan a 0
             pyxel.cls(0)
 
     def reiniciar_tablero(self):
-
-        #Reinicia las posiciones iniciales de los personajes y termina la animación de muerte.
+        # Reinicia las posiciones iniciales de los personajes y termina la animación de muerte.
         self.pacman.reiniciar_posicion()  # Reiniciar posición de Pacman
         self.pacman.en_muerte = False  # Finalizar estado de muerte
         self.pacman.animacion_frame = 0  # Reiniciar animación de muerte
