@@ -182,7 +182,7 @@ class Puntos:
             nuevo_y -= 0.5
 
         # Comprobar colisiones con muros
-        if not self.es_muro(nuevo_x, y_actual):  # Movimiento horizontal permitido
+        if not self.muro.colision(nuevo_x, y_actual):  # Movimiento horizontal permitido
             x_actual = nuevo_x
         else:
             # Cambiar dirección horizontal si hay colisión
@@ -191,7 +191,7 @@ class Puntos:
             elif x_actual > x_destino:
                 x_destino += 1
 
-        if not self.es_muro (x_actual, nuevo_y):  # Movimiento vertical permitido
+        if not self.muro.colision(x_actual, nuevo_y):  # Movimiento vertical permitido
             y_actual = nuevo_y
         else:
             # Cambiar dirección vertical si hay colisión
