@@ -182,7 +182,7 @@ class Puntos:
             nuevo_y -= self.velocidad
         else:
             # Si no puede avanzar directamente, intenta movimientos alternativos
-            if not self.muro.colision(x_actual, y_actual + 1):
+            if not self.muro.colision(x_actual, y_actual + 1,16):
                 nuevo_y += self.velocidad
             elif not self.muro.colision(x_actual, y_actual - 1):
                 nuevo_y -= self.velocidad
