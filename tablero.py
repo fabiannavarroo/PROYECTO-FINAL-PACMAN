@@ -29,21 +29,20 @@ class Tablero:
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        if self.pacman.vidas > 0 and not self.pacman.en_muerte: # En caso de que el pacman tenga vidas y no este en la animacion de muerte
+        # Actualiza el estado del juego
+        if self.pacman.vidas > 0 and not self.pacman.en_muerte:
             self.pacman.mover()
-            self.puntos.comer_puntos()   # Verificar si Pacman comio un punto
+            self.puntos.comer_puntos()   # Verificar si Pacman comió un punto
             self.puntos.generar_fruta()  # Generar frutas cada 30 segundos
-            self.puntos.comer_fruta()    # Verificar si Pacman comio la fruta
+            self.puntos.comer_fruta()    # Verificar si Pacman comió la fruta
             for fantasma in self.fantasmas:
-                fantasma.mover() # Va actulizando si los fantamas se encuentran en la trampa
-                fantasma.actualizar_estado() # Verifica si los fantasmas estas asustados o normal
-            self.pacman.colision_fantasmas(self.fantasmas)  # Verifica la colision de pacman con los fantasmas
-
-        elif self.pacman.en_muerte: # Si el pacman se encuentra en una animación de muerte
-            self.pacman.animar_muerte()
-
-        else: # Cuando el Pacman haya muerto y no esta en una animacion
-            self.pacman.game_over()
+                fantasma.mover()  # Mover los fantasmas
+                fantasma.actualizar_estado()  # Actualizar su estado si estan en asustados
+            self.pacman.colision_fantasmas(self.fantasmas)  # Verifica la colisión
+        elif self.pacman.en_muerte:
+            self.pacman.animar_muerte()  # Ejecutar la animación de muerte
+        else:
+            self.pacman.game_over()  # Mostrar Game Over cuando Pacman se queda sin vida
 
     def draw(self):
         pyxel.cls(0)
