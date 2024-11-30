@@ -197,3 +197,8 @@ class Puntos:
         self.modo_diablo_activo = True
         self.tiempo_modo_diablo = time.time()
         self.fantasmas.activar_modo_asustado()
+    
+    def actualizar_modo_diablo(self):
+        if self.modo_diablo_activo and time.time() - self.tiempo_modo_diablo > 7:
+            self.modo_diablo_activo = False
+            self.fantasmas.desactivar_modo_asustado()  # Regresar los fantasmas a su estado normal
