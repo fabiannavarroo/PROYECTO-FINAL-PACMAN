@@ -2,7 +2,6 @@ Texto de ready al comienzo
 
 Sistema de muerte del PacMan y fantasmas
 
-Sistema de Vidas
 
 Sistema de comer fantasmas (solo falta colision)
 
