@@ -6,5 +6,5 @@ print("Feliz Navidad!")
 
 Tablero()
 
-# MOVIMEINTO DEL PACMAN LISTO
+
 
