@@ -89,3 +89,4 @@ class Muro:
         pos_x = 192
         pos_y= 190
         pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
+    print(self.mapa.count((0,98)))
