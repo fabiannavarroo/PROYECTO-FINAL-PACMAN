@@ -44,7 +44,11 @@ class Tablero:
     
     def draw(self):
         pyxel.cls(0)  # Limpiar pantalla
-        if self.pacman.vidas > 0:
+        if self.puntos.victoria:
+            pyxel.cls(0)
+            self.muro.draw()
+            pyxel.text(192,190,"Has ganado",8)
+        elif self.pacman.vidas > 0:
             self.muro.draw()  # Dibujar el mapa
             self.puntos.draw()  # Dibujar puntos, frutas y puntuación
             self.pacman.ver_vidas(10, 10)  # Ver las vidas restantes
@@ -54,10 +58,6 @@ class Tablero:
                     fantasma.draw()  # Dibujar fantasmas
             else:
                 self.pacman.draw(self.fantasmas)  # Dibujar solo Pacman durante la animación de muerte
-        elif self.puntos.victoria ==False:
-            pyxel.cls(0)
-            self.muro.draw()
-            pyxel.text(192,190,"Has ganado",8)
         else:
             # Limpiar pantalla si las vidas llegan a 0 y muestra solo el mapa
             pyxel.cls(0)
