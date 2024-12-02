@@ -39,7 +39,9 @@ class Tablero:
                 for fantasma in self.fantasmas:
                     fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
                 self.pacman.colision_fantasmas(self.fantasmas, self.puntos)  # Colisiones con fantasmas
-
+        else:
+            
+    
     def draw(self):
         pyxel.cls(0)  # Limpiar pantalla
         if self.pacman.vidas > 0:
