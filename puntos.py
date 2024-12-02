@@ -19,7 +19,7 @@ class Puntos:
         self.posicion_actual = None  # Posición actual de la fruta
         self.animacion_activa = False  # Indica si hay animación activa
         self.animacion_contador = 0  # Contador para animación de aparición
-
+        self.victoria = False #se explica
 
     def draw(self):
         # Poner los puntos en el mapa
@@ -100,7 +100,7 @@ class Puntos:
             # Eliminar el objeto del mapa
             self.muro.mapa[pacman_y][pacman_x] = -1
 
-            
+
     def ver_puntuacion(self, x, y):
         # Cambia el color solo cuando se supera un nuevo múltiplo de 500
         colores_dispo = [NUMEROS_BLANCOS, NUMEROS_MORADOS, NUMEROS_NARANJAS, NUMEROS_VERDES]
