@@ -97,10 +97,11 @@ class Puntos:
 
             # Sumar puntos
             self.puntos += OBJETOS[tipo_consumible]["Puntos"]
-
+            contador+=1
             # Eliminar el objeto del mapa
             self.muro.mapa[pacman_y][pacman_x] = -1
-
+        if contador==138:
+            self.victoria=True
     def ver_puntuacion(self, x, y):
         # Cambia el color solo cuando se supera un nuevo múltiplo de 500
         colores_dispo = [NUMEROS_BLANCOS, NUMEROS_MORADOS, NUMEROS_NARANJAS, NUMEROS_VERDES]
