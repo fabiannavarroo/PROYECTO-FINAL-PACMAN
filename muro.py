@@ -80,3 +80,6 @@ class Muro:
                         sprite_w, sprite_h,  # Tamaño del sprite
                         colkey=0  # Transparencia
                     )
+    
+    def fin(self):
+        self.fin=False
