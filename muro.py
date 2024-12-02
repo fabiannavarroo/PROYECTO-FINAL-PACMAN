@@ -87,7 +87,7 @@ class Muro:
         sprite_x, sprite_y = sprite["Coordenadas"]
         sprite_w, sprite_h = sprite["Tamaño"]
         pos_x = 10
-        pos_Y = 12
+        pos_y= 12
         for i in range(self.vidas):
             pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
             pos_x += sprite_w + 2
