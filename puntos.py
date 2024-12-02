@@ -198,6 +198,7 @@ class Puntos:
             self.victoria=True
         else:
             self.victoria=False
+            
         return self.victoria
     
 
