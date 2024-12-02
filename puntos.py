@@ -93,7 +93,6 @@ class Puntos:
                 # Activar el estado asustado para todos los fantasmas
                 for fantasma in self.fantasmas:
                     fantasma.activar_asustado()
-
             # Sumar puntos
             self.puntos += OBJETOS[tipo_consumible]["Puntos"]
 
