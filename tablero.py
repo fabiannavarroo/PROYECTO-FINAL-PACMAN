@@ -56,6 +56,7 @@ class Tablero:
             # Limpiar pantalla si las vidas llegan a 0 y muestra solo el mapa
             pyxel.cls(0)
             self.muro.draw()
+            self.muro.fin()
 
     def reiniciar_tablero(self):
         # Reinicia las posiciones iniciales de los personajes y termina la animación de muerte.
