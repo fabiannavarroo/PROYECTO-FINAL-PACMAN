@@ -195,11 +195,11 @@ class Puntos:
 
     def victoria(self):
         if not (0,98) in self.muro.mapa:
-            self.victoria=True
+            self.vict=True
         else:
-            self.victoria=False
+            self.vict=False
 
-        return self.victoria
+        return self.vict
     
 
     
