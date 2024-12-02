@@ -68,7 +68,10 @@ class FantasmaRojo(Fantasma):
         super().__init__(x, y, muro, FANTASMA_ROJO)
     def actualizar_estado(self):
         super().actualizar_estado()
-        
+        if self.asustado:
+            print("Si")
+        else:
+            print("No")
 
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y, muro):
