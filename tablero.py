@@ -40,7 +40,7 @@ class Tablero:
                     fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
                 self.pacman.colision_fantasmas(self.fantasmas, self.puntos)  # Colisiones con fantasmas
         else:
-            
+            print("Winner")
     
     def draw(self):
         pyxel.cls(0)  # Limpiar pantalla
