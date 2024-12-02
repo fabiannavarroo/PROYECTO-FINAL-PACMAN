@@ -80,6 +80,7 @@ class Muro:
                         sprite_w, sprite_h,  # Tamaño del sprite
                         colkey=0  # Transparencia
                     )
+        print(self.mapa.count((0,98)))
     
     def fin(self):
         # Dibujar las vidas restantes
@@ -90,4 +91,4 @@ class Muro:
         pos_y= 190
         pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
 
-print(self.mapa.count((0,98)))
+    
