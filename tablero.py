@@ -27,7 +27,7 @@ class Tablero:
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        if self.puntos.victoria():
+        if self.puntos.victoria()==True:
             self.ya=True
         if self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
             if self.pacman.en_muerte:
