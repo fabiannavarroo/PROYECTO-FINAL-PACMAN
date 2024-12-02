@@ -7,6 +7,7 @@ import pyxel
 
 class Tablero:
     def __init__(self):
+        self.ya=False
         # Inicializar la ventana del juego con Pyxel
         pyxel.init(430, 415, title="Pacman", display_scale=1, fps=30)  # Crear la pantalla
         pyxel.load("assets/recursos.pyxres")  # Cargar recursos gráficos
@@ -26,6 +27,8 @@ class Tablero:
         pyxel.run(self.update, self.draw)
 
     def update(self):
+        if self.puntos.victoria():
+            self.ya=True
         if self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
             if self.pacman.en_muerte:
                 # Ejecutar animación de muerte
@@ -44,7 +47,7 @@ class Tablero:
     
     def draw(self):
         pyxel.cls(0)  # Limpiar pantalla
-        if self.puntos.victoria==True:
+        if self.ya==True:
             pyxel.cls(0)
             self.muro.draw()
             pyxel.text(192,190,"Has ganado",8)
