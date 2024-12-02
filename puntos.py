@@ -99,7 +99,8 @@ class Puntos:
 
             # Eliminar el objeto del mapa
             self.muro.mapa[pacman_y][pacman_x] = -1
-
+        else:
+            self.victoria=True
 
     def ver_puntuacion(self, x, y):
         # Cambia el color solo cuando se supera un nuevo múltiplo de 500
