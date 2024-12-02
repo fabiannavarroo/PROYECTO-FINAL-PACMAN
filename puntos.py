@@ -95,7 +95,6 @@ class Puntos:
                     fantasma.activar_asustado()
             # Sumar puntos
             self.puntos += OBJETOS[tipo_consumible]["Puntos"]
-
             # Eliminar el objeto del mapa
             self.muro.mapa[pacman_y][pacman_x] = -1
     def ver_puntuacion(self, x, y):
