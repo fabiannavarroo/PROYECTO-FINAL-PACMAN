@@ -82,4 +82,10 @@ class Muro:
                     )
     
     def fin(self):
-        self.fin=False
+        # Dibujar las vidas restantes
+        sprite_x, sprite_y = "GAME OVER"
+        sprite_w, sprite_h = 16, 16
+        pos_x = x
+        for i in range(self.vidas):
+            pyxel.blt(pos_x, y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
+            pos_x += sprite_w + 2
