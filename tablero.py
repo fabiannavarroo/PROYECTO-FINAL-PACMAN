@@ -8,7 +8,7 @@ import pyxel
 class Tablero:
     def __init__(self):
         # Inicializar la ventana del juego con Pyxel
-        pyxel.init(430, 415, title="Pacman", display_scale=2, fps=30)  # Crear la pantalla
+        pyxel.init(430, 415, title="Pacman", display_scale=1.5, fps=30)  # Crear la pantalla
         pyxel.load("assets/recursos.pyxres")  # Cargar recursos gráficos
 
         # Inicializar elementos del juego
