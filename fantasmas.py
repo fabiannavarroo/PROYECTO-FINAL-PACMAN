@@ -66,6 +66,7 @@ class Fantasma:
 class FantasmaRojo(Fantasma):
     def __init__(self, x, y, muro):
         super().__init__(x, y, muro, FANTASMA_ROJO)
+        self.actualizar_estado()
 
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y, muro):
