@@ -86,6 +86,6 @@ class Muro:
         sprite = TEXTO["GAME OVER"]
         sprite_x, sprite_y = sprite["Coordenadas"]
         sprite_w, sprite_h = sprite["Tamaño"]
-        pos_x = 10
-        pos_y= 12
+        pos_x = 176
+        pos_y= 190
         pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
