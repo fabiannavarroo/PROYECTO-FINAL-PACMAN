@@ -54,7 +54,7 @@ class Tablero:
                     fantasma.draw()  # Dibujar fantasmas
             else:
                 self.pacman.draw(self.fantasmas)  # Dibujar solo Pacman durante la animación de muerte
-        if self.puntos.victoria:
+        elif self.puntos.victoria:
             pyxel.text(10,12,"Has ganado",8)
         else:
             # Limpiar pantalla si las vidas llegan a 0 y muestra solo el mapa
