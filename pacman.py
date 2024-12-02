@@ -10,7 +10,7 @@ class Pacman:
         self.muro = muro  # Mapa de muros
         self.direccion_actual = PACMAN  # Dirección inicial
         self.direccion_pendiente = None  # Dirección elegida por el jugador
-        self.vidas = 0  # Pac-Man empieza con 3 vidas
+        self.vidas = 3  # Pac-Man empieza con 3 vidas
         self.animacion_frame = 0
         self.en_muerte = False  # Indica si Pac-Man está en animación de muerte
         self.reiniciando = False  # Estado para evitar colisiones durante el reinicio
