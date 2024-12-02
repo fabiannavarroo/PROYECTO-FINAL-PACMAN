@@ -80,7 +80,6 @@ class Muro:
                         sprite_w, sprite_h,  # Tamaño del sprite
                         colkey=0  # Transparencia
                     )
-        print(self.mapa.count(0))
     
     def fin(self):
         # Dibujar las vidas restantes
