@@ -132,7 +132,8 @@ class Puntos:
             for x in range(len(self.muro.mapa[y])):
                 if self.muro.mapa[y][x] == -1:
                     celdas_vacias.append((x, y))
-        if len(celdas_vacias)==138:
+                    contador+=1
+        if contador==138:
             self.victoria=True
         return celdas_vacias
 
