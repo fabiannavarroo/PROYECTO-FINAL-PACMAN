@@ -83,7 +83,7 @@ class Muro:
     
     def fin(self):
         # Dibujar las vidas restantes
-        sprite= GAMEOVER
+        sprite= TEXTO["GAME OVER"]
         sprite_x, sprite_y = "Coordenadas"
         sprite_w, sprite_h = ["Tamaño"]
         pos_x = x
