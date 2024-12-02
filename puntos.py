@@ -126,11 +126,14 @@ class Puntos:
 
     def encontrar_celdas_vacias(self):
         # Encuentra celdas vacías en el mapa
+        contador=0
         celdas_vacias = []
         for y in range(len(self.muro.mapa)):
             for x in range(len(self.muro.mapa[y])):
                 if self.muro.mapa[y][x] == -1:
                     celdas_vacias.append((x, y))
+        if len(celdas_vacias)==138:
+            self.victoria=True
         return celdas_vacias
 
 
