@@ -1,5 +1,5 @@
 import pyxel
-from constantes import MUROS
+from constantes import MUROS,TEXTO
 
 class Muro:
     def __init__(self):
@@ -83,8 +83,9 @@ class Muro:
     
     def fin(self):
         # Dibujar las vidas restantes
-        sprite_x, sprite_y = "GAME OVER"
-        sprite_w, sprite_h = 16, 16
+        sprite= GAMEOVER
+        sprite_x, sprite_y = "Coordenadas"
+        sprite_w, sprite_h = ["Tamaño"]
         pos_x = x
         for i in range(self.vidas):
             pyxel.blt(pos_x, y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
