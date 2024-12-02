@@ -39,8 +39,7 @@ class Tablero:
                 for fantasma in self.fantasmas:
                     fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
                 self.pacman.colision_fantasmas(self.fantasmas, self.puntos)  # Colisiones con fantasmas
-        else:
-            print("Winner")
+        elif self.puntos.victoria:
     
     def draw(self):
         pyxel.cls(0)  # Limpiar pantalla
@@ -54,6 +53,8 @@ class Tablero:
                     fantasma.draw()  # Dibujar fantasmas
             else:
                 self.pacman.draw(self.fantasmas)  # Dibujar solo Pacman durante la animación de muerte
+        if self.puntos.victoria:
+            pyxel.text(10,12,"Has ganado",8)
         else:
             # Limpiar pantalla si las vidas llegan a 0 y muestra solo el mapa
             pyxel.cls(0)
