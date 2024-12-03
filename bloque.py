@@ -10,4 +10,7 @@ class Bloque:
         self.tipo = tipo
 
         if self.tipo == 1:
-            self.sprite = 
+            self.sprite = SPRITE_BLOQUE_1
+        elif self.tipo == 2:
+            self.sprite = SPRITE_BLOQUE_2
+        elif self.tipo == 3:
