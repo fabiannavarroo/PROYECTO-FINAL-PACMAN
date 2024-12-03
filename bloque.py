@@ -2,12 +2,7 @@ from constantes import *
 
 class Bloque:
     def __init__(self, x: int, y: int, tipo: int):
-        """
-        Constructor de la clase Bloque.
-        :param x: Coordenada X del bloque.
-        :param y: Coordenada Y del bloque.
-        :param tipo: Tipo del bloque (1 a 23).
-        """
+        
         self.x = x
         self.y = y
         self.tipo = tipo
