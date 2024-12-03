@@ -2,7 +2,7 @@ import pyxel
 from constantes import MUROS,TEXTO
 
 class Muro:
-    def __init__(self):
+    def __init__(self, bloque):
         # Matriz que representa el mapa usando números
         self.mapa = [
             [99, 99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99,  99],
@@ -35,7 +35,8 @@ class Muro:
 
         # Tamaño de cada celda en píxeles
         self.celda_tamaño = 16 
-        self.otros_objetos = [-1,0,69,70,71,90,91,92,93,94,95,96,97,98,99]
+        self.otros_objetos = [-1,0,69,70,71,90,91,92,93,94,95,96,97,98,99
+        self.bloque = bloque
         
 
     def colision(self, x, y):
@@ -66,20 +67,7 @@ class Muro:
 
     def draw(self):
         #Dibuja los muros en la pantalla
-        for fila in range(len(self.mapa)):
-            for columna in range(len(self.mapa[0])):
-                tipo_muro = self.mapa[fila][columna]
-                if tipo_muro not in self.otros_objetos:  # Si no es un espacio vacío
-                    sprite = MUROS[tipo_muro]
-                    sprite_x, sprite_y = sprite["Coordenadas"]
-                    sprite_w, sprite_h = sprite["Tamaño"]
-                    pyxel.blt(
-                        columna * self.celda_tamaño, fila * self.celda_tamaño,  # Coordenadas donde se dibuja el muro
-                        1,  # Banco de imágenes
-                        sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
-                        sprite_w, sprite_h,  # Tamaño del sprite
-                        colkey=0  # Transparencia
-                    )
+        for elemento in self.bloque
     
     def fin(self):
         # Dibujar las vidas restantes
