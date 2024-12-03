@@ -68,7 +68,7 @@ MUROS = {
     7: {"Coordenadas": (0, 16), "Tamaño": (16,16)},  # Cruce en T hacia abajo
     8: {"Coordenadas": (16, 16), "Tamaño": (16,16)},  # Cruce en T hacia arriba
     9: {"Coordenadas": (32, 16), "Tamaño": (16,16)},  # Cruce en T hacia derecha
-    10: {"Coordenadas": (32, 32), "Tamaño": (16,16)},  # Cruce en T hacia dizquierda
+    10: {"Coordenadas": (32, 32), "Tamaño": (16,16)},  # Cruce en T hacia izquierda
     11: {"Coordenadas": (0, 32), "Tamaño": (16,16)},  # Borde esquina superior izquieda
     12: {"Coordenadas": (16, 32), "Tamaño": (16,16)},  # Borde esquina superior derecha
     13: {"Coordenadas": (0, 48), "Tamaño": (16,16)},  #  Borde esquina inferior izquieda
