@@ -60,4 +60,4 @@ class Bloque:
         elif self.tipo == 23:
             self.sprite = SPRITE_BLOQUE_23
         else:
-            raise ValueError(f"Tipo de bloque {self.tipo} no válido. Debe estar entre 1 y 23.")
+            raise ValueError("Tipo de bloque", str{self.tipo} no válido. Debe estar entre 1 y 23.")
