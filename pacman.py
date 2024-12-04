@@ -14,7 +14,7 @@ class Pacman:
         self.en_muerte = False  # Indica si Pac-Man está en animación de muerte
         self.reiniciando = False  # Estado para evitar colisiones durante el reinicio
 
-    def mover(self):
+    def mover(self,bloque):
         if self.vidas <= 0 or self.en_muerte or self.reiniciando:  # Si no hay vidas, está en muerte o reiniciando, no se mueve
             return
 
