@@ -35,7 +35,7 @@ class Tablero:
             else:
                 # Actualizar elementos del juego
                 self.pacman.mover()  # Mover Pacman
-'''                self.puntos.comer_puntos()  # Detectar puntos comidos
+                '''self.puntos.comer_puntos()  # Detectar puntos comidos
                 self.puntos.comer_fruta()  # Detectar frutas comidas
                 self.puntos.generar_fruta()  # Generar frutas cada 30s'''
                 for fantasma in self.fantasmas:
