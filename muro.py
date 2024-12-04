@@ -4,25 +4,24 @@ from constantes import *
 
 class Muro:
     def __init__(self):
-
-        self.bloque = []
+        self.bloques = []
         for elemento in MAPA_1:
-            self.bloques.append(Bloque(*elemento))
-        
+            x, y, tipo = elemento
+            sprite = globals()[f"SPRITE_BLOQUE_{tipo[-1]}"]
+            self.bloques.append(Bloque(x, y, sprite))
 
     def colision(self, x, y):
-        #Comprueba si hay un muro en las coordenadas (x, y)
-        pass
-    
+        for bloque in self.bloques:
+            if (x >= bloque.x and x < bloque.x + 16 and 
+                y >= bloque.y and y < bloque.y + 16):
+                return True
+        return False
 
     def draw(self):
-        #Dibuja los muros en la pantalla
-        for elemento in self.bloque:
-            pyxel.blt(elemento.x, elemento.y, *elemento.sprite)
-            
-    
+        for bloque in self.bloques:
+            pyxel.blt(bloque.x, bloque.y, *bloque.sprite)
+
     def fin(self):
-        # Dibujar las vidas restantes
         sprite = TEXTO["GAME OVER"]
         sprite_x, sprite_y = sprite["Coordenadas"]
         sprite_w, sprite_h = sprite["Tamaño"]
