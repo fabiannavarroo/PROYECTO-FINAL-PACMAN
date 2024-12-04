@@ -1,16 +1,16 @@
-from constantes import *
 import pyxel
+from constantes import MUROS
 
 class Bloque:
     def __init__(self):
         # Lista de bloques inicializada desde MAPA_1
         self.bloques = []
-        self.celda_tamaño = 16  # Tamaño de cada celda del mapa
+        self.celda_tamaño = 16
 
         # Crear bloques a partir de MAPA_1
         for x, y, tipo in MAPA_1:
             sprite = self.obtener_sprite(tipo)  # Obtener el sprite correspondiente
-            self.bloques.append((x // self.celda_tamaño, y // self.celda_tamaño, sprite))  # Coordenadas normalizadas y sprite
+            self.bloques.append((x, y, sprite))  # Almacenar solo coordenadas y sprite
 
     def obtener_sprite(self, tipo):
         # Devuelve el sprite correspondiente al tipo
@@ -64,27 +64,32 @@ class Bloque:
             raise ValueError("Tipo de bloque no válido. Debe estar entre 1 y 23.")
 
     def colision(self, x, y):
-        # Normalizar coordenadas a celdas del mapa
-        celda_x = x // self.celda_tamaño
-        celda_y = y // self.celda_tamaño
+        """
+        Comprueba si hay un muro en la posición (x, y) considerando los bordes del sprite.
+        """
+        sprite_tamaño = 16  # Tamaño del sprite (por ejemplo, Pac-Man o Fantasmas)
 
-        # Verificar si hay un muro en la lista de bloques
-        for bloque in self.bloques:
-            bloque_x = bloque[0]
-            bloque_y = bloque[1]
+        # Coordenadas de los puntos a verificar (bordes del sprite)
+        puntos_a_verificar = [
+            (x, y),  # Esquina superior izquierda
+            (x + sprite_tamaño - 1, y),  # Esquina superior derecha
+            (x, y + sprite_tamaño - 1),  # Esquina inferior izquierda
+            (x + sprite_tamaño - 1, y + sprite_tamaño - 1),  # Esquina inferior derecha
+        ]
 
-            # Si hay un bloque en la posición, hay colisión
-            if bloque_x == celda_x and bloque_y == celda_y:
-                return True  # Hay un muro en esa posición
-
-        return False  # No hay un muro en esa posición
+        # Verificar cada punto contra los bloques
+        for px, py in puntos_a_verificar:
+            for bloque_x, bloque_y, _ in self.bloques:
+                if bloque_x <= px < bloque_x + self.celda_tamaño and bloque_y <= py < bloque_y + self.celda_tamaño:
+                    return True  # Colisión detectada
+        return False  # No hay colisión
 
     def draw(self):
         # Dibuja todos los bloques
         for bloque in self.bloques:
-            bloque_x = bloque[0] * self.celda_tamaño  # Restaurar coordenadas a píxeles
-            bloque_y = bloque[1] * self.celda_tamaño
-            sprite = bloque[2]
+            bloque_x = bloque[0]  # Coordenada x del bloque
+            bloque_y = bloque[1]  # Coordenada y del bloque
+            sprite = bloque[2]  # Sprite del bloque
             sprite_x = sprite[0]
             sprite_y = sprite[1]
             sprite_bank = sprite[2]
