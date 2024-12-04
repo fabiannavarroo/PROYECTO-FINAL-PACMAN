@@ -67,7 +67,9 @@ class Muro:
 
     def draw(self):
         #Dibuja los muros en la pantalla
-        for elemento in self.bloque
+        for elemento in self.bloque:
+            pyxel.blt(elemento.x, elemento.y, *elemento.sprite)
+            
     
     def fin(self):
         # Dibujar las vidas restantes
