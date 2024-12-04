@@ -1,4 +1,5 @@
 import pyxel
+from bloque import Bloque
 from constantes import *
 
 class Muro:
