@@ -80,9 +80,9 @@ class Bloque:
     def draw(self):
         # Dibuja todos los bloques
         for bloque in self.bloques:
-            bloque_x = bloque["x"]
-            bloque_y = bloque["y"]
-            sprite = bloque["sprite"]
+            bloque_x = bloque[0]  # Coordenada x del bloque
+            bloque_y = bloque[1]  # Coordenada y del bloque
+            sprite = bloque[2]  # Sprite del bloque
             sprite_x = sprite[0]
             sprite_y = sprite[1]
             sprite_bank = sprite[2]
