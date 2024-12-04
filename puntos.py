@@ -21,7 +21,6 @@ class Puntos:
         self.animacion_contador = 0  # Contador para animación de aparición
         self.vict =  False #selbsterklährend
 
-'''
     def draw(self):
         # Poner los puntos en el mapa
         for y in range(len(self.muro.mapa)):
@@ -195,10 +194,10 @@ class Puntos:
             self.posicion_actual = None
 
     def victoria(self):
-        for bloque in self.muro.bloque:
-            if (bloque.x, bloque.y) == (0, 98):
-                return False
-        return True
+        if not (0,98) in self.muro.mapa:
+            self.vict=True
+
+        return self.vict
     
 
-    '''
+    
