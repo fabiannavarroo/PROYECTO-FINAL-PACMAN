@@ -122,7 +122,7 @@ class Puntos:
             pos_x += sprite_w + 1  # Espacio entre los dígitos
 
 
-    def encontrar_celdas_vacias(self):
+    '''def encontrar_celdas_vacias(self):
         # Encuentra celdas vacías en el mapa
         celdas_vacias = []
         for y in range(len(self.muro.mapa)):
@@ -197,7 +197,7 @@ class Puntos:
         for bloque in self.muro.bloque:
             if (bloque.x, bloque.y) == (0, 98):
                 return False
-        return True
+        return True'''
     
 
     
