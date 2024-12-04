@@ -65,6 +65,7 @@ class Bloque:
 
     def colision(self, x, y):
         # Comprueba si hay colisión en las coordenadas  (x, y)
+        
         # Pasa por todos los bloques
         for bloque in self.bloques:
             bloque_x = bloque[0]  # Coordenada x del bloque
