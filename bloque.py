@@ -2,6 +2,7 @@ from constantes import *
 
 class Bloque:
     def __init__(self, x: int, y: int, tipo: int):
+        
         self.x = x
         self.y = y
         self.tipo = tipo
