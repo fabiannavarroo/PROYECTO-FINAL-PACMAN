@@ -14,12 +14,12 @@ class Tablero:
 
         # Inicializar elementos del juego
         # Mapa del juego
-        self.pacman = Pacman(208, 288, self.muro)  # Pacman y su posición inicial
+        self.pacman = Pacman(208, 288, )  # Pacman y su posición inicial
         self.fantasmas = [  # Lista de fantasmas con sus posiciones iniciales
-            FantasmaRojo(200, 160, self.muro),
-            FantasmaRosa(176, 190, self.muro),
-            FantasmaAzul(192, 190, self.muro),
-            FantasmaNaranja(208, 190, self.muro),
+            FantasmaRojo(200, 160, ),
+            FantasmaRosa(176, 190, ),
+            FantasmaAzul(192, 190, ),
+            FantasmaNaranja(208, 190, ),
         ]
         self.puntos = Puntos(OBJETOS, self.pacman, self.fantasmas)  # Controlador de puntos y frutas
 
@@ -45,12 +45,8 @@ class Tablero:
     
     def draw(self):
         pyxel.cls(0)  # Limpiar pantalla
-        if self.ya==False:
-            pyxel.cls(0)
-            self.muro.draw()
-            pyxel.text(192,190,"Has ganado",8)
-        elif self.pacman.vidas > 0:
-            self.muro.draw()  # Dibujar el mapa
+        if self.pacman.vidas > 0:
+             # Dibujar el mapa
             self.puntos.draw()  # Dibujar puntos, frutas y puntuación
             self.pacman.ver_vidas(10, 10)  # Ver las vidas restantes
             if not self.pacman.en_muerte:  # Dibujar personajes si no está en animación de muerte
@@ -62,7 +58,7 @@ class Tablero:
         else:
             # Limpiar pantalla si las vidas llegan a 0 y muestra solo el mapa
             pyxel.cls(0)
-            self.muro.draw()
+            #mapa
             self.fin()
 
     def fin(self):
