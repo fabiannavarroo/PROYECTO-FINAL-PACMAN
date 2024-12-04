@@ -16,7 +16,7 @@ class Pacman:
 
     def mover(self,):
         if self.vidas <= 0 or self.en_muerte or self.reiniciando:  # Si no hay vidas, está en muerte o reiniciando, no se mueve
-            return
+            return False
 
         nueva_x, nueva_y = self.x, self.y
 
