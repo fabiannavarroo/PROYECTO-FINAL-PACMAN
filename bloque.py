@@ -79,7 +79,7 @@ class Bloque:
 
         # Verificar cada punto contra los bloques
         for px, py in puntos_a_verificar:
-            for bloque_x, bloque_y in self.bloques:
+            for bloque_x, bloque_y, _ in self.bloques:
                 if bloque_x <= px < bloque_x + self.celda_tamaño and bloque_y <= py < bloque_y + self.celda_tamaño:
                     return True  # Colisión detectada
         return False  # No hay colisión
