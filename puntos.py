@@ -175,8 +175,8 @@ class Puntos:
             sprite = OBJETOS[self.fruta_actual]
             sprite_x, sprite_y = sprite["Coordenadas"]
             sprite_w, sprite_h = 16, 16
-            x_pixel = self.posicion_actual[0] * self.muro.celda_tamaño
-            y_pixel = self.posicion_actual[1] * self.muro.celda_tamaño
+            x_pixel = self.posicion_actual[0] * 16
+            y_pixel = self.posicion_actual[1] * 16
             pyxel.blt(
                 x_pixel, y_pixel, 0,
                 sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
@@ -185,19 +185,14 @@ class Puntos:
 
     def comer_fruta(self):
         # Detecta si Pacman está en la posición de la fruta y se la come :)
-        pacman_x = self.pacman.x // self.muro.celda_tamaño
-        pacman_y = self.pacman.y // self.muro.celda_tamaño
+        pacman_x = self.pacman.x 
+        pacman_y = self.pacman.y 
         #Suma los puntos de la fruta/objeto en caso de ser comido
         if self.posicion_actual == (pacman_x, pacman_y):
             self.puntos += OBJETOS[self.fruta_actual]["Puntos"]
             self.fruta_actual = None
             self.posicion_actual = None
 
-    def victoria(self):
-        if not (0,98) in self.muro.mapa:
-            self.vict=True
-
-        return self.vict
     
 
     
