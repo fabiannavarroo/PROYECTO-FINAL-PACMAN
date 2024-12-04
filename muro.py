@@ -43,29 +43,8 @@ class Muro:
         
 
     def colision(self, x, y):
-        #Comprueba si hay un muro en la posición (x, y) considerando el tamaño del sprite.
-        # Tamaño del sprite de Pac-Man y Fantasmas
-        sprite_tamaño = 16
-
-        # Convertir las coordenadas de los bordes del sprite a índices de la matriz
-        puntos_a_verificar = [
-            (x, y),  # Esquina superior izquierda
-            (x + sprite_tamaño - 1, y),  # Esquina superior derecha
-            (x, y + sprite_tamaño - 1),  # Esquina inferior izquierda
-            (x + sprite_tamaño - 1, y + sprite_tamaño - 1),  # Esquina inferior derecha
-        ]
-
-        # Convertir la posición vertical y horizontal a un indice de la matriz∫
-        for px, py in puntos_a_verificar:
-            fila = int(py // self.celda_tamaño)
-            columna = int(px // self.celda_tamaño)
-
-            # Comprobar si está dentro de los límites del mapa
-            if 0 <= fila < len(self.mapa) and 0 <= columna < len(self.mapa[0]):
-                # Si hay un muro, devuelve True
-                if self.mapa[fila][columna] not in self.otros_objetos:
-                    return True
-        return False  # No hay colisión
+        #Comprueba si hay un muro en las coordenadas (x, y)
+        pass
     
 
     def draw(self):
