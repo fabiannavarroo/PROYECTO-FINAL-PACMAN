@@ -3,11 +3,11 @@ from muro import MUROS
 import pyxel
 
 class Pacman:
-    def __init__(self, x, y, muro):
+    def __init__(self, x, y, bloque):
         self.x = x
         self.y = y
         self.velocidad = 2  # Velocidad de movimiento
-        self.muro = muro  # Mapa de muros
+        self.bloque = bloque  # Mapa de muros
         self.direccion_actual = PACMAN  # Dirección inicial
         self.direccion_pendiente = None  # Dirección elegida por el jugador
         self.vidas = 3  # Pac-Man empieza con 3 vidas
