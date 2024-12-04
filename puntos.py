@@ -23,37 +23,14 @@ class Puntos:
 
     def draw(self):
         # Poner los puntos en el mapa
-        for y in range(len(self.muro.mapa)):
-            for x in range(len(self.muro.mapa[y])):
-                if self.muro.mapa[y][x] == 0:
+        
                     # Dibuja los puntos
-                    sprite = OBJETOS["BASTON"]
-                    sprite_x, sprite_y = sprite["Coordenadas"]
-                    sprite_w, sprite_h = 16, 16  # Ancho y largo del sprite
-                    pyxel.blt(
-                        x * 16, y * 16,  # Coordenadas donde se dibuja el punto
-                        0,  # Banco de imágenes
-                        sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
-                        sprite_w, sprite_h,  # Tamaño del sprite
-                        colkey=0  # Transparencia
-                    )
+                
 
-                # Poner los regalos con su animación
-                if self.muro.mapa[y][x] == 98:
-                    if pyxel.frame_count // REFRESH_REGALOS % 2:
-                        sprite = OBJETOS["REGALO_BRILLANTE"]
-                        sprite_x, sprite_y = sprite["Coordenadas"]
-                        sprite_w, sprite_h = 16, 16  # Ancho y largo del sprite
-                    else:
-                        sprite = OBJETOS["REGALO"]
-                        sprite_x, sprite_y = sprite["Coordenadas"]
-                        sprite_w, sprite_h = 16, 16  # Ancho y largo del sprite
+                # Poner los regalos con su animació
+                        
                     # Dibuja el regalo
-                    pyxel.blt(
-                        x * 16, y * 16,
-                        0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
-                    )
-
+                    
         # Dibuja las letras
         self.dibujar_letras_mapa(69, "READY!")
         self.dibujar_letras_mapa(70, "HIGHSCORE")
@@ -82,21 +59,13 @@ class Puntos:
 
     def comer_puntos(self):
         # Detectar si Pac-Man come puntos o regalos
-        pacman_x = self.pacman.x // 16
-        pacman_y = self.pacman.y // 16
-
-        if self.muro.mapa[pacman_y][pacman_x] in [0, 98]:
-            if self.muro.mapa[pacman_y][pacman_x] == 0:
-                tipo_consumible = "BASTON"
-            elif self.muro.mapa[pacman_y][pacman_x] == 98:
-                tipo_consumible = "REGALO"
+        
                 # Activar el estado asustado para todos los fantasmas
-                for fantasma in self.fantasmas:
-                    fantasma.activar_asustado()
+            
             # Sumar puntos
-            self.puntos += OBJETOS[tipo_consumible]["Puntos"]
-            # Eliminar el objeto del mapa
-            self.muro.mapa[pacman_y][pacman_x] = -1
+        
+        # Eliminar el objeto del mapa
+        pass
 
     def ver_puntuacion(self, x, y):
         # Cambia el color solo cuando se supera un nuevo múltiplo de 500
