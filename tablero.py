@@ -1,9 +1,8 @@
 from muro import Muro
 from pacman import Pacman
 from fantasmas import *
-from puntos import *
+from puntos import Puntos
 from constantes import *
-from bloque import Bloque
 import pyxel
 
 class Tablero:
@@ -22,12 +21,14 @@ class Tablero:
             FantasmaAzul(192, 190, self.muro),
             FantasmaNaranja(208, 190, self.muro),
         ]
-        '''self.puntos = Puntos(self.muro, OBJETOS, self.pacman, self.fantasmas)'''  # Controlador de puntos y frutas
+        self.puntos = Puntos(self.muro, OBJETOS, self.pacman, self.fantasmas)  # Controlador de puntos y frutas
 
         # Iniciar el bucle principal del juego
         pyxel.run(self.update, self.draw)
 
     def update(self):
+        if self.puntos.victoria()==True:
+            self.ya=True
         if self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
             if self.pacman.en_muerte:
                 # Ejecutar animación de muerte
@@ -35,18 +36,22 @@ class Tablero:
             else:
                 # Actualizar elementos del juego
                 self.pacman.mover()  # Mover Pacman
-                '''self.puntos.comer_puntos()  # Detectar puntos comidos
+                self.puntos.comer_puntos()  # Detectar puntos comidos
                 self.puntos.comer_fruta()  # Detectar frutas comidas
-                self.puntos.generar_fruta()  # Generar frutas cada 30s'''
+                self.puntos.generar_fruta()  # Generar frutas cada 30s
                 for fantasma in self.fantasmas:
                     fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
-                self.pacman.colision_fantasmas(self.fantasmas, '''self.puntos''')  # Colisiones con fantasmas
+                self.pacman.colision_fantasmas(self.fantasmas, self.puntos)  # Colisiones con fantasmas
 
 
     
     def draw(self):
         pyxel.cls(0)  # Limpiar pantalla
-        if self.pacman.vidas > 0:
+        if self.ya==False:
+            pyxel.cls(0)
+            self.muro.draw()
+            pyxel.text(192,190,"Has ganado",8)
+        elif self.pacman.vidas > 0:
             self.muro.draw()  # Dibujar el mapa
             self.puntos.draw()  # Dibujar puntos, frutas y puntuación
             self.pacman.ver_vidas(10, 10)  # Ver las vidas restantes
