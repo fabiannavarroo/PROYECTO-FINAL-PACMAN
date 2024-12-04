@@ -72,10 +72,10 @@ class Pacman:
         pacman_y = self.y + 8
 
         for fantasma in fantasmas:
-            fantasma_x = fantasma.x + 8  # Centrar la posición del fantasma
+            fantasma_x = fantasma.x + 8  # Centrar la posicion del fantasma
             fantasma_y = fantasma.y + 8
 
-            # Detectar si hay colisión (ambos objetos se superponen)
+            # Detectar si hay colisión 
             if abs(pacman_x - fantasma_x) < 16 and abs(pacman_y - fantasma_y) < 16:
                 if fantasma.asustado:
                     puntos.puntos += 200  # Añade puntos por comer un fantasma
@@ -85,7 +85,7 @@ class Pacman:
                     self.perder_vida()  # Pac-Man pierde una vida
                     return True
 
-        return False  # No hay colisió
+        return False  # No hay colision
 
     def perder_vida(self):
         self.vidas -= 1
