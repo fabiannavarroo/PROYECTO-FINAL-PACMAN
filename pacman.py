@@ -67,12 +67,12 @@ class Pacman:
         if self.en_muerte or self.reiniciando or self.vidas <= 0:  # Si está muerto, reiniciando o sin vidas, no revisa colisiones
             return False
 
-        pacman_x = self.x 
-        pacman_y = self.y 
+        pacman_x = self.x // self.bloque.celda_tamaño
+        pacman_y = self.y // self.bloque.celda_tamaño
 
         for fantasma in fantasmas:
-            fantasma_x = fantasma.x 
-            fantasma_y = fantasma.y 
+            fantasma_x = fantasma.x // self.bloque.celda_tamaño
+            fantasma_y = fantasma.y // self.bloque.celda_tamaño
 
             if pacman_x == fantasma_x and pacman_y == fantasma_y:
                 if fantasma.asustado:
