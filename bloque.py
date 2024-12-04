@@ -56,3 +56,15 @@ class Bloque:
             self.sprite = SPRITE_BLOQUE_23
         else:
             raise ValueError("Tipo de bloque", str(self.tipo), "no válido. Debe estar entre 1 y 23.")
+        
+
+    def colision(self, x, y):
+        #Comprueba si hay un muro en la posición (x, y) 
+        # Tamaño del sprite de Pac-Man y Fantasmas
+        pass
+    
+
+    def draw(self):
+        #Dibuja los muros en la pantalla
+
+        pass
