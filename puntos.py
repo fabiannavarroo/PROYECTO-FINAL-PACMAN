@@ -20,7 +20,7 @@ class Puntos:
         self.animacion_activa = False  # Indica si hay animación activa
         self.animacion_contador = 0  # Contador para animación de aparición
         self.vict =  False #selbsterklährend
-
+'''
     def draw(self):
         # Poner los puntos en el mapa
         for y in range(len(self.muro.mapa)):
@@ -58,9 +58,9 @@ class Puntos:
         self.dibujar_letras_mapa(69, "READY!")
         self.dibujar_letras_mapa(70, "HIGHSCORE")
 
-'''        # Dibuja la fruta si existe
+        # Dibuja la fruta si existe
         if self.fruta_actual and self.posicion_actual:
-            self.dibujar_fruta()'''
+            self.dibujar_fruta()
 
         # Mostrar la puntuación
         self.ver_puntuacion(188, 16)
@@ -80,7 +80,7 @@ class Puntos:
                     )
 
 
-    '''def comer_puntos(self):
+    def comer_puntos(self):
         # Detectar si Pac-Man come puntos o regalos
         pacman_x = self.pacman.x // self.muro.celda_tamaño
         pacman_y = self.pacman.y // self.muro.celda_tamaño
@@ -96,7 +96,7 @@ class Puntos:
             # Sumar puntos
             self.puntos += OBJETOS[tipo_consumible]["Puntos"]
             # Eliminar el objeto del mapa
-            self.muro.mapa[pacman_y][pacman_x] = -1'''
+            self.muro.mapa[pacman_y][pacman_x] = -1
 
     def ver_puntuacion(self, x, y):
         # Cambia el color solo cuando se supera un nuevo múltiplo de 500
@@ -122,7 +122,7 @@ class Puntos:
             pos_x += sprite_w + 1  # Espacio entre los dígitos
 
 
-    '''def encontrar_celdas_vacias(self):
+    def encontrar_celdas_vacias(self):
         # Encuentra celdas vacías en el mapa
         celdas_vacias = []
         for y in range(len(self.muro.mapa)):
@@ -197,7 +197,7 @@ class Puntos:
         for bloque in self.muro.bloque:
             if (bloque.x, bloque.y) == (0, 98):
                 return False
-        return True'''
+        return True
     
 
-    
+    '''
