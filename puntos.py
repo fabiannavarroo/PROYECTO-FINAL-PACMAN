@@ -58,9 +58,9 @@ class Puntos:
         self.dibujar_letras_mapa(69, "READY!")
         self.dibujar_letras_mapa(70, "HIGHSCORE")
 
-        # Dibuja la fruta si existe
+'''        # Dibuja la fruta si existe
         if self.fruta_actual and self.posicion_actual:
-            self.dibujar_fruta()
+            self.dibujar_fruta()'''
 
         # Mostrar la puntuación
         self.ver_puntuacion(188, 16)
@@ -80,7 +80,7 @@ class Puntos:
                     )
 
 
-    def comer_puntos(self):
+    '''def comer_puntos(self):
         # Detectar si Pac-Man come puntos o regalos
         pacman_x = self.pacman.x // self.muro.celda_tamaño
         pacman_y = self.pacman.y // self.muro.celda_tamaño
@@ -96,7 +96,7 @@ class Puntos:
             # Sumar puntos
             self.puntos += OBJETOS[tipo_consumible]["Puntos"]
             # Eliminar el objeto del mapa
-            self.muro.mapa[pacman_y][pacman_x] = -1
+            self.muro.mapa[pacman_y][pacman_x] = -1'''
 
     def ver_puntuacion(self, x, y):
         # Cambia el color solo cuando se supera un nuevo múltiplo de 500
