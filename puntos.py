@@ -194,10 +194,10 @@ class Puntos:
             self.posicion_actual = None
 
     def victoria(self):
-        if not (0,98) in self.muro.mapa:
-            self.vict=True
-
-        return self.vict
+        for bloque in self.muro.bloque:
+            if (bloque.x, bloque.y) == (0, 98):
+                return False
+        return True
     
 
     
