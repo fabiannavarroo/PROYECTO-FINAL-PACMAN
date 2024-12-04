@@ -200,5 +200,5 @@ MAPA_1 = [
     (48, 48, 2),    # Borde inferior
     (64, 48, 12),   # Esquina inferior derecha
     
-    # ... añade más bloques según necesites para tu mapa
+    
 ]
