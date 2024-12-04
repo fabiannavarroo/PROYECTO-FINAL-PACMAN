@@ -48,11 +48,7 @@ class Tablero:
     
     def draw(self):
         pyxel.cls(0)  # Limpiar pantalla
-        if self.ya==False:
-            pyxel.cls(0)
-            self.muro.draw()
-            pyxel.text(192,190,"Has ganado",8)
-        elif self.pacman.vidas > 0:
+        if self.pacman.vidas > 0:
             self.muro.draw()  # Dibujar el mapa
             self.puntos.draw()  # Dibujar puntos, frutas y puntuación
             self.pacman.ver_vidas(10, 10)  # Ver las vidas restantes
