@@ -3,12 +3,11 @@ from constantes import *
 import time
 
 class Fantasma:
-    def __init__(self, x, y, muro, sprites):
+    def __init__(self, x, y, sprites):
         self.x = x
         self.y = y
         self.x_inicial = x  # Guardar posición inicial
         self.y_inicial = y  # Guardar posición inicial
-        self.muro = muro
         self.sprites = sprites
         self.direccion_actual = "DERECHA"  # Dirección inicial
         self.asustado = False  # Indica si está en estado asustado
@@ -64,17 +63,17 @@ class Fantasma:
 
 # Subclases de Fantasma
 class FantasmaRojo(Fantasma):
-    def __init__(self, x, y, muro):
-        super().__init__(x, y, muro, FANTASMA_ROJO)
+    def __init__(self, x, y):
+        super().__init__(x, y, FANTASMA_ROJO)
 
 class FantasmaRosa(Fantasma):
-    def __init__(self, x, y, muro):
-        super().__init__(x, y, muro, FANTASMA_ROSA)
+    def __init__(self, x, y):
+        super().__init__(x, y, FANTASMA_ROSA)
 
 class FantasmaAzul(Fantasma):
-    def __init__(self, x, y, muro):
-        super().__init__(x, y, muro, FANTASMA_AZUL)
+    def __init__(self, x, y):
+        super().__init__(x, y, FANTASMA_AZUL)
 
 class FantasmaNaranja(Fantasma):
-    def __init__(self, x, y, muro):
-        super().__init__(x, y, muro, FANTASMA_NARANJA)
+    def __init__(self, x, y):
+        super().__init__(x, y, FANTASMA_NARANJA)
