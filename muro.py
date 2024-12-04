@@ -4,22 +4,28 @@ from constantes import *
 
 class Muro:
     def __init__(self):
-        self.bloques = []
-        for elemento in MAPA_1:
-            x, y, tipo = elemento
-            sprite = globals()[f"SPRITE_BLOQUE_{tipo[-1]}"]
-            self.bloques.append(Bloque(x, y, sprite))
+        self.bloque = []
+        for x, y, tipo in MAPA_1:
+            if tipo == "BLOQUE1":
+                sprite = SPRITE_BLOQUE_1
+            elif tipo == "BLOQUE2":
+                sprite = SPRITE_BLOQUE_2
+            elif tipo == "BLOQUE3":
+                sprite = SPRITE_BLOQUE_3
+            self.bloque.append(Bloque(x, y, sprite))
 
     def colision(self, x, y):
-        for bloque in self.bloques:
-            if (x >= bloque.x and x < bloque.x + 16 and 
-                y >= bloque.y and y < bloque.y + 16):
+        for b in self.bloque:
+            bloque_x = b.x
+            bloque_y = b.y
+            if (x >= bloque_x and x < bloque_x + 16 and 
+                y >= bloque_y and y < bloque_y + 16):
                 return True
         return False
 
     def draw(self):
-        for bloque in self.bloques:
-            pyxel.blt(bloque.x, bloque.y, *bloque.sprite)
+        for b in self.bloque:
+            pyxel.blt(b.x, b.y, *b.sprite)
 
     def fin(self):
         sprite = TEXTO["GAME OVER"]
