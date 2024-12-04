@@ -15,7 +15,7 @@ class Muro:
 
     def draw(self):
         #Dibuja los muros en la pantalla
-        #for elemento in self.bloque
+
         pass
     
 
