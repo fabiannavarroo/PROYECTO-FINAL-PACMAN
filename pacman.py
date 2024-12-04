@@ -33,13 +33,13 @@ class Pacman:
 
         # Verificar si la dirección pendiente es válida
         if self.direccion_pendiente:
-            if self.direccion_pendiente == PACMAN_ARRIBA and not self.muro.colision(self.x, self.y - self.velocidad):
+            if self.direccion_pendiente == PACMAN_ARRIBA and not self.bloque.colision_muro(self.x, self.y - self.velocidad):
                 self.direccion_actual = self.direccion_pendiente
-            elif self.direccion_pendiente == PACMAN_ABAJO and not self.muro.colision(self.x, self.y + self.velocidad):
+            elif self.direccion_pendiente == PACMAN_ABAJO and not self.bloque.colision_muro(self.x, self.y + self.velocidad):
                 self.direccion_actual = self.direccion_pendiente
-            elif self.direccion_pendiente == PACMAN_IZQUIERDA and not self.muro.colision(self.x - self.velocidad, self.y):
+            elif self.direccion_pendiente == PACMAN_IZQUIERDA and not self.bloque.colision_muro(self.x - self.velocidad, self.y):
                 self.direccion_actual = self.direccion_pendiente
-            elif self.direccion_pendiente == PACMAN_DERECHA and not self.muro.colision(self.x + self.velocidad, self.y):
+            elif self.direccion_pendiente == PACMAN_DERECHA and not self.bloque.colision_muro(self.x + self.velocidad, self.y):
                 self.direccion_actual = self.direccion_pendiente
 
         # Mover en la dirección actual
