@@ -9,11 +9,8 @@ class Bloque:
 
         # Crear bloques a partir de MAPA_1
         for x, y, tipo in MAPA_1:
-            self.bloques.append({
-                "x": x,
-                "y": y,
-                "sprite": self.obtener_sprite(tipo)
-            })
+            sprite = self.obtener_sprite(tipo)  # Obtener el sprite correspondiente
+            self.bloques.append((x, y, sprite))  # Almacenar solo coordenadas y sprite
 
     def obtener_sprite(self, tipo):
         # Devuelve el sprite correspondiente al tipo
