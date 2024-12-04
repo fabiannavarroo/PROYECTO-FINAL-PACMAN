@@ -6,13 +6,7 @@ class Muro:
     def __init__(self):
         self.bloque = []
         for x, y, tipo in MAPA_1:
-            if tipo == "BLOQUE1":
-                sprite = SPRITE_BLOQUE_1
-            elif tipo == "BLOQUE2":
-                sprite = SPRITE_BLOQUE_2
-            elif tipo == "BLOQUE3":
-                sprite = SPRITE_BLOQUE_3
-            self.bloque.append(Bloque(x, y, sprite))
+            self.bloque.append(Bloque(x, y, tipo))
 
     def colision(self, x, y):
         for b in self.bloque:
@@ -32,7 +26,7 @@ class Muro:
         sprite_x, sprite_y = sprite["Coordenadas"]
         sprite_w, sprite_h = sprite["Tamaño"]
         pos_x = 192
-        pos_y= 190
+        pos_y = 190
         pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
 
     
