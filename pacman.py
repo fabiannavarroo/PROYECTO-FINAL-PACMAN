@@ -67,21 +67,25 @@ class Pacman:
         if self.en_muerte or self.reiniciando or self.vidas <= 0:  # Si está muerto, reiniciando o sin vidas, no revisa colisiones
             return False
 
-        pacman_x = self.x // self.bloque.celda_tamaño
-        pacman_y = self.y // self.bloque.celda_tamaño
+        # Calcular las posiciones centrales de Pac-Man y los fantasmas
+        pacman_x = self.x + 8  # Centrar la posición de Pac-Man
+        pacman_y = self.y + 8
 
         for fantasma in fantasmas:
-            fantasma_x = fantasma.x // self.bloque.celda_tamaño
-            fantasma_y = fantasma.y // self.bloque.celda_tamaño
+            fantasma_x = fantasma.x + 8  # Centrar la posición del fantasma
+            fantasma_y = fantasma.y + 8
 
-            if pacman_x == fantasma_x and pacman_y == fantasma_y:
+            # Detectar si hay colisión (ambos objetos se superponen)
+            if abs(pacman_x - fantasma_x) < 16 and abs(pacman_y - fantasma_y) < 16:
                 if fantasma.asustado:
                     puntos.puntos += 200  # Añade puntos por comer un fantasma
                     fantasma.volver_a_trampa()  # Enviar fantasma a la trampa
-                    return False # Para que no revise las colisiones
-                elif  not self.en_muerte:  # Si no está asustado y Pac-Man no está ya muriendo
+                    return True
+                else:
                     self.perder_vida()  # Pac-Man pierde una vida
-                    return False # Para que no revise las colisiones
+                    return True
+
+        return False  # No hay colisió
 
     def perder_vida(self):
         self.vidas -= 1
