@@ -64,29 +64,18 @@ class Bloque:
             raise ValueError("Tipo de bloque no válido. Debe estar entre 1 y 23.")
 
     def colision(self, x, y):
-        # Comprueba si hay colisión con las coordenadas (x, y)
-        sprite_tamaño = 16
+        # Comprueba si hay colisión en las coordenadas  (x, y)
+        # Pasa por todos los bloques
+        for bloque in self.bloques:
+            bloque_x = bloque[0]  # Coordenada x del bloque
+            bloque_y = bloque[1]  # Coordenada y del bloque
 
-        # Puntos de las esquinas del sprite
-        puntos_a_verificar = [
-            (x, y),  # Esquina superior izquierda
-            (x + sprite_tamaño - 1, y),  # Esquina superior derecha
-            (x, y + sprite_tamaño - 1),  # Esquina inferior izquierda
-            (x + sprite_tamaño - 1, y + sprite_tamaño - 1)  # Esquina inferior derecha
-        ]
+            # Si las coordenadas coinciden con las del bloque, devuelve True hay colisión
+            if bloque_x == x and bloque_y == y:
+                return True
 
-        # Verificar colisión para cada punto con los bloques
-        for px, py in puntos_a_verificar:
-            for bloque in self.bloques:
-                bloque_x = bloque["x"]
-                bloque_y = bloque["y"]
-                sprite = bloque["sprite"]
-                sprite_w = sprite[3]
-                sprite_h = sprite[4]
-
-                if bloque_x <= px < bloque_x + sprite_w and bloque_y <= py < bloque_y + sprite_h:
-                    return True  # Colisión detectada
-        return False  # No hay colisión
+        # Si ninguna coordenada coincide, no hay colisión
+        return False
 
     def draw(self):
         # Dibuja todos los bloques
