@@ -183,6 +183,22 @@ MAPA_1 = [
     # Borde superior
     (0, 0, 1),      # Esquina superior izquierda
     (16, 0, 2),     # Borde superior
-    (32, 0, 3),     # Esquina superior derecha
-    # Añade más bloques según necesites
+    (32, 0, 2),     # Borde superior
+    (48, 0, 2),     # Borde superior
+    (64, 0, 3),     # Esquina superior derecha
+    
+    # Bordes verticales
+    (0, 16, 5),     # Borde vertical izquierdo
+    (0, 32, 5),     # Borde vertical izquierdo
+    (64, 16, 5),    # Borde vertical derecho
+    (64, 32, 5),    # Borde vertical derecho
+    
+    # Borde inferior
+    (0, 48, 11),    # Esquina inferior izquierda
+    (16, 48, 2),    # Borde inferior
+    (32, 48, 2),    # Borde inferior
+    (48, 48, 2),    # Borde inferior
+    (64, 48, 12),   # Esquina inferior derecha
+    
+    # ... añade más bloques según necesites para tu mapa
 ]
