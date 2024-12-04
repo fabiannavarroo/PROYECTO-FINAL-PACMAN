@@ -35,7 +35,7 @@ class Muro:
 
         # Tamaño de cada celda en píxeles
         self.celda_tamaño = 16 
-        self.otros_objetos = [-1,0,69,70,71,90,91,92,93,94,95,96,97,98,99
+        self.otros_objetos = [-1,0,69,70,71,90,91,92,93,94,95,96,97,98,99]
         self.bloque = bloque
         
 
