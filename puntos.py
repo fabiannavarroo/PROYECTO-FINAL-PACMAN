@@ -42,17 +42,7 @@ class Puntos:
 
 
     def dibujar_letras_mapa(self, num, sprite):
-        # Dibuja las letras en las posiciones indicadas por el mapa
-        for y in range(len(self.muro.mapa)):
-            for x in range(len(self.muro.mapa[y])):
-                if self.muro.mapa[y][x] == num:
-                    sprite = TEXTO[sprite]
-                    sprite_x, sprite_y = sprite["Coordenadas"]
-                    sprite_w, sprite_h = sprite["Tamaño"]
-                    pyxel.blt(
-                        x * 16, y * 16,
-                        0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
-                    )
+        pass
 
 
     def comer_puntos(self):
