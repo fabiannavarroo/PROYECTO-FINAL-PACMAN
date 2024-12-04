@@ -1,13 +1,11 @@
 from constantes import *
 import random
 import time
-from muro import Muro
 import pyxel
 
 
 class Puntos:
-    def __init__(self, muro, sprite, pacman, fantasmas):
-        self.muro = muro
+    def __init__(self, sprite, pacman, fantasmas):
         self.sprite = sprite
         self.pacman = pacman
         self.fantasmas = fantasmas
@@ -23,7 +21,7 @@ class Puntos:
 
     def draw(self):
         # Poner los puntos en el mapa
-        
+
                     # Dibuja los puntos
                 
 
