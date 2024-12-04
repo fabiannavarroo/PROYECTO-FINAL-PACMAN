@@ -33,13 +33,13 @@ class Pacman:
 
         # Verificar si la dirección pendiente es válida
         if self.direccion_pendiente:
-            if self.direccion_pendiente == PACMAN_ARRIBA and not self.bloque.colision_muro(self.x, self.y - self.velocidad):
+            if self.direccion_pendiente == PACMAN_ARRIBA and not '''COLISION'''(self.x, self.y - self.velocidad):
                 self.direccion_actual = self.direccion_pendiente
-            elif self.direccion_pendiente == PACMAN_ABAJO and not self.bloque.colision_muro(self.x, self.y + self.velocidad):
+            elif self.direccion_pendiente == PACMAN_ABAJO and not '''COLISION'''(self.x, self.y + self.velocidad):
                 self.direccion_actual = self.direccion_pendiente
-            elif self.direccion_pendiente == PACMAN_IZQUIERDA and not self.bloque.colision_muro(self.x - self.velocidad, self.y):
+            elif self.direccion_pendiente == PACMAN_IZQUIERDA and not '''COLISION'''(self.x - self.velocidad, self.y):
                 self.direccion_actual = self.direccion_pendiente
-            elif self.direccion_pendiente == PACMAN_DERECHA and not self.bloque.colision_muro(self.x + self.velocidad, self.y):
+            elif self.direccion_pendiente == PACMAN_DERECHA and not '''COLISION'''(self.x + self.velocidad, self.y):
                 self.direccion_actual = self.direccion_pendiente
 
         # Mover en la dirección actual
@@ -53,9 +53,9 @@ class Pacman:
             nueva_x += self.velocidad
 
         # Verificar colisiones
-        if not self.bloque.colision_muro(nueva_x, self.y):
+        if not (nueva_x, self.y):
             self.x = nueva_x
-        if not self.bloque.colision_muro(self.x, nueva_y):
+        if not (self.x, nueva_y):
             self.y = nueva_y
 
         #  Portales
@@ -66,12 +66,12 @@ class Pacman:
         if self.en_muerte or self.reiniciando or self.vidas <= 0:  # Si está muerto, reiniciando o sin vidas, no revisa colisiones
             return False
 
-        pacman_x = self.x // self.muro.celda_tamaño
-        pacman_y = self.y // self.muro.celda_tamaño
+        pacman_x = self.x 
+        pacman_y = self.y 
 
         for fantasma in fantasmas:
-            fantasma_x = fantasma.x // self.muro.celda_tamaño
-            fantasma_y = fantasma.y // self.muro.celda_tamaño
+            fantasma_x = fantasma.x 
+            fantasma_y = fantasma.y 
 
             if pacman_x == fantasma_x and pacman_y == fantasma_y:
                 if fantasma.asustado:
