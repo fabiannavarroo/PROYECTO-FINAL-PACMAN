@@ -124,12 +124,7 @@ class Puntos:
 
     def encontrar_celdas_vacias(self):
         # Encuentra celdas vacías en el mapa
-        celdas_vacias = []
-        for y in range(len(self.muro.mapa)):
-            for x in range(len(self.muro.mapa[y])):
-                if self.muro.mapa[y][x] == -1:
-                    celdas_vacias.append((x, y))
-        return celdas_vacias
+        pass
 
 
     def generar_fruta(self):
