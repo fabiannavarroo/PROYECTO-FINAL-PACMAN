@@ -5,8 +5,10 @@ from constantes import *
 class Muro:
     def __init__(self):
         self.bloque = []
+        self.mapa = []
         for x, y, tipo in MAPA_1:
             self.bloque.append(Bloque(x, y, tipo))
+            self.mapa.append((x, y))
 
     def colision(self, x, y):
         for b in self.bloque:
