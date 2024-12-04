@@ -65,7 +65,16 @@ class Tablero:
             # Limpiar pantalla si las vidas llegan a 0 y muestra solo el mapa
             pyxel.cls(0)
             self.muro.draw()
-            self.muro.fin()
+            self.fin()
+
+    def fin(self):
+        # Dibujar Game Over
+        sprite = TEXTO["GAME OVER"]
+        sprite_x, sprite_y = sprite["Coordenadas"]
+        sprite_w, sprite_h = sprite["Tamaño"]
+        pos_x = 192
+        pos_y= 190
+        pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
 
     def reiniciar_tablero(self):
         # Reinicia las posiciones iniciales de los personajes y termina la animación de muerte.
