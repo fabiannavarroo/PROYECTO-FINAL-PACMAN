@@ -1,4 +1,4 @@
-from muro import Muro
+
 from pacman import Pacman
 from fantasmas import *
 from puntos import Puntos
