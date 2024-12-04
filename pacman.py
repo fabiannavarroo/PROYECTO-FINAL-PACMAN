@@ -53,9 +53,9 @@ class Pacman:
             nueva_x += self.velocidad
 
         # Verificar colisiones
-        if not self.muro.colision(nueva_x, self.y):
+        if not self.bloque.colision_muro(nueva_x, self.y):
             self.x = nueva_x
-        if not self.muro.colision(self.x, nueva_y):
+        if not self.bloque.colision_muro(self.x, nueva_y):
             self.y = nueva_y
 
         #  Portales
