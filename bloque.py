@@ -5,12 +5,12 @@ class Bloque:
     def __init__(self):
         # Lista de bloques inicializada desde MAPA_1
         self.bloques = []
-        self.celda_tamaño = 16
+        self.celda_tamaño = 16  # Tamaño de cada celda del mapa
 
         # Crear bloques a partir de MAPA_1
         for x, y, tipo in MAPA_1:
             sprite = self.obtener_sprite(tipo)  # Obtener el sprite correspondiente
-            self.bloques.append((x, y, sprite))  # Almacenar solo coordenadas y sprite
+            self.bloques.append((x // self.celda_tamaño, y // self.celda_tamaño, sprite))  # Coordenadas normalizadas y sprite
 
     def obtener_sprite(self, tipo):
         # Devuelve el sprite correspondiente al tipo
@@ -64,26 +64,27 @@ class Bloque:
             raise ValueError("Tipo de bloque no válido. Debe estar entre 1 y 23.")
 
     def colision(self, x, y):
-        # Comprueba si hay colisión en las coordenadas  (x, y)
-        
-        # Pasa por todos los bloques
+        # Normalizar coordenadas a celdas del mapa
+        celda_x = x // self.celda_tamaño
+        celda_y = y // self.celda_tamaño
+
+        # Verificar si hay un muro en la lista de bloques
         for bloque in self.bloques:
-            bloque_x = bloque[0]  # Coordenada x del bloque
-            bloque_y = bloque[1]  # Coordenada y del bloque
+            bloque_x = bloque[0]
+            bloque_y = bloque[1]
 
-            # Si las coordenadas coinciden con las del bloque, devuelve True hay colisión
-            if bloque_x == x and bloque_y == y:
-                return True
+            # Si hay un bloque en la posición, hay colisión
+            if bloque_x == celda_x and bloque_y == celda_y:
+                return True  # Hay un muro en esa posición
 
-        # Si ninguna coordenada coincide, no hay colisión
-        return False
+        return False  # No hay un muro en esa posición
 
     def draw(self):
         # Dibuja todos los bloques
         for bloque in self.bloques:
-            bloque_x = bloque[0]  # Coordenada x del bloque
-            bloque_y = bloque[1]  # Coordenada y del bloque
-            sprite = bloque[2]  # Sprite del bloque
+            bloque_x = bloque[0] * self.celda_tamaño  # Restaurar coordenadas a píxeles
+            bloque_y = bloque[1] * self.celda_tamaño
+            sprite = bloque[2]
             sprite_x = sprite[0]
             sprite_y = sprite[1]
             sprite_bank = sprite[2]
