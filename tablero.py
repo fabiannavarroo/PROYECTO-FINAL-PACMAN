@@ -3,6 +3,7 @@ from pacman import Pacman
 from fantasmas import *
 from puntos import Puntos
 from constantes import *
+from bloque import Bloques
 import pyxel
 
 class Tablero:
@@ -13,7 +14,7 @@ class Tablero:
         pyxel.load("assets/recursos.pyxres")  # Cargar recursos gráficos
 
         # Inicializar elementos del juego
-        self.muro = Muro()  # Mapa del juego
+        self.muro = Muro(self.bloque)  # Mapa del juego
         self.pacman = Pacman(208, 288, self.muro)  # Pacman y su posición inicial
         self.fantasmas = [  # Lista de fantasmas con sus posiciones iniciales
             FantasmaRojo(200, 160, self.muro),
