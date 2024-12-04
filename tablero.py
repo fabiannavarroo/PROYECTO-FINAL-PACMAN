@@ -40,7 +40,7 @@ class Tablero:
                 self.puntos.generar_fruta()  # Generar frutas cada 30s'''
                 for fantasma in self.fantasmas:
                     fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
-                self.pacman.colision_fantasmas(self.fantasmas, self.puntos)  # Colisiones con fantasmas
+                self.pacman.colision_fantasmas(self.fantasmas, '''self.puntos''')  # Colisiones con fantasmas
 
 
     
