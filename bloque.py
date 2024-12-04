@@ -67,7 +67,7 @@ class Bloque:
         return False
 
     def draw(self):
-        """Dibuja este bloque en la pantalla."""
+        # Dibuja este bloque en la pantalla.
         sprite_x = self.sprite[0]
         sprite_y = self.sprite[1]
         sprite_bank = self.sprite[2]
@@ -78,7 +78,7 @@ class Bloque:
         pyxel.blt(self.x, self.y, sprite_bank, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
 
     def inicializar_mapa(mapa_data):
-        """Crea instancias de Bloque para un mapa."""
+        # Crea instancias de Bloque para un mapa.
         bloques = []
         for data in mapa_data:
             bloque = Bloque(data[0], data[1], data[2])
@@ -86,12 +86,12 @@ class Bloque:
         return bloques
 
     def dibujar_bloques(bloques):
-        """Dibuja todos los bloques del mapa."""
+        # Dibuja todos los bloques del mapa.
         for bloque in bloques:
             bloque.draw()
 
     def detectar_colision(bloques, x, y):
-        """Detecta si hay colisión en las coordenadas (x, y)."""
+        # Detecta si hay colisión en las coordenadas (x, y).
         for bloque in bloques:
             if bloque.colision(x, y):
                 return True
