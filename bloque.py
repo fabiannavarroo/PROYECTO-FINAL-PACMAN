@@ -1,5 +1,5 @@
 import pyxel
-from constantes import MUROS
+from constantes import *
 
 class Bloque:
     def __init__(self):
