@@ -2,11 +2,11 @@ from constantes import *
 import pyxel
 
 class Pacman:
-    def __init__(self, x, y):
+    def __init__(self, x, y, bloque):
         self.x = x
         self.y = y
         self.velocidad = 2  # Velocidad de movimiento
-
+        self.bloque = bloque
         self.direccion_actual = PACMAN  # Dirección inicial
         self.direccion_pendiente = None  # Dirección elegida por el jugador
         self.vidas = 3  # Pac-Man empieza con 3 vidas
@@ -32,13 +32,13 @@ class Pacman:
 
         # Verificar si la dirección pendiente es válida
         if self.direccion_pendiente:
-            if self.direccion_pendiente == PACMAN_ARRIBA and not '''COLISION'''(self.x, self.y - self.velocidad):
+            if self.direccion_pendiente == PACMAN_ARRIBA and not self.bloque.colision(self.x, self.y - self.velocidad):
                 self.direccion_actual = self.direccion_pendiente
-            elif self.direccion_pendiente == PACMAN_ABAJO and not '''COLISION'''(self.x, self.y + self.velocidad):
+            elif self.direccion_pendiente == PACMAN_ABAJO and not self.bloque.colision(self.x, self.y + self.velocidad):
                 self.direccion_actual = self.direccion_pendiente
-            elif self.direccion_pendiente == PACMAN_IZQUIERDA and not '''COLISION'''(self.x - self.velocidad, self.y):
+            elif self.direccion_pendiente == PACMAN_IZQUIERDA and not self.bloque.colision(self.x - self.velocidad, self.y):
                 self.direccion_actual = self.direccion_pendiente
-            elif self.direccion_pendiente == PACMAN_DERECHA and not '''COLISION'''(self.x + self.velocidad, self.y):
+            elif self.direccion_pendiente == PACMAN_DERECHA and not self.bloque.colision(self.x + self.velocidad, self.y):
                 self.direccion_actual = self.direccion_pendiente
 
         # Mover en la dirección actual
@@ -52,9 +52,9 @@ class Pacman:
             nueva_x += self.velocidad
 
         # Verificar colisiones
-        if not (nueva_x, self.y):
+        if not self.bloque.colision(nueva_x, self.y):
             self.x = nueva_x
-        if not (self.x, nueva_y):
+        if not self.bloque.colision(self.x, nueva_y):
             self.y = nueva_y
 
         #  Portales
