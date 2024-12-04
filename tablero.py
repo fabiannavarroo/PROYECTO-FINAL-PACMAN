@@ -1,7 +1,7 @@
 from muro import Muro
 from pacman import Pacman
 from fantasmas import *
-from puntos import Puntos
+from puntos import *
 from constantes import *
 from bloque import Bloque
 import pyxel
@@ -22,7 +22,7 @@ class Tablero:
             FantasmaAzul(192, 190, self.muro),
             FantasmaNaranja(208, 190, self.muro),
         ]
-        self.puntos = Puntos(self.muro, OBJETOS, self.pacman, self.fantasmas)  # Controlador de puntos y frutas
+        '''self.puntos = Puntos(self.muro, OBJETOS, self.pacman, self.fantasmas)'''  # Controlador de puntos y frutas
 
         # Iniciar el bucle principal del juego
         pyxel.run(self.update, self.draw)
