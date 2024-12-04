@@ -21,14 +21,12 @@ class Tablero:
             FantasmaAzul(192, 190, self.muro),
             FantasmaNaranja(208, 190, self.muro),
         ]
-        self.puntos = Puntos(self.muro, OBJETOS, self.pacman, self.fantasmas)  # Controlador de puntos y frutas
+        self.puntos = Puntos(OBJETOS, self.pacman, self.fantasmas)  # Controlador de puntos y frutas
 
         # Iniciar el bucle principal del juego
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        if self.puntos.victoria()==True:
-            self.ya=True
         if self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
             if self.pacman.en_muerte:
                 # Ejecutar animación de muerte
