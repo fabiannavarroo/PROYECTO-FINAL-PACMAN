@@ -31,7 +31,7 @@ class Puntos:
                     sprite_x, sprite_y = sprite["Coordenadas"]
                     sprite_w, sprite_h = 16, 16  # Ancho y largo del sprite
                     pyxel.blt(
-                        x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,  # Coordenadas donde se dibuja el punto
+                        x * 16, y * 16,  # Coordenadas donde se dibuja el punto
                         0,  # Banco de imágenes
                         sprite_x, sprite_y,  # Coordenadas del sprite en recursos.pyxres
                         sprite_w, sprite_h,  # Tamaño del sprite
@@ -50,7 +50,7 @@ class Puntos:
                         sprite_w, sprite_h = 16, 16  # Ancho y largo del sprite
                     # Dibuja el regalo
                     pyxel.blt(
-                        x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,
+                        x * 16, y * 16,
                         0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
                     )
 
@@ -75,15 +75,15 @@ class Puntos:
                     sprite_x, sprite_y = sprite["Coordenadas"]
                     sprite_w, sprite_h = sprite["Tamaño"]
                     pyxel.blt(
-                        x * self.muro.celda_tamaño, y * self.muro.celda_tamaño,
+                        x * 16, y * 16,
                         0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
                     )
 
 
     def comer_puntos(self):
         # Detectar si Pac-Man come puntos o regalos
-        pacman_x = self.pacman.x // self.muro.celda_tamaño
-        pacman_y = self.pacman.y // self.muro.celda_tamaño
+        pacman_x = self.pacman.x // 16
+        pacman_y = self.pacman.y // 16
 
         if self.muro.mapa[pacman_y][pacman_x] in [0, 98]:
             if self.muro.mapa[pacman_y][pacman_x] == 0:
@@ -162,8 +162,8 @@ class Puntos:
                 sprite = OBJETOS[self.fruta_actual]
                 sprite_x, sprite_y = sprite["Coordenadas"]
                 sprite_w, sprite_h = 16, 16
-                x_pixel = self.posicion_actual[0] * self.muro.celda_tamaño
-                y_pixel = self.posicion_actual[1] * self.muro.celda_tamaño
+                x_pixel = self.posicion_actual[0] * 16
+                y_pixel = self.posicion_actual[1] * 16
                 pyxel.blt(
                     x_pixel, y_pixel, 0,
                     sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
