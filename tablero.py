@@ -3,7 +3,7 @@ from pacman import Pacman
 from fantasmas import *
 from puntos import Puntos
 from constantes import *
-from bloque import Bloques
+from bloque import Bloque
 import pyxel
 
 class Tablero:
