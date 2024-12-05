@@ -155,29 +155,29 @@ SPRITE_BLOQUE_23 = (24,88,1,16,16) # Borde inferior trampa fantasma
 MAPA_1 = [
     # fila 1
     (0, 32, 11),      # Esquina superior izquierda
-    (16, 32, 2),     # Borde superior
-    (32, 32, 2),     # Borde superior
-    (48, 32, 2),     # Borde superior
-    (64, 32, 2),     # Borde superior
-    (80, 32, 2),     # Borde superior
-    (96, 32, 2),     # Borde superior
-    (112, 32, 2),     # Borde superior
-    (128, 32, 2),     # Borde superior
-    (144, 32, 2),     # Borde superior
-    (160, 32, 2),     # Borde superior
-    (176, 32, 2),     # Borde superior
+    (16, 32, 2),     # Borde horizontal
+    (32, 32, 2),     # Borde horizontal
+    (48, 32, 2),     # Borde horizontal
+    (64, 32, 2),     # Borde horizontal
+    (80, 32, 2),     # Borde horizontal
+    (96, 32, 2),     # Borde horizontal
+    (112, 32, 2),     # Borde horizontal
+    (128, 32, 2),     # Borde horizontal
+    (144, 32, 2),     # Borde horizontal
+    (160, 32, 2),     # Borde horizontal
+    (176, 32, 2),     # Borde horizontal
     (192, 32, 7),     # Cruce en T hacia abajo
-    (208, 32, 2),     # Borde superior
-    (224, 32, 2),     # Borde superior
-    (240, 32, 2),     # Borde superior
-    (256, 32, 2),     # Borde superior
-    (272, 32, 2),     # Borde superior
-    (288, 32, 2),     # Borde superior
-    (304, 32, 2),     # Borde superior
-    (320, 32, 2),     # Borde superior
-    (336, 32, 2),     # Borde superior
-    (352, 32, 2),     # Borde superior
-    (368, 32, 2),     # Borde superior
+    (208, 32, 2),     # Borde horizontal
+    (224, 32, 2),     # Borde horizontal
+    (240, 32, 2),     # Borde horizontal
+    (256, 32, 2),     # Borde horizontal
+    (272, 32, 2),     # Borde horizontal
+    (288, 32, 2),     # Borde horizontal
+    (304, 32, 2),     # Borde horizontal
+    (320, 32, 2),     # Borde horizontal
+    (336, 32, 2),     # Borde horizontal
+    (352, 32, 2),     # Borde horizontal
+    (368, 32, 2),     # Borde horizontal
     (384, 32, 12),     # Esquina superior derecha
     
     # Fila 2
@@ -188,21 +188,21 @@ MAPA_1 = [
     # fila 3
     (0, 64, 5),      # Borde vertical
     (32,64,11),      # Esquina superior izquierda
-    (48,64,2),       # Borde superior
+    (48,64,2),       # Borde horizontal
     (64,64,12),      # Esquina superior derecha
     (96,64,11),      # Esquina superior izquierda
-    (112,64,2),      # Borde superior
-    (128,64,2),      # Borde superior
-    (144,64,2),      # Borde superior
+    (112,64,2),      # Borde horizontal
+    (128,64,2),      # Borde horizontal
+    (144,64,2),      # Borde horizontal
     (160,64,12),     # Esquina superior izquierda
     (192, 64, 5),     # Borde vertical  
     (224,64,11),      # Esquina superior izquierda
-    (240,64,2),       # Borde superior
+    (240,64,2),       # Borde horizontal
     (256,64,12),      # Esquina superior derecha
     (288,64,11),      # Esquina superior izquierda
-    (304,64,2),       # Borde superior
-    (320,64,2),       # Borde superior
-    (336,64,2),       # Borde superior
+    (304,64,2),       # Borde horizontal
+    (320,64,2),       # Borde horizontal
+    (336,64,2),       # Borde horizontal
     (352,64,12),      # Esquina superior izquierda
     (384, 64, 5),     # Esquina inferior derecha
 
@@ -222,22 +222,22 @@ MAPA_1 = [
     # fila 5
     (0, 96, 5),      # Borde vertical
     (32,96,13),      # Esquina izquierda inferior
-    (48,96,2),       # Borde superior
+    (48,96,2),       # Borde horizontal
     (64,96,14),      # Esquina derecha inferior
     (96,96,13),      # Esquina izquierda inferior
-    (112,96,2),      # Borde superior
-    (128,96,2),      # Borde superior
-    (144,96,2),      # Borde superior
+    (112,96,2),      # Borde horizontal
+    (128,96,2),      # Borde horizontal
+    (144,96,2),      # Borde horizontal
     (160,96,14),     # Esquina derecha inferior
     (192, 96, 6),     # Esquina inferior vertical
     (384,96,5),     # Borde vertical
     (224,96,13),      # Esquina inferior izquierda
-    (240,96,2),       # Borde superior
+    (240,96,2),       # Borde horizontal
     (256,96,14),      # Esquina inferior derecha
     (288,96,13),      # Esquina inferior izquierda
-    (304,96,2),       # Borde superior
-    (320,96,2),       # Borde superior
-    (336,96,2),       # Borde superior
+    (304,96,2),       # Borde horizontal
+    (320,96,2),       # Borde horizontal
+    (336,96,2),       # Borde horizontal
     (352,96,14),      # Esquina inferior izquierda
 
     # Fila 6
@@ -250,6 +250,7 @@ MAPA_1 = [
     (48,128,2),      # Borde vertical
     (64,128,2),      # Borde vertical
     (80,128,3),      # Borde vertical
+    
 
     (192, 128, 7),     # Cruce en T hacia abajo
 
