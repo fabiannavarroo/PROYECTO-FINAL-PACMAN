@@ -24,6 +24,9 @@ class Tablero:
         ]
         self.puntos = Puntos(OBJETOS, self.pacman, self.fantasmas, self.bloque)  # Controlador de puntos y frutas
 
+        self.mostrar_ready = True
+        self.ready_timer = 90  # Tiempo en frames para mostrar el mensaje (90 frames = 3 segundos a 30 FPS)
+
         # Iniciar el bucle principal del juego
         pyxel.run(self.update, self.draw)
 
