@@ -57,7 +57,7 @@ class Puntos:
         return celdas_vacias
 
     def generar_fruta(self):
-        # Genera una fruta en una celda vacía.
+        # Genera una fruta en una celda vacía
         if time.time() - self.ultimo_tiempo_fruta < 30:
             return False  # No generar una nueva fruta si no han pasado 30 segundos
 
@@ -123,10 +123,6 @@ class Puntos:
         self.dibujar_letras_mapa(69, "READY!")
         self.dibujar_letras_mapa(70, "HIGHSCORE")
 
-        # Dibuja la fruta si existe
-        if self.fruta_actual and self.posicion_actual:
-            self.dibujar_fruta()
-
         # Mostrar la puntuación
         self.ver_puntuacion(195, 16)
 
@@ -134,16 +130,6 @@ class Puntos:
     def dibujar_letras_mapa(self, num, sprite):
         pass
 
-
-    def comer_puntos(self):
-        # Detectar si Pac-Man come puntos o regalos
-        
-                # Activar el estado asustado para todos los fantasmas
-            
-            # Sumar puntos
-        
-        # Eliminar el objeto del mapa
-        pass
 
     def ver_puntuacion(self, x, y):
         # Cambia el color solo cuando se supera un nuevo múltiplo de 500
