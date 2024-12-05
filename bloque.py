@@ -8,7 +8,7 @@ class Bloque:
         self.celda_tamaño = 16
 
         # Crear bloques a partir de MAPA_1
-        for x, y, tipo in MAPA_2:
+        for x, y, tipo in MAPA_1:
             sprite = self.obtener_sprite(tipo)  # Obtener el sprite correspondiente
             self.bloques.append((x, y, sprite))  # Almacenar solo coordenadas y sprite
 
