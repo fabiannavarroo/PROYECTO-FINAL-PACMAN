@@ -49,6 +49,26 @@ class Puntos:
                     celdas_vacias.append((self.lista_puntos[x][y][0], self.lista_puntos[x][y][1]))
         return celdas_vacias
 
+    def generar_fruta(self):
+        # Genera una fruta en una celda vacía.
+        if time.time() - self.ultimo_tiempo_fruta < 30:
+            return False  # No generar una nueva fruta si no han pasado 30 segundos
+
+        # Seleccionar un objeto aleatorio sin regalos ni bastones
+        objetos_dispo = ["CEREZA", "FRESA", "NARANJA", "MANZANA", "MELON", "PARAGUAS", "CAMPANA", "LLAVE"]
+        self.fruta_actual = random.choice(objetos_dispo)
+
+        # Elegir una posición aleatoria en celdas vacías
+        celdas_vacias = self.encontrar_celdas_vacias()
+        if celdas_vacias:  # Si existen posiciones vacías, genera la fruta y permite que se ejecute la animación
+            self.posicion_actual = random.choice(celdas_vacias)
+            self.animacion_activa = True  # Activa la animación
+            self.animacion_contador = 0  # Reinicia el contador de la animación
+        else:
+            self.posicion_actual = None  # No hay espacio libre para generar una fruta
+
+        # Actualiza el tiempo de la última fruta generada
+        self.ultimo_tiempo_fruta = time.time()
 
         
 
