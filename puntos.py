@@ -91,7 +91,7 @@ class Puntos:
         for x, y, tipo in self.lista_puntos:
             # Si Pac-Man está en la misma posición que el punto/regalo
             if self.pacman.x <= x < self.pacman.x + 16 and self.pacman.y <= y < self.pacman.y + 16:
-                if tipo == "REGALO":
+                if tipo in ["REGALO", "REGALO_BRILLANTE"]:
                     # Activar estado asustado para los fantasmas
                     for fantasma in self.fantasmas:
                         fantasma.activar_asustado()
