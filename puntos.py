@@ -56,14 +56,12 @@ class Puntos:
                 coord = OBJETOS["REGALO"]["Coordenadas"]
                 pyxel.blt(x, y, 0, coord[0], coord[1], 16, 16, colkey=0)
 
-                    
         # Dibuja las letras
         self.dibujar_letras_mapa(180,240, "READY!")
         self.dibujar_letras_mapa(120,16, "HIGHSCORE")
 
         # Mostrar la puntuación
         self.ver_puntuacion(195, 16)
-
 
 
     def generar_puntos(self):
