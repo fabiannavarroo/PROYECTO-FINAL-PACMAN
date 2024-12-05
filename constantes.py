@@ -246,12 +246,14 @@ MAPA_1 = [
 
     # Fila 7
     (0, 128, 5),      # Borde vertical
-    (32,128,1),      # Borde vertical
-    (48,128,2),      # Borde vertical
-    (64,128,2),      # Borde vertical
-    (80,128,3),      # Borde vertical
-    
-
+    (32,128,1),      # 
+    (48,128,2),      # 
+    (64,128,2),      # 
+    (80,128,3),      # 
+    (112,128,4),      # 
+    (144,128,1),      # 
+    (160,128,2),      # 
+    (176,128,2),      # 
     (192, 128, 7),     # Cruce en T hacia abajo
 
 
