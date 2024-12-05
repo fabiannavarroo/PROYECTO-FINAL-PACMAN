@@ -15,6 +15,32 @@ class Pacman:
         self.reiniciando = False  # Estado para evitar colisiones durante el reinicio
 
 
+
+    def draw(self, fantasmas):
+        if self.vidas <= 0:  # Si no hay vidas, no se dibuja
+            return
+
+        if self.en_muerte:
+            self.animar_muerte(fantasmas)
+        else:
+            if pyxel.frame_count // REFRESH % 2 == 0:
+                sprite_x, sprite_y = self.direccion_actual
+            else:
+                if self.direccion_actual == PACMAN_ARRIBA:
+                    sprite_x, sprite_y = PACMAN_ARRIBA_CERRADA
+                elif self.direccion_actual == PACMAN_ABAJO:
+                    sprite_x, sprite_y = PACMAN_ABAJO_CERRADA
+                elif self.direccion_actual == PACMAN_IZQUIERDA:
+                    sprite_x, sprite_y = PACMAN_IZQUIERDA_CERRADA
+                elif self.direccion_actual == PACMAN_DERECHA:
+                    sprite_x, sprite_y = PACMAN_DERECHA_CERRADA
+                else:
+                    sprite_x, sprite_y = PACMAN
+
+            pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
+            self.ver_vidas(10, 10)
+
+            
     def mover(self,):
         if self.vidas <= 0 or self.en_muerte or self.reiniciando:  # Si no hay vidas, está en muerte o reiniciando, no se mueve
             return False
@@ -117,31 +143,6 @@ class Pacman:
         for fantasma in fantasmas:
             fantasma.volver_a_posicion_inicial()
         self.reiniciando = False  # Desactivar estado de reinicio
-
-
-    def draw(self, fantasmas):
-        if self.vidas <= 0:  # Si no hay vidas, no se dibuja
-            return
-
-        if self.en_muerte:
-            self.animar_muerte(fantasmas)
-        else:
-            if pyxel.frame_count // REFRESH % 2 == 0:
-                sprite_x, sprite_y = self.direccion_actual
-            else:
-                if self.direccion_actual == PACMAN_ARRIBA:
-                    sprite_x, sprite_y = PACMAN_ARRIBA_CERRADA
-                elif self.direccion_actual == PACMAN_ABAJO:
-                    sprite_x, sprite_y = PACMAN_ABAJO_CERRADA
-                elif self.direccion_actual == PACMAN_IZQUIERDA:
-                    sprite_x, sprite_y = PACMAN_IZQUIERDA_CERRADA
-                elif self.direccion_actual == PACMAN_DERECHA:
-                    sprite_x, sprite_y = PACMAN_DERECHA_CERRADA
-                else:
-                    sprite_x, sprite_y = PACMAN
-
-            pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
-            self.ver_vidas(10, 10)
 
 
     def ver_vidas(self, x, y):
