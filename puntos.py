@@ -123,13 +123,13 @@ class Puntos:
             pyxel.blt(self.posicion_actual[0], self.posicion_actual[1], 0, coord[0], coord[1], 16, 16, colkey=0)
 
         # Dibujar regalos
-        for x, y in self.regalos:
+        '''for x, y in self.regalos:
             if pyxel.frame_count // REFRESH_REGALOS % 2:
                 coord = OBJETOS["REGALO_BRILLANTE"]["Coordenadas"]
                 pyxel.blt(x, y, 0, coord[0], coord[1], 16, 16, colkey=0)
             else:
                 coord = OBJETOS["REGALO"]["Coordenadas"]
-                pyxel.blt(x, y, 0, coord[0], coord[1], 16, 16, colkey=0)
+                pyxel.blt(x, y, 0, coord[0], coord[1], 16, 16, colkey=0)'''
 
                     
         # Dibuja las letras
