@@ -22,7 +22,7 @@ class Tablero:
             FantasmaAzul(192, 0, ),
             FantasmaNaranja(208, 0, ),
         ]
-        self.puntos = Puntos(OBJETOS, self.pacman, self.fantasmas)  # Controlador de puntos y frutas
+        self.puntos = Puntos(OBJETOS, self.pacman, self.fantasmas, self.bloque)  # Controlador de puntos y frutas
 
         # Iniciar el bucle principal del juego
         pyxel.run(self.update, self.draw)
