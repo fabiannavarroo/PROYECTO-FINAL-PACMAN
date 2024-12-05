@@ -89,13 +89,5 @@ class Tablero:
         pos_y = 208
         pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
 
-    def reiniciar_tablero(self):
-        # Reinicia las posiciones iniciales de los personajes y termina la animación de muerte.
-        self.mostrar_ready = True  # Volver a mostrar READY!
-        self.contador_ready = 90  # Restablecer duración del mensaje READY!
-        self.pacman.reiniciar_posicion()  # Reiniciar posición de Pacman
-        self.pacman.en_muerte = False  # Finalizar estado de muerte
-        self.pacman.animacion_frame = 0  # Reiniciar animación de muerte
-        for fantasma in self.fantasmas:
-            fantasma.volver_a_posicion_inicial()  # Reiniciar posición de los fantasmas
+    
 
