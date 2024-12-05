@@ -21,7 +21,7 @@ class Tablero:
             FantasmaAzul(203, 208),
             FantasmaNaranja(226, 208),
         ]
-        self.puntos = Puntos(OBJETOS, self.pacman, self.fantasmas, self.bloque)  # Controlador de puntos y frutas
+        self.puntos = Puntos(OBJETOS, self.pacman, self.fantasmas, self.bloque)  # Puntos y frutas
 
         # Variables de estado
         self.mostrar_ready = True  # Indica si se muestra el mensaje READY!
