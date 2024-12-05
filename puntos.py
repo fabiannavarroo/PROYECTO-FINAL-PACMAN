@@ -45,28 +45,26 @@ class Puntos:
             return True
 
         return False
-
+    
 
     def encontrar_celdas_vacias(self):
-        # Encuentra celdas vacías donde no haya puntos, frutas ni muros.
+        # Encuentra celdas vacías donde no haya puntos, frutas, regalos ni muros
         celdas_vacias = []
         x = 0
         while x < pyxel.width:
             y = 0
             while y < pyxel.height:
-                if not self.esta_en_zona_prohibida(x, y):  # Revisar zonas prohibidas
-                    es_punto = False
-                    for p in self.lista_puntos:
-                        if p[0] == x and p[1] == y:
-                            es_punto = True
-                    es_fruta = (x, y) == self.posicion_actual
-
-                    if not es_punto and not es_fruta:
-                        celdas_vacias.append((x, y))
-
+                # Verificar si la celda está vacía
+                if not self.esta_en_zona_prohibida(x, y) and \
+                (x, y) not in [(p[0], p[1]) for p in self.lista_puntos] and \
+                (x, y) != self.posicion_actual and \
+                (x, y) not in self.regalos:
+                    celdas_vacias.append((x, y))
                 y += 16
             x += 16
         return celdas_vacias
+
+
 
     def generar_fruta(self):
         # Genera una fruta en una celda vacía
@@ -91,13 +89,19 @@ class Puntos:
 
 
     def comer_puntos(self):
-        # Detecta si Pac-Man come un punto y lo elimina.
+        # Detectar si Pac-Man come puntos o regalos
         nuevos_puntos = []
         for x, y, tipo in self.lista_puntos:
-            if not (self.pacman.x <= x < self.pacman.x + 16 and self.pacman.y <= y < self.pacman.y + 16):
-                nuevos_puntos.append((x, y, tipo))
+            # Si Pac-Man está en la misma posición que el punto/regalo
+            if self.pacman.x <= x < self.pacman.x + 16 and self.pacman.y <= y < self.pacman.y + 16:
+                if tipo == "REGALO":
+                    # Activar estado asustado para los fantasmas
+                    for fantasma in self.fantasmas:
+                        fantasma.activar_asustado()
+                # Incrementar puntos según el tipo
+                self.puntos += OBJETOS[tipo]["Puntos"]
             else:
-                self.puntos += OBJETOS[tipo]["Puntos"]  # Incrementa los puntos según el tipo
+                nuevos_puntos.append((x, y, tipo))
         self.lista_puntos = nuevos_puntos
 
 
