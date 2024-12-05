@@ -497,3 +497,170 @@ MAPA_1 = [
     (368, 384, 2),     # Borde horizontal
     (384, 384, 14),     # Esquina inferior derecha
 ]
+
+
+MAPA_2 = [
+    # Fila 1
+    (0, 32, 11),      # Esquina superior izquierda
+    (16, 32, 2),     # Borde horizontal
+    (32, 32, 2),     # Borde horizontal
+    (48, 32, 2),     # Borde horizontal
+    (64, 32, 2),     # Borde horizontal
+    (80, 32, 7),     # Cruce en T hacia abajo
+    (96, 32, 2),     # Borde horizontal
+    (112, 32, 2),     # Borde horizontal
+    (128, 32, 2),     # Borde horizontal
+    (144, 32, 2),     # Borde horizontal
+    (160, 32, 12),    # Esquina superior derecha
+
+    # Fila 2
+    (0, 48, 5),      # Borde vertical
+    (80, 48, 5),     # Borde vertical
+    (160, 48, 5),    # Borde vertical
+
+    # Fila 3
+    (0, 64, 5),      # Borde vertical
+    (32, 64, 11),    # Esquina superior izquierda
+    (48, 64, 2),     # Borde horizontal
+    (64, 64, 12),    # Esquina superior derecha
+    (80, 64, 5),     # Borde vertical
+    (112, 64, 11),   # Esquina superior izquierda
+    (128, 64, 2),    # Borde horizontal
+    (144, 64, 12),   # Esquina superior derecha
+    (160, 64, 5),    # Borde vertical
+
+    # Fila 4
+    (0, 80, 5),      # Borde vertical
+    (32, 80, 5),     # Borde vertical
+    (64, 80, 7),     # Cruce en T hacia abajo
+    (96, 80, 7),     # Cruce en T hacia abajo
+    (128, 80, 5),    # Borde vertical
+    (160, 80, 5),    # Borde vertical
+
+    # Fila 5
+    (0, 96, 13),     # Esquina inferior izquierda
+    (16, 96, 2),     # Borde horizontal
+    (32, 96, 2),     # Borde horizontal
+    (48, 96, 3),     # Esquina derecha horizontal
+    (80, 96, 5),     # Borde vertical
+    (112, 96, 1),    # Esquina izquierda horizontal
+    (128, 96, 2),    # Borde horizontal
+    (144, 96, 2),    # Borde horizontal
+    (160, 96, 14),   # Esquina inferior derecha
+
+    # Fila 6
+    (0, 112, 5),     # Borde vertical
+    (160, 112, 5),   # Borde vertical
+
+    # Fila 7
+    (0, 128, 11),    # Esquina superior izquierda
+    (16, 128, 2),    # Borde horizontal
+    (32, 128, 2),    # Borde horizontal
+    (48, 128, 2),    # Borde horizontal
+    (64, 128, 3),    # Esquina derecha horizontal
+    (96, 128, 7),    # Cruce en T hacia abajo
+    (128, 128, 1),   # Esquina izquierda horizontal
+    (144, 128, 2),   # Borde horizontal
+    (160, 128, 12),  # Esquina superior derecha
+
+    # Fila 8
+    (0, 144, 5),     # Borde vertical
+    (96, 144, 5),    # Borde vertical
+    (160, 144, 5),   # Borde vertical
+
+    # Fila 9
+    (0, 160, 13),    # Esquina inferior izquierda
+    (16, 160, 2),    # Borde horizontal
+    (32, 160, 7),    # Cruce en T hacia abajo
+    (64, 160, 2),    # Borde horizontal
+    (96, 160, 14),   # Esquina inferior derecha
+    (128, 160, 13),  # Esquina inferior izquierda
+    (144, 160, 2),   # Borde horizontal
+    (160, 160, 14),  # Esquina inferior derecha
+
+    # Fila 10
+    (32, 176, 5),    # Borde vertical
+    (128, 176, 5),   # Borde vertical
+
+    # Fila 11
+    (0, 192, 11),    # Esquina superior izquierda
+    (16, 192, 2),    # Borde horizontal
+    (32, 192, 2),    # Borde horizontal
+    (48, 192, 3),    # Esquina derecha horizontal
+    (96, 192, 6),    # Esquina inferior vertical
+    (128, 192, 1),   # Esquina izquierda horizontal
+    (144, 192, 2),   # Borde horizontal
+    (160, 192, 12),  # Esquina superior derecha
+
+    # Fila 12
+    (0, 208, 5),     # Borde vertical
+    (96, 208, 5),    # Borde vertical
+    (160, 208, 5),   # Borde vertical
+
+    # Fila 13
+    (0, 224, 13),    # Esquina inferior izquierda
+    (16, 224, 2),    # Borde horizontal
+    (32, 224, 7),    # Cruce en T hacia abajo
+    (64, 224, 2),    # Borde horizontal
+    (96, 224, 14),   # Esquina inferior derecha
+    (128, 224, 13),  # Esquina inferior izquierda
+    (144, 224, 2),   # Borde horizontal
+    (160, 224, 14),  # Esquina inferior derecha
+
+    # Fila 14
+    (32, 240, 5),    # Borde vertical
+    (128, 240, 5),   # Borde vertical
+
+    # Fila 15
+    (0, 256, 11),    # Esquina superior izquierda
+    (16, 256, 2),    # Borde horizontal
+    (32, 256, 2),    # Borde horizontal
+    (48, 256, 3),    # Esquina derecha horizontal
+    (96, 256, 6),    # Esquina inferior vertical
+    (128, 256, 1),   # Esquina izquierda horizontal
+    (144, 256, 2),   # Borde horizontal
+    (160, 256, 12),  # Esquina superior derecha
+
+    # Fila 16
+    (0, 272, 5),     # Borde vertical
+    (160, 272, 5),   # Borde vertical,
+
+    # Fila 17
+    (0, 288, 13),    # Esquina inferior izquierda
+    (16, 288, 2),    # Borde horizontal
+    (32, 288, 2),    # Borde horizontal
+    (48, 288, 14),   # Esquina inferior derecha
+    (128, 288, 13),  # Esquina inferior izquierda
+    (144, 288, 2),   # Borde horizontal
+    (160, 288, 14),  # Esquina inferior derecha
+
+    # Fila 18
+    (32, 304, 5),    # Borde vertical
+    (128, 304, 5),   # Borde vertical
+
+    # Fila 19
+    (0, 320, 11),    # Esquina superior izquierda
+    (16, 320, 2),    # Borde horizontal
+    (32, 320, 2),    # Borde horizontal
+    (48, 320, 12),   # Esquina superior derecha
+    (96, 320, 7),    # Cruce en T hacia abajo
+    (128, 320, 1),   # Esquina izquierda horizontal
+    (144, 320, 2),   # Borde horizontal
+    (160, 320, 12),  # Esquina superior derecha
+
+    # Fila 20
+    (0, 336, 5),     # Borde vertical
+    (160, 336, 5),   # Borde vertical,
+
+    # Fila 21
+    (0, 352, 13),    # Esquina inferior izquierda
+    (16, 352, 2),    # Borde horizontal
+    (32, 352, 2),    # Borde horizontal
+    (48, 352, 2),    # Borde horizontal
+    (64, 352, 2),    # Borde horizontal
+    (96, 352, 2),    # Borde horizontal
+    (128, 352, 2),   # Borde horizontal
+    (144, 352, 2),   # Borde horizontal
+    (160, 352, 14),  # Esquina inferior derecha
+]
+
