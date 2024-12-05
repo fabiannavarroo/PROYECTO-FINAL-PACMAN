@@ -129,9 +129,10 @@ class Puntos:
             if self.animacion_activa and self.animacion_contador < 30:
                 # Parpadea cada 5 frames
                 if self.animacion_contador// REFRESH % 2 == 0:
-                    coord = OBJETOS[self.fruta_actual]["Coordenadas"]
-                pyxel.blt(self.posicion_actual[0], self.posicion_actual[1], 0, coord[0], coord[1], 16, 16, colkey=0)
+                    sprite = OBJETOS[self.fruta_actual]["Coordenadas"]
+                pyxel.blt(self.posicion_actual[0], self.posicion_actual[1], 0, sprite[0], sprite[1], 16, 16, colkey=0)
                 self.animacion_contador += 1
+        
             
 
         # Dibujar regalos
