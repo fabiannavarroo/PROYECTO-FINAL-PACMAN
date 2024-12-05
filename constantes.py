@@ -442,10 +442,11 @@ MAPA_1 = [
     (384, 336, 5),     # Borde vertical
 
     # Fila 21
-    (0, 352, 5),      # Borde vertical
-    (32, 352, 1),     # Borde vertical
-    (48, 352, 2),     # Borde vertical
-    (64, 352, 2),     # Borde vertical
-    (80, 352, 8),     # Borde vertical
+    (0, 352, 5),      # 
+    (32, 352, 1),     # 
+    (48, 352, 2),     # 
+    (64, 352, 2),     # 
+    (80, 352, 2),     # 
+
 
 ]
