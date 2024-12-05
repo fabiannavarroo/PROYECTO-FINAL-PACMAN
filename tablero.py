@@ -11,6 +11,7 @@ class Tablero:
         # Inicializar la ventana del juego con Pyxel
         pyxel.init(400, 400, title="Pacman", fps=30, )  # Crear la pantalla
         pyxel.load("assets/recursos.pyxres")  # Cargar recursos gráficos
+        pyxel.fullscreen = True
 
         # Inicializar elementos del juego
         self.bloque = Bloque() # Mapa del juego
