@@ -47,10 +47,7 @@ class Tablero:
     def draw(self):
         pyxel.cls(0)  # Limpiar pantalla
         if self.pacman.vidas > 0:
-            contador = 0
-            while contador < 3:
-                self.puntos.dibujar_letras_mapa(180,240, "READY!")
-                contador += 1
+            self.puntos.dibujar_letras_mapa(180,240, "READY!")
             self.bloque.draw() # Dibujar el mapa
             self.puntos.draw()  # Dibujar puntos, frutas y puntuación
             self.pacman.ver_vidas(10, 10)  # Ver las vidas restantes
