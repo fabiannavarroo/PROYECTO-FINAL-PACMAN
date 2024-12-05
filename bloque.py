@@ -63,6 +63,7 @@ class Bloque:
         else:
             raise ValueError("Tipo de bloque no válido. Debe estar entre 1 y 23.")
 
+
     def colision(self, x, y):
         # Comprueba si hay un muro en la posición (x, y)
 
@@ -86,6 +87,7 @@ class Bloque:
                 return True  # Colisión detectada
 
         return False  # No hay colisión
+
 
     def draw(self):
         # Dibuja todos los bloques
