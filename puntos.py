@@ -17,7 +17,7 @@ class Puntos:
         self.posicion_actual = None  # Posición actual de la fruta
         self.animacion_activa = False  # Indica si hay animación activa
         self.animacion_contador = 0  # Contador para animación de aparición
-        self.zonas_prohibidas = [(0,0,384,16), (112,160,272,256), (0,192,80,224),()]
+        self.zonas_prohibidas = [(0,0,384,16), (112,160,272,256), (0,192,80,224),(304,192,384,224)]
 
     def draw(self):
         # Poner los puntos en el mapa
