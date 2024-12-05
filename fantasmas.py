@@ -15,10 +15,12 @@ class Fantasma:
         self.tiempo_para_ser_comido = 10  # Duración por defecto del estado asustado
         self.en_trampa = False  # Indica si el fantasma está en la trampa
 
+
     def activar_asustado(self):
         #Activa el estado asustado
         self.asustado = True
         self.tiempo_asustado = time.time()
+
 
     def volver_a_trampa(self):
         # Envía al fantasma a la trampa
@@ -33,6 +35,7 @@ class Fantasma:
             self.x, self.y = 226, 208
         self.asustado = False  # Sale del estado asustado
 
+
     def volver_a_posicion_inicial(self):
         #Restaura la posición inicial del fantasma
         self.x = self.x_inicial
@@ -40,12 +43,14 @@ class Fantasma:
         self.asustado = False
         self.en_trampa = False
 
+
     def actualizar_estado(self):
         #Verifica y actualiza el estado asustado
         if self.asustado:
             tiempo_restante = self.tiempo_para_ser_comido - (time.time() - self.tiempo_asustado)
             if tiempo_restante <= 0:
                 self.asustado = False  # Finaliza el estado asustado
+
 
     def draw(self):
         #Dibuja el fantasma en su estado actual.
@@ -60,6 +65,7 @@ class Fantasma:
 
         # Dibuja el fantasma
         pyxel.blt(self.x, self.y, 0, sprite[0], sprite[1], 16, 16, colkey=0)
+
 
 # Subclases de Fantasma
 class FantasmaRojo(Fantasma):
