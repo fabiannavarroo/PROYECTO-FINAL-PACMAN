@@ -78,7 +78,7 @@ class Tablero:
 
     def dibujar_ready(self):
         # Dibuja el mensaje READY! 
-        if time.time() - self.tiempo_inicio > 0,5:
+        if time.time() - self.tiempo_inicio > 0.5:
             sprite = TEXTO["READY!"]
             sprite_x, sprite_y = sprite["Coordenadas"]
             sprite_w, sprite_h = sprite["Tamaño"]
