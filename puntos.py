@@ -29,8 +29,8 @@ class Puntos:
         # Poner los puntos en el mapa
         for x in range(0, pyxel.width, 16):
             for y in range(0, pyxel.height, 16):
-                if not self.esta_en_zona_prohibida(x, y):
-                    self.lista_puntos.append((x, y, "BASTON")) 
+                if not self.esta_en_zona_prohibida(x, y) and (x, y) not in self.regalos:
+                    self.lista_puntos.append((x, y, "BASTON"))
 
 
     def esta_en_zona_prohibida(self, x, y):
