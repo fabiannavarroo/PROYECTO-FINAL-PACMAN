@@ -108,7 +108,7 @@ class Pacman:
 
     def reiniciar_posiciones(self, fantasmas):
         # Reiniciar posiciones de Pac-Man y fantasmas después de la animación
-        self.x, self.y = 192, 288  # Posición inicial de Pac-Man
+        self.x, self.y = 192, 304  # Posición inicial de Pac-Man
         for fantasma in fantasmas:
             fantasma.volver_a_posicion_inicial()
         self.reiniciando = False  # Desactivar estado de reinicio
