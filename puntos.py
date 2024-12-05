@@ -48,25 +48,32 @@ class Puntos:
         return False
     
     def encontrar_celdas_vacias(self):
-        # Encuentra celdas vacías donde no haya puntos, frutas ni muros.
+        """
+        Encuentra celdas vacías donde no haya puntos, frutas ni muros.
+        """
         celdas_vacias = []
         x = 0
         while x < pyxel.width:
             y = 0
             while y < pyxel.height:
-                # Verificar si no es una posición ocupada por un muro, punto o fruta
+                # Verificar si no es una posición ocupada por un muro
                 es_muro = self.bloque.colision(x, y)
+                
+                # Verificar si no hay un punto
                 es_punto = False
                 for p in self.lista_puntos:
                     if p[0] == x and p[1] == y:
                         es_punto = True
+                
+                # Verificar si no hay una fruta ya generada
                 es_fruta = (x, y) == self.posicion_actual
 
+                # Si no es muro, punto ni fruta, añadir como celda vacía
                 if not es_muro and not es_punto and not es_fruta:
                     celdas_vacias.append((x, y))
 
-                y += 16
-            x += 16
+                y += 16  # Avanzar a la siguiente celda en el eje Y
+            x += 16  # Avanzar a la siguiente celda en el eje X
         return celdas_vacias
 
     def generar_fruta(self):
