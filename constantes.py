@@ -318,10 +318,10 @@ MAPA_1 = [
     (240, 192, 17),     #  
     (272, 192, 6),     #
     (304, 192, 13),     #
-    (320, 192, 2),     #
-    (336, 192, 2),     #
-    (352, 192, 2),     #
-    (368, 192, 2),     #
-    (384, 192, 2),     # Borde esquina inferior derecha
+    (320, 192, 2),     # Borde horizontal  
+    (336, 192, 2),     # Borde horizontal
+    (352, 192, 2),     # Borde horizontal  
+    (368, 192, 2),     # Borde horizontal
+    (384, 192, 2),     # Borde horizontal
    
 ]
