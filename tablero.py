@@ -72,7 +72,7 @@ class Tablero:
             self.fin()
 
     def dibujar_ready(self):
-        # Dibuja el mensaje READY! en el centro de la pantalla
+        # Dibuja el mensaje READY! 
         sprite = TEXTO["READY!"]
         sprite_x, sprite_y = sprite["Coordenadas"]
         sprite_w, sprite_h = sprite["Tamaño"]
