@@ -62,6 +62,7 @@ class Tablero:
             #mapa
             self.fin()
 
+
     def fin(self):
         # Dibujar Game Over
         sprite = TEXTO["GAME OVER"]
