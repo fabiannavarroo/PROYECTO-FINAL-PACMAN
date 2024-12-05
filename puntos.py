@@ -55,10 +55,7 @@ class Puntos:
             y = 0
             while y < pyxel.height:
                 # Verificar si la celda está vacía
-                if not self.esta_en_zona_prohibida(x, y) and \
-                (x, y) not in [(p[0], p[1]) for p in self.lista_puntos] and \
-                (x, y) != self.posicion_actual and \
-                (x, y) not in self.regalos:
+                if not self.esta_en_zona_prohibida(x, y) and (x, y) not in [(p[0], p[1]) for p in self.lista_puntos] and (x, y) != self.posicion_actual and (x, y) not in self.regalos:
                     celdas_vacias.append((x, y))
                 y += 16
             x += 16
