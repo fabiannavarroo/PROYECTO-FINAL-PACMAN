@@ -81,6 +81,14 @@ class Puntos:
                 self.puntos += OBJETOS[tipo]["Puntos"]  # Incrementa los puntos según el tipo
         self.lista_puntos = nuevos_puntos
 
+
+    def comer_fruta(self):
+        # Detecta si Pac-Man come la fruta actual.
+        if self.posicion_actual and self.pacman.x <= self.posicion_actual[0] < self.pacman.x + 16 and self.pacman.y <= self.posicion_actual[1] < self.pacman.y + 16:
+            self.puntos += OBJETOS[self.fruta_actual]["Puntos"]  # Incrementa los puntos según la fruta
+            self.posicion_actual = None  # Elimina la fruta actual
+            self.fruta_actual = None
+
         
 
 
