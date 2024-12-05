@@ -64,7 +64,6 @@ class Bloque:
             raise ValueError("Tipo de bloque no válido. Debe estar entre 1 y 23.")
 
     def colision(self, x, y):
-
         # Comprueba si hay un muro en la posición (x, y)
 
         sprite_tamaño = 16  # Tamaño del sprite
@@ -78,10 +77,14 @@ class Bloque:
         ]
 
         # Verificar cada punto contra los bloques
+        colision_detectada = False
         for px, py in puntos_a_verificar:
             for bloque_x, bloque_y, _ in self.bloques:
                 if bloque_x <= px < bloque_x + self.celda_tamaño and bloque_y <= py < bloque_y + self.celda_tamaño:
-                    return True  # Colisión detectada
+                    colision_detectada = True
+            if colision_detectada:
+                return True  # Colisión detectada
+
         return False  # No hay colisión
 
     def draw(self):
