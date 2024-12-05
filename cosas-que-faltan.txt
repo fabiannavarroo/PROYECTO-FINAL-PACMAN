@@ -1,7 +1,5 @@
 Texto de ready al comienzo
 
-
-
 Que lo fantasmas salgan de la trampa
 
 Que los fantasmas persigan al Pacman
