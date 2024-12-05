@@ -34,7 +34,7 @@ class Puntos:
 
 
     def esta_en_zona_prohibida(self, x, y):
-        # Verifica si una posición está dentro de una zona prohibida o si hay un muro.
+
         # Verificar si está en una zona prohibida
         for lugar in self.zonas_prohibidas:
             x1, y1, x2, y2 = lugar
