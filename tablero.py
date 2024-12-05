@@ -78,16 +78,25 @@ class Tablero:
 
     def dibujar_ready(self):
         # Dibuja el mensaje READY! 
-        if 1>time.time() - self.tiempo_inicio > 0:
+        if 0.6>time.time() - self.tiempo_inicio > 0:
             sprite = TEXTO["READY!"]
             sprite_x, sprite_y = sprite["Coordenadas"]
             sprite_w, sprite_h = sprite["Tamaño"]
             pos_x = 180
             pos_y = 245
             pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
-        elif 2>time.time() - self.tiempo_inicio > 1:
+        elif 1.3>time.time() - self.tiempo_inicio > 0.6:
             pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio
-        elif time.time() - self.tiempo_inicio > 2:
+        elif 2>time.time() - self.tiempo_inicio > 1.3:
+            sprite = TEXTO["READY!"]
+            sprite_x, sprite_y = sprite["Coordenadas"]
+            sprite_w, sprite_h = sprite["Tamaño"]
+            pos_x = 180
+            pos_y = 245
+            pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
+        elif 2.7>time.time() - self.tiempo_inicio > 2:
+            pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio
+        elif time.time() - self.tiempo_inicio > 2.7:
             sprite = TEXTO["READY!"]
             sprite_x, sprite_y = sprite["Coordenadas"]
             sprite_w, sprite_h = sprite["Tamaño"]
