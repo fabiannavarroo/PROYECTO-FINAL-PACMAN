@@ -5,10 +5,11 @@ import pyxel
 
 
 class Puntos:
-    def __init__(self, sprite, pacman, fantasmas):
+    def __init__(self, sprite, pacman, fantasmas, bloque):
         self.sprite = sprite
         self.pacman = pacman
         self.fantasmas = fantasmas
+        self.bloque = bloque
         self.puntos = 0
         self.puntos_alcanzados = 0  # Rango de 500 en 500 de la última meta alcanzada de puntos
         self.color_actual = NUMEROS_BLANCOS  # Color inicial de los números
