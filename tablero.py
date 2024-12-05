@@ -59,7 +59,6 @@ class Tablero:
                 self.pacman.draw(self.fantasmas)  # Dibujar solo Pacman durante la animación de muerte
         else:
             # Limpiar pantalla si las vidas llegan a 0 y muestra solo el mapa
-            self.pacman.animar_muerte(self.fantasmas)
             pyxel.cls(0)
             self.bloque.draw()
             self.fin()
@@ -84,3 +83,4 @@ class Tablero:
             fantasma.volver_a_posicion_inicial()  # Reiniciar posición de los fantasmas
             
 
+            
