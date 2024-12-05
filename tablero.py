@@ -123,3 +123,15 @@ class Tablero:
         for fantasma in self.fantasmas:
             fantasma.volver_a_posicion_inicial()  # Reiniciar posición de los fantasmas
 
+    def animar_ready(self):
+        # Animación del mensaje READY!
+        if 0.6>time.time() - self.tiempo_inicio > 0:
+            self.dibujar_ready()
+        elif 1.3>time.time() - self.tiempo_inicio > 0.6:
+            pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio 
+        elif 2>time.time() - self.tiempo_inicio > 1.3:
+            self.dibujar_ready()
+        elif 2.7>time.time() - self.tiempo_inicio > 2:
+            pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio
+        elif time.time() - self.tiempo_inicio > 2.7:
+            self.dibujar_ready()
