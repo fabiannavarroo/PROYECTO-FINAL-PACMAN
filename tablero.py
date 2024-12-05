@@ -62,6 +62,8 @@ class Tablero:
             self.bloque.draw()
             self.fin()
 
+    def ready(self):
+        
 
     def fin(self):
         # Dibujar Game Over
