@@ -77,6 +77,7 @@ class Bloque:
             (x + sprite_tamaño - 1, y + sprite_tamaño - 1),  # Esquina inferior derecha
         ]
 
+
         # Verificar cada punto contra los bloques
         colision_detectada = False
         for px, py in puntos_a_verificar:
