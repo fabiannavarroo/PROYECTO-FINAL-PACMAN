@@ -23,6 +23,26 @@ class Puntos:
         self.generar_puntos()
         self.lista_frutas = [] # Lista de frutas generadas
 
+
+    def generar_puntos(self):
+        
+        # Poner los puntos en el mapa
+
+        for x in range(0, pyxel.width, 16):
+            for y in range(0, pyxel.height, 16):
+                if not self.esta_en_zona_prohibida(x, y):
+                    self.lista_puntos.append((x, y, "BASTON")) 
+
+
+    def esta_en_zona_prohibida(self, x, y):
+        # Verifica si una posición está dentro de alguna zona prohibida.
+        for zona in self.zonas_prohibidas:
+            x1, y1, x2, y2 = zona
+            if x1 <= x <= x2 and y1 <= y <= y2:
+                return True
+        return False
+
+
     def draw(self):
         # Poner los puntos en el mapa
 
