@@ -1,30 +1,26 @@
-import pyxel
+
 from pacman import Pacman
 from fantasmas import *
 from puntos import Puntos
 from bloque import Bloque
 from constantes import *
-import ctypes  # Para obtener el tamaño de la pantalla
+import pyxel
 
 class Tablero:
     def __init__(self):
-        # Obtener tamaño de la pantalla
-        user32 = ctypes.windll.user32
-        screen_width = user32.GetSystemMetrics(0)
-        screen_height = user32.GetSystemMetrics(1)
-
-        # Inicializar Pyxel en pantalla completa
-        pyxel.init(screen_width, screen_height, title="Pacman", fps=30, display_scale=1)
+        # Inicializar la ventana del juego con Pyxel
+        pyxel.init(400, 400, title="Pacman", fps=30, )  # Crear la pantalla
         pyxel.load("assets/recursos.pyxres")  # Cargar recursos gráficos
+        
 
         # Inicializar elementos del juego
-        self.bloque = Bloque()  # Mapa del juego
+        self.bloque = Bloque() # Mapa del juego
         self.pacman = Pacman(192, 304, self.bloque)  # Pacman y su posición inicial
         self.fantasmas = [  # Lista de fantasmas con sus posiciones iniciales
-            FantasmaRojo(224, 0),
-            FantasmaRosa(176, 0),
-            FantasmaAzul(192, 0),
-            FantasmaNaranja(208, 0),
+            FantasmaRojo(224, 0, ),
+            FantasmaRosa(176, 0, ),
+            FantasmaAzul(192, 0, ),
+            FantasmaNaranja(208, 0, ),
         ]
         self.puntos = Puntos(OBJETOS, self.pacman, self.fantasmas)  # Controlador de puntos y frutas
 
@@ -46,10 +42,12 @@ class Tablero:
                     fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
                 self.pacman.colision_fantasmas(self.fantasmas, self.puntos)  # Colisiones con fantasmas
 
+
+    
     def draw(self):
         pyxel.cls(0)  # Limpiar pantalla
         if self.pacman.vidas > 0:
-            self.bloque.draw()  # Dibujar el mapa
+            self.bloque.draw() # Dibujar el mapa
             self.puntos.draw()  # Dibujar puntos, frutas y puntuación
             self.pacman.ver_vidas(10, 10)  # Ver las vidas restantes
             if not self.pacman.en_muerte:  # Dibujar personajes si no está en animación de muerte
@@ -61,6 +59,7 @@ class Tablero:
         else:
             # Limpiar pantalla si las vidas llegan a 0 y muestra solo el mapa
             pyxel.cls(0)
+            #mapa
             self.fin()
 
     def fin(self):
@@ -69,7 +68,7 @@ class Tablero:
         sprite_x, sprite_y = sprite["Coordenadas"]
         sprite_w, sprite_h = sprite["Tamaño"]
         pos_x = 192
-        pos_y = 190
+        pos_y= 190
         pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
 
     def reiniciar_tablero(self):
