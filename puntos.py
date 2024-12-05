@@ -70,6 +70,17 @@ class Puntos:
         # Actualiza el tiempo de la última fruta generada
         self.ultimo_tiempo_fruta = time.time()
 
+
+    def comer_puntos(self):
+        # Detecta si Pac-Man come un punto y lo elimina.
+        nuevos_puntos = []
+        for x, y, tipo in self.lista_puntos:
+            if not (self.pacman.x <= x < self.pacman.x + 16 and self.pacman.y <= y < self.pacman.y + 16):
+                nuevos_puntos.append((x, y, tipo))
+            else:
+                self.puntos += OBJETOS[tipo]["Puntos"]  # Incrementa los puntos según el tipo
+        self.lista_puntos = nuevos_puntos
+
         
 
 
