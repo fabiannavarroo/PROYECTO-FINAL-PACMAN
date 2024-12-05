@@ -141,7 +141,7 @@ class Puntos:
                     
         # Dibuja las letras
         self.dibujar_letras_mapa(180,240, "READY!")
-        self.dibujar_letras_mapa(100,16, "HIGHSCORE")
+        self.dibujar_letras_mapa(120,16, "HIGHSCORE")
 
         # Mostrar la puntuación
         self.ver_puntuacion(195, 16)
