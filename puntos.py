@@ -38,7 +38,7 @@ class Puntos:
             self.dibujar_fruta()
 
         # Mostrar la puntuación
-        self.ver_puntuacion(188, 16)
+        self.ver_puntuacion(190, 16)
 
 
     def dibujar_letras_mapa(self, num, sprite):
