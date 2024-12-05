@@ -17,7 +17,7 @@ class Puntos:
         self.posicion_actual = None  # Posición actual de la fruta
         self.animacion_activa = False  # Indica si hay animación activa
         self.animacion_contador = 0  # Contador para animación de aparición
-        self.vict =  False #selbsterklährend
+
 
     def draw(self):
         # Poner los puntos en el mapa
