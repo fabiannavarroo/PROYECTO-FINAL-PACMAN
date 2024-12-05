@@ -3,13 +3,12 @@ from constantes import *
 from puntos import Puntos
 
 class Bloque:
-    def __init__(self,puntos):
+    def __init__(self,):
         # Lista de bloques
         self.bloques = []
         self.celda_tamaño = 16
         self.contador = 90
         self.mostrar_ready = True
-        self.puntos = puntos
 
         # Crear bloques a partir de MAPA_1
         for x, y, tipo in MAPA_1:
