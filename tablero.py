@@ -58,10 +58,13 @@ class Tablero:
             else:
                 self.pacman.draw(self.fantasmas)  # Dibujar solo Pacman durante la animación de muerte
         else:
-            # Limpiar pantalla si las vidas llegan a 0 y muestra solo el mapa
-            pyxel.cls(0)
-            self.bloque.draw()
-            self.fin()
+            if self.pacman.en_muerte:
+                self.pacman.draw(self.fantasmas)
+            else:
+                # Limpiar pantalla si las vidas llegan a 0 y muestra solo el mapa
+                pyxel.cls(0)
+                self.bloque.draw()
+                self.fin()
 
 
     def fin(self):
