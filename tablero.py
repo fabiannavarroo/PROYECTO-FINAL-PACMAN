@@ -23,9 +23,9 @@ class Tablero:
         ]
         self.puntos = Puntos(OBJETOS, self.pacman, self.fantasmas, self.bloque)  # Controlador de puntos y frutas
 
-        # Variables para controlar el mensaje READY!
-        self.mostrar_ready = True  # Se muestra el mensaje READY!
-        self.contador_ready = 90  # Duración del mensaje READY!
+        # Variables de estado
+        self.mostrar_ready = True  # Indica si se muestra el mensaje READY!
+        self.contador_ready = 90  # Duración del mensaje READY! (3 segundos en 30 FPS)
 
         # Iniciar el bucle principal del juego
         pyxel.run(self.update, self.draw)
@@ -33,7 +33,7 @@ class Tablero:
     def update(self):
         if self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
             if self.contador_ready > 0:
-                self.contador_ready -= 1 
+                self.contador_ready -= 1  # Reducir el temporizador de READY!
                 if self.contador_ready == 0:
                     self.mostrar_ready = False  # Ocultar READY! después de 3 segundos
 
@@ -73,13 +73,12 @@ class Tablero:
 
     def dibujar_ready(self):
         # Dibuja el mensaje READY! en el centro de la pantalla
-        if pyxel.frame_count % 6 == 0: 
-            sprite = TEXTO["READY!"]
-            sprite_x, sprite_y = sprite["Coordenadas"]
-            sprite_w, sprite_h = sprite["Tamaño"]
-            pos_x = 180
-            pos_y = 245
-            pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
+        sprite = TEXTO["READY!"]
+        sprite_x, sprite_y = sprite["Coordenadas"]
+        sprite_w, sprite_h = sprite["Tamaño"]
+        pos_x = (pyxel.width - sprite_w) // 2
+        pos_y = (pyxel.height - sprite_h) // 2
+        pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
 
     def fin(self):
         # Dibujar Game Over
@@ -92,7 +91,7 @@ class Tablero:
 
     def reiniciar_tablero(self):
         # Reinicia las posiciones iniciales de los personajes y termina la animación de muerte.
-        self.mostrar_ready = True
+        self.mostrar_ready = True  # Volver a mostrar READY!
         self.contador_ready = 90  # Restablecer duración del mensaje READY!
         self.pacman.reiniciar_posicion()  # Reiniciar posición de Pacman
         self.pacman.en_muerte = False  # Finalizar estado de muerte
