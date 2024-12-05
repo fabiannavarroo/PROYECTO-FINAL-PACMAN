@@ -34,11 +34,17 @@ class Puntos:
 
 
     def esta_en_zona_prohibida(self, x, y):
-        # Verifica si una posición está dentro de alguna zona prohibida.
+        # Verifica si una posición está dentro de alguna zona prohibida o si hay un muro.
+        # Verificar si está en una zona prohibida
         for lugar in self.zonas_prohibidas:
             x1, y1, x2, y2 = lugar
             if x1 <= x <= x2 and y1 <= y <= y2:
                 return True
+
+        # Verificar si hay un muro
+        if self.bloque.colision(x, y):
+            return True
+
         return False
     
     def encontrar_celdas_vacias(self):
