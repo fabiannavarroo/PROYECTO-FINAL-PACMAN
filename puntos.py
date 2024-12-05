@@ -39,6 +39,10 @@ class Puntos:
             if x1 <= x <= x2 and y1 <= y <= y2:
                 return True
         return False
+    
+    def encontrar_celdas_vacias(self):
+        # Encuentra celdas vacías en el mapa
+        
 
 
     def draw(self):
