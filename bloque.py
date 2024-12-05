@@ -114,8 +114,13 @@ class Bloque:
 
     def ready(self):
         if self.mostrar_ready:
-            self.puntos.dibujar_letras_mapa(180,240, "READY!")
+            self.dibujar_letras_mapa(180,240, "READY!")
             self.contador -= 1
             if self.contador == 0:
                 self.mostrar_ready = False
                 self.contador = 90
+
+    def dibujar_letras_mapa(self, x , y, sprite):
+        # Dibuja las letras en el mapa
+        sprite=TEXTO[sprite]
+        pyxel.blt(x, y, 0, sprite["Coordenadas"][0], sprite["Coordenadas"][1], sprite["Tamaño"][0], sprite["Tamaño"][1], colkey=0)
