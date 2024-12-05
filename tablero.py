@@ -27,6 +27,7 @@ class Tablero:
         # Iniciar el bucle principal del juego
         pyxel.run(self.update, self.draw)
 
+
     def update(self):
         if self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
             if self.pacman.en_muerte:
@@ -43,7 +44,6 @@ class Tablero:
                 self.pacman.colision_fantasmas(self.fantasmas, self.puntos)  # Colisiones con fantasmas
 
 
-    
     def draw(self):
         pyxel.cls(0)  # Limpiar pantalla
         if self.pacman.vidas > 0:
