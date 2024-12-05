@@ -352,4 +352,7 @@ MAPA_1 = [
     (368, 224, 2),     # Borde horizontal
     (384, 224, 2),     # Borde horizontal
    
+   # Fila 14
+    (144, 240, 21),     #
+    (240, 240, 22),     #  
 ]
