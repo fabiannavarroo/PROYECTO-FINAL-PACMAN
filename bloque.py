@@ -7,8 +7,6 @@ class Bloque:
         # Lista de bloques
         self.bloques = []
         self.celda_tamaño = 16
-        self.contador = 20000
-        self.mostrar_ready = True
 
         # Crear bloques a partir de MAPA_1
         for x, y, tipo in MAPA_1:
@@ -109,13 +107,6 @@ class Bloque:
             # Dibujar el sprite del bloque
             pyxel.blt(bloque_x, bloque_y, sprite_bank, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
 
-    def ready(self):
-        if self.mostrar_ready:
-            self.dibujar_letras_mapa(180,240, "READY!")
-            self.contador -= 1
-            if self.contador == 0:
-                self.mostrar_ready = False
-                self.contador = 20000
 
     def dibujar_letras_mapa(self, x , y, sprite):
         # Dibuja las letras en el mapa
