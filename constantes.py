@@ -297,20 +297,9 @@ MAPA_1 = [
 
     # Fila 10
     (80, 176, 5),     # Borde vertical
-    (112, 176,9),      # Borde horizontal
-    (128, 176, 2),     # Borde horizontal
-    (144, 176, 2),     # Borde horizontal
-    (176, 176, 3),     #
-    (192, 176, 6),     #  
-    (224, 176, 1),     #
-    (240, 176, 2),     # Borde horizontal
-    (256, 176, 2),     # Borde horizontal
-    (272, 176, 10),     #
-    (304, 176, 11),     #
-    (320, 176, 2),     # Borde horizontal
-    (336, 176, 2),     # Borde horizontal
-    (352, 176, 2),     # Borde horizontal
-    (368, 176, 2),     # Borde horizontal
-    (384, 176, 14),     # Borde esquina inferior derecha
+    (112, 176,5),      # Borde vertical
+    (272, 176, 5),     # Borde vertical
+    (304, 176, 5),     #
+   
     
 ]
