@@ -266,6 +266,10 @@ MAPA_1 = [
     (320,96,2),       # Borde superior
     (336,96,2),       # Borde superior
     (352,96,14),      # Esquina inferior izquierda
+
+    # Fila 6
+    (0, 112, 5),      # Borde vertical
+    (384, 112, 5),     # Borde vertical
     
     
 ]
