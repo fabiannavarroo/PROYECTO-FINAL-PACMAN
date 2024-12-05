@@ -76,8 +76,8 @@ class Tablero:
         sprite = TEXTO["READY!"]
         sprite_x, sprite_y = sprite["Coordenadas"]
         sprite_w, sprite_h = sprite["Tamaño"]
-        pos_x = 185
-        pos_y = 208
+        pos_x = 180
+        pos_y = 240
         pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
 
     def fin(self):
