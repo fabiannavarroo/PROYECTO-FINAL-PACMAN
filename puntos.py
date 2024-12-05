@@ -18,7 +18,7 @@ class Puntos:
         self.posicion_actual = None  # Posición actual de la fruta
         self.animacion_activa = False  # Indica si hay animación activa
         self.animacion_contador = 0  # Contador para animación de aparición
-        self.zonas_prohibidas = [(0,0,384,16), (112,160,272,256), (0,192,80,224),(304,192,384,224),(32,64,64,96)] # Zonas prohibidas para generar puntos
+        self.zonas_prohibidas = [(0,0,384,16), (112,160,272,256), (0,192,80,224),(304,192,384,224),(32,64,64,96),(96,64,)] # Zonas prohibidas para generar puntos
         self.regalos = [(16, 304), (368, 336), (16, 80),(368, 80)] # Coordenadas fijas de los regalos
         self.lista_puntos = [] # Lista de puntos generados
         self.generar_puntos()
