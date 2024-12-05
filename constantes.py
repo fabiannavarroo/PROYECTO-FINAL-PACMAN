@@ -364,17 +364,17 @@ MAPA_1 = [
     (32, 256, 2),     # Borde horizontal    
     (48,256,2),      # Borde horizontal
     (64, 256, 2),     # Borde horizontal
-    (80, 256, 14),     # 
-    (112, 256 ,6),     # 
+    (80, 256, 14),     # Borde esquina inferior derecha
+    (112, 256 ,6),     # Esquina superior vertical
     (144, 256, 1),     # Esquina izquierda horizontal
-    (160, 256, 2),     # 
-    (176, 256, 2),     # 
-    (192, 256, 7),     # 
-    (208, 256, 2),     # 
-    (224, 256, 2),     # 
-    (240, 256, 3),     #  
-    (272, 256, 6),     #
-    (304, 256, 13),     #
+    (160, 256, 2),     # Borde horizontal
+    (176, 256, 2),     # Borde horizontal
+    (192, 256, 7),     # Cruce en T hacia abajo
+    (208, 256, 2),     # Borde horizontal
+    (224, 256, 2),     # Borde horizontal   
+    (240, 256, 3),     # Esquina derecha horizontal
+    (272, 256, 6),     # Esquina inferior vertical
+    (304, 256, 13),     # Borde esquina inferio izquierda
     (320, 256, 2),     # Borde horizontal  
     (336, 256, 2),     # Borde horizontal
     (352, 256, 2),     # Borde horizontal  
@@ -416,13 +416,13 @@ MAPA_1 = [
     # Fila 19
     (0, 320, 9),      # Cruce en T hacia derecha
     (16, 320, 2),      # Borde horizontal
-    (32, 320, 3),      # 
-    (64, 320, 6),     # 
-    (96, 320, 4),     # 
+    (32, 320, 3),      # Esquina derecha horizontal
+    (64, 320, 6),     # Esquina inferior vertical
+    (96, 320, 4),     # Borde superior horizontal
     (128, 320, 1),     # Esquina izquierda horizontal
-    (144, 320, 2),     # 
-    (160, 320, 2),     # 
-    (176, 320, 2),     # 
+    (144, 320, 2),     # Borde horizontal
+    (160, 320, 2),     # Borde horizontal
+    (176, 320, 2),     # Borde horizontal
     (192, 320, 7),     # 
     (208, 320, 2),     # 
     (224, 320, 2),     # 
