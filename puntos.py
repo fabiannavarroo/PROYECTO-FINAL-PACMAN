@@ -50,10 +50,10 @@ class Puntos:
     def encontrar_celdas_vacias(self):
         # Encuentra celdas vacías en el mapa
         celdas_vacias = []
-        for x in range(len(self.lista_puntos)):
-            for y in range(len(self.lista_puntos[x])):
-                if (self.lista_puntos[x][y][0], self.lista_puntos[x][y][1]) != self.posicion_actual:
-                    celdas_vacias.append((self.lista_puntos[x][y][0], self.lista_puntos[x][y][1]))
+        for punto in self.lista_puntos:
+            x, y, _ = punto  # Desempaquetar las coordenadas y tipo del punto
+            if (x, y) != self.posicion_actual and not self.bloque.colision(x, y):
+                celdas_vacias.append((x, y))
         return celdas_vacias
 
     def generar_fruta(self):
