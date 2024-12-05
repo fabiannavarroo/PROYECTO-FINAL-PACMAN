@@ -188,17 +188,10 @@ MAPA_1 = [
     (64, 32, 3),     # Esquina superior derecha
     
     # Fila 2
-    (0, 16, 5),     # Borde vertical izquierdo
-    (0, 32, 5),     # Borde vertical izquierdo
-    (64, 16, 5),    # Borde vertical derecho
-    (64, 32, 5),    # Borde vertical derecho
+
     
     # fila 3
-    (0, 48, 11),    # Esquina inferior izquierda
-    (16, 48, 2),    # Borde inferior
-    (32, 48, 2),    # Borde inferior
-    (48, 48, 2),    # Borde inferior
-    (64, 48, 12),   # Esquina inferior derecha
+    
     
     
 ]
