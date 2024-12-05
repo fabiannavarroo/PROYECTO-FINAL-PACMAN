@@ -106,6 +106,8 @@ class Bloque:
             sprite_w = sprite[3]
             sprite_h = sprite[4]
 
+            self.ready()
+
             # Dibujar el sprite del bloque
             pyxel.blt(bloque_x, bloque_y, sprite_bank, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
 
