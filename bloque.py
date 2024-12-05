@@ -109,4 +109,9 @@ class Bloque:
             pyxel.blt(bloque_x, bloque_y, sprite_bank, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
 
     def ready(self):
-        self.puntos.dibujar_letras_mapa(180,240, "READY!")
+        if self.mostrar_ready:
+            self.puntos.dibujar_letras_mapa(180,240, "READY!")
+            self.contador -= 1
+            if self.contador == 0:
+                self.mostrar_ready = False
+                self.contador = 90
