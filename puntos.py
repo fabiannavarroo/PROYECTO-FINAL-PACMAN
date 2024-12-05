@@ -147,9 +147,10 @@ class Puntos:
         self.ver_puntuacion(195, 16)
 
 
-    def dibujar_letras_mapa(self, num, sprite):
-        pass
-
+    def dibujar_letras_mapa(self, x , y, sprite):
+        # Dibuja las letras en el mapa
+        sprite=TEXTO[sprite]
+        
 
     def ver_puntuacion(self, x, y):
         # Cambia el color solo cuando se supera un nuevo múltiplo de 500
