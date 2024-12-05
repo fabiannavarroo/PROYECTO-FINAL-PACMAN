@@ -401,9 +401,8 @@ MAPA_1 = [
     (240, 288, 2),     # Borde horizontal
     (256, 288, 2),     # Borde horizontal
     (272, 288, 2),     # Borde horizontal
-    (288, 288, 3),     # Esquina inferior izquierda
-    (304, 288, 11),     #
-    (320, 288, 2),     # Borde horizontal
+    (288, 288, 3),     # Esquina inferior izquierda     
+    (320, 288, 11),     # Borde horizontal
     (336, 288, 2),     # Borde horizontal
     (352, 288, 3),     # Esquina inferior izquierda
     (384, 288, 5),     # Borde vertical
