@@ -24,13 +24,13 @@ class Fantasma:
         # Envía al fantasma a la trampa
         self.en_trampa = True
         if isinstance(self, FantasmaRojo):
-            self.x, self.y = 160, 208
+            self.x, self.y = 158, 208
         elif isinstance(self, FantasmaRosa):
-            self.x, self.y = 176, 208
+            self.x, self.y = 181, 208
         elif isinstance(self, FantasmaAzul):
-            self.x, self.y = 192, 208
+            self.x, self.y = 203, 208
         elif isinstance(self, FantasmaNaranja):
-            self.x, self.y = 208, 208
+            self.x, self.y = 226, 208
         self.asustado = False  # Sale del estado asustado
 
     def volver_a_posicion_inicial(self):
