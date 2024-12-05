@@ -34,10 +34,11 @@ class Puntos:
 
 
     def esta_en_zona_prohibida(self, x, y):
+        # Verifica si una posición está dentro de una zona prohibida o si hay un muro.
         # Verificar si está en una zona prohibida
         for lugar in self.zonas_prohibidas:
             x1, y1, x2, y2 = lugar
-            if x1 <= x <= x2 and y1 <= y <= y2:
+            if x1 <= x < x2 and y1 <= y < y2:  # Usamos "<" para respetar la cuadrícula
                 return True
 
         # Verificar si hay un muro
@@ -45,7 +46,8 @@ class Puntos:
             return True
 
         return False
-    
+
+
     def encontrar_celdas_vacias(self):
         # Encuentra celdas vacías donde no haya puntos, frutas ni muros.
         celdas_vacias = []
@@ -53,24 +55,18 @@ class Puntos:
         while x < pyxel.width:
             y = 0
             while y < pyxel.height:
-                # Verificar si no es una posición ocupada por un muro
-                es_muro = self.bloque.colision(x, y)
-                
-                # Verificar si no hay un punto
-                es_punto = False
-                for p in self.lista_puntos:
-                    if p[0] == x and p[1] == y:
-                        es_punto = True
-                
-                # Verificar si no hay una fruta ya generada
-                es_fruta = (x, y) == self.posicion_actual
+                if not self.esta_en_zona_prohibida(x, y):  # Revisar zonas prohibidas
+                    es_punto = False
+                    for p in self.lista_puntos:
+                        if p[0] == x and p[1] == y:
+                            es_punto = True
+                    es_fruta = (x, y) == self.posicion_actual
 
-                # Si no es muro, punto ni fruta, añadir como celda vacía
-                if not es_muro and not es_punto and not es_fruta:
-                    celdas_vacias.append((x, y))
+                    if not es_punto and not es_fruta:
+                        celdas_vacias.append((x, y))
 
-                y += 16  # Avanzar a la siguiente celda en el eje Y
-            x += 16  # Avanzar a la siguiente celda en el eje X
+                y += 16
+            x += 16
         return celdas_vacias
 
     def generar_fruta(self):
