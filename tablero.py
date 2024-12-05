@@ -31,11 +31,11 @@ class Tablero:
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        if self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
-            if self.mostrar_ready:
-                self.contador_ready -= 1
-                if self.contador_ready <= 0:
-                    self.mostrar_ready = False  # Ocultar el mensaje READY!
+        if self.mostrar_ready:
+            self.contador_ready -= 1
+            if self.contador_ready <= 0:
+                self.mostrar_ready = False  # Ocultar el mensaje READY!
+        elif self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
             if self.pacman.en_muerte:
                 # Ejecutar animación de muerte
                 self.pacman.animar_muerte(self.fantasmas)
