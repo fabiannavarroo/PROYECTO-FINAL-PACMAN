@@ -135,6 +135,8 @@ class Puntos:
             else:
                 # Detiene la animación y dibuja la fruta
                 self.animacion_activa = False
+                sprite = OBJETOS[self.fruta_actual]["Coordenadas"]
+                pyxel.blt(self.posicion_actual[0], self.posicion_actual[1], 0, sprite[0], sprite[1], 16, 16, colkey=0)
             
 
         # Dibujar regalos
