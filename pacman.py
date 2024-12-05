@@ -15,7 +15,6 @@ class Pacman:
         self.reiniciando = False  # Estado para evitar colisiones durante el reinicio
 
 
-
     def draw(self, fantasmas):
         if self.vidas <= 0:  # Si no hay vidas, no se dibuja
             return
@@ -40,7 +39,7 @@ class Pacman:
             pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
             self.ver_vidas(10, 10)
 
-            
+
     def mover(self,):
         if self.vidas <= 0 or self.en_muerte or self.reiniciando:  # Si no hay vidas, está en muerte o reiniciando, no se mueve
             return False
