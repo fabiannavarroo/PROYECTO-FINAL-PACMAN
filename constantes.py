@@ -278,17 +278,17 @@ MAPA_1 = [
     (32, 160, 2),     # Borde horizontal    
     (48,160,2),      # Borde horizontal
     (64, 160, 2),     # Borde horizontal
-    (80, 160, 12),     # 
+    (80, 160, 12),     # Borde esquina superior derecha
     (112, 160,9),      # Borde horizontal
     (128, 160, 2),     # Borde horizontal
     (144, 160, 2),     # Borde horizontal
-    (160, 160, 3),     #
-    (192, 160, 6),     #  
+    (160, 160, 3),     # Esquina derecha horizontal
+    (192, 160, 6),     # Esquina inferior vertical
     (224, 160, 1),     # Esquina izquierda horizontal
     (240, 160, 2),     # Borde horizontal
     (256, 160, 2),     # Borde horizontal
-    (272, 160, 10),     #
-    (304, 160, 11),     #
+    (272, 160, 10),     # Cruce en T hacia izquierda
+    (304, 160, 11),     # Borde esquina superior izquierda
     (320, 160, 2),     # Borde horizontal
     (336, 160, 2),     # Borde horizontal
     (352, 160, 2),     # Borde horizontal
