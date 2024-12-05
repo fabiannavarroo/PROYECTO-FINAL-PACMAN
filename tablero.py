@@ -62,6 +62,7 @@ class Tablero:
             pyxel.cls(0)
             self.bloque.draw()
             self.fin()
+            
     def ready(self):
         contador = 0
         while contador < 30:
