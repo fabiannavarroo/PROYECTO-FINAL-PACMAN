@@ -59,8 +59,8 @@ OBJETOS = {
 
 #-----------PORTALES-----------#
 PORTALES={
-    (-14,208):(430,208), # Portal izquierda
-    (430,208):(-14,208)  # Portal derecha
+    (-14,208):(402,208), # Portal izquierda
+    (402,208):(-14,208)  # Portal derecha
 }
 
 #---------------TEXTO--------------#
