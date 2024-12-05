@@ -72,6 +72,7 @@ class Tablero:
         pos_y= 190
         pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
 
+
     def reiniciar_tablero(self):
         # Reinicia las posiciones iniciales de los personajes y termina la animación de muerte.
         self.pacman.reiniciar_posicion()  # Reiniciar posición de Pacman
