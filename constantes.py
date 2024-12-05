@@ -329,6 +329,13 @@ MAPA_1 = [
     (240, 208, 22),     #  
 
     # Fila 13
+    (0, 224, 2),      # Borde esquina inferior izquierda
+    (16,224,2),      # Borde horizontal
+    (32, 224, 2),     # Borde horizontal    
+    (48,224,2),      # Borde horizontal
+    (64, 224, 2),     # Borde horizontal
+    (80, 224, 12),     # 
+
     (144, 224, 18),     #
     (160, 224, 23),     # 
     (176, 224, 23),     # 
