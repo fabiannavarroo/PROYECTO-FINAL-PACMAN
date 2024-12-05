@@ -120,6 +120,7 @@ class Pacman:
         self.en_muerte = True
         self.animacion_frame = 0
         self.reiniciando = True  # Activar estado de reinicio
+        self.tablero.reiniciar_tablero()
 
 
     def animar_muerte(self, fantasmas):
