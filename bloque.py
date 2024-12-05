@@ -3,7 +3,7 @@ from constantes import *
 
 class Bloque:
     def __init__(self):
-        # Lista de bloques inicializada desde MAPA_1
+        # Lista de bloques
         self.bloques = []
         self.celda_tamaño = 16
 
