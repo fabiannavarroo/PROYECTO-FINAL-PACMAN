@@ -62,7 +62,11 @@ class Tablero:
             pyxel.cls(0)
             self.bloque.draw()
             self.fin()
-
+    def ready(self):
+        contador = 0
+        while contador < 30:
+            self.puntos.dibujar_letras_mapa(180,240, "READY!")
+            contador += 1
 
     def fin(self):
         # Dibujar Game Over
