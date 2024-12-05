@@ -24,15 +24,18 @@ class Tablero:
         self.puntos = Puntos(OBJETOS, self.pacman, self.fantasmas, self.bloque)  # Controlador de puntos y frutas
 
         # Variables de estado
-        self.mostrar_ready = True  # Indica si se muestra el mensaje READY!
-        self.contador_ready = 180  # Duración del mensaje READY! en frames (3 segundos aprox.)
+        self.mostrar_ready = True  # Se muestra el mensaje READY!
+        self.contador_ready = 180  # Duración del mensaje READY!
 
         # Iniciar el bucle principal del juego
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        # Actualizar elementos del juego mientras READY! se muestra
-        if self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
+        if self.mostrar_ready:
+            self.contador_ready -= 1
+            if self.contador_ready <= 0:
+                self.mostrar_ready = False  # Ocultar el mensaje READY!
+        elif self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
             if self.pacman.en_muerte:
                 # Ejecutar animación de muerte
                 self.pacman.animar_muerte(self.fantasmas)
@@ -46,26 +49,22 @@ class Tablero:
                     fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
                 self.pacman.colision_fantasmas(self.fantasmas, self.puntos)  # Colisiones con fantasmas
 
-        # Control del temporizador para READY!
-        if self.mostrar_ready:
-            self.contador_ready -= 1
-            if self.contador_ready <= 0:
-                self.mostrar_ready = False  # Ocultar el mensaje READY!
-
     def draw(self):
         pyxel.cls(0)  # Limpiar pantalla
-        if self.pacman.vidas > 0:
-            # Dibujar todos los elementos del juego
+        if self.mostrar_ready:
+            self.bloque.draw()  # Dibujar el mapa
+            self.puntos.draw()  # Dibujar puntos, frutas y puntuación
+            self.dibujar_ready()
+        elif self.pacman.vidas > 0:
             self.bloque.draw()  # Dibujar el mapa
             self.puntos.draw()  # Dibujar puntos, frutas y puntuación
             self.pacman.ver_vidas(10, 10)  # Ver las vidas restantes
-            self.pacman.draw(self.fantasmas)  # Dibujar Pacman
-            for fantasma in self.fantasmas:
-                fantasma.draw()  # Dibujar fantasmas
-
-            # Dibujar READY! si está activo
-            if self.mostrar_ready:
-                self.dibujar_ready()
+            if not self.pacman.en_muerte:  # Dibujar personajes si no está en animación de muerte
+                self.pacman.draw(self.fantasmas)  # Dibujar Pacman
+                for fantasma in self.fantasmas:
+                    fantasma.draw()  # Dibujar fantasmas
+            else:
+                self.pacman.draw(self.fantasmas)  # Dibujar solo Pacman durante la animación de muerte
         else:
             # Limpiar pantalla si las vidas llegan a 0 y muestra solo el mapa
             pyxel.cls(0)
@@ -77,8 +76,8 @@ class Tablero:
         sprite = TEXTO["READY!"]
         sprite_x, sprite_y = sprite["Coordenadas"]
         sprite_w, sprite_h = sprite["Tamaño"]
-        pos_x = (pyxel.width - sprite_w) // 2
-        pos_y = (pyxel.height - sprite_h) // 2
+        pos_x = 180
+        pos_y = 240
         pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
 
     def fin(self):
@@ -99,8 +98,3 @@ class Tablero:
         self.pacman.animacion_frame = 0  # Reiniciar animación de muerte
         for fantasma in self.fantasmas:
             fantasma.volver_a_posicion_inicial()  # Reiniciar posición de los fantasmas
-
-
-# Inicia el juego
-print("¡Feliz Navidad!")
-Tablero()
