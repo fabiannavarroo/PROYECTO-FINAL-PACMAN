@@ -78,7 +78,7 @@ class Tablero:
 
     def dibujar_ready(self):
         # Dibuja el mensaje READY! 
-        if pyxel.frame_count % 8 == 7:
+        if time.time() - self.tiempo_inicio > 1:
             sprite = TEXTO["READY!"]
             sprite_x, sprite_y = sprite["Coordenadas"]
             sprite_w, sprite_h = sprite["Tamaño"]
