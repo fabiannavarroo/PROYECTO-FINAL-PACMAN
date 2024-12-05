@@ -193,7 +193,7 @@ MAPA_1 = [
     (144, 32, 2),     # Borde superior
     (160, 32, 2),     # Borde superior
     (176, 32, 2),     # Borde superior
-    (192, 32, 7),     # Borde superior
+    (192, 32, 7),     # Cruce en T hacia abajo
     (208, 32, 2),     # Borde superior
     (224, 32, 2),     # Borde superior
     (240, 32, 2),     # Borde superior
@@ -211,6 +211,8 @@ MAPA_1 = [
     
     # Fila 2
     (0, 48, 5),      # Borde vertical
+    (192, 48, 5),     # Borde vertical  
+    (416, 48, 5),     # Esquina inferior derecha
     
     # fila 3
     
