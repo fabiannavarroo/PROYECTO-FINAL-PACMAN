@@ -55,7 +55,10 @@ class Puntos:
         """
         Encuentra celdas vacías donde no haya puntos ni frutas.
         """
-        celdas_vacias = [(x, y) for x, y, _ in self.lista_puntos if (x, y) != self.posicion_actual]
+        celdas_vacias = []
+        for x, y, _ in self.lista_puntos:
+            if (x, y) != self.posicion_actual:
+                celdas_vacias.append((x, y))
         return celdas_vacias
 
     def generar_fruta(self):
