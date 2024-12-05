@@ -215,6 +215,9 @@ MAPA_1 = [
     (416, 48, 5),     # Esquina inferior derecha
     
     # fila 3
+    (0, 48, 5),      # Borde vertical
+    (192, 48, 5),     # Borde vertical  
+    (416, 48, 5),     # Esquina inferior derecha
     
     
     
