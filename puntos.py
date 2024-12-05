@@ -42,9 +42,14 @@ class Puntos:
     
     def encontrar_celdas_vacias(self):
         # Encuentra celdas vacías en el mapa
+        celdas_vacias = []
         for x in range(len(self.lista_puntos)):
             for y in range(len(self.lista_puntos[x])):
-                
+                if (self.lista_puntos[x][y][0], self.lista_puntos[x][y][1]) != self.posicion_actual:
+                    celdas_vacias.append((self.lista_puntos[x][y][0], self.lista_puntos[x][y][1]))
+        return celdas_vacias
+
+
         
 
 
