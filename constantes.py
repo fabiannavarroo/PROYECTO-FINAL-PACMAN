@@ -359,7 +359,7 @@ MAPA_1 = [
     (304, 240, 5),     # Borde vertical
 
     # Fila 15
-    (0, 256, 2),      # Borde esquina inferior izquierda
+    (0, 256, 11),      # Borde esquina inferior izquierda
     (16,256,2),      # Borde horizontal
     (32, 256, 2),     # Borde horizontal    
     (48,256,2),      # Borde horizontal
@@ -379,7 +379,7 @@ MAPA_1 = [
     (336, 256, 2),     # Borde horizontal
     (352, 256, 2),     # Borde horizontal  
     (368, 256, 2),     # Borde horizontal
-    (384, 256, 2),     # Borde horizontal
+    (384, 256, 12),     # Borde horizontal
 
     # Fila 16
     (0, 272, 5),      # Borde vertical
