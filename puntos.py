@@ -37,7 +37,7 @@ class Puntos:
         # Verificar si está en una zona prohibida
         for lugar in self.zonas_prohibidas:
             x1, y1, x2, y2 = lugar
-            if x1 <= x < x2 and y1 <= y < y2:  # Usamos "<" para respetar la cuadrícula
+            if x1 <= x <= x2 and y1 <= y <= y2:  
                 return True
 
         # Verificar si hay un muro
