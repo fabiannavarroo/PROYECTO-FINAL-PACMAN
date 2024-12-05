@@ -117,7 +117,7 @@ class Bloque:
             self.contador -= 1
             if self.contador == 0:
                 self.mostrar_ready = False
-                self.contador = 90
+                self.contador = 300
 
     def dibujar_letras_mapa(self, x , y, sprite):
         # Dibuja las letras en el mapa
