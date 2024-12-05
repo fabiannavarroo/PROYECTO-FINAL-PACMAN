@@ -59,7 +59,7 @@ class Tablero:
         else:
             # Limpiar pantalla si las vidas llegan a 0 y muestra solo el mapa
             pyxel.cls(0)
-            #mapa
+            self.bloque.draw()
             self.fin()
 
 
