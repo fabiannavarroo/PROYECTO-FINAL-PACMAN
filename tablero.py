@@ -11,7 +11,8 @@ class Tablero:
         # Inicializar la ventana del juego con Pyxel
         pyxel.init(400, 400, title="Pacman", fps=30, )  # Crear la pantalla
         pyxel.load("assets/recursos.pyxres")  # Cargar recursos gráficos
-        pyxel.fullscreen = True
+        
+        self.toggle_fullscreen()
 
         # Inicializar elementos del juego
         self.bloque = Bloque() # Mapa del juego
@@ -26,6 +27,9 @@ class Tablero:
 
         # Iniciar el bucle principal del juego
         pyxel.run(self.update, self.draw)
+    
+    def toggle_fullscreen(self):
+        pyxel.fullscreen = True
 
     def update(self):
         if self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
