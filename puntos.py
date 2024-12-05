@@ -138,7 +138,7 @@ class Puntos:
         # Detectar si Pac-Man come un regalo
         regalos_sin_comer = []
         for x, y in self.regalos:
-            if self.pacman.x <= x < self.pacman.x + 16 and self.pacman.y <= y < self.pacman.y + 16:
+            if self.pacman.x <= x < self.pacman.x + 8 and self.pacman.y <= y < self.pacman.y + 8:
                 # Activar estado asustado para los fantasmas
                 for fantasma in self.fantasmas:
                     fantasma.activar_asustado()
