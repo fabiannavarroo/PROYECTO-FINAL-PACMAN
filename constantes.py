@@ -408,10 +408,10 @@ MAPA_1 = [
     (384, 288, 5),     # Borde vertical
 
     # Fila 18
-    (0, 288, 5),      # Borde vertical
-    (64, 288, 5),     # Borde vertical
-    (320, 288, 5),     # Borde vertical
-    (384, 288, 5),     # Borde vertical
+    (0, 304, 5),      # Borde vertical
+    (64, 304, 5),     # Borde vertical
+    (320, 304, 5),     # Borde vertical
+    (384, 304, 5),     # Borde vertical
 
     
 
