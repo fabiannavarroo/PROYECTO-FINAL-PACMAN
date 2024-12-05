@@ -17,10 +17,10 @@ class Tablero:
         self.bloque = Bloque() # Mapa del juego
         self.pacman = Pacman(192, 304, self.bloque)  # Pacman y su posición inicial
         self.fantasmas = [  # Lista de fantasmas con sus posiciones iniciales
-            FantasmaRojo(224, 0, self.bloque),
-            FantasmaRosa(176, 0, self.bloque),
-            FantasmaAzul(192, 0, self.bloque),
-            FantasmaNaranja(208, 0, self.bloque),
+            FantasmaRojo(224, 0, ),
+            FantasmaRosa(176, 0, ),
+            FantasmaAzul(192, 0, ),
+            FantasmaNaranja(208, 0, ),
         ]
         self.puntos = Puntos(OBJETOS, self.pacman, self.fantasmas)  # Controlador de puntos y frutas
 
