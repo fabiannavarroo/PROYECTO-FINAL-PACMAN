@@ -33,7 +33,7 @@ class Tablero:
     def update(self):
         if self.mostrar_ready:
             self.contador_ready -= 1
-            if self.contador_ready <= 0:
+            if self.contador_ready == 0:
                 self.mostrar_ready = False  # Ocultar el mensaje READY!
         elif self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
             if self.pacman.en_muerte:
