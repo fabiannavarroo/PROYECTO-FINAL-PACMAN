@@ -136,7 +136,7 @@ SPRITE_BLOQUE_6 = (48,16,1,16,16) # Esquina inferior vertical
 SPRITE_BLOQUE_7 = (0,16,1,16,16) # Cruce en T hacia abajo
 SPRITE_BLOQUE_8 = (16,16,1,16,16) # Cruce en T hacia arriba
 SPRITE_BLOQUE_9 = (32,16,1,16,16) # Cruce en T hacia derecha
-SPRITE_BLOQUE_10 = (32,32,1,16,16) # Cruce en T hacia dizquierda
+SPRITE_BLOQUE_10 = (32,32,1,16,16) # Cruce en T hacia izquierda
 SPRITE_BLOQUE_11 = (0,32,1,16,16) # Borde esquina superior izquieda
 SPRITE_BLOQUE_12 = (16,32,1,16,16) # Borde esquina superior derecha
 SPRITE_BLOQUE_13 = (0,48,1,16,16) #  Borde esquina inferior izquieda
@@ -418,21 +418,21 @@ MAPA_1 = [
     (16, 320, 2),      # Borde horizontal
     (32, 320, 3),      # Esquina derecha horizontal
     (64, 320, 6),     # Esquina inferior vertical
-    (96, 320, 4),     # Borde superior vertical
+    (96, 320, 4),     # Esquina superior vertical
     (128, 320, 1),     # Esquina izquierda horizontal
     (144, 320, 2),     # Borde horizontal
     (160, 320, 2),     # Borde horizontal
     (176, 320, 2),     # Borde horizontal
-    (192, 320, 7),     # 
-    (208, 320, 2),     # 
-    (224, 320, 2),     # 
-    (240, 320, 2),     # 
-    (256, 320, 3),     # 
-    (288, 320, 4),     # 
-    (320, 320, 6),     # 
+    (192, 320, 7),     # Cruce en T hacia abajo
+    (208, 320, 2),     # Borde horizontal
+    (224, 320, 2),     # Borde horizontal
+    (240, 320, 2),     # Borde horizontal
+    (256, 320, 3),     # Esquina derecha horizontal
+    (288, 320, 4),     # Esquina superior vertical
+    (320, 320, 6),     # Esquina inferior vertical
     (352, 320, 1),     # Esquina izquierda horizontal
-    (368, 320, 2),     # 
-    (384, 320, 10),     # 
+    (368, 320, 2),     # Borde horizontal
+    (384, 320, 10),     # Cruce en T hacia izquierda
 
     # Fila 20
     (0, 336, 5),      # Borde vertical
@@ -444,24 +444,24 @@ MAPA_1 = [
     # Fila 21
     (0, 352, 5),      # Borde vertical
     (32, 352, 1),     # Esquina izquierda horizontal
-    (48, 352, 2),     # 
-    (64, 352, 2),     # 
-    (80, 352, 2),     #
-    (96, 352, 8),
-    (112, 352, 2),     #
-    (128, 352, 2),     #
-    (144, 352, 2),     #
-    (160, 352, 3),     #
-    (192, 352, 6),     #
+    (48, 352, 2),     # Borde horizontal
+    (64, 352, 2),     # Borde horizontal
+    (80, 352, 2),     # Borde horizontal
+    (96, 352, 8),     # Cruce en T hacia arriba
+    (112, 352, 2),     # Borde horizontal
+    (128, 352, 2),     # Borde horizontal
+    (144, 352, 2),     # Borde horizontal
+    (160, 352, 3),     # Esquina derecha horizontal
+    (192, 352, 6),     # Esquina inferior vertical
     (224, 352, 1),     # Esquina izquierda horizontal
-    (240, 352, 2),     #
-    (256, 352, 2),     #
-    (272, 352, 2),     #
-    (288, 352, 8),     #
-    (304, 352, 2),     #
-    (320, 352, 2),     #
-    (336, 352, 2),     #
-    (352, 352, 3),     #
+    (240, 352, 2),     # Borde horizontal
+    (256, 352, 2),     # Borde horizontal
+    (272, 352, 2),     # Borde horizontal
+    (288, 352, 8),     # Cruce en T hacia arriba
+    (304, 352, 2),     # Borde horizontal
+    (320, 352, 2),     # Borde horizontal
+    (336, 352, 2),     # Borde horizontal
+    (352, 352, 3),     # Esquina derecha horizontal
     (384, 352, 5),     # Borde vertical
 
     # Fila 22
