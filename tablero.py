@@ -49,22 +49,22 @@ class Tablero:
 
     def draw(self):
         pyxel.cls(0)  # Limpiar pantalla
-        if self.pacman.vidas > 0:
-            self.puntos.dibujar_letras_mapa(180,240, "READY!")
-            self.bloque.draw() # Dibujar el mapa
-            self.puntos.draw()  # Dibujar puntos, frutas y puntuación
-            self.pacman.ver_vidas(10, 10)  # Ver las vidas restantes
-            if not self.pacman.en_muerte:  # Dibujar personajes si no está en animación de muerte
-                self.pacman.draw(self.fantasmas)  # Dibujar Pacman
-                for fantasma in self.fantasmas:
-                    fantasma.draw()  # Dibujar fantasmas
-            else:
-                self.pacman.draw(self.fantasmas)  # Dibujar solo Pacman durante la animación de muerte
+        if self.mostrar_ready:
+            self.puntos.dibujar_letras_mapa(180, 240, "READY!")  # Dibujar "READY!" si está activo
         else:
-            # Limpiar pantalla si las vidas llegan a 0 y muestra solo el mapa
-            pyxel.cls(0)
-            self.bloque.draw()
-            self.fin()
+            if self.pacman.vidas > 0:
+                self.bloque.draw()  # Dibujar el mapa
+                self.puntos.draw()  # Dibujar puntos, frutas y puntuación
+                self.pacman.ver_vidas(10, 10)  # Ver las vidas restantes
+                if not self.pacman.en_muerte:  # Dibujar personajes si no está en animación de muerte
+                    self.pacman.draw(self.fantasmas)  # Dibujar Pacman
+                    for fantasma in self.fantasmas:
+                        fantasma.draw()  # Dibujar fantasmas
+                else:
+                    self.pacman.draw(self.fantasmas)  # Dibujar solo Pacman durante la animación de muerte
+            else:
+                self.bloque.draw()
+                self.fin()
             
     def ready(self):
         contador = 0
