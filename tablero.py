@@ -25,7 +25,7 @@ class Tablero:
 
         # Variables de estado
         self.mostrar_ready = True  # Indica si se muestra el mensaje READY!
-        self.contador_ready = 90  # Duración del mensaje READY! (3 segundos en 30 FPS)
+        self.contador_ready = 90  # Duración del mensaje READY!
 
         # Iniciar el bucle principal del juego
         pyxel.run(self.update, self.draw)
