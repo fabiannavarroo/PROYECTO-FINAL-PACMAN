@@ -26,8 +26,11 @@ class Puntos:
         self.lista_puntos = []
         self.generar_puntos()
 
-        # Lista de frutas generadas
-        self.lista_frutas = []
+        # Información de fruta actual
+        self.fruta_actual = None
+        self.posicion_actual = None
+        self.animacion_activa = False
+        self.animacion_contador = 0
 
     def generar_puntos(self):
         """
@@ -48,18 +51,35 @@ class Puntos:
                 return True
         return False
 
+    def encontrar_celdas_vacias(self):
+        """
+        Encuentra celdas vacías donde no haya puntos ni frutas.
+        """
+        celdas_vacias = [(x, y) for x, y, _ in self.lista_puntos if (x, y) != self.posicion_actual]
+        return celdas_vacias
+
     def generar_fruta(self):
         """
-        Genera una fruta en un espacio vacío cada 30 segundos.
+        Genera una fruta en una celda vacía.
         """
-        tiempo_actual = time.time()
-        if tiempo_actual - self.ultimo_tiempo_fruta >= 30:
-            espacios_vacios = [(x, y) for x, y, _ in self.lista_puntos if (x, y) not in [(f[0], f[1]) for f in self.lista_frutas]]
-            if espacios_vacios:
-                fruta = random.choice(espacios_vacios)
-                tipo_fruta = random.choice(list(OBJETOS.keys()))  # Seleccionar una fruta aleatoria
-                self.lista_frutas.append((fruta[0], fruta[1], tipo_fruta))
-            self.ultimo_tiempo_fruta = tiempo_actual
+        if time.time() - self.ultimo_tiempo_fruta < 30:
+            return False  # No generar una nueva fruta si no han pasado 30 segundos
+
+        # Seleccionar un objeto aleatorio sin regalos ni bastones
+        objetos_dispo = ["CEREZA", "FRESA", "NARANJA", "MANZANA", "MELON", "PARAGUAS", "CAMPANA", "LLAVE"]
+        self.fruta_actual = random.choice(objetos_dispo)
+
+        # Elegir una posición aleatoria en celdas vacías
+        celdas_vacias = self.encontrar_celdas_vacias()
+        if celdas_vacias:  # Si existen posiciones vacías, genera la fruta y permite que se ejecute la animación
+            self.posicion_actual = random.choice(celdas_vacias)
+            self.animacion_activa = True  # Activa la animación
+            self.animacion_contador = 0  # Reinicia el contador de la animación
+        else:
+            self.posicion_actual = None  # No hay espacio libre para generar una fruta
+
+        # Actualiza el tiempo de la última fruta generada
+        self.ultimo_tiempo_fruta = time.time()
 
     def comer_puntos(self):
         """
@@ -75,15 +95,12 @@ class Puntos:
 
     def comer_fruta(self):
         """
-        Detecta si Pac-Man come una fruta y la elimina.
+        Detecta si Pac-Man come la fruta actual.
         """
-        nuevas_frutas = []
-        for x, y, tipo in self.lista_frutas:
-            if not (self.pacman.x <= x < self.pacman.x + 16 and self.pacman.y <= y < self.pacman.y + 16):
-                nuevas_frutas.append((x, y, tipo))
-            else:
-                self.puntos += OBJETOS[tipo]["Puntos"]  # Incrementa los puntos según el valor de la fruta
-        self.lista_frutas = nuevas_frutas
+        if self.posicion_actual and self.pacman.x <= self.posicion_actual[0] < self.pacman.x + 16 and self.pacman.y <= self.posicion_actual[1] < self.pacman.y + 16:
+            self.puntos += OBJETOS[self.fruta_actual]["Puntos"]  # Incrementa los puntos según la fruta
+            self.posicion_actual = None  # Elimina la fruta actual
+            self.fruta_actual = None
 
     def draw(self):
         """
@@ -94,10 +111,10 @@ class Puntos:
             coord = OBJETOS[tipo]["Coordenadas"]
             pyxel.blt(x, y, 0, coord[0], coord[1], 16, 16, colkey=0)
 
-        # Dibujar frutas
-        for x, y, tipo in self.lista_frutas:
-            coord = OBJETOS[tipo]["Coordenadas"]
-            pyxel.blt(x, y, 0, coord[0], coord[1], 16, 16, colkey=0)
+        # Dibujar fruta actual
+        if self.posicion_actual and self.fruta_actual:
+            coord = OBJETOS[self.fruta_actual]["Coordenadas"]
+            pyxel.blt(self.posicion_actual[0], self.posicion_actual[1], 0, coord[0], coord[1], 16, 16, colkey=0)
 
         # Dibujar regalos
         for x, y in self.regalos:
