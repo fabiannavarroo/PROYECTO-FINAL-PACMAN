@@ -193,7 +193,7 @@ MAPA_1 = [
     (144, 32, 2),     # Borde superior
     (160, 32, 2),     # Borde superior
     (176, 32, 2),     # Borde superior
-    (192, 32, 2),     # Borde superior
+    (192, 32, 7),     # Borde superior
     (208, 32, 2),     # Borde superior
     (224, 32, 2),     # Borde superior
     (240, 32, 2),     # Borde superior
