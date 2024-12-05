@@ -31,7 +31,6 @@ class Tablero:
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        
         if self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
             if self.mostrar_ready:
                 self.contador_ready -= 1
