@@ -241,7 +241,7 @@ MAPA_1 = [
     (64,80,5),      # Borde vertical
     (96,80,5),      # Borde vertical
     (128,80,5),     # Borde vertical
-    (160,80,5),     # Borde vertical
+    
     (192,80,5),     # Borde vertical
     (416,80,5),     # Esquina inferior derecha
     
