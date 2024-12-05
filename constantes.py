@@ -44,17 +44,17 @@ FANTASMAS_ASUSTADOS = {
 
 #--------PUNTOS Y FRUTAS---------#
 OBJETOS = {
-    "BASTON": {"Coordenadas": (48,16), "Puntos": 10}, # 0
-    "REGALO": {"Coordenadas": (0,32), "Puntos": 15}, # 98
-    "REGALO_BRILLANTE": {"Coordenadas": (32,32), "Puntos": 15}, # 98
-    "CEREZA" : {"Coordenadas": (0, 128), "Puntos": 20}, # 97
-    "FRESA" : {"Coordenadas":(16, 128), "Puntos": 30}, # 96
-    "NARANJA" : {"Coordenadas":(32, 128), "Puntos": 40}, # 95
-    "MANZANA" : {"Coordenadas":(48, 128), "Puntos": 50}, # 94
-    "MELON" : {"Coordenadas":(0, 144), "Puntos": 60}, # 93
-    "PARAGUAS" : {"Coordenadas":(16, 144), "Puntos": 100}, # 92 
-    "CAMPANA" : {"Coordenadas":(32, 144), "Puntos": 120}, # 91
-    "LLAVE" : {"Coordenadas":(48, 144), "Puntos": 140}, # 90
+    "BASTON": {"Coordenadas": (48,16), "Puntos": 10}, 
+    "REGALO": {"Coordenadas": (0,32), "Puntos": 15}, 
+    "REGALO_BRILLANTE": {"Coordenadas": (32,32), "Puntos": 15}, 
+    "CEREZA" : {"Coordenadas": (0, 128), "Puntos": 20}, 
+    "FRESA" : {"Coordenadas":(16, 128), "Puntos": 30}, 
+    "NARANJA" : {"Coordenadas":(32, 128), "Puntos": 40}, 
+    "MANZANA" : {"Coordenadas":(48, 128), "Puntos": 50}, 
+    "MELON" : {"Coordenadas":(0, 144), "Puntos": 60}, 
+    "PARAGUAS" : {"Coordenadas":(16, 144), "Puntos": 100}, 
+    "CAMPANA" : {"Coordenadas":(32, 144), "Puntos": 120}, 
+    "LLAVE" : {"Coordenadas":(48, 144), "Puntos": 140}, 
     }
 
 #-----------PORTALES-----------#
@@ -65,9 +65,9 @@ PORTALES={
 
 #---------------TEXTO--------------#
 TEXTO={
-    "READY!": {"Coordenadas": (32, 192), "Tamaño": (64, 16)}, # 69
-    "HIGHSCORE":{"Coordenadas": (0, 168), "Tamaño": (80, 16)}, # 70
-    "GAME OVER": {"Coordenadas": (0, 192), "Tamaño": (32, 24)}, # 71
+    "READY!": {"Coordenadas": (32, 192), "Tamaño": (64, 16)}, 
+    "HIGHSCORE":{"Coordenadas": (0, 168), "Tamaño": (80, 16)}, 
+    "GAME OVER": {"Coordenadas": (0, 192), "Tamaño": (32, 24)}, 
 }
 
 
