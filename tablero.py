@@ -85,6 +85,7 @@ class Tablero:
             pos_x = 180
             pos_y = 245
             pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
+            self.tiempo_inicio -= time.time()
         
 
     def fin(self):
