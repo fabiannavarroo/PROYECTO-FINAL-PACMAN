@@ -228,11 +228,11 @@ MAPA_1 = [
     (224,64,11),      # Esquina superior izquierda
     (240,64,2),       # Borde superior
     (256,64,12),      # Esquina superior derecha
-    (272,64,11),      # Esquina superior izquierda
-    (288,64,2),       # Borde superior
-    (304,64,2),      # Borde superior
-    (320,64,2),      # Borde superior
-    (160,64,12),     # Esquina superior izquierda
+    (288,64,11),      # Esquina superior izquierda
+    (304,64,2),       # Borde superior
+    (320,64,2),       # Borde superior
+    (336,64,2),       # Borde superior
+    (352,64,12),      # Esquina superior izquierda
     (416, 64, 5),     # Esquina inferior derecha
 
     # fila 4
