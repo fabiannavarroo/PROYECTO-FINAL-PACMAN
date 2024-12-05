@@ -3,6 +3,7 @@ from fantasmas import *
 from puntos import Puntos
 from bloque import Bloque
 from constantes import *
+import time
 import pyxel
 
 
@@ -75,7 +76,7 @@ class Tablero:
 
     def dibujar_ready(self):
         # Dibuja el mensaje READY! 
-        if pyxel.frame_count % 8 == 8:
+        if pyxel.frame_count % 8 == 7:
             sprite = TEXTO["READY!"]
             sprite_x, sprite_y = sprite["Coordenadas"]
             sprite_w, sprite_h = sprite["Tamaño"]
