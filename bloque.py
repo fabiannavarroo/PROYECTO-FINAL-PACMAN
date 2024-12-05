@@ -7,7 +7,7 @@ class Bloque:
         # Lista de bloques
         self.bloques = []
         self.celda_tamaño = 16
-        self.contador = 90
+        self.contador = 300
         self.mostrar_ready = True
 
         # Crear bloques a partir de MAPA_1
