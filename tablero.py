@@ -28,6 +28,8 @@ class Tablero:
         self.mostrar_ready = True  # Indica si se muestra el mensaje READY!
         self.contador_ready = 90  # Duración del mensaje READY!
 
+        self.tiempo_inicio = time.time()
+
         # Iniciar el bucle principal del juego
         pyxel.run(self.update, self.draw)
 
