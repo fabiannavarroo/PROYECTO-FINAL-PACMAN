@@ -1,4 +1,3 @@
-
 from pacman import Pacman
 from fantasmas import *
 from puntos import Puntos
@@ -6,30 +5,37 @@ from bloque import Bloque
 from constantes import *
 import pyxel
 
+
 class Tablero:
     def __init__(self):
         # Inicializar la ventana del juego con Pyxel
-        pyxel.init(400, 400, title="Pacman", fps=30, )  # Crear la pantalla
+        pyxel.init(400, 400, title="Pacman", fps=30)  # Crear la pantalla
         pyxel.load("assets/recursos.pyxres")  # Cargar recursos gráficos
-        
 
         # Inicializar elementos del juego
-        self.bloque = Bloque() # Mapa del juego
+        self.bloque = Bloque()  # Mapa del juego
         self.pacman = Pacman(192, 304, self.bloque)  # Pacman y su posición inicial
         self.fantasmas = [  # Lista de fantasmas con sus posiciones iniciales
-            FantasmaRojo(196, 176, ),
-            FantasmaRosa(181, 208, ),
-            FantasmaAzul(203, 208, ),
-            FantasmaNaranja(226, 208, ),
+            FantasmaRojo(196, 176),
+            FantasmaRosa(181, 208),
+            FantasmaAzul(203, 208),
+            FantasmaNaranja(226, 208),
         ]
         self.puntos = Puntos(OBJETOS, self.pacman, self.fantasmas, self.bloque)  # Controlador de puntos y frutas
+
+        # Variables de estado
+        self.mostrar_ready = True  # Indica si se muestra el mensaje READY!
+        self.contador_ready = 180  # Duración del mensaje READY! en frames (3 segundos aprox.)
 
         # Iniciar el bucle principal del juego
         pyxel.run(self.update, self.draw)
 
-
     def update(self):
-        if self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
+        if self.mostrar_ready:
+            self.contador_ready -= 1
+            if self.contador_ready <= 0:
+                self.mostrar_ready = False  # Ocultar el mensaje READY!
+        elif self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
             if self.pacman.en_muerte:
                 # Ejecutar animación de muerte
                 self.pacman.animar_muerte(self.fantasmas)
@@ -43,12 +49,14 @@ class Tablero:
                     fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
                 self.pacman.colision_fantasmas(self.fantasmas, self.puntos)  # Colisiones con fantasmas
 
-
-
     def draw(self):
         pyxel.cls(0)  # Limpiar pantalla
-        if self.pacman.vidas > 0:
-            self.bloque.draw() # Dibujar el mapa
+        if self.mostrar_ready:
+            self.bloque.draw()  # Dibujar el mapa
+            self.puntos.draw()  # Dibujar puntos, frutas y puntuación
+            self.dibujar_ready()
+        elif self.pacman.vidas > 0:
+            self.bloque.draw()  # Dibujar el mapa
             self.puntos.draw()  # Dibujar puntos, frutas y puntuación
             self.pacman.ver_vidas(10, 10)  # Ver las vidas restantes
             if not self.pacman.en_muerte:  # Dibujar personajes si no está en animación de muerte
@@ -63,24 +71,30 @@ class Tablero:
             self.bloque.draw()
             self.fin()
 
+    def dibujar_ready(self):
+        # Dibuja el mensaje READY! en el centro de la pantalla
+        sprite = TEXTO["READY!"]
+        sprite_x, sprite_y = sprite["Coordenadas"]
+        sprite_w, sprite_h = sprite["Tamaño"]
+        pos_x = (pyxel.width - sprite_w) // 2
+        pos_y = (pyxel.height - sprite_h) // 2
+        pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
 
     def fin(self):
         # Dibujar Game Over
         sprite = TEXTO["GAME OVER"]
         sprite_x, sprite_y = sprite["Coordenadas"]
         sprite_w, sprite_h = sprite["Tamaño"]
-        pos_x = 185
-        pos_y= 208
+        pos_x = (pyxel.width - sprite_w) // 2
+        pos_y = (pyxel.height - sprite_h) // 2
         pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
-
 
     def reiniciar_tablero(self):
         # Reinicia las posiciones iniciales de los personajes y termina la animación de muerte.
+        self.mostrar_ready = True
+        self.contador_ready = 180  # Restablecer duración del mensaje READY!
         self.pacman.reiniciar_posicion()  # Reiniciar posición de Pacman
         self.pacman.en_muerte = False  # Finalizar estado de muerte
         self.pacman.animacion_frame = 0  # Reiniciar animación de muerte
         for fantasma in self.fantasmas:
             fantasma.volver_a_posicion_inicial()  # Reiniciar posición de los fantasmas
-            
-
-            
