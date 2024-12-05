@@ -302,31 +302,25 @@ MAPA_1 = [
     (304, 176, 5),     # Borde vertical
 
     # Fila 11
-    (80, 192, 5),     # Borde vertical
-    (112, 192,5),      # Borde vertical
-    (272, 192, 5),     # Borde vertical
-    (304, 192, 5),     # Borde vertical
-
-    # Fila 12
-    (0, 208, 2),      # Borde esquina inferior izquierda
-    (16,208,2),      # Borde horizontal
-    (32, 208, 2),     # Borde horizontal    
-    (48,208,2),      # Borde horizontal
-    (64, 208, 2),     # Borde horizontal
-    (80, 208, 14),     # 
-    (112, 208 ,6),     # 
-    (144, 208, 15),     # 
-    (160, 208, 19),     # 
-    (176, 208, 19),     # 
-    (192, 208, 16),     # 
-    (208, 208, 16),     # 
-    (224, 208, 19),     # 
-    (256, 208, 19),     # 
-    (288, 208, 17),     # 
-    (304, 208, 2),     #
-    (320, 208, 13),     #
-    (336, 208, 2),     #
-    (352, 208, 2),     #
-    (384, 208, 2),     # Borde esquina inferior derecha
+    (0, 192, 2),      # Borde esquina inferior izquierda
+    (16,192,2),      # Borde horizontal
+    (32, 192, 2),     # Borde horizontal    
+    (48,192,2),      # Borde horizontal
+    (64, 192, 2),     # Borde horizontal
+    (80, 192, 14),     # 
+    (112, 192 ,6),     # 
+    (144, 192, 15),     # 
+    (160, 192, 19),     # 
+    (176, 192, 19),     # 
+    (192, 192, 16),     # 
+    (208, 192, 16),     # 
+    (224, 192, 19),     # 
+    (256, 192, 19),     # 
+    (288, 192, 17),     # 
+    (304, 192, 2),     #
+    (320, 192, 13),     #
+    (336, 192, 2),     #
+    (352, 192, 2),     #
+    (384, 192, 2),     # Borde esquina inferior derecha
    
 ]
