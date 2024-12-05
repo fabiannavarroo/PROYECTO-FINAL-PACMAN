@@ -18,7 +18,7 @@ class Puntos:
         self.animacion_activa = False  # Indica si hay animación activa
         self.animacion_contador = 0  # Contador para animación de aparición
         self.zonas_prohibidas = [(0,0,384,16), (112,160,272,256), (0,192,80,224),(304,192,384,224)] # Zonas prohibidas para generar puntos
-        self.regalos = [(16, 304), (368, 336), (240, 240)] # Coordenadas fijas de los regalos
+        self.regalos = [(16, 304), (368, 336), (16, 80),()] # Coordenadas fijas de los regalos
 
     def draw(self):
         # Poner los puntos en el mapa
