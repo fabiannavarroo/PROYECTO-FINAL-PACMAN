@@ -75,12 +75,12 @@ class Tablero:
 
     def dibujar_ready(self):
         # Dibuja el mensaje READY! 
-        if pyxel.frame_count % 6 == 0:
+        if pyxel.frame_count % 7 == 0:
             sprite = TEXTO["READY!"]
             sprite_x, sprite_y = sprite["Coordenadas"]
             sprite_w, sprite_h = sprite["Tamaño"]
             pos_x = 180
-            pos_y = 240
+            pos_y = 245
             pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
 
     def fin(self):
