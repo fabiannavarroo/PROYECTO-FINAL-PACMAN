@@ -128,7 +128,7 @@ class Puntos:
         # Detectar si Pac-Man come puntos
         puntos_sin_comer = []
         for x, y, tipo in self.lista_puntos:
-            if self.pacman.x <= x < self.pacman.x + 16 and self.pacman.y <= y < self.pacman.y + 16:
+            if self.pacman.x <= x < self.pacman.x + 8 and self.pacman.y <= y < self.pacman.y + 8:
                 # Incrementar puntos según el tipo
                 self.puntos += OBJETOS[tipo]["Puntos"]
             else:
