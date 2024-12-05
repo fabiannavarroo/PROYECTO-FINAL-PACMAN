@@ -64,12 +64,12 @@ class Bloque:
             raise ValueError("Tipo de bloque no válido. Debe estar entre 1 y 23.")
 
     def colision(self, x, y):
-        """
-        Comprueba si hay un muro en la posición (x, y) considerando los bordes del sprite.
-        """
-        sprite_tamaño = 16  # Tamaño del sprite (por ejemplo, Pac-Man o Fantasmas)
 
-        # Coordenadas de los puntos a verificar (bordes del sprite)
+        # Comprueba si hay un muro en la posición (x, y)
+
+        sprite_tamaño = 16  # Tamaño del sprite
+
+        # Coordenadas de los puntos a verificar
         puntos_a_verificar = [
             (x, y),  # Esquina superior izquierda
             (x + sprite_tamaño - 1, y),  # Esquina superior derecha
