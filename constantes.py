@@ -436,6 +436,7 @@ MAPA_1 = [
 
     # Fila 20
     (0, 336, 5),      # Borde vertical
-
+    (96, 336, 5),     #
+    (192, 336, 5),     #
     (384, 336, 5),     # Borde vertical
 ]
