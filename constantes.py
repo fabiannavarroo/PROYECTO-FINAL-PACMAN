@@ -299,7 +299,19 @@ MAPA_1 = [
     (80, 176, 5),     # Borde vertical
     (112, 176,5),      # Borde vertical
     (272, 176, 5),     # Borde vertical
-    (304, 176, 5),     #
+    (304, 176, 5),     # Borde vertical
+
+    # Fila 11
+    (80, 192, 5),     # Borde vertical
+    (112, 192,5),      # Borde vertical
+    (272, 192, 5),     # Borde vertical
+    (304, 192, 5),     # Borde vertical
+
+    # Fila 12
+    (80, 208, 5),     # Borde vertical
+    (112, 208,5),      # Borde vertical
+    (272, 208, 5),     # Borde vertical
+    (304, 208, 5),     # Borde vertical
    
     
 ]
