@@ -114,4 +114,3 @@ class Bloque:
             self.contador -= 1
             if self.contador == 0:
                 self.mostrar_ready = False
-                self.contador = 90
