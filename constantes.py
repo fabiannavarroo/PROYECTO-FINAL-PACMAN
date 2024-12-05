@@ -210,7 +210,7 @@ MAPA_1 = [
     # Fila 2
     (0, 48, 5),      # Borde vertical
     (192, 48, 5),     # Borde vertical  
-    (384, 48, 5),     # Esquina inferior derecha
+    (384, 48, 5),     # Borde vertical
     
     # fila 3
     (0, 64, 5),      # Borde vertical
