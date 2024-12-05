@@ -86,20 +86,27 @@ class Puntos:
 
 
     def comer_puntos(self):
-        # Detectar si Pac-Man come puntos o regalos
-        nuevos_puntos = []
+        # Detectar si Pac-Man come puntos
+        puntos_sin_comer = []
         for x, y, tipo in self.lista_puntos:
-            # Si Pac-Man está en la misma posición que el punto/regalo
             if self.pacman.x <= x < self.pacman.x + 16 and self.pacman.y <= y < self.pacman.y + 16:
-                if tipo in ["REGALO", "REGALO_BRILLANTE"]:
-                    # Activar estado asustado para los fantasmas
-                    for fantasma in self.fantasmas:
-                        fantasma.activar_asustado()
                 # Incrementar puntos según el tipo
                 self.puntos += OBJETOS[tipo]["Puntos"]
             else:
-                nuevos_puntos.append((x, y, tipo))
-        self.lista_puntos = nuevos_puntos
+                puntos_sin_comer.append((x, y, tipo))
+        self.lista_puntos = puntos_sin_comer
+
+        # Detectar si Pac-Man come un regalo
+        regalos_sin_comer = []
+        for x, y in self.regalos:
+            if self.pacman.x <= x < self.pacman.x + 16 and self.pacman.y <= y < self.pacman.y + 16:
+                # Activar estado asustado para los fantasmas
+                for fantasma in self.fantasmas:
+                    fantasma.activar_asustado()
+                self.puntos += OBJETOS["REGALO"]["Puntos"]  # Incrementar los puntos por el regalo
+            else:
+                regalos_sin_comer.append((x, y))
+        self.regalos = regalos_sin_comer
 
 
     def comer_fruta(self):
