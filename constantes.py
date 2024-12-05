@@ -206,7 +206,7 @@ MAPA_1 = [
     (352, 32, 2),     # Borde superior
     (368, 32, 2),     # Borde superior
     (384, 32, 2),     # Borde superior
-    (432, 32, 12),     # Esquina superior derecha
+    (416, 32, 12),     # Esquina superior derecha
     
     # Fila 2
 
