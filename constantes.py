@@ -181,11 +181,11 @@ SPRITE_BLOQUE_23 = (24,88,1,16,16) # Borde inferior trampa fantasma
 #-----MAPA--------#
 MAPA_1 = [
     # fila 1
-    (0, 0, 1),      # Esquina superior izquierda
-    (16, 0, 2),     # Borde superior
-    (32, 0, 2),     # Borde superior
-    (48, 0, 2),     # Borde superior
-    (64, 0, 3),     # Esquina superior derecha
+    (0, 32, 1),      # Esquina superior izquierda
+    (16, 32, 2),     # Borde superior
+    (32, 32, 2),     # Borde superior
+    (48, 32, 2),     # Borde superior
+    (64, 32, 3),     # Esquina superior derecha
     
     # Fila 2
     (0, 16, 5),     # Borde vertical izquierdo
