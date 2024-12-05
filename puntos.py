@@ -121,8 +121,8 @@ class Puntos:
         # Dibuja los puntos, frutas y regalos en el mapa.
         # Dibujar puntos
         for x, y, tipo in self.lista_puntos:
-            coord = OBJETOS[tipo]["Coordenadas"]
-            pyxel.blt(x, y, 0, coord[0], coord[1], 16, 16, colkey=0)
+            sprite = OBJETOS[tipo]["Coordenadas"]
+            pyxel.blt(x, y, 0, sprite[0], sprite[1], 16, 16, colkey=0)
 
         # Dibujar fruta actual
         if self.posicion_actual and self.fruta_actual:
@@ -130,9 +130,11 @@ class Puntos:
                 # Parpadea cada 5 frames
                 if self.animacion_contador// REFRESH % 2 == 0:
                     sprite = OBJETOS[self.fruta_actual]["Coordenadas"]
-                pyxel.blt(self.posicion_actual[0], self.posicion_actual[1], 0, sprite[0], sprite[1], 16, 16, colkey=0)
+                    pyxel.blt(self.posicion_actual[0], self.posicion_actual[1], 0, sprite[0], sprite[1], 16, 16, colkey=0)
                 self.animacion_contador += 1
-            
+            else:
+                # Detiene la animación y dibuja la fruta
+                self.animacion_activa = False
             
 
         # Dibujar regalos
