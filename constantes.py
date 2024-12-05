@@ -57,33 +57,6 @@ OBJETOS = {
     "LLAVE" : {"Coordenadas":(48, 144), "Puntos": 140}, # 90
     }
 
-#---------MUROS---------#
-MUROS = {
-    1: {"Coordenadas": (0, 0), "Tamaño": (16, 16)},  # Esquina izquierda horizontal
-    2: {"Coordenadas": (8, 0), "Tamaño": (16, 16)},  # Borde horizontal
-    3: {"Coordenadas": (16, 0), "Tamaño": (16, 16)},  # Esquina derecha horizontal
-    4: {"Coordenadas": (48, 0), "Tamaño": (16, 16)},  # Esquina superior vertical
-    5: {"Coordenadas": (48, 8), "Tamaño": (16, 16)},  # Borde vertical
-    6: {"Coordenadas": (48, 16), "Tamaño": (16,16)},  # Esquina inferior vertical
-    7: {"Coordenadas": (0, 16), "Tamaño": (16,16)},  # Cruce en T hacia abajo
-    8: {"Coordenadas": (16, 16), "Tamaño": (16,16)},  # Cruce en T hacia arriba
-    9: {"Coordenadas": (32, 16), "Tamaño": (16,16)},  # Cruce en T hacia derecha
-    10: {"Coordenadas": (32, 32), "Tamaño": (16,16)},  # Cruce en T hacia izquierda
-    11: {"Coordenadas": (0, 32), "Tamaño": (16,16)},  # Borde esquina superior izquieda
-    12: {"Coordenadas": (16, 32), "Tamaño": (16,16)},  # Borde esquina superior derecha
-    13: {"Coordenadas": (0, 48), "Tamaño": (16,16)},  #  Borde esquina inferior izquieda
-    14: {"Coordenadas": (16, 48), "Tamaño": (16,16)},  # Borde esquina inferior derecha
-    15: {"Coordenadas": (8, 72), "Tamaño": (16,16)},  # Esquina izquierda superior trampa fantasmas
-    16: {"Coordenadas": (24, 72), "Tamaño": (16,16)},  # Puerta salida de fantasmas
-    17: {"Coordenadas": (40, 72), "Tamaño": (16,16)},  # Esquina derecha superior trampa fantasmas
-    18: {"Coordenadas": (8, 88), "Tamaño": (16,16)},  # Esquina izquierda inferior trampa fantasmas
-    19: {"Coordenadas": (24, 96), "Tamaño": (16,8)},  # Borde superior trampa fantasma
-    20: {"Coordenadas": (40, 88), "Tamaño": (16,16)},  # Esquina derecha inferior trampa fantasmas
-    21: {"Coordenadas": (8, 80), "Tamaño": (16,16)},  # Borde derecha trampa fantasmas
-    22: {"Coordenadas": (40, 80), "Tamaño": (16,16)},  # Borde izquierda trampa fantasmas
-    23: {"Coordenadas": (24, 88), "Tamaño": (16,16)},  # Borde inferior trampa fantasma
-}
-
 #-----------PORTALES-----------#
 PORTALES={
     (-16,192):(430,192), # Portal izquierda
@@ -270,6 +243,12 @@ MAPA_1 = [
     # Fila 6
     (0, 112, 5),      # Borde vertical
     (384, 112, 5),     # Borde vertical
+
+    # Fila 7
+    (0, 128, 5),      # Borde vertical
+
+
     
+    (384, 128, 5),     # Borde vertical
     
 ]
