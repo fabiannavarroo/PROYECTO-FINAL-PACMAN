@@ -24,7 +24,7 @@ class Tablero:
         self.puntos = Puntos(OBJETOS, self.pacman, self.fantasmas, self.bloque)  # Controlador de puntos y frutas
 
         # Variables de estado
-        self.mostrar_ready = True  # Indica si se muestra el mensaje READY!
+        self.mostrar_ready = True  # Se muestra el mensaje READY!
         self.contador_ready = 180  # Duración del mensaje READY!
 
         # Iniciar el bucle principal del juego
