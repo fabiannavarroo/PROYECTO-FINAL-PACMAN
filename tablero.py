@@ -77,7 +77,6 @@ class Tablero:
         else:
             # Mostrar GAME OVER si no hay vidas
             pyxel.cls(0)
-            
             self.bloque.draw()
             self.pacman.animar_muerte(self.fantasmas)
             self.fin()
