@@ -1,6 +1,6 @@
 import pyxel
 from constantes import *
-from puntos import Puntos
+
 
 class Bloque:
     def __init__(self):
