@@ -74,49 +74,49 @@ class Bloque:
             if tipo == 1:
                 return SPRITE_BLOQUE_1_1
             elif tipo == 2:
-                return SPRITE_BLOQUE_2
+                return SPRITE_BLOQUE_2_1
             elif tipo == 3:
-                return SPRITE_BLOQUE_3
+                return SPRITE_BLOQUE_3_1
             elif tipo == 4:
-                return SPRITE_BLOQUE_4
+                return SPRITE_BLOQUE_4_1
             elif tipo == 5:
-                return SPRITE_BLOQUE_5
+                return SPRITE_BLOQUE_5_1
             elif tipo == 6:
-                return SPRITE_BLOQUE_6
+                return SPRITE_BLOQUE_6_1
             elif tipo == 7:
-                return SPRITE_BLOQUE_7
+                return SPRITE_BLOQUE_7_1
             elif tipo == 8:
-                return SPRITE_BLOQUE_8
+                return SPRITE_BLOQUE_8_1
             elif tipo == 9:
-                return SPRITE_BLOQUE_9
+                return SPRITE_BLOQUE_9_1
             elif tipo == 10:
-                return SPRITE_BLOQUE_10
+                return SPRITE_BLOQUE_10_1
             elif tipo == 11:
-                return SPRITE_BLOQUE_11
+                return SPRITE_BLOQUE_11_1
             elif tipo == 12:
-                return SPRITE_BLOQUE_12
+                return SPRITE_BLOQUE_12_1
             elif tipo == 13:
-                return SPRITE_BLOQUE_13
+                return SPRITE_BLOQUE_13_1
             elif tipo == 14:
-                return SPRITE_BLOQUE_14
+                return SPRITE_BLOQUE_14_1
             elif tipo == 15:
-                return SPRITE_BLOQUE_15
+                return SPRITE_BLOQUE_15_1
             elif tipo == 16:
-                return SPRITE_BLOQUE_16
+                return SPRITE_BLOQUE_16_1
             elif tipo == 17:
-                return SPRITE_BLOQUE_17
+                return SPRITE_BLOQUE_17_1
             elif tipo == 18:
-                return SPRITE_BLOQUE_18
+                return SPRITE_BLOQUE_18_1
             elif tipo == 19:
-                return SPRITE_BLOQUE_19
+                return SPRITE_BLOQUE_19_1
             elif tipo == 20:
-                return SPRITE_BLOQUE_20
+                return SPRITE_BLOQUE_20_1
             elif tipo == 21:
-                return SPRITE_BLOQUE_21
+                return SPRITE_BLOQUE_21_1
             elif tipo == 22:
-                return SPRITE_BLOQUE_22
+                return SPRITE_BLOQUE_22_1
             elif tipo == 23:
-                return SPRITE_BLOQUE_23
+                return SPRITE_BLOQUE_23_1
             else:
                 raise ValueError("Tipo de bloque no válido. Debe estar entre 1 y 23.")
 
