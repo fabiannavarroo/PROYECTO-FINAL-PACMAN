@@ -498,7 +498,8 @@ MAPA_1 = [
     (384, 384, 14),     # Esquina inferior derecha
 ]
 
-MAPA_2 = [# fila 1
+MAPA_2 = [
+    # fila 1
     (0, 32, 11),      # Esquina superior izquierda
     (16, 32, 2),     # Borde horizontal
     (32, 32, 2),     # Borde horizontal
