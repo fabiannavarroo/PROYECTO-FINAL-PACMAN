@@ -18,7 +18,6 @@ class Bloque:
             sprite = self.obtener_sprite(tipo)  # Obtener el sprite 
             self.bloques.append((x, y, sprite))  # Guardar solo coordenadas y sprite
 
-
     def obtener_sprite(self, tipo):
         # Devuelve el sprite correspondiente al tipo
         if tipo == 1:
