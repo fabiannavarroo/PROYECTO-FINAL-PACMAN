@@ -9,6 +9,7 @@ class Bloque:
         self.bloques = []
         self.mapas = MAPA
         self.cargar_mapa()  # Cargar el mapa del nivel inicial
+        self.victoria = False
 
     def cargar_mapa(self):
         # Cargar los bloques del nivel actual
