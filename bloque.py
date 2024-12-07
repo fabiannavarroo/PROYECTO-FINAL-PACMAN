@@ -11,7 +11,7 @@ class Bloque:
         self.cargar_mapa()  # Cargar el mapa del nivel inicial
 
     def cargar_mapa(self):
-        # Cargar los bloques correspondientes al nivel actual
+        # Cargar los bloques del nivel actual
         self.bloques = []
         for x, y, tipo in self.mapas[self.nivel]:
             sprite = self.obtener_sprite(tipo)  # Obtener el sprite correspondiente
