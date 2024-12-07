@@ -137,8 +137,8 @@ class Tablero:
             if (self.contador_game_over // 10) % 2 == 0:  # Alternar cada 0.5 segundos
                 self.fin()  # Mostrar el texto "GAME OVER"
             else:
-                pyxel.cls(0)  # Limpiar la pantalla para "parpadeo"
+                pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio
         else:
-            # Mantener el texto visible después de la animación
+            # Mantener el texto visible 
             self.fin()
 
