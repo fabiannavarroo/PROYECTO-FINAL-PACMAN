@@ -79,6 +79,7 @@ class Tablero:
             for fantasma in self.fantasmas:
                 fantasma.draw()  # Dibujar fantasmas
 
+            pyxel.text(50, 50, "200 puntos", pyxel.COLOR_CYAN)
             # Dibujar READY! si está activo
             if self.mostrar_ready:
                 self.animar_ready()
