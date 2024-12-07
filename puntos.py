@@ -19,7 +19,7 @@ class Puntos:
         self.animacion_activa = False  # Indica si hay animación activa
         self.animacion_contador = 0  # Contador para animación de aparición
         self.zonas_prohibidas = ZONAS_PROHIBIDAS
-        self.regalos = [(16, 304),] # Coordenadas fijas de los regalos
+        self.regalos = [(16, 304), (368, 304), (16, 80),(368, 80)] # Coordenadas fijas de los regalos
         self.lista_puntos = [] # Lista de puntos generados
         self.generar_puntos()
         self.lista_frutas = [] # Lista de frutas generadas
