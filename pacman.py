@@ -42,7 +42,7 @@ class Pacman:
             # Dibujar vidas
             self.ver_vidas(10, 10)
 
-            if self.colision_fantasmas(fantasmas, puntos):
+            if self.colision_fantasmas(fantasmas, self.puntos):
                 pyxel.text(self.x, self.y, "200 puntos", pyxel.COLOR_CYAN)
 
 
