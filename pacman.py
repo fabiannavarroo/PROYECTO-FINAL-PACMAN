@@ -104,7 +104,7 @@ class Pacman:
             self.x, self.y = PORTALES[(self.x, self.y)]
 
         if self.fantasmas_comido:
-            pyxel.text(self.posicion_fantasma_comido_x, self.posicion_fantasma_comido_y, "+200 puntos", pyxel.COLOR_CYAN)
+            pyxel.text(self.posicion_fantasma_comido_x, self.posicion_fantasma_comido_y, "+200", pyxel.COLOR_CYAN)
             self.fantasmas_comido = False
 
 
