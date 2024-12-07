@@ -606,7 +606,7 @@ MAPA_2 = [
     
 
     # fila 9
-    (0, 160, 13),      # Borde esquina inferior izquierda
+    (0, 160, 2),      # Borde esquina inferior izquierda
     (16,160,2),      # Borde horizontal
     (32, 160, 2),     # Borde horizontal    
     (48,160,2),      # Borde horizontal
