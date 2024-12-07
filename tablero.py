@@ -96,7 +96,8 @@ class Tablero:
             
             # Dibujar la victoria
             if self.victoria:
-                self.animar_victoria()
+                pyxel.cls(0)
+                self.bloque.draw()
         else:
             # Mostrar GAME OVER si no hay vidas
             pyxel.cls(0)
