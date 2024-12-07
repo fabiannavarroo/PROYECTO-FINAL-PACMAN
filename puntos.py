@@ -81,7 +81,6 @@ class Puntos:
         # Verificar si hay un muro
         if self.bloque.colision(x, y):
             return True
-
         return False
     
 
