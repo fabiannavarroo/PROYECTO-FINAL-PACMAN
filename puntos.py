@@ -196,6 +196,11 @@ class Puntos:
         self.regalos = [(16, 304), (368, 304), (16, 80),(368, 80)] # Coordenadas de los regalos
         self.lista_puntos = [] # Lista de puntos generados
         self.generar_puntos()
+        self.ultimo_tiempo_fruta = time.time()  # Tiempo de la última fruta generada
+        self.fruta_actual = None  # Información de la fruta actual
+        self.posicion_actual = None  # Posición actual de la fruta
+        self.animacion_activa = False  # Indica si hay animación activa
+        self.animacion_contador = 0
 
 
 
