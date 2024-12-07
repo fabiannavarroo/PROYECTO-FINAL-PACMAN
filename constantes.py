@@ -634,6 +634,9 @@ MAPA_2 = [
     (368, 128, 2),     # Esquina derecha horizontal
     (384, 128, 8),     # Borde vertical
 
+    # fila 8
+    #ta vacia
+
     # fila 9
     (0, 160, 2),      # Borde esquina inferior izquierda
     (16,160,2),      # Borde horizontal
@@ -642,6 +645,12 @@ MAPA_2 = [
     (64, 160, 2),     # Borde horizontal
     (80, 160, 12),     # Borde esquina inferior derecha
     (112, 160, 4),     # Esquina sueprior vertical
+    (144,160,1),
+    (160,160,2),
+    (176,160,3),
+    (208,160,1),
+    (224,160,2),
+    (240,160,3),
 
 
     # Fila 10
