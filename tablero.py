@@ -26,7 +26,6 @@ class Tablero:
 
         # Controlar el mensaje READY!
         self.mostrar_ready = True  # Indica si se muestra el mensaje READY!
-        self.contador_ready = 90  # Duración del mensaje READY!
         # Tiempo pasado desde el inicio del juego
         self.tiempo_inicio = time.time()
 
@@ -113,8 +112,7 @@ class Tablero:
     def reiniciar_tablero(self):
         # Reinicia las posiciones iniciales de los personajes y termina la animación de muerte.
         self.mostrar_ready = True  # Volver a mostrar READY!
-        self.contador_ready = 90  # Restablecer duración del mensaje READY!
-        self.tiempo_inicio = time.time()  # Reiniciar el tiempo para la animación de READY!
+        self.contador_ready = 0  # Restablecer duración del mensaje READY!
         self.pacman.reiniciar_posiciones(self.fantasmas)  # Reiniciar posición de Pacman
         self.pacman.en_muerte = False  # Finalizar estado de muerte
         self.pacman.animacion_frame = 0  # Reiniciar animación de muerte
