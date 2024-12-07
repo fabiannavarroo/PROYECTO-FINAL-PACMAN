@@ -139,7 +139,7 @@ class Tablero:
             if int(contador * 2) % 2 == 0:  # Alterna cada 0.5 segundos
                 self.fin()  # Mostrar el texto "GAME OVER"
             else:
-                pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio
+                pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0) # dibuja un vacio
             contador += 1
 
         self.fin()
