@@ -126,6 +126,8 @@ class Pacman:
                 if fantasma.asustado:
                     puntos.puntos += 200  # Añade puntos por comer un fantasma
                     self.fantasmas_comido = True
+                    self.mostrar_puntos = True  # Activar la visualización de puntos
+                    self.texto_tiempo_inicio = time.time()  # Registrar el tiempo actual
                     fantasma.volver_a_trampa()  # Enviar fantasma a la trampa
                     return True
                 else:
