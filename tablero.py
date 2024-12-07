@@ -38,8 +38,8 @@ class Tablero:
 
     def update(self):
         if self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
-            if self.contador_ready > 0:
-                self.contador_ready -= 1 
+            if self.contador_ready <= 90:
+                self.contador_ready += 1 
                 if self.contador_ready == 90:
                     self.mostrar_ready = False  # Ocultar READY! después de 3 segundos
 
