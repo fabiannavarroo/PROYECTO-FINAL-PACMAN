@@ -155,12 +155,6 @@ class Puntos:
             self.fruta_actual = None
 
 
-    def dibujar_letras_mapa(self, x , y, sprite):
-        # Dibuja las letras en el mapa
-        sprite=TEXTO[sprite]
-        pyxel.blt(x, y, 0, sprite["Coordenadas"][0], sprite["Coordenadas"][1], sprite["Tamaño"][0], sprite["Tamaño"][1], colkey=0)
-
-
     def ver_puntuacion(self, x, y):
         # Cambia el color solo cuando se supera un nuevo múltiplo de 500
         colores_dispo = [NUMEROS_BLANCOS, NUMEROS_MORADOS, NUMEROS_NARANJAS, NUMEROS_VERDES]
@@ -183,6 +177,13 @@ class Puntos:
                 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
             )
             pos_x += sprite_w + 1  # Espacio entre los dígitos
+
+
+    def dibujar_letras_mapa(self, x , y, sprite):
+        # Dibuja las letras en el mapa
+        sprite=TEXTO[sprite]
+        pyxel.blt(x, y, 0, sprite["Coordenadas"][0], sprite["Coordenadas"][1], sprite["Tamaño"][0], sprite["Tamaño"][1], colkey=0)
+
 
 
 
