@@ -500,7 +500,7 @@ MAPA_1 = [
 
 MAPA_2 = [
     # fila 1
-    (0, 32, 11),      # Esquina superior izquierda
+    (0, 32, 12),      # Esquina superior izquierda
     (16, 32, 2),     # Borde horizontal
     (32, 32, 2),     # Borde horizontal
     (48, 32, 2),     # Borde horizontal
