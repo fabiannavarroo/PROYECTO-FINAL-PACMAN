@@ -123,3 +123,12 @@ class Tablero:
             pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio
         elif time.time() - self.tiempo_inicio > 2.7:
             self.dibujar_ready()
+
+    def animar_fin(self):
+        # Animación de GAME OVER
+        if 0.8>time.time() - self.tiempo_inicio > 0:
+            self.fin()
+        elif 1.3>time.time() - self.tiempo_inicio > 0.8:
+            pyxel.blt(185, 208, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio 
+        elif 2>time.time() - self.tiempo_inicio > 1.3:
+            self.fin()
