@@ -2,11 +2,12 @@ from constantes import *
 import pyxel
 
 class Pacman:
-    def __init__(self, x, y, bloque):
+    def __init__(self, x, y, bloque, puntos):
         self.x = x
         self.y = y
         self.velocidad = 2  # Velocidad de movimiento
         self.bloque = bloque
+        self.puntos = puntos
         self.direccion_actual = PACMAN  # Dirección inicial
         self.direccion_pendiente = None  # Dirección elegida por el jugador
         self.vidas = 3  # Pac-Man empieza con 3 vidas
