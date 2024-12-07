@@ -139,8 +139,7 @@ class Tablero:
         if tiempo_transcurrido <= 5:
             if int(tiempo_transcurrido * 2) % 2 == 0:  # Alterna cada 0.5 segundos
                 self.fin()  # Mostrar el texto "GAME OVER"
-            else:
-                pyxel.cls(0)  # Limpiar pantalla
+            
         else:
             # Mantener el texto visible después de 5 segundos
             self.fin()
