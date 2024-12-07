@@ -120,16 +120,15 @@ class Tablero:
 
     def animar_ready(self):
         # Animación del mensaje READY!
-        if 0.8>time.time() - self.tiempo_inicio > 0:
-            self.dibujar_ready()
-        elif 1.3>time.time() - self.tiempo_inicio > 0.8:
-            pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio 
-        elif 2>time.time() - self.tiempo_inicio > 1.3:
-            self.dibujar_ready()
-        elif 2.7>time.time() - self.tiempo_inicio > 2:
-            pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio
+        if self.contador_game_over < 90:  # Animar durante 5 segundos
+            if (self.contador_game_over // 10) % 2 == 0:
+                self.dibujar_ready()  # Mostrar el texto "READY!    "
+            else:
+                pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio
         else:
-            self.dibujar_ready()
+            # Mantener el texto visible 
+            pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0)
+        
 
     def animar_fin(self):
         # Animación de GAME OVER
