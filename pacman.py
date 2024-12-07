@@ -133,10 +133,11 @@ class Pacman:
                     
                     fantasma.volver_a_trampa()  # Enviar fantasma a la trampa
                     return True
-                self.posicionx, self.posiciony = self.x, self.y
+                
                 else:
                     self.perder_vida()  # Pac-Man pierde una vida
                     return True
+                self.posicionx, self.posiciony = self.x, self.y
 
         return False  # No hay colision
 
