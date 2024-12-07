@@ -7,10 +7,7 @@ class Bloque:
         self.nivel = 1  # Nivel inicial
         self.celda_tamaño = 16
         self.bloques = []
-        self.mapas = {  # Diccionario de mapas
-            1: MAPA_1,
-            2: MAPA_2,  # Segundo nivel (debes definir MAPA_2 en `constantes.py`)
-        }
+        self.mapas = MAPA
         self.cargar_mapa()  # Cargar el mapa del nivel inicial
 
     def cargar_mapa(self):
