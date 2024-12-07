@@ -593,6 +593,15 @@ MAPA_2 = [
     (32, 96, 1),     # Esquina izquierda horizontal
     (48, 96, 2),     # Borde horizontal
     (64, 96, 3),     # Esquina derecha horizontal
+    (128, 96, 1),     # Esquina izquierda horizontal
+    (144, 96, 2),     # Borde horizontal
+    (160, 96, 3),     # Esquina derecha horizontal
+    (224, 96, 1),     # Esquina izquierda horizontal
+    (240, 96, 2),     # Borde horizontal
+    (256, 96, 3),     # Esquina derecha horizontal
+    (320, 96, 1),     # Esquina izquierda horizontal
+    (336, 96, 2),     # Borde horizontal
+    (352, 96, 3),     # Esquina derecha horizontal
     (384, 96, 5),     # Borde vertical
     
 
