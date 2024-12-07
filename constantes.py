@@ -614,7 +614,22 @@ MAPA_2 = [
     # Fila 7
     (0, 128, 8),     # Borde vertical
     (16, 128, 2),     # Borde horizontal
-    (32, 128, 3),     # Borde horizontal
+    (32, 128, 3),     # Esquina derecha horizontal
+    (64, 128, 1),     # 
+    (80, 128, 2),     # 
+    (96, 128, 8),     # Esquina izquierda horizontal
+    (112, 128, 2),     # Borde horizontal
+    (128, 128, 3),     
+    (160, 128, 1),     # 
+    (176, 128, 2),     # 
+    (192, 128, 3),     # 
+    (224, 128, 1),     # Esquina izquierda horizontal
+    (240, 128, 2),     # Borde horizontal
+    (256, 128, 8),     # Cruce en T hacia arriba
+    (272, 128, 2),     # Borde horizontal
+    (288, 128, 3),     # Esquina izquierda horizontal
+    (352, 128, 1),     # Borde horizontal
+    (368, 128, 2),     # Esquina derecha horizontal
     (384, 128, 8),     # Borde vertical
 
     # fila 9
