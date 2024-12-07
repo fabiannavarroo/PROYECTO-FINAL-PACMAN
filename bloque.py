@@ -3,16 +3,30 @@ from constantes import *
 from puntos import Puntos
 
 class Bloque:
-    def __init__(self,):
-        # Lista de bloques
-        self.bloques = []
+    def __init__(self):
+        self.nivel = 1  # Nivel inicial
         self.celda_tamaño = 16
+        self.bloques = []
+        self.mapas = {  # Diccionario de mapas
+            1: MAPA_1,
+            2: MAPA_2,  # Segundo nivel (debes definir MAPA_2 en `constantes.py`)
+        }
+        self.cargar_mapa()  # Cargar el mapa del nivel inicial
 
-        # Crear bloques a partir de MAPA_1
-        for x, y, tipo in MAPA_1:
+    def cargar_mapa(self):
+        # Cargar los bloques correspondientes al nivel actual
+        self.bloques = []
+        for x, y, tipo in self.mapas[self.nivel]:
             sprite = self.obtener_sprite(tipo)  # Obtener el sprite correspondiente
             self.bloques.append((x, y, sprite))  # Almacenar solo coordenadas y sprite
 
+    def subir_nivel(self):
+        # Aumentar el nivel y cargar el nuevo mapa
+        if self.nivel + 1 in self.mapas:
+            self.nivel += 1
+            self.cargar_mapa()
+        else:
+            print("No hay más niveles disponibles.")  # Mensaje opcional si no hay más niveles
 
     def obtener_sprite(self, tipo):
         # Devuelve el sprite correspondiente al tipo
@@ -65,20 +79,15 @@ class Bloque:
         else:
             raise ValueError("Tipo de bloque no válido. Debe estar entre 1 y 23.")
 
-
     def colision(self, x, y):
         # Comprueba si hay un muro en la posición (x, y)
-
         sprite_tamaño = 16  # Tamaño del sprite
-
-        # Coordenadas de los puntos a verificar
         puntos_a_verificar = [
             (x, y),  # Esquina superior izquierda
             (x + sprite_tamaño - 1, y),  # Esquina superior derecha
             (x, y + sprite_tamaño - 1),  # Esquina inferior izquierda
             (x + sprite_tamaño - 1, y + sprite_tamaño - 1),  # Esquina inferior derecha
         ]
-
 
         # Verificar cada punto contra los bloques
         colision_detectada = False
@@ -90,7 +99,6 @@ class Bloque:
                 return True  # Colisión detectada
 
         return False  # No hay colisión
-
 
     def draw(self):
         # Dibuja todos los bloques
@@ -107,12 +115,7 @@ class Bloque:
             # Dibujar el sprite del bloque
             pyxel.blt(bloque_x, bloque_y, sprite_bank, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
 
-
-    def dibujar_letras_mapa(self, x , y, sprite):
+    def dibujar_letras_mapa(self, x, y, sprite):
         # Dibuja las letras en el mapa
-        sprite=TEXTO[sprite]
+        sprite = TEXTO[sprite]
         pyxel.blt(x, y, 0, sprite["Coordenadas"][0], sprite["Coordenadas"][1], sprite["Tamaño"][0], sprite["Tamaño"][1], colkey=0)
-
-
-
-
