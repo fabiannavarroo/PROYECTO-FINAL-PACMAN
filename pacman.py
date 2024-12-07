@@ -72,6 +72,7 @@ class Pacman:
         else:
             self.mostrar_puntos = False
 
+
     def colision_fantasmas(self, fantasmas, puntos):
         if self.en_muerte or self.reiniciando or self.vidas <= 0:
             return False
