@@ -121,12 +121,3 @@ class Tablero:
             pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio
         elif time.time() - self.tiempo_inicio > 2.7:
             self.dibujar_ready()
-
-    def subir_nivel(self):
-        # Aumentar el nivel del bloque
-        self.bloque.nivel += 1
-        if self.bloque.nivel in self.bloque.mapas:  # Si hay más niveles
-            self.bloque.cargar_mapa()
-            self.reiniciar_tablero()
-        else:
-            self.victoria = True
