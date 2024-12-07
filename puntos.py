@@ -176,7 +176,7 @@ class Puntos:
                 pos_x, y,
                 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0
             )
-            pos_x += sprite_w + 1  # Espacio entre los dígitos
+            pos_x += sprite_w + 1  # Espacio entre los numeros
 
 
     def dibujar_letras_mapa(self, x , y, sprite):
