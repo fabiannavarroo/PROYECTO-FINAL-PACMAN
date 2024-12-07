@@ -155,6 +155,31 @@ SPRITE_BLOQUE_21 = (8,80,1,16,16) # Borde derecha trampa fantasmas
 SPRITE_BLOQUE_22 = (40,80,1,16,16) # Borde izquierda trampa fantasmas
 SPRITE_BLOQUE_23 = (24,88,1,16,16) # Borde inferior trampa fantasma
 
+#BLOQUES NIVEL 2
+SPRITE_BLOQUE_1 = (0,0,1,16,16) # Esquina izquierda horizontal
+SPRITE_BLOQUE_2 = (8,0,1,16,16) # Borde horizontal
+SPRITE_BLOQUE_3 = (16,0,1,16,16) # Esquina derecha horizontal
+SPRITE_BLOQUE_4 = (48,0,1,16,16) # Esquina superior vertical
+SPRITE_BLOQUE_5 = (48,8,1,16,16) # Borde vertical
+SPRITE_BLOQUE_6 = (48,16,1,16,16) # Esquina inferior vertical
+SPRITE_BLOQUE_7 = (0,16,1,16,16) # Cruce en T hacia abajo
+SPRITE_BLOQUE_8 = (16,16,1,16,16) # Cruce en T hacia arriba
+SPRITE_BLOQUE_9 = (32,16,1,16,16) # Cruce en T hacia derecha
+SPRITE_BLOQUE_10 = (32,32,1,16,16) # Cruce en T hacia izquierda
+SPRITE_BLOQUE_11 = (0,32,1,16,16) # Borde esquina superior izquieda
+SPRITE_BLOQUE_12 = (16,32,1,16,16) # Borde esquina superior derecha
+SPRITE_BLOQUE_13 = (0,48,1,16,16) #  Borde esquina inferior izquieda
+SPRITE_BLOQUE_14 = (16,48,1,16,16) # Borde esquina inferior derecha
+SPRITE_BLOQUE_15 = (8,72,1,16,16) # Esquina izquierda superior trampa fantasmas
+SPRITE_BLOQUE_16 = (24,72,1,16,16) # Puerta salida de fantasmas
+SPRITE_BLOQUE_17 = (40,72,1,16,16) # Esquina derecha superior trampa fantasmas
+SPRITE_BLOQUE_18 = (8,88,1,16,16) # Esquina izquierda inferior trampa fantasmas
+SPRITE_BLOQUE_19 = (32,56,1,16,16) # Borde superior trampa fantasma
+SPRITE_BLOQUE_20 = (40,88,1,16,16) # Esquina derecha inferior trampa fantasmas
+SPRITE_BLOQUE_21 = (8,80,1,16,16) # Borde derecha trampa fantasmas
+SPRITE_BLOQUE_22 = (40,80,1,16,16) # Borde izquierda trampa fantasmas
+SPRITE_BLOQUE_23 = (24,88,1,16,16) # Borde inferior trampa fantasma
+
 #-----MAPA--------#
 MAPA_1 = [
     # fila 1
