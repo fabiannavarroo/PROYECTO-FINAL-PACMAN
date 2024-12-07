@@ -108,6 +108,7 @@ class Pacman:
             if abs(pacman_x - fantasma_x) < 16 and abs(pacman_y - fantasma_y) < 16:
                 if fantasma.asustado:
                     puntos.puntos += 200  # Añade puntos por comer un fantasma
+                    pyxel.text(pacman_x, pacman_y, "200 puntos", pyxel.COLOR_YELLOW)
                     fantasma.volver_a_trampa()  # Enviar fantasma a la trampa
                     return True
                 else:
