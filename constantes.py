@@ -154,7 +154,6 @@ SPRITE_BLOQUE_22 = (40,80,1,16,16) # Borde izquierda trampa fantasmas
 SPRITE_BLOQUE_23 = (24,88,1,16,16) # Borde inferior trampa fantasma
 
 #-----MAPA--------#
-MAPA = {1: MAPA_1, 2: MAPA_2}
 MAPA_1 = [
     # fila 1
     (0, 32, 11),      # Esquina superior izquierda
@@ -499,4 +498,6 @@ MAPA_1 = [
     (384, 384, 14),     # Esquina inferior derecha
 ]
 
+MAPA_2 = []
 
+MAPA = {1: MAPA_1, 2: MAPA_2}
