@@ -31,6 +31,7 @@ class Tablero:
         self.tiempo_inicio = time.time()
 
         # Controlar el mensaje GAME OVER
+        self.contador_game_over = 0
         self.mostrar_fin = False
 
         # Iniciar el bucle principal del juego
