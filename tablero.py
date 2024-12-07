@@ -57,6 +57,8 @@ class Tablero:
                 self.pacman.animar_muerte(self.fantasmas)
                 if not self.pacman.en_muerte:  # Cuando termina la animación de muerte
                     self.reiniciar_tablero()
+        else:
+            self.animar_fin()
         
 
     def draw(self):
