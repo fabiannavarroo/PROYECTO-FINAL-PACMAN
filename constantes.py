@@ -623,8 +623,8 @@ MAPA_2 = [
     (160, 128, 1),     # 
     (176, 128, 2),     # 
     (192, 128, 8),     # 
-    (224, 128, 1),     # Esquina izquierda horizontal
-    (240, 128, 2),     # Borde horizontal
+    (208, 128, 2),     # Esquina izquierda horizontal
+    (224, 128, 3),     # Borde horizontal
     (256, 128, 3),     # 
     (272, 128, 2),     # Borde horizontal
     (288, 128, 8),     # Esquina izquierda horizontal
