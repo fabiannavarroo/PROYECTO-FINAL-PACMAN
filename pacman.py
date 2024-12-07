@@ -13,6 +13,7 @@ class Pacman:
         self.animacion_frame = 0
         self.en_muerte = False  # Indica si Pac-Man está en animación de muerte
         self.reiniciando = False  # Estado para evitar colisiones durante el reinicio
+        self.fantasmas_comido = False
 
 
     def draw(self, fantasmas):
