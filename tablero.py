@@ -60,9 +60,8 @@ class Tablero:
                         self.reiniciar_tablero() # Reiniciar el tablero
                     else:
                         print("¡Has ganado! No hay más niveles disponibles.")
-                        pyxel.cls(0)  # Limpiar pantalla
-                        self.bloque.draw() # Dibujar el mapa
-                       
+                        self.victoria = True
+                        # Aquí puedes agregar lógica para terminar el juego o reiniciar niveles
             else:
                 # Ejecutar animación de muerte
                 self.pacman.animar_muerte(self.fantasmas)
