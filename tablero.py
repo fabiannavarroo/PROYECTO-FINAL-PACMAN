@@ -108,8 +108,11 @@ class Tablero:
         self.pacman.animacion_frame = 0  # Reiniciar animación de muerte
         for fantasma in self.fantasmas:
             fantasma.volver_a_posicion_inicial()  # Reiniciar posición de los fantasmas
+        self.puntos.comer_puntos()  # Detectar puntos comidos
+        self.puntos.comer_fruta()  # Detectar frutas comidas
+        self.puntos.generar_fruta()  # Generar frutas cada 30s
         if self.subir_nivel():
-            
+
 
     def animar_ready(self):
         # Animación del mensaje READY!
