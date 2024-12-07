@@ -35,9 +35,14 @@ class Pacman:
                     sprite_x, sprite_y = PACMAN_DERECHA_CERRADA
                 else:
                     sprite_x, sprite_y = PACMAN
-
+            # Dibujar Pac-Man
             pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
+
+            # Dibujar vidas
             self.ver_vidas(10, 10)
+
+            if self.colision_fantasmas(fantasmas, puntos):
+                pyxel.text(self.x, self.y, "200 puntos", pyxel.COLOR_CYAN)
 
 
     def mover(self,):
@@ -106,7 +111,6 @@ class Pacman:
             if abs(pacman_x - fantasma_x) < 16 and abs(pacman_y - fantasma_y) < 16:
                 if fantasma.asustado:
                     puntos.puntos += 200  # Añade puntos por comer un fantasma
-                    
                     fantasma.volver_a_trampa()  # Enviar fantasma a la trampa
                     return True
                 else:
