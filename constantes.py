@@ -724,7 +724,7 @@ MAPA_2 = [
 
     # Fila 15
     (0, 256, 11),      # Borde esquina superior izquierda
-    (16,266, )
+    (16,256, )
     
 ]
 
