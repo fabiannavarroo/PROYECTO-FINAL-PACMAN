@@ -53,7 +53,12 @@ class Tablero:
                 self.pacman.colision_fantasmas(self.fantasmas, self.puntos)  # Colisiones con fantasmas
                 # Comprobar si no quedan puntos ni regalos y sino quedan pues subimos de nivel
                 if self.puntos.comprobar_puntos_restantes():
-                    self.bloque.subir_nivel()
+                    if self.bloque.nivel + 1 in self.bloque.mapas:
+                        self.bloque.nivel += 1
+                        self.bloque.cargar_mapa()
+                    else:
+                        print("¡Has ganado! No hay más niveles disponibles.")
+                        # Aquí puedes agregar lógica para terminar el juego o reiniciar niveles
             else:
                 # Ejecutar animación de muerte
                 self.pacman.animar_muerte(self.fantasmas)
