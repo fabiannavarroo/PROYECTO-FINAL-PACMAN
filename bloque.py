@@ -21,54 +21,104 @@ class Bloque:
 
     def obtener_sprite(self, tipo):
         # Devuelve el sprite correspondiente al tipo
-        if tipo == 1:
-            return SPRITE_BLOQUE_1
-        elif tipo == 2:
-            return SPRITE_BLOQUE_2
-        elif tipo == 3:
-            return SPRITE_BLOQUE_3
-        elif tipo == 4:
-            return SPRITE_BLOQUE_4
-        elif tipo == 5:
-            return SPRITE_BLOQUE_5
-        elif tipo == 6:
-            return SPRITE_BLOQUE_6
-        elif tipo == 7:
-            return SPRITE_BLOQUE_7
-        elif tipo == 8:
-            return SPRITE_BLOQUE_8
-        elif tipo == 9:
-            return SPRITE_BLOQUE_9
-        elif tipo == 10:
-            return SPRITE_BLOQUE_10
-        elif tipo == 11:
-            return SPRITE_BLOQUE_11
-        elif tipo == 12:
-            return SPRITE_BLOQUE_12
-        elif tipo == 13:
-            return SPRITE_BLOQUE_13
-        elif tipo == 14:
-            return SPRITE_BLOQUE_14
-        elif tipo == 15:
-            return SPRITE_BLOQUE_15
-        elif tipo == 16:
-            return SPRITE_BLOQUE_16
-        elif tipo == 17:
-            return SPRITE_BLOQUE_17
-        elif tipo == 18:
-            return SPRITE_BLOQUE_18
-        elif tipo == 19:
-            return SPRITE_BLOQUE_19
-        elif tipo == 20:
-            return SPRITE_BLOQUE_20
-        elif tipo == 21:
-            return SPRITE_BLOQUE_21
-        elif tipo == 22:
-            return SPRITE_BLOQUE_22
-        elif tipo == 23:
-            return SPRITE_BLOQUE_23
+        if self.nivel == 1:
+            if tipo == 1:
+                return SPRITE_BLOQUE_1
+            elif tipo == 2:
+                return SPRITE_BLOQUE_2
+            elif tipo == 3:
+                return SPRITE_BLOQUE_3
+            elif tipo == 4:
+                return SPRITE_BLOQUE_4
+            elif tipo == 5:
+                return SPRITE_BLOQUE_5
+            elif tipo == 6:
+                return SPRITE_BLOQUE_6
+            elif tipo == 7:
+                return SPRITE_BLOQUE_7
+            elif tipo == 8:
+                return SPRITE_BLOQUE_8
+            elif tipo == 9:
+                return SPRITE_BLOQUE_9
+            elif tipo == 10:
+                return SPRITE_BLOQUE_10
+            elif tipo == 11:
+                return SPRITE_BLOQUE_11
+            elif tipo == 12:
+                return SPRITE_BLOQUE_12
+            elif tipo == 13:
+                return SPRITE_BLOQUE_13
+            elif tipo == 14:
+                return SPRITE_BLOQUE_14
+            elif tipo == 15:
+                return SPRITE_BLOQUE_15
+            elif tipo == 16:
+                return SPRITE_BLOQUE_16
+            elif tipo == 17:
+                return SPRITE_BLOQUE_17
+            elif tipo == 18:
+                return SPRITE_BLOQUE_18
+            elif tipo == 19:
+                return SPRITE_BLOQUE_19
+            elif tipo == 20:
+                return SPRITE_BLOQUE_20
+            elif tipo == 21:
+                return SPRITE_BLOQUE_21
+            elif tipo == 22:
+                return SPRITE_BLOQUE_22
+            elif tipo == 23:
+                return SPRITE_BLOQUE_23
+            else:
+                raise ValueError("Tipo de bloque no válido. Debe estar entre 1 y 23.")
         else:
-            raise ValueError("Tipo de bloque no válido. Debe estar entre 1 y 23.")
+            if tipo == 1:
+                return SPRITE_BLOQUE_1
+            elif tipo == 2:
+                return SPRITE_BLOQUE_2
+            elif tipo == 3:
+                return SPRITE_BLOQUE_3
+            elif tipo == 4:
+                return SPRITE_BLOQUE_4
+            elif tipo == 5:
+                return SPRITE_BLOQUE_5
+            elif tipo == 6:
+                return SPRITE_BLOQUE_6
+            elif tipo == 7:
+                return SPRITE_BLOQUE_7
+            elif tipo == 8:
+                return SPRITE_BLOQUE_8
+            elif tipo == 9:
+                return SPRITE_BLOQUE_9
+            elif tipo == 10:
+                return SPRITE_BLOQUE_10
+            elif tipo == 11:
+                return SPRITE_BLOQUE_11
+            elif tipo == 12:
+                return SPRITE_BLOQUE_12
+            elif tipo == 13:
+                return SPRITE_BLOQUE_13
+            elif tipo == 14:
+                return SPRITE_BLOQUE_14
+            elif tipo == 15:
+                return SPRITE_BLOQUE_15
+            elif tipo == 16:
+                return SPRITE_BLOQUE_16
+            elif tipo == 17:
+                return SPRITE_BLOQUE_17
+            elif tipo == 18:
+                return SPRITE_BLOQUE_18
+            elif tipo == 19:
+                return SPRITE_BLOQUE_19
+            elif tipo == 20:
+                return SPRITE_BLOQUE_20
+            elif tipo == 21:
+                return SPRITE_BLOQUE_21
+            elif tipo == 22:
+                return SPRITE_BLOQUE_22
+            elif tipo == 23:
+                return SPRITE_BLOQUE_23
+            else:
+                raise ValueError("Tipo de bloque no válido. Debe estar entre 1 y 23.")
 
 
     def colision(self, x, y):
