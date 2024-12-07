@@ -17,7 +17,7 @@ class Pacman:
         self.fantasmas_comido = False
         self.mostrar_puntos = False
         self.texto_tiempo_inicio = 0
-        self.posicion_fantasma_comido_x,self.self.posicion_fantasma_comido_y = 0,0
+        self.posicion_fantasma_comido_x,self.posicion_fantasma_comido_y = 0,0
          
 
 
