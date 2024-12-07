@@ -81,6 +81,7 @@ class Tablero:
             pyxel.cls(0)
             self.bloque.draw()
             self.pacman.animar_muerte(self.fantasmas)
+            self.animar_fin()
 
     def dibujar_ready(self):
         # Dibuja el mensaje READY! 
