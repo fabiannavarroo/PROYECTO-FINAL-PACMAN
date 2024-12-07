@@ -51,7 +51,7 @@ class Tablero:
                 self.pacman.colision_fantasmas(self.fantasmas, self.puntos)  # Colisiones con fantasmas
                 # Comprobar si no quedan puntos ni regalos y sino quedan pues subimos de nivel
                 if self.puntos.comprobar_puntos_restantes():
-                    self.bloque.subir_nivel()
+                    self.subir_nivel()
             else:
                 # Ejecutar animación de muerte
                 self.pacman.animar_muerte(self.fantasmas)
