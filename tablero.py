@@ -135,8 +135,8 @@ class Tablero:
         # Animación de GAME OVER
         tiempo_transcurrido = time.time() - self.tiempo_inicio
 
-        # Animar durante 5 segundos (parpadea en intervalos)
-        if tiempo_transcurrido <= 5:
+        # Animar durante 5 
+        if tiempo_transcurrido <= 2:
             if int(tiempo_transcurrido * 2) % 2 == 0:  # Alterna cada 0.5 segundos
                 self.fin()  # Mostrar el texto "GAME OVER"
             else:
