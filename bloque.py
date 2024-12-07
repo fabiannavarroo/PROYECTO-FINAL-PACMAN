@@ -23,7 +23,7 @@ class Bloque:
             self.nivel += 1
             self.cargar_mapa()
         else:
-            print("No hay más niveles disponibles.")  # Mensaje opcional si no hay más niveles
+            self.victoria = True
 
     def obtener_sprite(self, tipo):
         # Devuelve el sprite correspondiente al tipo
