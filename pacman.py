@@ -17,7 +17,7 @@ class Pacman:
         self.fantasmas_comido = False
         self.mostrar_puntos = False
         self.texto_tiempo_inicio = 0
-        self.posicionx,self.posiciony = 0,0
+        self.posicion_fantasma_comido_x,self.self.posicion_fantasma_comido_y = 0,0
          
 
 
@@ -50,7 +50,7 @@ class Pacman:
 
             # Mostrar puntos cuando come fantasmas
             if self.mostrar_puntos and time.time() - self.texto_tiempo_inicio < 2:  # Mostrar por 2 segundos
-                pyxel.text(self.posicionx, self.posiciony, "+200 puntos", pyxel.COLOR_CYAN)
+                pyxel.text(self.posicion_fantasma_comido_x, self.posicion_fantasma_comido_y, "+200 puntos", pyxel.COLOR_CYAN)
             else:
                 self.mostrar_puntos = False
 
@@ -104,7 +104,7 @@ class Pacman:
             self.x, self.y = PORTALES[(self.x, self.y)]
 
         if self.fantasmas_comido:
-            pyxel.text(self.posicionx, self.posiciony, "+200 puntos", pyxel.COLOR_CYAN)
+            pyxel.text(self.posicion_fantasma_comido_x, self.self.posicion_fantasma_comido_y, "+200 puntos", pyxel.COLOR_CYAN)
             self.fantasmas_comido = False
 
 
@@ -130,7 +130,7 @@ class Pacman:
                     self.fantasmas_comido = True
                     self.mostrar_puntos = True  # Poder mostrar puntos
                     self.texto_tiempo_inicio = time.time()  # Guarda el tiempo actual
-                    self.posicionx, self.posiciony = self.x, self.y
+                    self.posicion_fantasma_comido_x, self.self.posicion_fantasma_comido_y = self.x, self.y
                     fantasma.volver_a_trampa()  # Enviar fantasma a la trampa
                     return True
                 else:
