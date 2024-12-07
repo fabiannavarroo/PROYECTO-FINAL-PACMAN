@@ -46,7 +46,7 @@ class Pacman:
             # Dibujar vidas
             self.ver_vidas(10, 10)
 
-            # Mostrar puntos si el tiempo no ha expirado
+            # Mostrar puntos cuando come fantasmas
             if self.mostrar_puntos and time.time() - self.texto_tiempo_inicio < 2:  # Mostrar por 2 segundos
                 pyxel.text(self.x, self.y - 10, "200 puntos", pyxel.COLOR_YELLOW)
             else:
