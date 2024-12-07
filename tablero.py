@@ -130,5 +130,5 @@ class Tablero:
             self.fin()
         elif 1.3>time.time() - self.tiempo_inicio > 0.8:
             pyxel.blt(185, 208, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio 
-        elif 2>time.time() - self.tiempo_inicio > 1.3:
+        else:
             self.fin()
