@@ -26,8 +26,7 @@ class Tablero:
 
         # Controlar el mensaje READY!
         self.mostrar_ready = True  # Indica si se muestra el mensaje READY!
-        # Tiempo pasado desde el inicio del juego
-        self.tiempo_inicio = time.time()
+        self.contador_ready = 0
 
         # Controlar el mensaje GAME OVER
         self.contador_game_over = 0
@@ -38,7 +37,7 @@ class Tablero:
 
     def update(self):
         if self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
-            if self.contador_ready <= 90:
+            if self.contador_ready < 90:
                 self.contador_ready += 1 
                 if self.contador_ready == 90:
                     self.mostrar_ready = False  # Ocultar READY! después de 3 segundos
