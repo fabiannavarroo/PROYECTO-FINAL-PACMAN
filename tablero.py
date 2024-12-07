@@ -121,7 +121,7 @@ class Tablero:
             self.dibujar_ready()
         elif 2.7>time.time() - self.tiempo_inicio > 2:
             pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio
-        elif time.time() - self.tiempo_inicio > 2.7:
+        else:
             self.dibujar_ready()
 
     def animar_fin(self):
