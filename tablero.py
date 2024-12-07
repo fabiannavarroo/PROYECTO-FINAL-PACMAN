@@ -133,14 +133,14 @@ class Tablero:
 
     def animar_fin(self):
         # Animación de GAME OVER
-        tiempo_transcurrido = time.time() - self.tiempo_inicio
+        contador = 0
 
-        # Animar durante 5 
-        if tiempo_transcurrido <= 5:
-            if int(tiempo_transcurrido * 2) % 2 == 0:  # Alterna cada 0.5 segundos
+        while contador <= 90:
+            if int(contador * 2) % 2 == 0:  # Alterna cada 0.5 segundos
                 self.fin()  # Mostrar el texto "GAME OVER"
             else:
                 pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio
-        else:
-            # Mantener el texto visible después de 5 segundos
-            self.fin()
+            contador += 1
+
+        self.fin()
+
