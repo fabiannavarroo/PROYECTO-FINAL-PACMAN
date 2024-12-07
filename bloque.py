@@ -14,14 +14,14 @@ class Bloque:
     def cargar_mapa(self):
         # Cargar los bloques del nivel actual
         self.bloques = []
-        for x, y, tipo in self.mapas[str(self.nivel)]:
+        for x, y, tipo in self.mapas[self.nivel]:
             sprite = self.obtener_sprite(tipo)  # Obtener el sprite 
             self.bloques.append((x, y, sprite))  # Guardar solo coordenadas y sprite
 
 
     def subir_nivel(self):
         # Subir de nivel
-        self.nivel += 1
+        self.nivel = int(self.nivel + 1)
         self.cargar_mapa()
 
 
