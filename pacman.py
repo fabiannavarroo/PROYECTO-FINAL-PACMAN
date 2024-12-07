@@ -17,6 +17,8 @@ class Pacman:
         self.fantasmas_comido = False
         self.mostrar_puntos = False
         self.texto_tiempo_inicio = 0
+        self.posicionx,self.posiciony = 0,0
+         
 
 
 
@@ -128,6 +130,7 @@ class Pacman:
                     self.fantasmas_comido = True
                     self.mostrar_puntos = True  # Poder mostrar puntos
                     self.texto_tiempo_inicio = time.time()  # Guarda el tiempo actual
+                    
                     fantasma.volver_a_trampa()  # Enviar fantasma a la trampa
                     return True
                 else:
