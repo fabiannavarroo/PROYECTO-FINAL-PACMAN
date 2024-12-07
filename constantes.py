@@ -590,6 +590,14 @@ MAPA_2 = [
 
     # Fila 5
     (0, 96, 5),      # Borde vertical
+    (32, 96, 1),     # Esquina izquierda horizontal
+    (48, 96, 2),     # Borde horizontal
+    (64, 96, 3),     # Esquina derecha horizontal
+    (96, 96, 5),     # Borde vertical
+    (128, 96, 1),     # Esquina izquierda horizontal
+    (144, 96, 2),     # Borde horizontal
+    (160, 96, 3),     # Esquina derecha horizontal
+    (192, 96, 5),     # Borde vertical
     (384, 96, 5),     # Borde vertical
     
 
