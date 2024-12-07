@@ -30,6 +30,9 @@ class Tablero:
         # Tiempo pasado desde el inicio del juego
         self.tiempo_inicio = time.time()
 
+        # Controlar el mensaje GAME OVER
+        self.mostrar_fin = False
+
         # Iniciar el bucle principal del juego
         pyxel.run(self.update, self.draw)
 
