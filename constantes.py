@@ -129,6 +129,8 @@ ZONAS_PROHIBIDAS = [(0,0,384,16), (112,160,272,256),(32,64,64,96),(96,64,160,96)
                     (320,64,352,96), (0,160,80, 256), (304, 160,384, 256),(192, 304,192, 304)] # Zonas prohibidas para generar puntos
 
 #-----BLOQUES--------#
+
+#BLOQUES NIVEL 1
 SPRITE_BLOQUE_1 = (0,0,1,16,16) # Esquina izquierda horizontal
 SPRITE_BLOQUE_2 = (8,0,1,16,16) # Borde horizontal
 SPRITE_BLOQUE_3 = (16,0,1,16,16) # Esquina derecha horizontal
