@@ -1,3 +1,5 @@
+from constantes import *
+import pyxel
 import time
 
 class Pacman:
@@ -15,6 +17,7 @@ class Pacman:
         self.fantasmas_comido = False
         self.mostrar_puntos = False
         self.texto_tiempo_inicio = 0
+
 
     def mover(self):
         if self.vidas <= 0 or self.en_muerte or self.reiniciando:
