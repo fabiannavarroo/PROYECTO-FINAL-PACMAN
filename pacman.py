@@ -50,7 +50,7 @@ class Pacman:
 
             # Mostrar puntos cuando come fantasmas
             if self.mostrar_puntos and time.time() - self.texto_tiempo_inicio < 2:  # Mostrar por 2 segundos
-                pyxel.text(self.posicion_fantasma_comido_x, self.posicion_fantasma_comido_y, "+200 puntos", pyxel.COLOR_CYAN)
+                pyxel.text(self.posicion_fantasma_comido_x, self.posicion_fantasma_comido_y, "+200 puntos", pyxel.COLOR_RED)
             else:
                 self.mostrar_puntos = False
 
