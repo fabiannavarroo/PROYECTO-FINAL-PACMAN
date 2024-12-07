@@ -27,7 +27,7 @@ class Tablero:
         # Controlar el mensaje READY!
         self.mostrar_ready = True  # Indica si se muestra el mensaje READY!
         self.contador_ready = 90  # Duración del mensaje READY!
-
+        # Tiempo pasado desde el inicio del juego
         self.tiempo_inicio = time.time()
 
         # Iniciar el bucle principal del juego
