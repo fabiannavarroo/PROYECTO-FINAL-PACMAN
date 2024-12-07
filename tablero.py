@@ -49,6 +49,7 @@ class Tablero:
                 for fantasma in self.fantasmas:
                     fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
                 self.pacman.colision_fantasmas(self.fantasmas, self.puntos)  # Colisiones con fantasmas
+                # Comprobar si no quedan puntos ni regalos y sino quedan pues subimos de nivel
                 if self.puntos.comprobar_puntos_restantes():
                     self.bloque.subir_nivel()
             else:
