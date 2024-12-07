@@ -154,6 +154,11 @@ class Puntos:
             self.posicion_actual = None  # Elimina la fruta actual
             self.fruta_actual = None
 
+    def comprobar_puntos_restantes(self):
+        # Verifica si no quedan puntos ni regalos
+        if len(self.lista_puntos) == 0 and len(self.regalos) == 0:
+            return True
+        return False
 
     def ver_puntuacion(self, x, y):
         # Cambia el color solo cuando se supera un nuevo múltiplo de 500
