@@ -4,7 +4,7 @@ from puntos import Puntos
 
 class Bloque:
     def __init__(self):
-        self.nivel = 2  # Nivel inicial
+        self.nivel = 1  # Nivel inicial
         self.celda_tamaño = 16
         self.bloques = []
         self.mapas = MAPA
