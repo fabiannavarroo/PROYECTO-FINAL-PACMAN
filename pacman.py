@@ -50,7 +50,7 @@ class Pacman:
 
             # Mostrar puntos cuando come fantasmas
             if self.mostrar_puntos and time.time() - self.texto_tiempo_inicio < 2:  # Mostrar por 2 segundos
-                pyxel.text(self.x, self.y - 10, "+200 puntos", pyxel.COLOR_CYAN)
+                pyxel.text(self.posicionx, self.posiciony, "+200 puntos", pyxel.COLOR_CYAN)
             else:
                 self.mostrar_puntos = False
 
@@ -130,15 +130,12 @@ class Pacman:
                     self.fantasmas_comido = True
                     self.mostrar_puntos = True  # Poder mostrar puntos
                     self.texto_tiempo_inicio = time.time()  # Guarda el tiempo actual
-                    
+                    self.posicionx, self.posiciony = self.x, self.y
                     fantasma.volver_a_trampa()  # Enviar fantasma a la trampa
                     return True
-                
                 else:
                     self.perder_vida()  # Pac-Man pierde una vida
                     return True
-                
-                self.posicionx, self.posiciony = self.x, self.y
 
         return False  # No hay colision
 
