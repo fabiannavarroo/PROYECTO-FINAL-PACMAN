@@ -191,6 +191,13 @@ class Puntos:
         pyxel.blt(x, y, 0, sprite["Coordenadas"][0], sprite["Coordenadas"][1], sprite["Tamaño"][0], sprite["Tamaño"][1], colkey=0)
 
 
+    def reiniciar_puntos(self):
+        # Reinica los puntos
+        self.regalos = [(16, 304), (368, 304), (16, 80),(368, 80)] # Coordenadas de los regalos
+        self.lista_puntos = [] # Lista de puntos generados
+        self.generar_puntos()
+
+
 
 
     
