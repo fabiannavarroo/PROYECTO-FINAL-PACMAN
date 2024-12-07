@@ -533,7 +533,7 @@ MAPA_2 = [
     (48, 32, 2),     # Borde horizontal
     (64, 32, 2),     # Borde horizontal
     (80, 32, 2),     # Borde horizontal
-    (96, 32, 2),     # Borde horizontal
+    (96, 32, 7),     # Cruce en T hacia abajo
     (112, 32, 2),     # Borde horizontal
     (128, 32, 2),     # Borde horizontal
     (144, 32, 2),     # Borde horizontal
