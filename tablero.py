@@ -120,8 +120,8 @@ class Tablero:
 
     def animar_ready(self):
         # Animación del mensaje READY!
-        if self.contador_game_over < 90:  # Animar durante 5 segundos
-            if (self.contador_game_over // 10) % 2 == 0:
+        if self.contador_ready < 90:  # Duración de la animación
+            if (self.contador_ready // 10) % 2 == 0:
                 self.dibujar_ready()  # Mostrar el texto "READY!"
             else:
                 pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio
