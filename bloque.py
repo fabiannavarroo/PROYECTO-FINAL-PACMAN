@@ -8,8 +8,7 @@ class Bloque:
         self.celda_tamaño = 16
         self.bloques = []
         self.mapas = MAPA
-        self.cargar_mapa()  # Cargar el mapa del nivel inicial
-        self.victoria = False 
+        self.cargar_mapa()  # Cargar el mapa del nivel inicial 
 
     def cargar_mapa(self):
         # Cargar los bloques del nivel actual
