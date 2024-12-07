@@ -559,6 +559,13 @@ MAPA_2 = [
     (192, 48, 5),     # Borde vertical
     (288, 48, 5),     # Borde vertical
     (384, 48, 5),     # Borde vertical
+
+    # Fila 3
+    (0, 64, 5),      # Borde vertical
+    (96, 64, 5),     # Borde vertical
+    (192, 64, 5),     # Borde vertical
+    (288, 64, 5),     # Borde vertical
+    (384, 64, 5),     # Borde vertical
     
 
 
