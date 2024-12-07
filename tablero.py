@@ -108,8 +108,8 @@ class Tablero:
         self.pacman.animacion_frame = 0  # Reiniciar animación de muerte
         for fantasma in self.fantasmas:
             fantasma.volver_a_posicion_inicial()  # Reiniciar posición de los fantasmas
-        self.puntos.draw()  # Dibujar puntos, frutas y puntuación
         if self.subir_nivel():
+            self.puntos.draw()  # Dibujar puntos, frutas y puntuación
 
 
     def animar_ready(self):
