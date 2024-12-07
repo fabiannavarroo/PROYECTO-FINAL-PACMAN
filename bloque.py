@@ -18,13 +18,6 @@ class Bloque:
             sprite = self.obtener_sprite(tipo)  # Obtener el sprite 
             self.bloques.append((x, y, sprite))  # Guardar solo coordenadas y sprite
 
-    def subir_nivel(self):
-        # Aumentar el nivel y cargar el nuevo mapa
-        if self.nivel + 1 in self.mapas:
-            self.nivel += 1
-            self.cargar_mapa()
-        else:
-            self.victoria = True
 
     def obtener_sprite(self, tipo):
         # Devuelve el sprite correspondiente al tipo
