@@ -1,5 +1,6 @@
 from constantes import *
 import pyxel
+import time
 
 class Pacman:
     def __init__(self, x, y, bloque):
@@ -44,6 +45,13 @@ class Pacman:
 
             # Dibujar vidas
             self.ver_vidas(10, 10)
+
+            # Mostrar puntos si el tiempo no ha expirado
+            if self.mostrar_puntos and time.time() - self.texto_tiempo_inicio < 2:  # Mostrar por 2 segundos
+                pyxel.text(self.x, self.y - 10, "200 puntos", pyxel.COLOR_YELLOW)
+            else:
+                self.mostrar_puntos = False
+
 
 
     def mover(self,):
