@@ -57,6 +57,7 @@ class Tablero:
                 self.pacman.animar_muerte(self.fantasmas)
                 if not self.pacman.en_muerte:  # Cuando termina la animación de muerte
                     self.reiniciar_tablero()
+        
 
     def draw(self):
         pyxel.cls(0)  # Limpiar pantalla
@@ -76,6 +77,7 @@ class Tablero:
         else:
             # Mostrar GAME OVER si no hay vidas
             pyxel.cls(0)
+            self.pacman.animar_muerte(self.fantasmas)
             self.bloque.draw()
             self.fin()
 
