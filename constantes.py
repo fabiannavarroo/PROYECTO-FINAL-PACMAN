@@ -126,7 +126,7 @@ REFRESH = 4
 REFRESH_REGALOS = 35
 TEXTO_MUERTE = ["Te has quedado sin vidas", "(ESC)Salir"]
 ZONAS_PROHIBIDAS = [(0,0,384,16), (112,160,272,256),(32,64,64,96),(96,64,160,96), (224,64,288,96),
-                    (320,64,352,96), (0,160,80, 256), (304, 160,384, 256),(192, 304,192, 304),(0,0,400,325)] # Zonas prohibidas para generar puntos
+                    (320,64,352,96), (0,160,80, 256), (304, 160,384, 256),(192, 304,192, 304),(0,0,400,352)] # Zonas prohibidas para generar puntos
 
 #-----BLOQUES--------#
 SPRITE_BLOQUE_1 = (0,0,1,16,16) # Esquina izquierda horizontal
