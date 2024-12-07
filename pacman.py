@@ -103,7 +103,7 @@ class Pacman:
             return False
 
         # Calcular las posiciones centrales de Pac-Man y los fantasmas
-        pacman_x = self.x + 16  # Centrar la posición de Pac-Man
+        pacman_x = self.x + 16  
         pacman_y = self.y + 16
 
         for fantasma in fantasmas:
