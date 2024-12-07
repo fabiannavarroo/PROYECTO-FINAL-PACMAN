@@ -93,6 +93,10 @@ class Tablero:
             # Dibujar READY! si está activo
             if self.mostrar_ready:
                 self.animar_ready()
+            
+            # Dibujar la victoria
+            if self.victoria:
+                self.animar_victoria()
         else:
             # Mostrar GAME OVER si no hay vidas
             pyxel.cls(0)
