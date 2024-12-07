@@ -566,7 +566,7 @@ MAPA_2 = [
     (0, 64, 5),      # Borde vertical
     (32, 64, 1),     # Esquina izquierda horizontal
     (48, 64, 2),     # Borde horizontal
-    (64, 64, 3),     # Borde horizontal
+    (64, 64, 3),     # Esquina derecha horizontal
     (96, 64, 5),     # Borde vertical
     (192, 64, 5),     # Borde vertical
     (288, 64, 5),     # Borde vertical
