@@ -54,13 +54,13 @@ class Tablero:
                 # Comprobar si no quedan puntos ni regalos y sino quedan pues subimos de nivel
                 if self.puntos.comprobar_puntos_restantes():
                     if self.bloque.nivel + 1 in self.bloque.mapas:
-                        self.bloque.nivel += 1
-                        self.bloque.cargar_mapa()
-                        self.puntos.reiniciar_puntos()
-                        self.reiniciar_tablero()
+                        self.bloque.nivel += 1 # Subir de nivel
+                        self.bloque.cargar_mapa() # Cargar el mapa del nuevo nivel
+                        self.puntos.reiniciar_puntos() # Reiniciar los puntos
+                        self.reiniciar_tablero() # Reiniciar el tablero
                     else:
-                        print("¡Has ganado! No hay más niveles disponibles.")
-                        # Aquí puedes agregar lógica para terminar el juego o reiniciar niveles
+                        pyxel.cls(0)
+                        self.bloque.draw()
             else:
                 # Ejecutar animación de muerte
                 self.pacman.animar_muerte(self.fantasmas)
