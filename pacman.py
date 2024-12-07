@@ -130,9 +130,10 @@ class Pacman:
                     self.fantasmas_comido = True
                     self.mostrar_puntos = True  # Poder mostrar puntos
                     self.texto_tiempo_inicio = time.time()  # Guarda el tiempo actual
-                    self.posicionx, self.posiciony = self.x, self.y
+                    
                     fantasma.volver_a_trampa()  # Enviar fantasma a la trampa
                     return True
+                self.posicionx, self.posiciony = self.x, self.y
                 else:
                     self.perder_vida()  # Pac-Man pierde una vida
                     return True
