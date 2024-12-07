@@ -622,7 +622,7 @@ MAPA_2 = [
     (128, 128, 3),     
     (160, 128, 1),     # 
     (176, 128, 2),     # 
-    (192, 128, 3),     # 
+    (192, 128, 8),     # 
     (224, 128, 1),     # Esquina izquierda horizontal
     (240, 128, 2),     # Borde horizontal
     (256, 128, 8),     # Cruce en T hacia arriba
