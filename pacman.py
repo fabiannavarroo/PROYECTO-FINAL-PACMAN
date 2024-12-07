@@ -111,7 +111,7 @@ class Pacman:
             fantasma_y = fantasma.y + 8
 
             # Detectar si hay colisión 
-            if abs(pacman_x - fantasma_x) < 16 and abs(pacman_y - fantasma_y) < 16:
+            if (pacman_x == fantasma_x) and (pacman_y == fantasma_y) :
                 if fantasma.asustado:
                     puntos.puntos += 200  # Añade puntos por comer un fantasma
                     self.fantasmas_comido = True
