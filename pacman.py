@@ -41,9 +41,6 @@ class Pacman:
             # Dibujar vidas
             self.ver_vidas(10, 10)
 
-            if self.colision_fantasmas(fantasmas, puntos):
-                pyxel.text(self.x, self.y, "200 puntos", pyxel.COLOR_CYAN)
-
 
     def mover(self,):
         if self.vidas <= 0 or self.en_muerte or self.reiniciando:  # Si no hay vidas, está en muerte o reiniciando, no se mueve
