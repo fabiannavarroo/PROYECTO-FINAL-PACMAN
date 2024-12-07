@@ -613,6 +613,8 @@ MAPA_2 = [
 
     # Fila 7
     (0, 128, 8),     # Borde vertical
+    (16, 128, 2),     # Borde horizontal
+    (32, 128, 3),     # Borde horizontal
     (384, 128, 8),     # Borde vertical
 
     # fila 9
