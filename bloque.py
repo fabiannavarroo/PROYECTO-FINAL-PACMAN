@@ -19,12 +19,6 @@ class Bloque:
             self.bloques.append((x, y, sprite))  # Guardar solo coordenadas y sprite
 
 
-    def subir_nivel(self):
-        # Subir de nivel
-        self.nivel = int(self.nivel + 1)
-        self.cargar_mapa()
-
-
     def obtener_sprite(self, tipo):
         # Devuelve el sprite correspondiente al tipo
         if tipo == 1:
