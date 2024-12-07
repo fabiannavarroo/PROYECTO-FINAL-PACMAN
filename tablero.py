@@ -63,8 +63,10 @@ class Tablero:
                     self.reiniciar_tablero()
                 
         else:
-            self.mostrar_fin = True
-            self.animar_fin()
+            if not self.mostrar_fin:
+                self.mostrar_fin = True
+                self.contador_game_over = 0  # Reiniciar el contador al inicio
+            self.contador_game_over += 1
         
 
     def draw(self):
