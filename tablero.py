@@ -79,6 +79,7 @@ class Tablero:
             pyxel.cls(0)
             self.bloque.draw()
             self.pacman.animar_muerte(self.fantasmas)
+            time.sleep(1)
             self.fin()
 
     def dibujar_ready(self):
