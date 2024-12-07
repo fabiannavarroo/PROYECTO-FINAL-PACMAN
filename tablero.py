@@ -129,4 +129,4 @@ class Tablero:
             self.bloque.cargar_mapa()
             self.reiniciar_tablero()
         else:
-            self.fin_del_juego()
+            self.victoria = True
