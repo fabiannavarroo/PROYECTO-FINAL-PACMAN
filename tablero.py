@@ -32,6 +32,9 @@ class Tablero:
         self.contador_game_over = 0
         self.mostrar_fin = False
 
+        # Controlar la victoria
+        self.victoria = False
+
         # Iniciar el bucle principal del juego
         pyxel.run(self.update, self.draw)
 
