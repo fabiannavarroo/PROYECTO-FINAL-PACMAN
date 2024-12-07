@@ -136,7 +136,7 @@ class Tablero:
 
     def animar_fin(self):
         # Animación de GAME OVER
-        if self.contador_game_over < 150:  # Animar durante 5 segundos
+        if self.contador_game_over < 90:  # Animar durante 5 segundos
             if (self.contador_game_over // 10) % 2 == 0:  # Alternar cada 0.5 segundos
                 self.fin()  # Mostrar el texto "GAME OVER"
             else:
