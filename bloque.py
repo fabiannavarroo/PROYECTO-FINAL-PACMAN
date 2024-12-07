@@ -10,6 +10,7 @@ class Bloque:
         self.mapas = MAPA
         self.cargar_mapa()  # Cargar el mapa del nivel inicial 
 
+
     def cargar_mapa(self):
         # Cargar los bloques del nivel actual
         self.bloques = []
@@ -22,6 +23,7 @@ class Bloque:
         # Subir de nivel
         self.nivel += 1
         self.cargar_mapa()
+
 
     def obtener_sprite(self, tipo):
         # Devuelve el sprite correspondiente al tipo
@@ -74,6 +76,7 @@ class Bloque:
         else:
             raise ValueError("Tipo de bloque no válido. Debe estar entre 1 y 23.")
 
+
     def colision(self, x, y):
         # Comprueba si hay un muro en la posición (x, y)
         sprite_tamaño = 16  # Tamaño del sprite
@@ -95,6 +98,7 @@ class Bloque:
 
         return False  # No hay colisión
 
+
     def draw(self):
         # Dibuja todos los bloques
         for bloque in self.bloques:
@@ -109,6 +113,7 @@ class Bloque:
 
             # Dibujar el sprite del bloque
             pyxel.blt(bloque_x, bloque_y, sprite_bank, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
+
 
     def dibujar_letras_mapa(self, x, y, sprite):
         # Dibuja las letras en el mapa
