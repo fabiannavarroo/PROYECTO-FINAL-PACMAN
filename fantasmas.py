@@ -1,5 +1,6 @@
 import pyxel
 from constantes import *
+import random  
 import time
 
 class Fantasma:
@@ -108,6 +109,19 @@ class FantasmaRosa(Fantasma):
 class FantasmaAzul(Fantasma):
     def __init__(self, x, y):
         super().__init__(x, y, FANTASMA_AZUL)
+
+    def mover(self):
+        # Movimiento errático, semi-aleatorio
+        if random.random() < 0.5:
+            if self.pacman.x > self.x and not self.bloque.colision(self.x + self.velocidad, self.y):
+                self.x += self.velocidad
+            elif self.pacman.x < self.x and not self.bloque.colision(self.x - self.velocidad, self.y):
+                self.x -= self.velocidad
+        else:
+            if self.pacman.y > self.y and not self.bloque.colision(self.x, self.y + self.velocidad):
+                self.y += self.velocidad
+            elif self.pacman.y < self.y and not self.bloque.colision(self.x, self.y - self.velocidad):
+                self.y -= self.velocidad
 
 class FantasmaNaranja(Fantasma):
     def __init__(self, x, y):
