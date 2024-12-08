@@ -210,6 +210,7 @@ SPRITE_BLOQUE_20_2 = (112,88,1,16,16) # Esquina derecha inferior trampa fantasma
 SPRITE_BLOQUE_21_2 = (80,80,1,16,16) # Borde izquierda trampa fantasmas 
 SPRITE_BLOQUE_22_2 = (112,80,1,16,16) # Borde derecha trampa fantasmas
 SPRITE_BLOQUE_23_2 = (96,88,1,16,16) # Borde inferior trampa fantasma
+SPRITE_BLOQUE_24_2 = (112,104,1,16,16) # Cubo
 
 #-----MAPA--------#
 MAPA_1 = [
