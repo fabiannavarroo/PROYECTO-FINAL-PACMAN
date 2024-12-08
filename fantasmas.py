@@ -90,6 +90,21 @@ class FantasmaRosa(Fantasma):
     def __init__(self, x, y):
         super().__init__(x, y, FANTASMA_ROSA)
 
+    def mover(self):
+        # Predice la posición futura de Pac-Man
+        pred_x = self.pacman.x + 16 * (self.pacman.direccion_actual == PACMAN_DERECHA) - 16 * (self.pacman.direccion_actual == PACMAN_IZQUIERDA)
+        pred_y = self.pacman.y + 16 * (self.pacman.direccion_actual == PACMAN_ABAJO) - 16 * (self.pacman.direccion_actual == PACMAN_ARRIBA)
+
+        if pred_x > self.x and not self.bloque.colision(self.x + self.velocidad, self.y):
+            self.x += self.velocidad
+        elif pred_x < self.x and not self.bloque.colision(self.x - self.velocidad, self.y):
+            self.x -= self.velocidad
+
+        if pred_y > self.y and not self.bloque.colision(self.x, self.y + self.velocidad):
+            self.y += self.velocidad
+        elif pred_y < self.y and not self.bloque.colision(self.x, self.y - self.velocidad):
+            self.y -= self.velocidad
+
 class FantasmaAzul(Fantasma):
     def __init__(self, x, y):
         super().__init__(x, y, FANTASMA_AZUL)
