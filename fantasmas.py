@@ -77,6 +77,10 @@ class Fantasma:
 
 # Fantasma Rojo: Persigue directamente a Pac-Man
 class FantasmaRojo(Fantasma):
+
+    def __init__(self, x, y, pacman, bloque):
+        super().__init__(x, y, pacman, bloque, FANTASMA_ROJO)
+
     def mover(self):
         if self.en_trampa:
             self.mover_fuera_de_trampa()
@@ -86,6 +90,9 @@ class FantasmaRojo(Fantasma):
 
 # Fantasma Rosa: Intenta anticipar los movimientos de Pac-Man
 class FantasmaRosa(Fantasma):
+    def __init__(self, x, y, pacman, bloque):
+        super().__init__(x, y, pacman, bloque, FANTASMA_ROSA)
+
     def mover(self):
         if self.en_trampa:
             self.mover_fuera_de_trampa()
@@ -98,6 +105,10 @@ class FantasmaRosa(Fantasma):
 
 # Fantasma Azul: Movimiento errático
 class FantasmaAzul(Fantasma):
+
+    def __init__(self, x, y, pacman, bloque):
+        super().__init__(x, y, pacman, bloque, FANTASMA_AZUL)
+
     def mover(self):
         if self.en_trampa:
             self.mover_fuera_de_trampa()
@@ -110,6 +121,10 @@ class FantasmaAzul(Fantasma):
 
 # Fantasma Naranja: Movimiento aleatorio con tendencia hacia Pac-Man
 class FantasmaNaranja(Fantasma):
+    def __init__(self, x, y, pacman, bloque):
+        super().__init__(x, y, pacman, bloque, FANTASMA_NARANJA)
+
+    
     def mover(self):
         if self.en_trampa:
             self.mover_fuera_de_trampa()
