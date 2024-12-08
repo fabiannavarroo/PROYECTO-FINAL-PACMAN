@@ -147,7 +147,7 @@ class Puntos:
 
     def detectar_colision(self, pacman_x, pacman_y, punto_x, punto_y):
         # Detecta si Pac-Man ha comido un punto
-        return abs(pacman_x - punto_x) < 8 and abs(pacman_y - punto_y) < 8
+        return abs(pacman_x - punto_x) < 10 and abs(pacman_y - punto_y) < 10
 
 
     def comer_fruta(self):
