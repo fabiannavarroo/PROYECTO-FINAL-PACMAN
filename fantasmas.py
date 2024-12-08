@@ -31,9 +31,8 @@ class Fantasma:
         self.tiempo_asustado = time.time()
 
     def volver_a_trampa(self):
-        """
-        Enviar al fantasma de vuelta a la trampa
-        """
+        
+        # Enviar al fantasma de vuelta a la trampa
         self.en_trampa = True
         if isinstance(self, FantasmaRojo):
             self.x, self.y = 158, 208
