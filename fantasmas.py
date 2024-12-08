@@ -121,9 +121,9 @@ class FantasmaAzul(Fantasma):
 
 # Fantasma Naranja: Movimiento aleatorio con tendencia hacia Pac-Man
 class FantasmaNaranja(Fantasma):
+    
     def __init__(self, x, y, pacman, bloque):
         super().__init__(x, y, pacman, bloque, FANTASMA_NARANJA)
-
     
     def mover(self):
         if self.en_trampa:
