@@ -2,148 +2,122 @@ import pyxel
 from constantes import *
 import random  
 import time
+import random
+import time
+from constantes import *
 
 class Fantasma:
-    def __init__(self, x, y, sprites):
+    def __init__(self, x, y, sprites, bloque, pacman):
         self.x = x
         self.y = y
         self.velocidad = 1.5
         self.x_inicial = x  # Guardar posición inicial
         self.y_inicial = y  # Guardar posición inicial
         self.sprites = sprites
-        self.direccion_actual = "DERECHA"  # Dirección inicial
-        self.asustado = False  # Indica si está en estado asustado
+        self.bloque = bloque  # Referencia al mapa del juego
+        self.pacman = pacman  # Referencia a Pac-Man
+        self.direccion_actual = None  # Dirección actual del fantasma
+        self.asustado = False  # Indica si el fantasma está en estado asustado
+        self.en_trampa = True  # Indica si el fantasma está atrapado
+        self.tiempo_trampa = time.time()  # Temporizador inicial para salir de la trampa
         self.tiempo_asustado = 0  # Temporizador para estado asustado
-        self.tiempo_para_ser_comido = 10  # Duración por defecto del estado asustado
-        self.en_trampa = True  # Inicia en la trampa
-        self.tiempo_salida_trampa = time.time()  # Temporizador para salir de la trampa
+        self.tiempo_para_salir = 3  # Tiempo que el fantasma debe esperar para salir de la trampa
 
     def activar_asustado(self):
+        # Activa el estado asustado del fantasma
         self.asustado = True
         self.tiempo_asustado = time.time()
 
-
     def volver_a_trampa(self):
-        # Volver a la trampa cuando Pac-Man lo coma
+        # Enviar al fantasma de vuelta a la trampa
         self.en_trampa = True
         self.x, self.y = self.x_inicial, self.y_inicial
-        self.tiempo_salida_trampa = time.time()
         self.asustado = False
+        self.tiempo_trampa = time.time()  # Reiniciar el temporizador de trampa
 
-
-    def actualizar_estado(self):
-        # Si está en la trampa, verifica si puede salir después de 3 segundos
-        if self.en_trampa:
-            if time.time() - self.tiempo_salida_trampa >= 3:
-                self.en_trampa = False
-
-        # Verifica si se termina el estado asustado, si no es así, se mueve mas lento
-        if self.asustado:
-            self.velocidad = 1
-            tiempo_restante = self.tiempo_para_ser_comido - (time.time() - self.tiempo_asustado)
-            if tiempo_restante <= 0:
-                self.asustado = False
-
-
-    def obtener_direcciones_validas(self, bloque):
-        # Calcula las direcciones posibles desde la posición actual
-        direcciones = []
-        if not bloque.colision(self.x + self.velocidad, self.y):
-            direcciones.append("DERECHA")
-        if not bloque.colision(self.x - self.velocidad, self.y):
-            direcciones.append("IZQUIERDA")
-        if not bloque.colision(self.x, self.y + self.velocidad):
-            direcciones.append("ABAJO")
-        if not bloque.colision(self.x, self.y - self.velocidad):
-            direcciones.append("ARRIBA")
-        return direcciones
-   
-   
-    def volver_a_posicion_inicial(self):
-        #Restaura la posición inicial del fantasma
-        self.x = self.x_inicial
-        self.y = self.y_inicial
-        self.asustado = False
-        self.en_trampa = False
-
-
-
-    def mover(self, pacman, bloque):
-        if self.en_trampa:  # No se mueve si está en la trampa
+    def mover_fuera_de_trampa(self):
+        # Maneja la salida de la trampa después de esperar el tiempo necesario
+        if time.time() - self.tiempo_trampa >= self.tiempo_para_salir:
+            self.en_trampa = False
+        else:
+            # Mantenerse dentro de la trampa
             return
 
-        # Obtener dirección hacia Pac-Man o aleatoria si no puede avanzar
-        direcciones_validas = self.obtener_direcciones_validas(bloque)
-        if direcciones_validas:
-            if pacman.x > self.x and "DERECHA" in direcciones_validas:
-                self.x += self.velocidad
-                self.direccion_actual = "DERECHA"
-            elif pacman.x < self.x and "IZQUIERDA" in direcciones_validas:
-                self.x -= self.velocidad
-                self.direccion_actual = "IZQUIERDA"
-            elif pacman.y > self.y and "ABAJO" in direcciones_validas:
-                self.y += self.velocidad
-                self.direccion_actual = "ABAJO"
-            elif pacman.y < self.y and "ARRIBA" in direcciones_validas:
-                self.y -= self.velocidad
-                self.direccion_actual = "ARRIBA"
-            else:
-                # Si no puede moverse directamente, elige otra dirección válida
-                self.direccion_actual = random.choice(direcciones_validas)
-
-        # Avanzar en la dirección actual
-        if self.direccion_actual == "DERECHA":
-            self.x += self.velocidad
-        elif self.direccion_actual == "IZQUIERDA":
-            self.x -= self.velocidad
-        elif self.direccion_actual == "ABAJO":
-            self.y += self.velocidad
-        elif self.direccion_actual == "ARRIBA":
-            self.y -= self.velocidad
-
+    def mover(self):
+        pass  # Este método será sobrescrito en cada subclase según su lógica
 
     def draw(self):
-        #Dibuja el fantasma en su estado actual.
+        # Dibuja al fantasma, alternando sprites si está asustado
         if self.asustado:
-            # Alternar entre azul y blanco si está asustado
             if pyxel.frame_count // REFRESH % 2 == 0:
                 sprite = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
             else:
                 sprite = FANTASMAS_ASUSTADOS["BLANCO"]["Coordenadas"]
         else:
-            sprite = self.sprites[self.direccion_actual]  # Usar sprite según dirección
+            sprite = self.sprites[self.direccion_actual]  # Seleccionar sprite según dirección
 
-        # Dibuja el fantasma
         pyxel.blt(self.x, self.y, 0, sprite[0], sprite[1], 16, 16, colkey=0)
 
+    def mover_en_direccion(self, dx, dy):
+        # Lógica básica de movimiento hacia Pac-Man con detección de colisiones
+        if abs(dx) > abs(dy):
+            # Priorizar el movimiento horizontal
+            if dx > 0 and not self.bloque.colision(self.x + self.velocidad, self.y):
+                self.x += self.velocidad
+                self.direccion_actual = "DERECHA"
+            elif dx < 0 and not self.bloque.colision(self.x - self.velocidad, self.y):
+                self.x -= self.velocidad
+                self.direccion_actual = "IZQUIERDA"
+        else:
+            # Priorizar el movimiento vertical
+            if dy > 0 and not self.bloque.colision(self.x, self.y + self.velocidad):
+                self.y += self.velocidad
+                self.direccion_actual = "ABAJO"
+            elif dy < 0 and not self.bloque.colision(self.x, self.y - self.velocidad):
+                self.y -= self.velocidad
+                self.direccion_actual = "ARRIBA"
 
-# Subclases de Fantasma
+# Fantasma Rojo: Persigue directamente a Pac-Man
 class FantasmaRojo(Fantasma):
-    def __init__(self, x, y, pacman, bloque):
-        super().__init__(x, y, FANTASMA_ROJO)
-        self.pacman = pacman
-        self.bloque = bloque
+    def mover(self):
+        if self.en_trampa:
+            self.mover_fuera_de_trampa()
+        else:
+            dx, dy = self.pacman.x - self.x, self.pacman.y - self.y
+            self.mover_en_direccion(dx, dy)
 
-
-
+# Fantasma Rosa: Intenta anticipar los movimientos de Pac-Man
 class FantasmaRosa(Fantasma):
-    def __init__(self, x, y, pacman, bloque):
-        super().__init__(x, y, FANTASMA_ROSA)
-        self.pacman = pacman
-        self.bloque = bloque
+    def mover(self):
+        if self.en_trampa:
+            self.mover_fuera_de_trampa()
+        else:
+            # Predecir la posición futura de Pac-Man en base a su dirección actual
+            pred_x = self.pacman.x + 16 * PACMAN_DIRECCION[self.pacman.direccion_actual][0]
+            pred_y = self.pacman.y + 16 * PACMAN_DIRECCION[self.pacman.direccion_actual][1]
+            dx, dy = pred_x - self.x, pred_y - self.y
+            self.mover_en_direccion(dx, dy)
 
-
-
+# Fantasma Azul: Movimiento errático
 class FantasmaAzul(Fantasma):
-    def __init__(self, x, y, pacman, bloque):
-        super().__init__(x, y, FANTASMA_AZUL)
-        self.pacman = pacman
-        self.bloque = bloque
+    def mover(self):
+        if self.en_trampa:
+            self.mover_fuera_de_trampa()
+        else:
+            if random.random() < 0.5:
+                dx, dy = self.pacman.x - self.x, self.pacman.y - self.y
+            else:
+                dx, dy = random.choice([(16, 0), (0, 16), (-16, 0), (0, -16)])
+            self.mover_en_direccion(dx, dy)
 
-
-
+# Fantasma Naranja: Movimiento aleatorio con tendencia hacia Pac-Man
 class FantasmaNaranja(Fantasma):
-    def __init__(self, x, y, pacman, bloque):
-        super().__init__(x, y, FANTASMA_NARANJA)
-        self.pacman = pacman
-        self.bloque = bloque
+    def mover(self):
+        if self.en_trampa:
+            self.mover_fuera_de_trampa()
+        else:
+            if random.random() < 0.3:  # Alejarse de Pac-Man
+                dx, dy = -(self.pacman.x - self.x), -(self.pacman.y - self.y)
+            else:  # Acercarse a Pac-Man
+                dx, dy = self.pacman.x - self.x, self.pacman.y - self.y
+            self.mover_en_direccion(dx, dy)
