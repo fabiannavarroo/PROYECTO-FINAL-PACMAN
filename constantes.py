@@ -189,7 +189,7 @@ SPRITE_BLOQUE_23_1 = (96,88,1,16,16) # Borde inferior trampa fantasma
 #BLOQUES NIVEL 3
 SPRITE_BLOQUE_1_2 = (160,0,1,16,16) # Esquina izquierda horizontal
 SPRITE_BLOQUE_2_2 = (168,0,1,16,16) # Borde horizontal
-SPRITE_BLOQUE_3_2 = (96,0,1,16,16) # Esquina derecha horizontal
+SPRITE_BLOQUE_3_2 = (176,0,1,16,16) # Esquina derecha horizontal
 SPRITE_BLOQUE_4_2 = (64,0,1,16,16) # Esquina superior vertical
 SPRITE_BLOQUE_5_2 = (64,8,1,16,16) # Borde vertical
 SPRITE_BLOQUE_6_2 = (64,16,1,16,16) # Esquina inferior vertical
