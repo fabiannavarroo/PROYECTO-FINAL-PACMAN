@@ -33,18 +33,18 @@ class Puntos:
             pyxel.blt(x, y, 0, sprite[0], sprite[1], 16, 16, colkey=0)
 
         # Dibujar fruta actual
-        if self.pos and self.fruta_actual:
+        if self.posicion_fruta and self.fruta_actual:
             if self.animacion_activa and self.animacion_contador < 30:
                 # Parpadea cada 5 frames
                 if self.animacion_contador// REFRESH % 2 == 0:
                     sprite = OBJETOS[self.fruta_actual]["Coordenadas"]
-                    pyxel.blt(self.pos[0], self.pos[1], 0, sprite[0], sprite[1], 16, 16, colkey=0)
+                    pyxel.blt(self.posicion_fruta[0], self.posicion_fruta[1], 0, sprite[0], sprite[1], 16, 16, colkey=0)
                 self.animacion_contador += 1
             else:
                 # Detiene la animación y dibuja la fruta
                 self.animacion_activa = False
                 sprite = OBJETOS[self.fruta_actual]["Coordenadas"]
-                pyxel.blt(self.pos[0], self.pos[1], 0, sprite[0], sprite[1], 16, 16, colkey=0)
+                pyxel.blt(self.posicion_fruta[0], self.posicion_fruta[1], 0, sprite[0], sprite[1], 16, 16, colkey=0)
             
 
         # Dibujar regalos
@@ -202,7 +202,7 @@ class Puntos:
         self.generar_puntos()
         self.ultimo_tiempo_fruta = time.time()  # Tiempo de la última fruta generada
         self.fruta_actual = None  # Información de la fruta actual
-        self.pos = None  # Posición actual de la fruta
+        self.posicion_fruta = None  # Posición actual de la fruta
         self.animacion_activa = False  # Indica si hay animación activa
         self.animacion_contador = 0
 
