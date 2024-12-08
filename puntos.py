@@ -126,7 +126,7 @@ class Puntos:
         # Detectar si Pac-Man come puntos
         puntos_sin_comer = []
         for x, y, tipo in self.lista_puntos:
-            if self.pacman.x <= x < self.pacman.x + 16 and self.pacman.y <= y < self.pacman.y + 16:
+            if self.detectar_colision(self.pacman.x, self.pacman.y, x, y):
                 # Incrementar puntos según el tipo
                 self.puntos += OBJETOS[tipo]["Puntos"]
             else:
@@ -144,6 +144,10 @@ class Puntos:
             else:
                 regalos_sin_comer.append((x, y))
         self.regalos = regalos_sin_comer
+
+    def detectar_colision(self, pacman_x, pacman_y, punto_x, punto_y):
+        # Detecta si Pac-Man ha comido un punto
+        return abs(pacman_x - punto_x) < 16 and abs(pacman_y - punto_y) < 16
 
 
     def comer_fruta(self):
