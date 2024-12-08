@@ -64,7 +64,9 @@ PORTALES={
     (-14, 144):(402, 144), # Portal izquierda
     (402, 144):(-14, 144), # Portal derecha
     (-14,112):(402,112), # Portal izquierda
-    (402,112):(-14,112) # Portal derecha
+    (402,112):(-14,112), # Portal derecha
+    (-14,272):(402,272), # Portal izquierda
+    (402,272):(-14,272) # Portal derecha
 }
 
 #---------------TEXTO--------------#
