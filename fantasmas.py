@@ -24,10 +24,9 @@ class Fantasma:
 
 
     def activar_asustado(self):
-        """
-        Activa el estado asustado del fantasma
-        """
+        # Activa el estado asustado del fantasma
         self.asustado = True
+        self.velocidad = 1
         self.tiempo_asustado = time.time()
 
     def volver_a_trampa(self):
