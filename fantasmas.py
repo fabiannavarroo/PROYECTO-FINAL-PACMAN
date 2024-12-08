@@ -147,25 +147,3 @@ class FantasmaNaranja(Fantasma):
         super().__init__(x, y, FANTASMA_NARANJA)
         self.pacman = pacman
         self.bloque = bloque
-
-
-        if random.random() < 0.3:
-            if self.pacman.x > self.x and not self.bloque.colision(self.x - self.velocidad, self.y):
-                self.x -= self.velocidad
-            elif self.pacman.x < self.x and not self.bloque.colision(self.x + self.velocidad, self.y):
-                self.x += self.velocidad
-
-            if self.pacman.y > self.y and not self.bloque.colision(self.x, self.y - self.velocidad):
-                self.y -= self.velocidad
-            elif self.pacman.y < self.y and not self.bloque.colision(self.x, self.y + self.velocidad):
-                self.y += self.velocidad
-        else:
-            if self.pacman.x > self.x and not self.bloque.colision(self.x + self.velocidad, self.y):
-                self.x += self.velocidad
-            elif self.pacman.x < self.x and not self.bloque.colision(self.x - self.velocidad, self.y):
-                self.x -= self.velocidad
-
-            if self.pacman.y > self.y and not self.bloque.colision(self.x, self.y + self.velocidad):
-                self.y += self.velocidad
-            elif self.pacman.y < self.y and not self.bloque.colision(self.x, self.y - self.velocidad):
-                self.y -= self.velocidad
