@@ -15,7 +15,7 @@ class Puntos:
         self.color_actual = NUMEROS_BLANCOS  # Color inicial de los números
         self.ultimo_tiempo_fruta = time.time()  # Tiempo de la última fruta generada
         self.fruta_actual = None  # Información de la fruta actual
-        self.posicion_actual = None  # Posición actual de la fruta
+        self.posicion_fruta = None  # Posición actual de la fruta
         self.animacion_activa = False  # Indica si hay animación activa
         self.animacion_contador = 0  # Contador para animación de aparición
         self.zonas_prohibidas = ZONAS_PROHIBIDAS
@@ -33,18 +33,18 @@ class Puntos:
             pyxel.blt(x, y, 0, sprite[0], sprite[1], 16, 16, colkey=0)
 
         # Dibujar fruta actual
-        if self.posicion_actual and self.fruta_actual:
+        if self.pos and self.fruta_actual:
             if self.animacion_activa and self.animacion_contador < 30:
                 # Parpadea cada 5 frames
                 if self.animacion_contador// REFRESH % 2 == 0:
                     sprite = OBJETOS[self.fruta_actual]["Coordenadas"]
-                    pyxel.blt(self.posicion_actual[0], self.posicion_actual[1], 0, sprite[0], sprite[1], 16, 16, colkey=0)
+                    pyxel.blt(self.pos[0], self.pos[1], 0, sprite[0], sprite[1], 16, 16, colkey=0)
                 self.animacion_contador += 1
             else:
                 # Detiene la animación y dibuja la fruta
                 self.animacion_activa = False
                 sprite = OBJETOS[self.fruta_actual]["Coordenadas"]
-                pyxel.blt(self.posicion_actual[0], self.posicion_actual[1], 0, sprite[0], sprite[1], 16, 16, colkey=0)
+                pyxel.blt(self.pos[0], self.pos[1], 0, sprite[0], sprite[1], 16, 16, colkey=0)
             
 
         # Dibujar regalos
@@ -92,7 +92,7 @@ class Puntos:
             y = 0
             while y < pyxel.height:
                 # Verificar si la celda está vacía
-                if not self.esta_en_zona_prohibida(x, y) and (x, y) not in [(p[0], p[1]) for p in self.lista_puntos] and (x, y) != self.posicion_actual and (x, y) not in self.regalos:
+                if not self.esta_en_zona_prohibida(x, y) and (x, y) not in [(p[0], p[1]) for p in self.lista_puntos] and (x, y) != self.pos and (x, y) not in self.regalos:
                     celdas_vacias.append((x, y))
                 y += 16
             x += 16
@@ -112,11 +112,11 @@ class Puntos:
         # Elegir una posición aleatoria en celdas vacías
         celdas_vacias = self.encontrar_celdas_vacias()
         if celdas_vacias:  # Si existen posiciones vacías, genera la fruta y permite que se ejecute la animación
-            self.posicion_actual = random.choice(celdas_vacias)
+            self.pos = random.choice(celdas_vacias)
             self.animacion_activa = True  # Activa la animación
             self.animacion_contador = 0  # Reinicia el contador de la animación
         else:
-            self.posicion_actual = None  # No hay espacio libre para generar una fruta
+            self.pos = None  # No hay espacio libre para generar una fruta
 
         # Actualiza el tiempo de la última fruta generada
         self.ultimo_tiempo_fruta = time.time()
@@ -152,9 +152,9 @@ class Puntos:
 
     def comer_fruta(self):
         # Detecta si Pac-Man come la fruta actual.
-        if self.posicion_actual and self.pacman.x <= self.posicion_actual[0] < self.pacman.x + 16 and self.pacman.y <= self.posicion_actual[1] < self.pacman.y + 16:
+        if self.pos and self.pacman.x <= self.pos[0] < self.pacman.x + 16 and self.pacman.y <= self.pos[1] < self.pacman.y + 16:
             self.puntos += OBJETOS[self.fruta_actual]["Puntos"]  # Incrementa los puntos según la fruta
-            self.posicion_actual = None  # Elimina la fruta actual
+            self.pos = None  # Elimina la fruta actual
             self.fruta_actual = None
 
 
@@ -202,7 +202,7 @@ class Puntos:
         self.generar_puntos()
         self.ultimo_tiempo_fruta = time.time()  # Tiempo de la última fruta generada
         self.fruta_actual = None  # Información de la fruta actual
-        self.posicion_actual = None  # Posición actual de la fruta
+        self.pos = None  # Posición actual de la fruta
         self.animacion_activa = False  # Indica si hay animación activa
         self.animacion_contador = 0
 
