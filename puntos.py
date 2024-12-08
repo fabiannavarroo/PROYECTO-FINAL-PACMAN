@@ -112,11 +112,11 @@ class Puntos:
         # Elegir una posición aleatoria en celdas vacías
         celdas_vacias = self.encontrar_celdas_vacias()
         if celdas_vacias:  # Si existen posiciones vacías, genera la fruta y permite que se ejecute la animación
-            self.pos = random.choice(celdas_vacias)
+            self.posicion_fruta = random.choice(celdas_vacias)
             self.animacion_activa = True  # Activa la animación
             self.animacion_contador = 0  # Reinicia el contador de la animación
         else:
-            self.pos = None  # No hay espacio libre para generar una fruta
+            self.posicion_fruta = None  # No hay espacio libre para generar una fruta
 
         # Actualiza el tiempo de la última fruta generada
         self.ultimo_tiempo_fruta = time.time()
@@ -152,9 +152,9 @@ class Puntos:
 
     def comer_fruta(self):
         # Detecta si Pac-Man come la fruta actual.
-        if self.pos and self.pacman.x <= self.pos[0] < self.pacman.x + 16 and self.pacman.y <= self.pos[1] < self.pacman.y + 16:
+        if self.posicion_fruta and self.pacman.x <= self.posicion_fruta[0] < self.pacman.x + 16 and self.pacman.y <= self.posicion_fruta[1] < self.pacman.y + 16:
             self.puntos += OBJETOS[self.fruta_actual]["Puntos"]  # Incrementa los puntos según la fruta
-            self.pos = None  # Elimina la fruta actual
+            self.posicion_fruta = None  # Elimina la fruta actual
             self.fruta_actual = None
 
 
