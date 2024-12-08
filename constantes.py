@@ -1082,7 +1082,12 @@ MAPA_3 = [
     (384, 208, 5),     #
 
     # Fila 13
-
+    (0, 224, 5),     #
+    (32, 224, 11),     #
+    (48, 224, 2),     #
+    (64, 224, 2),     #
+    (80, 224, 3),     #
+    (112, 224, 5),     #
     (144, 224, 18),     # Borde izquierda inferior trampa fantasma
     (160, 224, 23),     # Borde inferior trampa fantasmas
     (176, 224, 23),     # Borde inferior trampa fantasmas
