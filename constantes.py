@@ -8,6 +8,12 @@ PACMAN_IZQUIERDA = (32, 0)  # Coordenadas de Pacman al moverse a la izquierda
 PACMAN_IZQUIERDA_CERRADA = (80, 0) # por la orientación con la cornamenta
 PACMAN_DERECHA = (16, 0)  # Coordenadas de Pacman al moverse a la derecha
 PACMAN_DERECHA_CERRADA = (64, 0) # por la orientación con la cornamenta
+PACMAN_DIRECCION = {
+    PACMAN_ARRIBA: (0, -1),
+    PACMAN_ABAJO: (0, 1),
+    PACMAN_IZQUIERDA: (-1, 0),
+    PACMAN_DERECHA: (1, 0),
+}
 ANIMACION_MUERTE = (
     (0, 0), (0, 16), (16, 16), (32, 16),(48,32),(64,32))  # animacion de la muerte del pacman
 
