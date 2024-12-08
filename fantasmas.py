@@ -16,10 +16,12 @@ class Fantasma:
         self.pacman = pacman  # Referencia a Pac-Man
         self.direccion_actual = "DERECHA"  # Dirección inicial
         self.asustado = False  # Indica si está en estado asustado
+        self.tiempo_asustado = 10  # Tiempo que los fantasmas están asustados
         self.en_trampa = True  # Indica si el fantasma está atrapado
         self.tiempo_trampa = time.time()  # Temporizador inicial para salir de la trampa
         self.tiempo_asustado = 0  # Temporizador para estado asustado
         self.tiempo_para_salir = 3  # Tiempo que el fantasma debe esperar para salir de la trampa
+
 
     def activar_asustado(self):
         """
@@ -65,7 +67,7 @@ class Fantasma:
 
         # Verificar si el estado asustado ha expirado
         if self.asustado:
-            tiempo_restante = 10 - (time.time() - self.tiempo_asustado)  # 10 segundos de asustado
+            tiempo_restante = self.tiempo_asustado - (time.time() - self.tiempo_asustado)  # Tiempo asustado de los fantasmas
             if tiempo_restante <= 0:
                 self.asustado = False
 
