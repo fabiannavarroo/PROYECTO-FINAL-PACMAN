@@ -47,6 +47,7 @@ class Fantasma:
     def actualizar_estado(self):
         #Verifica y actualiza el estado asustado
         if self.asustado:
+            self.velocidad = 1
             tiempo_restante = self.tiempo_para_ser_comido - (time.time() - self.tiempo_asustado)
             if tiempo_restante <= 0:
                 self.asustado = False  # Finaliza el estado asustado
