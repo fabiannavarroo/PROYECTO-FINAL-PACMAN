@@ -166,6 +166,8 @@ class Bloque:
                 return SPRITE_BLOQUE_22_2
             elif tipo == 23:
                 return SPRITE_BLOQUE_23_2
+            elif tipo == 24:
+                return SPRITE_BLOQUE_24_2
             else:
                 raise ValueError("Tipo de bloque no válido. Debe estar entre 1 y 23.")
 
