@@ -1063,7 +1063,7 @@ MAPA_3 = [
     (224, 192, 19),     # Borde superior trampa fantasma
     (240, 192, 17),     # Esquina derecha superior trampa fantasmas
     (272, 192, 5),     #
-    304, 176, 5),     #
+    (304, 192, 5),     #
     (384, 192, 5),     #
 
 
