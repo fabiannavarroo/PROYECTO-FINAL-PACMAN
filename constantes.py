@@ -1052,6 +1052,7 @@ MAPA_3 = [
     (384, 176, 5),     #
 
     # Fila 11
+    (0, 192, 5),     #
     (144, 192, 15),     # Esquina izquierda superior trampa fantasmas
     (160, 192, 19),     # Borde superior trampa fantasma
     (176, 192, 16),     # Puerta salida de fantasmas
@@ -1059,6 +1060,7 @@ MAPA_3 = [
     (208, 192, 16),     # Puerta salida de fantasmas
     (224, 192, 19),     # Borde superior trampa fantasma
     (240, 192, 17),     # Esquina derecha superior trampa fantasmas
+    (384, 192, 5),     #
 
 
     # Fila 12
