@@ -868,4 +868,9 @@ MAPA_2 = [
 
 ]
 
+MAPA_3 = [
+    # Fila 1
+    (0, 0, 5),      # Borde vertical
+]
+
 MAPA = {1: MAPA_1, 2: MAPA_2, 3: MAPA_3}
