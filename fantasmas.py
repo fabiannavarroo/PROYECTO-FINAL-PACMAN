@@ -47,20 +47,15 @@ class Fantasma:
         self.tiempo_trampa = time.time()  # Reiniciar el temporizador de trampa
 
     def mover_fuera_de_trampa(self):
-        """
-        Maneja la salida de la trampa después de esperar el tiempo necesario
-        """
+        # salida de la trampa
         if time.time() - self.tiempo_trampa >= self.tiempo_para_salir:
             self.en_trampa = False
         else:
             # Mantenerse dentro de la trampa
-            return
+            return False
 
     def actualizar_estado(self):
-        """
-        Verifica y actualiza el estado asustado del fantasma.
-        También maneja la salida de la trampa.
-        """
+
         # Verificar si el fantasma puede salir de la trampa
         if self.en_trampa:
             self.mover_fuera_de_trampa()
@@ -72,9 +67,7 @@ class Fantasma:
                 self.asustado = False
 
     def mover_en_direccion(self, dx, dy):
-        """
-        Lógica básica de movimiento hacia Pac-Man con detección de colisiones
-        """
+
         if abs(dx) > abs(dy):
             # Priorizar el movimiento horizontal
             if dx > 0 and not self.bloque.colision(self.x + self.velocidad, self.y):
@@ -93,9 +86,7 @@ class Fantasma:
                 self.direccion_actual = "ARRIBA"
 
     def draw(self):
-        """
-        Dibuja al fantasma, alternando sprites si está asustado
-        """
+        # Dibujar el fantasma según su estado
         if self.asustado:
             if pyxel.frame_count // REFRESH % 2 == 0:
                 sprite = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
