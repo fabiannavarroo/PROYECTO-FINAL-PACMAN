@@ -72,11 +72,12 @@ class Fantasma:
 
 # Subclases de Fantasma
 class FantasmaRojo(Fantasma):
-    def __init__(self, x, y):
+    def __init__(self, x, y, pacman, bloque):
         super().__init__(x, y, FANTASMA_ROJO)
+        self.pacman = pacman
+        self.bloque = bloque
 
     def mover(self):
-        # Persigue directamente a Pac-Man
         if self.pacman.x > self.x and not self.bloque.colision(self.x + self.velocidad, self.y):
             self.x += self.velocidad
         elif self.pacman.x < self.x and not self.bloque.colision(self.x - self.velocidad, self.y):
@@ -87,12 +88,14 @@ class FantasmaRojo(Fantasma):
         elif self.pacman.y < self.y and not self.bloque.colision(self.x, self.y - self.velocidad):
             self.y -= self.velocidad
 
+
 class FantasmaRosa(Fantasma):
-    def __init__(self, x, y):
+    def __init__(self, x, y, pacman, bloque):
         super().__init__(x, y, FANTASMA_ROSA)
+        self.pacman = pacman
+        self.bloque = bloque
 
     def mover(self):
-        # Predice la posición futura de Pac-Man
         pred_x = self.pacman.x + 16 * (self.pacman.direccion_actual == PACMAN_DERECHA) - 16 * (self.pacman.direccion_actual == PACMAN_IZQUIERDA)
         pred_y = self.pacman.y + 16 * (self.pacman.direccion_actual == PACMAN_ABAJO) - 16 * (self.pacman.direccion_actual == PACMAN_ARRIBA)
 
@@ -106,12 +109,14 @@ class FantasmaRosa(Fantasma):
         elif pred_y < self.y and not self.bloque.colision(self.x, self.y - self.velocidad):
             self.y -= self.velocidad
 
+
 class FantasmaAzul(Fantasma):
-    def __init__(self, x, y):
+    def __init__(self, x, y, pacman, bloque):
         super().__init__(x, y, FANTASMA_AZUL)
+        self.pacman = pacman
+        self.bloque = bloque
 
     def mover(self):
-        # Movimiento errático, semi-aleatorio
         if random.random() < 0.5:
             if self.pacman.x > self.x and not self.bloque.colision(self.x + self.velocidad, self.y):
                 self.x += self.velocidad
@@ -123,13 +128,15 @@ class FantasmaAzul(Fantasma):
             elif self.pacman.y < self.y and not self.bloque.colision(self.x, self.y - self.velocidad):
                 self.y -= self.velocidad
 
+
 class FantasmaNaranja(Fantasma):
-    def __init__(self, x, y):
+    def __init__(self, x, y, pacman, bloque):
         super().__init__(x, y, FANTASMA_NARANJA)
+        self.pacman = pacman
+        self.bloque = bloque
 
     def mover(self):
-        # Movimiento aleatorio con tendencia hacia Pac-Man
-        if random.random() < 0.3:  # Alejarse de Pac-Man
+        if random.random() < 0.3:
             if self.pacman.x > self.x and not self.bloque.colision(self.x - self.velocidad, self.y):
                 self.x -= self.velocidad
             elif self.pacman.x < self.x and not self.bloque.colision(self.x + self.velocidad, self.y):
@@ -139,7 +146,7 @@ class FantasmaNaranja(Fantasma):
                 self.y -= self.velocidad
             elif self.pacman.y < self.y and not self.bloque.colision(self.x, self.y + self.velocidad):
                 self.y += self.velocidad
-        else:  # Ir hacia Pac-Man
+        else:
             if self.pacman.x > self.x and not self.bloque.colision(self.x + self.velocidad, self.y):
                 self.x += self.velocidad
             elif self.pacman.x < self.x and not self.bloque.colision(self.x - self.velocidad, self.y):
