@@ -37,7 +37,7 @@ class Fantasma:
             if time.time() - self.tiempo_salida_trampa >= 3:
                 self.en_trampa = False
 
-        # Verifica si se termina el estado asustado
+        # Verifica si se termina el estado asustado, si es así, se mueve mas lento
         if self.asustado:
             self.velocidad = 1
             tiempo_restante = self.tiempo_para_ser_comido - (time.time() - self.tiempo_asustado)
