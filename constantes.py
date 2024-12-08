@@ -1165,6 +1165,10 @@ MAPA_3 = [
     (256, 304, 5),     #
     (384, 304, 5),     #
 
+    # fila 22
+    (0, 320, 5),     #
+    (384, 320, 5),     #
+
     # Fila 23
     (0, 384, 13),     # Esquina inferior izquierda
     (16, 384, 2),     # Borde horizontal
