@@ -152,7 +152,7 @@ class Puntos:
 
     def comer_fruta(self):
         # Detecta si Pac-Man come la fruta actual.
-        if self.posicion_fruta and self.pacman.x <= self.posicion_fruta[0] < self.pacman.x + 16 and self.pacman.y <= self.posicion_fruta[1] < self.pacman.y + 16:
+        if self.posicion_fruta and self.detectar_colision(self.pacman.x, self.pacman.y, self.posicion_fruta[0], self.posicion_fruta[1]):
             self.puntos += OBJETOS[self.fruta_actual]["Puntos"]  # Incrementa los puntos según la fruta
             self.posicion_fruta = None  # Elimina la fruta actual
             self.fruta_actual = None
