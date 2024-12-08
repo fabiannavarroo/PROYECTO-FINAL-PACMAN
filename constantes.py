@@ -901,13 +901,7 @@ MAPA_3 = [
 
 
     # Fila 11
-    (0, 192, 2),      # Borde esquina inferior izquierda
-    (16,192,2),      # Borde horizontal
-    (32, 192, 2),     # Borde horizontal    
-    (48,192,2),      # Borde horizontal
-    (64, 192, 2),     # Borde horizontal
-    (80, 192, 14),     # Borde esquina inferior derecha
-    (112, 192 ,6),     # Esquina inferior vertical
+
     (144, 192, 15),     # Esquina izquierda superior trampa fantasmas
     (160, 192, 19),     # Borde superior trampa fantasma
     (176, 192, 16),     # Puerta salida de fantasmas
@@ -915,26 +909,14 @@ MAPA_3 = [
     (208, 192, 16),     # Puerta salida de fantasmas
     (224, 192, 19),     # Borde superior trampa fantasma
     (240, 192, 17),     # Esquina derecha superior trampa fantasmas
-    (272, 192, 6),     # Esquina inferior vertical
-    (304, 192, 13),     # Borde esquina inferior izquierda
-    (320, 192, 2),     # Borde horizontal  
-    (336, 192, 2),     # Borde horizontal
-    (352, 192, 2),     # Borde horizontal  
-    (368, 192, 2),     # Borde horizontal
-    (384, 192, 2),     # Borde horizontal
+
 
     # Fila 12
     (144, 208, 21),     # Borde derecha trampa fantasmas
     (240, 208, 22),     # Borde izquierda trampa fantasmas
 
     # Fila 13
-    (0, 224, 2),      # Borde esquina inferior izquierda
-    (16,224,2),      # Borde horizontal
-    (32, 224, 2),     # Borde horizontal    
-    (48,224,2),      # Borde horizontal
-    (64, 224, 2),     # Borde horizontal
-    (80, 224, 12),     # Borde esquina superior derecha
-    (112, 224, 4),     # Esquina superior vertical
+
     (144, 224, 18),     # Borde izquierda inferior trampa fantasma
     (160, 224, 23),     # Borde inferior trampa fantasmas
     (176, 224, 23),     # Borde inferior trampa fantasmas
@@ -943,13 +925,7 @@ MAPA_3 = [
     (224, 224, 23),     # Borde inferior trampa fantasmas
     (232, 224, 23),     # Borde inferior trampa fantasmas
     (240, 224, 20),     # Esquina derecha inferior trampa fantasmas
-    (272, 224,4),     # Esquina superior vertical
-    (304, 224, 11),     # Borde esquina superior izquierda
-    (320, 224, 2),     # Borde horizontal
-    (336, 224, 2),     # Borde horizontal
-    (352, 224, 2),     # Borde horizontal
-    (368, 224, 2),     # Borde horizontal
-    (384, 224, 2),     # Borde horizontal
+
    
 ]
 
