@@ -868,4 +868,4 @@ MAPA_2 = [
 
 ]
 
-MAPA = {1: MAPA_1, 2: MAPA_2}
+MAPA = {1: MAPA_1, 2: MAPA_2, 3: MAPA_3}
