@@ -22,12 +22,14 @@ class Fantasma:
         self.asustado = True
         self.tiempo_asustado = time.time()
 
+
     def volver_a_trampa(self):
         # Volver a la trampa cuando Pac-Man lo coma
         self.en_trampa = True
         self.x, self.y = self.x_inicial, self.y_inicial
         self.tiempo_salida_trampa = time.time()
         self.asustado = False
+
 
     def actualizar_estado(self):
         # Si está en la trampa, verifica si puede salir después de 3 segundos
@@ -42,6 +44,7 @@ class Fantasma:
             if tiempo_restante <= 0:
                 self.asustado = False
 
+
     def obtener_direcciones_validas(self, bloque):
         # Calcula las direcciones posibles desde la posición actual
         direcciones = []
@@ -54,6 +57,16 @@ class Fantasma:
         if not bloque.colision(self.x, self.y - self.velocidad):
             direcciones.append("ARRIBA")
         return direcciones
+   
+   
+    def volver_a_posicion_inicial(self):
+        #Restaura la posición inicial del fantasma
+        self.x = self.x_inicial
+        self.y = self.y_inicial
+        self.asustado = False
+        self.en_trampa = False
+
+
 
     def mover(self, pacman, bloque):
         if self.en_trampa:  # No se mueve si está en la trampa
@@ -87,42 +100,6 @@ class Fantasma:
             self.y += self.velocidad
         elif self.direccion_actual == "ARRIBA":
             self.y -= self.velocidad
-
-    def activar_asustado(self):
-        #Activa el estado asustado
-        self.asustado = True
-        self.tiempo_asustado = time.time()
-
-
-    def volver_a_trampa(self):
-        # Envía al fantasma a la trampa
-        self.en_trampa = True
-        if isinstance(self, FantasmaRojo):
-            self.x, self.y = 158, 208
-        elif isinstance(self, FantasmaRosa):
-            self.x, self.y = 181, 208
-        elif isinstance(self, FantasmaAzul):
-            self.x, self.y = 203, 208
-        elif isinstance(self, FantasmaNaranja):
-            self.x, self.y = 226, 208
-        self.asustado = False  # Sale del estado asustado
-
-
-    def volver_a_posicion_inicial(self):
-        #Restaura la posición inicial del fantasma
-        self.x = self.x_inicial
-        self.y = self.y_inicial
-        self.asustado = False
-        self.en_trampa = False
-
-
-    def actualizar_estado(self):
-        #Verifica y actualiza el estado asustado
-        if self.asustado:
-            self.velocidad = 1
-            tiempo_restante = self.tiempo_para_ser_comido - (time.time() - self.tiempo_asustado)
-            if tiempo_restante <= 0:
-                self.asustado = False  # Finaliza el estado asustado
 
 
     def draw(self):
