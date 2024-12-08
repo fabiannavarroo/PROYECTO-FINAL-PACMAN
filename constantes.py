@@ -1078,6 +1078,8 @@ MAPA_3 = [
     (112, 208, 5),     #
     (144, 208, 21),     # Borde derecha trampa fantasmas
     (240, 208, 22),     # Borde izquierda trampa fantasmas
+    (272, 208, 5),     #
+    (384, 208, 5),     #
 
     # Fila 13
 
