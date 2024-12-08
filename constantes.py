@@ -815,7 +815,8 @@ MAPA_2 = [
 
 
     #Fila 22
-
+    (0, 368, 5),      # Borde vertical
+    (384, 368, 5),     # Borde vertical
 
     #Fila 23
     (0, 382, 13),     #
