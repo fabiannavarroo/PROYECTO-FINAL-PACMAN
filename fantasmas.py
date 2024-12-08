@@ -2,9 +2,7 @@ import pyxel
 from constantes import *
 import random  
 import time
-import random
-import time
-from constantes import *
+
 
 class Fantasma:
     def __init__(self, x, y, sprites, bloque, pacman):
