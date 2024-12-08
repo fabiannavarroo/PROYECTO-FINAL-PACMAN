@@ -10,4 +10,5 @@ Que los fantasmas persigan al Pacman
 
 Música/Sonidos
 
+TExto de win
 
