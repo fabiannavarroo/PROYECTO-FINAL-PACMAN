@@ -73,6 +73,19 @@ class Fantasma:
                 self.y -= min(self.velocidad, abs(dy))
 
 
+    def colision(self, x, y):
+        # Verifica si hay colisión, excluyquitandoendo las coordenadas de la puerta de salida
+        puerta_x, puerta_y = self.puerta_salida
+        sprite_tamaño = self.bloque.celda_tamaño
+
+        # Quita la región de la puerta de salida
+        if puerta_x <= x < puerta_x + sprite_tamaño and puerta_y <= y < puerta_y + sprite_tamaño:
+            return False  # No hay colisión en la puerta de salida
+
+        # Verificar colisiones normales en los bloques del mapa
+        return self.bloque.colision(x, y)
+
+
     def volver_a_posicion_inicial(self):
         self.x = self.x_inicial
         self.y = self.y_inicial  
