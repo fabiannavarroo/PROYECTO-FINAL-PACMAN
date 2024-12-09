@@ -18,9 +18,9 @@ class Tablero:
         self.pacman = Pacman(192, 304, self.bloque)  # Pacman y su posición inicial
         self.fantasmas = [  # Lista de fantasmas con sus posiciones iniciales
             FantasmaRojo(196, 176, self.pacman, self.bloque),
-            FantasmaRosa(181, 208, self.pacman, self.bloque),
-            FantasmaAzul(203, 208, self.pacman, self.bloque),
-            FantasmaNaranja(226, 208, self.pacman, self.bloque),
+            FantasmaRosa(181, 208, ),
+            FantasmaAzul(203, 208, ),
+            FantasmaNaranja(226, 208, ),
         ]
         self.puntos = Puntos(OBJETOS, self.pacman, self.fantasmas, self.bloque)  # Puntos y frutas
 
