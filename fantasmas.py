@@ -19,6 +19,7 @@ class Fantasma:
     def activar_asustado(self):
         #Activa el estado asustado
         self.asustado = True
+        self.velocidad = 1
         self.tiempo_asustado = time.time()
 
 
