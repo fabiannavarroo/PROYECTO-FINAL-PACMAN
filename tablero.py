@@ -130,6 +130,7 @@ class Tablero:
         # Reinicia las posiciones iniciales de los personajes y termina la animación de muerte.
         self.mostrar_ready = True  # Volver a mostrar READY!
         self.contador_ready = 0  # Restablecer duración del mensaje READY!
+        self.bloque.cargar_mapa()  # Recargar el mapa del nivel actual
         self.pacman.reiniciar_posiciones(self.fantasmas)  # Reiniciar posición de Pacman
         self.pacman.en_muerte = False  # Finalizar estado de muerte
         self.pacman.animacion_frame = 0  # Reiniciar animación de muerte
