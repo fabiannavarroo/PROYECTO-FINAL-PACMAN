@@ -474,23 +474,15 @@ class Tablero:
             return False
 
         # Dibujar cada frame de la animación de muerte
-        if self.animacion_frame < len(ANIMACION_MUERTE):
-            sprite_x, sprite_y = ANIMACION_MUERTE[self.animacion_frame]
+        if self.pacman.animacion_frame < len(ANIMACION_MUERTE):
+            sprite_x, sprite_y = ANIMACION_MUERTE[self.pacman.animacion_frame]
             pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
             if pyxel.frame_count % 5 == 0:  # Cambiar cada 5 frames
-                self.animacion_frame += 1
+                self.pacman.animacion_frame += 1
         else:
             # Finaliza la animación de muerte
-            self.en_muerte = False
-            self.reiniciar_posiciones(fantasmas)  # Reinicia posiciones de Pac-Man y fantasmas
-
-def reiniciar_posiciones(self, fantasmas):
-    # Reiniciar Pac-Man
-    self.x, self.y = 192, 304  # Posición inicial
-    self.reiniciando = False
-    # Reiniciar fantasmas
-    for fantasma in fantasmas:
-        fantasma.volver_a_posicion_inicial()
+            self.pacman.en_muerte = False
+            self.reiniciar_posiciones()  # Reinicia posiciones de Pac-Man y fantasmas
 
 
     def reiniciar_posiciones(self):
