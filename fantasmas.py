@@ -97,13 +97,13 @@ class FantasmaRojo(Fantasma):
         super().__init__(x, y, FANTASMA_ROJO)
         self.siguiente_celda = None  # Almacena la próxima celda hacia la que se mueve el fantasma
 
-    def mover(self, pacman, bloque):
+    def mover(self):
         # Mueve al fantasma hacia Pac-Man 
         if self.siguiente_celda is None or (self.x == self.siguiente_celda[0] and self.y == self.siguiente_celda[1]):
             # Si no hay una celda objetivo o ya llegamos a la celda objetivo, buscar una nueva ruta
             inicio = (self.x // 16 * 16, self.y // 16 * 16)  # Redondear posición a la celda más cercana
-            objetivo = (pacman.x // 16 * 16, pacman.y // 16 * 16)  # Redondear posición de Pac-Man a la celda más cercana
-            ruta = self.buscar_ruta_simple(inicio, objetivo, bloque)
+            objetivo = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)  # Redondear posición de Pac-Man a la celda más cercana
+            ruta = self.buscar_ruta_simple(inicio, objetivo, self.bloque)
 
             if ruta and len(ruta) > 1:
                 self.siguiente_celda = ruta[1]  # Próxima celda en la ruta
