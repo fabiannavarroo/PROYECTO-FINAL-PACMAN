@@ -39,7 +39,7 @@ class Fantasma:
         elif isinstance(self, FantasmaAzul):
             self.x, self.y = 203, 208
         elif isinstance(self, FantasmaNaranja):
-            self.x, self.y = 226, 208
+            self.x, self.y = 225, 208
         self.asustado = False  # Sale del estado asustado
         self.velocidad = 2
 
