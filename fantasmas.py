@@ -52,33 +52,17 @@ class Fantasma:
         self.velocidad = 2
 
     def salir_de_trampa(self):
-        # Controla la salida del fantasma desde la trampa.
-        if self.en_trampa:
-            # Moverse hacia la posición de salida
-            if self.x == self.salida_coordenadas[0] and self.y == self.salida_coordenadas[1]:
-                self.tiempo_trampa = 0  # Reiniciar el temporizador para evitar errores
-            else:
-                self.mover_hacia_salida()
-
-    def mover_hacia_salida(self):
-        # Mueve al fantasma hacia la posición de salida de la trampa.
-        dx = self.salida_coordenadas[0] - self.x
-        dy = self.salida_coordenadas[1] - self.y
-
-        if abs(dx) > abs(dy):  # Priorizar el movimiento horizontal
+        if self.en_trampa():
+            # Moverse hacia la salida de la trampa
+            dx, dy = self.salida_coordenadas[0] - self.x, self.salida_coordenadas[1] - self.y
             if dx > 0:
-                self.x += self.velocidad
-                self.direccion_actual = "DERECHA"
+                self.x += min(self.velocidad, dx)
             elif dx < 0:
-                self.x -= self.velocidad
-                self.direccion_actual = "IZQUIERDA"
-        else:  # Priorizar el movimiento vertical
-            if dy > 0:
-                self.y += self.velocidad
-                self.direccion_actual = "ABAJO"
+                self.x -= min(self.velocidad, abs(dx))
+            elif dy > 0:
+                self.y += min(self.velocidad, dy)
             elif dy < 0:
-                self.y -= self.velocidad
-                self.direccion_actual = "ARRIBA"
+                self.y -= min(self.velocidad, abs(dy))
 
     def colision(self, x, y):
         # Verifica si hay una colisión en las coordenadas dadas.
@@ -86,11 +70,13 @@ class Fantasma:
             return False  # No tratar el muro especial como colisión
         return self.bloque.colision(x, y)  # Usar lógica normal fuera de la trampa
 
+
     def volver_a_posicion_inicial(self):
         self.x = self.x_inicial // 16 * 16  # Alinear con la cuadrícula
         self.y = self.y_inicial // 16 * 16  # Alinear con la cuadrícula
         self.siguiente_celda = None  # Limpiar la ruta almacenada
         self.asustado = False
+        self.tiempo_trampa = time.time()
         
 
 
