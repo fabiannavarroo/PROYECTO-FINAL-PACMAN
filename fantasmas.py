@@ -116,13 +116,21 @@ class Fantasma:
 
             # Ordenar por mayor distancia y seleccionar la mejor opción
             if opciones:
-                opciones.sort(reverse=True, key=lambda x: x[0])  # Mayor distancia primero
-                self.siguiente_celda = opciones[0][1]  # Elegir la celda con mayor distancia
-            else:
-                self.siguiente_celda = None  # No hay celdas válidas
+                mayor_distancia = -1
+                mejor_celda = None
 
-        # Movimiento paso a paso hacia la siguiente celda
-        self.mover_hacia_siguiente_celda()
+                # Encontrar la celda con la mayor distancia
+                for distancia, celda in opciones:
+                    if distancia > mayor_distancia:
+                        mayor_distancia = distancia
+                        mejor_celda = celda
+
+                self.siguiente_celda = mejor_celda  # Asignar la mejor celda
+            else:
+                self.siguiente_celda = None  # No hay celdas válidas  # No hay celdas válidas
+
+            # Movimiento paso a paso hacia la siguiente celda
+            self.mover_hacia_siguiente_celda()
 
 
     def mover_hacia_siguiente_celda(self):
