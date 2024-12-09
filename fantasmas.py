@@ -72,14 +72,6 @@ class Fantasma:
             elif dy < 0:
                 self.y -= min(self.velocidad, abs(dy))
 
-    def colision(self, x, y):
-        # Verifica si hay una colisión, ignorando las coordenadas de salida
-        '''puerta_x, puerta_y = self.puerta_salida
-        if puerta_x <= x < puerta_x + 16 and puerta_y <= y < puerta_y + 16:
-            return False  # No hay colisión en la puerta de salida
-        return self.bloque.colision(x, y)'''
-        return False
-
 
     def volver_a_posicion_inicial(self):
         self.x = self.x_inicial
