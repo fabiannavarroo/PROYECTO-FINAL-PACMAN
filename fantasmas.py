@@ -56,8 +56,9 @@ class Fantasma:
 
     def salir_de_trampa(self):
         if self.en_trampa():
-            if (self.x, self.y) == self.salida_coordenadas:
-                # Una vez en (192, 192), moverse hacia (196, 176)
+            # Primera fase: moverse hacia la puerta de salida (192, 192)
+            if (self.x, self.y) == self.puerta_salida_coordenadas:
+                # Segunda fase: moverse hacia (196, 176)
                 dx, dy = self.salida_coordenadas[0] - self.x, self.salida_coordenadas[1] - self.y
                 if dx > 0:
                     self.x += min(self.velocidad, dx)
@@ -68,8 +69,8 @@ class Fantasma:
                 elif dy < 0:
                     self.y -= min(self.velocidad, abs(dy))
             else:
-                # Moverse hacia (192, 192) inicialmente
-                dx, dy = self.salida_coordenadas[0] - self.x, self.salida_coordenadas[1] - self.y
+                # Primera fase: moverse hacia la puerta (192, 192)
+                dx, dy = self.puerta_salida_coordenadas[0] - self.x, self.puerta_salida_coordenadas[1] - self.y
                 if dx > 0:
                     self.x += min(self.velocidad, dx)
                 elif dx < 0:
