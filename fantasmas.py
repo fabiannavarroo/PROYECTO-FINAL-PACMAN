@@ -2,25 +2,22 @@ import pyxel
 from constantes import *
 from collections import deque
 import time
+import random
 
 class Fantasma:
-    def __init__(self, x, y, sprites,pacman,bloque):
+    def __init__(self, x, y, sprites):
         self.x = x
         self.y = y
         self.velocidad = 2
         self.x_inicial = x  # Guardar posición inicial
         self.y_inicial = y  # Guardar posición inicial
         self.sprites = sprites
-        self.pacman = pacman
-        self.bloque = bloque
-        self.direccion_actual = "DERECHA"  # Dirección inicial
+        self.direccion_actual = "DERECHA"
+        self.direcciones = ["ARRIBA", "ABAJO", "IZQUIERDA", "DERECHA"]  # Direcciones posibles
         self.asustado = False  # Indica si está en estado asustado
         self.tiempo_asustado = 0  # Temporizador para estado asustado
         self.tiempo_para_ser_comido = 10  # Duración por defecto del estado asustado
         self.en_trampa = False  # Indica si el fantasma está en la trampa
-        self.tiempo_trampa = 0  # Tiempo que el fantasma lleva en la trampa
-        self.ultimo_movimiento = time.time()  # Temporizador para controlar la velocidad de movimiento
-
 
 
     def activar_asustado(self):
@@ -61,8 +58,12 @@ class Fantasma:
                 self.asustado = False  # Finaliza el estado asustado
                 self.velocidad = 2
 
+
+
     def mover_en_direccion(self, direccion):
-        #Mueve al fantasma en la dirección indicada si es posible.
+        """
+        Mueve al fantasma en la dirección especificada si es posible.
+        """
         if direccion == "ARRIBA" and not self.bloque.colision(self.x, self.y - self.velocidad):
             self.y -= self.velocidad
             self.direccion_actual = "ARRIBA"
@@ -81,16 +82,7 @@ class Fantasma:
             return True
         return False
     
-    def salir_de_trampa(self):
-        if self.en_trampa and time.time() - self.tiempo_trampa >= 3:
-            self.en_trampa = False
 
-
-    def mover(self,):
-        if time.time() - self.ultimo_movimiento >= 0.2:  # Limitar movimiento a cada 0.2 segundos
-            self.ultimo_movimiento = time.time()
-            # Implementar la lógica de movimiento de cada fantasma en subclases
-            pass
 
     def draw(self):
         #Dibuja el fantasma en su estado actual.
@@ -108,68 +100,93 @@ class Fantasma:
 
 
 # Subclases de Fantasma
+
 class FantasmaRojo(Fantasma):
-    def __init__(self, x, y, pacman, bloque):
-        super().__init__(x, y, FANTASMA_ROJO, pacman, bloque)
+    def __init__(self, x, y):
+        """
+        Inicializa al Fantasma Rojo con su sprite.
+        """
+        super().__init__(x, y, FANTASMA_ROJO)
         self.siguiente_celda = None  # Almacena la próxima celda hacia la que se mueve el fantasma
 
     def mover(self):
-        if not self.en_trampa:
-            inicio = (self.x // 16 * 16, self.y // 16 * 16)
-            objetivo = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
-            ruta = self.buscar_ruta_simple(inicio, objetivo)
+        """
+        Mueve al Fantasma Rojo hacia Pac-Man utilizando rutas simples y movimientos paso a paso.
+        """
+        if self.siguiente_celda is None or (self.x == self.siguiente_celda[0] and self.y == self.siguiente_celda[1]):
+            # Si no hay una celda objetivo o ya llegamos a la celda objetivo, buscar una nueva ruta
+            inicio = (self.x // 16 * 16, self.y // 16 * 16)  # Redondear posición a la celda más cercana
+            objetivo = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)  # Redondear posición de Pac-Man a la celda más cercana
+            ruta = self.buscar_ruta_simple(inicio, objetivo, self.bloque)
+
             if ruta and len(ruta) > 1:
-                siguiente_celda = ruta[1]
-                dx, dy = siguiente_celda[0] - self.x, siguiente_celda[1] - self.y
-                if dx > 0:
-                    self.x += min(self.velocidad, dx)
-                    self.direccion_actual = "DERECHA"
-                elif dx < 0:
-                    self.x += max(-self.velocidad, dx)
-                    self.direccion_actual = "IZQUIERDA"
-                elif dy > 0:
-                    self.y += min(self.velocidad, dy)
-                    self.direccion_actual = "ABAJO"
-                elif dy < 0:
-                    self.y += max(-self.velocidad, dy)
-                    self.direccion_actual = "ARRIBA"
+                self.siguiente_celda = ruta[1]  # Próxima celda en la ruta
+            else:
+                self.siguiente_celda = None  # No hay ruta disponible
+
+        # Movimiento paso a paso hacia la siguiente celda
+        if self.siguiente_celda:
+            dx = self.siguiente_celda[0] - self.x
+            dy = self.siguiente_celda[1] - self.y
+
+            if dx > 0:
+                self.x += min(self.velocidad, dx)
+                self.direccion_actual = "DERECHA"
+            elif dx < 0:
+                self.x += max(-self.velocidad, dx)
+                self.direccion_actual = "IZQUIERDA"
+            elif dy > 0:
+                self.y += min(self.velocidad, dy)
+                self.direccion_actual = "ABAJO"
+            elif dy < 0:
+                self.y += max(-self.velocidad, dy)
+                self.direccion_actual = "ARRIBA"
 
     def buscar_ruta_simple(self, inicio, objetivo):
-        cola = deque([inicio])
-        visitados = {inicio: None}
+        """
+        Encuentra una ruta básica hacia el objetivo utilizando búsqueda en anchura (BFS).
+        """
+        cola = deque([inicio])  # Posiciones a explorar
+        visitados = {inicio: None}  # Rastro de posiciones visitadas
+
         while cola:
             actual = cola.popleft()
+
+            # Si llegamos al objetivo, reconstruimos la ruta
             if actual == objetivo:
                 ruta = []
-                while actual:
+                while actual is not None:
                     ruta.append(actual)
                     actual = visitados[actual]
                 ruta.reverse()
                 return ruta
+
+            # Evaluar vecinos (ARRIBA, ABAJO, IZQUIERDA, DERECHA)
             for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
                 vecino = (actual[0] + dx, actual[1] + dy)
                 if vecino not in visitados and not self.bloque.colision(vecino[0], vecino[1]):
                     visitados[vecino] = actual
                     cola.append(vecino)
-        return None
+
+        return None  # No hay ruta disponible
 
 class FantasmaRosa(Fantasma):
-    def __init__(self, x, y, pacman, bloque):
-        super().__init__(x, y, FANTASMA_ROSA, pacman, bloque)
-
-    def mover(self):
-        pass
+    def __init__(self, x, y):
+        """
+        Inicializa al Fantasma Rosa con su sprite.
+        """
+        super().__init__(x, y, FANTASMA_ROSA)
 
 class FantasmaAzul(Fantasma):
-    def __init__(self, x, y, pacman, bloque):
-        super().__init__(x, y, FANTASMA_AZUL, pacman, bloque)
-    
-    def mover(self):
-        pass
+    def __init__(self, x, y):
+        """
+        Inicializa al Fantasma Azul con su sprite.
+        """
+        super().__init__(x, y, FANTASMA_AZUL)
 
 class FantasmaNaranja(Fantasma):
-    def __init__(self, x, y, pacman, bloque):
-        super().__init__(x, y, FANTASMA_NARANJA, pacman, bloque)
-
-    def mover(self):
-        pass
+    def __init__(self, x, y):
+        """
+        Inicializa al Fantasma Naranja con su sprite.
+        """
+        super().__init__(x, y, FANTASMA_NARANJA)
