@@ -52,7 +52,8 @@ class Tablero:
                 self.puntos.comer_fruta()  # Detectar frutas comidas
                 self.puntos.generar_fruta()  # Generar frutas cada 30s
                 for fantasma in self.fantasmas:
-                    fantasma.mover()  # movimiento de los fantasmas
+                    if not fantasma.en_trampa:
+                        fantasma.mover() # movimiento de los fantasmas
                     fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
                 self.pacman.colision_fantasmas(self.fantasmas, self.puntos)  # Colisiones con fantasmas
                 # Comprobar si no quedan puntos ni regalos y sino quedan pues subimos de nivel
@@ -65,7 +66,7 @@ class Tablero:
                     else:
                         print("¡Has ganado! No hay más niveles disponibles.")
                         self.victoria = True
-                        # Aquí puedes agregar lógica para terminar el juego o reiniciar niveles
+                        
             else:
                 # Ejecutar animación de muerte
                 self.pacman.animar_muerte(self.fantasmas)
