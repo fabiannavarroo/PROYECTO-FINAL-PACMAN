@@ -89,6 +89,7 @@ class Fantasma:
     def mover(self,):
         if time.time() - self.ultimo_movimiento >= 0.2:  # Limitar movimiento a cada 0.2 segundos
             self.ultimo_movimiento = time.time()
+            # Implementar la lógica de movimiento de cada fantasma en subclases
             pass
 
     def draw(self):
