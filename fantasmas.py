@@ -225,11 +225,15 @@ class FantasmaRojo(Fantasma):
         self.siguiente_celda = None  # Almacena la próxima celda hacia la que se mueve el fantasma
 
     def mover(self):
-        if not self.en_trampa:
+        if not self.en_trampa():
+            # Movimiento normal fuera de la trampa
             if not self.asustado:
                 self.seguir_a_pacman()
             else:
                 self.alejarse_de_pacman()
+        else:
+            # Si por error el fantasma rojo está en la trampa, salir de ella
+            self.salir_de_trampa()
 
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y, pacman, bloque):
