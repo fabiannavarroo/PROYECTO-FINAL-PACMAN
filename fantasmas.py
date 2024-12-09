@@ -232,7 +232,7 @@ class FantasmaRojo(Fantasma):
             else:
                 self.alejarse_de_pacman()
         else:
-            # Si por error el fantasma rojo está en la trampa, salir de ella
+            # Si por error detecta que esta en la trampa, se mueve hacia la salida
             self.salir_de_trampa()
 
 class FantasmaRosa(Fantasma):
