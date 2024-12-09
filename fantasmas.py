@@ -81,7 +81,7 @@ class Fantasma:
         self.salida_trampa = time.time() + random.randint(2, 5)
 
     def actualizar_estado(self):
-        if self.asustado and time.time() - self.ultimo_movimiento > self.tiempo_asustado:  # Modo asustado dura 10 segundos
+        if self.asustado and time.time() - self.ultimo_movimiento > self.tiempo_asustado:  # Tiempo asustado de los fantasmas
             self.desactivar_asustado()
 
 class FantasmaRojo(Fantasma):
