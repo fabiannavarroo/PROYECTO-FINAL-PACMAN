@@ -51,10 +51,17 @@ class Tablero:
                 self.puntos.comer_puntos()  # Detectar puntos comidos
                 self.puntos.comer_fruta()  # Detectar frutas comidas
                 self.puntos.generar_fruta()  # Generar frutas cada 30s
+                tiempo_actual = time.time()
+
                 for fantasma in self.fantasmas:
-                    if not fantasma.en_trampa:
-                        fantasma.mover()  # movimiento de los fantasmas
+                    if fantasma.en_trampa:
+                        # Verificar si han pasado al menos 2 segundos desde que el fantasma entró a la trampa
+                        if tiempo_actual - fantasma.tiempo_trampa >= 2:
+                            fantasma.salir_de_trampa()
+                    else:
+                        fantasma.mover()
                     fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
+                    
                 self.pacman.colision_fantasmas(self.fantasmas, self.puntos)  # Colisiones con fantasmas
                 # Comprobar si no quedan puntos ni regalos y sino quedan pues subimos de nivel
                 if self.puntos.comprobar_puntos_restantes():
