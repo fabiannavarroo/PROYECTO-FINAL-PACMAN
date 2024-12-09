@@ -226,7 +226,7 @@ SPRITE_BLOQUE_24_2 = (160,104,1,16,16) # Cubo
 #-----MAPA--------#
 
 PUERTA_SALIDA = (192, 192)
-SALIDA_FINAL = (196, 176)
+SALIDA_FINAL = (192, 176)
 MAPA_1 = [
     # fila 1
     (0, 32, 11),      # Esquina superior izquierda
