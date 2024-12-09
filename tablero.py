@@ -129,15 +129,8 @@ class Tablero:
         pos_y = 245
         pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
         
-dibujar_letras_mapa()
-    def fin(self):
-        # Dibujar Game Over
-        sprite = TEXTO["GAME OVER"]
-        sprite_x, sprite_y = sprite["Coordenadas"]
-        sprite_w, sprite_h = sprite["Tamaño"]
-        pos_x = 185
-        pos_y = 208
-        pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
+    
+    
         
 
     def reiniciar_fantasmas(self):
@@ -172,7 +165,7 @@ dibujar_letras_mapa()
         # Animación de GAME OVER
         if self.contador_game_over < 70:  # Duración de la animación
             if (self.contador_game_over // 10) % 2 == 0:
-                self.fin()  # Mostrar el texto "GAME OVER"
+                self.dibujar_letras_mapa(185,208, "GAME OMVER")  # Mostrar el texto "GAME OVER"
             else:
                 pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio
         else:
