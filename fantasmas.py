@@ -57,8 +57,8 @@ class Fantasma:
     def salir_de_trampa(self):
         if self.en_trampa():
             # Alinear el fantasma al centro de la celda antes de avanzar
-            self.x = (self.x // 16) * 16 + 8
-            self.y = (self.y // 16) * 16 + 8
+            self.x = (self.x // 16) * 16 
+            self.y = (self.y // 16) * 16 
 
             # Primera fase: moverse hacia la puerta de salida (192, 192)
             if (self.x, self.y) == self.puerta_salida_coordenadas:
