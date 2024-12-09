@@ -38,10 +38,8 @@ class Fantasma:
             self.x, self.y = 181, 208
         elif isinstance(self, FantasmaAzul):
             self.x, self.y = 203, 208
-        elif isinstance(self, FantasmaNaranja):
-            self.x, self.y = 226, 208
         else:
-            self.x, self.y = 192, 192  # Posición predeterminada para otros casos
+            self.x, self.y = 226, 208
 
         self.asustado = False  # Sale del estado asustado
         self.velocidad = 1.5  # Restaurar velocidad normal
