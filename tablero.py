@@ -101,24 +101,26 @@ class Tablero:
         if self.pacman.vidas > 0:
             # Dibujar todos los elementos del juego
             self.bloque.draw()  # Dibujar el mapa
-            self.puntos.draw()  # Dibujar puntos, frutas y puntuación
-            self.pacman.ver_vidas(10, 10)  # Mostrar vidas restantes
-            self.pacman.draw()  # Dibujar Pac-Man
-            for fantasma in self.fantasmas:
-                fantasma.draw()  # Dibujar fantasmas
-
             if self.pacman.en_muerte:
                 # Dibujar la animación de muerte
                 self.animar_muerte()
-
-            # Dibujar READY! si está activo
-            if self.mostrar_ready:
-                self.animar_ready()
-            # Mostrar puntos cuando come fantasmas
-            if self.pacman.mostrar_puntos and time.time() - self.pacman.texto_tiempo_inicio < 1.5:  # Mostrar por 1.5 segundos
-                pyxel.text(self.pacman.posicion_fantasma_comido_x, self.pacman.posicion_fantasma_comido_y, "+200 puntos", pyxel.COLOR_RED)
             else:
-                self.pacman.mostrar_puntos = False
+                self.puntos.draw()  # Dibujar puntos, frutas y puntuación
+                self.pacman.ver_vidas(10, 10)  # Mostrar vidas restantes
+                self.pacman.draw()  # Dibujar Pac-Man
+                for fantasma in self.fantasmas:
+                    fantasma.draw()  # Dibujar fantasmas
+                
+                 # Dibujar READY! si está activo
+                if self.mostrar_ready:
+                    self.animar_ready()
+
+                # Mostrar puntos cuando come fantasmas
+                if self.pacman.mostrar_puntos and time.time() - self.pacman.texto_tiempo_inicio < 1.5:  # Mostrar por 1.5 segundos
+                    pyxel.text(self.pacman.posicion_fantasma_comido_x, self.pacman.posicion_fantasma_comido_y, "+200 puntos", pyxel.COLOR_RED)
+                else:
+                    self.pacman.mostrar_puntos = False
+
             # Dibujar la victoria
             if self.victoria:
                 pyxel.cls(0)
