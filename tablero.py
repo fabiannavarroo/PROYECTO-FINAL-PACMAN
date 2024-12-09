@@ -263,7 +263,7 @@ class Tablero:
                 # Activar estado asustado para los fantasmas
                 for fantasma in self.fantasmas:
                     fantasma.activar_asustado()
-                pyxel.playm(0,23,True)
+                pyxel.playm(0,23,False)
                 self.puntos.puntos += OBJETOS["REGALO"]["Puntos"]  # Incrementar los puntos por el regalo
             else:
                 regalos_sin_comer.append((x, y))
