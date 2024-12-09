@@ -129,8 +129,8 @@ class Fantasma:
             else:
                 self.siguiente_celda = None  # No hay celdas válidas  # No hay celdas válidas
 
-            # Movimiento paso a paso hacia la siguiente celda
-            self.mover_hacia_siguiente_celda()
+        # Movimiento paso a paso hacia la siguiente celda
+        self.mover_hacia_siguiente_celda()
 
 
     def mover_hacia_siguiente_celda(self):
