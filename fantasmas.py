@@ -56,28 +56,27 @@ class Fantasma:
 
     def salir_de_trampa(self):
         if self.en_trampa():
-            if (self.x, self.y) == self.salida_coordenadas:
+            # Moverse hacia la puerta de salida (192, 192)
+            if (self.x, self.y) == self.puerta_salida_coordenadas:
                 # Una vez en (192, 192), moverse hacia (196, 176)
-                dx, dy = self.salida_coordenadas[0] - self.x, self.salida_coordenadas[1] - self.y
-                if dx > 0:
-                    self.x += min(self.velocidad, dx)
-                elif dx < 0:
-                    self.x -= min(self.velocidad, abs(dx))
-                elif dy > 0:
-                    self.y += min(self.velocidad, dy)
-                elif dy < 0:
-                    self.y -= min(self.velocidad, abs(dy))
+                self.mover_hacia(self.salida_coordenadas)
             else:
-                # Moverse hacia (192, 192) inicialmente
-                dx, dy = self.salida_coordenadas[0] - self.x, self.salida_coordenadas[1] - self.y
-                if dx > 0:
-                    self.x += min(self.velocidad, dx)
-                elif dx < 0:
-                    self.x -= min(self.velocidad, abs(dx))
-                elif dy > 0:
-                    self.y += min(self.velocidad, dy)
-                elif dy < 0:
-                    self.y -= min(self.velocidad, abs(dy))
+                # Moverse hacia la puerta (192, 192)
+                self.mover_hacia(self.puerta_salida_coordenadas)
+
+    def mover_hacia(self, objetivo):
+        # Mueve al fantasma hacia un objetivo específico
+        dx, dy = objetivo[0] - self.x, objetivo[1] - self.y
+        if abs(dx) > abs(dy):  # Priorizar movimiento horizontal
+            if dx > 0:
+                self.x += min(self.velocidad, dx)
+            elif dx < 0:
+                self.x -= min(self.velocidad, abs(dx))
+        else:  # Priorizar movimiento vertical
+            if dy > 0:
+                self.y += min(self.velocidad, dy)
+            elif dy < 0:
+                self.y -= min(self.velocidad, abs(dy))
 
     def colision(self, x, y):
         # Verifica si hay una colisión, ignorando las coordenadas de salida
