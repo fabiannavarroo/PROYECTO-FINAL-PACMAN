@@ -20,6 +20,8 @@ class Fantasma:
         self.tiempo_asustado = 0  # Temporizador para estado asustado
         self.tiempo_para_ser_comido = 10  # Duración por defecto del estado asustado
         self.en_trampa = False  # Indica si el fantasma está en la trampa
+        self.siguiente_celda = None  # Almacena la próxima celda hacia la que se mueve el fantasma
+
 
 
     def activar_asustado(self):
@@ -82,6 +84,77 @@ class Fantasma:
             return True
         return False
     
+
+    def seguir_a_pacman(self):
+        # Persigue a Pac-Man utilizando rutas simples y movimientos paso a paso.
+        if self.siguiente_celda is None or (self.x == self.siguiente_celda[0] and self.y == self.siguiente_celda[1]):
+            inicio = (self.x // 16 * 16, self.y // 16 * 16)
+            objetivo = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
+            ruta = self.buscar_ruta_simple(inicio, objetivo)
+
+            if ruta and len(ruta) > 1:
+                self.siguiente_celda = ruta[1]
+            else:
+                self.siguiente_celda = None
+
+        self.mover_hacia_siguiente_celda()
+
+    def alejarse_de_pacman(self):
+        # Se aleja de Pac-Man utilizando rutas que maximizan la distancia.
+        if self.siguiente_celda is None or (self.x == self.siguiente_celda[0] and self.y == self.siguiente_celda[1]):
+            inicio = (self.x // 16 * 16, self.y // 16 * 16)
+            objetivo = (-self.pacman.x // 16 * 16, -self.pacman.y // 16 * 16)
+            ruta = self.buscar_ruta_simple(inicio, objetivo)
+
+            if ruta and len(ruta) > 1:
+                self.siguiente_celda = ruta[1]
+            else:
+                self.siguiente_celda = None
+
+        self.mover_hacia_siguiente_celda()
+
+    def mover_hacia_siguiente_celda(self):
+        # Mueve al fantasma hacia la celda calculada.
+        if self.siguiente_celda:
+            dx = self.siguiente_celda[0] - self.x
+            dy = self.siguiente_celda[1] - self.y
+
+            if dx > 0:
+                self.x += min(self.velocidad, dx)
+                self.direccion_actual = "DERECHA"
+            elif dx < 0:
+                self.x += max(-self.velocidad, dx)
+                self.direccion_actual = "IZQUIERDA"
+            elif dy > 0:
+                self.y += min(self.velocidad, dy)
+                self.direccion_actual = "ABAJO"
+            elif dy < 0:
+                self.y += max(-self.velocidad, dy)
+                self.direccion_actual = "ARRIBA"
+
+    def buscar_ruta_simple(self, inicio, objetivo):
+        # Encuentra una ruta básica hacia el objetivo utilizando búsqueda en anchura (BFS).
+        cola = deque([inicio])
+        visitados = {inicio: None}
+
+        while cola:
+            actual = cola.popleft()
+
+            if actual == objetivo:
+                ruta = []
+                while actual is not None:
+                    ruta.append(actual)
+                    actual = visitados[actual]
+                ruta.reverse()
+                return ruta
+
+            for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
+                vecino = (actual[0] + dx, actual[1] + dy)
+                if vecino not in visitados and not self.bloque.colision(vecino[0], vecino[1]):
+                    visitados[vecino] = actual
+                    cola.append(vecino)
+
+        return None
 
 
     def draw(self):
