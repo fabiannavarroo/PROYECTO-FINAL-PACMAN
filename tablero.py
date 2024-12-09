@@ -20,7 +20,7 @@ class Tablero:
             FantasmaRojo(196, 176, self.pacman, self.bloque),
             FantasmaRosa(181, 208, self.pacman, self.bloque),
             FantasmaAzul(203, 208, self.pacman, self.bloque),
-            FantasmaNaranja(226, 208, self.pacman, self.bloque),
+            FantasmaNaranja(225, 208, self.pacman, self.bloque),
         ]
         self.puntos = Puntos(OBJETOS, self.pacman, self.fantasmas, self.bloque)  # Puntos y frutas
 
