@@ -100,17 +100,29 @@ class Fantasma:
         self.mover_hacia_siguiente_celda()
 
     def alejarse_de_pacman(self):
-        # Se aleja de Pac-Man utilizando rutas que maximizan la distancia.
+        """
+        Se aleja de Pac-Man utilizando celdas que aumentan la distancia entre ambos.
+        """
         if self.siguiente_celda is None or (self.x == self.siguiente_celda[0] and self.y == self.siguiente_celda[1]):
             inicio = (self.x // 16 * 16, self.y // 16 * 16)
-            objetivo = (-self.pacman.x // 16 * 16, -self.pacman.y // 16 * 16)
-            ruta = self.buscar_ruta_simple(inicio, objetivo)
+            pacman_pos = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
 
-            if ruta and len(ruta) > 1:
-                self.siguiente_celda = ruta[1]
+            # Evaluar todas las celdas adyacentes y elegir la que maximiza la distancia a Pac-Man
+            opciones = []
+            for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
+                vecino = (inicio[0] + dx, inicio[1] + dy)
+                if not self.bloque.colision(vecino[0], vecino[1]):  # Solo considerar celdas sin colisión
+                    distancia = abs(vecino[0] - pacman_pos[0]) + abs(vecino[1] - pacman_pos[1])
+                    opciones.append((distancia, vecino))
+
+            # Ordenar por mayor distancia y seleccionar la mejor opción
+            if opciones:
+                opciones.sort(reverse=True, key=lambda x: x[0])  # Mayor distancia primero
+                self.siguiente_celda = opciones[0][1]  # Elegir la celda con mayor distancia
             else:
-                self.siguiente_celda = None
+                self.siguiente_celda = None  # No hay celdas válidas
 
+        # Movimiento paso a paso hacia la siguiente celda
         self.mover_hacia_siguiente_celda()
 
     def mover_hacia_siguiente_celda(self):
