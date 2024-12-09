@@ -43,6 +43,14 @@ class Fantasma:
 
     def volver_a_trampa(self):
         # Envía al fantasma a la trampa
+        # Reubicar al fantasma en la trampa y reiniciar estado
+        self.x, self.y = self.x_inicial, self.y_inicial
+        self.siguiente_celda = None
+        self.asustado = False # Sale del estado asustado
+        self.direccion_actual = "DERECHA"
+        self.tiempo_trampa = time.time()
+        self.velocidad = 2
+        # Coordenadas de la trampa de cada fantasma
         if isinstance(self, FantasmaRojo):
             self.x, self.y = 158, 208
         elif isinstance(self, FantasmaRosa):
@@ -51,8 +59,7 @@ class Fantasma:
             self.x, self.y = 203, 208
         elif isinstance(self, FantasmaNaranja):
             self.x, self.y = 225, 208
-        self.asustado = False  # Sale del estado asustado
-        self.velocidad = 2
+        
 
     def salir_de_trampa(self):
         if self.en_trampa():
