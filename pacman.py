@@ -24,6 +24,9 @@ class Pacman:
     def draw(self):
         if self.vidas <= 0:  # Si no hay vidas, no se dibuja
             return
+
+        if self.en_muerte:
+            
         else:
             if pyxel.frame_count // REFRESH % 2 == 0:
                 sprite_x, sprite_y = self.direccion_actual
