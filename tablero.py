@@ -85,7 +85,7 @@ class Tablero:
                         
             else:
                 # Ejecutar animación de muerte
-                self.pacman.animar_muerte()
+                self.animar_muerte()
                 if not self.pacman.en_muerte:  # Cuando termina la animación de muerte
                     self.reiniciar_tablero()
                 
@@ -469,6 +469,18 @@ class Tablero:
 
         print("Pacman", self.pacman.x, self.pacman.y)
 
+    def animar_muerte(self):
+        if not self.en_muerte:
+            return
+
+        if self.animacion_frame < len(ANIMACION_MUERTE):
+            sprite_x, sprite_y = ANIMACION_MUERTE[self.animacion_frame]
+            pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
+            if pyxel.frame_count % 5 == 0:  # Cambiar cada 5 frames
+                self.animacion_frame += 1
+        else:
+            self.en_muerte = False
+            self.reiniciar_posiciones()
 
 
     def reiniciar_posiciones(self):
