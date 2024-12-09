@@ -45,9 +45,9 @@ class Fantasma:
 
 
     def volver_a_posicion_inicial(self):
-        #Restaura la posición inicial del fantasma
-        self.x = self.x_inicial//16*16
-        self.y = self.y_inicial//16*16
+        self.x = self.x_inicial // 16 * 16  # Alinear con la cuadrícula
+        self.y = self.y_inicial // 16 * 16  # Alinear con la cuadrícula
+        self.siguiente_celda = None  # Limpiar la ruta almacenada
         self.asustado = False
         self.en_trampa = False
 
