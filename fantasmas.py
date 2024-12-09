@@ -20,6 +20,7 @@ class Fantasma:
         self.tiempo_para_ser_comido = 10  # Duración por defecto del estado asustado
         self.tiempo_trampa = time.time()  # Temporizador para controlar salida
         self.salida_coordenadas = (196, 176)  # Punto fuera de la trampa
+        self.puerta_salida_coordenadas = (192, 192) # Punto de la puerta de salida de la trampa para colision
         self.trampa_coordenadas = ((144, 192), (240, 224))  # Región de la trampa
         self.siguiente_celda = None  # Almacena la próxima celda hacia la que se mueve el fantasma
 
@@ -65,9 +66,8 @@ class Fantasma:
                 self.y -= min(self.velocidad, abs(dy))
 
     def colision(self, x, y):
-        # Verifica si hay una colisión en las coordenadas dadas.
-        if self.en_trampa and (x, y) == self.salida_coordenadas:
-            return False  # No tratar el muro especial como colisión
+        if self.en_trampa() and (x, y) == self.puerta_salida_coordenadas:
+            return False  # Ignorar la colisión en el punto de salida de la trampa
         return self.bloque.colision(x, y)  # Usar lógica normal fuera de la trampa
 
 
