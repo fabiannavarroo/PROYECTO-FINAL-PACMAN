@@ -17,7 +17,7 @@ class Tablero:
         self.bloque = Bloque()  # Mapa del juego
         self.pacman = Pacman(192, 304, self.bloque)  # Pacman y su posición inicial
         self.fantasmas = [  # Lista de fantasmas con sus posiciones iniciales
-            FantasmaRojo(, 176, self.pacman, self.bloque),
+            FantasmaRojo(80, 176, self.pacman, self.bloque),
             FantasmaRosa(181, 208, self.pacman, self.bloque),
             FantasmaAzul(203, 208, self.pacman, self.bloque),
             FantasmaNaranja(225, 208, self.pacman, self.bloque),
