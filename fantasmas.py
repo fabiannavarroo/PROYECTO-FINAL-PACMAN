@@ -277,7 +277,15 @@ class FantasmaRosa(Fantasma):
         super().__init__(x, y, FANTASMA_ROSA, pacman, bloque)
 
     def mover(self):
-        pass
+        if not self.en_trampa():
+            # Movimiento normal fuera de la trampa
+            if not self.asustado:
+                self.seguir_a_pacman()
+            else:
+                self.alejarse_de_pacman()
+        else:
+            # Si por error detecta que esta en la trampa, se mueve hacia la salida
+            self.salir_de_trampa()
 
 class FantasmaAzul(Fantasma):
     def __init__(self, x, y, pacman, bloque):
