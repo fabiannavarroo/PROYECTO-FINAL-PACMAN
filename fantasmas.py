@@ -217,6 +217,9 @@ class Fantasma:
                 self.y += max(-self.velocidad, dy)
                 self.direccion_actual = "ARRIBA"
 
+        if (self.x, self.y) in PORTALES:
+            self.x, self.y = PORTALES[(self.x, self.y)]
+
     def buscar_ruta_simple(self, inicio, objetivo):
         # Encuentra una ruta básica hacia el objetivo utilizando búsqueda en anchura (BFS).
         cola = deque([inicio])
