@@ -193,9 +193,6 @@ class Fantasma:
 
 
 # Subclases de Fantasma
-
-from collections import deque
-
 class FantasmaRojo(Fantasma):
     def __init__(self, x, y, pacman, bloque):
         super().__init__(x, y, FANTASMA_ROJO, pacman, bloque)
