@@ -188,8 +188,8 @@ class Bloque:
         for px, py in puntos_a_verificar:
             for bloque_x, bloque_y, _ in self.bloques:
                 # Procesar bloques que no estén en la puerta de salida
-                if not (self.puerta_salida[0] <= px < self.puerta_salida[0] + sprite_tamaño and
-                        self.puerta_salida[1] <= py < self.puerta_salida[1] + sprite_tamaño):
+                if not (PUERTA_SALIDA[0] <= px < PUERTA_SALIDA[0] + sprite_tamaño and
+                        PUERTA_SALIDA[1] <= py < PUERTA_SALIDA[1] + sprite_tamaño):
                     if bloque_x <= px < bloque_x + sprite_tamaño and bloque_y <= py < bloque_y + sprite_tamaño:
                         return True  # Colisión detectada
         return False  # No hay colisión
