@@ -189,12 +189,6 @@ class Puntos:
             pos_x += sprite_w + 1  # Espacio entre los numeros
 
 
-    def dibujar_letras_mapa(self, x , y, sprite):
-        # Dibuja las letras en el mapa
-        sprite=TEXTO[sprite]
-        pyxel.blt(x, y, 0, sprite["Coordenadas"][0], sprite["Coordenadas"][1], sprite["Tamaño"][0], sprite["Tamaño"][1], colkey=0)
-
-
     def reiniciar_puntos(self):
         # Reinica los puntos
         self.regalos = [(16, 304), (368, 304), (16, 80),(368, 80)] # Coordenadas de los regalos
