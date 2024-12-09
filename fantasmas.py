@@ -78,6 +78,7 @@ class Fantasma:
             puerta_x, puerta_y = self.puerta_salida[0], self.puerta_salida[1]
             if puerta_x <= x <= puerta_x + 16 and puerta_y <= y <= puerta_y + 16:
                 return False
+        return self.bloque.colision(x, y)
 
 
     def volver_a_posicion_inicial(self):
