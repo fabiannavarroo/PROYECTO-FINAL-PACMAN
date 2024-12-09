@@ -14,7 +14,7 @@ class Tablero:
         pyxel.load("assets/recursos.pyxres")  # Cargar recursos gráficos
 
         # Inicializar elementos del juego
-        
+        self.bloque = Bloque()  # Mapa del juego
         self.pacman = Pacman(192, 304, self.bloque)  # Pacman y su posición inicial
         self.fantasmas = [  # Lista de fantasmas con sus posiciones iniciales
             FantasmaRojo(196, 176, self.pacman, self.bloque),
@@ -23,7 +23,6 @@ class Tablero:
             FantasmaNaranja(225, 208, self.pacman, self.bloque),
         ]
         self.puntos = Puntos(OBJETOS, self.pacman, self.fantasmas, self.bloque)  # Puntos y frutas
-        self.bloque = Bloque(self.fantasmas)  # Mapa del juego
 
         # Controlar el mensaje READY!
         self.mostrar_ready = True  # Indica si se muestra el mensaje READY!
