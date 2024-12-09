@@ -49,12 +49,11 @@ class Fantasma:
 
     def salir_de_trampa(self):
         # Controla la salida del fantasma desde la trampa.
-        if self.en_trampa and time.time() - self.tiempo_trampa >= 2:
-            # Si el tiempo de espera ha pasado, permitir salir
+        if self.en_trampa:
+            # Moverse hacia la salida
             if self.x == self.salida_coordenadas[0] and self.y == self.salida_coordenadas[1]:
                 self.en_trampa = False  # Ya está fuera
             else:
-                # Moverse hacia la salida si está en la trampa
                 self.mover_hacia_salida()
 
     def mover_hacia_salida(self):
