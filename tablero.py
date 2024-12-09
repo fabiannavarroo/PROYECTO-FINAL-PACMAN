@@ -57,7 +57,7 @@ class Tablero:
                     if isinstance(fantasma, FantasmaRojo):
                         # Fantasma rojo se mueve normalmente desde el principio
                         fantasma.mover()
-                    elif fantasma.en_trampa:
+                    elif fantasma.en_trampa():
                         # Salida escalonada de fantasmas de la trampa
                         if tiempo_actual - fantasma.tiempo_trampa >= index * 2:
                             fantasma.salir_de_trampa()
