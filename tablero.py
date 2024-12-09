@@ -53,7 +53,8 @@ class Tablero:
                 self.puntos.generar_fruta()  # Generar frutas cada 30s
                 for fantasma in self.fantasmas:
                     if not fantasma.en_trampa:
-                        self.fantasmas.mover() # movimiento de los fantasmas
+                        for fantasma in self.fantasmas:
+                            fantasma.mover()  # movimiento de los fantasmas
                     fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
                 self.pacman.colision_fantasmas(self.fantasmas, self.puntos)  # Colisiones con fantasmas
                 # Comprobar si no quedan puntos ni regalos y sino quedan pues subimos de nivel
