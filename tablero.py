@@ -53,10 +53,10 @@ class Tablero:
                 self.puntos.generar_fruta()  # Generar frutas cada 30s
                 
                 tiempo_actual = time.time()
-                for index, fantasma in enumerate(self.fantasmas):
+                for num, fantasma in enumerate(self.fantasmas):
                     if fantasma.en_trampa:
                         # Controlar la salida de uno en uno
-                        if tiempo_actual - fantasma.tiempo_trampa >= (index * 2):  # Salida cada 2 segundos
+                        if tiempo_actual - fantasma.tiempo_trampa >= (num * 2):  # Salida cada 2 segundos
                             fantasma.salir_de_trampa()
                     else:
                         fantasma.mover()  # Movimiento normal del fantasma
