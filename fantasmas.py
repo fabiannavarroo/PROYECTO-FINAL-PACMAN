@@ -20,6 +20,8 @@ class Fantasma:
         self.tiempo_asustado = 0  # Temporizador para estado asustado
         self.tiempo_para_ser_comido = 10  # Duración por defecto del estado asustado
         self.en_trampa = True  # Indica si el fantasma está en la trampa
+        self.tiempo_trampa = time.time()  # Temporizador para controlar salida
+        self.salida_coordenadas = (192, 192)  # Coordenadas del muro especial
         self.siguiente_celda = None  # Almacena la próxima celda hacia la que se mueve el fantasma
 
 
@@ -45,6 +47,41 @@ class Fantasma:
         self.asustado = False  # Sale del estado asustado
         self.velocidad = 2
 
+    def salir_de_trampa(self):
+        # Controla la salida del fantasma desde la trampa.
+        if self.en_trampa and time.time() - self.tiempo_trampa >= 2:
+            # Si el tiempo de espera ha pasado, permitir salir
+            if self.x == self.salida_coordenadas[0] and self.y == self.salida_coordenadas[1]:
+                self.en_trampa = False  # Ya está fuera
+            else:
+                # Moverse hacia la salida si está en la trampa
+                self.mover_hacia_salida()
+
+    def mover_hacia_salida(self):
+        # Mueve al fantasma hacia la posición de salida de la trampa.
+        dx = self.salida_coordenadas[0] - self.x
+        dy = self.salida_coordenadas[1] - self.y
+
+        if abs(dx) > abs(dy):  # Priorizar el movimiento horizontal
+            if dx > 0:
+                self.x += self.velocidad
+                self.direccion_actual = "DERECHA"
+            elif dx < 0:
+                self.x -= self.velocidad
+                self.direccion_actual = "IZQUIERDA"
+        else:  # Priorizar el movimiento vertical
+            if dy > 0:
+                self.y += self.velocidad
+                self.direccion_actual = "ABAJO"
+            elif dy < 0:
+                self.y -= self.velocidad
+                self.direccion_actual = "ARRIBA"
+
+    def colision(self, x, y):
+        # Verifica si hay una colisión en las coordenadas dadas.
+        if self.en_trampa and (x, y) == self.salida_coordenadas:
+            return False  # No tratar el muro especial como colisión
+        return self.bloque.colision(x, y)  # Usar lógica normal fuera de la trampa
 
     def volver_a_posicion_inicial(self):
         self.x = self.x_inicial // 16 * 16  # Alinear con la cuadrícula
