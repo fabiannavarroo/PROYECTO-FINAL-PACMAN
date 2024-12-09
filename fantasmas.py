@@ -42,7 +42,6 @@ class Fantasma:
 
     def volver_a_trampa(self):
         # Envía al fantasma a la trampa
-        self.en_trampa = True
         if isinstance(self, FantasmaRojo):
             self.x, self.y = 158, 208
         elif isinstance(self, FantasmaRosa):
@@ -94,7 +93,7 @@ class Fantasma:
         self.y = self.y_inicial // 16 * 16  # Alinear con la cuadrícula
         self.siguiente_celda = None  # Limpiar la ruta almacenada
         self.asustado = False
-        self.en_trampa = False
+        
 
 
     def actualizar_estado(self):
