@@ -224,6 +224,9 @@ SPRITE_BLOQUE_23_2 = (176,88,1,16,16) # Borde inferior trampa fantasma
 SPRITE_BLOQUE_24_2 = (160,104,1,16,16) # Cubo
 
 #-----MAPA--------#
+
+PUERTA_SALIDA = (192, 192)
+
 MAPA_1 = [
     # fila 1
     (0, 32, 11),      # Esquina superior izquierda
