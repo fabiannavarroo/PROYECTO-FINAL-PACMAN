@@ -477,7 +477,7 @@ class Tablero:
                 sprite_x, sprite_y = ANIMACION_MUERTE[self.pacman.animacion_frame]
                 pyxel.blt(self.pacman.x, self.pacman.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
                 if pyxel.frame_count % 5 == 0:  # Cambiar cada 5 frames
-                    self.animacion_frame += 1
+                    self.pacman.animacion_frame += 1
         else:
             # Finaliza la animación de muerte
             self.pacman.en_muerte = False
