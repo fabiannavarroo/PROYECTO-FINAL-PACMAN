@@ -4,7 +4,7 @@ from constantes import *
 
 class Bloque:
     def __init__(self):
-        self.nivel = 3  # Nivel inicial
+        self.nivel = 1  # Nivel inicial
         self.celda_tamaño = 16
         self.bloques = []
         self.mapas = MAPA
@@ -182,9 +182,6 @@ class Bloque:
         ]
         for px, py in puntos_a_verificar:
             for bloque_x, bloque_y, _ in self.bloques:
-                if (PUERTA_SALIDA[0] <= px < PUERTA_SALIDA[0] + sprite_tamaño and
-                        PUERTA_SALIDA[1] <= py < PUERTA_SALIDA[1] + sprite_tamaño):
-                    continue  # Ignorar colisión en la puerta de salida
                 if bloque_x <= px < bloque_x + sprite_tamaño and bloque_y <= py < bloque_y + sprite_tamaño:
                     return True  # Colisión detectada
         return False  # No hay colisión
@@ -206,7 +203,3 @@ class Bloque:
             pyxel.blt(bloque_x, bloque_y, sprite_bank, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
 
 
-    def dibujar_letras_mapa(self, x, y, sprite):
-        # Dibuja las letras en el mapa
-        sprite = TEXTO[sprite]
-        pyxel.blt(x, y, 0, sprite["Coordenadas"][0], sprite["Coordenadas"][1], sprite["Tamaño"][0], sprite["Tamaño"][1], colkey=0)

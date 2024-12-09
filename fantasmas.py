@@ -5,15 +5,13 @@ import time
 import random
 
 class Fantasma:
-    def __init__(self, x, y, sprites, pacman, bloque):
+    def __init__(self, x, y, sprites):
         self.x = x
         self.y = y
         self.velocidad = 2
         self.x_inicial = x  # Guardar posición inicial
         self.y_inicial = y  # Guardar posición inicial
         self.sprites = sprites
-        self.pacman = pacman
-        self.bloque = bloque
         self.direccion_actual = "DERECHA"
         self.asustado = False  # Indica si está en estado asustado
         self.tiempo_asustado = 0  # Temporizador para estado asustado
@@ -93,20 +91,6 @@ class Fantasma:
                     self.y -= min(self.velocidad, abs(dy))
 
 
-
-    def colision(self, x, y):
-        # Verifica si hay colisión, quitando la región de la puerta de salida
-        puerta_x, puerta_y = PUERTA_SALIDA
-        sprite_tamaño = self.bloque.celda_tamaño
-
-        # Quita la región de la puerta de salida
-        if puerta_x <= x < puerta_x + sprite_tamaño and puerta_y <= y < puerta_y + sprite_tamaño:
-            return False  # No hay colisión en la puerta de salida
-
-        # Verificar colisiones normales en los bloques del mapa
-        return self.bloque.colision(x, y)
-
-
     def volver_a_posicion_inicial(self):
         self.x = self.x_inicial
         self.y = self.y_inicial  
@@ -147,101 +131,6 @@ class Fantasma:
         return False
 
 
-        
-    
-
-    def seguir_a_pacman(self):
-        # Persigue a Pac-Man utilizando rutas simples y movimientos paso a paso.
-        if self.siguiente_celda is None or (self.x == self.siguiente_celda[0] and self.y == self.siguiente_celda[1]):
-            inicio = (self.x // 16 * 16, self.y // 16 * 16)
-            objetivo = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
-            ruta = self.buscar_ruta_simple(inicio, objetivo)
-
-            if ruta and len(ruta) > 1:
-                self.siguiente_celda = ruta[1]
-            else:
-                self.siguiente_celda = None
-
-        self.mover_hacia_siguiente_celda()
-
-
-    def alejarse_de_pacman(self):
-        # Se aleja de Pac-Man utilizando celdas que aumentan la distancia entre ambos.
-        if self.siguiente_celda is None or (self.x == self.siguiente_celda[0] and self.y == self.siguiente_celda[1]):
-            inicio = (self.x // 16 * 16, self.y // 16 * 16)
-            pacman_pos = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
-
-            # Evaluar todas las celdas adyacentes y elegir la que maximiza la distancia a Pac-Man
-            opciones = []
-            for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
-                vecino = (inicio[0] + dx, inicio[1] + dy)
-                if not self.bloque.colision(vecino[0], vecino[1]):  # Solo considerar celdas sin colisión
-                    distancia = abs(vecino[0] - pacman_pos[0]) + abs(vecino[1] - pacman_pos[1])
-                    opciones.append((distancia, vecino))
-
-            # Ordenar por mayor distancia y seleccionar la mejor opción
-            if opciones:
-                mayor_distancia = -1
-                mejor_celda = None
-
-                # Encontrar la celda con la mayor distancia
-                for distancia, celda in opciones:
-                    if distancia > mayor_distancia:
-                        mayor_distancia = distancia
-                        mejor_celda = celda
-
-                self.siguiente_celda = mejor_celda  # Asignar la mejor celda
-            else:
-                self.siguiente_celda = None  # No hay celdas válidas  # No hay celdas válidas
-
-        # Movimiento paso a paso hacia la siguiente celda
-        self.mover_hacia_siguiente_celda()
-
-
-    def mover_hacia_siguiente_celda(self):
-        # Mueve al fantasma hacia la celda calculada.
-        if self.siguiente_celda:
-            dx = self.siguiente_celda[0] - self.x
-            dy = self.siguiente_celda[1] - self.y
-
-            if dx > 0:
-                self.x += min(self.velocidad, dx)
-                self.direccion_actual = "DERECHA"
-            elif dx < 0:
-                self.x += max(-self.velocidad, dx)
-                self.direccion_actual = "IZQUIERDA"
-            elif dy > 0:
-                self.y += min(self.velocidad, dy)
-                self.direccion_actual = "ABAJO"
-            elif dy < 0:
-                self.y += max(-self.velocidad, dy)
-                self.direccion_actual = "ARRIBA"
-
-    def buscar_ruta_simple(self, inicio, objetivo):
-        # Encuentra una ruta básica hacia el objetivo utilizando búsqueda en anchura (BFS).
-        cola = deque([inicio])
-        visitados = {inicio: None}
-
-        while cola:
-            actual = cola.popleft()
-
-            if actual == objetivo:
-                ruta = []
-                while actual is not None:
-                    ruta.append(actual)
-                    actual = visitados[actual]
-                ruta.reverse()
-                return ruta
-
-            for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
-                vecino = (actual[0] + dx, actual[1] + dy)
-                if vecino not in visitados and not self.bloque.colision(vecino[0], vecino[1]):
-                    visitados[vecino] = actual
-                    cola.append(vecino)
-
-        return None
-
-
     def draw(self):
         #Dibuja el fantasma en su estado actual.
         if self.asustado:
@@ -259,41 +148,32 @@ class Fantasma:
 
 # Subclases de Fantasma
 class FantasmaRojo(Fantasma):
-    def __init__(self, x, y, pacman, bloque):
-        super().__init__(x, y, FANTASMA_ROJO, pacman, bloque)
-        self.siguiente_celda = None  # Almacena la próxima celda hacia la que se mueve el fantasma
+    def __init__(self, x, y):
+        super().__init__(x, y, FANTASMA_ROJO)
 
     def mover(self):
-        if not self.en_trampa():
-            # Movimiento normal fuera de la trampa
-            if not self.asustado:
-                self.seguir_a_pacman()
-            else:
-                self.alejarse_de_pacman()
-        else:
-            # Si por error detecta que esta en la trampa, se mueve hacia la salida
-            self.salir_de_trampa()
-
+        pass
+       
 class FantasmaRosa(Fantasma):
-    def __init__(self, x, y, pacman, bloque):
+    def __init__(self, x, y):
         # Inicializa al Fantasma Rosa con su sprite.
-        super().__init__(x, y, FANTASMA_ROSA, pacman, bloque)
+        super().__init__(x, y, FANTASMA_ROSA)
 
     def mover(self):
         pass
 
 class FantasmaAzul(Fantasma):
-    def __init__(self, x, y, pacman, bloque):
+    def __init__(self, x, y):
         # Inicializa al Fantasma Azul con su sprite.
-        super().__init__(x, y, FANTASMA_AZUL, pacman, bloque)
+        super().__init__(x, y, FANTASMA_AZUL)
 
     def mover(self):
         pass
 
 class FantasmaNaranja(Fantasma):
-    def __init__(self, x, y, pacman, bloque):
+    def __init__(self, x, y):
         # Inicializa al Fantasma Naranja con su sprite.
-        super().__init__(x, y, FANTASMA_NARANJA, pacman, bloque)
+        super().__init__(x, y, FANTASMA_NARANJA)
 
     def mover(self):
         pass
