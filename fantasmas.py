@@ -62,10 +62,8 @@ class Fantasma:
 
 
 
-    def mover_en_direccion(self, direccion):
-        """
-        Mueve al fantasma en la dirección especificada si es posible.
-        """
+    def mover_en_direccion(self, direccion):    
+        # Mueve al fantasma en la dirección especificada si es posible.
         if direccion == "ARRIBA" and not self.bloque.colision(self.x, self.y - self.velocidad):
             self.y -= self.velocidad
             self.direccion_actual = "ARRIBA"
@@ -105,16 +103,12 @@ class Fantasma:
 
 class FantasmaRojo(Fantasma):
     def __init__(self, x, y, pacman, bloque):
-        """
-        Inicializa al Fantasma Rojo con su sprite.
-        """
+        # Inicializa al Fantasma Rojo con su sprite.
         super().__init__(x, y, FANTASMA_ROJO, pacman, bloque)
         self.siguiente_celda = None  # Almacena la próxima celda hacia la que se mueve el fantasma
 
     def mover(self):
-        """
-        Mueve al Fantasma Rojo hacia Pac-Man utilizando rutas simples y movimientos paso a paso.
-        """
+        # Mueve al Fantasma Rojo hacia Pac-Man utilizando rutas simples y movimientos paso a paso.
         if self.siguiente_celda is None or (self.x == self.siguiente_celda[0] and self.y == self.siguiente_celda[1]):
             # Si no hay una celda objetivo o ya llegamos a la celda objetivo, buscar una nueva ruta
             inicio = (self.x // 16 * 16, self.y // 16 * 16)  # Redondear posición a la celda más cercana
@@ -145,9 +139,7 @@ class FantasmaRojo(Fantasma):
                 self.direccion_actual = "ARRIBA"
 
     def buscar_ruta_simple(self, inicio, objetivo):
-        """
-        Encuentra una ruta básica hacia el objetivo utilizando búsqueda en anchura (BFS).
-        """
+        # Encuentra una ruta básica hacia el objetivo utilizando búsqueda en anchura (BFS).
         cola = deque([inicio])  # Posiciones a explorar
         visitados = {inicio: None}  # Rastro de posiciones visitadas
 
@@ -174,9 +166,7 @@ class FantasmaRojo(Fantasma):
 
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y, pacman, bloque):
-        """
-        Inicializa al Fantasma Rosa con su sprite.
-        """
+        # Inicializa al Fantasma Rosa con su sprite.
         super().__init__(x, y, FANTASMA_ROSA, pacman, bloque)
 
     def mover(self):
@@ -184,9 +174,7 @@ class FantasmaRosa(Fantasma):
 
 class FantasmaAzul(Fantasma):
     def __init__(self, x, y, pacman, bloque):
-        """
-        Inicializa al Fantasma Azul con su sprite.
-        """
+        # Inicializa al Fantasma Azul con su sprite.
         super().__init__(x, y, FANTASMA_AZUL, pacman, bloque)
 
     def mover(self):
@@ -194,9 +182,7 @@ class FantasmaAzul(Fantasma):
 
 class FantasmaNaranja(Fantasma):
     def __init__(self, x, y, pacman, bloque):
-        """
-        Inicializa al Fantasma Naranja con su sprite.
-        """
+        # Inicializa al Fantasma Naranja con su sprite.
         super().__init__(x, y, FANTASMA_NARANJA, pacman, bloque)
 
     def mover(self):
