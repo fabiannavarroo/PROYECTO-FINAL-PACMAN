@@ -107,6 +107,10 @@ class Tablero:
             for fantasma in self.fantasmas:
                 fantasma.draw()  # Dibujar fantasmas
 
+            if self.pacman.en_muerte:
+                # Dibujar la animación de muerte
+                self.animar_muerte()
+
             # Dibujar READY! si está activo
             if self.mostrar_ready:
                 self.animar_ready()
