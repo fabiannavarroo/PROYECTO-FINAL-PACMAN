@@ -1,5 +1,6 @@
 import pyxel
 from constantes import *
+from collections import deque
 import time
 
 class Fantasma:
@@ -52,6 +53,27 @@ class Fantasma:
             tiempo_restante = self.tiempo_para_ser_comido - (time.time() - self.tiempo_asustado)
             if tiempo_restante <= 0:
                 self.asustado = False  # Finaliza el estado asustado
+
+
+    def mover_en_direccion(self, direccion, bloque):
+        #Mueve al fantasma en la dirección indicada si es posible.
+        if direccion == "ARRIBA" and not bloque.colision(self.x, self.y - self.velocidad):
+            self.y -= self.velocidad
+            self.direccion_actual = "ARRIBA"
+            return True
+        elif direccion == "ABAJO" and not bloque.colision(self.x, self.y + self.velocidad):
+            self.y += self.velocidad
+            self.direccion_actual = "ABAJO"
+            return True
+        elif direccion == "IZQUIERDA" and not bloque.colision(self.x - self.velocidad, self.y):
+            self.x -= self.velocidad
+            self.direccion_actual = "IZQUIERDA"
+            return True
+        elif direccion == "DERECHA" and not bloque.colision(self.x + self.velocidad, self.y):
+            self.x += self.velocidad
+            self.direccion_actual = "DERECHA"
+            return True
+        return False
 
 
     def draw(self):
