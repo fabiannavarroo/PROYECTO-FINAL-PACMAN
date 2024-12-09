@@ -55,12 +55,11 @@ class Tablero:
                 tiempo_actual = time.time()
                 for index, fantasma in enumerate(self.fantasmas):
                     if fantasma.en_trampa:
-                        # Controlar la salida escalonada
+                        # Controlar la salida de uno en uno
                         if tiempo_actual - fantasma.tiempo_trampa >= (index * 2):  # Salida cada 2 segundos
                             fantasma.salir_de_trampa()
                     else:
                         fantasma.mover()  # Movimiento normal del fantasma
-
                 fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
 
                 self.pacman.colision_fantasmas(self.fantasmas, self.puntos)  # Colisiones con fantasmas
