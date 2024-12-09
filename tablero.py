@@ -95,7 +95,7 @@ class Tablero:
 
     def draw(self):
         pyxel.cls(0)  # Limpiar pantalla
-
+        self.dibujar_letras_mapa(120,16, "HIGHSCORE")
         if self.pacman.vidas > 0:
             # Dibujar todos los elementos del juego
             self.bloque.draw()  # Dibujar el mapa
