@@ -86,6 +86,11 @@ class Fantasma:
             self.en_trampa = False
 
 
+    def mover(self,):
+        if time.time() - self.ultimo_movimiento >= 0.2:  # Limitar movimiento a cada 0.2 segundos
+            self.ultimo_movimiento = time.time()
+            
+
     def draw(self):
         #Dibuja el fantasma en su estado actual.
         if self.asustado:
