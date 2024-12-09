@@ -98,6 +98,7 @@ class Fantasma:
                 self.siguiente_celda = None
 
         self.mover_hacia_siguiente_celda()
+        
 
     def alejarse_de_pacman(self):
         """
@@ -124,7 +125,7 @@ class Fantasma:
 
         # Movimiento paso a paso hacia la siguiente celda
         self.mover_hacia_siguiente_celda()
-        
+
 
     def mover_hacia_siguiente_celda(self):
         # Mueve al fantasma hacia la celda calculada.
