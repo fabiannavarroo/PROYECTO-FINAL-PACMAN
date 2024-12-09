@@ -7,7 +7,7 @@ class Fantasma:
     def __init__(self, x, y, sprites,pacman,bloque):
         self.x = x
         self.y = y
-        self.velocidad = 2
+        self.velocidad = 1
         self.x_inicial = x  # Guardar posición inicial
         self.y_inicial = y  # Guardar posición inicial
         self.sprites = sprites
