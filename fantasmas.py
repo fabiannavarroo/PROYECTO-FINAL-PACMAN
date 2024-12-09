@@ -74,7 +74,7 @@ class Fantasma:
 
 
     def colision(self, x, y):
-        # Verifica si hay colisión, excluyquitandoendo las coordenadas de la puerta de salida
+        # Verifica si hay colisión, quitando la región de la puerta de salida
         puerta_x, puerta_y = self.puerta_salida
         sprite_tamaño = self.bloque.celda_tamaño
 
