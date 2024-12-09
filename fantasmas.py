@@ -148,7 +148,6 @@ class FantasmaRojo(Fantasma):
                     visitados[vecino] = actual
                     cola.append(vecino)
         return None
-    
 
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y, pacman, bloque):
