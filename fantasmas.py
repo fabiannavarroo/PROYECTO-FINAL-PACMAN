@@ -55,21 +55,21 @@ class Fantasma:
                 self.asustado = False  # Finaliza el estado asustado
 
 
-    def mover_en_direccion(self, direccion, bloque):
+    def mover_en_direccion(self, direccion):
         #Mueve al fantasma en la dirección indicada si es posible.
-        if direccion == "ARRIBA" and not bloque.colision(self.x, self.y - self.velocidad):
+        if direccion == "ARRIBA" and not self.bloque.colision(self.x, self.y - self.velocidad):
             self.y -= self.velocidad
             self.direccion_actual = "ARRIBA"
             return True
-        elif direccion == "ABAJO" and not bloque.colision(self.x, self.y + self.velocidad):
+        elif direccion == "ABAJO" and not self.bloque.colision(self.x, self.y + self.velocidad):
             self.y += self.velocidad
             self.direccion_actual = "ABAJO"
             return True
-        elif direccion == "IZQUIERDA" and not bloque.colision(self.x - self.velocidad, self.y):
+        elif direccion == "IZQUIERDA" and not self.bloque.colision(self.x - self.velocidad, self.y):
             self.x -= self.velocidad
             self.direccion_actual = "IZQUIERDA"
             return True
-        elif direccion == "DERECHA" and not bloque.colision(self.x + self.velocidad, self.y):
+        elif direccion == "DERECHA" and not self.bloque.colision(self.x + self.velocidad, self.y):
             self.x += self.velocidad
             self.direccion_actual = "DERECHA"
             return True
