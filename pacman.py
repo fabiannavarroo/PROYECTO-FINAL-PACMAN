@@ -71,6 +71,14 @@ class Pacman:
             self.direccion_pendiente = PACMAN_IZQUIERDA
         elif pyxel.btnp(pyxel.KEY_RIGHT):
             self.direccion_pendiente = PACMAN_DERECHA
+        elif pyxel.btnp(pyxel.KEY_W):
+            self.direccion_pendiente = PACMAN_ARRIBA
+        elif pyxel.btnp(pyxel.KEY_S):
+            self.direccion_pendiente = PACMAN_ABAJO
+        elif pyxel.btnp(pyxel.KEY_A):
+            self.direccion_pendiente = PACMAN_IZQUIERDA
+        elif pyxel.btnp(pyxel.KEY_D):
+            self.direccion_pendiente = PACMAN_DERECHA
 
         # Verificar si la dirección pendiente es válida
         if self.direccion_pendiente:
