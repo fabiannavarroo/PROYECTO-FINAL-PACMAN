@@ -7,17 +7,8 @@ class Pacman:
         self.x = x
         self.y = y
         self.velocidad = 2  # Velocidad de movimiento
-        self.bloque = bloque
-        self.direccion_actual = PACMAN  # Dirección inicial
-        self.direccion_pendiente = None  # Dirección elegida por el jugador
         self.vidas = 3  # Pac-Man empieza con 3 vidas
-        self.animacion_frame = 0
         self.en_muerte = False  # Indica si Pac-Man está en animación de muerte
-        self.reiniciando = False  # Estado para evitar colisiones durante el reinicio
-        self.fantasmas_comido = False
-        self.mostrar_puntos = False
-        self.texto_tiempo_inicio = 0
-        self.posicion_fantasma_comido_x,self.posicion_fantasma_comido_y = 0,0
          
 
 
