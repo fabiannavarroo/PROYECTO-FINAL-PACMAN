@@ -5,13 +5,15 @@ import time
 import random
 
 class Fantasma:
-    def __init__(self, x, y, sprites):
+    def __init__(self, x, y, sprites, pacman, bloque):
         self.x = x
         self.y = y
         self.velocidad = 2
         self.x_inicial = x  # Guardar posición inicial
         self.y_inicial = y  # Guardar posición inicial
         self.sprites = sprites
+        self.pacman = pacman
+        self.bloque = bloque
         self.direccion_actual = "DERECHA"
         self.direcciones = ["ARRIBA", "ABAJO", "IZQUIERDA", "DERECHA"]  # Direcciones posibles
         self.asustado = False  # Indica si está en estado asustado
@@ -102,7 +104,7 @@ class Fantasma:
 # Subclases de Fantasma
 
 class FantasmaRojo(Fantasma):
-    def __init__(self, x, y):
+    def __init__(self, x, y,pacman,bloque):
         """
         Inicializa al Fantasma Rojo con su sprite.
         """
