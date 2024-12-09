@@ -128,7 +128,7 @@ class FantasmaRojo(Fantasma):
                 self.y += max(-self.velocidad, dy)
                 self.direccion_actual = "ARRIBA"
 
-    def buscar_ruta_simple(self, inicio, objetivo, bloque):
+    def buscar_ruta_simple(self, inicio, objetivo):
         # Encuentra una ruta básica hacia el objetivo utilizando búsqueda en anchura (BFS).
         cola = deque([inicio])  # Posiciones a explorar
         visitados = {inicio: None}  # Rastro de posiciones visitadas
@@ -148,7 +148,7 @@ class FantasmaRojo(Fantasma):
             # Evaluar vecinos (ARRIBA, ABAJO, IZQUIERDA, DERECHA)
             for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
                 vecino = (actual[0] + dx, actual[1] + dy)
-                if vecino not in visitados and not bloque.colision(vecino[0], vecino[1]):
+                if vecino not in visitados and not self.bloque.colision(vecino[0], vecino[1]):
                     visitados[vecino] = actual
                     cola.append(vecino)
 
