@@ -188,7 +188,7 @@ class Tablero:
             (x + sprite_tamaño - 1, y + sprite_tamaño - 1),  # Esquina inferior derecha
         ]
         for px, py in puntos_a_verificar:
-            for bloque_x, bloque_y, _ in self.bloques:
+            for bloque_x, bloque_y, _ in self.bloque.bloques:
                 if (PUERTA_SALIDA[0] <= px < PUERTA_SALIDA[0] + sprite_tamaño and
                         PUERTA_SALIDA[1] <= py < PUERTA_SALIDA[1] + sprite_tamaño):
                     continue  # Ignorar colisión en la puerta de salida
