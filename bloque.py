@@ -182,6 +182,13 @@ class Bloque:
             (x + sprite_tamaño - 1, y + sprite_tamaño - 1),  # Esquina inferior derecha
         ]
 
+        # Verificar si los puntos caen en la puerta de salida
+        if en_trampa:
+            puerta_x, puerta_y = 192, 192
+            for px, py in puntos_a_verificar:
+                if puerta_x <= px < puerta_x + self.celda_tamaño and puerta_y <= py < puerta_y + self.celda_tamaño:
+                    return False  # Ignorar la puerta de salida como colisión
+                
         # Verificar cada punto contra los bloques
         colision_detectada = False
         for px, py in puntos_a_verificar:
