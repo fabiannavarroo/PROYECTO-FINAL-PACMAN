@@ -151,7 +151,7 @@ class Fantasma:
     
 
     def seguir_a_pacman(self):
-        # Persigue a Pac-Man utilizando rutas y movimientos paso a paso.
+        # Persigue a Pac-Man utilizando rutas simples y movimientos paso a paso.
         if self.siguiente_celda is None or (self.x == self.siguiente_celda[0] and self.y == self.siguiente_celda[1]):
             inicio = (self.x // 16 * 16, self.y // 16 * 16)
             objetivo = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
@@ -171,7 +171,7 @@ class Fantasma:
             inicio = (self.x // 16 * 16, self.y // 16 * 16)
             pacman_pos = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
 
-            # Evaluar todas las celdas y elege la que maximiza la distancia a Pac-Man
+            # Evaluar todas las celdas adyacentes y elegir la que maximiza la distancia a Pac-Man
             opciones = []
             for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
                 vecino = (inicio[0] + dx, inicio[1] + dy)
@@ -217,11 +217,8 @@ class Fantasma:
                 self.y += max(-self.velocidad, dy)
                 self.direccion_actual = "ARRIBA"
 
-        if (self.x, self.y) in PORTALES:
-            self.x, self.y = PORTALES[(self.x, self.y)]
-
     def buscar_ruta_simple(self, inicio, objetivo):
-        # Encuentra una ruta hacia el objetivo
+        # Encuentra una ruta básica hacia el objetivo utilizando búsqueda en anchura (BFS).
         cola = deque([inicio])
         visitados = {inicio: None}
 
