@@ -20,7 +20,7 @@ class Fantasma:
         self.tiempo_asustado = 0  # Temporizador para estado asustado
         self.tiempo_para_ser_comido = 10  # Duración por defecto del estado asustado
         self.tiempo_trampa = time.time()  # Temporizador para controlar salida
-        self.salida_coordenadas = (196,192)  # Punto fuera de la trampa
+        self.salida_coordenadas = (196, 176)  # Punto fuera de la trampa
         self.trampa_coordenadas = ((144, 192), (240, 224))  # Región de la trampa
         self.siguiente_celda = None  # Almacena la próxima celda hacia la que se mueve el fantasma
 
