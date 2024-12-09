@@ -63,21 +63,35 @@ class Fantasma:
 
     def salir_de_trampa(self):
         if self.en_trampa():
-            if abs(self.x - PUERTA_SALIDA[0]) <= 1 and abs(self.y - PUERTA_SALIDA[1]) <= 1:
-                # Mover hacia la salida final una vez alcanzada la puerta
-                dx, dy = SALIDA_FINAL[0] - self.x, SALIDA_FINAL[1] - self.y
+            if (self.x, self.y) == self.puerta_salida:
+                # Mover hacia la salida final
+                dx, dy = self.salida_final[0] - self.x, self.salida_final[1] - self.y
             else:
                 # Mover hacia la puerta de salida
-                dx, dy = PUERTA_SALIDA[0] - self.x, PUERTA_SALIDA[1] - self.y
+                dx, dy = self.puerta_salida[0] - self.x, self.puerta_salida[1] - self.y
 
-            if dx > 0:
-                self.x += min(self.velocidad, dx)
-            elif dx < 0:
-                self.x -= min(self.velocidad, abs(dx))
-            elif dy > 0:
-                self.y += min(self.velocidad, dy)
-            elif dy < 0:
-                self.y -= min(self.velocidad, abs(dy))
+            if dx != 0:
+                self.x += self.velocidad if dx > 0 else -self.velocidad
+            elif dy != 0:
+                self.y += self.velocidad if dy > 0 else -self.velocidad
+        
+            if self.en_trampa():
+                if abs(self.x - PUERTA_SALIDA[0]) <= 1 and abs(self.y - PUERTA_SALIDA[1]) <= 1:
+                    # Mover hacia la salida final una vez alcanzada la puerta
+                    dx, dy = SALIDA_FINAL[0] - self.x, SALIDA_FINAL[1] - self.y
+                else:
+                    # Mover hacia la puerta de salida
+                    dx, dy = PUERTA_SALIDA[0] - self.x, PUERTA_SALIDA[1] - self.y
+
+                if dx > 0:
+                    self.x += min(self.velocidad, dx)
+                elif dx < 0:
+                    self.x -= min(self.velocidad, abs(dx))
+                elif dy > 0:
+                    self.y += min(self.velocidad, dy)
+                elif dy < 0:
+                    self.y -= min(self.velocidad, abs(dy))
+
 
 
     def colision(self, x, y):
