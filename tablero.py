@@ -85,7 +85,7 @@ class Tablero:
                         
             else:
                 # Ejecutar animación de muerte
-                self.pacman.animar_muerte(self.fantasmas)
+                self.pacman.animar_muerte()
                 if not self.pacman.en_muerte:  # Cuando termina la animación de muerte
                     self.reiniciar_tablero()
                 
