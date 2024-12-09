@@ -197,7 +197,7 @@ class Tablero:
         return False  # No hay colisión
     
     def colision_fantasmas_y_pacman(self, fantasmas, puntos):
-        if self.en_muerte or self.reiniciando or self.vidas <= 0:  # Si está muerto, reiniciando o sin vidas, no revisa colisiones
+        if self.pacman.en_muerte or self.pacman.reiniciando or self.pacman.vidas <= 0:  # Si está muerto, reiniciando o sin vidas, no revisa colisiones
             return False
 
         # Calcular las posiciones centrales de Pac-Man y los fantasmas
