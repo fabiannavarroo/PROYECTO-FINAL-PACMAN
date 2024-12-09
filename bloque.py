@@ -3,9 +3,8 @@ from constantes import *
 
 
 class Bloque:
-    def __init__(self, fantasmas):
+    def __init__(self):
         self.nivel = 1  # Nivel inicial
-        self.fantasmas = fantasmas
         self.celda_tamaño = 16
         self.bloques = []
         self.mapas = MAPA
@@ -189,8 +188,8 @@ class Bloque:
         for px, py in puntos_a_verificar:
             for bloque_x, bloque_y, _ in self.bloques:
                 # Procesar bloques que no estén en la puerta de salida
-                if not (self.fantasmas.puerta_salida[0] <= px < self.fantasmas.puerta_salida[0] + sprite_tamaño and
-                        self.fantasmas.puerta_salida[1] <= py < self.fantasmas.puerta_salida[1] + sprite_tamaño):
+                if not (self.puerta_salida[0] <= px < self.puerta_salida[0] + sprite_tamaño and
+                        self.puerta_salida[1] <= py < self.puerta_salida[1] + sprite_tamaño):
                     if bloque_x <= px < bloque_x + sprite_tamaño and bloque_y <= py < bloque_y + sprite_tamaño:
                         return True  # Colisión detectada
         return False  # No hay colisión
