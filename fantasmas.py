@@ -101,46 +101,49 @@ class Fantasma:
 
 # Subclases de Fantasma
 
+from collections import deque
+
 class FantasmaRojo(Fantasma):
     def __init__(self, x, y, pacman, bloque):
-        # Inicializa al Fantasma Rojo con su sprite.
         super().__init__(x, y, FANTASMA_ROJO, pacman, bloque)
         self.siguiente_celda = None  # Almacena la próxima celda hacia la que se mueve el fantasma
 
     def mover(self):
         # Mueve al Fantasma Rojo hacia Pac-Man utilizando rutas simples y movimientos paso a paso.
-        if self.siguiente_celda is None or (self.x == self.siguiente_celda[0] and self.y == self.siguiente_celda[1]):
-            # Si no hay una celda objetivo o ya llegamos a la celda objetivo, buscar una nueva ruta
-            inicio = (self.x // 16 * 16, self.y // 16 * 16)  # Redondear posición a la celda más cercana
-            objetivo = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)  # Redondear posición de Pac-Man a la celda más cercana
-            ruta = self.buscar_ruta_simple(inicio, objetivo)
+        if not self.en_trampa:  # Solo se mueve si no está en la trampa
+            # Si no hay una celda objetivo o ya llegamos a la celda objetivo, recalcular la ruta
+            if self.siguiente_celda is None or (self.x == self.siguiente_celda[0] and self.y == self.siguiente_celda[1]):
+                inicio = (self.x // 16 * 16, self.y // 16 * 16)  # Redondear posición a la celda más cercana
+                objetivo = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)  # Redondear posición de Pac-Man a la celda más cercana
+                ruta = self.buscar_ruta_simple(inicio, objetivo)  # Buscar ruta hacia Pac-Man
 
-            if ruta and len(ruta) > 1:
-                self.siguiente_celda = ruta[1]  # Próxima celda en la ruta
-            else:
-                self.siguiente_celda = None  # No hay ruta disponible
+                if ruta and len(ruta) > 1:
+                    self.siguiente_celda = ruta[1]  # Próxima celda en la ruta
+                else:
+                    self.siguiente_celda = None  # No hay ruta disponible
 
-        # Movimiento paso a paso hacia la siguiente celda
-        if self.siguiente_celda:
-            dx = self.siguiente_celda[0] - self.x
-            dy = self.siguiente_celda[1] - self.y
+            # Movimiento paso a paso hacia la siguiente celda
+            if self.siguiente_celda:
+                dx = self.siguiente_celda[0] - self.x
+                dy = self.siguiente_celda[1] - self.y
 
-            if dx > 0:
-                self.x += min(self.velocidad, dx)
-                self.direccion_actual = "DERECHA"
-            elif dx < 0:
-                self.x += max(-self.velocidad, dx)
-                self.direccion_actual = "IZQUIERDA"
-            elif dy > 0:
-                self.y += min(self.velocidad, dy)
-                self.direccion_actual = "ABAJO"
-            elif dy < 0:
-                self.y += max(-self.velocidad, dy)
-                self.direccion_actual = "ARRIBA"
+                # Determinar la dirección y realizar el movimiento
+                if dx > 0:
+                    self.x += min(self.velocidad, dx)
+                    self.direccion_actual = "DERECHA"
+                elif dx < 0:
+                    self.x += max(-self.velocidad, dx)
+                    self.direccion_actual = "IZQUIERDA"
+                elif dy > 0:
+                    self.y += min(self.velocidad, dy)
+                    self.direccion_actual = "ABAJO"
+                elif dy < 0:
+                    self.y += max(-self.velocidad, dy)
+                    self.direccion_actual = "ARRIBA"
 
     def buscar_ruta_simple(self, inicio, objetivo):
         # Encuentra una ruta básica hacia el objetivo utilizando búsqueda en anchura (BFS).
-        cola = deque([inicio])  # Posiciones a explorar
+        cola = deque([inicio])  # Cola para explorar posiciones
         visitados = {inicio: None}  # Rastro de posiciones visitadas
 
         while cola:
@@ -158,6 +161,7 @@ class FantasmaRojo(Fantasma):
             # Evaluar vecinos (ARRIBA, ABAJO, IZQUIERDA, DERECHA)
             for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
                 vecino = (actual[0] + dx, actual[1] + dy)
+                # Verificar si el vecino es transitable y no visitado
                 if vecino not in visitados and not self.bloque.colision(vecino[0], vecino[1]):
                     visitados[vecino] = actual
                     cola.append(vecino)
