@@ -15,7 +15,6 @@ class Fantasma:
         self.pacman = pacman
         self.bloque = bloque
         self.direccion_actual = "DERECHA"
-        self.direcciones = ["ARRIBA", "ABAJO", "IZQUIERDA", "DERECHA"]  # Direcciones posibles
         self.asustado = False  # Indica si está en estado asustado
         self.tiempo_asustado = 0  # Temporizador para estado asustado
         self.tiempo_para_ser_comido = 10  # Duración por defecto del estado asustado
@@ -27,10 +26,9 @@ class Fantasma:
 
     def en_trampa(self):
         # Verifica si el fantasma está dentro de la región de la trampa.
-        if self.trampa_coordenadas[0][0] <= self.x <= self.trampa_coordenadas[1][0]  \
-            and self.trampa_coordenadas[0][1] <= self.y <= self.trampa_coordenadas[1][1]:
-            return True
-        return False
+        return (self.trampa_coordenadas[0][0] <= self.x <= self.trampa_coordenadas[1][0] and
+                self.trampa_coordenadas[0][1] <= self.y <= self.trampa_coordenadas[1][1])
+
 
 
     def activar_asustado(self):
