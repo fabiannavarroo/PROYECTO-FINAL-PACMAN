@@ -55,20 +55,22 @@ class Fantasma:
         self.velocidad = 2
 
     def salir_de_trampa(self):
-
-        # Debugging: Imprimir posición actual y objetivo
-        print(f"Fantasma en ({self.x}, {self.y}), moviéndose hacia PUERTA_SALIDA {PUERTA_SALIDA} o SALIDA_FINAL {SALIDA_FINAL}")
-
         if self.en_trampa():
-            if abs(self.x - PUERTA_SALIDA[0]) < self.velocidad and abs(self.y - PUERTA_SALIDA[1]) < self.velocidad:
+            if abs(self.x - PUERTA_SALIDA[0]) <= 1 and abs(self.y - PUERTA_SALIDA[1]) <= 1:
+                # Mover hacia la salida final una vez alcanzada la puerta
                 dx, dy = SALIDA_FINAL[0] - self.x, SALIDA_FINAL[1] - self.y
             else:
+                # Mover hacia la puerta de salida
                 dx, dy = PUERTA_SALIDA[0] - self.x, PUERTA_SALIDA[1] - self.y
 
-            if abs(dx) > 0:
-                self.x += self.velocidad if dx > 0 else -self.velocidad
-            elif abs(dy) > 0:
-                self.y += self.velocidad if dy > 0 else -self.velocidad
+            if dx > 0:
+                self.x += min(self.velocidad, dx)
+            elif dx < 0:
+                self.x -= min(self.velocidad, abs(dx))
+            elif dy > 0:
+                self.y += min(self.velocidad, dy)
+            elif dy < 0:
+                self.y -= min(self.velocidad, abs(dy))
 
 
     def colision(self, x, y):
