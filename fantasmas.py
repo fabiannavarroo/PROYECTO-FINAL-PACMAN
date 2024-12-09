@@ -56,12 +56,12 @@ class Fantasma:
 
     def salir_de_trampa(self):
         if self.en_trampa():
-            if abs(self.x - self.puerta_salida[0]) <= 1 and abs(self.y - self.puerta_salida[1]) <= 1:
+            if abs(self.x - PUERTA_SALIDA[0]) <= 1 and abs(self.y - PUERTA_SALIDA[1]) <= 1:
                 # Mover hacia la salida final una vez alcanzada la puerta
                 dx, dy = self.salida_final[0] - self.x, self.salida_final[1] - self.y
             else:
                 # Mover hacia la puerta de salida
-                dx, dy = self.puerta_salida[0] - self.x, self.puerta_salida[1] - self.y
+                dx, dy = PUERTA_SALIDA[0] - self.x, PUERTA_SALIDA[1] - self.y
 
             if dx > 0:
                 self.x += min(self.velocidad, dx)
@@ -75,7 +75,7 @@ class Fantasma:
 
     def colision(self, x, y):
         # Verifica si hay colisión, quitando la región de la puerta de salida
-        puerta_x, puerta_y = self.puerta_salida
+        puerta_x, puerta_y = PUERTA_SALIDA
         sprite_tamaño = self.bloque.celda_tamaño
 
         # Quita la región de la puerta de salida
