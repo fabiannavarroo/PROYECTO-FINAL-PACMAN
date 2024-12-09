@@ -190,7 +190,4 @@ class Bloque:
             pyxel.blt(bloque_x, bloque_y, sprite_bank, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
 
 
-    def dibujar_letras_mapa(self, x, y, sprite):
-        # Dibuja las letras en el mapa
-        sprite = TEXTO[sprite]
-        pyxel.blt(x, y, 0, sprite["Coordenadas"][0], sprite["Coordenadas"][1], sprite["Tamaño"][0], sprite["Tamaño"][1], colkey=0)
+    
