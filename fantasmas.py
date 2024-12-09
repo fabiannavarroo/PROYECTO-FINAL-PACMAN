@@ -56,16 +56,28 @@ class Fantasma:
 
     def salir_de_trampa(self):
         if self.en_trampa():
-            # Moverse hacia la salida de la trampa
-            dx, dy = self.salida_coordenadas[0] - self.x, self.salida_coordenadas[1] - self.y
-            if dx > 0:
-                self.x += min(self.velocidad, dx)
-            elif dx < 0:
-                self.x -= min(self.velocidad, abs(dx))
-            elif dy > 0:
-                self.y += min(self.velocidad, dy)
-            elif dy < 0:
-                self.y -= min(self.velocidad, abs(dy))
+            if (self.x, self.y) == self.salida_coordenadas:
+                # Una vez en (192, 192), moverse hacia (196, 176)
+                dx, dy = self.salida_coordenadas[0] - self.x, self.salida_coordenadas[1] - self.y
+                if dx > 0:
+                    self.x += min(self.velocidad, dx)
+                elif dx < 0:
+                    self.x -= min(self.velocidad, abs(dx))
+                elif dy > 0:
+                    self.y += min(self.velocidad, dy)
+                elif dy < 0:
+                    self.y -= min(self.velocidad, abs(dy))
+            else:
+                # Moverse hacia (192, 192) inicialmente
+                dx, dy = self.salida_coordenadas[0] - self.x, self.salida_coordenadas[1] - self.y
+                if dx > 0:
+                    self.x += min(self.velocidad, dx)
+                elif dx < 0:
+                    self.x -= min(self.velocidad, abs(dx))
+                elif dy > 0:
+                    self.y += min(self.velocidad, dy)
+                elif dy < 0:
+                    self.y -= min(self.velocidad, abs(dy))
 
     def colision(self, x, y):
         if self.en_trampa() and (x, y) == self.puerta_salida_coordenadas:
