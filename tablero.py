@@ -14,7 +14,7 @@ class Tablero:
         pyxel.load("assets/recursos.pyxres")  # Cargar recursos gráficos
 
         # Inicializar elementos del juego
-        self.bloque = Bloque()  # Mapa del juego
+        self.bloque = Bloque(self.fantasmas)  # Mapa del juego
         self.pacman = Pacman(192, 304, self.bloque)  # Pacman y su posición inicial
         self.fantasmas = [  # Lista de fantasmas con sus posiciones iniciales
             FantasmaRojo(196, 176, self.pacman, self.bloque),
