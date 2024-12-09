@@ -1,4 +1,3 @@
-
 from constantes import *
 import random
 import time
@@ -14,7 +13,7 @@ class Fantasma:
         self.direccion = random.choice([PACMAN_ARRIBA, PACMAN_ABAJO, PACMAN_IZQUIERDA, PACMAN_DERECHA])
         self.en_trampa = True
         self.ultimo_movimiento = time.time()
-        self.salida_trampa = time.time() + random.randint(2, 8)  # Diferenciar salidas de los fantasmas
+        self.salida_trampa = time.time() + random.randint(2, 8)
 
     def mover(self):
         if self.en_trampa:
@@ -37,7 +36,6 @@ class Fantasma:
         else:
             self.direccion = PACMAN_ARRIBA if pacman_dy > 0 else PACMAN_ABAJO
 
-        # Intentar alejarse en la dirección opuesta
         self.mover_en_direccion(opuesta=True)
 
     def mover_normal(self):
@@ -81,9 +79,12 @@ class Fantasma:
         self.en_trampa = True
         self.salida_trampa = time.time() + random.randint(2, 5)
 
+    def actualizar_estado(self):
+        if self.asustado and time.time() - self.ultimo_movimiento > 10:  # Modo asustado dura 10 segundos
+            self.desactivar_asustado()
+
 class FantasmaRojo(Fantasma):
     def mover_normal(self):
-        # Perseguir directamente a Pac-Man
         pacman_dx = self.pacman.x - self.x
         pacman_dy = self.pacman.y - self.y
         if abs(pacman_dx) > abs(pacman_dy):
@@ -94,7 +95,6 @@ class FantasmaRojo(Fantasma):
 
 class FantasmaRosa(Fantasma):
     def mover_normal(self):
-        # Intentar emboscar moviéndose adelante de Pac-Man
         pacman_dx = self.pacman.x - self.x
         pacman_dy = self.pacman.y - self.y
         if abs(pacman_dx) > abs(pacman_dy):
@@ -105,7 +105,6 @@ class FantasmaRosa(Fantasma):
 
 class FantasmaAzul(Fantasma):
     def mover_normal(self):
-        # Movimiento errático
         if random.random() < 0.5:
             pacman_dx = self.pacman.x - self.x
             pacman_dy = self.pacman.y - self.y
@@ -119,7 +118,6 @@ class FantasmaAzul(Fantasma):
 
 class FantasmaNaranja(Fantasma):
     def mover_normal(self):
-        # Movimiento aleatorio o hacia Pac-Man
         if random.random() < 0.3:
             pacman_dx = self.pacman.x - self.x
             pacman_dy = self.pacman.y - self.y
