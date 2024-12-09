@@ -81,8 +81,8 @@ class Fantasma:
 
 
     def volver_a_posicion_inicial(self):
-        self.x = self.x_inicial // 16 * 16  # Alinear con la cuadrícula
-        self.y = self.y_inicial // 16 * 16  # Alinear con la cuadrícula
+        self.x = self.x_inicial
+        self.y = self.y_inicial  
         self.siguiente_celda = None  # Limpiar la ruta almacenada
         self.asustado = False
         self.tiempo_trampa = time.time()
