@@ -173,10 +173,8 @@ class Bloque:
 
 
     def colision(self, x, y):
-        # Tamaño de los sprites
-        sprite_tamaño = self.celda_tamaño
-
-        # Verificar puntos a comprobar
+        # Comprueba si hay un muro en la posición (x, y)
+        sprite_tamaño = 16  # Tamaño del sprite
         puntos_a_verificar = [
             (x, y),  # Esquina superior izquierda
             (x + sprite_tamaño - 1, y),  # Esquina superior derecha
@@ -184,18 +182,16 @@ class Bloque:
             (x + sprite_tamaño - 1, y + sprite_tamaño - 1),  # Esquina inferior derecha
         ]
 
-        # Comprobar colisión contra los bloques
+        # Verificar cada punto contra los bloques
+        colision_detectada = False
         for px, py in puntos_a_verificar:
             for bloque_x, bloque_y, _ in self.bloques:
-                # Ignorar colisión en la puerta de salida
-                if (PUERTA_SALIDA[0] <= px < PUERTA_SALIDA[0] + sprite_tamaño and
-                        PUERTA_SALIDA[1] <= py < PUERTA_SALIDA[1] + sprite_tamaño):
-                    continue  # Permitir paso por la puerta de salida
+                if bloque_x <= px < bloque_x + self.celda_tamaño and bloque_y <= py < bloque_y + self.celda_tamaño:
+                    colision_detectada = True
+            if colision_detectada:
+                return True  # Colisión detectada
 
-                if bloque_x <= px < bloque_x + sprite_tamaño and bloque_y <= py < bloque_y + sprite_tamaño:
-                    return True  # Colisión detectada
         return False  # No hay colisión
-        
 
 
     def draw(self):
