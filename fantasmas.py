@@ -58,7 +58,7 @@ class Fantasma:
         if self.en_trampa():
             if abs(self.x - PUERTA_SALIDA[0]) <= 1 and abs(self.y - PUERTA_SALIDA[1]) <= 1:
                 # Mover hacia la salida final una vez alcanzada la puerta
-                dx, dy = self.salida_final[0] - self.x, self.salida_final[1] - self.y
+                dx, dy = SALIDA_FINAL[0] - self.x, SALIDA_FINAL[1] - self.y
             else:
                 # Mover hacia la puerta de salida
                 dx, dy = PUERTA_SALIDA[0] - self.x, PUERTA_SALIDA[1] - self.y
