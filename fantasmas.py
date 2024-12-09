@@ -82,7 +82,7 @@ class Fantasma:
     def colision(self, x, y):
         if self.en_trampa() and (x, y) == self.puerta_salida_coordenadas:
             return False  # Ignorar la colisión en el punto de salida
-        return self.bloque.colision(x, y)  # Usar lógica normal fuera de la trampa
+        return self.bloque.colision(x, y)  # Usar colidion normal fuera de la trampa
 
 
     def volver_a_posicion_inicial(self):
