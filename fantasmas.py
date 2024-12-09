@@ -247,11 +247,7 @@ class FantasmaRosa(Fantasma):
         super().__init__(x, y, FANTASMA_ROSA, pacman, bloque)
 
     def mover(self):
-        if not self.en_trampa:
-            if not self.asustado:
-                self.seguir_a_pacman()
-            else:
-                self.alejarse_de_pacman()
+        pass
 
 class FantasmaAzul(Fantasma):
     def __init__(self, x, y, pacman, bloque):
