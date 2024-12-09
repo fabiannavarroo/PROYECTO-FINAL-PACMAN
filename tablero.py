@@ -138,6 +138,8 @@ class Tablero:
         for fantasma in self.fantasmas:
             fantasma.volver_a_posicion_inicial()
             fantasma.siguiente_celda = None  # Limpiar la ruta almacenada
+            fantasma.en_trampa = True
+            fantasma.tiempo_trampa = time.time()  # Reiniciar temporizador
 
     def reiniciar_tablero(self):
         # Reinicia las posiciones iniciales de los personajes y termina la animación de muerte.
