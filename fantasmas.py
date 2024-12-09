@@ -104,11 +104,11 @@ class Fantasma:
 # Subclases de Fantasma
 
 class FantasmaRojo(Fantasma):
-    def __init__(self, x, y,pacman,bloque):
+    def __init__(self, x, y, pacman, bloque):
         """
         Inicializa al Fantasma Rojo con su sprite.
         """
-        super().__init__(x, y, FANTASMA_ROJO)
+        super().__init__(x, y, FANTASMA_ROJO, pacman, bloque)
         self.siguiente_celda = None  # Almacena la próxima celda hacia la que se mueve el fantasma
 
     def mover(self):
@@ -173,22 +173,31 @@ class FantasmaRojo(Fantasma):
         return None  # No hay ruta disponible
 
 class FantasmaRosa(Fantasma):
-    def __init__(self, x, y):
+    def __init__(self, x, y, pacman, bloque):
         """
         Inicializa al Fantasma Rosa con su sprite.
         """
-        super().__init__(x, y, FANTASMA_ROSA)
+        super().__init__(x, y, FANTASMA_ROSA, pacman, bloque)
+
+    def mover(self):
+        pass
 
 class FantasmaAzul(Fantasma):
-    def __init__(self, x, y):
+    def __init__(self, x, y, pacman, bloque):
         """
         Inicializa al Fantasma Azul con su sprite.
         """
-        super().__init__(x, y, FANTASMA_AZUL)
+        super().__init__(x, y, FANTASMA_AZUL, pacman, bloque)
+
+    def mover(self):
+        pass
 
 class FantasmaNaranja(Fantasma):
-    def __init__(self, x, y):
+    def __init__(self, x, y, pacman, bloque):
         """
         Inicializa al Fantasma Naranja con su sprite.
         """
-        super().__init__(x, y, FANTASMA_NARANJA)
+        super().__init__(x, y, FANTASMA_NARANJA, pacman, bloque)
+
+    def mover(self):
+        pass
