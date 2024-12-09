@@ -1,11 +1,10 @@
 
-Que lo fantasmas salgan de la trampa
 
-Que los fantasmas persigan al Pacman
-    fantasma rojo: El fantasma más agresivo, que persigue directamente a Pac-Man
-    fantasma rosa: Intenta tender una emboscada a Pac-Man poniéndose delante de él
-    fantasma azul: Tiene un patrón de movimiento más errático, a veces cortando a Pac-Man o retirándose
-    fantasma naranja: Un fantasma más aleatorio, a veces moviéndose hacia Pac-Man, a veces alejándose
+fantasmas con  los portales
+
+fantasma rosa: Intenta tender una emboscada a Pac-Man poniéndose delante de él
+fantasma azul: Tiene un patrón de movimiento más errático, a veces cortando a Pac-Man o retirándose
+fantasma naranja: Un fantasma más aleatorio, a veces moviéndose hacia Pac-Man, a veces alejándose
 
 
 Música/Sonidos
