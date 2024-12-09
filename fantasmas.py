@@ -171,7 +171,7 @@ class Fantasma:
             inicio = (self.x // 16 * 16, self.y // 16 * 16)
             pacman_pos = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
 
-            # Evaluar todas las celdas adyacentes y elegir la que maximiza la distancia a Pac-Man
+            # Evaluar todas las celdas y elege la que maximiza la distancia a Pac-Man
             opciones = []
             for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
                 vecino = (inicio[0] + dx, inicio[1] + dy)
