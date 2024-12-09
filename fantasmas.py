@@ -39,6 +39,7 @@ class Fantasma:
         elif isinstance(self, FantasmaNaranja):
             self.x, self.y = 226, 208
         self.asustado = False  # Sale del estado asustado
+        self.velocidad = 2
 
 
     def volver_a_posicion_inicial(self):
