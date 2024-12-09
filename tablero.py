@@ -12,6 +12,7 @@ class Tablero:
         # Inicializar la ventana del juego con Pyxel
         pyxel.init(400, 400, title="Pacman", fps=30)  # Crear la pantalla
         pyxel.load("assets/recursos.pyxres")  # Cargar recursos gráficos
+        pyxel.playm(0,0,True)
 
         # Inicializar elementos del juego
         self.bloque = Bloque()  # Mapa del juego
@@ -51,7 +52,6 @@ class Tablero:
                 self.puntos.comer_puntos()  # Detectar puntos comidos
                 self.puntos.comer_fruta()  # Detectar frutas comidas
                 self.puntos.generar_fruta()  # Generar frutas cada 30s
-                pyxel.playm(0,0,True)
                 
                 tiempo_actual = time.time()
                 for index, fantasma in enumerate(self.fantasmas):
