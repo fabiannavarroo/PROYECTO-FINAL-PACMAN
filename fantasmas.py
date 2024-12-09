@@ -98,12 +98,10 @@ class Fantasma:
                 self.siguiente_celda = None
 
         self.mover_hacia_siguiente_celda()
-        
+
 
     def alejarse_de_pacman(self):
-        """
-        Se aleja de Pac-Man utilizando celdas que aumentan la distancia entre ambos.
-        """
+        # Se aleja de Pac-Man utilizando celdas que aumentan la distancia entre ambos.
         if self.siguiente_celda is None or (self.x == self.siguiente_celda[0] and self.y == self.siguiente_celda[1]):
             inicio = (self.x // 16 * 16, self.y // 16 * 16)
             pacman_pos = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
