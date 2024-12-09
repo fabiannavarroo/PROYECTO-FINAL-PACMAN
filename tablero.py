@@ -63,7 +63,7 @@ class Tablero:
                     fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
 
                 self.pacman.colision_fantasmas(self.fantasmas, self.puntos)  # Colisiones con fantasmas
-                
+
                 # Comprobar si no quedan puntos ni regalos y sino quedan pues subimos de nivel
                 if self.puntos.comprobar_puntos_restantes():
                     if self.bloque.nivel + 1 in self.bloque.mapas:
@@ -72,7 +72,6 @@ class Tablero:
                         self.puntos.reiniciar_puntos() # Reiniciar los puntos
                         self.reiniciar_tablero() # Reiniciar el tablero
                     else:
-                        print("¡Has ganado! No hay más niveles disponibles.")
                         self.victoria = True
                         
             else:
