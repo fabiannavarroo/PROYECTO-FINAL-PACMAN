@@ -64,23 +64,9 @@ class Fantasma:
                 # Moverse hacia la puerta (192, 192)
                 self.mover_hacia(self.puerta_salida_coordenadas)
 
-    def mover_hacia(self, objetivo):
-        # Mueve al fantasma hacia un objetivo específico
-        dx, dy = objetivo[0] - self.x, objetivo[1] - self.y
-        if abs(dx) > abs(dy):  # Priorizar movimiento horizontal
-            if dx > 0:
-                self.x += min(self.velocidad, dx)
-            elif dx < 0:
-                self.x -= min(self.velocidad, abs(dx))
-        else:  # Priorizar movimiento vertical
-            if dy > 0:
-                self.y += min(self.velocidad, dy)
-            elif dy < 0:
-                self.y -= min(self.velocidad, abs(dy))
-
     def colision(self, x, y):
         # Verifica si hay una colisión, ignorando las coordenadas de salida
-        if self.en_trampa() and (x, y) in [self.puerta_salida_coordenadas, self.salida_coordenadas]:
+        if self.en_trampa() and (x, y) == self.puerta_salida_coordenadas:
             return False  # Ignorar la colisión en la puerta de salida y el punto fuera de la trampa
         return self.bloque.colision(x, y)  # Usar colisión normal fuera de la trampa
 
