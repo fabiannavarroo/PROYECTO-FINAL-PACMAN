@@ -53,6 +53,18 @@ class Pacman:
         self.animacion_frame = 0
         self.reiniciando = True  # Activar estado de reinicio
 
+    def animar_muerte(self):
+        if not self.en_muerte:
+            return
+
+        if self.animacion_frame < len(ANIMACION_MUERTE):
+            sprite_x, sprite_y = ANIMACION_MUERTE[self.animacion_frame]
+            pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
+            if pyxel.frame_count % 5 == 0:  # Cambiar cada 5 frames
+                self.animacion_frame += 1
+        else:
+            self.en_muerte = False
+
 
     def ver_vidas(self, x, y):
         # Dibujar las vidas restantes
