@@ -25,7 +25,6 @@ class Fantasma:
         self.siguiente_celda = None  # Almacena la próxima celda hacia la que se mueve el fantasma
 
 
-    @property
     def en_trampa(self):
         if self.trampa_coordenadas[0][0] <= self.x <= self.trampa_coordenadas[1][0]  \
             and self.trampa_coordenadas[0][1] <= self.y <= self.trampa_coordenadas[1][1]:
