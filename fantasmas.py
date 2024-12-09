@@ -79,6 +79,12 @@ class Fantasma:
                 elif dy < 0:
                     self.y -= min(self.velocidad, abs(dy))
 
+    def colision(self, x, y):
+        # Verifica si hay una colisión, ignorando las coordenadas de salida
+        if self.en_trampa() and (x, y) in [self.puerta_salida_coordenadas, self.salida_coordenadas]:
+            return False  # Ignorar la colisión en la puerta de salida y el punto fuera de la trampa
+        return self.bloque.colision(x, y)  # Usar colisión normal fuera de la trampa
+
 
     def volver_a_posicion_inicial(self):
         self.x = self.x_inicial // 16 * 16  # Alinear con la cuadrícula
