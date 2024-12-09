@@ -145,9 +145,6 @@ class Fantasma:
             self.direccion_actual = "DERECHA"
             return True
         return False
-        
-        if (self.x, self.y) in PORTALES:
-            self.x, self.y = PORTALES[(self.x, self.y)]
 
 
         
