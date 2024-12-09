@@ -57,9 +57,9 @@ class Fantasma:
     def salir_de_trampa(self):
         # Controla la salida del fantasma desde la trampa.
         if self.en_trampa:
-            # Moverse hacia la salida
+            # Moverse hacia la posición de salida
             if self.x == self.salida_coordenadas[0] and self.y == self.salida_coordenadas[1]:
-                self.en_trampa = False  # Ya está fuera
+                self.tiempo_trampa = 0  # Reiniciar el temporizador para evitar errores
             else:
                 self.mover_hacia_salida()
 
