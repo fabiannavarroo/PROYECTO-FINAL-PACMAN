@@ -14,6 +14,7 @@ class Fantasma:
         self.en_trampa = True
         self.ultimo_movimiento = time.time()
         self.salida_trampa = time.time() + random.randint(2, 8)
+        self.tiempo_asustado = 10
 
     def mover(self):
         if self.en_trampa:
@@ -80,7 +81,7 @@ class Fantasma:
         self.salida_trampa = time.time() + random.randint(2, 5)
 
     def actualizar_estado(self):
-        if self.asustado and time.time() - self.ultimo_movimiento > 10:  # Modo asustado dura 10 segundos
+        if self.asustado and time.time() - self.ultimo_movimiento > self.tiempo_asustado:  # Modo asustado dura 10 segundos
             self.desactivar_asustado()
 
 class FantasmaRojo(Fantasma):
