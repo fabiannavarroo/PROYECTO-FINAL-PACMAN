@@ -40,7 +40,6 @@ class Tablero:
 
     def update(self):
         if self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
-            pyxel.playm(0,0,True)
             if self.contador_ready < 90:
                 self.contador_ready += 1 
                 if self.contador_ready == 90:
@@ -52,6 +51,7 @@ class Tablero:
                 self.puntos.comer_puntos()  # Detectar puntos comidos
                 self.puntos.comer_fruta()  # Detectar frutas comidas
                 self.puntos.generar_fruta()  # Generar frutas cada 30s
+                pyxel.playm(0,0,True)
                 
                 tiempo_actual = time.time()
                 for index, fantasma in enumerate(self.fantasmas):
