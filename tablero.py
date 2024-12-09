@@ -129,7 +129,7 @@ class Tablero:
         pos_y = 245
         pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
         
-
+dibujar_letras_mapa()
     def fin(self):
         # Dibujar Game Over
         sprite = TEXTO["GAME OVER"]
