@@ -3,7 +3,7 @@ from constantes import *
 
 
 class Bloque:
-    def __init__(self):
+    def __init__(self, fantasmas):
         self.nivel = 1  # Nivel inicial
         self.fantasmas = fantasmas
         self.celda_tamaño = 16
