@@ -170,7 +170,7 @@ class Tablero:
                 pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio
         else:
             # Mantener el texto visible 
-            self.fin()
+            self.dibujar_letras_mapa(185,208, "GAME OMVER")
 
     def colision_pacman(self, x, y):
         sprite_tamaño = self.celda_tamaño
