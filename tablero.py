@@ -506,29 +506,3 @@ class Tablero:
                     self.pacman.perder_vida()  # Pac-Man pierde una vida
                     return True
         return False  # No hay colision
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Tablero()
