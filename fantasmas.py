@@ -56,11 +56,11 @@ class Fantasma:
 
     def salir_de_trampa(self):
         if self.en_trampa():
-            if (self.x, self.y) == self.puerta_salida:
-                # Moverse hacia la salida final
+            if abs(self.x - self.puerta_salida[0]) <= 1 and abs(self.y - self.puerta_salida[1]) <= 1:
+                # Mover hacia la salida final una vez alcanzada la puerta
                 dx, dy = self.salida_final[0] - self.x, self.salida_final[1] - self.y
             else:
-                # Moverse hacia la puerta
+                # Mover hacia la puerta de salida
                 dx, dy = self.puerta_salida[0] - self.x, self.puerta_salida[1] - self.y
 
             if dx > 0:
@@ -74,10 +74,9 @@ class Fantasma:
 
     def colision(self, x, y):
         # Verifica si hay una colisión, ignorando las coordenadas de salida
-        if self.en_trampa():
-            puerta_x, puerta_y = self.puerta_salida[0], self.puerta_salida[1]
-            if puerta_x <= x <= puerta_x + 16 and puerta_y <= y <= puerta_y + 16:
-                return False
+        puerta_x, puerta_y = self.puerta_salida
+        if puerta_x <= x < puerta_x + 16 and puerta_y <= y < puerta_y + 16:
+            return False  # No hay colisión en la puerta de salida
         return self.bloque.colision(x, y)
 
 
