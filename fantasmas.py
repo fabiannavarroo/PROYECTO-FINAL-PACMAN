@@ -18,6 +18,7 @@ class Fantasma:
         self.tiempo_asustado = 0  # Temporizador para estado asustado
         self.tiempo_para_ser_comido = 10  # Duración por defecto del estado asustado
         self.en_trampa = False  # Indica si el fantasma está en la trampa
+        self.ultimo_movimiento = time.time()  # Temporizador para controlar la velocidad de movimiento
 
 
 
