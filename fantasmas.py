@@ -95,8 +95,8 @@ class Fantasma:
 
 # Subclases de Fantasma
 class FantasmaRojo(Fantasma):
-    def __init__(self, x, y):
-        super().__init__(x, y, FANTASMA_ROJO)
+    def __init__(self, x, y, pacman, bloque):
+        super().__init__(x, y, FANTASMA_ROJO, pacman, bloque)
         self.siguiente_celda = None  # Almacena la próxima celda hacia la que se mueve el fantasma
 
     def mover(self):
@@ -157,13 +157,13 @@ class FantasmaRojo(Fantasma):
         return None  # No hay ruta disponible
 
 class FantasmaRosa(Fantasma):
-    def __init__(self, x, y):
-        super().__init__(x, y, FANTASMA_ROSA)
+    def __init__(self, x, y, pacman, bloque):
+        super().__init__(x, y, FANTASMA_ROSA, pacman, bloque)
 
 class FantasmaAzul(Fantasma):
-    def __init__(self, x, y):
-        super().__init__(x, y, FANTASMA_AZUL)
+    def __init__(self, x, y, pacman, bloque):
+        super().__init__(x, y, FANTASMA_AZUL, pacman, bloque)
 
 class FantasmaNaranja(Fantasma):
-    def __init__(self, x, y):
-        super().__init__(x, y, FANTASMA_NARANJA)
+    def __init__(self, x, y, pacman, bloque):
+        super().__init__(x, y, FANTASMA_NARANJA, pacman, bloque)
