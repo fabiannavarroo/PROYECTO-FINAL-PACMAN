@@ -125,6 +125,7 @@ class Tablero:
         pos_x = 185
         pos_y = 208
         pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
+        
 
     def reiniciar_fantasmas(self):
         for fantasma in self.fantasmas:
@@ -138,8 +139,7 @@ class Tablero:
         self.pacman.reiniciar_posiciones(self.fantasmas)  # Reiniciar posición de Pacman
         self.pacman.en_muerte = False  # Finalizar estado de muerte
         self.pacman.animacion_frame = 0  # Reiniciar animación de muerte
-        for fantasma in self.fantasmas:
-            fantasma.volver_a_posicion_inicial()  # Reiniciar posición de los fantasmas
+        self.reiniciar_fantasmas()  # Reiniciar posición de los fantasmas
 
     def animar_ready(self):
         # Animación del mensaje READY!
