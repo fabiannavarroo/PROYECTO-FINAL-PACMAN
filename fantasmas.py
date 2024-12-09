@@ -105,7 +105,7 @@ class FantasmaRojo(Fantasma):
             # Si no hay una celda objetivo o ya llegamos a la celda objetivo, buscar una nueva ruta
             inicio = (self.x // 16 * 16, self.y // 16 * 16)  # Redondear posición a la celda más cercana
             objetivo = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)  # Redondear posición de Pac-Man a la celda más cercana
-            ruta = self.buscar_ruta_simple(inicio, objetivo, self.bloque)
+            ruta = self.buscar_ruta_simple(inicio, objetivo)
 
             if ruta and len(ruta) > 1:
                 self.siguiente_celda = ruta[1]  # Próxima celda en la ruta
