@@ -223,4 +223,10 @@ class Tablero:
                     return True
 
         return False  # No hay colision
+    
+
+    def dibujar_letras_mapa(self, x, y, sprite):
+        # Dibuja las letras en el mapa
+        sprite = TEXTO[sprite]
+        pyxel.blt(x, y, 0, sprite["Coordenadas"][0], sprite["Coordenadas"][1], sprite["Tamaño"][0], sprite["Tamaño"][1], colkey=0)
 
