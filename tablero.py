@@ -105,7 +105,7 @@ class Tablero:
             self.bloque.draw()  # Dibujar el mapa
             self.puntos.draw()  # Dibujar puntos, frutas y puntuación
             self.pacman.ver_vidas(10, 10)  # Mostrar vidas restantes
-            self.pacman.draw(self.fantasmas)  # Dibujar Pac-Man
+            self.pacman.draw()  # Dibujar Pac-Man
             for fantasma in self.fantasmas:
                 fantasma.draw()  # Dibujar fantasmas
 
