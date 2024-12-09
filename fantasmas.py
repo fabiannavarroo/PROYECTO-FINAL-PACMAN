@@ -55,22 +55,22 @@ class Fantasma:
         self.velocidad = 2
 
     def salir_de_trampa(self):
+        # Verificar si el fantasma está en la trampa
         if self.en_trampa():
-            if abs(self.x - PUERTA_SALIDA[0]) <= 1 and abs(self.y - PUERTA_SALIDA[1]) <= 1:
-                # Mover hacia la salida final una vez alcanzada la puerta
+            # Si el fantasma está cerca de la puerta, moverse hacia la salida final
+            if abs(self.x - PUERTA_SALIDA[0]) < self.velocidad and abs(self.y - PUERTA_SALIDA[1]) < self.velocidad:
                 dx, dy = SALIDA_FINAL[0] - self.x, SALIDA_FINAL[1] - self.y
             else:
-                # Mover hacia la puerta de salida
+                # Moverse hacia la puerta de salida
                 dx, dy = PUERTA_SALIDA[0] - self.x, PUERTA_SALIDA[1] - self.y
 
-            if dx > 0:
-                self.x += min(self.velocidad, dx)
-            elif dx < 0:
-                self.x -= min(self.velocidad, abs(dx))
-            elif dy > 0:
-                self.y += min(self.velocidad, dy)
-            elif dy < 0:
-                self.y -= min(self.velocidad, abs(dy))
+            # Mover fantasma en el eje x
+            if abs(dx) > 0:
+                self.x += self.velocidad if dx > 0 else -self.velocidad
+
+            # Mover fantasma en el eje y
+            elif abs(dy) > 0:
+                self.y += self.velocidad if dy > 0 else -self.velocidad
 
 
     def colision(self, x, y):
