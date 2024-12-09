@@ -119,19 +119,8 @@ class Tablero:
             self.bloque.draw()
             self.pacman.animar_muerte(self.fantasmas)
             self.animar_fin()
-
-    def dibujar_ready(self):
-        # Dibuja el mensaje READY! 
-        sprite = TEXTO["READY!"]
-        sprite_x, sprite_y = sprite["Coordenadas"]
-        sprite_w, sprite_h = sprite["Tamaño"]
-        pos_x = 180
-        pos_y = 245
-        pyxel.blt(pos_x, pos_y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
         
     
-    
-        
 
     def reiniciar_fantasmas(self):
         for fantasma in self.fantasmas:
@@ -153,7 +142,7 @@ class Tablero:
         # Animación del mensaje READY!
         if self.contador_ready < 90:  # Duración de la animación
             if (self.contador_ready // 10) % 2 == 0:
-                self.dibujar_ready()  # Mostrar el texto "READY!"
+                self.dibujar_letras_mapa(180,245, "READY!")  # Mostrar el texto "READY!"
             else:
                 pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio
         else:
