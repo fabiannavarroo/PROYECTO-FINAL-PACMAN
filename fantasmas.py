@@ -31,13 +31,18 @@ class Fantasma:
     def volver_a_trampa(self):
         # Enviar al fantasma de vuelta a la trampa.
         self.en_trampa = True
-        posiciones = {
-            "Rojo": (158, 208),
-            "Rosa": (181, 208),
-            "Azul": (203, 208),
-            "Naranja": (226, 208)
-        }
-        self.x, self.y = posiciones.get(type(self).__name__, (192, 192))
+        # Asignar posición según el tipo de fantasma
+        if isinstance(self, FantasmaRojo):
+            self.x, self.y = 158, 208
+        elif isinstance(self, FantasmaRosa):
+            self.x, self.y = 181, 208
+        elif isinstance(self, FantasmaAzul):
+            self.x, self.y = 203, 208
+        elif isinstance(self, FantasmaNaranja):
+            self.x, self.y = 226, 208
+        else:
+            self.x, self.y = 192, 192  # Posición predeterminada para otros casos
+
         self.asustado = False  # Sale del estado asustado
         self.velocidad = 1.5  # Restaurar velocidad normal
         self.tiempo_trampa = time.time()  # Reiniciar el temporizador de trampa
