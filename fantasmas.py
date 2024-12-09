@@ -4,13 +4,15 @@ from collections import deque
 import time
 
 class Fantasma:
-    def __init__(self, x, y, sprites):
+    def __init__(self, x, y, sprites,pacman,bloque):
         self.x = x
         self.y = y
         self.velocidad = 1.5
         self.x_inicial = x  # Guardar posición inicial
         self.y_inicial = y  # Guardar posición inicial
         self.sprites = sprites
+        self.pacman = pacman
+        self.bloque = bloque
         self.direccion_actual = "DERECHA"  # Dirección inicial
         self.asustado = False  # Indica si está en estado asustado
         self.tiempo_asustado = 0  # Temporizador para estado asustado
