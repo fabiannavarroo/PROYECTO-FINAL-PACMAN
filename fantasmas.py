@@ -151,7 +151,7 @@ class Fantasma:
     
 
     def seguir_a_pacman(self):
-        # Persigue a Pac-Man utilizando rutas simples y movimientos paso a paso.
+        # Persigue a Pac-Man utilizando rutas y movimientos paso a paso.
         if self.siguiente_celda is None or (self.x == self.siguiente_celda[0] and self.y == self.siguiente_celda[1]):
             inicio = (self.x // 16 * 16, self.y // 16 * 16)
             objetivo = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
@@ -221,7 +221,7 @@ class Fantasma:
             self.x, self.y = PORTALES[(self.x, self.y)]
 
     def buscar_ruta_simple(self, inicio, objetivo):
-        # Encuentra una ruta básica hacia el objetivo utilizando búsqueda en anchura (BFS).
+        # Encuentra una ruta hacia el objetivo
         cola = deque([inicio])
         visitados = {inicio: None}
 
