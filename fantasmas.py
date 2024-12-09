@@ -19,7 +19,7 @@ class Fantasma:
         self.asustado = False  # Indica si está en estado asustado
         self.tiempo_asustado = 0  # Temporizador para estado asustado
         self.tiempo_para_ser_comido = 10  # Duración por defecto del estado asustado
-        self.en_trampa = False  # Indica si el fantasma está en la trampa
+        self.en_trampa = True  # Indica si el fantasma está en la trampa
         self.siguiente_celda = None  # Almacena la próxima celda hacia la que se mueve el fantasma
 
 
