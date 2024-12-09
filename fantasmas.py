@@ -95,6 +95,64 @@ class Fantasma:
 class FantasmaRojo(Fantasma):
     def __init__(self, x, y):
         super().__init__(x, y, FANTASMA_ROJO)
+        self.siguiente_celda = None  # Almacena la próxima celda hacia la que se mueve el fantasma
+
+    def mover(self, pacman, bloque):
+        # Mueve al fantasma hacia Pac-Man 
+        if self.siguiente_celda is None or (self.x == self.siguiente_celda[0] and self.y == self.siguiente_celda[1]):
+            # Si no hay una celda objetivo o ya llegamos a la celda objetivo, buscar una nueva ruta
+            inicio = (self.x // 16 * 16, self.y // 16 * 16)  # Redondear posición a la celda más cercana
+            objetivo = (pacman.x // 16 * 16, pacman.y // 16 * 16)  # Redondear posición de Pac-Man a la celda más cercana
+            ruta = self.buscar_ruta_simple(inicio, objetivo, bloque)
+
+            if ruta and len(ruta) > 1:
+                self.siguiente_celda = ruta[1]  # Próxima celda en la ruta
+            else:
+                self.siguiente_celda = None  # No hay ruta disponible
+
+        # Movimiento paso a paso hacia la siguiente celda
+        if self.siguiente_celda:
+            dx = self.siguiente_celda[0] - self.x
+            dy = self.siguiente_celda[1] - self.y
+
+            if dx > 0:
+                self.x += min(self.velocidad, dx)
+                self.direccion_actual = "DERECHA"
+            elif dx < 0:
+                self.x += max(-self.velocidad, dx)
+                self.direccion_actual = "IZQUIERDA"
+            elif dy > 0:
+                self.y += min(self.velocidad, dy)
+                self.direccion_actual = "ABAJO"
+            elif dy < 0:
+                self.y += max(-self.velocidad, dy)
+                self.direccion_actual = "ARRIBA"
+
+    def buscar_ruta_simple(self, inicio, objetivo, bloque):
+        # Encuentra una ruta básica hacia el objetivo utilizando búsqueda en anchura (BFS).
+        cola = deque([inicio])  # Posiciones a explorar
+        visitados = {inicio: None}  # Rastro de posiciones visitadas
+
+        while cola:
+            actual = cola.popleft()
+
+            # Si llegamos al objetivo, reconstruimos la ruta
+            if actual == objetivo:
+                ruta = []
+                while actual is not None:
+                    ruta.append(actual)
+                    actual = visitados[actual]
+                ruta.reverse()
+                return ruta
+
+            # Evaluar vecinos (ARRIBA, ABAJO, IZQUIERDA, DERECHA)
+            for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
+                vecino = (actual[0] + dx, actual[1] + dy)
+                if vecino not in visitados and not bloque.colision(vecino[0], vecino[1]):
+                    visitados[vecino] = actual
+                    cola.append(vecino)
+
+        return None  # No hay ruta disponible
 
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y):
