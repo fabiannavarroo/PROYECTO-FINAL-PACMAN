@@ -114,7 +114,7 @@ class Pacman:
         print("Pacman", self.x, self.y)
 
 
-    def colision_fantasmas(self, fantasmas, puntos):
+    def colision_fantasmas_y_pacman(self, fantasmas, puntos):
         if self.en_muerte or self.reiniciando or self.vidas <= 0:  # Si está muerto, reiniciando o sin vidas, no revisa colisiones
             return False
 
