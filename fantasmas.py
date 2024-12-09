@@ -56,7 +56,7 @@ class Fantasma:
             tiempo_restante = self.tiempo_para_ser_comido - (time.time() - self.tiempo_asustado)
             if tiempo_restante <= 0:
                 self.asustado = False  # Finaliza el estado asustado
-
+                self.velocidad = 2
 
     def mover_en_direccion(self, direccion):
         #Mueve al fantasma en la dirección indicada si es posible.
