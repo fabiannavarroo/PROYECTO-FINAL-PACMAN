@@ -144,6 +144,11 @@ class Fantasma:
             self.x += self.velocidad
             self.direccion_actual = "DERECHA"
             return True
+        
+        if (self.x, self.y) in PORTALES:
+            self.x, self.y = PORTALES[(self.x, self.y)]
+
+            
         return False
     
 
