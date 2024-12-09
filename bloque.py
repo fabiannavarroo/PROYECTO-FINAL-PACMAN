@@ -172,7 +172,7 @@ class Bloque:
                 raise ValueError("Tipo de bloque no válido. Debe estar entre 1 y 23.")
 
 
-    def colision(self, x, y, en_trampa = False):
+    def colision(self, x, y):
         # Comprueba si hay un muro en la posición (x, y)
         sprite_tamaño = 16  # Tamaño del sprite
         puntos_a_verificar = [
@@ -181,13 +181,6 @@ class Bloque:
             (x, y + sprite_tamaño - 1),  # Esquina inferior izquierda
             (x + sprite_tamaño - 1, y + sprite_tamaño - 1),  # Esquina inferior derecha
         ]
-
-        # Verificar si los puntos caen en la puerta de salida
-        if en_trampa:
-            puerta_x, puerta_y = 192, 192
-            for px, py in puntos_a_verificar:
-                if puerta_x <= px < puerta_x + self.celda_tamaño and puerta_y <= py < puerta_y + self.celda_tamaño:
-                    return False  # Ignorar la puerta de salida como colisión
                 
         # Verificar cada punto contra los bloques
         colision_detectada = False
