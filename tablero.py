@@ -179,7 +179,7 @@ class Tablero:
             # Mantener el texto visible 
             self.fin()
 
-    def colision(self, x, y):
+    def colision_pacman(self, x, y):
         sprite_tamaño = self.celda_tamaño
         puntos_a_verificar = [
             (x, y),  # Esquina superior izquierda
@@ -195,4 +195,32 @@ class Tablero:
                 if bloque_x <= px < bloque_x + sprite_tamaño and bloque_y <= py < bloque_y + sprite_tamaño:
                     return True  # Colisión detectada
         return False  # No hay colisión
+    
+    def colision_fantasmas_y_pacman(self, fantasmas, puntos):
+        if self.en_muerte or self.reiniciando or self.vidas <= 0:  # Si está muerto, reiniciando o sin vidas, no revisa colisiones
+            return False
+
+        # Calcular las posiciones centrales de Pac-Man y los fantasmas
+        pacman_x = self.x + 8  # Centrar la posición de Pac-Man
+        pacman_y = self.y + 8
+
+        for fantasma in fantasmas:
+            fantasma_x = fantasma.x + 8  # Centrar la posicion del fantasma
+            fantasma_y = fantasma.y + 8
+
+            # Detectar si hay colisión 
+            if abs(pacman_x - fantasma_x) < 16 and abs(pacman_y - fantasma_y) < 16:
+                if fantasma.asustado:
+                    puntos.puntos += 200  # Añade puntos por comer un fantasma
+                    self.fantasmas_comido = True
+                    self.mostrar_puntos = True  # Poder mostrar puntos
+                    self.texto_tiempo_inicio = time.time()  # Guarda el tiempo actual
+                    self.posicion_fantasma_comido_x, self.posicion_fantasma_comido_y = self.x, self.y
+                    fantasma.volver_a_trampa()  # Enviar fantasma a la trampa
+                    return True
+                else:
+                    self.perder_vida()  # Pac-Man pierde una vida
+                    return True
+
+        return False  # No hay colision
 
