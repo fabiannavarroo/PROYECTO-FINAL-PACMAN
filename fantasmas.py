@@ -173,3 +173,6 @@ class FantasmaAzul(Fantasma):
 class FantasmaNaranja(Fantasma):
     def __init__(self, x, y, pacman, bloque):
         super().__init__(x, y, FANTASMA_NARANJA, pacman, bloque)
+
+    def mover(self):
+        pass
