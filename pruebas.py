@@ -332,14 +332,10 @@ class Tablero:
         if fantasma.asustado:
             self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
-            # Actualizar la ruta solo cada ciertos fotogramas para reducir lag
-            if pyxel.frame_count % 10 == 0 or fantasma.siguiente_celda is None:
-                # Calcular la celda objetivo de emboscada
-                objetivo_x, objetivo_y = self.calcular_objetivo_emboscada(fantasma)
-
-                # Buscar la ruta hacia el objetivo
-                fantasma.siguiente_celda = self.calcular_ruta_fantasma_para_emboscada(fantasma, objetivo_x, objetivo_y)
-
+            # Calcular el objetivo para emboscar a Pac-Man
+            objetivo_x, objetivo_y = self.calcular_objetivo_emboscada(fantasma)
+            # Buscar la ruta hacia el objetivo
+            fantasma.siguiente_celda = self.calcular_ruta_fantasma_para_emboscada(fantasma, objetivo_x, objetivo_y)
             # Mover el fantasma hacia la siguiente celda en la ruta
             self.mover_hacia_siguiente_celda(fantasma)
 
