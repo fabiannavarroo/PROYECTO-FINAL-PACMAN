@@ -475,24 +475,24 @@ class Tablero:
 
 
     def calcular_objetivo_emboscada(self, fantasma):
-        # Calcula la posición objetivo para el fantasma dependiendo de la dirección de Pac-Man.
         pacman_x, pacman_y = self.pacman.x, self.pacman.y
         direccion = self.pacman.direccion_actual
 
         if direccion == PACMAN_ARRIBA:
-            objetivo_x, objetivo_y = pacman_x, pacman_y - self.celdas_para_emboscada * 16  # Celdas arriba
+            objetivo_x, objetivo_y = pacman_x, pacman_y - self.celdas_para_emboscada * 16
         elif direccion == PACMAN_ABAJO:
-            objetivo_x, objetivo_y = pacman_x, pacman_y + self.celdas_para_emboscada * 16  # Celdas abajo
+            objetivo_x, objetivo_y = pacman_x, pacman_y + self.celdas_para_emboscada * 16
         elif direccion == PACMAN_IZQUIERDA:
-            objetivo_x, objetivo_y = pacman_x - self.celdas_para_emboscada * 16, pacman_y  # Celdas a la izquierda
+            objetivo_x, objetivo_y = pacman_x - self.celdas_para_emboscada * 16, pacman_y
         elif direccion == PACMAN_DERECHA:
-            objetivo_x, objetivo_y = pacman_x + self.celdas_para_emboscada * 16, pacman_y  # Celdas a la derecha
+            objetivo_x, objetivo_y = pacman_x + self.celdas_para_emboscada * 16, pacman_y
         else:
-            objetivo_x, objetivo_y = pacman_x, pacman_y  # Ir directamente hacia Pac-Man si está quieto
+            objetivo_x, objetivo_y = pacman_x, pacman_y
 
-        # Ajustar objetivo si está en una zona prohibida o fuera del mapa
-        if self.esta_en_zona_prohibida(objetivo_x, objetivo_y):
-            objetivo_x, objetivo_y = pacman_x, pacman_y  # Cambiar el objetivo a la posición de Pac-Man
+        # Validar si el objetivo está en una zona prohibida o es una celda se trata de un muro
+        if self.esta_en_zona_prohibida(objetivo_x, objetivo_y) or self.bloque.colision(objetivo_x, objetivo_y):
+            # Si es inválido, apunta directamente a Pac-Man
+            objetivo_x, objetivo_y = pacman_x, pacman_y
 
         return objetivo_x, objetivo_y
 
