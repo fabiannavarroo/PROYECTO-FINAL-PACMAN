@@ -503,10 +503,9 @@ class Tablero:
         ruta = self.buscar_ruta_simple(inicio, objetivo)
 
         if ruta and len(ruta) > 1:
-            siguiente_celda = ruta[1]
-            if not self.colision_fantasmas(siguiente_celda[0], siguiente_celda[1]):
-                return siguiente_celda
-        return None
+                fantasma.siguiente_celda = ruta[1]
+            else:
+                fantasma.siguiente_celda = None
     
 
     def mover_hacia_siguiente_celda(self, fantasma):
