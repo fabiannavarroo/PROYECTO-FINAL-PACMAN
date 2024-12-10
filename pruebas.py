@@ -319,56 +319,57 @@ class Tablero:
             self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
         # Calcular posición objetivo (emboscada)
-            pacman_x, pacman_y = self.pacman.x, self.pacman.y
-            direccion = self.pacman.direccion_actual
+        pacman_x, pacman_y = self.pacman.x, self.pacman.y
+        direccion = self.pacman.direccion_actual
 
-            # Calcular punto objetivo dependiendo de la dirección de Pac-Man
-            if direccion == PACMAN_ARRIBA:
-                objetivo_x, objetivo_y = pacman_x, pacman_y - 64  # 4 celdas arriba
-            elif direccion == PACMAN_ABAJO:
-                objetivo_x, objetivo_y = pacman_x, pacman_y + 64  # 4 celdas abajo
-            elif direccion == PACMAN_IZQUIERDA:
-                objetivo_x, objetivo_y = pacman_x - 64, pacman_y  # 4 celdas a la izquierda
-            elif direccion == PACMAN_DERECHA:
-                objetivo_x, objetivo_y = pacman_x + 64, pacman_y  # 4 celdas a la derecha
-            else:
-                objetivo_x, objetivo_y = pacman_x, pacman_y  # Si está quieto, ir directamente hacia él
+        # Calcular punto objetivo dependiendo de la dirección de Pac-Man
+        if direccion == PACMAN_ARRIBA:
+            objetivo_x, objetivo_y = pacman_x, pacman_y - 64  # 4 celdas arriba
+        elif direccion == PACMAN_ABAJO:
+            objetivo_x, objetivo_y = pacman_x, pacman_y + 64  # 4 celdas abajo
+        elif direccion == PACMAN_IZQUIERDA:
+            objetivo_x, objetivo_y = pacman_x - 64, pacman_y  # 4 celdas a la izquierda
+        elif direccion == PACMAN_DERECHA:
+            objetivo_x, objetivo_y = pacman_x + 64, pacman_y  # 4 celdas a la derecha
+        else:
+            objetivo_x, objetivo_y = pacman_x, pacman_y  # Si está quieto, ir directamente hacia él
 
-            # Ajustar objetivo si está en zona prohibida o fuera del mapa
-            if self.esta_en_zona_prohibida(objetivo_x, objetivo_y):
-                objetivo_x, objetivo_y = pacman_x, pacman_y  # Apuntar directamente a Pac-Man
+        # Ajustar objetivo si está en zona prohibida o fuera del mapa
+        if self.esta_en_zona_prohibida(objetivo_x, objetivo_y):
+            objetivo_x, objetivo_y = pacman_x, pacman_y  # Apuntar directamente a Pac-Man
 
-            # Encontrar la ruta hacia el objetivo
-            inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)  # Posición actual del fantasma en la cuadrícula
-            objetivo = (objetivo_x // 16 * 16, objetivo_y // 16 * 16)  # Objetivo en la cuadrícula
+        # Encontrar la ruta hacia el objetivo
+        inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)  # Posición actual del fantasma en la cuadrícula
+        objetivo = (objetivo_x // 16 * 16, objetivo_y // 16 * 16)  # Objetivo en la cuadrícula
 
-            ruta = self.buscar_ruta_simple(inicio, objetivo)
+        ruta = self.buscar_ruta_simple(inicio, objetivo)
 
-            if ruta and len(ruta) > 1:
-                siguiente_celda = ruta[1]
-                dy = siguiente_celda[1] - fantasma.y
+        if ruta and len(ruta) > 1:
+            siguiente_celda = ruta[1]
+            dx = siguiente_celda[0] - fantasma.x
+            dy = siguiente_celda[1] - fantasma.y
 
-                # Verificar colisiones antes de mover
-                if dx > 0:
-                    nueva_x = fantasma.x + min(fantasma.velocidad, dx)
-                    if not self.bloque.colision(nueva_x, fantasma.y):  # Verificar colisión horizontal
-                        fantasma.x = nueva_x
-                        fantasma.direccion_actual = "DERECHA"
-                elif dx < 0:
-                    nueva_x = fantasma.x + max(-fantasma.velocidad, dx)
-                    if not self.bloque.colision(nueva_x, fantasma.y):  # Verificar colisión horizontal
-                        fantasma.x = nueva_x
-                        fantasma.direccion_actual = "IZQUIERDA"
-                elif dy > 0:
-                    nueva_y = fantasma.y + min(fantasma.velocidad, dy)
-                    if not self.bloque.colision(fantasma.x, nueva_y):  # Verificar colisión vertical
-                        fantasma.y = nueva_y
-                        fantasma.direccion_actual = "ABAJO"
-                elif dy < 0:
-                    nueva_y = fantasma.y + max(-fantasma.velocidad, dy)
-                    if not self.bloque.colision(fantasma.x, nueva_y):  # Verificar colisión vertical
-                        fantasma.y = nueva_y
-                        fantasma.direccion_actual = "ARRIBA"
+            # Verificar colisiones antes de mover
+            if dx > 0:
+                nueva_x = fantasma.x + min(fantasma.velocidad, dx)
+                if not self.bloque.colision(nueva_x, fantasma.y):  # Verificar colisión horizontal
+                    fantasma.x = nueva_x
+                    fantasma.direccion_actual = "DERECHA"
+            elif dx < 0:
+                nueva_x = fantasma.x + max(-fantasma.velocidad, dx)
+                if not self.bloque.colision(nueva_x, fantasma.y):  # Verificar colisión horizontal
+                    fantasma.x = nueva_x
+                    fantasma.direccion_actual = "IZQUIERDA"
+            elif dy > 0:
+                nueva_y = fantasma.y + min(fantasma.velocidad, dy)
+                if not self.bloque.colision(fantasma.x, nueva_y):  # Verificar colisión vertical
+                    fantasma.y = nueva_y
+                    fantasma.direccion_actual = "ABAJO"
+            elif dy < 0:
+                nueva_y = fantasma.y + max(-fantasma.velocidad, dy)
+                if not self.bloque.colision(fantasma.x, nueva_y):  # Verificar colisión vertical
+                    fantasma.y = nueva_y
+                    fantasma.direccion_actual = "ARRIBA"
 
 
 
