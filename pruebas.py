@@ -344,7 +344,7 @@ class Tablero:
 
     def mover_fantasma_azul(self, fantasma):
         #Controla el movimiento del fantasma dependiendo de su estado y el del juego.
-        if self.victoria or self.pacman.en_muerte or fantasma.en_trampa():
+        if self.victoria or self.pacman.en_muerte:
             return False # No mover el fantasma si Pac-Man ha ganado o está en estado de muerte
 
         if fantasma.asustado:
@@ -355,7 +355,7 @@ class Tablero:
 
     def mover_fantasma_naranja(self, fantasma):
         #Controla el movimiento del fantasma dependiendo de su estado y el del juego.
-        if self.victoria or self.pacman.en_muerte or fantasma.en_trampa():
+        if self.victoria or self.pacman.en_muerte:
             return False # No mover el fantasma si Pac-Man ha ganado o está en estado de muerte
 
         if fantasma.asustado:
