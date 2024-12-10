@@ -505,6 +505,29 @@ class Tablero:
         return None  # No hay ruta válida
     
 
+    def mover_hacia_siguiente_celda_de_emboscada(self, fantasma):
+        # Verificar si hay una celda hacia la cual moverse
+        if fantasma.siguiente_celda:
+            dx = fantasma.siguiente_celda[0] - fantasma.x
+            dy = fantasma.siguiente_celda[1] - fantasma.y
+
+            if dx > 0:  # Mover a la derecha
+                fantasma.x += min(fantasma.velocidad, dx)
+                fantasma.direccion_actual = "DERECHA"
+            elif dx < 0:  # Mover a la izquierda
+                fantasma.x += max(-fantasma.velocidad, dx)
+                fantasma.direccion_actual = "IZQUIERDA"
+            elif dy > 0:  # Mover hacia abajo
+                fantasma.y += min(fantasma.velocidad, dy)
+                fantasma.direccion_actual = "ABAJO"
+            elif dy < 0:  # Mover hacia arriba
+                fantasma.y += max(-fantasma.velocidad, dy)
+                fantasma.direccion_actual = "ARRIBA"
+        else:
+            # Recalcular ruta si no hay una celda definida
+            objetivo_x, objetivo_y = self.calcular_objetivo_emboscada(fantasma)
+            fantasma.siguiente_celda = self.calcular_ruta_fantasma_para_emboscada(fantasma, objetivo_x, objetivo_y)
+
     def mover_hacia_siguiente_celda(self, fantasma):
         # Mueve al fantasma hacia la celda calculada.
         if fantasma.siguiente_celda:
