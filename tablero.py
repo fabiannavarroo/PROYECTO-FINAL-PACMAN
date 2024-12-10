@@ -1,4 +1,5 @@
 from pacman import Pacman
+from collections import deque
 from fantasmas import *
 from puntos import Puntos
 from bloque import Bloque
