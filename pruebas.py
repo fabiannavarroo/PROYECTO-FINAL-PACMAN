@@ -336,7 +336,41 @@ class Tablero:
         else:
             # Intentar emboscar a Pac-Man
             posicion_emboscada = self.predecir_posicion_pacman(4)  # Por ejemplo, 4 tiles por delante
-            self.movimiento_personalizado(fantasma, posicion_emboscada)
+            self.movimiento_emboscada(fantasma, posicion_emboscada)
+
+    def predecir_posicion_pacman(self, tiles_ahead=4):
+        dx, dy = 0, 0
+        # Cada tile es de 16 px, ajusta según tu constante si es diferente
+        if self.pacman.direccion_actual == PACMAN_ARRIBA:
+            dy = -16 * tiles_ahead
+        elif self.pacman.direccion_actual == PACMAN_ABAJO:
+            dy = 16 * tiles_ahead
+        elif self.pacman.direccion_actual == PACMAN_IZQUIERDA:
+            dx = -16 * tiles_ahead
+        elif self.pacman.direccion_actual == PACMAN_DERECHA:
+            dx = 16 * tiles_ahead
+
+        # Redondear a la celda más cercana
+        pos_futura = ((self.pacman.x // 16) * 16 + dx, (self.pacman.y // 16) * 16 + dy)
+        return pos_futura
+    
+    def movimiento_emboscada(self, fantasma, objetivo):
+        if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
+            inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
+            ruta = self.buscar_ruta_simple(inicio, objetivo, fantasma=fantasma)
+
+            if ruta and len(ruta) > 1:
+                fantasma.siguiente_celda = ruta[1]
+            else:
+                # Si no hay ruta hacia la emboscada, fallback a seguir a Pac-Man
+                objetivo_pacman = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
+                ruta = self.buscar_ruta_simple(inicio, objetivo_pacman, fantasma=fantasma)
+                if ruta and len(ruta) > 1:
+                    fantasma.siguiente_celda = ruta[1]
+                else:
+                    fantasma.siguiente_celda = None
+
+        self.mover_hacia_siguiente_celda(fantasma)
             
 
     def mover_fantasma_azul(self, fantasma):
