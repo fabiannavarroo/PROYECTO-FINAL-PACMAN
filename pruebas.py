@@ -590,7 +590,7 @@ class Tablero:
             return False  # No hay colisión en la puerta de salida
 
         # Verificar colisión normal en el bloque o si está en una zona prohibida
-        if self.bloque.colision(x, y) or self.esta_en_zona_prohibida(x, y):
+        if self.bloque.colision(x, y) 
             return True
 
         return False  # No hay colisión
