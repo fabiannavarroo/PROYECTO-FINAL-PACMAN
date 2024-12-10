@@ -470,7 +470,7 @@ class Tablero:
         return False  # No hay colision
     
 
-    def colision_fantsmas(self, x, y):
+    def colision_fantasmas(self, x, y):
         # Verifica si hay colisión, quitando la región de la puerta de salida
         puerta_x, puerta_y = PUERTA_SALIDA
         sprite_tamaño = self.bloque.celda_tamaño
