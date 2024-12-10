@@ -221,8 +221,11 @@ class Tablero:
                 self.pacman.animacion_frame += 1
         else:
             # Finaliza la animación de muerte
-            self.pacman.en_muerte = False
-            self.reiniciar_tablero()  # Reiniciar posiciones de Pac-Man y fantasmas
+            if self.pacman.vidas > 0:
+                self.reiniciar_tablero()  # Reinicia el tablero si aún hay vidas
+            else:
+                self.animacion_muerte_finalizada = True  # Marca la animación como finalizada
+                self.pacman.en_muerte = False  # Asegúrate de limpiar este estado
 
 
 #--------------------------------------------------------------------MAPA--------------------------------------------------------------------# 
