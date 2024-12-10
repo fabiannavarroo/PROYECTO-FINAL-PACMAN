@@ -252,15 +252,20 @@ class Tablero:
 
     def encontrar_celdas_vacias(self):
     # Encuentra celdas vacías donde no haya puntos, frutas, regalos ni muros
-        celdas_vacias = [
-            (x, y) 
-            for x in range(0, pyxel.width, 16) 
-            for y in range(0, pyxel.height, 16) 
-            if not self.esta_en_zona_prohibida(x, y) and 
-            (x, y) not in [(p[0], p[1]) for p in self.puntos.lista_puntos] and 
-            (x, y) != self.puntos.posicion_fruta and 
-            (x, y) not in self.puntos.regalos
-        ]
+        celdas_vacias = []
+        for x in range(0, pyxel.width, 16):
+            for y in range(0, pyxel.height, 16):
+                # Verifica si (x, y) no está en la lista de puntos de manera explícita
+                punto_encontrado = False
+                for p in self.puntos.lista_puntos:
+                    if (x, y) == (p[0], p[1]):
+                        punto_encontrado = True
+                
+                if (not punto_encontrado and
+                    not self.esta_en_zona_prohibida(x, y) and
+                    (x, y) != self.puntos.posicion_fruta and
+                    (x, y) not in self.puntos.regalos):
+                    celdas_vacias.append((x, y))
         return celdas_vacias
 
 
