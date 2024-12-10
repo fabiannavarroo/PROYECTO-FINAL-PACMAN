@@ -334,73 +334,8 @@ class Tablero:
         if fantasma.asustado:
             self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
-
-            objetivo_x, objetivo_y = self.calcular_objetivo_emboscada(fantasma)
-
-            # Buscar la ruta hacia el objetivo
-            fantasma.siguiente_celda = self.calcular_ruta_fantasma_para_emboscada(fantasma, objetivo_x, objetivo_y)
-            # Mover el fantasma hacia la siguiente celda en la ruta
-            self.mover_hacia_siguiente_celda(fantasma)
-
-    def calcular_objetivo_emboscada(self, fantasma):
-        """
-        Calcula la celda objetivo para emboscar a Pac-Man basándose en su dirección y posición actual.
-        """
-        pacman_x, pacman_y = self.pacman.x, self.pacman.y
-        direccion = self.pacman.direccion_actual
-
-        # Determinar el objetivo basado en la dirección de Pac-Man
-        if direccion == PACMAN_ARRIBA:
-            objetivo_x, objetivo_y = pacman_x, pacman_y - self.celdas_para_emboscada * 16
-        elif direccion == PACMAN_ABAJO:
-            objetivo_x, objetivo_y = pacman_x, pacman_y + self.celdas_para_emboscada * 16
-        elif direccion == PACMAN_IZQUIERDA:
-            objetivo_x, objetivo_y = pacman_x - self.celdas_para_emboscada * 16, pacman_y
-        elif direccion == PACMAN_DERECHA:
-            objetivo_x, objetivo_y = pacman_x + self.celdas_para_emboscada * 16, pacman_y
-        else:
-            objetivo_x, objetivo_y = pacman_x, pacman_y
-
-        # Validar si el objetivo es válido (no un muro ni zona prohibida)
-        if self.colision_fantasmas(objetivo_x, objetivo_y) or self.esta_en_zona_prohibida(objetivo_x, objetivo_y):
-            objetivo_x, objetivo_y = pacman_x, pacman_y  # Ajustar objetivo a Pac-Man si no es válido
-
-        return objetivo_x, objetivo_y
-
-    def calcular_ruta_fantasma_para_emboscada(self, fantasma, objetivo_x, objetivo_y):
-        """
-        Calcula la siguiente celda en la ruta hacia el objetivo utilizando búsqueda en anchura.
-        """
-        inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
-        objetivo = (objetivo_x // 16 * 16, objetivo_y // 16 * 16)
-
-        # Buscar ruta
-        ruta = self.buscar_ruta_simple(inicio, objetivo)
-
-        if ruta and len(ruta) > 1:
-            siguiente_celda = ruta[1]
-            # Verificar si la siguiente celda es válida
-            if not self.colision_fantasmas(siguiente_celda[0], siguiente_celda[1]):
-                return siguiente_celda
-
-        # Si no hay ruta válida, moverse al azar
-        return self.mover_al_azar(inicio)
-
-    def mover_al_azar(self, posicion):
-        """
-        Calcula una celda aleatoria válida adyacente a la posición actual.
-        """
-        movimientos_posibles = [(-16, 0), (16, 0), (0, -16), (0, 16)]
-        random.shuffle(movimientos_posibles)
-
-        for dx, dy in movimientos_posibles:
-            nueva_celda = (posicion[0] + dx, posicion[1] + dy)
-            if not self.colision_fantasmas(nueva_celda[0], nueva_celda[1]):
-                return nueva_celda
-
-        return posicion  # Si no hay movimientos válidos, quedarse en la misma posición
-
-
+            pass
+            
 
     def mover_fantasma_azul(self, fantasma):
         #Controla el movimiento del fantasma dependiendo de su estado y el del juego.
