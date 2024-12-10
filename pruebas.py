@@ -335,11 +335,7 @@ class Tablero:
             # Calcular el objetivo de la emboscada
             objetivo_x, objetivo_y = self.calcular_objetivo_emboscada(fantasma)
 
-            # Calcular la ruta hacia el objetivo
-            fantasma.siguiente_celda = self.calcular_ruta_fantasma_para_emboscada(fantasma, objetivo_x, objetivo_y)
-
-            # Mover al fantasma hacia la siguiente celda
-            self.mover_hacia_objetivo(fantasma)
+            self.mover_hacia_objetivo(fantasma, objetivo_x, objetivo_y)
 
 
     def mover_fantasma_azul(self, fantasma):
