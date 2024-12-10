@@ -158,6 +158,18 @@ class Tablero:
             fantasma.volver_a_posicion_inicial()
         self.pacman.reiniciando = False 
 
+
+    def reiniciar_puntos(self):
+        # Reinica los puntos
+        self.puntos.regalos = [(16, 304), (368, 304), (16, 80),(368, 80)] # Coordenadas de los regalos
+        self.puntos.lista_puntos = [] # Lista de puntos generados
+        self.generar_puntos()
+        self.puntos.ultimo_tiempo_fruta = time.time()  # Tiempo de la última fruta generada
+        self.puntos.fruta_actual = None  # Información de la fruta actual
+        self.puntos.posicion_fruta = None  # Posición actual de la fruta
+        self.puntos.animacion_activa = False  # Indica si hay animación activa
+        self.puntos.animacion_contador = 0
+
 #--------------------------------------------------------------------ANIMACIONES--------------------------------------------------------------------# 
     def animar_ready(self):
         # Animación del mensaje READY!
@@ -182,9 +194,6 @@ class Tablero:
             # Mantener el texto visible 
             self.dibujar_letras_mapa(185,208,"GAME OVER")
 
-
-    
-
 #--------------------------------------------------------------------MAPA--------------------------------------------------------------------# 
 
     def dibujar_letras_mapa(self, x, y, sprite):
@@ -193,15 +202,7 @@ class Tablero:
         pyxel.blt(x, y, 0, sprite["Coordenadas"][0], sprite["Coordenadas"][1], sprite["Tamaño"][0], sprite["Tamaño"][1], colkey=0)
 
 
-#--------------------------------------------------------------------PUNTOS--------------------------------------------------------------------# 
-    def generar_puntos(self):
-        # Poner los puntos en el mapa
-        for x in range(0, pyxel.width, 16):
-            for y in range(0, pyxel.height, 16):
-                if not self.esta_en_zona_prohibida(x, y) and (x, y) not in self.puntos.regalos:
-                    self.puntos.lista_puntos.append((x, y, "BASTON"))
-
-
+    
     def esta_en_zona_prohibida(self, x, y):
         # Verificar si está en una zona prohibida
         for lugar in self.puntos.zonas_prohibidas[self.bloque.nivel]:
@@ -228,6 +229,15 @@ class Tablero:
         ]
         return celdas_vacias
 
+
+
+#--------------------------------------------------------------------PUNTOS--------------------------------------------------------------------# 
+    def generar_puntos(self):
+        # Poner los puntos en el mapa
+        for x in range(0, pyxel.width, 16):
+            for y in range(0, pyxel.height, 16):
+                if not self.esta_en_zona_prohibida(x, y) and (x, y) not in self.puntos.regalos:
+                    self.puntos.lista_puntos.append((x, y, "BASTON"))
 
 
     def generar_fruta(self):
@@ -293,16 +303,7 @@ class Tablero:
         return False
 
 
-    def reiniciar_puntos(self):
-        # Reinica los puntos
-        self.puntos.regalos = [(16, 304), (368, 304), (16, 80),(368, 80)] # Coordenadas de los regalos
-        self.puntos.lista_puntos = [] # Lista de puntos generados
-        self.generar_puntos()
-        self.puntos.ultimo_tiempo_fruta = time.time()  # Tiempo de la última fruta generada
-        self.puntos.fruta_actual = None  # Información de la fruta actual
-        self.puntos.posicion_fruta = None  # Posición actual de la fruta
-        self.puntos.animacion_activa = False  # Indica si hay animación activa
-        self.puntos.animacion_contador = 0
+    
 
 
 
