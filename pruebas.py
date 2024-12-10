@@ -474,7 +474,7 @@ class Tablero:
         self.mover_hacia_siguiente_celda(fantasma)
 
 
-    def calcular_objetivo_emboscada(self, fantasma):
+    def calcular_objetivo_emboscada(self):
         # Obtener la posición actual de Pac-Man
         pacman_x, pacman_y = self.pacman.x, self.pacman.y
         direccion = self.pacman.direccion_actual
