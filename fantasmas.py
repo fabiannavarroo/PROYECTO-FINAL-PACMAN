@@ -61,6 +61,10 @@ class Fantasma:
         
 
     def salir_de_trampa(self):
+        # Verifica si el fantasma puede salir de la trampa
+        if time.time() - self.tiempo_trampa < 2:
+            return  False# Esperar 2 segundos antes de salir
+
         if self.en_trampa():
             if (self.x, self.y) == self.puerta_salida:
                 # Mover hacia la salida final
