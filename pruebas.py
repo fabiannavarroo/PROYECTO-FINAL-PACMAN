@@ -581,17 +581,19 @@ class Tablero:
     
 
     def colision_fantasmas(self, x, y):
-        # Verifica si hay colisión, quitando la región de la puerta de salida
+        # Verifica si hay colisión en las coordenadas dadas. Permite que los fantasmas pasen por la puerta de salida.
         puerta_x, puerta_y = PUERTA_SALIDA
         sprite_tamaño = self.bloque.celda_tamaño
 
-        # Quita la región de la puerta de salida
+        # Permitir paso por la puerta de salida
         if puerta_x <= x < puerta_x + sprite_tamaño and puerta_y <= y < puerta_y + sprite_tamaño:
             return False  # No hay colisión en la puerta de salida
 
+        # Verificar colisión normal en el bloque o si está en una zona prohibida
         if self.bloque.colision(x, y) or self.esta_en_zona_prohibida(x, y):
             return True
-        return False
+
+        return False  # No hay colisión
 
 
     def detectar_colision_puntos(self, pacman_x, pacman_y, punto_x, punto_y):
