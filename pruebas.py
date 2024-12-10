@@ -474,39 +474,6 @@ class Tablero:
         self.mover_hacia_siguiente_celda(fantasma)
 
 
-    def calcular_objetivo_emboscada(self):
-        pacman_x, pacman_y = self.pacman.x, self.pacman.y
-        direccion = self.pacman.direccion_actual
-
-        # Determinar el objetivo basado en la dirección de Pac-Man
-        if direccion == PACMAN_ARRIBA:
-            objetivo_x, objetivo_y = pacman_x, pacman_y - self.celdas_para_emboscada * 16
-        elif direccion == PACMAN_ABAJO:
-            objetivo_x, objetivo_y = pacman_x, pacman_y + self.celdas_para_emboscada * 16
-        elif direccion == PACMAN_IZQUIERDA:
-            objetivo_x, objetivo_y = pacman_x - self.celdas_para_emboscada * 16, pacman_y
-        elif direccion == PACMAN_DERECHA:
-            objetivo_x, objetivo_y = pacman_x + self.celdas_para_emboscada * 16, pacman_y
-        else:
-            objetivo_x, objetivo_y = pacman_x, pacman_y
-
-        # Ve que se puede ir a las coordenadas
-        if self.colision_fantasmas(objetivo_x, objetivo_y) or self.esta_en_zona_prohibida(objetivo_x, objetivo_y):
-            objetivo_x, objetivo_y = pacman_x, pacman_y  # Ajustar al objetivo como Pac-Man
-
-        return objetivo_x, objetivo_y
-
-
-    def calcular_ruta_fantasma_para_emboscada(self, fantasma, objetivo_x, objetivo_y):
-        inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
-        objetivo = (objetivo_x // 16 * 16, objetivo_y // 16 * 16)
-
-        ruta = self.buscar_ruta_simple(inicio, objetivo)
-
-        # Validar que la ruta es válida
-        if ruta and len(ruta) > 1:
-            return ruta[1]  # Siguiente celda de la ruta
-        return None  # No hay ruta válida
     
 
     def mover_hacia_siguiente_celda(self, fantasma):
