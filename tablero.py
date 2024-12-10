@@ -313,7 +313,7 @@ class Tablero:
         if fantasma.asustado:
             self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
-            self.seguir_a_pacman(fantasma)  # Movimiento normal siguiendo a Pac-Man
+            self.seguir_a_pacman(fantasma)  # Movimiento siguiendo a Pac-Man
 
     def mover_fantasma_rosa(self, fantasma):
         #Controla el movimiento del fantasma rojo dependiendo de su estado y el del juego.
@@ -323,7 +323,7 @@ class Tablero:
         if fantasma.asustado:
             self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
-            self.seguir_a_pacman(fantasma)  # Movimiento normal siguiendo a Pac-Man
+            pass(fantasma)  
 
     def mover_fantasma_azul(self, fantasma):
         #Controla el movimiento del fantasma rojo dependiendo de su estado y el del juego.
@@ -333,7 +333,7 @@ class Tablero:
         if fantasma.asustado:
             self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
-            self.seguir_a_pacman(fantasma)  # Movimiento normal siguiendo a Pac-Man
+            pass
 
     def mover_fantasma_naranja(self, fantasma):
         #Controla el movimiento del fantasma rojo dependiendo de su estado y el del juego.
@@ -343,7 +343,7 @@ class Tablero:
         if fantasma.asustado:
             self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
-            self.seguir_a_pacman(fantasma)  # Movimiento normal siguiendo a Pac-Man
+            pass
 
 
 
