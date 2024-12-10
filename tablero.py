@@ -323,7 +323,7 @@ class Tablero:
         if fantasma.asustado:
             self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
-            pass
+            self.embascada_pacman_movimiento(fantasma)
 
     def mover_fantasma_azul(self, fantasma):
         #Controla el movimiento del fantasma rojo dependiendo de su estado y el del juego.
