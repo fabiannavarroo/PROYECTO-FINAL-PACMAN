@@ -407,7 +407,7 @@ class Tablero:
                 if not self.bloque.colision(vecino[0], vecino[1]) and vecino not in costos:
                     costos[vecino] = nuevo_costo
                     prioridad = nuevo_costo + heuristica(vecino, objetivo)
-                    heappush(obierta, (prioridad, vecino))
+                    heappush(abierta, (prioridad, vecino))
                     came_from[vecino] = actual
 
         return None  # Ruta no encontrada
