@@ -194,6 +194,22 @@ class Tablero:
             # Mantener el texto visible 
             self.dibujar_letras_mapa(185,208,"GAME OVER")
 
+    def animar_muerte(self):
+        if self.pacman.animacion_frame < len(ANIMACION_MUERTE):
+            # Dibuja solo la animación de muerte de Pac-Man
+            sprite_x, sprite_y = ANIMACION_MUERTE[self.pacman.animacion_frame]
+            pyxel.cls(0)  # Limpia la pantalla
+            self.bloque.draw()  # Dibuja el mapa
+            pyxel.blt(self.pacman.x, self.pacman.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
+            
+            # Actualizar frame de la animación
+            if pyxel.frame_count % 5 == 0:  # Cambiar cada 5 frames
+                self.pacman.animacion_frame += 1
+        else:
+            # Finaliza la animación de muerte
+            self.pacman.en_muerte = False
+            self.reiniciar_tablero()  # Reiniciar posiciones de Pac-Man y fantasmas
+
 #--------------------------------------------------------------------MAPA--------------------------------------------------------------------# 
 
     def dibujar_letras_mapa(self, x, y, sprite):
@@ -232,6 +248,7 @@ class Tablero:
 
 
 #--------------------------------------------------------------------PUNTOS--------------------------------------------------------------------# 
+    
     def generar_puntos(self):
         # Poner los puntos en el mapa
         for x in range(0, pyxel.width, 16):
@@ -441,21 +458,7 @@ class Tablero:
 
         print("Pacman", self.pacman.x, self.pacman.y)
 
-    def animar_muerte(self):
-        if self.pacman.animacion_frame < len(ANIMACION_MUERTE):
-            # Dibuja solo la animación de muerte de Pac-Man
-            sprite_x, sprite_y = ANIMACION_MUERTE[self.pacman.animacion_frame]
-            pyxel.cls(0)  # Limpia la pantalla
-            self.bloque.draw()  # Dibuja el mapa
-            pyxel.blt(self.pacman.x, self.pacman.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
-            
-            # Actualizar frame de la animación
-            if pyxel.frame_count % 5 == 0:  # Cambiar cada 5 frames
-                self.pacman.animacion_frame += 1
-        else:
-            # Finaliza la animación de muerte
-            self.pacman.en_muerte = False
-            self.reiniciar_tablero()  # Reiniciar posiciones de Pac-Man y fantasmas
+    
   
     
 #--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------# 
