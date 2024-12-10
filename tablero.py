@@ -275,9 +275,7 @@ class Tablero:
                 regalos_sin_comer.append((x, y))
         self.puntos.regalos = regalos_sin_comer
 
-    def detectar_colision_puntos(self, pacman_x, pacman_y, punto_x, punto_y):
-        # Detecta si Pac-Man ha comido un punto
-        return abs(pacman_x - punto_x) < 10 and abs(pacman_y - punto_y) < 10
+
 
 
     def comer_fruta(self):
@@ -495,7 +493,7 @@ class Tablero:
     
 #--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------# 
 
-def colision_fantasmas_con_pacman(self):
+    def colision_fantasmas_con_pacman(self):
         if self.pacman.en_muerte or self.pacman.reiniciando or self.pacman.vidas <= 0:  # Si está muerto, reiniciando o sin vidas, no revisa colisiones
             return False
 
@@ -521,5 +519,10 @@ def colision_fantasmas_con_pacman(self):
                     self.pacman.perder_vida()  # Pac-Man pierde una vida
                     return True
         return False  # No hay colision
+
+
+    def detectar_colision_puntos(self, pacman_x, pacman_y, punto_x, punto_y):
+        # Detecta si Pac-Man ha comido un punto
+        return abs(pacman_x - punto_x) < 10 and abs(pacman_y - punto_y) < 10
 
 
