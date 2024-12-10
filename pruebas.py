@@ -478,6 +478,7 @@ class Tablero:
         pacman_x, pacman_y = self.pacman.x, self.pacman.y
         direccion = self.pacman.direccion_actual
 
+        # Determinar el objetivo basado en la dirección de Pac-Man
         if direccion == PACMAN_ARRIBA:
             objetivo_x, objetivo_y = pacman_x, pacman_y - self.celdas_para_emboscada * 16
         elif direccion == PACMAN_ABAJO:
@@ -489,9 +490,9 @@ class Tablero:
         else:
             objetivo_x, objetivo_y = pacman_x, pacman_y
 
-        # Validar si el objetivo está en una zona prohibida, muro o fuera del mapa
+        # Validar el objetivo (asegurar que sea accesible)
         if self.colision_fantasmas(objetivo_x, objetivo_y) or self.esta_en_zona_prohibida(objetivo_x, objetivo_y):
-            objetivo_x, objetivo_y = pacman_x, pacman_y
+            objetivo_x, objetivo_y = pacman_x, pacman_y  # Ajustar al objetivo como Pac-Man
 
         return objetivo_x, objetivo_y
 
