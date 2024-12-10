@@ -323,19 +323,12 @@ class Tablero:
     def mover_fantasma_rosa(self, fantasma):
         # Controla el movimiento del fantasma basado en emboscadas
         if self.victoria or self.pacman.en_muerte or fantasma.en_trampa():
-            return False # No mover el fantasma si Pac-Man ha ganado o está en estado de muerte o esta en la trampa
-
-        # Calcula la posición de emboscada basada en Pac-Man
-        objetivo = self.calcular_posicion_emboscada()
-
-        # Encuentra una ruta hacia el objetivo y mueve al fantasma
-        self.calcular_siguiente_celda(fantasma, objetivo)
-        self.mover_hacia_siguiente_celda(fantasma)
+            return False # No mover el fantasma si Pac-Man ha ganado o está en estado de muerte
 
         if fantasma.asustado:
             self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
-            self.embascada_pacman_movimiento(fantasma)
+            pass
 
     def mover_fantasma_azul(self, fantasma):
         #Controla el movimiento del fantasma dependiendo de su estado y el del juego.
