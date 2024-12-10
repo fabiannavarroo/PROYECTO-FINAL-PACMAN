@@ -1,4 +1,5 @@
 from pacman import Pacman
+from heapq import heappop, heappush
 from fantasmas import *
 from puntos import Puntos
 from bloque import Bloque
@@ -323,6 +324,85 @@ class Tablero:
         else:
             self.seguir_a_pacman(fantasma)  # Movimiento siguiendo a Pac-Man
 
+
+    def mover_fantasma_rosa(self, fantasma):
+        # Controla el movimiento del fantasma basado en emboscadas
+        if self.victoria or self.pacman.en_muerte:
+            return False # No mover el fantasma si Pac-Man ha ganado o está en estado de muerte
+
+        if fantasma.asustado:
+            self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
+        else:
+
+            objetivo_x, objetivo_y = self.calcular_objetivo_emboscada(fantasma)
+
+            # Buscar la ruta hacia el objetivo
+            fantasma.siguiente_celda = self.calcular_ruta_fantasma_para_emboscada(fantasma, objetivo_x, objetivo_y)
+            # Mover el fantasma hacia la siguiente celda en la ruta
+            self.mover_hacia_siguiente_celda(fantasma)
+
+    def calcular_objetivo_emboscada(self, fantasma):
+        """
+        Calcula la celda objetivo para emboscar a Pac-Man basándose en su dirección y posición actual.
+        """
+        pacman_x, pacman_y = self.pacman.x, self.pacman.y
+        direccion = self.pacman.direccion_actual
+
+        # Determinar el objetivo basado en la dirección de Pac-Man
+        if direccion == PACMAN_ARRIBA:
+            objetivo_x, objetivo_y = pacman_x, pacman_y - self.celdas_para_emboscada * 16
+        elif direccion == PACMAN_ABAJO:
+            objetivo_x, objetivo_y = pacman_x, pacman_y + self.celdas_para_emboscada * 16
+        elif direccion == PACMAN_IZQUIERDA:
+            objetivo_x, objetivo_y = pacman_x - self.celdas_para_emboscada * 16, pacman_y
+        elif direccion == PACMAN_DERECHA:
+            objetivo_x, objetivo_y = pacman_x + self.celdas_para_emboscada * 16, pacman_y
+        else:
+            objetivo_x, objetivo_y = pacman_x, pacman_y
+
+        # Validar si el objetivo es válido (no un muro ni zona prohibida)
+        if self.colision_fantasmas(objetivo_x, objetivo_y) or self.esta_en_zona_prohibida(objetivo_x, objetivo_y):
+            objetivo_x, objetivo_y = pacman_x, pacman_y  # Ajustar objetivo a Pac-Man si no es válido
+
+        return objetivo_x, objetivo_y
+
+    from heapq import heappop, heappush
+
+    def buscar_ruta_a_estrella(self, inicio, objetivo):
+        """
+        Encuentra una ruta desde la posición 'inicio' hasta 'objetivo' usando el algoritmo A*.
+        """
+        def heuristica(celda_actual, objetivo):
+            # Distancia Manhattan entre la celda actual y el objetivo
+            return abs(celda_actual[0] - objetivo[0]) + abs(celda_actual[1] - objetivo[1])
+
+        abierta = []
+        heappush(abierta, (0, inicio))
+
+        costos = {inicio: 0}
+        came_from = {inicio: None}
+
+        while abierta:
+            _, actual = heappop(abierta)
+
+            if actual == objetivo:
+                ruta = []
+                while actual:
+                    ruta.append(actual)
+                    actual = came_from[actual]
+                return ruta[::-1]  # Ruta en orden desde inicio hasta objetivo
+
+            for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
+                vecino = (actual[0] + dx, actual[1] + dy)
+                nuevo_costo = costos[actual] + 1
+
+                if not self.bloque.colision(vecino[0], vecino[1]) and vecino not in costos:
+                    costos[vecino] = nuevo_costo
+                    prioridad = nuevo_costo + heuristica(vecino, objetivo)
+                    heappush(obierta, (prioridad, vecino))
+                    came_from[vecino] = actual
+
+        return None  # Ruta no encontrada
 
 
 
