@@ -509,23 +509,26 @@ class Tablero:
 
 
     def mover_hacia_siguiente_celda(self, fantasma):
-        # Mueve al fantasma hacia la celda calculada.
+        # Asegurarse de que el fantasma tiene una celda objetivo válida
         if fantasma.siguiente_celda:
             dx = fantasma.siguiente_celda[0] - fantasma.x
             dy = fantasma.siguiente_celda[1] - fantasma.y
 
-            if dx > 0:
-                fantasma.x += min(fantasma.velocidad, dx)
-                fantasma.direccion_actual = "DERECHA"
-            elif dx < 0:
-                fantasma.x += max(-fantasma.velocidad, dx)
-                fantasma.direccion_actual = "IZQUIERDA"
-            elif dy > 0:
-                fantasma.y += min(fantasma.velocidad, dy)
-                fantasma.direccion_actual = "ABAJO"
-            elif dy < 0:
-                fantasma.y += max(-fantasma.velocidad, dy)
-                fantasma.direccion_actual = "ARRIBA"
+            # Movimiento horizontal
+            if dx != 0:
+                nueva_x = fantasma.x + (fantasma.velocidad if dx > 0 else -fantasma.velocidad)
+                if not self.bloque.colision(nueva_x, fantasma.y):
+                    fantasma.x = nueva_x
+                else:
+                    fantasma.siguiente_celda = None  # Cancelar el movimiento si hay colisión
+
+            # Movimiento vertical
+            elif dy != 0:
+                nueva_y = fantasma.y + (fantasma.velocidad if dy > 0 else -fantasma.velocidad)
+                if not self.bloque.colision(fantasma.x, nueva_y):
+                    fantasma.y = nueva_y
+                else:
+                    fantasma.siguiente_celda = None  # Cancelar el movimiento si hay colisión
 
     def buscar_ruta_simple(self, inicio, objetivo):
         # Encuentra una ruta básica hacia el objetivo utilizando búsqueda en anchura (BFS).
