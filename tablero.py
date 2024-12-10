@@ -209,7 +209,7 @@ class Tablero:
             # Finaliza la animación de muerte
             self.pacman.en_muerte = False
             self.reiniciar_tablero()  # Reiniciar posiciones de Pac-Man y fantasmas
-            
+
 
 #--------------------------------------------------------------------MAPA--------------------------------------------------------------------# 
 
@@ -287,24 +287,10 @@ class Tablero:
         return False
 
 
+#--------------------------------------------------------------------MOVIMIENTO--------------------------------------------------------------------# 
+
+
     
-
-
-
-#--------------------------------------------------------------------FANTASMAS--------------------------------------------------------------------# 
-
-
-    def colision_fantsmas(self, x, y):
-        # Verifica si hay colisión, quitando la región de la puerta de salida
-        puerta_x, puerta_y = PUERTA_SALIDA
-        sprite_tamaño = self.bloque.celda_tamaño
-
-        # Quita la región de la puerta de salida
-        if puerta_x <= x < puerta_x + sprite_tamaño and puerta_y <= y < puerta_y + sprite_tamaño:
-            return False  # No hay colisión en la puerta de salida
-
-        # Verificar  normales en los bloques del mapa
-        return self.bloque.colision(x, y)
 
     
     def seguir_a_pacman(self):
@@ -490,6 +476,19 @@ class Tablero:
                     self.pacman.perder_vida()  # Pac-Man pierde una vida
                     return True
         return False  # No hay colision
+    
+
+    def colision_fantsmas(self, x, y):
+        # Verifica si hay colisión, quitando la región de la puerta de salida
+        puerta_x, puerta_y = PUERTA_SALIDA
+        sprite_tamaño = self.bloque.celda_tamaño
+
+        # Quita la región de la puerta de salida
+        if puerta_x <= x < puerta_x + sprite_tamaño and puerta_y <= y < puerta_y + sprite_tamaño:
+            return False  # No hay colisión en la puerta de salida
+
+        # Verificar  normales en los bloques del mapa
+        return self.bloque.colision(x, y)
 
 
     def detectar_colision_puntos(self, pacman_x, pacman_y, punto_x, punto_y):
