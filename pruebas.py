@@ -315,7 +315,7 @@ class Tablero:
 
     def mover_fantasma_rojo(self, fantasma):
         #Controla el movimiento del fantasma rojo dependiendo de su estado y el del juego.
-        if self.victoria or self.pacman.en_muerte or fantasma.en_trampa():
+        if self.victoria or self.pacman.en_muerte:
             return False # No mover el fantasma si Pac-Man ha ganado o está en estado de muerte
 
         if fantasma.asustado:
@@ -326,7 +326,7 @@ class Tablero:
 
     def mover_fantasma_rosa(self, fantasma):
         # Controla el movimiento del fantasma basado en emboscadas
-        if self.victoria or self.pacman.en_muerte or fantasma.en_trampa():
+        if self.victoria or self.pacman.en_muerte:
             return False # No mover el fantasma si Pac-Man ha ganado o está en estado de muerte
 
         if fantasma.asustado:
@@ -519,8 +519,6 @@ class Tablero:
         if fantasma.siguiente_celda:
             dx = fantasma.siguiente_celda[0] - fantasma.x
             dy = fantasma.siguiente_celda[1] - fantasma.y
-
-            print(f"Fantasma en: ({fantasma.x}, {fantasma.y}), Siguiente celda: {fantasma.siguiente_celda}, dx: {dx}, dy: {dy}")
 
             if dx > 0 and not self.bloque.colision(fantasma.x + fantasma.velocidad, fantasma.y):
                 fantasma.x += min(fantasma.velocidad, dx)
