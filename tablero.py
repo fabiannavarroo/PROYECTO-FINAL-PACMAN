@@ -361,10 +361,10 @@ class Tablero:
 
     
     
-    def seguir_a_pacman(self):
+    def seguir_a_pacman(self,fantasma):
         # Persigue a Pac-Man utilizando rutas simples y movimientos paso a paso.
-        if self.siguiente_celda is None or (self.fantasmas.x == self.fantasmas.siguiente_celda[0] and self.fantasmas.y == self.fantasmas.siguiente_celda[1]):
-            inicio = (self.fantasmas.x // 16 * 16, self.fantasmas.y // 16 * 16)
+        if self.fantasmas.siguiente_celda is None or (fantasma.x == self.fantasmas.siguiente_celda[0] and fantasma.y == self.fantasmas.siguiente_celda[1]):
+            inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
             objetivo = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
             ruta = self.buscar_ruta_simple(inicio, objetivo)
 
@@ -376,10 +376,10 @@ class Tablero:
         self.mover_hacia_siguiente_celda()
 
 
-    def alejarse_de_pacman(self):
+    def alejarse_de_pacman(self, fantasma):
         # Se aleja de Pac-Man utilizando celdas que aumentan la distancia entre ambos.
-        if self.siguiente_celda is None or (self.x == self.siguiente_celda[0] and self.y == self.siguiente_celda[1]):
-            inicio = (self.fantasmas.x // 16 * 16, self.fantasmas.y // 16 * 16)
+        if self.siguiente_celda is None or (fantasma.x == self.siguiente_celda[0] and fantasma.y == self.siguiente_celda[1]):
+            inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
             pacman_pos = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
 
             # Evaluar todas las celdas adyacentes y elegir la que maximiza la distancia a Pac-Man
