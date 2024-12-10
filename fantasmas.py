@@ -1,8 +1,7 @@
 import pyxel
 from constantes import *
-from collections import deque
 import time
-import random
+
 
 class Fantasma:
     def __init__(self, x, y, sprites):
