@@ -21,7 +21,6 @@ class Fantasma:
         self.puerta_salida = PUERTA_SALIDA # Punto de la puerta de salida de la trampa para colision
         self.trampa_coordenadas = ((144, 192), (240, 224))  # Región de la trampa
         self.siguiente_celda = None  # Almacena la próxima celda hacia la que se mueve el fantasma
-        self.salida_fantasmas = []
 
 
     def en_trampa(self):
