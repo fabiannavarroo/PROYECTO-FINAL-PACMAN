@@ -432,10 +432,10 @@ class Tablero:
             # Evaluar todas las celdas y elegir la que maximiza la distancia a Pac-Man
             opciones = []
             for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
-                vecino = (inicio[0] + dx, inicio[1] + dy)
-                if not self.colision_fantasmas(vecino[0], vecino[1]):  # Solo considerar celdas sin colisión
-                    distancia = abs(vecino[0] - pacman_pos[0]) + abs(vecino[1] - pacman_pos[1])
-                    opciones.append((distancia, vecino))
+                posible_celda = (inicio[0] + dx, inicio[1] + dy)
+                if not self.colision_fantasmas(posible_celda[0], posible_celda[1]):  # Solo considerar celdas sin colisión
+                    distancia = abs(posible_celda[0] - pacman_pos[0]) + abs(posible_celda[1] - pacman_pos[1])
+                    opciones.append((distancia, posible_celda))
 
             # Ordenar por mayor distancia y seleccionar la mejor opción
             if opciones:
@@ -492,10 +492,10 @@ class Tablero:
                 return ruta
 
             for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
-                vecino = (actual[0] + dx, actual[1] + dy)
-                if vecino not in visitados and not self.colision_fantasmas(vecino[0], vecino[1]):
-                    visitados[vecino] = actual
-                    cola.append(vecino)
+                posible_celda = (actual[0] + dx, actual[1] + dy)
+                if posible_celda not in visitados and not self.colision_fantasmas(posible_celda[0], posible_celda[1]):
+                    visitados[posible_celda] = actual
+                    cola.append(posible_celda)
 
         return None
     
