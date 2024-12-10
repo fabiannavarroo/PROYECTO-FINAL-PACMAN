@@ -374,7 +374,7 @@ class Tablero:
         inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
         objetivo = (objetivo_x // 16 * 16, objetivo_y // 16 * 16)
 
-        # Buscar ruta usando BFS
+        # Buscar ruta
         ruta = self.buscar_ruta_simple(inicio, objetivo)
 
         # Validar si hay una ruta válida y si no colisiona con un muro
