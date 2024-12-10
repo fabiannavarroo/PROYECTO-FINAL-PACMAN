@@ -532,6 +532,7 @@ class Tablero:
             elif dy < 0:
                 fantasma.y += max(-fantasma.velocidad, dy)
                 fantasma.direccion_actual = "ARRIBA"
+                
 
     def buscar_ruta_simple(self, inicio, objetivo):
     # Encuentra una ruta básica hacia el objetivo utilizando búsqueda en anchura
