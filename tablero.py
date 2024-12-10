@@ -59,8 +59,7 @@ class Tablero:
                 tiempo_actual = time.time()
                 for index, fantasma in enumerate(self.fantasmas):
                     if fantasma.en_trampa():
-                        # Salida escalonada de fantasmas de la trampa
-                        if tiempo_actual - fantasma.tiempo_trampa >= index * 2:
+                        if tiempo_actual - fantasma.tiempo_trampa >= index * 2:  # Espera escalonada
                             fantasma.salir_de_trampa()
                     else:
                         # Movimiento normal de los fantasmas fuera de la trampa
