@@ -16,7 +16,7 @@ class Fantasma:
         self.asustado = False  # Indica si está en estado asustado
         self.tiempo_asustado = 0  # Temporizador para estado asustado
         self.tiempo_para_ser_comido = 10  # Duración por defecto del estado asustado
-        self.tiempo_trampa = time.time() + random.uniform(0, 0.5)  # Temporizador para controlar salida
+        self.tiempo_trampa = time.time() + 2  # Temporizador para controlar salida
         self.salida_final = SALIDA_FINAL  # Punto fuera de la trampa
         self.puerta_salida = PUERTA_SALIDA # Punto de la puerta de salida de la trampa para colision
         self.trampa_coordenadas = ((144, 192), (240, 224))  # Región de la trampa
