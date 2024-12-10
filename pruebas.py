@@ -7,7 +7,7 @@ from constantes import *
 import random
 import time
 import pyxel
-
+from heapq import heappop, heappush
 
 class Tablero:
     def __init__(self):
