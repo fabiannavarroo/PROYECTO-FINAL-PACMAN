@@ -338,8 +338,8 @@ class Tablero:
             self.embascada_pacman_movimiento(fantasma)
 
     def mover_fantasma_azul(self, fantasma):
-        #Controla el movimiento del fantasma rojo dependiendo de su estado y el del juego.
-        if self.victoria or self.pacman.en_muerte:
+        #Controla el movimiento del fantasma dependiendo de su estado y el del juego.
+        if self.victoria or self.pacman.en_muerte or fantasma.en_trampa():
             return False # No mover el fantasma si Pac-Man ha ganado o está en estado de muerte
 
         if fantasma.asustado:
@@ -348,8 +348,8 @@ class Tablero:
             pass
 
     def mover_fantasma_naranja(self, fantasma):
-        #Controla el movimiento del fantasma rojo dependiendo de su estado y el del juego.
-        if self.victoria or self.pacman.en_muerte:
+        #Controla el movimiento del fantasma dependiendo de su estado y el del juego.
+        if self.victoria or self.pacman.en_muerte or fantasma.en_trampa():
             return False # No mover el fantasma si Pac-Man ha ganado o está en estado de muerte
 
         if fantasma.asustado:
@@ -466,59 +466,6 @@ class Tablero:
 
         # Movimiento paso a paso hacia la siguiente celda
         self.mover_hacia_siguiente_celda(fantasma)
-
-
-    def calcular_posicion_emboscada(self):
-        pacman_x, pacman_y = self.pacman.x, self.pacman.y
-        direccion = self.pacman.direccion_actual
-
-        # Calcula un objetivo 4 celdas adelante de Pac-Man
-        if direccion == PACMAN_ARRIBA:
-            objetivo_x, objetivo_y = pacman_x, pacman_y - 64
-        elif direccion == PACMAN_ABAJO:
-            objetivo_x, objetivo_y = pacman_x, pacman_y + 64
-        elif direccion == PACMAN_IZQUIERDA:
-            objetivo_x, objetivo_y = pacman_x - 64, pacman_y
-        elif direccion == PACMAN_DERECHA:
-            objetivo_x, objetivo_y = pacman_x + 64, pacman_y
-        else:
-            objetivo_x, objetivo_y = pacman_x, pacman_y
-
-        # Ajustar si la posición está prohibida
-        if self.esta_en_zona_prohibida(objetivo_x, objetivo_y):
-            return pacman_x, pacman_y  # Vuelve a apuntar directamente a Pac-Man
-
-        return objetivo_x, objetivo_y
-
-
-    def embascada_pacman_movimiento(self, fantasma):
-        objetivo = self.calcular_posicion_emboscada()
-        if fantasma.siguiente_celda is None or (
-            fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]
-        ):
-            inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
-            ruta = self.buscar_ruta_simple(inicio, objetivo)
-
-            if ruta and len(ruta) > 1:
-                fantasma.siguiente_celda = ruta[1]
-            else:
-                fantasma.siguiente_celda = None
-
-        self.mover_hacia_siguiente_celda(fantasma)
-
-
-    def calcular_siguiente_celda(self, fantasma, objetivo):
-        # Calcula la siguiente celda para un fantasma hacia un objetivo dado
-        if fantasma.siguiente_celda is None or (
-            fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]
-        ):
-            inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
-            ruta = self.buscar_ruta_simple(inicio, objetivo)
-
-            if ruta and len(ruta) > 1:
-                fantasma.siguiente_celda = ruta[1]
-            else:
-                fantasma.siguiente_celda = None
 
 
     def mover_hacia_siguiente_celda(self, fantasma):
