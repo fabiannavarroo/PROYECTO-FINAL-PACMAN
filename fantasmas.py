@@ -151,6 +151,8 @@ class FantasmaRojo(Fantasma):
     def __init__(self, x, y):
         super().__init__(x, y, FANTASMA_ROJO)
 
+    def mover(self):
+        pass
        
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y):
