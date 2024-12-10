@@ -490,7 +490,7 @@ class Tablero:
         else:
             objetivo_x, objetivo_y = pacman_x, pacman_y
 
-        # Validar el objetivo (asegurar que sea accesible)
+        # Ve que se puede ir a las coordenadas
         if self.colision_fantasmas(objetivo_x, objetivo_y) or self.esta_en_zona_prohibida(objetivo_x, objetivo_y):
             objetivo_x, objetivo_y = pacman_x, pacman_y  # Ajustar al objetivo como Pac-Man
 
