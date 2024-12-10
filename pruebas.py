@@ -311,43 +311,50 @@ class Tablero:
 #--------------------------------------------------------------------FANTASMAS--------------------------------------------------------------------#
 
     def mover_fantasma_rojo(self, fantasma):
-        # Calcula la posición objetivo delante de Pac-Man
-        pacman_x, pacman_y = self.pacman.x, self.pacman.y
-        direccion = self.pacman.direccion_actual
+        #Controla el movimiento del fantasma rojo dependiendo de su estado y el del juego.
+        if self.victoria or self.pacman.en_muerte or fantasma.en_trampa():
+            return False # No mover el fantasma si Pac-Man ha ganado o está en estado de muerte
 
-        if direccion == PACMAN_ARRIBA:
-            objetivo_x, objetivo_y = pacman_x, pacman_y - 64  # 4 celdas hacia arriba
-        elif direccion == PACMAN_ABAJO:
-            objetivo_x, objetivo_y = pacman_x, pacman_y + 64  # 4 celdas hacia abajo
-        elif direccion == PACMAN_IZQUIERDA:
-            objetivo_x, objetivo_y = pacman_x - 64, pacman_y  # 4 celdas hacia la izquierda
-        elif direccion == PACMAN_DERECHA:
-            objetivo_x, objetivo_y = pacman_x + 64, pacman_y  # 4 celdas hacia la derecha
+        if fantasma.asustado:
+            self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
-            objetivo_x, objetivo_y = pacman_x, pacman_y  # Si no se mueve, apunta a Pac-Man
+            # Calcula la posición objetivo delante de Pac-Man
+            pacman_x, pacman_y = self.pacman.x, self.pacman.y
+            direccion = self.pacman.direccion_actual
 
-        # Movimiento básico hacia el objetivo
-        dx = objetivo_x - fantasma.x
-        dy = objetivo_y - fantasma.y
+            if direccion == PACMAN_ARRIBA:
+                objetivo_x, objetivo_y = pacman_x, pacman_y - 64  # 4 celdas hacia arriba
+            elif direccion == PACMAN_ABAJO:
+                objetivo_x, objetivo_y = pacman_x, pacman_y + 64  # 4 celdas hacia abajo
+            elif direccion == PACMAN_IZQUIERDA:
+                objetivo_x, objetivo_y = pacman_x - 64, pacman_y  # 4 celdas hacia la izquierda
+            elif direccion == PACMAN_DERECHA:
+                objetivo_x, objetivo_y = pacman_x + 64, pacman_y  # 4 celdas hacia la derecha
+            else:
+                objetivo_x, objetivo_y = pacman_x, pacman_y  # Si no se mueve, apunta a Pac-Man
 
-        if abs(dx) > abs(dy):  # Prioriza movimiento horizontal
-            if dx > 0:
-                nueva_x = fantasma.x + fantasma.velocidad
-                if not self.bloque.colision(nueva_x, fantasma.y):
-                    fantasma.x = nueva_x
-            elif dx < 0:
-                nueva_x = fantasma.x - fantasma.velocidad
-                if not self.bloque.colision(nueva_x, fantasma.y):
-                    fantasma.x = nueva_x
-        else:  # Movimiento vertical
-            if dy > 0:
-                nueva_y = fantasma.y + fantasma.velocidad
-                if not self.bloque.colision(fantasma.x, nueva_y):
-                    fantasma.y = nueva_y
-            elif dy < 0:
-                nueva_y = fantasma.y - fantasma.velocidad
-                if not self.bloque.colision(fantasma.x, nueva_y):
-                    fantasma.y = nueva_y
+            # Movimiento básico hacia el objetivo
+            dx = objetivo_x - fantasma.x
+            dy = objetivo_y - fantasma.y
+
+            if abs(dx) > abs(dy):  # Prioriza movimiento horizontal
+                if dx > 0:
+                    nueva_x = fantasma.x + fantasma.velocidad
+                    if not self.bloque.colision(nueva_x, fantasma.y):
+                        fantasma.x = nueva_x
+                elif dx < 0:
+                    nueva_x = fantasma.x - fantasma.velocidad
+                    if not self.bloque.colision(nueva_x, fantasma.y):
+                        fantasma.x = nueva_x
+            else:  # Movimiento vertical
+                if dy > 0:
+                    nueva_y = fantasma.y + fantasma.velocidad
+                    if not self.bloque.colision(fantasma.x, nueva_y):
+                        fantasma.y = nueva_y
+                elif dy < 0:
+                    nueva_y = fantasma.y - fantasma.velocidad
+                    if not self.bloque.colision(fantasma.x, nueva_y):
+                        fantasma.y = nueva_y
 
     def mover_fantasma_rosa(self, fantasma):
         # Controla el movimiento del fantasma basado en emboscadas
