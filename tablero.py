@@ -480,6 +480,7 @@ class Tablero:
 
         return objetivo_x, objetivo_y
 
+
     def embascada_pacman_movimiento(self,fantasma):
         # Mueve al fantasma hacia la posición de emboscada de Pac-Man.
         #Determina la posición objetivo para la emboscada
@@ -496,7 +497,7 @@ class Tablero:
                 fantasma.siguiente_celda = None
         # Mueve el fantasma hacia la celda siguiente
         self.mover_hacia_siguiente_celda(fantasma)
-        
+
 
     def mover_hacia_siguiente_celda(self, fantasma):
         # Mueve al fantasma hacia la celda calculada.
