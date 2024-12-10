@@ -135,7 +135,7 @@ class Tablero:
             # Mostrar GAME OVER si no hay vidas
             pyxel.cls(0)
             self.bloque.draw()
-            constador = 0
+            contador = 0
             while contador<10:
                 self.animar_muerte()
                 contador += 1
