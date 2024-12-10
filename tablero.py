@@ -262,40 +262,6 @@ class Tablero:
         self.puntos.ultimo_tiempo_fruta = time.time()
 
 
-    def comer_puntos(self):
-        # Detectar si Pac-Man come puntos
-        puntos_sin_comer = []
-        for x, y, tipo in self.puntos.lista_puntos:
-            if self.detectar_colision_puntos(self.pacman.x, self.pacman.y, x, y):
-                # Incrementar puntos según el tipo
-                self.puntos.puntos += OBJETOS[tipo]["Puntos"]
-            else:
-                puntos_sin_comer.append((x, y, tipo))
-        self.puntos.lista_puntos = puntos_sin_comer
-
-        # Detectar si Pac-Man come un regalo
-        regalos_sin_comer = []
-        for x, y in self.puntos.regalos:
-            if self.detectar_colision_puntos(self.pacman.x, self.pacman.y, x, y):
-                # Activar estado asustado para los fantasmas
-                for fantasma in self.fantasmas:
-                    fantasma.activar_asustado()
-                self.puntos.puntos += OBJETOS["REGALO"]["Puntos"]  # Incrementar los puntos por el regalo
-            else:
-                regalos_sin_comer.append((x, y))
-        self.puntos.regalos = regalos_sin_comer
-
-
-
-
-    def comer_fruta(self):
-        # Detecta si Pac-Man come la fruta actual.
-        if self.puntos.posicion_fruta and self.detectar_colision_puntos(self.pacman.x, self.pacman.y, self.puntos.posicion_fruta[0], self.puntos.posicion_fruta[1]):
-            self.puntos.puntos += OBJETOS[self.puntos.fruta_actual]["Puntos"]  # Incrementa los puntos según la fruta
-            self.puntos.posicion_fruta = None  # Elimina la fruta actual
-            self.puntos.fruta_actual = None
-
-
     def comprobar_puntos_restantes(self):
         # Verifica si no quedan puntos ni regalos
         if len(self.puntos.lista_puntos) == 0 and len(self.puntos.regalos) == 0:
@@ -525,5 +491,39 @@ class Tablero:
     def detectar_colision_puntos(self, pacman_x, pacman_y, punto_x, punto_y):
         # Detecta si Pac-Man ha comido un punto
         return abs(pacman_x - punto_x) < 10 and abs(pacman_y - punto_y) < 10
+    
+    
+    def comer_puntos(self):
+        # Detectar si Pac-Man come puntos
+        puntos_sin_comer = []
+        for x, y, tipo in self.puntos.lista_puntos:
+            if self.detectar_colision_puntos(self.pacman.x, self.pacman.y, x, y):
+                # Incrementar puntos según el tipo
+                self.puntos.puntos += OBJETOS[tipo]["Puntos"]
+            else:
+                puntos_sin_comer.append((x, y, tipo))
+        self.puntos.lista_puntos = puntos_sin_comer
+
+        # Detectar si Pac-Man come un regalo
+        regalos_sin_comer = []
+        for x, y in self.puntos.regalos:
+            if self.detectar_colision_puntos(self.pacman.x, self.pacman.y, x, y):
+                # Activar estado asustado para los fantasmas
+                for fantasma in self.fantasmas:
+                    fantasma.activar_asustado()
+                self.puntos.puntos += OBJETOS["REGALO"]["Puntos"]  # Incrementar los puntos por el regalo
+            else:
+                regalos_sin_comer.append((x, y))
+        self.puntos.regalos = regalos_sin_comer
+
+
+    def comer_fruta(self):
+        # Detecta si Pac-Man come la fruta actual.
+        if self.puntos.posicion_fruta and self.detectar_colision_puntos(self.pacman.x, self.pacman.y, self.puntos.posicion_fruta[0], self.puntos.posicion_fruta[1]):
+            self.puntos.puntos += OBJETOS[self.puntos.fruta_actual]["Puntos"]  # Incrementa los puntos según la fruta
+            self.puntos.posicion_fruta = None  # Elimina la fruta actual
+            self.puntos.fruta_actual = None
+
+
 
 
