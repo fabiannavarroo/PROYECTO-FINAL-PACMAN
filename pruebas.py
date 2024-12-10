@@ -7,7 +7,7 @@ from constantes import *
 import random
 import time
 import pyxel
-from heapq import heappop, heappush
+
 
 class Tablero:
     def __init__(self):
@@ -335,21 +335,14 @@ class Tablero:
             self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
 
-            # Calcular el objetivo para emboscar
-            objetivo_x, objetivo_y = self.calcular_objetivo_emboscada()
-            inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
-            objetivo = (objetivo_x // 16 * 16, objetivo_y // 16 * 16)
+            objetivo_x, objetivo_y = self.calcular_objetivo_emboscada(fantasma)
 
-            # Usar el método de A* para calcular la ruta
-            ruta = self.buscar_ruta_a_estrella(inicio, objetivo)
-
-            # Determinar la siguiente celda en la ruta
-            fantasma.siguiente_celda = ruta[1] if ruta and len(ruta) > 1 else None
-
-            # Mover hacia la siguiente celda
+            # Buscar la ruta hacia el objetivo
+            fantasma.siguiente_celda = self.calcular_ruta_fantasma_para_emboscada(fantasma, objetivo_x, objetivo_y)
+            # Mover el fantasma hacia la siguiente celda en la ruta
             self.mover_hacia_siguiente_celda(fantasma)
 
-    def calcular_objetivo_emboscada(self):
+    def calcular_objetivo_emboscada(self, fantasma):
         """
         Calcula la celda objetivo para emboscar a Pac-Man basándose en su dirección y posición actual.
         """
@@ -374,43 +367,22 @@ class Tablero:
 
         return objetivo_x, objetivo_y
 
-    from heapq import heappop, heappush
-
-    def buscar_ruta_a_estrella(self, inicio, objetivo):
+    def calcular_ruta_fantasma_para_emboscada(self, fantasma, objetivo_x, objetivo_y):
         """
-        Encuentra una ruta desde la posición 'inicio' hasta 'objetivo' usando el algoritmo A*.
+        Calcula la siguiente celda en la ruta hacia el objetivo utilizando búsqueda en anchura.
         """
-        def heuristica(celda_actual, objetivo):
-            # Distancia Manhattan entre la celda actual y el objetivo
-            return abs(celda_actual[0] - objetivo[0]) + abs(celda_actual[1] - objetivo[1])
+        inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
+        objetivo = (objetivo_x // 16 * 16, objetivo_y // 16 * 16)
 
-        abierta = []
-        heappush(abierta, (0, inicio))
+        # Buscar ruta usando BFS
+        ruta = self.buscar_ruta_simple(inicio, objetivo)
 
-        costos = {inicio: 0}
-        came_from = {inicio: None}
-
-        while abierta:
-            _, actual = heappop(abierta)
-
-            if actual == objetivo:
-                ruta = []
-                while actual:
-                    ruta.append(actual)
-                    actual = came_from[actual]
-                return ruta[::-1]  # Ruta en orden desde inicio hasta objetivo
-
-            for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
-                vecino = (actual[0] + dx, actual[1] + dy)
-                nuevo_costo = costos[actual] + 1
-
-                if not self.bloque.colision(vecino[0], vecino[1]) and vecino not in costos:
-                    costos[vecino] = nuevo_costo
-                    prioridad = nuevo_costo + heuristica(vecino, objetivo)
-                    heappush(abierta, (prioridad, vecino))
-                    came_from[vecino] = actual
-
-        return None  # Ruta no encontrada
+        # Validar si hay una ruta válida y si no colisiona con un muro
+        if ruta and len(ruta) > 1:
+            siguiente_celda = ruta[1]
+            if not self.colision_fantasmas(siguiente_celda[0], siguiente_celda[1]):
+                return siguiente_celda
+        return None
 
 
 
