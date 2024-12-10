@@ -318,46 +318,55 @@ class Tablero:
         if fantasma.asustado:
             self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
-        # Calcular posición objetivo (emboscada)
+            # Calcular posición objetivo (emboscada)
             pacman_x, pacman_y = self.pacman.x, self.pacman.y
             direccion = self.pacman.direccion_actual
 
+            # Calcular punto objetivo dependiendo de la dirección de Pac-Man
             if direccion == PACMAN_ARRIBA:
-                objetivo_x, objetivo_y = pacman_x, pacman_y - 64  # 4 celdas hacia arriba
+                objetivo_x, objetivo_y = pacman_x, pacman_y - 64  # 4 celdas arriba
             elif direccion == PACMAN_ABAJO:
-                objetivo_x, objetivo_y = pacman_x, pacman_y + 64  # 4 celdas hacia abajo
+                objetivo_x, objetivo_y = pacman_x, pacman_y + 64  # 4 celdas abajo
             elif direccion == PACMAN_IZQUIERDA:
-                objetivo_x, objetivo_y = pacman_x - 64, pacman_y  # 4 celdas hacia la izquierda
+                objetivo_x, objetivo_y = pacman_x - 64, pacman_y  # 4 celdas a la izquierda
             elif direccion == PACMAN_DERECHA:
-                objetivo_x, objetivo_y = pacman_x + 64, pacman_y  # 4 celdas hacia la derecha
+                objetivo_x, objetivo_y = pacman_x + 64, pacman_y  # 4 celdas a la derecha
             else:
-                objetivo_x, objetivo_y = pacman_x, pacman_y  # Si Pac-Man está quieto, ir a su posición actual
+                objetivo_x, objetivo_y = pacman_x, pacman_y  # Si está quieto, ir directamente hacia él
 
-            # Evaluar las posibles direcciones de movimiento
-            opciones_movimiento = []
+            # Ajustar objetivo si está en zona prohibida o fuera del mapa
+            if self.esta_en_zona_prohibida(objetivo_x, objetivo_y):
+                objetivo_x, objetivo_y = pacman_x, pacman_y  # Apuntar directamente a Pac-Man
 
-            # Revisar cada dirección y verificar colisiones
-            if not self.bloque.colision(fantasma.x + fantasma.velocidad, fantasma.y):  # Derecha
-                opciones_movimiento.append(("DERECHA", fantasma.x + fantasma.velocidad, fantasma.y))
-            if not self.bloque.colision(fantasma.x - fantasma.velocidad, fantasma.y):  # Izquierda
-                opciones_movimiento.append(("IZQUIERDA", fantasma.x - fantasma.velocidad, fantasma.y))
-            if not self.bloque.colision(fantasma.x, fantasma.y + fantasma.velocidad):  # Abajo
-                opciones_movimiento.append(("ABAJO", fantasma.x, fantasma.y + fantasma.velocidad))
-            if not self.bloque.colision(fantasma.x, fantasma.y - fantasma.velocidad):  # Arriba
-                opciones_movimiento.append(("ARRIBA", fantasma.x, fantasma.y - fantasma.velocidad))
+            # Encontrar la ruta hacia el objetivo
+            inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)  # Posición actual del fantasma en la cuadrícula
+            objetivo = (objetivo_x // 16 * 16, objetivo_y // 16 * 16)  # Objetivo en la cuadrícula
 
-            # Elegir la mejor opción en función de la distancia al objetivo
-            if opciones_movimiento:
-                mejor_opcion = min(opciones_movimiento, key=lambda mov: abs(mov[1] - objetivo_x) + abs(mov[2] - objetivo_y))
-                direccion, nueva_x, nueva_y = mejor_opcion
+            ruta = self.buscar_ruta_simple(inicio, objetivo)
 
-                # Mover el fantasma a la nueva posición
-                fantasma.x = nueva_x
-                fantasma.y = nueva_y
-                fantasma.direccion_actual = direccion
-            else:
-                # Si no hay opciones válidas, no se mueve
-                pass
+            # Si se encuentra una ruta, seguirla
+            if ruta and len(ruta) > 1:
+                siguiente_celda = ruta[1]
+                dx = siguiente_celda[0] - fantasma.x
+                dy = siguiente_celda[1] - fantasma.y
+
+                # Moverse hacia la siguiente celda
+                if dx > 0:
+                    fantasma.x += min(fantasma.velocidad, dx)
+                    fantasma.direccion_actual = "DERECHA"
+                elif dx < 0:
+                    fantasma.x += max(-fantasma.velocidad, dx)
+                    fantasma.direccion_actual = "IZQUIERDA"
+                elif dy > 0:
+                    fantasma.y += min(fantasma.velocidad, dy)
+                    fantasma.direccion_actual = "ABAJO"
+                elif dy < 0:
+                    fantasma.y += max(-fantasma.velocidad, dy)
+                    fantasma.direccion_actual = "ARRIBA"
+
+
+
+
     def mover_fantasma_rosa(self, fantasma):
         # Controla el movimiento del fantasma basado en emboscadas
         if self.victoria or self.pacman.en_muerte or fantasma.en_trampa():
