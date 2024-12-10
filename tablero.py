@@ -289,7 +289,6 @@ class Tablero:
 
 #--------------------------------------------------------------------MOVIMIENTO--------------------------------------------------------------------# 
 
-
     def movimineto_pacman(self,):
         if self.pacman.vidas <= 0 or self.pacman.en_muerte or self.pacman.reiniciando:  # Si no hay vidas, está en muerte o reiniciando, no se mueve
             return False
