@@ -318,7 +318,7 @@ class Tablero:
         if fantasma.asustado:
             self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
-            # Calcular posición objetivo (emboscada)
+        # Calcular posición objetivo (emboscada)
             pacman_x, pacman_y = self.pacman.x, self.pacman.y
             direccion = self.pacman.direccion_actual
 
@@ -344,25 +344,32 @@ class Tablero:
 
             ruta = self.buscar_ruta_simple(inicio, objetivo)
 
-            # Si se encuentra una ruta, seguirla
             if ruta and len(ruta) > 1:
                 siguiente_celda = ruta[1]
                 dx = siguiente_celda[0] - fantasma.x
                 dy = siguiente_celda[1] - fantasma.y
 
-                # Moverse hacia la siguiente celda
+                # Verificar colisiones antes de mover
                 if dx > 0:
-                    fantasma.x += min(fantasma.velocidad, dx)
-                    fantasma.direccion_actual = "DERECHA"
+                    nueva_x = fantasma.x + min(fantasma.velocidad, dx)
+                    if not self.bloque.colision(nueva_x, fantasma.y):  # Verificar colisión horizontal
+                        fantasma.x = nueva_x
+                        fantasma.direccion_actual = "DERECHA"
                 elif dx < 0:
-                    fantasma.x += max(-fantasma.velocidad, dx)
-                    fantasma.direccion_actual = "IZQUIERDA"
+                    nueva_x = fantasma.x + max(-fantasma.velocidad, dx)
+                    if not self.bloque.colision(nueva_x, fantasma.y):  # Verificar colisión horizontal
+                        fantasma.x = nueva_x
+                        fantasma.direccion_actual = "IZQUIERDA"
                 elif dy > 0:
-                    fantasma.y += min(fantasma.velocidad, dy)
-                    fantasma.direccion_actual = "ABAJO"
+                    nueva_y = fantasma.y + min(fantasma.velocidad, dy)
+                    if not self.bloque.colision(fantasma.x, nueva_y):  # Verificar colisión vertical
+                        fantasma.y = nueva_y
+                        fantasma.direccion_actual = "ABAJO"
                 elif dy < 0:
-                    fantasma.y += max(-fantasma.velocidad, dy)
-                    fantasma.direccion_actual = "ARRIBA"
+                    nueva_y = fantasma.y + max(-fantasma.velocidad, dy)
+                    if not self.bloque.colision(fantasma.x, nueva_y):  # Verificar colisión vertical
+                        fantasma.y = nueva_y
+                        fantasma.direccion_actual = "ARRIBA"
 
 
 
@@ -509,26 +516,23 @@ class Tablero:
 
 
     def mover_hacia_siguiente_celda(self, fantasma):
-        # Asegurarse de que el fantasma tiene una celda objetivo válida
+        # Mueve al fantasma hacia la celda calculada.
         if fantasma.siguiente_celda:
             dx = fantasma.siguiente_celda[0] - fantasma.x
             dy = fantasma.siguiente_celda[1] - fantasma.y
 
-            # Movimiento horizontal
-            if dx != 0:
-                nueva_x = fantasma.x + (fantasma.velocidad if dx > 0 else -fantasma.velocidad)
-                if not self.bloque.colision(nueva_x, fantasma.y):
-                    fantasma.x = nueva_x
-                else:
-                    fantasma.siguiente_celda = None  # Cancelar el movimiento si hay colisión
-
-            # Movimiento vertical
-            elif dy != 0:
-                nueva_y = fantasma.y + (fantasma.velocidad if dy > 0 else -fantasma.velocidad)
-                if not self.bloque.colision(fantasma.x, nueva_y):
-                    fantasma.y = nueva_y
-                else:
-                    fantasma.siguiente_celda = None  # Cancelar el movimiento si hay colisión
+            if dx > 0:
+                fantasma.x += min(fantasma.velocidad, dx)
+                fantasma.direccion_actual = "DERECHA"
+            elif dx < 0:
+                fantasma.x += max(-fantasma.velocidad, dx)
+                fantasma.direccion_actual = "IZQUIERDA"
+            elif dy > 0:
+                fantasma.y += min(fantasma.velocidad, dy)
+                fantasma.direccion_actual = "ABAJO"
+            elif dy < 0:
+                fantasma.y += max(-fantasma.velocidad, dy)
+                fantasma.direccion_actual = "ARRIBA"
 
     def buscar_ruta_simple(self, inicio, objetivo):
         # Encuentra una ruta básica hacia el objetivo utilizando búsqueda en anchura (BFS).
