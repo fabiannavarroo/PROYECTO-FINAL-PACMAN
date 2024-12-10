@@ -489,9 +489,9 @@ class Tablero:
         else:
             objetivo_x, objetivo_y = pacman_x, pacman_y
 
-        # Validar si el objetivo está en una zona prohibida o es una celda se trata de un muro
-        if self.esta_en_zona_prohibida(objetivo_x, objetivo_y) or self.colision_fantasmas(objetivo_x, objetivo_y):
-            # Si es inválido, apunta directamente a Pac-Man
+        # Validar si el objetivo está en una zona prohibida, muro o fuera del mapa
+        if (self.esta_en_zona_prohibida(objetivo_x, objetivo_y) or 
+            self.bloque.colision(objetivo_x, objetivo_y)):
             objetivo_x, objetivo_y = pacman_x, pacman_y
 
         return objetivo_x, objetivo_y
