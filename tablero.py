@@ -506,6 +506,19 @@ class Tablero:
 
         self.mover_hacia_siguiente_celda(fantasma)
 
+    def calcular_siguiente_celda(self, fantasma, objetivo):
+        # Calcula la siguiente celda para un fantasma hacia un objetivo dado
+        if fantasma.siguiente_celda is None or (
+            fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]
+        ):
+            inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
+            ruta = self.buscar_ruta_simple(inicio, objetivo)
+
+            if ruta and len(ruta) > 1:
+                fantasma.siguiente_celda = ruta[1]
+            else:
+                fantasma.siguiente_celda = None
+
 
     def mover_hacia_siguiente_celda(self, fantasma):
         # Mueve al fantasma hacia la celda calculada.
