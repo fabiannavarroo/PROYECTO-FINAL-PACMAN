@@ -56,10 +56,10 @@ class Tablero:
                 self.comer_fruta()  # Detectar frutas comidas
                 self.generar_fruta()  # Generar frutas cada 30s
                 
-                
+
                 for index, fantasma in enumerate(self.fantasmas):
                     if fantasma.en_trampa():
-                        tiempo_espera = index * 2  # Tiempo escalonado
+                        tiempo_espera = index * 4  # Tiempo escalonado
                         if time.time() - fantasma.tiempo_trampa >= tiempo_espera:
                             fantasma.salir_de_trampa()
                     else:
