@@ -48,6 +48,7 @@ class Fantasma:
         self.direccion_actual = "DERECHA"
         self.tiempo_trampa = time.time()
         self.velocidad = 2
+        
         # Coordenadas de la trampa de cada fantasma
         if isinstance(self, FantasmaRojo):
             self.x, self.y = 158, 208
