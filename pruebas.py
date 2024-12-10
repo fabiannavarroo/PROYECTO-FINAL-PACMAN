@@ -21,7 +21,7 @@ class Tablero:
         self.pacman = Pacman(192, 304)  # Pacman y su posición inicial
         self.fantasmas = [  # Lista de fantasmas con sus posiciones iniciales
             FantasmaRojo(160, 208),
-            FantasmaRosa(181, 208),
+            FantasmaRosa(181, 178),
             FantasmaAzul(203, 208),
             FantasmaNaranja(225, 208),
         ]
