@@ -377,7 +377,7 @@ class Tablero:
         # Validar si hay una ruta válida y si no colisiona con un muro
         if ruta and len(ruta) > 1:
             siguiente_celda = ruta[1]
-            if not self.bloque.colision(siguiente_celda[0], siguiente_celda[1]):
+            if not self.colision_fantasmas(siguiente_celda[0], siguiente_celda[1]):
                 return siguiente_celda
         return None
 
