@@ -332,12 +332,17 @@ class Tablero:
         if fantasma.asustado:
             self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
-            # Calcular el objetivo para emboscar a Pac-Man
+            # Calcular el objetivo de emboscada
             objetivo_x, objetivo_y = self.calcular_objetivo_emboscada(fantasma)
-            # Buscar la ruta hacia el objetivo
-            fantasma.siguiente_celda = self.calcular_ruta_fantasma_para_emboscada(fantasma, objetivo_x, objetivo_y)
-            # Mover el fantasma hacia la siguiente celda en la ruta
-            self.mover_hacia_siguiente_celda(fantasma)
+
+            # Actualizar la ruta solo si el objetivo cambió o no tiene ruta
+            if fantasma.objetivo_actual != (objetivo_x, objetivo_y) or fantasma.siguiente_celda is None:
+                fantasma.objetivo_actual = (objetivo_x, objetivo_y)
+                fantasma.siguiente_celda = self.calcular_ruta_fantasma_para_emboscada(fantasma, objetivo_x, objetivo_y)
+
+            # Si hay una ruta válida, moverse hacia la siguiente celda
+            if fantasma.siguiente_celda:
+                self.mover_hacia_siguiente_celda(fantasma)
 
     def calcular_objetivo_emboscada(self, fantasma):
         """
