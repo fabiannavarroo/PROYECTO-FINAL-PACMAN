@@ -332,7 +332,14 @@ class Tablero:
         if fantasma.asustado:
             self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
-            pass
+            # Calcular el objetivo de la emboscada
+            objetivo_x, objetivo_y = self.calcular_objetivo_emboscada(fantasma)
+
+            # Calcular la ruta hacia el objetivo
+            fantasma.siguiente_celda = self.calcular_ruta_fantasma(fantasma, objetivo_x, objetivo_y)
+
+        # Mover al fantasma hacia la siguiente celda
+        self.mover_hacia_siguiente_celda(fantasma)
 
 
     def mover_fantasma_azul(self, fantasma):
