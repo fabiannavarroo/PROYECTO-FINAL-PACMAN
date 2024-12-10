@@ -498,40 +498,32 @@ class Tablero:
 
 
     def calcular_ruta_fantasma_para_emboscada(self, fantasma, objetivo_x, objetivo_y):
-        # Calcula la ruta hacia el objetivo desde la posición actual del fantasma.
-        inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)  # Posición actual del fantasma en la cuadrícula
-        objetivo = (objetivo_x // 16 * 16, objetivo_y // 16 * 16)  # Objetivo en la cuadrícula
+        inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
+        objetivo = (objetivo_x // 16 * 16, objetivo_y // 16 * 16)
 
-        # Encontrar la ruta hacia el objetivo
         ruta = self.buscar_ruta_simple(inicio, objetivo)
 
         if ruta and len(ruta) > 1:
             siguiente_celda = ruta[1]
-            if not self.colision_fantasmas(siguiente_celda[0], siguiente_celda[1]):
+            if (not self.bloque.colision(siguiente_celda[0], siguiente_celda[1]) and 
+                not self.esta_en_zona_prohibida(siguiente_celda[0], siguiente_celda[1])):
                 return siguiente_celda
-            else:
-                return None
         return None
 
 
     def mover_hacia_siguiente_celda(self, fantasma):
-        # Mueve al fantasma hacia la celda calculada.
         if fantasma.siguiente_celda:
             dx = fantasma.siguiente_celda[0] - fantasma.x
             dy = fantasma.siguiente_celda[1] - fantasma.y
 
-            if dx > 0:
+            if dx > 0 and not self.bloque.colision(fantasma.x + fantasma.velocidad, fantasma.y):
                 fantasma.x += min(fantasma.velocidad, dx)
-                fantasma.direccion_actual = "DERECHA"
-            elif dx < 0:
+            elif dx < 0 and not self.bloque.colision(fantasma.x - fantasma.velocidad, fantasma.y):
                 fantasma.x += max(-fantasma.velocidad, dx)
-                fantasma.direccion_actual = "IZQUIERDA"
-            elif dy > 0:
+            elif dy > 0 and not self.bloque.colision(fantasma.x, fantasma.y + fantasma.velocidad):
                 fantasma.y += min(fantasma.velocidad, dy)
-                fantasma.direccion_actual = "ABAJO"
-            elif dy < 0:
+            elif dy < 0 and not self.bloque.colision(fantasma.x, fantasma.y - fantasma.velocidad):
                 fantasma.y += max(-fantasma.velocidad, dy)
-                fantasma.direccion_actual = "ARRIBA"
                 
 
     def buscar_ruta_simple(self, inicio, objetivo):
