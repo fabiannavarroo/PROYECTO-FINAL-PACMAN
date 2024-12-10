@@ -324,13 +324,13 @@ class Tablero:
 
             # Calcular punto objetivo dependiendo de la dirección de Pac-Man
             if direccion == PACMAN_ARRIBA:
-                objetivo_x, objetivo_y = pacman_x, pacman_y - 64  # 4 celdas arriba
+                objetivo_x, objetivo_y = pacman_x, pacman_y - self.fantasmas.celdas_para_emboscada * 16 # 4 celdas arriba
             elif direccion == PACMAN_ABAJO:
-                objetivo_x, objetivo_y = pacman_x, pacman_y + 64  # 4 celdas abajo
+                objetivo_x, objetivo_y = pacman_x, pacman_y + self.fantasmas.celdas_para_emboscada * 16  #
             elif direccion == PACMAN_IZQUIERDA:
-                objetivo_x, objetivo_y = pacman_x - 64, pacman_y  # 4 celdas a la izquierda
+                objetivo_x, objetivo_y = pacman_x - self.fantasmas.celdas_para_emboscada * 16, pacman_y  # 4 celdas a la izquierda
             elif direccion == PACMAN_DERECHA:
-                objetivo_x, objetivo_y = pacman_x + 64, pacman_y  # 4 celdas a la derecha
+                objetivo_x, objetivo_y = pacman_x + self.fantasmas.celdas_para_emboscada * 16, pacman_y  # 4 celdas a la derecha
             else:
                 objetivo_x, objetivo_y = pacman_x, pacman_y  # Si está quieto, ir directamente hacia él
 
