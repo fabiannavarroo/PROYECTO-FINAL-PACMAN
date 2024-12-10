@@ -38,7 +38,7 @@ class Tablero:
 
         # Controlar la animación de muerte final
         self.animacion_muerte_finalizada = False
-        
+
         # Controlar la victoria
         self.victoria = False
 
@@ -96,11 +96,15 @@ class Tablero:
                 # Ejecutar animación de muerte
                 self.animar_muerte()
 
-        else:
-            if not self.mostrar_fin:
-                self.mostrar_fin = True
-                self.contador_game_over = 0  # Reiniciar el contador al inicio
-            self.contador_game_over += 1
+        else: # Pac-Man no tiene vidas
+            if not self.animacion_muerte_finalizada:
+                # Ejecutar animación de muerte final
+                self.animar_muerte()
+                if self.pacman.animacion_frame >= len(ANIMACION_MUERTE):  # Verificar si terminó
+                    self.animacion_muerte_finalizada = True  # Marcar como finalizada
+            else:
+                # Incrementar contador para mostrar GAME OVER después
+                self.contador_game_over += 1
         
 
     def draw(self):
