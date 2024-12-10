@@ -332,14 +332,59 @@ class Tablero:
         if fantasma.asustado:
             self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
-            # Calcular el objetivo de la emboscada
-            objetivo_x, objetivo_y = self.calcular_objetivo_emboscada(fantasma)
+            # Actualizar la ruta solo cada ciertos fotogramas para reducir lag
+            if pyxel.frame_count % 10 == 0 or fantasma.siguiente_celda is None:
+                # Calcular la celda objetivo de emboscada
+                objetivo_x, objetivo_y = self.calcular_objetivo_emboscada(fantasma)
 
-            # Calcular la ruta hacia el objetivo
-            fantasma.siguiente_celda = self.calcular_ruta_fantasma_para_emboscada(fantasma, objetivo_x, objetivo_y)
+                # Buscar la ruta hacia el objetivo
+                fantasma.siguiente_celda = self.calcular_ruta_fantasma_para_emboscada(fantasma, objetivo_x, objetivo_y)
 
-            # Mover al fantasma hacia la siguiente celda
+            # Mover el fantasma hacia la siguiente celda en la ruta
             self.mover_hacia_siguiente_celda(fantasma)
+
+    def calcular_objetivo_emboscada(self, fantasma):
+        """
+        Calcula la celda objetivo para emboscar a Pac-Man basándose en su dirección y posición actual.
+        """
+        pacman_x, pacman_y = self.pacman.x, self.pacman.y
+        direccion = self.pacman.direccion_actual
+
+        # Determinar el objetivo basado en la dirección de Pac-Man
+        if direccion == PACMAN_ARRIBA:
+            objetivo_x, objetivo_y = pacman_x, pacman_y - self.celdas_para_emboscada * 16
+        elif direccion == PACMAN_ABAJO:
+            objetivo_x, objetivo_y = pacman_x, pacman_y + self.celdas_para_emboscada * 16
+        elif direccion == PACMAN_IZQUIERDA:
+            objetivo_x, objetivo_y = pacman_x - self.celdas_para_emboscada * 16, pacman_y
+        elif direccion == PACMAN_DERECHA:
+            objetivo_x, objetivo_y = pacman_x + self.celdas_para_emboscada * 16, pacman_y
+        else:
+            objetivo_x, objetivo_y = pacman_x, pacman_y
+
+        # Validar si el objetivo es válido (no un muro ni zona prohibida)
+        if self.colision_fantasmas(objetivo_x, objetivo_y) or self.esta_en_zona_prohibida(objetivo_x, objetivo_y):
+            objetivo_x, objetivo_y = pacman_x, pacman_y  # Ajustar objetivo a Pac-Man si no es válido
+
+        return objetivo_x, objetivo_y
+
+    def calcular_ruta_fantasma_para_emboscada(self, fantasma, objetivo_x, objetivo_y):
+        """
+        Calcula la siguiente celda en la ruta hacia el objetivo utilizando búsqueda en anchura.
+        """
+        inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
+        objetivo = (objetivo_x // 16 * 16, objetivo_y // 16 * 16)
+
+        # Buscar ruta usando BFS
+        ruta = self.buscar_ruta_simple(inicio, objetivo)
+
+        # Validar si hay una ruta válida y si no colisiona con un muro
+        if ruta and len(ruta) > 1:
+            siguiente_celda = ruta[1]
+            if not self.colision_fantasmas(siguiente_celda[0], siguiente_celda[1]):
+                return siguiente_celda
+        return None
+
 
 
     def mover_fantasma_azul(self, fantasma):
