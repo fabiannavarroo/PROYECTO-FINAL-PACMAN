@@ -505,7 +505,7 @@ class Tablero:
 
         if ruta and len(ruta) > 1:
             siguiente_celda = ruta[1]
-            if (not self.bloque.colision(siguiente_celda[0], siguiente_celda[1]) and 
+            if (not self.colision_fantasmas(siguiente_celda[0], siguiente_celda[1]) and 
                 not self.esta_en_zona_prohibida(siguiente_celda[0], siguiente_celda[1])):
                 return siguiente_celda
         return None
