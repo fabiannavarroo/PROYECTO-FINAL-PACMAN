@@ -332,7 +332,7 @@ class Tablero:
         if fantasma.asustado:
             self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
-            
+            # Calcular el objetivo para emboscar a Pac-Man
             objetivo_x, objetivo_y = self.calcular_objetivo_emboscada(fantasma)
             # Buscar la ruta hacia el objetivo
             fantasma.siguiente_celda = self.calcular_ruta_fantasma_para_emboscada(fantasma, objetivo_x, objetivo_y)
