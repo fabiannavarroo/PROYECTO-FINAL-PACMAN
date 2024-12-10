@@ -502,6 +502,8 @@ class Tablero:
         # Movimiento paso a paso hacia la siguiente celda
         self.mover_hacia_siguiente_celda(fantasma)
 
+    
+
 
     def mover_hacia_siguiente_celda(self, fantasma):
         # Mueve al fantasma hacia la celda calculada
