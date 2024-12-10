@@ -59,7 +59,8 @@ class Tablero:
 
                 for index, fantasma in enumerate(self.fantasmas):
                     if fantasma.en_trampa():
-                        tiempo_espera = index * 2  # Tiempo escalonado
+                        # Ajustar el tiempo de espera inicial basado en el índice del fantasma
+                        tiempo_espera = (index + 1) * 2  # Tiempo escalonado único por fantasma
                         if time.time() - fantasma.tiempo_trampa >= tiempo_espera:
                             fantasma.salir_de_trampa()
                     else:
