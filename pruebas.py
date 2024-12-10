@@ -43,7 +43,7 @@ class Tablero:
         self.victoria = False
 
         # Controlar la distancia de emboscada
-        self.celdas_para_emboscada = 10
+        self.celdas_para_emboscada = 6
 
         # Iniciar el bucle principal del juego
         pyxel.run(self.update, self.draw)
