@@ -409,24 +409,24 @@ class Tablero:
         self.mover_hacia_siguiente_celda()
 
 
-    def mover_hacia_siguiente_celda(self):
+    def mover_hacia_siguiente_celda(self, fantasma):
         # Mueve al fantasma hacia la celda calculada.
-        if self.fantasmas.siguiente_celda:
-            dx = self.fantasmas.siguiente_celda[0] - self.fantasmas.x
-            dy = self.fantasmas.siguiente_celda[1] - self.fantasmas.y
+        if fantasma.siguiente_celda:
+            dx = fantasma.siguiente_celda[0] - fantasma.x
+            dy = fantasma.siguiente_celda[1] - fantasma.y
 
             if dx > 0:
-                self.fantasmas.x += min(self.fantasmas.velocidad, dx)
-                self.fantasmas.direccion_actual_fantasma = "DERECHA"
+                fantasma.x += min(fantasma.velocidad, dx)
+                fantasma.direccion_actual = "DERECHA"
             elif dx < 0:
-                self.fantasmas.x += max(-self.fantasmas.velocidad, dx)
-                self.fantasmas.direccion_actual_fantasma = "IZQUIERDA"
+                fantasma.x += max(-fantasma.velocidad, dx)
+                fantasma.direccion_actual = "IZQUIERDA"
             elif dy > 0:
-                self.fantasmas.y += min(self.fantasmas.velocidad, dy)
-                self.fantasmas.direccion_actual_fantasma = "ABAJO"
+                fantasma.y += min(fantasma.velocidad, dy)
+                fantasma.direccion_actual = "ABAJO"
             elif dy < 0:
-                self.fantasmas.y += max(-self.fantasmas.velocidad, dy)
-                self.fantasmas.direccion_actual_fantasma = "ARRIBA"
+                fantasma.y += max(-fantasma.velocidad, dy)
+                fantasma.direccion_actual = "ARRIBA"
 
     def buscar_ruta_simple(self, inicio, objetivo):
         # Encuentra una ruta básica hacia el objetivo utilizando búsqueda en anchura (BFS).
