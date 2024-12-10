@@ -363,7 +363,7 @@ class Tablero:
     
     def seguir_a_pacman(self):
         # Persigue a Pac-Man utilizando rutas simples y movimientos paso a paso.
-        if self.fantasmas.siguiente_celda is None or (self.fantasmas.x == self.fantasmas.siguiente_celda[0] and self.fantasmas.y == self.fantasmas.siguiente_celda[1]):
+        if self.siguiente_celda is None or (self.fantasmas.x == self.fantasmas.siguiente_celda[0] and self.fantasmas.y == self.fantasmas.siguiente_celda[1]):
             inicio = (self.fantasmas.x // 16 * 16, self.fantasmas.y // 16 * 16)
             objetivo = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
             ruta = self.buscar_ruta_simple(inicio, objetivo)
