@@ -377,12 +377,28 @@ class Tablero:
         # Buscar ruta
         ruta = self.buscar_ruta_simple(inicio, objetivo)
 
-        # Validar si hay una ruta válida y si no colisiona con un muro
         if ruta and len(ruta) > 1:
             siguiente_celda = ruta[1]
+            # Verificar si la siguiente celda es válida
             if not self.colision_fantasmas(siguiente_celda[0], siguiente_celda[1]):
                 return siguiente_celda
-        return None
+
+        # Si no hay ruta válida, moverse al azar
+        return self.mover_al_azar(inicio)
+
+    def mover_al_azar(self, posicion):
+        """
+        Calcula una celda aleatoria válida adyacente a la posición actual.
+        """
+        movimientos_posibles = [(-16, 0), (16, 0), (0, -16), (0, 16)]
+        random.shuffle(movimientos_posibles)
+
+        for dx, dy in movimientos_posibles:
+            nueva_celda = (posicion[0] + dx, posicion[1] + dy)
+            if not self.colision_fantasmas(nueva_celda[0], nueva_celda[1]):
+                return nueva_celda
+
+        return posicion  # Si no hay movimientos válidos, quedarse en la misma posición
 
 
 
