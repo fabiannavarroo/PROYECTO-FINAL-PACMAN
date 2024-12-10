@@ -364,7 +364,7 @@ class Tablero:
             else:
                 # Si no hay ruta hacia la emboscada, fallback a seguir a Pac-Man
                 objetivo_pacman = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
-                ruta = self.buscar_ruta_simple(inicio, objetivo_pacman, fantasma=fantasma)
+                ruta = self.buscar_ruta_simple(inicio, objetivo_pacman)
                 if ruta and len(ruta) > 1:
                     fantasma.siguiente_celda = ruta[1]
                 else:
