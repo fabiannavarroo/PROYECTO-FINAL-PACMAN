@@ -335,7 +335,11 @@ class Tablero:
             # Calcular el objetivo de la emboscada
             objetivo_x, objetivo_y = self.calcular_objetivo_emboscada(fantasma)
 
-            self.mover_hacia_objetivo(fantasma, objetivo_x, objetivo_y)
+            # Calcular la ruta hacia el objetivo
+            fantasma.siguiente_celda = self.calcular_ruta_fantasma_para_emboscada(fantasma, objetivo_x, objetivo_y)
+
+            # Mover al fantasma hacia la siguiente celda
+            self.mover_hacia_siguiente_celda(fantasma)
 
 
     def mover_fantasma_azul(self, fantasma):
@@ -474,7 +478,6 @@ class Tablero:
         pacman_x, pacman_y = self.pacman.x, self.pacman.y
         direccion = self.pacman.direccion_actual
 
-        # Determinar el objetivo basado en la dirección de Pac-Man
         if direccion == PACMAN_ARRIBA:
             objetivo_x, objetivo_y = pacman_x, pacman_y - self.celdas_para_emboscada * 16
         elif direccion == PACMAN_ABAJO:
@@ -486,34 +489,23 @@ class Tablero:
         else:
             objetivo_x, objetivo_y = pacman_x, pacman_y
 
-        # Validar si el objetivo está en una zona prohibida o genera colisión
+        # Validar si el objetivo está en una zona prohibida, muro o fuera del mapa
         if self.colision_fantasmas(objetivo_x, objetivo_y) or self.esta_en_zona_prohibida(objetivo_x, objetivo_y):
             objetivo_x, objetivo_y = pacman_x, pacman_y
 
         return objetivo_x, objetivo_y
 
 
-    def mover_hacia_objetivo(self, fantasma, objetivo_x, objetivo_y):
-        # Movimiento hacia el objetivo específico
-        dx = objetivo_x - fantasma.x
-        dy = objetivo_y - fantasma.y
+    def calcular_ruta_fantasma_para_emboscada(self, fantasma, objetivo_x, objetivo_y):
+        inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
+        objetivo = (objetivo_x // 16 * 16, objetivo_y // 16 * 16)
 
-        if abs(dx) > abs(dy):  # Priorizar movimiento horizontal
-            nueva_x = fantasma.x + (fantasma.velocidad if dx > 0 else -fantasma.velocidad)
-            if not self.colision_fantasmas(nueva_x, fantasma.y):
-                fantasma.x = nueva_x
-            else:  # Si no puede moverse horizontalmente, intenta moverse verticalmente
-                nueva_y = fantasma.y + (fantasma.velocidad if dy > 0 else -fantasma.velocidad)
-                if not self.colision_fantasmas(fantasma.x, nueva_y):
-                    fantasma.y = nueva_y
-        else:  # Priorizar movimiento vertical
-            nueva_y = fantasma.y + (fantasma.velocidad if dy > 0 else -fantasma.velocidad)
-            if not self.colision_fantasmas(fantasma.x, nueva_y):
-                fantasma.y = nueva_y
-            else:  # Si no puede moverse verticalmente, intenta moverse horizontalmente
-                nueva_x = fantasma.x + (fantasma.velocidad if dx > 0 else -fantasma.velocidad)
-                if not self.colision_fantasmas(nueva_x, fantasma.y):
-                    fantasma.x = nueva_x
+        ruta = self.buscar_ruta_simple(inicio, objetivo)
+
+        if ruta and len(ruta) > 1:
+            fantasma.siguiente_celda = ruta[1]
+        else:
+            fantasma.siguiente_celda = None
     
 
     def mover_hacia_siguiente_celda(self, fantasma):
