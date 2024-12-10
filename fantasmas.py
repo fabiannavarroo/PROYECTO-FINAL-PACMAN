@@ -51,7 +51,7 @@ class Fantasma:
         
         # Coordenadas de la trampa de cada fantasma
         if isinstance(self, FantasmaRojo):
-            self.x, self.y = 158, 208
+            self.x, self.y = 160, 208
         elif isinstance(self, FantasmaRosa):
             self.x, self.y = 181, 208
         elif isinstance(self, FantasmaAzul):
