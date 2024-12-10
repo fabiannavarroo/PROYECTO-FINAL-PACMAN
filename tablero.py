@@ -72,6 +72,7 @@ class Tablero:
                             self.mover_fantasma_azul(fantasma)
                         elif isinstance(fantasma, FantasmaNaranja):
                             self.mover_fantasma_naranja(fantasma)
+
                     fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
 
                 self.colision_fantasmas_con_pacman()  # Colisiones con fantasmas
