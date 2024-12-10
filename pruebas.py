@@ -491,7 +491,7 @@ class Tablero:
             objetivo_x, objetivo_y = pacman_x, pacman_y  # Ir directamente hacia Pac-Man si está quieto
 
         # Ajustar objetivo si está en una zona prohibida o fuera del mapa
-        if self.esta_en_zona_prohibida(objetivo_x, objetivo_y):
+        if self.colision_fantasmas(objetivo_x, objetivo_y):
             objetivo_x, objetivo_y = pacman_x, pacman_y  # Cambiar el objetivo a la posición de Pac-Man
 
         return objetivo_x, objetivo_y
