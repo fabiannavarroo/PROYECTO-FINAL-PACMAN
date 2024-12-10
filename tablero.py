@@ -209,6 +209,7 @@ class Tablero:
             # Finaliza la animación de muerte
             self.pacman.en_muerte = False
             self.reiniciar_tablero()  # Reiniciar posiciones de Pac-Man y fantasmas
+            
 
 #--------------------------------------------------------------------MAPA--------------------------------------------------------------------# 
 
