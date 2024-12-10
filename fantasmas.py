@@ -143,7 +143,6 @@ class Fantasma:
 class FantasmaRojo(Fantasma):
     def __init__(self, x, y):
         super().__init__(x, y, FANTASMA_ROJO)
-
        
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y):
