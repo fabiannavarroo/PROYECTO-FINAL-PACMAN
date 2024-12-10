@@ -295,9 +295,9 @@ class Tablero:
             return False # No mover el fantasma si Pac-Man ha ganado o está en estado de muerte
 
         if fantasma.asustado:
-            self.alejarse_de_pacman()  # Movimiento cuando está asustado
+            self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
-            self.seguir_a_pacman()  # Movimiento normal siguiendo a Pac-Man
+            self.seguir_a_pacman(fantasma)  # Movimiento normal siguiendo a Pac-Man
 
 
 #--------------------------------------------------------------------MOVIMIENTO--------------------------------------------------------------------# 
