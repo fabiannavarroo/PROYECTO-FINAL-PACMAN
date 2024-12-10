@@ -520,6 +520,7 @@ class Tablero:
             dx = fantasma.siguiente_celda[0] - fantasma.x
             dy = fantasma.siguiente_celda[1] - fantasma.y
 
+            # Comprueba si hay colisiones y mueve al fantasma
             if dx > 0 and not self.bloque.colision(fantasma.x + fantasma.velocidad, fantasma.y):
                 fantasma.x += min(fantasma.velocidad, dx)
                 fantasma.direccion_actual = "DERECHA"
