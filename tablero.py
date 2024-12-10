@@ -401,9 +401,9 @@ class Tablero:
                         mayor_distancia = distancia
                         mejor_celda = celda
 
-                self.fantasmas.siguiente_celda = mejor_celda  # Asignar la mejor celda
+                fantasma.siguiente_celda = mejor_celda  # Asignar la mejor celda
             else:
-                self.fantasmas.siguiente_celda = None  # No hay celdas válidas  # No hay celdas válidas
+                fantasma.siguiente_celda = None  # No hay celdas válidas  # No hay celdas válidas
 
         # Movimiento paso a paso hacia la siguiente celda
         self.mover_hacia_siguiente_celda(fantasma)
