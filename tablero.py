@@ -140,6 +140,7 @@ class Tablero:
             fantasma.siguiente_celda = None  # Limpiar la ruta almacenada
             fantasma.tiempo_trampa = time.time()  # Reiniciar temporizador
 
+
     def reiniciar_tablero(self):
         # Reinicia las posiciones iniciales de los personajes y termina la animación de muerte.
         self.mostrar_ready = True  # Volver a mostrar READY!
@@ -150,7 +151,12 @@ class Tablero:
         self.pacman.animacion_frame = 0  # Reiniciar animación de muerte
 
 
-
+    def reiniciar_posiciones(self):
+        # Reiniciar posiciones de Pac-Man y fantasmas después de la animación
+        self.pacman.x, self.pacman.y = 192, 304  # Posición inicial de Pac-Man
+        for fantasma in self.fantasmas:
+            fantasma.volver_a_posicion_inicial()
+        self.pacman.reiniciando = False 
 
 #--------------------------------------------------------------------ANIMACIONES--------------------------------------------------------------------# 
     def animar_ready(self):
@@ -176,7 +182,10 @@ class Tablero:
             # Mantener el texto visible 
             self.dibujar_letras_mapa(185,208,"GAME OVER")
 
-#--------------------------------------------------------------------MUROS--------------------------------------------------------------------# 
+
+    
+
+#--------------------------------------------------------------------MAPA--------------------------------------------------------------------# 
 
     def dibujar_letras_mapa(self, x, y, sprite):
         # Dibuja las letras en el mapa
@@ -482,18 +491,11 @@ class Tablero:
             # Finaliza la animación de muerte
             self.pacman.en_muerte = False
             self.reiniciar_tablero()  # Reiniciar posiciones de Pac-Man y fantasmas
-
-
-    def reiniciar_posiciones(self):
-        # Reiniciar posiciones de Pac-Man y fantasmas después de la animación
-        self.pacman.x, self.pacman.y = 192, 304  # Posición inicial de Pac-Man
-        for fantasma in self.fantasmas:
-            fantasma.volver_a_posicion_inicial()
-        self.pacman.reiniciando = False 
-
-
+  
     
-    def colision_fantasmas_con_pacman(self):
+#--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------# 
+
+def colision_fantasmas_con_pacman(self):
         if self.pacman.en_muerte or self.pacman.reiniciando or self.pacman.vidas <= 0:  # Si está muerto, reiniciando o sin vidas, no revisa colisiones
             return False
 
@@ -519,3 +521,5 @@ class Tablero:
                     self.pacman.perder_vida()  # Pac-Man pierde una vida
                     return True
         return False  # No hay colision
+
+
