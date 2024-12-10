@@ -359,7 +359,7 @@ class Tablero:
             objetivo_x, objetivo_y = pacman_x, pacman_y
 
         # Validar si el objetivo es válido (no un muro ni zona prohibida)
-        if self.bloque.colision(objetivo_x, objetivo_y) or self.esta_en_zona_prohibida(objetivo_x, objetivo_y):
+        if self.colision_fantasmas(objetivo_x, objetivo_y) or self.esta_en_zona_prohibida(objetivo_x, objetivo_y):
             objetivo_x, objetivo_y = pacman_x, pacman_y  # Ajustar objetivo a Pac-Man si no es válido
 
         return objetivo_x, objetivo_y
@@ -377,7 +377,7 @@ class Tablero:
         # Validar si hay una ruta válida y si no colisiona con un muro
         if ruta and len(ruta) > 1:
             siguiente_celda = ruta[1]
-            if not self.colision_fantasmas(siguiente_celda[0], siguiente_celda[1]):
+            if not self.bloque.colision(siguiente_celda[0], siguiente_celda[1]):
                 return siguiente_celda
         return None
 
