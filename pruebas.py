@@ -496,26 +496,28 @@ class Tablero:
 
 
     def mover_hacia_siguiente_celda(self, fantasma):
+        # Mueve al fantasma hacia la celda calculada
         if fantasma.siguiente_celda:
             dx = fantasma.siguiente_celda[0] - fantasma.x
             dy = fantasma.siguiente_celda[1] - fantasma.y
+
             print(f"Fantasma en: ({fantasma.x}, {fantasma.y}), Siguiente celda: {fantasma.siguiente_celda}, dx: {dx}, dy: {dy}")
 
-            if dx > 0:
+            if dx > 0 and not self.bloque.colision(fantasma.x + fantasma.velocidad, fantasma.y):
                 fantasma.x += min(fantasma.velocidad, dx)
                 fantasma.direccion_actual = "DERECHA"
-            elif dx < 0:
+            elif dx < 0 and not self.bloque.colision(fantasma.x - fantasma.velocidad, fantasma.y):
                 fantasma.x += max(-fantasma.velocidad, dx)
                 fantasma.direccion_actual = "IZQUIERDA"
-            elif dy > 0:
+            elif dy > 0 and not self.bloque.colision(fantasma.x, fantasma.y + fantasma.velocidad):
                 fantasma.y += min(fantasma.velocidad, dy)
                 fantasma.direccion_actual = "ABAJO"
-            elif dy < 0:
+            elif dy < 0 and not self.bloque.colision(fantasma.x, fantasma.y - fantasma.velocidad):
                 fantasma.y += max(-fantasma.velocidad, dy)
                 fantasma.direccion_actual = "ARRIBA"
 
     def buscar_ruta_simple(self, inicio, objetivo):
-        # Encuentra una ruta básica hacia el objetivo utilizando búsqueda en anchura (BFS).
+    # Encuentra una ruta básica hacia el objetivo utilizando búsqueda en anchura
         cola = deque([inicio])
         visitados = {inicio: None}
 
@@ -532,11 +534,11 @@ class Tablero:
 
             for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
                 posible_celda = (actual[0] + dx, actual[1] + dy)
-                if posible_celda not in visitados and not self.colision_fantasmas(posible_celda[0], posible_celda[1]):
+                if posible_celda not in visitados and not self.bloque.colision(posible_celda[0], posible_celda[1]):
                     visitados[posible_celda] = actual
                     cola.append(posible_celda)
 
-        return None
+        return None  # No hay ruta posible
     
 #--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------# 
 
