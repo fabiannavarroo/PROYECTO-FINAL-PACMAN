@@ -290,8 +290,64 @@ class Tablero:
 #--------------------------------------------------------------------MOVIMIENTO--------------------------------------------------------------------# 
 
 
-    
+    def movimineto_pacman(self,):
+        if self.pacman.vidas <= 0 or self.pacman.en_muerte or self.pacman.reiniciando:  # Si no hay vidas, está en muerte o reiniciando, no se mueve
+            return False
 
+        nueva_x, nueva_y = self.pacman.x, self.pacman.y
+
+        # Detectar entrada del jugador para cambiar dirección
+        if pyxel.btnp(pyxel.KEY_UP):
+            self.pacman.direccion_pendiente = PACMAN_ARRIBA
+        elif pyxel.btnp(pyxel.KEY_DOWN):
+            self.pacman.direccion_pendiente = PACMAN_ABAJO
+        elif pyxel.btnp(pyxel.KEY_LEFT):
+            self.pacman.direccion_pendiente = PACMAN_IZQUIERDA
+        elif pyxel.btnp(pyxel.KEY_RIGHT):
+            self.pacman.direccion_pendiente = PACMAN_DERECHA
+        elif pyxel.btnp(pyxel.KEY_W):
+            self.pacman.direccion_pendiente = PACMAN_ARRIBA
+        elif pyxel.btnp(pyxel.KEY_S):
+            self.pacman.direccion_pendiente = PACMAN_ABAJO
+        elif pyxel.btnp(pyxel.KEY_A):
+            self.pacman.direccion_pendiente = PACMAN_IZQUIERDA
+        elif pyxel.btnp(pyxel.KEY_D):
+            self.pacman.direccion_pendiente = PACMAN_DERECHA
+
+        # Verificar si la dirección pendiente es válida
+        if self.pacman.direccion_pendiente:
+            if self.pacman.direccion_pendiente == PACMAN_ARRIBA and not self.bloque.colision(self.pacman.x, self.pacman.y - self.pacman.velocidad):
+                self.pacman.direccion_actual = self.pacman.direccion_pendiente
+            elif self.pacman.direccion_pendiente == PACMAN_ABAJO and not self.bloque.colision(self.pacman.x, self.pacman.y + self.pacman.velocidad):
+                self.pacman.direccion_actual = self.pacman.direccion_pendiente
+            elif self.pacman.direccion_pendiente == PACMAN_IZQUIERDA and not self.bloque.colision(self.pacman.x - self.pacman.velocidad, self.pacman.y):
+                self.pacman.direccion_actual = self.pacman.direccion_pendiente
+            elif self.pacman.direccion_pendiente == PACMAN_DERECHA and not self.bloque.colision(self.pacman.x + self.pacman.velocidad, self.pacman.y):
+                self.pacman.direccion_actual = self.pacman.direccion_pendiente
+
+        # Mover en la dirección actual
+        if self.pacman.direccion_actual == PACMAN_ARRIBA:
+            nueva_y -= self.pacman.velocidad
+        elif self.pacman.direccion_actual == PACMAN_ABAJO:
+            nueva_y += self.pacman.velocidad
+        elif self.pacman.direccion_actual == PACMAN_IZQUIERDA:
+            nueva_x -= self.pacman.velocidad
+        elif self.pacman.direccion_actual == PACMAN_DERECHA:
+            nueva_x += self.pacman.velocidad
+
+        # Verificar colisiones
+        if not self.bloque.colision(nueva_x, self.pacman.y):
+            self.pacman.x = nueva_x
+        if not self.bloque.colision(self.pacman.x, nueva_y):
+            self.pacman.y = nueva_y
+
+        #  Portales
+        if (self.pacman.x, self.pacman.y) in PORTALES:
+            self.pacman.x, self.pacman.y = PORTALES[(self.pacman.x, self.pacman.y)]
+
+        print("Pacman", self.pacman.x, self.pacman.y)
+
+    
     
     def seguir_a_pacman(self):
         # Persigue a Pac-Man utilizando rutas simples y movimientos paso a paso.
@@ -387,66 +443,6 @@ class Tablero:
 
 #--------------------------------------------------------------------PACMAN--------------------------------------------------------------------# 
 
-
-    def movimineto_pacman(self,):
-        if self.pacman.vidas <= 0 or self.pacman.en_muerte or self.pacman.reiniciando:  # Si no hay vidas, está en muerte o reiniciando, no se mueve
-            return False
-
-        nueva_x, nueva_y = self.pacman.x, self.pacman.y
-
-        # Detectar entrada del jugador para cambiar dirección
-        if pyxel.btnp(pyxel.KEY_UP):
-            self.pacman.direccion_pendiente = PACMAN_ARRIBA
-        elif pyxel.btnp(pyxel.KEY_DOWN):
-            self.pacman.direccion_pendiente = PACMAN_ABAJO
-        elif pyxel.btnp(pyxel.KEY_LEFT):
-            self.pacman.direccion_pendiente = PACMAN_IZQUIERDA
-        elif pyxel.btnp(pyxel.KEY_RIGHT):
-            self.pacman.direccion_pendiente = PACMAN_DERECHA
-        elif pyxel.btnp(pyxel.KEY_W):
-            self.pacman.direccion_pendiente = PACMAN_ARRIBA
-        elif pyxel.btnp(pyxel.KEY_S):
-            self.pacman.direccion_pendiente = PACMAN_ABAJO
-        elif pyxel.btnp(pyxel.KEY_A):
-            self.pacman.direccion_pendiente = PACMAN_IZQUIERDA
-        elif pyxel.btnp(pyxel.KEY_D):
-            self.pacman.direccion_pendiente = PACMAN_DERECHA
-
-        # Verificar si la dirección pendiente es válida
-        if self.pacman.direccion_pendiente:
-            if self.pacman.direccion_pendiente == PACMAN_ARRIBA and not self.bloque.colision(self.pacman.x, self.pacman.y - self.pacman.velocidad):
-                self.pacman.direccion_actual = self.pacman.direccion_pendiente
-            elif self.pacman.direccion_pendiente == PACMAN_ABAJO and not self.bloque.colision(self.pacman.x, self.pacman.y + self.pacman.velocidad):
-                self.pacman.direccion_actual = self.pacman.direccion_pendiente
-            elif self.pacman.direccion_pendiente == PACMAN_IZQUIERDA and not self.bloque.colision(self.pacman.x - self.pacman.velocidad, self.pacman.y):
-                self.pacman.direccion_actual = self.pacman.direccion_pendiente
-            elif self.pacman.direccion_pendiente == PACMAN_DERECHA and not self.bloque.colision(self.pacman.x + self.pacman.velocidad, self.pacman.y):
-                self.pacman.direccion_actual = self.pacman.direccion_pendiente
-
-        # Mover en la dirección actual
-        if self.pacman.direccion_actual == PACMAN_ARRIBA:
-            nueva_y -= self.pacman.velocidad
-        elif self.pacman.direccion_actual == PACMAN_ABAJO:
-            nueva_y += self.pacman.velocidad
-        elif self.pacman.direccion_actual == PACMAN_IZQUIERDA:
-            nueva_x -= self.pacman.velocidad
-        elif self.pacman.direccion_actual == PACMAN_DERECHA:
-            nueva_x += self.pacman.velocidad
-
-        # Verificar colisiones
-        if not self.bloque.colision(nueva_x, self.pacman.y):
-            self.pacman.x = nueva_x
-        if not self.bloque.colision(self.pacman.x, nueva_y):
-            self.pacman.y = nueva_y
-
-        #  Portales
-        if (self.pacman.x, self.pacman.y) in PORTALES:
-            self.pacman.x, self.pacman.y = PORTALES[(self.pacman.x, self.pacman.y)]
-
-        print("Pacman", self.pacman.x, self.pacman.y)
-
-    
-  
     
 #--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------# 
 
