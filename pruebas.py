@@ -516,13 +516,13 @@ class Tablero:
             dx = fantasma.siguiente_celda[0] - fantasma.x
             dy = fantasma.siguiente_celda[1] - fantasma.y
 
-            if dx > 0 and not self.bloque.colision(fantasma.x + fantasma.velocidad, fantasma.y):
+            if dx > 0 and not self.colision_fantasmas(fantasma.x + fantasma.velocidad, fantasma.y):
                 fantasma.x += min(fantasma.velocidad, dx)
-            elif dx < 0 and not self.bloque.colision(fantasma.x - fantasma.velocidad, fantasma.y):
+            elif dx < 0 and not self.colision_fantasmas(fantasma.x - fantasma.velocidad, fantasma.y):
                 fantasma.x += max(-fantasma.velocidad, dx)
-            elif dy > 0 and not self.bloque.colision(fantasma.x, fantasma.y + fantasma.velocidad):
+            elif dy > 0 and not self.colision_fantasmas(fantasma.x, fantasma.y + fantasma.velocidad):
                 fantasma.y += min(fantasma.velocidad, dy)
-            elif dy < 0 and not self.bloque.colision(fantasma.x, fantasma.y - fantasma.velocidad):
+            elif dy < 0 and not self.colision_fantasmas(fantasma.x, fantasma.y - fantasma.velocidad):
                 fantasma.y += max(-fantasma.velocidad, dy)
                 
 
