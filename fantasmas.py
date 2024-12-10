@@ -13,7 +13,6 @@ class Fantasma:
         self.y_inicial = y  # Guardar posición inicial
         self.sprites = sprites
         self.direccion_actual = "DERECHA"
-        self.en_trampa = True
         self.asustado = False  # Indica si está en estado asustado
         self.tiempo_asustado = 0  # Temporizador para estado asustado
         self.tiempo_para_ser_comido = 10  # Duración por defecto del estado asustado
