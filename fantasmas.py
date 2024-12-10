@@ -151,20 +151,27 @@ class FantasmaRojo(Fantasma):
     def __init__(self, x, y):
         super().__init__(x, y, FANTASMA_ROJO)
 
-    
+       
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y):
         # Inicializa al Fantasma Rosa con su sprite.
         super().__init__(x, y, FANTASMA_ROSA)
 
-    
+    def mover(self):
+        pass
+
 class FantasmaAzul(Fantasma):
     def __init__(self, x, y):
         # Inicializa al Fantasma Azul con su sprite.
         super().__init__(x, y, FANTASMA_AZUL)
 
+    def mover(self):
+        pass
 
 class FantasmaNaranja(Fantasma):
     def __init__(self, x, y):
         # Inicializa al Fantasma Naranja con su sprite.
         super().__init__(x, y, FANTASMA_NARANJA)
+
+    def mover(self):
+        pass
