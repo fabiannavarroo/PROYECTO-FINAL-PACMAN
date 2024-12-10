@@ -516,10 +516,10 @@ class Tablero:
 
 
     def mover_hacia_siguiente_celda(self, fantasma):
-        # Mueve al fantasma hacia la celda calculada.
         if fantasma.siguiente_celda:
             dx = fantasma.siguiente_celda[0] - fantasma.x
             dy = fantasma.siguiente_celda[1] - fantasma.y
+            print(f"Fantasma en: ({fantasma.x}, {fantasma.y}), Siguiente celda: {fantasma.siguiente_celda}, dx: {dx}, dy: {dy}")
 
             if dx > 0:
                 fantasma.x += min(fantasma.velocidad, dx)
