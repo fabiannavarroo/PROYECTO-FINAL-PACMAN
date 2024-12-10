@@ -457,24 +457,22 @@ class Tablero:
 
 
     def calcular_posicion_emboscada(self):
-        # Obtén la posición actual de Pac-Man
         pacman_x, pacman_y = self.pacman.x, self.pacman.y
         direccion = self.pacman.direccion_actual
 
-        # Calcula un objetivo por delante de Pac-Man
+        # Calcula un objetivo 4 celdas adelante de Pac-Man
         if direccion == PACMAN_ARRIBA:
-            objetivo_x, objetivo_y = pacman_x, pacman_y - 64  # 4 celdas hacia arriba
+            objetivo_x, objetivo_y = pacman_x, pacman_y - 64
         elif direccion == PACMAN_ABAJO:
-            objetivo_x, objetivo_y = pacman_x, pacman_y + 64  # 4 celdas hacia abajo
+            objetivo_x, objetivo_y = pacman_x, pacman_y + 64
         elif direccion == PACMAN_IZQUIERDA:
-            objetivo_x, objetivo_y = pacman_x - 64, pacman_y  # 4 celdas hacia la izquierda
+            objetivo_x, objetivo_y = pacman_x - 64, pacman_y
         elif direccion == PACMAN_DERECHA:
-            objetivo_x, objetivo_y = pacman_x + 64, pacman_y  # 4 celdas hacia la derecha
+            objetivo_x, objetivo_y = pacman_x + 64, pacman_y
         else:
-            # Si Pac-Man no se está moviendo, apunta a su posición actual
             objetivo_x, objetivo_y = pacman_x, pacman_y
 
-        # Ajusta el objetivo si está fuera de los límites o en una zona prohibida
+        # Ajustar si la posición está prohibida
         if self.esta_en_zona_prohibida(objetivo_x, objetivo_y):
             return pacman_x, pacman_y  # Vuelve a apuntar directamente a Pac-Man
 
