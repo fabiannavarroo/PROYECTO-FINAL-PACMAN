@@ -506,6 +506,7 @@ class Tablero:
 
         self.mover_hacia_siguiente_celda(fantasma)
 
+
     def calcular_siguiente_celda(self, fantasma, objetivo):
         # Calcula la siguiente celda para un fantasma hacia un objetivo dado
         if fantasma.siguiente_celda is None or (
