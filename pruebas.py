@@ -323,7 +323,8 @@ class Tablero:
         if fantasma.asustado:
             self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
-            self.seguir_a_pacman(fantasma)  # Movimiento siguiendo a Pac-Man
+            pass
+            '''self.seguir_a_pacman(fantasma)  # Movimiento siguiendo a Pac-Man'''
 
 
     def mover_fantasma_rosa(self, fantasma):
