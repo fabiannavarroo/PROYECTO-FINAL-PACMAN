@@ -31,7 +31,6 @@ class Fantasma:
         return False
 
 
-
     def activar_asustado(self):
         #Activa el estado asustado
         self.asustado = True
@@ -92,7 +91,6 @@ class Fantasma:
         self.tiempo_trampa = time.time()
         
 
-
     def actualizar_estado(self):
         #Verifica y actualiza el estado asustado
         if self.asustado:
@@ -100,7 +98,6 @@ class Fantasma:
             if tiempo_restante <= 0:
                 self.asustado = False  # Finaliza el estado asustado
                 self.velocidad = 2
-
 
 
     def mover_en_direccion(self, direccion):    
