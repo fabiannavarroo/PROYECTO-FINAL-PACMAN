@@ -346,7 +346,6 @@ class Tablero:
 
             if ruta and len(ruta) > 1:
                 siguiente_celda = ruta[1]
-                dx = siguiente_celda[0] - fantasma.x
                 dy = siguiente_celda[1] - fantasma.y
 
                 # Verificar colisiones antes de mover
