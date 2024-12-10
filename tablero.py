@@ -480,6 +480,23 @@ class Tablero:
 
         return objetivo_x, objetivo_y
 
+    def embascada_pacman_movimiento(self,fantasma):
+        # Mueve al fantasma hacia la posición de emboscada de Pac-Man.
+        #Determina la posición objetivo para la emboscada
+        objetivo = self.calcular_posicion_emboscada()
+
+        # Usa un método de búsqueda para encontrar una ruta hacia el objetivo
+        if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
+            inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
+            ruta = self.buscar_ruta_simple(inicio, objetivo)
+
+            if ruta and len(ruta) > 1:
+                fantasma.siguiente_celda = ruta[1]
+            else:
+                fantasma.siguiente_celda = None
+        # Mueve el fantasma hacia la celda siguiente
+        self.mover_hacia_siguiente_celda(fantasma)
+        
 
     def mover_hacia_siguiente_celda(self, fantasma):
         # Mueve al fantasma hacia la celda calculada.
