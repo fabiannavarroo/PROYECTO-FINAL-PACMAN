@@ -59,9 +59,10 @@ class Tablero:
 
                 for index, fantasma in enumerate(self.fantasmas):
                     if fantasma.en_trampa():
-                        tiempo_espera = index * 2  # Tiempo escalonado
-                        if time.time() - fantasma.tiempo_trampa >= tiempo_espera:
-                            fantasma.salir_de_trampa()
+                        tiempo_actual = time.time()
+                        for i, fantasma in enumerate(Tablero().fantasmas):
+                            fantasma.tiempo_activacion = tiempo_actual + i * 2  # Cada 2 segundos
+                            fantasma.activo = False  # Inicialmente desactivado
                     else:
                         # Movimiento normal de los fantasmas fuera de la trampa
                         if isinstance(fantasma, FantasmaRojo):
