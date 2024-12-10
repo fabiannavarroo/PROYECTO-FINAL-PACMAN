@@ -60,7 +60,7 @@ class Tablero:
                 for index, fantasma in enumerate(self.fantasmas):
                     if isinstance(fantasma, FantasmaRojo):
                         # Fantasma rojo se mueve normalmente desde el principio
-                        fantasma.mover()
+                        fantasma.seguir_a_pacman()
                     elif fantasma.en_trampa():
                         # Salida escalonada de fantasmas de la trampa
                         if tiempo_actual - fantasma.tiempo_trampa >= index * 2:
