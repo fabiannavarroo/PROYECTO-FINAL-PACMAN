@@ -378,7 +378,7 @@ class Tablero:
 
     def alejarse_de_pacman(self, fantasma):
         # Se aleja de Pac-Man utilizando celdas que aumentan la distancia entre ambos.
-        if self.siguiente_celda is None or (fantasma.x == self.siguiente_celda[0] and fantasma.y == self.siguiente_celda[1]):
+        if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
             inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
             pacman_pos = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
 
