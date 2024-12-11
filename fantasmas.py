@@ -22,8 +22,6 @@ class Fantasma:
         self.trampa_coordenadas = ((144, 10), (240, 224))  # Región de la trampa
 
 
-
-
     def activar_asustado(self):
         #Activa el estado asustado
         self.asustado = True
