@@ -25,9 +25,9 @@ class Tablero:
         # Crear la lista de fantasmas con sus posiciones iniciales
         self.fantasmas = [
             FantasmaRojo(160, 208),
-            FantasmaRosa(160, 208),
-            FantasmaAzul(160, 208),
-            FantasmaNaranja(160, 208),
+            FantasmaRosa(180, 208),
+            FantasmaAzul(203, 208),
+            FantasmaNaranja(224, 208),
         ]
         # Crear el objeto Puntos, que sera el encargado los puntos, frutas y regalos
         self.puntos = Puntos(OBJETOS)
