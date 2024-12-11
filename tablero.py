@@ -414,7 +414,7 @@ class Tablero:
     def mover_fantasma(self, fantasma):
         # Lógica de movimiento para cada tipo de fantasma
         if isinstance(fantasma, FantasmaRojo):
-            self.mover_fantasma_rojo()
+            self.mover_fantasma_rojo(fantasma)
         elif isinstance(fantasma, FantasmaRosa):
             self.mover_fantasma_rosa()
         elif isinstance(fantasma, FantasmaAzul):
