@@ -92,7 +92,7 @@ class Tablero:
                         elif fantasma.en_camino_salida():
                             fantasma.mover_a_salida_final()
                         else:
-                            fantasma.mover()
+                            self.mover_fantasma(fantasma)
                     # Actualizar el estado del fantasma 
                     fantasma.actualizar_estado()
 
