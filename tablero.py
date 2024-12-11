@@ -220,7 +220,7 @@ class Tablero:
             else:
                 pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0)
         else:
-            # Mantener el texto en blanco después del tiempo
+            # Mantener un vacio después del tiempo
             pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0)
 
     def animar_fin(self):
