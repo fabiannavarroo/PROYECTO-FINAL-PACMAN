@@ -341,7 +341,8 @@ class Tablero:
             self.alejarse_de_pacman(fantasma)
 
         else:
-            self.emboscada_a_pacman(fantasma)
+            posicion_emboscada = self.predecir_posicion_pacman(self.celdas_para_emboscada)
+            self.emboscada_a_pacman(fantasma, posicion_emboscada)
 
     def mover_fantasma_azul(self,fantasma):
         if self.victoria or self.pacman.en_muerte:
