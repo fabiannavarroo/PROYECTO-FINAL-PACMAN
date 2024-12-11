@@ -520,7 +520,7 @@ class Tablero:
                 fantasma.direccion_actual = "ARRIBA"
 
 
-            # Si el fantasma llega a una posición que es un portal, teletransportarlo
+            # Si el fantasma llega a una posición que es un portal se hace tp
             if (fantasma.x, fantasma.y) in PORTALES:
                 fantasma.x, fantasma.y = PORTALES[(fantasma.x, fantasma.y)]
 
