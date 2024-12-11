@@ -38,6 +38,7 @@ class Fantasma:
         self.direccion_actual = "DERECHA"
         self.tiempo_trampa = time.time() 
         self.en_trampa = True
+        self.en_salida = False
         self.velocidad = 2
 
 
