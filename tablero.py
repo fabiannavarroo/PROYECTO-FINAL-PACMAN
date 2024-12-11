@@ -342,25 +342,11 @@ class Tablero:
     def mover_fantasma_azul(self):
         if self.victoria or self.pacman.en_muerte:
             return False
-
-       
-
+    
 
     def mover_fantasma_naranja(self):
         if self.victoria or self.pacman.en_muerte:
             return False
-# Movimiento de fantasmas
-    def mover_a_salida(self, fantasma):
-        dx = fantasma.salida_final[0] - fantasma.x
-        dy = fantasma.salida_final[1] - fantasma.y
-        if abs(dx) > 0:
-            fantasma.x += fantasma.velocidad if dx > 0 else -fantasma.velocidad
-        elif abs(dy) > 0:
-            fantasma.y += fantasma.velocidad if dy > 0 else -fantasma.velocidad
-
-    
-
-    
 
 
     #--------------------------------------------------------------------MOVIMIENTO--------------------------------------------------------------------#
@@ -423,6 +409,16 @@ class Tablero:
 
         print("Pacman", self.pacman.x, self.pacman.y)
 
+
+    def mover_a_salida(self, fantasma):
+        dx = fantasma.salida_final[0] - fantasma.x
+        dy = fantasma.salida_final[1] - fantasma.y
+        if abs(dx) > 0:
+            fantasma.x += fantasma.velocidad if dx > 0 else -fantasma.velocidad
+        elif abs(dy) > 0:
+            fantasma.y += fantasma.velocidad if dy > 0 else -fantasma.velocidad
+
+    
 
     def mover_fantasma(self, fantasma):
         # Lógica de movimiento para cada tipo de fantasma
