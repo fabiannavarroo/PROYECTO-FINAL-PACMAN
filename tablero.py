@@ -497,7 +497,8 @@ class Tablero:
         x_actual, y_actual = fantasma.x, fantasma.y
         if (x_actual, y_actual) in PORTALES:
             fantasma.x, fantasma.y = PORTALES[(x_actual, y_actual)]
-
+            return True
+        return False
         
         
 
