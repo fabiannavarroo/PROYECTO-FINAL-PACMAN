@@ -495,6 +495,8 @@ class Tablero:
         Comprueba si el fantasma está cerca de un portal y lo transporta al otro lado.
         """
         x_actual, y_actual = fantasma.x, fantasma.y
+        if (x_actual, y_actual) in PORTALES:
+            fantasma.x, fantasma.y = PORTALES[(x_actual, y_actual)]
 
         
         
