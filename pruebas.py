@@ -39,7 +39,7 @@ class Tablero:
         self.victoria = False
 
         # Distancia de emboscada para el fantasma rosa
-        self.celdas_para_emboscada = 6
+        self.celdas_para_emboscada = 4
 
         pyxel.run(self.update, self.draw)
 
