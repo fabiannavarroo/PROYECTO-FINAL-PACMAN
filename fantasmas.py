@@ -31,15 +31,29 @@ class Fantasma:
         self.tiempo_asustado = time.time()
 
 
+    def en_posicion_inicial(self):
+        return self.x == self.x_inicial and self.y == self.y_inicial
+
+    def salir_de_inicial(self):
+        self.en_salida = True
+
+    def en_camino_salida(self):
+        return self.en_salida
+
+    def mover_a_salida_final(self):
+        dx = 192 - self.x
+        dy = 176 - self.y
+        if abs(dx) > 0:
+            self.x += self.velocidad if dx > 0 else -self.velocidad
+        elif abs(dy) > 0:
+            self.y += self.velocidad if dy > 0 else -self.velocidad
+        else:
+            self.en_salida = False
+
     def volver_a_posicion_inicial(self):
-        # Envía al fantasma a la trampa
-        # Reubicar al fantasma en la trampa y reiniciar estado
         self.x, self.y = self.x_inicial, self.y_inicial
-        self.siguiente_celda = None
-        self.asustado = False # Sale del estado asustado
-        self.direccion_actual = "DERECHA"
-        self.tiempo_trampa = time.time()  # Finaliza el estado asustado
-        self.velocidad = 2
+        self.en_salida = False
+        self.tiempo_espera = time.time()
         
 
     def actualizar_estado(self):
