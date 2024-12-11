@@ -35,21 +35,20 @@ class Fantasma:
         else:
             return False
 
-    def mover_a_salida_final(self):
-        dx = 192 - self.x
-        dy = 176 - self.y
+    def mover_a_salida(self, fantasma):
+        # Calcula la diferencia hacia la posición objetivo
+        dx = fantasma.salida_final[0] - fantasma.x
+        dy = fantasma.salida_final[1] - fantasma.y
+        
+        # Moverse en la dirección x si es necesario
         if abs(dx) > 0:
-            if dx > 0: 
-                self.x += self.velocidad 
-            else:
-                self.x -= self.velocidad
+            fantasma.x += fantasma.velocidad if dx > 0 else -fantasma.velocidad
+        # Si no, moverse en la dirección y
         elif abs(dy) > 0:
-            if dy > 0:
-                self.y += self.velocidad
-            else:
-                self.y -= self.velocidad
+            fantasma.y += fantasma.velocidad if dy > 0 else -fantasma.velocidad
         else:
-            self.en_salida = False
+            # El fantasma ha llegado al punto de salida
+            fantasma.en_salida = False
 
 
     def volver_a_posicion_inicial(self):
