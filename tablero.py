@@ -439,7 +439,7 @@ class Tablero:
 
             if abs(dx) > 0:  # Mover en el eje X hacia la salida final
                 if dx > 0: 
-                    s   elf.x += self.velocidad 
+                    self.x += self.velocidad 
                 else:
                     self.x -= self.velocidad
             elif abs(dy) > 0:  # Mover en el eje Y hacia la salida final
