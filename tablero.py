@@ -438,9 +438,15 @@ class Tablero:
             dy = self.salida_final[1] - self.y
 
             if abs(dx) > 0:  # Mover en el eje X hacia la salida final
-                self.x += self.velocidad if dx > 0 else -self.velocidad
+                if dx > 0: 
+                    s   elf.x += self.velocidad 
+                else:
+                    self.x -= self.velocidad
             elif abs(dy) > 0:  # Mover en el eje Y hacia la salida final
-                self.y += self.velocidad if dy > 0 else -self.velocidad
+                if dy > 0:
+                    self.y += self.velocidad
+                else:
+                    self.y -= self.velocidad
 
             # Si llega a la salida final, termina el estado de trampa
             if (self.x, self.y) == self.salida_final:
