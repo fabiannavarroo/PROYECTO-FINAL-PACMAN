@@ -1,3 +1,5 @@
+import pyxel
+from constantes import *
 import time
 
 class Fantasma:
