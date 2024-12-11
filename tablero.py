@@ -448,6 +448,12 @@ class Tablero:
         # Posición actual del fantasma
         x_actual, y_actual = fantasma.x, fantasma.y
 
+        # Comprobar si el fantasma está en un portal y moverlo al otro lado
+        if (x_actual, y_actual) in PORTALES:
+            nuevo_x, nuevo_y = PORTALES[(x_actual, y_actual)]
+            self.mover_fantasma_a_portal(fantasma, nuevo_x, nuevo_y)
+            return  # Salimos porque ya movimos al fantasma
+
         # Lista de direcciones posibles (con prioridad: DERECHA, IZQUIERDA, ABAJO, ARRIBA)
         posibles_direcciones = [
             ("DERECHA", x_actual + fantasma.velocidad, y_actual),
