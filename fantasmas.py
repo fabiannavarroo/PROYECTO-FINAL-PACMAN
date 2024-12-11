@@ -31,7 +31,7 @@ class Fantasma:
         self.tiempo_asustado = time.time()
 
 
-    def volver_a_trampa(self):
+    def volver_a_posicion_inicial(self):
         # Envía al fantasma a la trampa
         # Reubicar al fantasma en la trampa y reiniciar estado
         self.x, self.y = self.x_inicial, self.y_inicial
