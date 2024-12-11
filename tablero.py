@@ -26,7 +26,7 @@ class Tablero:
         self.fantasmas = [
             FantasmaRojo(160, 208),
             FantasmaRosa(180, 208),
-            FantasmaAzul(203, 208),
+            FantasmaAzul(202, 208),
             FantasmaNaranja(224, 208),
         ]
         # Crear el objeto Puntos, que sera el encargado los puntos, frutas y regalos
