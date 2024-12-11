@@ -494,6 +494,19 @@ class Tablero:
             return "ARRIBA"
         return None
     
+    def usar_portal(self, fantasma):
+        # Comprueba si el fantasma está cerca de un portal y lo transporta al otro lado.
+        x_actual, y_actual = fantasma.x, fantasma.y
+
+        for entrada, salida in PORTALES.items():
+            # Verificar si el fantasma está cerca de un portal de entrada
+            if abs(x_actual - entrada[0]) < 8 and abs(y_actual - entrada[1]) < 8:
+                # Transportar al fantasma al portal de salida
+                fantasma.x = salida[0]
+                fantasma.y = salida[1]
+                return True  # Indica que el fantasma usó un portal
+        return False  # El fantasma no usó ningún portal
+    
 
     #--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------#
 
