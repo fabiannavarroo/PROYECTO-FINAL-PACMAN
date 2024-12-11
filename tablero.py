@@ -525,7 +525,6 @@ class Tablero:
                 if fantasma.asustado:
                     self.puntos.puntos += 200  # Añade puntos por comer un fantasma
                     self.fantasmas_comido = True
-                    fantasma.tiempo_trampa = time.time()
                     self.pacman.mostrar_puntos = True  # Poder mostrar puntos
                     self.pacman.texto_tiempo_inicio = time.time()  # Guarda el tiempo actual
                     self.pacman.posicion_fantasma_comido_x, self.pacman.posicion_fantasma_comido_y = self.pacman.x, self.pacman.y
