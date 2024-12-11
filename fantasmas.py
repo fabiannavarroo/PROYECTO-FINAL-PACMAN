@@ -30,18 +30,6 @@ class Fantasma:
         self.tiempo_asustado = time.time()
 
 
-    def en_posicion_inicial(self):
-        return self.x == self.x_inicial and self.y == self.y_inicial
-
-
-    def salir_de_inicial(self):
-        self.en_salida = True
-
-
-    def en_camino_salida(self):
-        return self.en_salida
-
-
     def mover_a_salida_final(self):
         dx = 192 - self.x
         dy = 176 - self.y
