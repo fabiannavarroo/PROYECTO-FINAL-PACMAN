@@ -53,7 +53,7 @@ class Tablero:
         self.victoria = False  
 
         # Cambiar la dirección de los fantasmas
-        self.fantasmas_cambio_de_movimiento = 20
+        self.fantasmas_cambio_de_movimiento = 10
 
         # Iniciar el bucle principal de Pyxel
         pyxel.run(self.update, self.draw)
@@ -365,7 +365,7 @@ class Tablero:
             self.alejarse_de_pacman(fantasma)
 
         else:
-            pass
+            if time.time() - 10 >= self.fantasmas_cambio_de_movimiento:
 
 
     def mover_fantasma_naranja(self,fantasma):
