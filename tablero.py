@@ -447,7 +447,6 @@ class Tablero:
             if abs(x_actual - portal_entrada[0]) < 8 and abs(y_actual - portal_entrada[1]) < 8:
                 # Ajustar la posición del fantasma al portal exacto y moverlo al otro lado
                 fantasma.x, fantasma.y = portal_salida
-                return False  # Salimos porque ya movimos al fantasma
 
         # Lista de direcciones posibles
         posibles_direcciones = [
