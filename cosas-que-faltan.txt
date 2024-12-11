@@ -1,7 +1,5 @@
-
-    fantasma rosa: Intenta tender una emboscada a Pac-Man poniéndose delante de él
-    fantasma azul: Tiene un patrón de movimiento más errático, a veces cortando a Pac-Man o retirándose
-    fantasma naranja: Un fantasma más aleatorio, a veces moviéndose hacia Pac-Man, a veces alejándose
+fantasma azul: Tiene un patrón de movimiento más errático, a veces cortando a Pac-Man o retirándose
+fantasma naranja: Un fantasma más aleatorio, a veces moviéndose hacia Pac-Man, a veces alejándose
 
 
 TExto de win
