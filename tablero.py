@@ -490,16 +490,43 @@ class Tablero:
             return "ARRIBA"
         return None
     
-    def usar_portal(self, fantasma):
+    def usar_portal(self, personaje):
         """
-        Comprueba si el fantasma está cerca de un portal y lo transporta al otro lado.
+        Comprueba si el personaje está cerca de un portal y lo transporta al otro lado,
+        evitando que lo use inmediatamente de nuevo.
         """
-        x_actual, y_actual = fantasma.x, fantasma.y
-        if (x_actual, y_actual) in PORTALES:
-            fantasma.x, fantasma.y = PORTALES[(x_actual, y_actual)]
-            return True
+        tolerancia = 8  # Tolerancia para detectar el portal
+        x_actual, y_actual = personaje.x, personaje.y
+
+        for entrada, salida in PORTALES.items():
+            # Verificar si el personaje está cerca del portal de entrada
+            if abs(x_actual - entrada[0]) <= tolerancia and abs(y_actual - entrada[1]) <= tolerancia:
+                # Verificar que no sea el portal recién usado
+                if hasattr(personaje, "ultimo_portal") and personaje.ultimo_portal == entrada:
+                    return False  # No usar el mismo portal inmediatamente
+
+                # Transportar al portal de salida
+                personaje.x, personaje.y = salida
+
+                # Actualizar dirección según la salida
+                if salida[0] > entrada[0]:  # Portal de izquierda a derecha
+                    personaje.direccion_actual = "DERECHA"
+                elif salida[0] < entrada[0]:  # Portal de derecha a izquierda
+                    personaje.direccion_actual = "IZQUIERDA"
+                elif salida[1] > entrada[1]:  # Portal de arriba a abajo
+                    personaje.direccion_actual = "ABAJO"
+                elif salida[1] < entrada[1]:  # Portal de abajo a arriba
+                    personaje.direccion_actual = "ARRIBA"
+
+                # Registrar el portal usado
+                personaje.ultimo_portal = salida
+                return True
+
+        # Si no se usó un portal, limpiar último portal
+        if hasattr(personaje, "ultimo_portal"):
+            personaje.ultimo_portal = None
+
         return False
-        
         
 
     #--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------#
