@@ -131,7 +131,6 @@ class Tablero:
                 self.contador_game_over += 1
 
     def draw(self):
-        # Este método se llama cada frame para dibujar la escena
         pyxel.cls(0)  # Limpiar la pantalla
         self.dibujar_letras_mapa(120,16,"HIGHSCORE")
         self.puntos.ver_puntuacion(195,16)
