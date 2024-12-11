@@ -34,9 +34,15 @@ class Fantasma:
         dx = 192 - self.x
         dy = 176 - self.y
         if abs(dx) > 0:
-            self.x += self.velocidad if dx > 0 else -self.velocidad
+            if dx > 0: 
+                self.x += self.velocidad 
+            else:
+                self.x -= self.velocidad
         elif abs(dy) > 0:
-            self.y += self.velocidad if dy > 0 else -self.velocidad
+            if dy > 0:
+                self.y += self.velocidad
+            else:
+                self.y -= self.velocidad
         else:
             self.en_salida = False
 
