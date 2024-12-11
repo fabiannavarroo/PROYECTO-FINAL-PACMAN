@@ -335,7 +335,7 @@ class Tablero:
             return False
 
         if fantasma.asustado:
-            pass
+            self.alejarse_de_pacman(fantasma)
 
 
     def mover_fantasma_azul(self,fantasma):
@@ -343,7 +343,7 @@ class Tablero:
             return False
         
         if fantasma.asustado:
-            pass
+            self.alejarse_de_pacman(fantasma)
     
 
     def mover_fantasma_naranja(self,fantasma):
@@ -351,7 +351,7 @@ class Tablero:
             return False
         
         if fantasma.asustado:
-            pass
+            self.alejarse_de_pacman(fantasma)
 
 
     def mover_fantasma(self, fantasma):
