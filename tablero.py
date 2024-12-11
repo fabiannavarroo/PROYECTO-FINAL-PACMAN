@@ -371,7 +371,7 @@ class Tablero:
             self.alejarse_de_pacman(fantasma)
         else:
             if fantasma.modo_perseguir:
-                # Modo perseguir/emboscar
+                # Modo emboscar
                 posicion_emboscada = self.predecir_posicion_pacman(self.celdas_para_emboscada)
                 self.movimiento_emboscada(fantasma, posicion_emboscada)
             else:
