@@ -447,6 +447,7 @@ class Tablero:
             fantasma.x = nueva_x
             fantasma.y = nueva_y
 
+
         # Lista de direcciones posibles
         posibles_direcciones = [
             ("DERECHA", x_actual + fantasma.velocidad, y_actual),
