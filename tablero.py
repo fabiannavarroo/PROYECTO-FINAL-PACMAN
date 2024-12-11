@@ -56,7 +56,7 @@ class Tablero:
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        # Este método se llama cada frame, aquí se actualiza el estado del juego
+        
         if self.pacman.vidas > 0:
             # Mientras Pac-Man tenga vidas
             if self.contador_ready < 90:
