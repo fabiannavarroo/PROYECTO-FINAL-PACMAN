@@ -412,6 +412,41 @@ class Tablero:
         print("Pacman", self.pacman.x, self.pacman.y)
 
     
+    def salir_de_trampa(self):
+        # Verifica si el tiempo de espera mínimo ha pasado
+        if time.time() - self.tiempo_trampa < 2:
+            return
+
+        # Mover hacia la puerta de salida
+        if self.en_trampa():
+            dx = self.puerta_salida[0] - self.x
+            dy = self.puerta_salida[1] - self.y
+
+            if abs(dx) > 0:  # Mover en el eje X hacia la puerta
+                self.x += self.velocidad if dx > 0 else -self.velocidad
+            elif abs(dy) > 0:  # Mover en el eje Y hacia la puerta
+                self.y += self.velocidad if dy > 0 else -self.velocidad
+
+            # Si llega a la puerta de salida, marcar para ir a la salida final
+            if (self.x, self.y) == self.puerta_salida:
+                self.siguiente_celda = self.salida_final
+            return
+
+        # Mover hacia la salida final
+        if self.siguiente_celda:
+            dx = self.salida_final[0] - self.x
+            dy = self.salida_final[1] - self.y
+
+            if abs(dx) > 0:  # Mover en el eje X hacia la salida final
+                self.x += self.velocidad if dx > 0 else -self.velocidad
+            elif abs(dy) > 0:  # Mover en el eje Y hacia la salida final
+                self.y += self.velocidad if dy > 0 else -self.velocidad
+
+            # Si llega a la salida final, termina el estado de trampa
+            if (self.x, self.y) == self.salida_final:
+                self.siguiente_celda = None
+
+    
 
     #--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------#
 
@@ -445,18 +480,19 @@ class Tablero:
         return False
 
     def colision_fantasmas(self, x, y):
-        # Comprobar si la posición colisiona con un muro, excepto en la puerta de salida
+        # Comprobar si una posición (x, y) colisiona con muros o zonas prohibidas para el fantasma
         puerta_x, puerta_y = PUERTA_SALIDA
         sprite_tamaño = self.bloque.celda_tamaño
 
+        # Permitir pasar por la puerta de la trampa
         if puerta_x <= x < puerta_x + sprite_tamaño and puerta_y <= y < puerta_y + sprite_tamaño:
-            return False  # Permitir el paso por la puerta de salida
+            return False
 
-        # Verificar colisión con muros
         if self.bloque.colision(x, y):
             return True
 
-    
+        if self.esta_en_zona_prohibida(x, y):
+            return True
 
         return False
 
