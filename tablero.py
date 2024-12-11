@@ -360,11 +360,14 @@ class Tablero:
             self.alejarse_de_pacman(fantasma)
 
         else:
-            if (self.fantasmas_cambio_de_movimiento - time.time()) % 5 == 0:
+            # Cada self.fantasmas_cambio_de_movimiento segundos, el fantasma decide cambiar su modo
+            # de movimiento entre emboscar a Pac-Man o alejarse de él.
+            if time.time() % self.fantasmas_cambio_de_movimiento < 1:
                 # Intentar emboscar a Pac-Man
                 posicion_emboscada = self.predecir_posicion_pacman(self.celdas_para_emboscada)
                 self.movimiento_emboscada(fantasma, posicion_emboscada)
             else:
+                # Alejarse de Pac-Man
                 self.alejarse_de_pacman(fantasma)
 
     def mover_fantasma_naranja(self, fantasma):
@@ -374,6 +377,16 @@ class Tablero:
 
         if fantasma.asustado:
             self.alejarse_de_pacman(fantasma)
+
+        else:
+             # Cada self.fantasmas_cambio_de_movimiento segundos, el fantasma decide cambiar su modo
+            # de movimiento entre seguir a Pac-Man o alejarse de él.
+            if time.time() % self.fantasmas_cambio_de_movimiento < 1:
+                # Seguir directamente a Pac-Man
+                self.seguir_a_pacman(fantasma)
+            else:
+                # Alejarse de Pac-Man
+                self.alejarse_de_pacman(fantasma)
 
     #--------------------------------------------------------------------MOVIMIENTO--------------------------------------------------------------------#
 
