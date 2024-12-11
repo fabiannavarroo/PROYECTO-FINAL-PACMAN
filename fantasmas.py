@@ -38,7 +38,7 @@ class Fantasma:
         self.siguiente_celda = None
         self.asustado = False # Sale del estado asustado
         self.direccion_actual = "DERECHA"
-        self.tiempo_trampa = time.time()       # Asegurarte de establecerlo a True
+        self.tiempo_trampa = time.time()  # Finaliza el estado asustado
         self.velocidad = 2
         
         # Coordenadas de la trampa de cada fantasma
@@ -50,15 +50,6 @@ class Fantasma:
             self.x, self.y = 203, 208
         elif isinstance(self, FantasmaNaranja):
             self.x, self.y = 225, 208
-        
-
-
-    def volver_a_posicion_inicial(self):
-        self.x = self.x_inicial
-        self.y = self.y_inicial  
-        self.siguiente_celda = None  # Limpiar la ruta almacenada
-        self.asustado = False
-        self.tiempo_trampa = time.time()
         
 
     def actualizar_estado(self):
