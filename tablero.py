@@ -331,63 +331,23 @@ class Tablero:
     def mover_fantasma_rojo(self, fantasma):
         
      # Fantasma rojo: persigue a Pac-Man
-        if self.victoria or self.pacman.en_muerte:
-            return False
-
-        if fantasma.asustado:
-            self.alejarse_de_pacman(fantasma)
-        else:
-            self.seguir_a_pacman(fantasma)
+    pass
 
     def mover_fantasma_rosa(self, fantasma):
-    # Fantasma rosa: intenta emboscar a Pac-Man
-        if self.victoria or self.pacman.en_muerte:
-            return False
-
-        if fantasma.asustado:
-            self.alejarse_de_pacman(fantasma)
-        else:
-            # Intentar emboscar a Pac-Man
-            posicion_emboscada = self.predecir_posicion_pacman(self.celdas_para_emboscada)
-            self.movimiento_emboscada(fantasma, posicion_emboscada)
+        pass
 
 
     def mover_fantasma_azul(self, fantasma):
         if self.victoria or self.pacman.en_muerte:
             return False
 
-        # Solo cambiar modo si no está en la trampa
-        if not fantasma.en_trampa():
-            if time.time() - fantasma.ultimo_cambio_modo >= 10:
-                if random.random() < 0.5:
-                    pass
-                else:
-                    fantasma.modo_perseguir = not fantasma.modo_perseguir
-                fantasma.ultimo_cambio_modo = time.time()
-
-        if fantasma.asustado:
-            # No alejarse si está en la trampa
-            if fantasma.en_trampa():
-                return False
-            self.alejarse_de_pacman(fantasma)
-        else:
-            if fantasma.modo_perseguir:
-                # Modo perseguir/emboscar
-                posicion_emboscada = self.predecir_posicion_pacman(self.celdas_para_emboscada)
-                self.movimiento_emboscada(fantasma, posicion_emboscada)
-            else:
-                # Modo alejarse
-                if fantasma.en_trampa():
-                    # Si está en la trampa, no tratar de alejarse
-                    return False
-                self.alejarse_de_pacman(fantasma)
+       
 
 
     def mover_fantasma_naranja(self):
         if self.victoria or self.pacman.en_muerte:
             return False
 
-        # Solo cambiar modo si no está en la trampa
         
 
 
