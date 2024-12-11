@@ -66,7 +66,7 @@ class Fantasma:
         if time.time() - self.tiempo_trampa < 2:
             return False  # Esperar 2 segundos antes de salir
 
-    # Mover al fantasma hacia la posición de salida final
+        # Mover al fantasma hacia la posición de salida final
         self.x, self.y = self.salida_final
         self.en_trampa = False  # Cambiar el estado a fuera de la trampa    
 
