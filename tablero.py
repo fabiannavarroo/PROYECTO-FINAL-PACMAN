@@ -452,9 +452,9 @@ class Tablero:
         # Permitir pasar por la puerta de la trampa
         if puerta_x <= x < puerta_x + sprite_tamaño and puerta_y <= y < puerta_y + sprite_tamaño:
             return False
-
-        if self.bloque.colision(x, y):
-            return True
+        else:
+            if self.bloque.colision(x, y):
+                return True
 
         if self.esta_en_zona_prohibida(x, y):
             return True
