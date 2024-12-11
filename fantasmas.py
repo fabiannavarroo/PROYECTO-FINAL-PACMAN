@@ -22,7 +22,7 @@ class Fantasma:
         self.siguiente_celda = None  # Almacena la próxima celda hacia la que se mueve el fantasma
         self.celdas_para_emboscada = 10
         self.ultimo_cambio_modo = time.time()
-        self.modo_perseguir = True  # Iniciar persiguiendo/emboscando 
+        self.modo_perseguir = True  # Iniciar persiguiendo/emboscando para fantasmas azules y naranjas
 
 
     def en_trampa(self):
