@@ -445,22 +445,11 @@ class Tablero:
         return False
 
     def colision_fantasmas(self, x, y):
-        # Comprobar si la posición colisiona con un muro, excepto en la puerta de salida
-        puerta_x, puerta_y = PUERTA_SALIDA
-        sprite_tamaño = self.bloque.celda_tamaño
-
-        if puerta_x <= x < puerta_x + sprite_tamaño and puerta_y <= y < puerta_y + sprite_tamaño:
-            return False  # Permitir el paso por la puerta de salida
-
-        # Verificar colisión con muros
-        if self.bloque.colision(x, y):
-            return True
-
-        # Verificar si está en una zona prohibida
-        if self.esta_en_zona_prohibida(x, y):
-            return True
-
-        return False
+        # Permitir el paso por la puerta de salida
+        if self.puerta_salida[0] <= x < self.puerta_salida[0] + self.bloque.celda_tamaño and \
+        self.puerta_salida[1] <= y < self.puerta_salida[1] + self.bloque.celda_tamaño:
+            return False
+        return self.bloque.colision(x, y)
 
     def detectar_colision_puntos(self, pacman_x, pacman_y, punto_x, punto_y):
         # Detecta si Pac-Man ha comido un punto
