@@ -47,7 +47,7 @@ class Tablero:
         self.animacion_muerte_finalizada = False
 
         # Distancia de emboscada para el fantasma rosa
-        self.celdas_para_emboscada = 4
+        self.celdas_para_emboscada = 3
 
         # Controlar la condición de victoria
         self.victoria = False  
