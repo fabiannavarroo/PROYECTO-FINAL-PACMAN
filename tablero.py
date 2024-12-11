@@ -536,6 +536,7 @@ class Tablero:
 
             # Si el fantasma llega a una posición que es un portal se hace tp
             self.usar_portal(fantasma)
+            return True
 
 
     def buscar_ruta_simple(self, inicio, objetivo):
