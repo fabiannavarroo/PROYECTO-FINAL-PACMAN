@@ -62,9 +62,9 @@ class Fantasma:
         
 
     def salir_de_trampa(self):
-        # Esperar un tiempo antes de intentar salir
+        # Esperar 2 segundos antes de intentar salir
         if time.time() - self.tiempo_trampa < 2:
-            return False
+            return
 
         # Si el fantasma está en la trampa, mover hacia la puerta de salida
         if self.en_trampa():
@@ -76,19 +76,24 @@ class Fantasma:
             elif abs(dy) > 0:  # Mover en el eje Y
                 self.y += self.velocidad if dy > 0 else -self.velocidad
 
-            # Comprobar si ya está en la puerta de salida
+            # Verificar si ya está en la puerta de salida
             if (self.x, self.y) == self.puerta_salida:
-                self.en_trampa = False  # Cambiar el estado a fuera de la trampa
+                self.siguiente_celda = self.salida_final  # Mover hacia la salida final
             return
 
-        # Si está en la puerta de salida, moverse hacia la posición final fuera de la trampa
-        dx = self.salida_final[0] - self.x
-        dy = self.salida_final[1] - self.y
+        # Si está en la puerta, mover hacia la salida final
+        if self.siguiente_celda:
+            dx = self.salida_final[0] - self.x
+            dy = self.salida_final[1] - self.y
 
-        if abs(dx) > 0:  # Mover en el eje X
-            self.x += self.velocidad if dx > 0 else -self.velocidad
-        elif abs(dy) > 0:  # Mover en el eje Y
-            self.y += self.velocidad if dy > 0 else -self.velocidad
+            if abs(dx) > 0:  # Mover en el eje X
+                self.x += self.velocidad if dx > 0 else -self.velocidad
+            elif abs(dy) > 0:  # Mover en el eje Y
+                self.y += self.velocidad if dy > 0 else -self.velocidad
+
+            # Cuando llega a la salida final, termina el estado de trampa
+            if (self.x, self.y) == self.salida_final:
+                self.siguiente_celda = None
 
 
     def volver_a_posicion_inicial(self):
