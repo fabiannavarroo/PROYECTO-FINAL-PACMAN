@@ -95,7 +95,7 @@ class Tablero:
                         elif isinstance(fantasma, FantasmaNaranja):
                             self.mover_fantasma_naranja(fantasma)
 
-                    # Actualizar el estado del fantasma (por ejemplo, dejar de estar asustado tras un tiempo)
+                    # Actualizar el estado del fantasma 
                     fantasma.actualizar_estado()
 
                 # Comprobar colisiones entre fantasmas y Pac-Man
