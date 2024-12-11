@@ -435,10 +435,6 @@ class Tablero:
         elif abs(dy) > 0:
             fantasma.y += fantasma.velocidad if dy > 0 else -fantasma.velocidad
 
-    
-
-    
-
 
     def seguir_a_pacman(self, fantasma):
         # El fantasma busca una ruta simple hacia la posición de Pac-Man
