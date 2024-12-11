@@ -350,8 +350,15 @@ class Tablero:
         if self.victoria or self.pacman.en_muerte:
             return False
         
-        if fantasma.asustado:
+        if fantasma.en_trampa:
+            return True
+
+        elif fantasma.asustado:
             self.alejarse_de_pacman(fantasma)
+
+        else:
+            pass
+
 
 
     def mover_fantasma(self, fantasma):
