@@ -462,7 +462,7 @@ class Tablero:
         nueva_direccion = None  # Dirección que el fantasma tomará
         nueva_x = x_actual      # Nueva posición X del fantasma
         nueva_y = y_actual      # Nueva posición Y del fantasma
-        menor_distancia = float("1")  # Distancia mínima encontrada al objetivo
+        menor_distancia = 400  # Distancia mínima es decir lo que mide la pantalla
 
         # Evaluar todas las direcciones posibles
         for direccion, x, y in posibles_direcciones:
