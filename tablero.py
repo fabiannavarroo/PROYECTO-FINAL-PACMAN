@@ -351,42 +351,33 @@ class Tablero:
             self.movimiento_emboscada(fantasma, posicion_emboscada)
 
 
-    def mover_fantasma_azul(self, fantasma):
+        def mover_fantasma_azul(self, fantasma):
 
-        if self.victoria or self.pacman.en_muerte:
-            return False
+            if self.victoria or self.pacman.en_muerte:
+                return False
 
-        if fantasma.asustado:
-            self.alejarse_de_pacman(fantasma)
-
-        else:
-            # Cada self.fantasmas_cambio_de_movimiento segundos, el fantasma decide cambiar su modo
-            # de movimiento entre emboscar a Pac-Man o alejarse de él.
-            if time.time() % self.fantasmas_cambio_de_movimiento < 1:
-                # Intentar emboscar a Pac-Man
-                posicion_emboscada = self.predecir_posicion_pacman(self.celdas_para_emboscada)
-                self.movimiento_emboscada(fantasma, posicion_emboscada)
-            else:
-                # Alejarse de Pac-Man
+            if fantasma.asustado:
                 self.alejarse_de_pacman(fantasma)
-
-    def mover_fantasma_naranja(self, fantasma):
-
-        if self.victoria or self.pacman.en_muerte:
-            return False
-
-        if fantasma.asustado:
-            self.alejarse_de_pacman(fantasma)
-
-        else:
-             # Cada self.fantasmas_cambio_de_movimiento segundos, el fantasma decide cambiar su modo
-            # de movimiento entre seguir a Pac-Man o alejarse de él.
-            if time.time() % self.fantasmas_cambio_de_movimiento < 1:
-                # Seguir directamente a Pac-Man
-                self.seguir_a_pacman(fantasma)
             else:
-                # Alejarse de Pac-Man
+                if time.time() % self.fantasmas_cambio_de_movimiento < 1:
+                    posicion_emboscada = self.predecir_posicion_pacman(self.celdas_para_emboscada)
+                    self.movimiento_emboscada(fantasma, posicion_emboscada)
+                else:
+                    self.alejarse_de_pacman(fantasma)
+
+
+        def mover_fantasma_naranja(self, fantasma):
+    
+            if self.victoria or self.pacman.en_muerte:
+                return False
+
+            if fantasma.asustado:
                 self.alejarse_de_pacman(fantasma)
+            else:
+                if time.time() % self.fantasmas_cambio_de_movimiento < 1:
+                    self.seguir_a_pacman(fantasma)
+                else:
+                    self.alejarse_de_pacman(fantasma)
 
     #--------------------------------------------------------------------MOVIMIENTO--------------------------------------------------------------------#
 
