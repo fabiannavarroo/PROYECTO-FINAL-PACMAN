@@ -445,17 +445,18 @@ class Tablero:
         return False
 
     def colision_fantasmas(self, x, y):
-        # Comprobar si una posición (x, y) colisiona con muros o zonas prohibidas para el fantasma
+        # Comprobar si la posición colisiona con un muro, excepto en la puerta de salida
         puerta_x, puerta_y = PUERTA_SALIDA
         sprite_tamaño = self.bloque.celda_tamaño
 
-        # Permitir pasar por la puerta de la trampa
         if puerta_x <= x < puerta_x + sprite_tamaño and puerta_y <= y < puerta_y + sprite_tamaño:
-            return False
-        else:
-            if self.bloque.colision(x, y):
-                return True
+            return False  # Permitir el paso por la puerta de salida
 
+        # Verificar colisión con muros
+        if self.bloque.colision(x, y):
+            return True
+
+        # Verificar si está en una zona prohibida
         if self.esta_en_zona_prohibida(x, y):
             return True
 
