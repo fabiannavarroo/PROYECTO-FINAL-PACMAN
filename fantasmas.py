@@ -41,16 +41,6 @@ class Fantasma:
         self.tiempo_trampa = time.time()  # Finaliza el estado asustado
         self.velocidad = 2
         
-        # Coordenadas de la trampa de cada fantasma
-        if isinstance(self, FantasmaRojo):
-            self.x, self.y = 160, 208
-        elif isinstance(self, FantasmaRosa):
-            self.x, self.y = 181, 208
-        elif isinstance(self, FantasmaAzul):
-            self.x, self.y = 203, 208
-        elif isinstance(self, FantasmaNaranja):
-            self.x, self.y = 225, 208
-        
 
     def actualizar_estado(self):
         #Verifica y actualiza el estado asustado
