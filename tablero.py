@@ -359,7 +359,7 @@ class Tablero:
         if fantasma.asustado:
             self.alejarse_de_pacman(fantasma)
         else:
-            if time.time() % self.fantasmas_cambio_de_movimiento < 1:
+            if random.random() < 0.5:
                 posicion_emboscada = self.predecir_posicion_pacman(self.celdas_para_emboscada)
                 self.movimiento_emboscada(fantasma, posicion_emboscada)
             else:
