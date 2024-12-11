@@ -453,7 +453,6 @@ class Tablero:
             ("ARRIBA", x_actual, y_actual - fantasma.velocidad)
         ]
 
-  
         nueva_direccion = None  # Dirección que el fantasma tomará
         nueva_x = x_actual      # Nueva posición X del fantasma
         nueva_y = y_actual      # Nueva posición Y del fantasma
@@ -497,27 +496,7 @@ class Tablero:
         """
         x_actual, y_actual = fantasma.x, fantasma.y
 
-        # Rango de tolerancia para detectar portales
-        tolerancia = 8  # Ampliar rango para evitar problemas de detección
-
-        for entrada, salida in PORTALES.items():
-            # Verificar si el fantasma está cerca de un portal de entrada
-            if abs(x_actual - entrada[0]) <= tolerancia and abs(y_actual - entrada[1]) <= tolerancia:
-                # Transportar al fantasma al portal de salida
-                fantasma.x = salida[0]
-                fantasma.y = salida[1]
-
-                # Actualizar la dirección actual para evitar retrocesos
-                if salida[0] > entrada[0]:  # Portal de izquierda a derecha
-                    fantasma.direccion_actual = "DERECHA"
-                elif salida[0] < entrada[0]:  # Portal de derecha a izquierda
-                    fantasma.direccion_actual = "IZQUIERDA"
-                elif salida[1] > entrada[1]:  # Portal de arriba hacia abajo
-                    fantasma.direccion_actual = "ABAJO"
-                elif salida[1] < entrada[1]:  # Portal de abajo hacia arriba
-                    fantasma.direccion_actual = "ARRIBA"
-                return True  # Indica que el fantasma usó un portal
-        return False  # El fantasma no usó ningún portal
+        
         
 
     #--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------#
