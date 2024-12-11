@@ -383,7 +383,7 @@ class Tablero:
         self.mover_hacia_siguiente_celda(fantasma)
 
     def mover_fantasma_azul(self, fantasma):
-        # Fantasma azul: no tiene lógica especial aquí, se podría implementar
+        
         if self.victoria or self.pacman.en_muerte or fantasma.en_trampa():
             return False
 
@@ -391,7 +391,7 @@ class Tablero:
             self.alejarse_de_pacman(fantasma)
 
     def mover_fantasma_naranja(self, fantasma):
-        # Fantasma naranja: no tiene lógica especial aquí, se podría implementar
+
         if self.victoria or self.pacman.en_muerte or fantasma.en_trampa():
             return False
 
@@ -407,7 +407,7 @@ class Tablero:
 
         nueva_x, nueva_y = self.pacman.x, self.pacman.y
 
-        # Leer las teclas para cambiar dirección pendiente
+        # Leer las teclas para cambiar dirección
         if pyxel.btnp(pyxel.KEY_UP):
             self.pacman.direccion_pendiente = PACMAN_ARRIBA
         elif pyxel.btnp(pyxel.KEY_DOWN):
@@ -425,7 +425,7 @@ class Tablero:
         elif pyxel.btnp(pyxel.KEY_D):
             self.pacman.direccion_pendiente = PACMAN_DERECHA
 
-        # Comprobar si la dirección pendiente se puede adoptar (no hay muro en esa dirección)
+        # Comprobar si la dirección pendiente se puede usar es decir no hay colisión
         if self.pacman.direccion_pendiente:
             if self.pacman.direccion_pendiente == PACMAN_ARRIBA and not self.bloque.colision(self.pacman.x, self.pacman.y - self.pacman.velocidad):
                 self.pacman.direccion_actual = self.pacman.direccion_pendiente
