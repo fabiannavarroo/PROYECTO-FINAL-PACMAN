@@ -27,10 +27,10 @@ class Fantasma:
 
     def en_trampa(self):
         # Verifica si el fantasma está dentro de la región de la trampa.
-        if self.trampa_coordenadas[0][0] <= self.x <= self.trampa_coordenadas[1][0] and \
-            self.trampa_coordenadas[0][1] <= self.y <= self.trampa_coordenadas[1][1]:
-            return True
-        return False
+        return (
+            self.trampa_coordenadas[0][0] <= self.x <= self.trampa_coordenadas[1][0] and
+            self.trampa_coordenadas[0][1] <= self.y <= self.trampa_coordenadas[1][1]
+        )
 
 
     def activar_asustado(self):
