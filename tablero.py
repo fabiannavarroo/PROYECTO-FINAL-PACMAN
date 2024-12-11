@@ -347,39 +347,6 @@ class Tablero:
             posicion_emboscada = self.predecir_posicion_pacman(self.celdas_para_emboscada)
             self.movimiento_emboscada(fantasma, posicion_emboscada)
 
-    def predecir_posicion_pacman(self, casillas_adelante):
-        # Predecir la posición futura de Pac-Man según su dirección y un número de celdas
-        dx, dy = 0, 0
-        if self.pacman.direccion_actual == PACMAN_ARRIBA:
-            dy = -16 * casillas_adelante
-        elif self.pacman.direccion_actual == PACMAN_ABAJO:
-            dy = 16 * casillas_adelante
-        elif self.pacman.direccion_actual == PACMAN_IZQUIERDA:
-            dx = -16 * casillas_adelante
-        elif self.pacman.direccion_actual == PACMAN_DERECHA:
-            dx = 16 * casillas_adelante
-
-        pos_futura = ((self.pacman.x // 16) * 16 + dx, (self.pacman.y // 16) * 16 + dy)
-        return pos_futura
-
-    def movimiento_emboscada(self, fantasma, objetivo):
-        # Mover el fantasma rosa hacia la posición emboscada o hacia Pac-Man si no hay ruta
-        if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
-            inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
-            ruta = self.buscar_ruta_simple(inicio, objetivo)
-
-            if ruta and len(ruta) > 1:
-                fantasma.siguiente_celda = ruta[1]
-            else:
-                # Si no hay ruta a la emboscada, seguir a Pac-Man directamente
-                objetivo_pacman = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
-                ruta = self.buscar_ruta_simple(inicio, objetivo_pacman)
-                if ruta and len(ruta) > 1:
-                    fantasma.siguiente_celda = ruta[1]
-                else:
-                    fantasma.siguiente_celda = None
-
-        self.mover_hacia_siguiente_celda(fantasma)
 
     def mover_fantasma_azul(self, fantasma):
 
@@ -496,6 +463,42 @@ class Tablero:
                 fantasma.siguiente_celda = None
 
         self.mover_hacia_siguiente_celda(fantasma)
+
+    
+    def predecir_posicion_pacman(self, casillas_adelante):
+        # Predecir la posición futura de Pac-Man según su dirección y un número de celdas
+        dx, dy = 0, 0
+        if self.pacman.direccion_actual == PACMAN_ARRIBA:
+            dy = -16 * casillas_adelante
+        elif self.pacman.direccion_actual == PACMAN_ABAJO:
+            dy = 16 * casillas_adelante
+        elif self.pacman.direccion_actual == PACMAN_IZQUIERDA:
+            dx = -16 * casillas_adelante
+        elif self.pacman.direccion_actual == PACMAN_DERECHA:
+            dx = 16 * casillas_adelante
+
+        pos_futura = ((self.pacman.x // 16) * 16 + dx, (self.pacman.y // 16) * 16 + dy)
+        return pos_futura
+
+    def movimiento_emboscada(self, fantasma, objetivo):
+        # Mover el fantasma rosa hacia la posición emboscada o hacia Pac-Man si no hay ruta
+        if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
+            inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
+            ruta = self.buscar_ruta_simple(inicio, objetivo)
+
+            if ruta and len(ruta) > 1:
+                fantasma.siguiente_celda = ruta[1]
+            else:
+                # Si no hay ruta a la emboscada, seguir a Pac-Man directamente
+                objetivo_pacman = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
+                ruta = self.buscar_ruta_simple(inicio, objetivo_pacman)
+                if ruta and len(ruta) > 1:
+                    fantasma.siguiente_celda = ruta[1]
+                else:
+                    fantasma.siguiente_celda = None
+
+        self.mover_hacia_siguiente_celda(fantasma)
+        
 
     def mover_hacia_siguiente_celda(self, fantasma):
         # Mueve el fantasma hacia la siguiente celda de su ruta
