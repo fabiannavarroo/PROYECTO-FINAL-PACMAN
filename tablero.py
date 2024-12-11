@@ -327,7 +327,7 @@ class Tablero:
             pass
 
         else:
-            self.perseguir_a_pacman(fantasma, self.pacman.x, self.pacman.y)
+            self.seguir_a_pacman(fantasma)
 
 
     def mover_fantasma_rosa(self,fantasma):
