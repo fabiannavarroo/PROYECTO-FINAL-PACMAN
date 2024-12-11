@@ -46,6 +46,9 @@ class Fantasma:
         self.asustado = False # Sale del estado asustado
         self.direccion_actual = "DERECHA"
         self.tiempo_trampa = time.time()
+        self.en_trampa = True       # Asegurarte de establecerlo a True
+        self.asustado = False       # Dejar de estar asustado
+        self.siguiente_celda = None
         self.velocidad = 2
         
         # Coordenadas de la trampa de cada fantasma
