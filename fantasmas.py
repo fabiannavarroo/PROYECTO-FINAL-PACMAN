@@ -50,10 +50,10 @@ class Fantasma:
         elif abs(dy) > 0:
             if dy > 0:
                 self.y += self.velocidad 
-                sprite = self.sprites["ARRIBA"]
+                self.direccion_actual = self.sprites["ARRIBA"]
             else:
                 self.y -= self.velocidad
-                sprite = self.sprites["ABAJO"]
+                self.direccion_actual = self.sprites["ABAJO"]
         else:
             self.en_salida = False
             self.en_trampa = False  # Marcamos que ha salido de la trampa
