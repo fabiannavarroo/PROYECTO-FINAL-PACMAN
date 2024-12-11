@@ -386,9 +386,9 @@ MAPA_1 = [
     (112, 192 ,6),     # Esquina inferior vertical
     (144, 192, 15),     # Esquina izquierda superior trampa fantasmas
     (160, 192, 19),     # Borde superior trampa fantasma
-    (176, 192, 16),     # Puerta salida de fantasmas
+'''    (176, 192, 16),     # Puerta salida de fantasmas
     (192, 192, 16),     # Puerta salida de fantasmas
-    (208, 192, 16),     # Puerta salida de fantasmas
+    (208, 192, 16),     # Puerta salida de fantasmas'''
     (224, 192, 19),     # Borde superior trampa fantasma
     (240, 192, 17),     # Esquina derecha superior trampa fantasmas
     (272, 192, 6),     # Esquina inferior vertical
