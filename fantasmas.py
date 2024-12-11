@@ -62,36 +62,36 @@ class Fantasma:
         
 
     def salir_de_trampa(self):
-        # Esperar 2 segundos antes de intentar salir
+        # Verifica si el tiempo de espera mínimo ha pasado
         if time.time() - self.tiempo_trampa < 2:
             return
 
-        # Si el fantasma está en la trampa, mover hacia la puerta de salida
+        # Mover hacia la puerta de salida
         if self.en_trampa():
             dx = self.puerta_salida[0] - self.x
             dy = self.puerta_salida[1] - self.y
 
-            if abs(dx) > 0:  # Mover en el eje X
+            if abs(dx) > 0:  # Mover en el eje X hacia la puerta
                 self.x += self.velocidad if dx > 0 else -self.velocidad
-            elif abs(dy) > 0:  # Mover en el eje Y
+            elif abs(dy) > 0:  # Mover en el eje Y hacia la puerta
                 self.y += self.velocidad if dy > 0 else -self.velocidad
 
-            # Verificar si ya está en la puerta de salida
+            # Si llega a la puerta de salida, marcar para ir a la salida final
             if (self.x, self.y) == self.puerta_salida:
-                self.siguiente_celda = self.salida_final  # Mover hacia la salida final
+                self.siguiente_celda = self.salida_final
             return
 
-        # Si está en la puerta, mover hacia la salida final
+        # Mover hacia la salida final
         if self.siguiente_celda:
             dx = self.salida_final[0] - self.x
             dy = self.salida_final[1] - self.y
 
-            if abs(dx) > 0:  # Mover en el eje X
+            if abs(dx) > 0:  # Mover en el eje X hacia la salida final
                 self.x += self.velocidad if dx > 0 else -self.velocidad
-            elif abs(dy) > 0:  # Mover en el eje Y
+            elif abs(dy) > 0:  # Mover en el eje Y hacia la salida final
                 self.y += self.velocidad if dy > 0 else -self.velocidad
 
-            # Cuando llega a la salida final, termina el estado de trampa
+            # Si llega a la salida final, termina el estado de trampa
             if (self.x, self.y) == self.salida_final:
                 self.siguiente_celda = None
 
