@@ -88,9 +88,7 @@ class Tablero:
                     if time.time() - self.tiempo_salida >= index * 2:
                         if fantasma.en_posicion_inicial():
                             if time.time() - fantasma.tiempo_espera >= 2:
-                                fantasma.salir_de_inicial()
-                        elif fantasma.en_camino_salida():
-                            fantasma.mover_a_salida_final()
+                                self.mover_a_salida(fantasma)
                         else:
                             self.mover_fantasma(fantasma)
                     # Actualizar el estado del fantasma 
