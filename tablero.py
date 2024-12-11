@@ -447,7 +447,7 @@ class Tablero:
             self.mover_fantasma_a_portal(fantasma, nuevo_x, nuevo_y)
             return  False# Salimos porque ya movimos al fantasma
 
-        # Lista de direcciones posibles (con prioridad: DERECHA, IZQUIERDA, ABAJO, ARRIBA)
+        # Lista de direcciones posibles
         posibles_direcciones = [
             ("DERECHA", x_actual + fantasma.velocidad, y_actual),
             ("IZQUIERDA", x_actual - fantasma.velocidad, y_actual),
@@ -455,7 +455,7 @@ class Tablero:
             ("ARRIBA", x_actual, y_actual - fantasma.velocidad)
         ]
 
-        # Inicializar variables para la mejor dirección
+  
         nueva_direccion = None  # Dirección que el fantasma tomará
         nueva_x = x_actual      # Nueva posición X del fantasma
         nueva_y = y_actual      # Nueva posición Y del fantasma
