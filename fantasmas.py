@@ -18,6 +18,7 @@ class Fantasma:
         self.tiempo_trampa = time.time()  
         self.en_salida = False
         self.en_trampa = True  # Indica si está en la trampa
+        self.posicion_salida = (192, 176)
 
 
     def activar_asustado(self):
@@ -34,16 +35,22 @@ class Fantasma:
         self.tiempo_trampa = time.time()
 
     def mover_a_salida(self):
-        # Mueve al fantasma hacia la salida de la trampa
-        dx = 192 - self.x
-        dy = 176 - self.y
+        # Movimiento hacia las coordenadas de salida
+        dx = self.posicion_salida[0] - self.x
+        dy = self.posicion_salida[1] - self.y
         if abs(dx) > 0:
-            self.x += self.velocidad if dx > 0 else -self.velocidad
+            if dx > 0:  
+                self.x += self.velocidad 
+            else:
+                self.x -= self.velocidad
         elif abs(dy) > 0:
-            self.y += self.velocidad if dy > 0 else -self.velocidad
+            if dy > 0:
+                self.y += self.velocidad 
+            else:
+                self.y -= self.velocidad
         else:
             self.en_salida = False
-            self.en_trampa = False
+            self.en_trampa = False  # Marcamos que ha salido de la trampa
         
 
     def actualizar_estado(self):
