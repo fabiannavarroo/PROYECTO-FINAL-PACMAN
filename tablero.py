@@ -156,7 +156,7 @@ class Tablero:
                 if self.mostrar_ready:
                     self.animar_ready()
 
-                # Si Pac-Man ha comido un fantasma, mostrar los puntos que ganó temporalmente
+                # Si Pac-Man ha comido un fantasma, mostrar los puntos que ganó
                 if self.pacman.mostrar_puntos and time.time() - self.pacman.texto_tiempo_inicio < 1.5:
                     pyxel.text(self.pacman.posicion_fantasma_comido_x, self.pacman.posicion_fantasma_comido_y, "+200 puntos", pyxel.COLOR_RED)
                 else:
