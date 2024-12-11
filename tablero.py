@@ -329,26 +329,27 @@ class Tablero:
     #--------------------------------------------------------------------FANTASMAS--------------------------------------------------------------------#
 
     def mover_fantasma_rojo(self, fantasma):
-
-        # Fantasma rojo: persigue a Pac-Man si no asustado, si asustado se aleja
+        
+     # Fantasma rojo: persigue a Pac-Man
         if self.victoria or self.pacman.en_muerte:
             return False
 
-        if fantasma.asustado and not fantasma.en_trampa():
-            self.movimiento_simple(fantasma, modo="alejar")
+        if fantasma.asustado:
+            self.alejarse_de_pacman(fantasma)
         else:
-            self.movimiento_simple(fantasma, modo="seguir")
+            self.seguir_a_pacman(fantasma)
 
     def mover_fantasma_rosa(self, fantasma):
-        # Fantasma rosa: intenta emboscar a Pac-Man
+    # Fantasma rosa: intenta emboscar a Pac-Man
         if self.victoria or self.pacman.en_muerte:
             return False
 
-        if fantasma.asustado and not fantasma.en_trampa():
-            self.movimiento_simple(fantasma, modo="alejar")
+        if fantasma.asustado:
+            self.alejarse_de_pacman(fantasma)
         else:
-            objetivo = self.predecir_posicion_pacman(self.celdas_para_emboscada)
-            self.movimiento_simple(fantasma, modo="posicion", objetivo=objetivo)
+            # Intentar emboscar a Pac-Man
+            posicion_emboscada = self.predecir_posicion_pacman(self.celdas_para_emboscada)
+            self.movimiento_emboscada(fantasma, posicion_emboscada)
 
 
     def mover_fantasma_azul(self, fantasma):
@@ -526,21 +527,6 @@ class Tablero:
                     fantasma.x, fantasma.y = nx, ny
                     fantasma.direccion_actual = dir_name
                     break
-
-    def predecir_posicion_pacman(self, casillas_adelante):
-        # Predecir la posición futura de Pac-Man según su dirección y un número de celdas
-        dx, dy = 0, 0
-        if self.pacman.direccion_actual == PACMAN_ARRIBA:
-            dy = -16 * casillas_adelante
-        elif self.pacman.direccion_actual == PACMAN_ABAJO:
-            dy = 16 * casillas_adelante
-        elif self.pacman.direccion_actual == PACMAN_IZQUIERDA:
-            dx = -16 * casillas_adelante
-        elif self.pacman.direccion_actual == PACMAN_DERECHA:
-            dx = 16 * casillas_adelante
-
-        pos_futura = ((self.pacman.x // 16) * 16 + dx, (self.pacman.y // 16) * 16 + dy)
-        return pos_futura
 
 
     #--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------#
