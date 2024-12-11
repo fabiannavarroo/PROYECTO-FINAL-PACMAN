@@ -17,15 +17,12 @@ class Tablero:
 
         self.bloque = Bloque()
         self.pacman = Pacman(192, 304)
-        # Asignar dirección inicial a cada fantasma (por ejemplo "IZQUIERDA")
         self.fantasmas = [
-            FantasmaRojo(160, 176),
-            FantasmaRosa(181, 176),
-            FantasmaAzul(203, 176),
-            FantasmaNaranja(225, 176),
+            FantasmaRojo(160, 208),
+            FantasmaRosa(181, 208),
+            FantasmaAzul(203, 208),
+            FantasmaNaranja(225, 208),
         ]
-        for f in self.fantasmas:
-            f.direccion_actual = "IZQUIERDA"
         self.puntos = Puntos(OBJETOS)
         self.generar_puntos()
 
@@ -130,7 +127,6 @@ class Tablero:
             fantasma.volver_a_posicion_inicial()
             fantasma.siguiente_celda = None
             fantasma.tiempo_trampa = time.time()
-            fantasma.direccion_actual = "IZQUIERDA"
 
     def reiniciar_tablero(self):
         self.mostrar_ready = True
@@ -144,7 +140,6 @@ class Tablero:
         self.pacman.x, self.pacman.y = 192, 304
         for fantasma in self.fantasmas:
             fantasma.volver_a_posicion_inicial()
-            fantasma.direccion_actual = "IZQUIERDA"
         self.pacman.reiniciando = False
 
     def reiniciar_puntos(self):
@@ -383,10 +378,7 @@ class Tablero:
                        ("DERECHA",fantasma.velocidad,0)]
 
         opuesta = {"ARRIBA":"ABAJO","ABAJO":"ARRIBA","IZQUIERDA":"DERECHA","DERECHA":"IZQUIERDA"}
-
-        # Si no hay dirección actual, no filtrar ninguna
-        if fantasma.direccion_actual:
-            direcciones = [d for d in direcciones if opuesta.get(fantasma.direccion_actual,"") != d[0]]
+        direcciones = [d for d in direcciones if opuesta.get(fantasma.direccion_actual,"") != d[0]]
 
         def distancia(a,b,c,d):
             return abs(a-c)+abs(b-d)
@@ -430,7 +422,7 @@ class Tablero:
         elif self.pacman.direccion_actual == PACMAN_DERECHA:
             dx = 16 * casillas_adelante
 
-        pos_futura = ((self.pacman.x // 16)*16 + dx, (self.pacman.y//16)*16 + dy)
+        pos_futura = ((self.pacman.x // 16) * 16 + dx, (self.pacman.y // 16) * 16 + dy)
         return pos_futura
 
     def colision_fantasmas_con_pacman(self):
