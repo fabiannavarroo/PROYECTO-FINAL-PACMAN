@@ -444,7 +444,7 @@ class Tablero:
                     self.pacman.mostrar_puntos = True
                     self.pacman.texto_tiempo_inicio = time.time()
                     self.pacman.posicion_fantasma_comido_x, self.pacman.posicion_fantasma_comido_y = self.pacman.x, self.pacman.y
-                    fantasma.volver_a_trampa()
+                    fantasma.volver_a_posicion_inicial()
                     return True
                 else:
                     # Si el fantasma no está asustado, Pac-Man pierde una vida
