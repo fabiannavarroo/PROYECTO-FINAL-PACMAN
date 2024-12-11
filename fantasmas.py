@@ -20,6 +20,7 @@ class Fantasma:
         self.en_trampa = True  # Indica si está en la trampa
         self.posicion_salida = (192, 176)
         self.siguiente_celda = None
+        self.celdas_para_emboscada = 4 # Distancia de emboscada para el fantasma rosa
 
 
     def activar_asustado(self):
