@@ -421,7 +421,7 @@ class Tablero:
             self.mover_fantasma_naranja()
     
 
-    def mover_fantasma(self, fantasma, objetivo_x, objetivo_y):
+    def movimiento_fantasma(self, fantasma, objetivo_x, objetivo_y):
         """
         Movimiento principal del fantasma hacia un objetivo (e.g., Pac-Man).
         """
