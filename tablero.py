@@ -353,6 +353,7 @@ class Tablero:
             posicion_emboscada = self.predecir_posicion_pacman(self.celdas_para_emboscada)
             self.emboscada_a_pacman(fantasma, posicion_emboscada)
 
+
     def mover_fantasma_azul(self,fantasma):
         if self.victoria or self.pacman.en_muerte:
             return False
@@ -365,6 +366,7 @@ class Tablero:
 
         else:
             pass
+
 
     def mover_fantasma_naranja(self,fantasma):
         if self.victoria or self.pacman.en_muerte:
