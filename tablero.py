@@ -489,15 +489,7 @@ class Tablero:
             fantasma.direccion_actual = nueva_direccion
 
     def invertir_direccion(self, direccion):
-        """
-        Devuelve la dirección opuesta (para evitar retrocesos).
-        
-        Parámetros:
-        - direccion: la dirección actual del fantasma.
-        
-        Retorna:
-        - La dirección opuesta.
-        """
+        # Devuelve la dirección opuesta a la dirección actual asi el fantasma no retrocede
         if direccion == "DERECHA":
             return "IZQUIERDA"
         elif direccion == "IZQUIERDA":
