@@ -595,3 +595,4 @@ class Tablero:
             self.puntos.posicion_fruta = None
             self.puntos.fruta_actual = None
 
+Tablero()
