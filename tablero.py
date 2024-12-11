@@ -421,6 +421,76 @@ class Tablero:
             self.mover_fantasma_naranja()
     
 
+    def mover_fantasma(self, fantasma, objetivo_x, objetivo_y):
+        """
+        Movimiento principal del fantasma hacia un objetivo (e.g., Pac-Man).
+        """
+        # Intentar moverse en el eje X
+        if fantasma.x < objetivo_x:
+            nueva_x = fantasma.x + fantasma.velocidad
+            nueva_y = fantasma.y
+            direccion = "DERECHA"
+        elif fantasma.x > objetivo_x:
+            nueva_x = fantasma.x - fantasma.velocidad
+            nueva_y = fantasma.y
+            direccion = "IZQUIERDA"
+        else:
+            nueva_x = fantasma.x
+            nueva_y = fantasma.y
+            direccion = None
+
+        # Verificar colisiones y pasar al eje Y si no puede avanzar en X
+        if direccion is None or self.bloque.colision(nueva_x, nueva_y):
+            if fantasma.y < objetivo_y:
+                nueva_x = fantasma.x
+                nueva_y = fantasma.y + fantasma.velocidad
+                direccion = "ABAJO"
+            elif fantasma.y > objetivo_y:
+                nueva_x = fantasma.x
+                nueva_y = fantasma.y - fantasma.velocidad
+                direccion = "ARRIBA"
+
+        # Intentar moverse en la dirección seleccionada
+        if not self.bloque.colision(nueva_x, nueva_y):
+            self.aplicar_movimiento_fantasma(fantasma, nueva_x, nueva_y, direccion)
+        else:
+            # Si no puede moverse, intentar rodear el obstáculo
+            self.ajustar_movimiento_fantasma(fantasma)
+
+    def ajustar_movimiento_fantasma(self, fantasma):
+        """
+        Intenta rodear obstáculos moviéndose en cualquier dirección válida.
+        """
+        posibles_direcciones = [
+            ("DERECHA", fantasma.x + fantasma.velocidad, fantasma.y),
+            ("IZQUIERDA", fantasma.x - fantasma.velocidad, fantasma.y),
+            ("ARRIBA", fantasma.x, fantasma.y - fantasma.velocidad),
+            ("ABAJO", fantasma.x, fantasma.y + fantasma.velocidad),
+        ]
+
+        direccion_valida = None
+        nueva_x_valida = fantasma.x
+        nueva_y_valida = fantasma.y
+
+        for direccion, nueva_x, nueva_y in posibles_direcciones:
+            # Comprobar colisiones
+            if direccion_valida is None and not self.bloque.colision(nueva_x, nueva_y):
+                direccion_valida = direccion
+                nueva_x_valida = nueva_x
+                nueva_y_valida = nueva_y
+
+        # Aplicar el movimiento válido encontrado
+        if direccion_valida is not None:
+            self.aplicar_movimiento_fantasma(fantasma, nueva_x_valida, nueva_y_valida, direccion_valida)
+
+    def aplicar_movimiento_fantasma(self, fantasma, nueva_x, nueva_y, direccion):
+        """
+        Aplica el movimiento y actualiza la dirección del fantasma.
+        """
+        fantasma.x = nueva_x
+        fantasma.y = nueva_y
+        fantasma.direccion_actual = direccion
+
     #--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------#
 
     def colision_fantasmas_con_pacman(self):
