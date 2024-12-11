@@ -324,7 +324,7 @@ class Tablero:
             return False
         
         if fantasma.asustado:
-            pass
+            self.alejarse_de_pacman(fantasma)
 
         else:
             self.seguir_a_pacman(fantasma)
