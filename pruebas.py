@@ -335,20 +335,20 @@ class Tablero:
             self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
             # Intentar emboscar a Pac-Man
-            posicion_emboscada = self.predecir_posicion_pacman(4)  # Por ejemplo, 4 tiles por delante
+            posicion_emboscada = self.predecir_posicion_pacman(self.celdas_adelante)  # Por ejemplo, 4 tiles por delante
             self.movimiento_emboscada(fantasma, posicion_emboscada)
 
-    def predecir_posicion_pacman(self, tiles_ahead=4):
+    def predecir_posicion_pacman(self, casillas_adelante):
         dx, dy = 0, 0
         # Cada tile es de 16 px, ajusta según tu constante si es diferente
         if self.pacman.direccion_actual == PACMAN_ARRIBA:
-            dy = -16 * tiles_ahead
+            dy = -16 * casillas_adelante
         elif self.pacman.direccion_actual == PACMAN_ABAJO:
-            dy = 16 * tiles_ahead
+            dy = 16 * casillas_adelante
         elif self.pacman.direccion_actual == PACMAN_IZQUIERDA:
-            dx = -16 * tiles_ahead
+            dx = -16 * casillas_adelante
         elif self.pacman.direccion_actual == PACMAN_DERECHA:
-            dx = 16 * tiles_ahead
+            dx = 16 * casillas_adelante
 
         # Redondear a la celda más cercana
         pos_futura = ((self.pacman.x // 16) * 16 + dx, (self.pacman.y // 16) * 16 + dy)
