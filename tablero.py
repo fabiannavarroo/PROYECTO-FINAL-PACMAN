@@ -450,6 +450,7 @@ class Tablero:
 
         self.mover_hacia_siguiente_celda(fantasma)
 
+
     def alejarse_de_pacman(self, fantasma):
         # El fantasma busca una celda cercana que lo aleje de Pac-Man
         if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
@@ -492,6 +493,7 @@ class Tablero:
         pos_futura = ((self.pacman.x // 16) * 16 + dx, (self.pacman.y // 16) * 16 + dy)
         return pos_futura
 
+
     def movimiento_emboscada(self, fantasma, objetivo):
         # Mover el fantasma rosa hacia la posición emboscada o hacia Pac-Man si no hay ruta
         if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
@@ -533,8 +535,8 @@ class Tablero:
 
 
             # Si el fantasma llega a una posición que es un portal se hace tp
-            if (fantasma.x, fantasma.y) in PORTALES:
-                fantasma.x, fantasma.y = PORTALES[(fantasma.x, fantasma.y)]
+            self.usar_portal(fantasma)
+
 
     def buscar_ruta_simple(self, inicio, objetivo):
         # Búsqueda en anchura para encontrar una ruta simple entre inicio y objetivo
@@ -568,7 +570,8 @@ class Tablero:
                     cola.append(posible_celda)
 
         return None
-    
+
+
     def usar_portal(self, fantasma):
         # Comprueba si el fantasma está cerca de un portal y lo transporta al otro lado.
         x_actual, y_actual = fantasma.x, fantasma.y
