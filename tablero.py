@@ -47,10 +47,7 @@ class Tablero:
         self.animacion_muerte_finalizada = False
 
         # Controlar la condición de victoria
-        self.victoria = False
-
-        # Controla el tiempo entre salidas de fantasmas
-        self.tiempo_trampa = time.time()  
+        self.victoria = False  
 
         # Iniciar el bucle principal de Pyxel
         pyxel.run(self.update, self.draw)
@@ -83,7 +80,7 @@ class Tablero:
                     if fantasma.en_trampa:
                         # Esperar 2 segundos antes de moverlo a la salida
                         tiempo_espera = (index + 1) * 2
-                        if time.time() - self.tiempo_trampa >= tiempo_espera:
+                        if time.time() - fantasma.tiempo_trampa >= tiempo_espera:
                             if not fantasma.en_salida:
                                 fantasma.en_salida = True
                             fantasma.mover_a_salida()
