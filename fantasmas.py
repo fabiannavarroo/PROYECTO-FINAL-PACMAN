@@ -29,6 +29,11 @@ class Fantasma:
         self.velocidad = 1
         self.tiempo_asustado = time.time()
 
+    def en_posicion_inicial(self):
+        if self.x == self.x_inicial and self.y == self.y_inicial:
+            return True
+        else:
+            return False
 
     def mover_a_salida_final(self):
         dx = 192 - self.x
