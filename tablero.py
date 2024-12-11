@@ -104,8 +104,7 @@ class Tablero:
                 # Comprobar colisiones entre fantasmas y Pac-Man
                 self.colision_fantasmas_con_pacman()
                 # Comprobar colisiones de fantasmas con el mapa
-                for fantasma in self.fantasmas:
-                    fantasma.colision_fantasmas(fantasma.x, fantasma.y)
+                self.colision_fantasmas(fantasma.x, fantasma.y)
 
                 # Comprobar si se han comido todos los puntos y regalos
                 if self.comprobar_puntos_restantes():
@@ -445,6 +444,12 @@ class Tablero:
                     return True
         return False
 
+    def colision_fantasmas(self, x, y):
+        # Permitir el paso por la puerta de salida
+        if self.fantasmas.puerta_salida[0] <= x < self.fantasmas.puerta_salida[0] + self.bloque.celda_tamaño and \
+        self.fantasmas.puerta_salida[1] <= y < self.fantasmas.puerta_salida[1] + self.bloque.celda_tamaño:
+            return False
+        return self.bloque.colision(x, y)
 
     def detectar_colision_puntos(self, pacman_x, pacman_y, punto_x, punto_y):
         # Detecta si Pac-Man ha comido un punto
