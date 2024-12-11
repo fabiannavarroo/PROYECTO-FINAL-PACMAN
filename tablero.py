@@ -507,6 +507,11 @@ class Tablero:
         elif direccion == "ABAJO":
             return "ARRIBA"
         return None
+    
+    def mover_fantasma_a_portal(self, fantasma, nuevo_x, nuevo_y):
+        #Mueve el fantasma al otro lado del portal.
+        fantasma.x = nuevo_x
+        fantasma.y = nuevo_y
 
     #--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------#
 
