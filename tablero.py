@@ -385,7 +385,6 @@ class Tablero:
         if fantasma.asustado:
             self.alejarse_de_pacman(fantasma)
         else:
-
             # Cada 10 segundos, hacer un random y decidir si cambiar el modo
             if time.time() - fantasma.ultimo_cambio_modo >= 10:
                 if random.random() < 0.5:
@@ -395,7 +394,7 @@ class Tablero:
                     fantasma.modo_perseguir = not fantasma.modo_perseguir
                 fantasma.ultimo_cambio_modo = time.time()
 
-                
+
             if fantasma.modo_perseguir:
                 # Seguir a Pac-Man
                 self.seguir_a_pacman(fantasma)
