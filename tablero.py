@@ -50,7 +50,7 @@ class Tablero:
         self.victoria = False
 
         # Controla el tiempo entre salidas de fantasmas
-        self.tiempo_trampa = time.time()  # Temporizador único para cada fantasma 
+        self.tiempo_trampa = time.time()  
 
         # Distancia de emboscada para el fantasma rosa
         self.celdas_para_emboscada = 4
