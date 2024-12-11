@@ -86,7 +86,7 @@ class Tablero:
                         # Si el fantasma está en la trampa, esperar un tiempo antes de que salga
                         tiempo_espera = (index + 1) * 2
                         if time.time() - fantasma.tiempo_trampa >= tiempo_espera:
-                            fantasma.salir_de_trampa()
+                            self.salir_de_trampa(fantasma)  # Pasar el fantasma al método del tablero
                     else:
                         # Movimiento normal de los fantasmas fuera de la trampa
                         if isinstance(fantasma, FantasmaRojo):
@@ -100,7 +100,7 @@ class Tablero:
 
                     # Actualizar el estado del fantasma 
                     fantasma.actualizar_estado()
-
+                    
                 # Comprobar colisiones entre fantasmas y Pac-Man
                 self.colision_fantasmas_con_pacman()
                 # Comprobar colisiones de fantasmas con el mapa
