@@ -26,32 +26,24 @@ class Fantasma:
         self.velocidad = 1
         self.tiempo_asustado = time.time()
 
-    def en_posicion_inicial(self):
-        if self.x == self.x_inicial and self.y == self.y_inicial:
-            return True
-        else:
-            return False
-
-    def mover_a_salida(self, fantasma):
-        # Calcula la diferencia hacia la posición objetivo
-        dx = fantasma.salida_final[0] - fantasma.x
-        dy = fantasma.salida_final[1] - fantasma.y
-        
-        # Moverse en la dirección x si es necesario
-        if abs(dx) > 0:
-            fantasma.x += fantasma.velocidad if dx > 0 else -fantasma.velocidad
-        # Si no, moverse en la dirección y
-        elif abs(dy) > 0:
-            fantasma.y += fantasma.velocidad if dy > 0 else -fantasma.velocidad
-        else:
-            # El fantasma ha llegado al punto de salida
-            fantasma.en_salida = False
-
-
     def volver_a_posicion_inicial(self):
+        # Reinicia la posición del fantasma a la inicial
         self.x, self.y = self.x_inicial, self.y_inicial
+        self.en_trampa = True
         self.en_salida = False
         self.tiempo_espera = time.time()
+
+    def mover_a_salida(self):
+        # Mueve al fantasma hacia la salida de la trampa
+        dx = 192 - self.x
+        dy = 176 - self.y
+        if abs(dx) > 0:
+            self.x += self.velocidad if dx > 0 else -self.velocidad
+        elif abs(dy) > 0:
+            self.y += self.velocidad if dy > 0 else -self.velocidad
+        else:
+            self.en_salida = False
+            self.en_trampa = False
         
 
     def actualizar_estado(self):
