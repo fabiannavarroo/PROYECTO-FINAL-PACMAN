@@ -479,9 +479,7 @@ class Tablero:
         return False
 
     def calcular_direccion(self, dx, dy):
-        """
-        Convierte un desplazamiento en una dirección textual.
-        """
+        # Convierte un desplazamiento en una dirección textual.
         if dx > 0:
             return "DERECHA"
         elif dx < 0:
@@ -493,9 +491,7 @@ class Tablero:
         return None
     
     def usar_portal(self, fantasma):
-        """
-        Comprueba si el fantasma está cerca de un portal y lo transporta al otro lado.
-        """
+        # Comprueba si el fantasma está cerca de un portal y lo transporta al otro lado.
         x_actual, y_actual = fantasma.x, fantasma.y
         if (x_actual, y_actual) in PORTALES:
             fantasma.x, fantasma.y = PORTALES[(x_actual, y_actual)]
