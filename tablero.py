@@ -423,41 +423,6 @@ class Tablero:
 
         print("Pacman", self.pacman.x, self.pacman.y)
 
-    
-    def salir_de_trampa(self, fantasma):
-        # Margen de error para comparación de posiciones
-        margen = 2
-
-        # Si está en la trampa, primero muévete hacia la puerta de salida
-        if fantasma.en_trampa():
-            dx = fantasma.puerta_salida[0] - fantasma.x
-            dy = fantasma.puerta_salida[1] - fantasma.y
-
-            # Mover en X o Y hacia la puerta de salida
-            if abs(dx) > margen:  # Mover en el eje X hacia la puerta
-                fantasma.x += fantasma.velocidad if dx > 0 else -fantasma.velocidad
-            elif abs(dy) > margen:  # Mover en el eje Y hacia la puerta
-                fantasma.y += fantasma.velocidad if dy > 0 else -fantasma.velocidad
-
-            # Si está cerca de la puerta, preparar para moverse hacia la salida final
-            if abs(dx) <= margen and abs(dy) <= margen:
-                fantasma.siguiente_celda = fantasma.salida_final
-            return  # Aún en la trampa, no seguir más lógica
-
-        # Si tiene una celda objetivo (salida final), muévete hacia ella
-        if fantasma.siguiente_celda:
-            dx = fantasma.salida_final[0] - fantasma.x
-            dy = fantasma.salida_final[1] - fantasma.y
-
-            # Mover en X o Y hacia la salida final
-            if abs(dx) > margen:  # Mover en el eje X hacia la salida final
-                fantasma.x += fantasma.velocidad if dx > 0 else -fantasma.velocidad
-            elif abs(dy) > margen:  # Mover en el eje Y hacia la salida final
-                fantasma.y += fantasma.velocidad if dy > 0 else -fantasma.velocidad
-
-            # Si llega cerca de la salida final, limpiar la celda objetivo
-            if abs(dx) <= margen and abs(dy) <= margen:
-                fantasma.siguiente_celda = None
 
     def mover_fantasma(self, fantasma):
         # Lógica de movimiento para cada tipo de fantasma
