@@ -441,11 +441,13 @@ class Tablero:
         # Mueve el fantasma hacia  Pac-Man, evitando retrocesos y colisiones.
         x_actual, y_actual = fantasma.x, fantasma.y
 
-        # Comprobar si el fantasma está en un portal y moverlo al otro lado
-        if (x_actual, y_actual) in PORTALES:
-            nuevo_x, nuevo_y = PORTALES[(x_actual, y_actual)]
-            self.mover_fantasma_a_portal(fantasma, nuevo_x, nuevo_y)
-            return  False# Salimos porque ya movimos al fantasma
+         # Comprobar si el fantasma está cerca de un portal
+        for portal_entrada, portal_salida in PORTALES.items():
+            # Verificar si el fantasma está lo suficientemente cerca del portal (rango de tolerancia)
+            if abs(x_actual - portal_entrada[0]) < 8 and abs(y_actual - portal_entrada[1]) < 8:
+                # Ajustar la posición del fantasma al portal exacto y moverlo al otro lado
+                fantasma.x, fantasma.y = portal_salida
+                return False  # Salimos porque ya movimos al fantasma
 
         # Lista de direcciones posibles
         posibles_direcciones = [
