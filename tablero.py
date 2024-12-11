@@ -52,6 +52,9 @@ class Tablero:
         # Controlar la condición de victoria
         self.victoria = False  
 
+        # Cambiar la dirección de los fantasmas
+        self.fantasmas_cambio_de_movimiento = 20
+
         # Iniciar el bucle principal de Pyxel
         pyxel.run(self.update, self.draw)
 
