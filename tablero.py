@@ -25,11 +25,11 @@ class Tablero:
         # Crear la lista de fantasmas con sus posiciones iniciales
         self.fantasmas = [
             FantasmaRojo(160, 208),
-            FantasmaRosa(181, 176),
+            FantasmaRosa(181, 208),
             FantasmaAzul(203, 208),
             FantasmaNaranja(225, 208),
         ]
-        # Crear el objeto Puntos, que manejará los puntos, frutas y regalos
+        # Crear el objeto Puntos, que sera el encargado los puntos, frutas y regalos
         self.puntos = Puntos(OBJETOS)
 
         # Generar puntos por todo el mapa
@@ -56,7 +56,7 @@ class Tablero:
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        
+
         if self.pacman.vidas > 0:
             # Mientras Pac-Man tenga vidas
             if self.contador_ready < 90:
