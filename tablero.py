@@ -100,7 +100,7 @@ class Tablero:
 
                     # Actualizar el estado del fantasma 
                     fantasma.actualizar_estado()
-                    
+
                 # Comprobar colisiones entre fantasmas y Pac-Man
                 self.colision_fantasmas_con_pacman()
                 # Comprobar colisiones de fantasmas con el mapa
@@ -419,18 +419,21 @@ class Tablero:
         if time.time() - fantasma.tiempo_trampa < 2:
             return
 
+        # Margen de error para comparación de posiciones
+        margen = 2
+
         # Mover hacia la puerta de salida
         if fantasma.en_trampa():
             dx = fantasma.puerta_salida[0] - fantasma.x
             dy = fantasma.puerta_salida[1] - fantasma.y
 
-            if abs(dx) > 0:  # Mover en el eje X hacia la puerta
+            if abs(dx) > margen:  # Mover en el eje X hacia la puerta
                 fantasma.x += fantasma.velocidad if dx > 0 else -fantasma.velocidad
-            elif abs(dy) > 0:  # Mover en el eje Y hacia la puerta
+            elif abs(dy) > margen:  # Mover en el eje Y hacia la puerta
                 fantasma.y += fantasma.velocidad if dy > 0 else -fantasma.velocidad
 
-            # Si llega a la puerta de salida, marcar para ir a la salida final
-            if (fantasma.x, fantasma.y) == fantasma.puerta_salida:
+            # Si llega cerca de la puerta de salida, marcar para ir a la salida final
+            if abs(dx) <= margen and abs(dy) <= margen:
                 fantasma.siguiente_celda = fantasma.salida_final
             return
 
@@ -439,21 +442,14 @@ class Tablero:
             dx = fantasma.salida_final[0] - fantasma.x
             dy = fantasma.salida_final[1] - fantasma.y
 
-            if abs(dx) > 0:  # Mover en el eje X hacia la salida final
-                if dx > 0: 
-                    fantasma.x += fantasma.velocidad 
-                else:
-                    fantasma.x -= fantasma.velocidad
-            elif abs(dy) > 0:  # Mover en el eje Y hacia la salida final
-                if dy > 0:
-                    fantasma.y += fantasma.velocidad
-                else:
-                    fantasma.y -= fantasma.velocidad
+            if abs(dx) > margen:  # Mover en el eje X hacia la salida final
+                fantasma.x += fantasma.velocidad if dx > 0 else -fantasma.velocidad
+            elif abs(dy) > margen:  # Mover en el eje Y hacia la salida final
+                fantasma.y += fantasma.velocidad if dy > 0 else -fantasma.velocidad
 
-            # Si llega a la salida final, termina el estado de trampa
-            if (fantasma.x, fantasma.y) == fantasma.salida_final:
+            # Si llega cerca de la salida final, termina el estado de trampa
+            if abs(dx) <= margen and abs(dy) <= margen:
                 fantasma.siguiente_celda = None
-
     
 
     #--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------#
