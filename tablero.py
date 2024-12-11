@@ -492,11 +492,13 @@ class Tablero:
         return None
     
     def usar_portal(self, fantasma):
-        # Comprueba si el fantasma está cerca de un portal y lo transporta al otro lado.
+        """
+        Comprueba si el fantasma está cerca de un portal y lo transporta al otro lado.
+        """
         x_actual, y_actual = fantasma.x, fantasma.y
 
         # Rango de tolerancia para detectar portales
-        tolerancia = 4
+        tolerancia = 8  # Ampliar rango para evitar problemas de detección
 
         for entrada, salida in PORTALES.items():
             # Verificar si el fantasma está cerca de un portal de entrada
@@ -508,11 +510,15 @@ class Tablero:
                 # Actualizar la dirección actual para evitar retrocesos
                 if salida[0] > entrada[0]:  # Portal de izquierda a derecha
                     fantasma.direccion_actual = "DERECHA"
-                else: # Portal de derecha a izquierda
+                elif salida[0] < entrada[0]:  # Portal de derecha a izquierda
                     fantasma.direccion_actual = "IZQUIERDA"
+                elif salida[1] > entrada[1]:  # Portal de arriba hacia abajo
+                    fantasma.direccion_actual = "ABAJO"
+                elif salida[1] < entrada[1]:  # Portal de abajo hacia arriba
+                    fantasma.direccion_actual = "ARRIBA"
                 return True  # Indica que el fantasma usó un portal
         return False  # El fantasma no usó ningún portal
-    
+        
 
     #--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------#
 
