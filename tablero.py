@@ -471,63 +471,7 @@ class Tablero:
 
         print("Pacman", self.pacman.x, self.pacman.y)
 
-    def movimiento_simple(self, fantasma, modo="seguir", objetivo=None):
-        if objetivo is None:
-            if modo == "seguir":
-                objetivo = (self.pacman.x, self.pacman.y)
-            elif modo == "alejar":
-                px, py = self.pacman.x, self.pacman.y
-                fx, fy = fantasma.x, fantasma.y
-                # Crear un objetivo inverso: un punto opuesto a pacman (simple)
-                objetivo = (fx - (px - fx), fy - (py - fy))
-            else:
-                # modo posicion sin objetivo: seguir pacman
-                objetivo = (self.pacman.x, self.pacman.y)
-
-        fx, fy = fantasma.x, fantasma.y
-        ox, oy = objetivo
-
-        # Definir direcciones
-        direcciones = [("ARRIBA",0,-fantasma.velocidad),
-                       ("ABAJO",0,fantasma.velocidad),
-                       ("IZQUIERDA",-fantasma.velocidad,0),
-                       ("DERECHA",fantasma.velocidad,0)]
-
-        opuesta = {"ARRIBA":"ABAJO","ABAJO":"ARRIBA","IZQUIERDA":"DERECHA","DERECHA":"IZQUIERDA"}
-        direcciones = [d for d in direcciones if opuesta.get(fantasma.direccion_actual,"") != d[0]]
-
-        def distancia(a,b,c,d):
-            return abs(a-c)+abs(b-d)
-
-        def nuevo_dist(dx,dy):
-            return distancia(fx+dx, fy+dy, ox, oy)
-
-        if modo in ["seguir","posicion"]:
-            direcciones.sort(key=lambda d: nuevo_dist(d[1],d[2]))
-        elif modo == "alejar":
-            direcciones.sort(key=lambda d: nuevo_dist(d[1],d[2]), reverse=True)
-
-        movido = False
-        for dir_name,ddx,ddy in direcciones:
-            nx, ny = fx+ddx, fy+ddy
-            if not self.colision_fantasmas(nx, ny):
-                fantasma.x, fantasma.y = nx, ny
-                fantasma.direccion_actual = dir_name
-                movido = True
-                break
-
-        if not movido:
-            # Intentar cualquier dirección si las ideales fallaron
-            for dir_name,ddx,ddy in [("ARRIBA",0,-fantasma.velocidad),
-                                     ("ABAJO",0,fantasma.velocidad),
-                                     ("IZQUIERDA",-fantasma.velocidad,0),
-                                     ("DERECHA",fantasma.velocidad,0)]:
-                nx, ny = fx+ddx, fy+ddy
-                if not self.colision_fantasmas(nx, ny):
-                    fantasma.x, fantasma.y = nx, ny
-                    fantasma.direccion_actual = dir_name
-                    break
-
+    
 
     #--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------#
 
