@@ -414,45 +414,45 @@ class Tablero:
         print("Pacman", self.pacman.x, self.pacman.y)
 
     
-    def salir_de_trampa(self):
+    def salir_de_trampa(self, fantasma):
         # Verifica si el tiempo de espera mínimo ha pasado
-        if time.time() - self.tiempo_trampa < 2:
+        if time.time() - fantasma.tiempo_trampa < 2:
             return
 
         # Mover hacia la puerta de salida
-        if self.en_trampa():
-            dx = self.puerta_salida[0] - self.x
-            dy = self.puerta_salida[1] - self.y
+        if fantasma.en_trampa():
+            dx = fantasma.puerta_salida[0] - fantasma.x
+            dy = fantasma.puerta_salida[1] - fantasma.y
 
             if abs(dx) > 0:  # Mover en el eje X hacia la puerta
-                self.x += self.velocidad if dx > 0 else -self.velocidad
+                fantasma.x += fantasma.velocidad if dx > 0 else -fantasma.velocidad
             elif abs(dy) > 0:  # Mover en el eje Y hacia la puerta
-                self.y += self.velocidad if dy > 0 else -self.velocidad
+                fantasma.y += fantasma.velocidad if dy > 0 else -fantasma.velocidad
 
             # Si llega a la puerta de salida, marcar para ir a la salida final
-            if (self.x, self.y) == self.puerta_salida:
-                self.siguiente_celda = self.salida_final
+            if (fantasma.x, fantasma.y) == fantasma.puerta_salida:
+                fantasma.siguiente_celda = fantasma.salida_final
             return
 
         # Mover hacia la salida final
-        if self.siguiente_celda:
-            dx = self.salida_final[0] - self.x
-            dy = self.salida_final[1] - self.y
+        if fantasma.siguiente_celda:
+            dx = fantasma.salida_final[0] - fantasma.x
+            dy = fantasma.salida_final[1] - fantasma.y
 
             if abs(dx) > 0:  # Mover en el eje X hacia la salida final
                 if dx > 0: 
-                    self.x += self.velocidad 
+                    fantasma.x += fantasma.velocidad 
                 else:
-                    self.x -= self.velocidad
+                    fantasma.x -= fantasma.velocidad
             elif abs(dy) > 0:  # Mover en el eje Y hacia la salida final
                 if dy > 0:
-                    self.y += self.velocidad
+                    fantasma.y += fantasma.velocidad
                 else:
-                    self.y -= self.velocidad
+                    fantasma.y -= fantasma.velocidad
 
             # Si llega a la salida final, termina el estado de trampa
-            if (self.x, self.y) == self.salida_final:
-                self.siguiente_celda = None
+            if (fantasma.x, fantasma.y) == fantasma.salida_final:
+                fantasma.siguiente_celda = None
 
     
 
