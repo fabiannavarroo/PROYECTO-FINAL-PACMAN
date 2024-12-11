@@ -11,7 +11,7 @@ import pyxel
 
 class Tablero:
     def __init__(self):
-        # Inicializar la ventana del juego con Pyxel, tamaño 400x400, título "Pacman" y 30 fps
+        # Inicializar la ventana del juego
         pyxel.init(400, 400, title="Pacman", fps=30)
         # Cargar los recursos del archivo .pyxres
         pyxel.load("assets/recursos.pyxres")
