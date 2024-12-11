@@ -323,7 +323,7 @@ class Tablero:
         if self.victoria or self.pacman.en_muerte:
             return False
         else:
-            self.movimiento_fantasma_persiguiendo(self.fantasmas[0], self.pacman.x, self.pacman.y)
+            self.movimiento_fantasma_persiguiendo(fantasma, self.pacman.x, self.pacman.y)
 
     def mover_fantasma_rosa(self):
         if self.victoria or self.pacman.en_muerte:
