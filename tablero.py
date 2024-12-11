@@ -53,7 +53,7 @@ class Tablero:
         self.celdas_para_emboscada = 4
 
         # Cambiar la dirección de los fantasmas
-        self.fantasmas_cambio_de_movimiento = 5
+        self.fantasmas_cambio_de_movimiento = 20
 
         # Iniciar el bucle principal de Pyxel
         pyxel.run(self.update, self.draw)
