@@ -16,11 +16,11 @@ class Fantasma:
         self.tiempo_asustado = 0  # Temporizador para estado asustado
         self.tiempo_para_ser_comido = 10  # Duración por defecto del estado asustado
         self.tiempo_trampa = time.time()  # Temporizador para controlar salida
+        self.siguiente_celda = None  # Almacena la próxima celda hacia la que se mueve el fantasma
+        self.celdas_para_emboscada = 10
         self.salida_final = (192, 176)  # Punto fuera de la trampa
         self.puerta_salida = (192, 192) # Punto de la puerta de salida de la trampa para colision
         self.trampa_coordenadas = ((144, 192), (240, 224))  # Región de la trampa
-        self.siguiente_celda = None  # Almacena la próxima celda hacia la que se mueve el fantasma
-        self.celdas_para_emboscada = 10
         self.ultimo_cambio_modo = time.time()
         self.modo_perseguir = True  # Iniciar persiguiendo/emboscando para fantasmas azules y naranjas
 
@@ -111,27 +111,6 @@ class Fantasma:
             if tiempo_restante <= 0:
                 self.asustado = False  # Finaliza el estado asustado
                 self.velocidad = 2
-
-
-    def mover_en_direccion(self, direccion):    
-        # Mueve al fantasma en la dirección especificada si es posible.
-        if direccion == "ARRIBA":
-            self.y -= self.velocidad
-            self.direccion_actual = "ARRIBA"
-            return True
-        elif direccion == "ABAJO":
-            self.y += self.velocidad
-            self.direccion_actual = "ABAJO"
-            return True
-        elif direccion == "IZQUIERDA":
-            self.x -= self.velocidad
-            self.direccion_actual = "IZQUIERDA"
-            return True
-        elif direccion == "DERECHA":
-            self.x += self.velocidad
-            self.direccion_actual = "DERECHA"
-            return True
-        return False
 
 
     def draw(self):
