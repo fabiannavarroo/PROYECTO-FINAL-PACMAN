@@ -15,6 +15,7 @@ class Fantasma:
         self.asustado = False  # Indica si está en estado asustado
         self.tiempo_asustado = 0  # Temporizador para estado asustado
         self.tiempo_para_ser_comido = 10  # Duración por defecto del estado asustado
+        self.tiempo_trampa = time.time()  
         self.en_salida = False
         self.en_trampa = True  # Indica si está en la trampa
 
@@ -30,7 +31,7 @@ class Fantasma:
         self.x, self.y = self.x_inicial, self.y_inicial
         self.en_trampa = True
         self.en_salida = False
-        self.tiempo_espera = time.time()
+        self.tiempo_trampa = time.time()
 
     def mover_a_salida(self):
         # Mueve al fantasma hacia la salida de la trampa
