@@ -11,61 +11,77 @@ import pyxel
 
 class Tablero:
     def __init__(self):
-        # Inicializar la ventana del juego con Pyxel
-        pyxel.init(400, 400, title="Pacman", fps=30)  # Crear la pantalla
-        pyxel.load("assets/recursos.pyxres")  # Cargar recursos gráficos
+        # Inicializar la ventana del juego con Pyxel, tamaño 400x400, título "Pacman" y 30 fps
+        pyxel.init(400, 400, title="Pacman", fps=30)
+        # Cargar los recursos gráficos desde el archivo .pyxres
+        pyxel.load("assets/recursos.pyxres")
+        # Iniciar la música (m0) en el canal 0 en bucle
         pyxel.playm(0,0,True)
 
-        # Inicializar elementos del juego
-        self.bloque = Bloque()  # Mapa del juego
-        self.pacman = Pacman(192, 304)  # Pacman y su posición inicial
-        self.fantasmas = [  # Lista de fantasmas con sus posiciones iniciales
+        # Crear el objeto bloque, que representa el mapa
+        self.bloque = Bloque()  
+        # Crear el objeto Pacman, en la posición 192, 304
+        self.pacman = Pacman(192, 304)
+        # Crear la lista de fantasmas con sus posiciones iniciales
+        self.fantasmas = [
             FantasmaRojo(160, 208),
-            FantasmaRosa(181, 208),
+            FantasmaRosa(181, 176),
             FantasmaAzul(203, 208),
             FantasmaNaranja(225, 208),
         ]
-        self.puntos = Puntos(OBJETOS)  # Puntos y frutas
+        # Crear el objeto Puntos, que manejará los puntos, frutas y regalos
+        self.puntos = Puntos(OBJETOS)
 
-        # Generar los puntos en el mapa
+        # Generar puntos por todo el mapa
         self.generar_puntos()
 
-        # Controlar el mensaje READY!
-        self.mostrar_ready = True  # Indica si se muestra el mensaje READY!
+        # Variable para controlar el mensaje READY!
+        self.mostrar_ready = True
         self.contador_ready = 0
 
-        # Controlar el mensaje GAME OVER
+        # Variables para controlar GAME OVER
         self.contador_game_over = 0
         self.mostrar_fin = False
 
-        # Controlar la animación de muerte final
+        # Controlar la animación de muerte final de Pac-Man
         self.animacion_muerte_finalizada = False
 
-        # Controlar la victoria
+        # Controlar la condición de victoria
         self.victoria = False
 
-        # Iniciar el bucle principal del juego
+        # Distancia de emboscada para el fantasma rosa
+        self.celdas_para_emboscada = 4
+
+        # Iniciar el bucle principal de Pyxel
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        if self.pacman.vidas > 0:  # Mientras Pacman tenga vidas
+        # Este método se llama cada frame, aquí se actualiza el estado del juego
+        if self.pacman.vidas > 0:
+            # Mientras Pac-Man tenga vidas
             if self.contador_ready < 90:
-                self.contador_ready += 1 
+                # Mostrar el mensaje READY! por un tiempo
+                self.contador_ready += 1
                 if self.contador_ready == 90:
-                    self.mostrar_ready = False  # Ocultar READY! después de 3 segundos
+                    self.mostrar_ready = False  # Ocultar READY! después de un tiempo
 
             if not self.pacman.en_muerte:
-                # Actualizar elementos del juego
-                self.movimineto_pacman()  # Mover Pacman
-                self.comer_puntos()  # Detectar puntos comidos
-                self.comer_fruta()  # Detectar frutas comidas
-                self.generar_fruta()  # Generar frutas cada 30s
+                # Actualizar el juego si Pac-Man no está en estado de muerte
                 
+                # Mover Pac-Man según la dirección del jugador
+                self.movimineto_pacman()
+                # Comprobar si Pac-Man come puntos
+                self.comer_puntos()
+                # Comprobar si Pac-Man come fruta
+                self.comer_fruta()
+                # Intentar generar una fruta cada cierto tiempo
+                self.generar_fruta()
 
+                # Actualizar cada fantasma
                 for index, fantasma in enumerate(self.fantasmas):
                     if fantasma.en_trampa():
-                        # Ajustar el tiempo de espera inicial basado en el índice del fantasma
-                        tiempo_espera = (index + 1) * 2  # Tiempo escalonado único por fantasma
+                        # Si el fantasma está en la trampa, esperar un tiempo antes de que salga
+                        tiempo_espera = (index + 1) * 2
                         if time.time() - fantasma.tiempo_trampa >= tiempo_espera:
                             fantasma.salir_de_trampa()
                     else:
@@ -79,190 +95,195 @@ class Tablero:
                         elif isinstance(fantasma, FantasmaNaranja):
                             self.mover_fantasma_naranja(fantasma)
 
-                    fantasma.actualizar_estado()  # Actualizar estado de los fantasmas
+                    # Actualizar el estado del fantasma (por ejemplo, dejar de estar asustado tras un tiempo)
+                    fantasma.actualizar_estado()
 
-                self.colision_fantasmas_con_pacman()  # Colisiones con fantasmas
+                # Comprobar colisiones entre fantasmas y Pac-Man
+                self.colision_fantasmas_con_pacman()
+                # Comprobar colisiones de fantasmas con el mapa
                 self.colision_fantasmas(fantasma.x, fantasma.y)
 
-                # Comprobar si no quedan puntos ni regalos y sino quedan pues subimos de nivel
+                # Comprobar si se han comido todos los puntos y regalos
                 if self.comprobar_puntos_restantes():
+                    # Si hay un siguiente nivel, pasar al siguiente
                     if self.bloque.nivel + 1 in self.bloque.mapas:
-                        self.bloque.nivel += 1 # Subir de nivel
-                        self.bloque.cargar_mapa() # Cargar el mapa del nuevo nivel
-                        self.reiniciar_puntos() # Reiniciar los puntos
-                        self.reiniciar_tablero() # Reiniciar el tablero
+                        self.bloque.nivel += 1
+                        self.bloque.cargar_mapa()
+                        self.reiniciar_puntos()
+                        self.reiniciar_tablero()
                     else:
+                        # Si no hay más niveles, ganar el juego
                         self.victoria = True
                         
             else:
-                # Ejecutar animación de muerte
+                # Si Pac-Man está en muerte, ejecutar la animación de muerte
                 self.animar_muerte()
 
-        else: # Pac-Man no tiene vidas
+        else:
+            # Pac-Man no tiene vidas
             if not self.animacion_muerte_finalizada:
-                # Ejecutar animación de muerte final
+                # Ejecutar la animación de muerte final de Pac-Man
                 self.animar_muerte()
-                if self.pacman.animacion_frame >= len(ANIMACION_MUERTE):  # Verificar si terminó
-                    self.animacion_muerte_finalizada = True  # Marcar como finalizada
+                if self.pacman.animacion_frame >= len(ANIMACION_MUERTE):
+                    self.animacion_muerte_finalizada = True
             else:
-                # Incrementar contador para mostrar GAME OVER después
+                # Después de la animación de muerte final, esperar antes de mostrar GAME OVER fijo
                 self.contador_game_over += 1
-        
 
     def draw(self):
-        pyxel.cls(0)  # Limpiar pantalla
-        self.dibujar_letras_mapa(120,16, "HIGHSCORE")
+        # Este método se llama cada frame para dibujar la escena
+        pyxel.cls(0)  # Limpiar la pantalla
+        self.dibujar_letras_mapa(120,16,"HIGHSCORE")
         self.puntos.ver_puntuacion(195,16)
         if self.pacman.vidas > 0:
-            # Dibujar todos los elementos del juego
+            # Mientras Pac-Man tenga vidas, dibujar el mapa y los objetos
             self.bloque.draw()  # Dibujar el mapa
             if self.pacman.en_muerte:
-                # Dibujar la animación de muerte
+                # Si Pac-Man está en animación de muerte, dibujar solo la animación
                 self.animar_muerte()
             else:
-                self.puntos.draw()  # Dibujar puntos, frutas y puntuación
-                self.pacman.ver_vidas(10, 10)  # Mostrar vidas restantes
-                self.pacman.draw()  # Dibujar Pac-Man
+                # Dibujar puntos, frutas, puntuación
+                self.puntos.draw()
+                # Dibujar las vidas de Pac-Man
+                self.pacman.ver_vidas(10, 10)
+                # Dibujar a Pac-Man
+                self.pacman.draw()
+                # Dibujar los fantasmas
                 for fantasma in self.fantasmas:
-                    fantasma.draw()  # Dibujar fantasmas
-                
-                 # Dibujar READY! si está activo
+                    fantasma.draw()
+
+                # Dibujar el mensaje READY! si corresponde
                 if self.mostrar_ready:
                     self.animar_ready()
 
-                # Mostrar puntos cuando come fantasmas
-                if self.pacman.mostrar_puntos and time.time() - self.pacman.texto_tiempo_inicio < 1.5:  # Mostrar por 1.5 segundos
+                # Si Pac-Man ha comido un fantasma, mostrar los puntos que ganó temporalmente
+                if self.pacman.mostrar_puntos and time.time() - self.pacman.texto_tiempo_inicio < 1.5:
                     pyxel.text(self.pacman.posicion_fantasma_comido_x, self.pacman.posicion_fantasma_comido_y, "+200 puntos", pyxel.COLOR_RED)
                 else:
                     self.pacman.mostrar_puntos = False
 
-            # Dibujar la victoria
+            # Si se ganó la partida, limpiar pantalla y volver a dibujar el mapa
             if self.victoria:
                 pyxel.cls(0)
                 self.bloque.draw()
         else:
-            # Mostrar GAME OVER si no hay vidas
+            # Si Pac-Man no tiene vidas, mostrar GAME OVER
             pyxel.cls(0)
             self.bloque.draw()
             self.animar_muerte()
             self.animar_fin()
 
-
-#--------------------------------------------------------------------REINICIO--------------------------------------------------------------------# 
+    #--------------------------------------------------------------------REINICIO--------------------------------------------------------------------#
 
     def reiniciar_fantasmas(self):
+        # Reiniciar fantasmas a su posición original después de una muerte o cambio de nivel
         for fantasma in self.fantasmas:
             fantasma.volver_a_posicion_inicial()
-            fantasma.siguiente_celda = None  # Limpiar la ruta almacenada
-            fantasma.tiempo_trampa = time.time()  # Reiniciar temporizador
-
+            fantasma.siguiente_celda = None
+            fantasma.tiempo_trampa = time.time()
 
     def reiniciar_tablero(self):
-        # Reinicia las posiciones iniciales de los personajes y termina la animación de muerte.
-        self.mostrar_ready = True  # Volver a mostrar READY!
-        self.contador_ready = 0  # Restablecer duración del mensaje READY!
-        self.bloque.cargar_mapa()  # Recargar el mapa del nivel actual
-        self.reiniciar_posiciones()  # Reiniciar posición de Pacman y Fantasmas
-        self.pacman.en_muerte = False  # Finalizar estado de muerte
-        self.pacman.animacion_frame = 0  # Reiniciar animación de muerte
-
+        # Reinicia las condiciones iniciales después de la animación de muerte o al cambiar de nivel
+        self.mostrar_ready = True
+        self.contador_ready = 0
+        self.bloque.cargar_mapa()
+        self.reiniciar_posiciones()
+        self.pacman.en_muerte = False
+        self.pacman.animacion_frame = 0
 
     def reiniciar_posiciones(self):
-        # Reiniciar posiciones de Pac-Man y fantasmas después de la animación
-        self.pacman.x, self.pacman.y = 192, 304  # Posición inicial de Pac-Man
+        # Reiniciar las posiciones de Pac-Man y fantasmas a sus posiciones iniciales
+        self.pacman.x, self.pacman.y = 192, 304
         for fantasma in self.fantasmas:
             fantasma.volver_a_posicion_inicial()
-        self.pacman.reiniciando = False 
-
+        self.pacman.reiniciando = False
 
     def reiniciar_puntos(self):
-        # Reinica los puntos
-        self.puntos.regalos = [(16, 304), (368, 304), (16, 80),(368, 80)] # Coordenadas de los regalos
-        self.puntos.lista_puntos = [] # Lista de puntos generados
+        # Reiniciar los puntos, regalos y frutas al cambiar de nivel
+        self.puntos.regalos = [(16, 304), (368, 304), (16, 80),(368, 80)]
+        self.puntos.lista_puntos = []
         self.generar_puntos()
-        self.puntos.ultimo_tiempo_fruta = time.time()  # Tiempo de la última fruta generada
-        self.puntos.fruta_actual = None  # Información de la fruta actual
-        self.puntos.posicion_fruta = None  # Posición actual de la fruta
-        self.puntos.animacion_activa = False  # Indica si hay animación activa
+        self.puntos.ultimo_tiempo_fruta = time.time()
+        self.puntos.fruta_actual = None
+        self.puntos.posicion_fruta = None
+        self.puntos.animacion_activa = False
         self.puntos.animacion_contador = 0
 
-#--------------------------------------------------------------------ANIMACIONES--------------------------------------------------------------------# 
+    #--------------------------------------------------------------------ANIMACIONES--------------------------------------------------------------------#
+
     def animar_ready(self):
-        # Animación del mensaje READY!
-        if self.contador_ready < 90:  # Duración de la animación
+        # Animación del mensaje READY! durante los primeros segundos del nivel
+        if self.contador_ready < 90:
+            # Alternar el mensaje cada cierto tiempo para parpadear
             if (self.contador_ready // 10) % 2 == 0:
-                self.dibujar_letras_mapa(180,240,"READY!")  # Mostrar el texto "READY!"
+                self.dibujar_letras_mapa(180,240,"READY!")
             else:
-                pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio
+                pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0)
         else:
-            # Mantener el texto visible 
+            # Mantener el texto en blanco después del tiempo
             pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0)
-        
 
     def animar_fin(self):
-        # Animación de GAME OVER
-        if self.contador_game_over < 70:  # Duración de la animación
+        # Animación del mensaje GAME OVER cuando se acaban las vidas de Pac-Man
+        if self.contador_game_over < 70:
             if (self.contador_game_over // 10) % 2 == 0:
-                self.dibujar_letras_mapa(185,208,"GAME OVER")  # Mostrar el texto "GAME OVER"
+                self.dibujar_letras_mapa(185,208,"GAME OVER")
             else:
-                pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0) # dibujar un vacio
+                pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0)
         else:
-            # Mantener el texto visible 
+            # Mantener el texto "GAME OVER" visible
             self.dibujar_letras_mapa(185,208,"GAME OVER")
 
     def animar_muerte(self):
+        # Animación de la muerte de Pac-Man
         if self.pacman.animacion_frame < len(ANIMACION_MUERTE):
-            # Dibuja solo la animación de muerte de Pac-Man
             sprite_x, sprite_y = ANIMACION_MUERTE[self.pacman.animacion_frame]
-            pyxel.cls(0)  # Limpia la pantalla
-            self.bloque.draw()  # Dibuja el mapa
+            pyxel.cls(0)
+            self.bloque.draw()
             pyxel.blt(self.pacman.x, self.pacman.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
             
-            # Actualizar frame de la animación
-            if pyxel.frame_count % 5 == 0:  # Cambiar cada 5 frames
+            # Cambiar de frame cada cierto número de frames
+            if pyxel.frame_count % 5 == 0:
                 self.pacman.animacion_frame += 1
         else:
-            # Finaliza la animación de muerte
+            # Una vez terminada la animación, reiniciar el tablero o marcar el fin del juego
             if self.pacman.vidas > 0:
-                self.reiniciar_tablero()  # Reinicia el tablero si aún hay vidas
+                self.reiniciar_tablero()
             else:
-                self.animacion_muerte_finalizada = True  # Marca la animación como finalizada
-                self.pacman.en_muerte = False  # Asegúrate de limpiar este estado
+                self.animacion_muerte_finalizada = True
+                self.pacman.en_muerte = False
 
-
-#--------------------------------------------------------------------MAPA--------------------------------------------------------------------# 
+    #--------------------------------------------------------------------MAPA--------------------------------------------------------------------#
 
     def dibujar_letras_mapa(self, x, y, sprite):
-        # Dibuja las letras en el mapa
+        # Dibuja textos como READY!, GAME OVER o HIGHSCORE, usando los datos en TEXTO
         sprite = TEXTO[sprite]
         pyxel.blt(x, y, 0, sprite["Coordenadas"][0], sprite["Coordenadas"][1], sprite["Tamaño"][0], sprite["Tamaño"][1], colkey=0)
 
-
-    
     def esta_en_zona_prohibida(self, x, y):
-        # Verificar si está en una zona prohibida
+        # Verificar si la posición (x, y) está en una zona prohibida (sin puntos)
         for lugar in self.puntos.zonas_prohibidas[self.bloque.nivel]:
             x1, y1, x2, y2 = lugar
-            if x1 <= x <= x2 and y1 <= y <= y2:  
+            if x1 <= x <= x2 and y1 <= y <= y2:
                 return True
 
-        # Verificar si hay un muro
+        # Comprobar también si hay un muro
         if self.bloque.colision(x, y):
             return True
         return False
-    
 
     def encontrar_celdas_vacias(self):
-    # Encuentra celdas vacías donde no haya puntos, frutas, regalos ni muros
+        # Encuentra celdas vacías donde colocar frutas u otros objetos
         celdas_vacias = []
         for x in range(0, pyxel.width, 16):
             for y in range(0, pyxel.height, 16):
-                # Verifica si (x, y) no está en la lista de puntos de manera explícita
+                # Verificar que no haya un punto en esa celda
                 punto_encontrado = False
                 for p in self.puntos.lista_puntos:
                     if (x, y) == (p[0], p[1]):
                         punto_encontrado = True
                 
+                # Debe no estar en zona prohibida, no ser la fruta actual ni un regalo
                 if (not punto_encontrado and
                     not self.esta_en_zona_prohibida(x, y) and
                     (x, y) != self.puntos.posicion_fruta and
@@ -270,99 +291,123 @@ class Tablero:
                     celdas_vacias.append((x, y))
         return celdas_vacias
 
+    #--------------------------------------------------------------------PUNTOS--------------------------------------------------------------------#
 
-
-#--------------------------------------------------------------------PUNTOS--------------------------------------------------------------------# 
-    
     def generar_puntos(self):
-        # Poner los puntos en el mapa
+        # Generar los puntos en todas las celdas válidas del mapa
         for x in range(0, pyxel.width, 16):
             for y in range(0, pyxel.height, 16):
                 if not self.esta_en_zona_prohibida(x, y) and (x, y) not in self.puntos.regalos:
                     self.puntos.lista_puntos.append((x, y, "BASTON"))
 
-
     def generar_fruta(self):
-        # Genera una fruta en una celda vacía
+        # Generar una fruta cada 30 segundos, si es posible
         if time.time() - self.puntos.ultimo_tiempo_fruta < 30:
-            return False  # No generar una nueva fruta si no han pasado 30 segundos
+            return False
 
-        # Seleccionar un objeto aleatorio sin regalos ni bastones
         objetos_dispo = ["CEREZA", "FRESA", "NARANJA", "MANZANA", "MELON", "PARAGUAS", "CAMPANA", "LLAVE"]
         self.puntos.fruta_actual = random.choice(objetos_dispo)
 
-        # Elegir una posición aleatoria en celdas vacías
         celdas_vacias = self.encontrar_celdas_vacias()
-        if celdas_vacias:  # Si existen posiciones vacías, genera la fruta y permite que se ejecute la animación
+        if celdas_vacias:
             self.puntos.posicion_fruta = random.choice(celdas_vacias)
-            self.puntos.animacion_activa = True  # Activa la animación
-            self.puntos.animacion_contador = 0  # Reinicia el contador de la animación
+            self.puntos.animacion_activa = True
+            self.puntos.animacion_contador = 0
         else:
-            self.puntos.posicion_fruta = None  # No hay espacio libre para generar una fruta
+            self.puntos.posicion_fruta = None
 
-        # Actualiza el tiempo de la última fruta generada
         self.puntos.ultimo_tiempo_fruta = time.time()
 
-
     def comprobar_puntos_restantes(self):
-        # Verifica si no quedan puntos ni regalos
+        # Comprueba si ya no quedan puntos ni regalos
         if len(self.puntos.lista_puntos) == 0 and len(self.puntos.regalos) == 0:
             return True
         return False
 
-#--------------------------------------------------------------------FANTASMAS--------------------------------------------------------------------#
+    #--------------------------------------------------------------------FANTASMAS--------------------------------------------------------------------#
 
     def mover_fantasma_rojo(self, fantasma):
-        #Controla el movimiento del fantasma rojo dependiendo de su estado y el del juego.
+        # Mover fantasma rojo, siguiendo a Pac-Man si no asustado, o alejándose si asustado
         if self.victoria or self.pacman.en_muerte or fantasma.en_trampa():
-            return False # No mover el fantasma si Pac-Man ha ganado o está en estado de muerte
+            return False
 
         if fantasma.asustado:
-            self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
+            self.alejarse_de_pacman(fantasma)
         else:
-            self.seguir_a_pacman(fantasma)  # Movimiento siguiendo a Pac-Man
+            self.seguir_a_pacman(fantasma)
 
     def mover_fantasma_rosa(self, fantasma):
-        # Controla el movimiento del fantasma basado en emboscadas
+        # Fantasma rosa: intenta emboscar a Pac-Man
         if self.victoria or self.pacman.en_muerte or fantasma.en_trampa():
-            return False # No mover el fantasma si Pac-Man ha ganado o está en estado de muerte
+            return False
 
         if fantasma.asustado:
-            self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
+            self.alejarse_de_pacman(fantasma)
         else:
-            pass
+            # Intentar emboscar a Pac-Man
+            posicion_emboscada = self.predecir_posicion_pacman(self.celdas_para_emboscada)
+            self.movimiento_emboscada(fantasma, posicion_emboscada)
+
+    def predecir_posicion_pacman(self, casillas_adelante):
+        # Predecir la posición futura de Pac-Man según su dirección y un número de celdas
+        dx, dy = 0, 0
+        if self.pacman.direccion_actual == PACMAN_ARRIBA:
+            dy = -16 * casillas_adelante
+        elif self.pacman.direccion_actual == PACMAN_ABAJO:
+            dy = 16 * casillas_adelante
+        elif self.pacman.direccion_actual == PACMAN_IZQUIERDA:
+            dx = -16 * casillas_adelante
+        elif self.pacman.direccion_actual == PACMAN_DERECHA:
+            dx = 16 * casillas_adelante
+
+        pos_futura = ((self.pacman.x // 16) * 16 + dx, (self.pacman.y // 16) * 16 + dy)
+        return pos_futura
+
+    def movimiento_emboscada(self, fantasma, objetivo):
+        # Mover el fantasma rosa hacia la posición emboscada o hacia Pac-Man si no hay ruta
+        if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
+            inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
+            ruta = self.buscar_ruta_simple(inicio, objetivo)
+
+            if ruta and len(ruta) > 1:
+                fantasma.siguiente_celda = ruta[1]
+            else:
+                # Si no hay ruta a la emboscada, seguir a Pac-Man directamente
+                objetivo_pacman = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
+                ruta = self.buscar_ruta_simple(inicio, objetivo_pacman)
+                if ruta and len(ruta) > 1:
+                    fantasma.siguiente_celda = ruta[1]
+                else:
+                    fantasma.siguiente_celda = None
+
+        self.mover_hacia_siguiente_celda(fantasma)
 
     def mover_fantasma_azul(self, fantasma):
-        #Controla el movimiento del fantasma dependiendo de su estado y el del juego.
+        # Fantasma azul: no tiene lógica especial aquí, se podría implementar
         if self.victoria or self.pacman.en_muerte or fantasma.en_trampa():
-            return False # No mover el fantasma si Pac-Man ha ganado o está en estado de muerte
+            return False
 
         if fantasma.asustado:
-            self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
-        else:
-            pass
+            self.alejarse_de_pacman(fantasma)
 
     def mover_fantasma_naranja(self, fantasma):
-        #Controla el movimiento del fantasma dependiendo de su estado y el del juego.
+        # Fantasma naranja: no tiene lógica especial aquí, se podría implementar
         if self.victoria or self.pacman.en_muerte or fantasma.en_trampa():
-            return False # No mover el fantasma si Pac-Man ha ganado o está en estado de muerte
+            return False
 
         if fantasma.asustado:
-            self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
-        else:
-            pass
+            self.alejarse_de_pacman(fantasma)
 
+    #--------------------------------------------------------------------MOVIMIENTO--------------------------------------------------------------------#
 
-
-#--------------------------------------------------------------------MOVIMIENTO--------------------------------------------------------------------# 
-
-    def movimineto_pacman(self,):
-        if self.pacman.vidas <= 0 or self.pacman.en_muerte or self.pacman.reiniciando:  # Si no hay vidas, está en muerte o reiniciando, no se mueve
+    def movimineto_pacman(self):
+        # Actualiza la posición de Pac-Man según las teclas presionadas y evita colisiones
+        if self.pacman.vidas <= 0 or self.pacman.en_muerte or self.pacman.reiniciando:
             return False
 
         nueva_x, nueva_y = self.pacman.x, self.pacman.y
 
-        # Detectar entrada del jugador para cambiar dirección
+        # Leer las teclas para cambiar dirección pendiente
         if pyxel.btnp(pyxel.KEY_UP):
             self.pacman.direccion_pendiente = PACMAN_ARRIBA
         elif pyxel.btnp(pyxel.KEY_DOWN):
@@ -380,7 +425,7 @@ class Tablero:
         elif pyxel.btnp(pyxel.KEY_D):
             self.pacman.direccion_pendiente = PACMAN_DERECHA
 
-        # Verificar si la dirección pendiente es válida
+        # Comprobar si la dirección pendiente se puede adoptar (no hay muro en esa dirección)
         if self.pacman.direccion_pendiente:
             if self.pacman.direccion_pendiente == PACMAN_ARRIBA and not self.bloque.colision(self.pacman.x, self.pacman.y - self.pacman.velocidad):
                 self.pacman.direccion_actual = self.pacman.direccion_pendiente
@@ -391,7 +436,7 @@ class Tablero:
             elif self.pacman.direccion_pendiente == PACMAN_DERECHA and not self.bloque.colision(self.pacman.x + self.pacman.velocidad, self.pacman.y):
                 self.pacman.direccion_actual = self.pacman.direccion_pendiente
 
-        # Mover en la dirección actual
+        # Mover Pac-Man en la dirección actual si no hay colisión
         if self.pacman.direccion_actual == PACMAN_ARRIBA:
             nueva_y -= self.pacman.velocidad
         elif self.pacman.direccion_actual == PACMAN_ABAJO:
@@ -401,22 +446,20 @@ class Tablero:
         elif self.pacman.direccion_actual == PACMAN_DERECHA:
             nueva_x += self.pacman.velocidad
 
-        # Verificar colisiones
+        # Comprobar colisiones con muros
         if not self.bloque.colision(nueva_x, self.pacman.y):
             self.pacman.x = nueva_x
         if not self.bloque.colision(self.pacman.x, nueva_y):
             self.pacman.y = nueva_y
 
-        #  Portales
+        # Portales: si Pac-Man entra en un portal, salir por el otro lado del mapa
         if (self.pacman.x, self.pacman.y) in PORTALES:
             self.pacman.x, self.pacman.y = PORTALES[(self.pacman.x, self.pacman.y)]
 
         print("Pacman", self.pacman.x, self.pacman.y)
 
-    
-    
     def seguir_a_pacman(self, fantasma):
-        # Persigue a Pac-Man utilizando rutas simples y movimientos paso a paso.
+        # El fantasma busca una ruta simple hacia la posición de Pac-Man
         if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
             inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
             objetivo = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
@@ -429,42 +472,34 @@ class Tablero:
 
         self.mover_hacia_siguiente_celda(fantasma)
 
-
     def alejarse_de_pacman(self, fantasma):
-        # Se aleja de Pac-Man utilizando celdas que aumentan la distancia entre ambos.
+        # El fantasma busca una celda cercana que lo aleje de Pac-Man
         if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
             inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
             pacman_pos = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
 
-            # Evaluar todas las celdas y elegir la que maximiza la distancia a Pac-Man
             opciones = []
             for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
                 posible_celda = (inicio[0] + dx, inicio[1] + dy)
-                if not self.colision_fantasmas(posible_celda[0], posible_celda[1]):  # Solo considerar celdas sin colisión
+                if not self.colision_fantasmas(posible_celda[0], posible_celda[1]):
                     distancia = abs(posible_celda[0] - pacman_pos[0]) + abs(posible_celda[1] - pacman_pos[1])
                     opciones.append((distancia, posible_celda))
 
-            # Ordenar por mayor distancia y seleccionar la mejor opción
             if opciones:
                 mayor_distancia = -1
                 mejor_celda = None
-
-                # Encontrar la celda con la mayor distancia
                 for distancia, celda in opciones:
                     if distancia > mayor_distancia:
                         mayor_distancia = distancia
                         mejor_celda = celda
-
-                fantasma.siguiente_celda = mejor_celda  # Asignar la mejor celda
+                fantasma.siguiente_celda = mejor_celda
             else:
-                fantasma.siguiente_celda = None  # No hay celdas válidas  # No hay celdas válidas
+                fantasma.siguiente_celda = None
 
-        # Movimiento paso a paso hacia la siguiente celda
         self.mover_hacia_siguiente_celda(fantasma)
 
-
     def mover_hacia_siguiente_celda(self, fantasma):
-        # Mueve al fantasma hacia la celda calculada.
+        # Mueve el fantasma hacia la siguiente celda de su ruta
         if fantasma.siguiente_celda:
             dx = fantasma.siguiente_celda[0] - fantasma.x
             dy = fantasma.siguiente_celda[1] - fantasma.y
@@ -483,14 +518,23 @@ class Tablero:
                 fantasma.direccion_actual = "ARRIBA"
 
     def buscar_ruta_simple(self, inicio, objetivo):
-        # Encuentra una ruta básica hacia el objetivo utilizando búsqueda en anchura (BFS).
+        # Búsqueda en anchura para encontrar una ruta simple entre inicio y objetivo
+        # Se limita el número de pasos para evitar que se cuelgue
+        max_pasos = 500
         cola = deque([inicio])
         visitados = {inicio: None}
+        pasos = 0
 
         while cola:
             actual = cola.popleft()
+            pasos += 1
+
+            if pasos > max_pasos:
+                # Si excede el número máximo de pasos, abandonar la búsqueda para evitar que vaya lento el juego
+                return None
 
             if actual == objetivo:
+                # Si se encontró el objetivo buscar la ruta
                 ruta = []
                 while actual is not None:
                     ruta.append(actual)
@@ -500,91 +544,89 @@ class Tablero:
 
             for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
                 posible_celda = (actual[0] + dx, actual[1] + dy)
-                if posible_celda not in visitados and not self.colision_fantasmas(posible_celda[0], posible_celda[1]):
+                if posible_celda not in visitados and not self.bloque.colision(posible_celda[0], posible_celda[1]):
                     visitados[posible_celda] = actual
                     cola.append(posible_celda)
 
         return None
-    
-#--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------# 
+
+    #--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------#
 
     def colision_fantasmas_con_pacman(self):
-        if self.pacman.en_muerte or self.pacman.reiniciando or self.pacman.vidas <= 0:  # Si está muerto, reiniciando o sin vidas, no revisa colisiones
+        # Comprobar si algún fantasma colisiona con Pac-Man
+        if self.pacman.en_muerte or self.pacman.reiniciando or self.pacman.vidas <= 0:
             return False
 
-        # Calcular las posiciones centrales de Pac-Man y los fantasmas
-        pacman_x = self.pacman.x + 8  # Centrar la posición de Pac-Man
+        pacman_x = self.pacman.x + 8
         pacman_y = self.pacman.y + 8
 
         for fantasma in self.fantasmas:
-            fantasma_x = fantasma.x + 8  # Centrar la posicion del fantasma
+            fantasma_x = fantasma.x + 8
             fantasma_y = fantasma.y + 8
 
-            # Detectar si hay colisión 
+            # Si la distancia es pequeña, hay colisión
             if abs(pacman_x - fantasma_x) < 16 and abs(pacman_y - fantasma_y) < 16:
                 if fantasma.asustado:
-                    self.puntos.puntos += 200  # Añade puntos por comer un fantasma
+                    # Si el fantasma está asustado, Pac-Man lo come y gana 200 puntos
+                    self.puntos.puntos += 200
                     self.fantasmas_comido = True
-                    self.pacman.mostrar_puntos = True  # Poder mostrar puntos
-                    self.pacman.texto_tiempo_inicio = time.time()  # Guarda el tiempo actual
+                    self.pacman.mostrar_puntos = True
+                    self.pacman.texto_tiempo_inicio = time.time()
                     self.pacman.posicion_fantasma_comido_x, self.pacman.posicion_fantasma_comido_y = self.pacman.x, self.pacman.y
-                    fantasma.volver_a_trampa()  # Enviar fantasma a la trampa
+                    fantasma.volver_a_trampa()
                     return True
                 else:
-                    self.pacman.perder_vida()  # Pac-Man pierde una vida
+                    # Si el fantasma no está asustado, Pac-Man pierde una vida
+                    self.pacman.perder_vida()
                     return True
-        return False  # No hay colision
-    
+        return False
 
     def colision_fantasmas(self, x, y):
-        # Verifica si hay colisión, quitando la región de la puerta de salida
+        # Comprobar si una posición (x, y) colisiona con muros o zonas prohibidas para el fantasma
         puerta_x, puerta_y = PUERTA_SALIDA
         sprite_tamaño = self.bloque.celda_tamaño
 
-        # Quita la región de la puerta de salida
+        # Permitir pasar por la puerta de la trampa
         if puerta_x <= x < puerta_x + sprite_tamaño and puerta_y <= y < puerta_y + sprite_tamaño:
-            return False  # No hay colisión en la puerta de salida
+            return False
 
-        # Verificar  normales en los bloques del mapa
-        return self.bloque.colision(x, y)
+        if self.bloque.colision(x, y):
+            return True
 
+        if self.esta_en_zona_prohibida(x, y):
+            return True
+
+        return False
 
     def detectar_colision_puntos(self, pacman_x, pacman_y, punto_x, punto_y):
         # Detecta si Pac-Man ha comido un punto
         return abs(pacman_x - punto_x) < 10 and abs(pacman_y - punto_y) < 10
-    
-    
+
     def comer_puntos(self):
-        # Detectar si Pac-Man come puntos
+        # Comprueba si Pac-Man ha comido puntos o regalos
         puntos_sin_comer = []
         for x, y, tipo in self.puntos.lista_puntos:
             if self.detectar_colision_puntos(self.pacman.x, self.pacman.y, x, y):
-                # Incrementar puntos según el tipo
                 self.puntos.puntos += OBJETOS[tipo]["Puntos"]
             else:
                 puntos_sin_comer.append((x, y, tipo))
         self.puntos.lista_puntos = puntos_sin_comer
 
-        # Detectar si Pac-Man come un regalo
         regalos_sin_comer = []
         for x, y in self.puntos.regalos:
             if self.detectar_colision_puntos(self.pacman.x, self.pacman.y, x, y):
-                # Activar estado asustado para los fantasmas
+                # Comer un regalo hace que los fantasmas se pongan asustados
                 for fantasma in self.fantasmas:
                     fantasma.activar_asustado()
-                self.puntos.puntos += OBJETOS["REGALO"]["Puntos"]  # Incrementar los puntos por el regalo
+                self.puntos.puntos += OBJETOS["REGALO"]["Puntos"]
             else:
                 regalos_sin_comer.append((x, y))
         self.puntos.regalos = regalos_sin_comer
 
-
     def comer_fruta(self):
-        # Detecta si Pac-Man come la fruta actual.
+        # Comprueba si Pac-Man ha comido la fruta
         if self.puntos.posicion_fruta and self.detectar_colision_puntos(self.pacman.x, self.pacman.y, self.puntos.posicion_fruta[0], self.puntos.posicion_fruta[1]):
-            self.puntos.puntos += OBJETOS[self.puntos.fruta_actual]["Puntos"]  # Incrementa los puntos según la fruta
-            self.puntos.posicion_fruta = None  # Elimina la fruta actual
+            self.puntos.puntos += OBJETOS[self.puntos.fruta_actual]["Puntos"]
+            self.puntos.posicion_fruta = None
             self.puntos.fruta_actual = None
-
-
-
 
