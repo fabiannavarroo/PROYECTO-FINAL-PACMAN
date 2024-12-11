@@ -15,7 +15,7 @@ class Tablero:
         pyxel.init(400, 400, title="Pacman", fps=30)
         # Cargar los recursos gráficos desde el archivo .pyxres
         pyxel.load("assets/recursos.pyxres")
-        # Iniciar la música (m0) en el canal 0 en bucle
+        # Iniciar la música 
         pyxel.playm(0,0,True)
 
         # Crear el objeto bloque, que representa el mapa
