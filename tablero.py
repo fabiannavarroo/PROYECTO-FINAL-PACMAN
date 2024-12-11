@@ -330,19 +330,17 @@ class Tablero:
 
     def mover_fantasma_rojo(self, fantasma):
         # Fantasma rojo: persigue a Pac-Man
-        pass
-        '''if self.victoria or self.pacman.en_muerte:
+        if self.victoria or self.pacman.en_muerte:
             return False
 
         if fantasma.asustado:
             self.alejarse_de_pacman(fantasma)
         else:
-            self.seguir_a_pacman(fantasma)'''
+            self.seguir_a_pacman(fantasma)
 
     def mover_fantasma_rosa(self, fantasma):
         # Fantasma rosa: intenta emboscar a Pac-Man
-        pass
-    '''if self.victoria or self.pacman.en_muerte:
+        if self.victoria or self.pacman.en_muerte:
             return False
 
         if fantasma.asustado:
@@ -350,7 +348,7 @@ class Tablero:
         else:
             # Intentar emboscar a Pac-Man
             posicion_emboscada = self.predecir_posicion_pacman(self.celdas_para_emboscada)
-            self.movimiento_emboscada(fantasma, posicion_emboscada)'''
+            self.movimiento_emboscada(fantasma, posicion_emboscada)
 
 
     def mover_fantasma_azul(self, fantasma):
