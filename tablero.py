@@ -90,13 +90,13 @@ class Tablero:
                     else:
                         # Movimiento normal de los fantasmas fuera de la trampa
                         if isinstance(fantasma, FantasmaRojo):
-                            self.mover_fantasma_rojo(fantasma)
+                            self.mover_fantasma_rojo()
                         elif isinstance(fantasma, FantasmaRosa):
-                            self.mover_fantasma_rosa(fantasma)
+                            self.mover_fantasma_rosa()
                         elif isinstance(fantasma, FantasmaAzul):
-                            self.mover_fantasma_azul(fantasma)
+                            self.mover_fantasma_azul()
                         elif isinstance(fantasma, FantasmaNaranja):
-                            self.mover_fantasma_naranja(fantasma)
+                            self.mover_fantasma_naranja()
 
                     # Actualizar el estado del fantasma 
                     fantasma.actualizar_estado()
