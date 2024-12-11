@@ -88,7 +88,8 @@ class Tablero:
                     # Revisar si el fantasma está en la posición inicial
                     if fantasma.en_trampa:
                         # Esperar 2 segundos antes de moverlo a la salida
-                        if time.time() - fantasma.tiempo_espera >= 2:
+                        tiempo_espera = (index + 1) * 2
+                        if time.time() - fantasma.tiempo_trampa >= tiempo_espera:
                             if not fantasma.en_salida:
                                 fantasma.en_salida = True
                             fantasma.mover_a_salida()
