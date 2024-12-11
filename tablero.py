@@ -527,6 +527,21 @@ class Tablero:
                     fantasma.direccion_actual = dir_name
                     break
 
+    def predecir_posicion_pacman(self, casillas_adelante):
+        # Predecir la posición futura de Pac-Man según su dirección y un número de celdas
+        dx, dy = 0, 0
+        if self.pacman.direccion_actual == PACMAN_ARRIBA:
+            dy = -16 * casillas_adelante
+        elif self.pacman.direccion_actual == PACMAN_ABAJO:
+            dy = 16 * casillas_adelante
+        elif self.pacman.direccion_actual == PACMAN_IZQUIERDA:
+            dx = -16 * casillas_adelante
+        elif self.pacman.direccion_actual == PACMAN_DERECHA:
+            dx = 16 * casillas_adelante
+
+        pos_futura = ((self.pacman.x // 16) * 16 + dx, (self.pacman.y // 16) * 16 + dy)
+        return pos_futura
+
 
     #--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------#
 
