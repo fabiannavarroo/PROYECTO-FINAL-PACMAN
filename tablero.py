@@ -446,8 +446,8 @@ class Tablero:
 
     def colision_fantasmas(self, x, y):
         # Permitir el paso por la puerta de salida
-        if self.fantasmas.puerta_salida[0] <= x < self.fantasmas.puerta_salida[0] + self.bloque.celda_tamaño and \
-        self.fantasmas.puerta_salida[1] <= y < self.fantasmas.puerta_salida[1] + self.bloque.celda_tamaño:
+        if self.fantasma.puerta_salida[0] <= x < self.fantasma.puerta_salida[0] + self.bloque.celda_tamaño and \
+        self.fantasma.puerta_salida[1] <= y < self.fantasma.puerta_salida[1] + self.bloque.celda_tamaño:
             return False
         return self.bloque.colision(x, y)
 
