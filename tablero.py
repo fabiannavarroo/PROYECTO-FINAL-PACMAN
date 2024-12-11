@@ -438,13 +438,12 @@ class Tablero:
     
 
     def perseguir_a_pacman(self, fantasma, objetivo_x, objetivo_y):
-        # Mueve el fantasma hacia  Pac-Man, evitando retrocesos y colisiones.
-        x_actual, y_actual = fantasma.x, fantasma.y
-
-         # Comprobar si el fantasma está en un portal
+        # Comprobar si el fantasma está en un portal
         if self.usar_portal(fantasma):
             return False
-
+    
+        # Mueve el fantasma hacia  Pac-Man, evitando retrocesos y colisiones.
+        x_actual, y_actual = fantasma.x, fantasma.y
 
         # Lista de direcciones posibles
         posibles_direcciones = [
