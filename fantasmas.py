@@ -61,40 +61,6 @@ class Fantasma:
             self.x, self.y = 225, 208
         
 
-    def salir_de_trampa(self):
-        # Verifica si el tiempo de espera mínimo ha pasado
-        if time.time() - self.tiempo_trampa < 2:
-            return
-
-        # Mover hacia la puerta de salida
-        if self.en_trampa():
-            dx = self.puerta_salida[0] - self.x
-            dy = self.puerta_salida[1] - self.y
-
-            if abs(dx) > 0:  # Mover en el eje X hacia la puerta
-                self.x += self.velocidad if dx > 0 else -self.velocidad
-            elif abs(dy) > 0:  # Mover en el eje Y hacia la puerta
-                self.y += self.velocidad if dy > 0 else -self.velocidad
-
-            # Si llega a la puerta de salida, marcar para ir a la salida final
-            if (self.x, self.y) == self.puerta_salida:
-                self.siguiente_celda = self.salida_final
-            return
-
-        # Mover hacia la salida final
-        if self.siguiente_celda:
-            dx = self.salida_final[0] - self.x
-            dy = self.salida_final[1] - self.y
-
-            if abs(dx) > 0:  # Mover en el eje X hacia la salida final
-                self.x += self.velocidad if dx > 0 else -self.velocidad
-            elif abs(dy) > 0:  # Mover en el eje Y hacia la salida final
-                self.y += self.velocidad if dy > 0 else -self.velocidad
-
-            # Si llega a la salida final, termina el estado de trampa
-            if (self.x, self.y) == self.salida_final:
-                self.siguiente_celda = None
-
 
     def volver_a_posicion_inicial(self):
         self.x = self.x_inicial
@@ -111,14 +77,6 @@ class Fantasma:
             if tiempo_restante <= 0:
                 self.asustado = False  # Finaliza el estado asustado
                 self.velocidad = 2
-
-
-    def colision_fantasmas(self, x, y):
-        # Permitir el paso por la puerta de salida
-        if self.fantasmas.puerta_salida[0] <= x < self.fantasmas.puerta_salida[0] + self.bloque.celda_tamaño and \
-        self.fantasmas.puerta_salida[1] <= y < self.fantasmas.puerta_salida[1] + self.bloque.celda_tamaño:
-            return False
-        return self.bloque.colision(x, y)
     
 
     def draw(self):
