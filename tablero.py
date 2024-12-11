@@ -382,7 +382,6 @@ class Tablero:
             pass
 
 
-
     def mover_fantasma(self, fantasma):
         # Lógica de movimiento para cada tipo de fantasma
         if isinstance(fantasma, FantasmaRojo):
