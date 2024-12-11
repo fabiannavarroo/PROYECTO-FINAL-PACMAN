@@ -498,7 +498,7 @@ class Tablero:
                     fantasma.siguiente_celda = None
 
         self.mover_hacia_siguiente_celda(fantasma)
-        
+
 
     def mover_hacia_siguiente_celda(self, fantasma):
         # Mueve el fantasma hacia la siguiente celda de su ruta
@@ -518,6 +518,11 @@ class Tablero:
             elif dy < 0:
                 fantasma.y += max(-fantasma.velocidad, dy)
                 fantasma.direccion_actual = "ARRIBA"
+
+
+            # Si el fantasma llega a una posición que es un portal, teletransportarlo
+            if (fantasma.x, fantasma.y) in PORTALES:
+                fantasma.x, fantasma.y = PORTALES[(fantasma.x, fantasma.y)]
 
     def buscar_ruta_simple(self, inicio, objetivo):
         # Búsqueda en anchura para encontrar una ruta simple entre inicio y objetivo
