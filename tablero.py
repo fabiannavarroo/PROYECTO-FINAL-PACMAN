@@ -492,41 +492,14 @@ class Tablero:
     
     def usar_portal(self, fantasma):
         """
-        Comprueba si el personaje está cerca de un portal y lo transporta al otro lado,
-        evitando que lo use inmediatamente de nuevo.
+        Comprueba si el fantasma está cerca de un portal y lo transporta al otro lado.
         """
-        tolerancia = 8  # Tolerancia para detectar el portal
         x_actual, y_actual = fantasma.x, fantasma.y
-
-        for entrada, salida in PORTALES.items():
-            # Verificar si el personaje está cerca del portal de entrada
-            if abs(x_actual - entrada[0]) <= tolerancia and abs(y_actual - entrada[1]) <= tolerancia:
-                # Verificar que no sea el portal recién usado
-                if hasattr(fantasma, "ultimo_portal") and fantasma.ultimo_portal == entrada:
-                    return False  # No usar el mismo portal inmediatamente
-
-                # Transportar al portal de salida
-                fantasma.x, fantasma.y = salida
-
-                # Actualizar dirección según la salida
-                if salida[0] > entrada[0]:  # Portal de izquierda a derecha
-                    fantasma.direccion_actual = "DERECHA"
-                elif salida[0] < entrada[0]:  # Portal de derecha a izquierda
-                    fantasma.direccion_actual = "IZQUIERDA"
-                elif salida[1] > entrada[1]:  # Portal de arriba a abajo
-                    fantasma.direccion_actual = "ABAJO"
-                elif salida[1] < entrada[1]:  # Portal de abajo a arriba
-                    fantasma.direccion_actual = "ARRIBA"
-
-                # Registrar el portal usado
-                fantasma.ultimo_portal = salida
-                return True
-
-        # Si no se usó un portal, limpiar último portal
-        if hasattr(fantasma, "ultimo_portal"):
-            fantasma.ultimo_portal = None
-
+        if (x_actual, y_actual) in PORTALES:
+            fantasma.x, fantasma.y = PORTALES[(x_actual, y_actual)]
+            return True
         return False
+        
         
 
     #--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------#
