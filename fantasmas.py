@@ -15,12 +15,9 @@ class Fantasma:
         self.asustado = False  # Indica si está en estado asustado
         self.tiempo_asustado = 0  # Temporizador para estado asustado
         self.tiempo_para_ser_comido = 10  # Duración por defecto del estado asustado
-        self.tiempo_espera = time.time() # Tiempo de espera para salir de la trampa
+        self.tiempo_espera = time.time()  # Tiempo de espera para salir de la trampa
         self.en_salida = False
-        self.siguiente_celda = None  # Almacena la próxima celda hacia la que se mueve el fantasma
-        self.salida_final = (192, 176)  # Punto fuera de la trampa
-        self.puerta_salida = (192, 192) # Punto de la puerta de salida de la trampa para colision
-        self.trampa_coordenadas = ((144, 10), (240, 224))  # Región de la trampa
+        self.en_trampa = True  # Indica si está en la trampa
 
 
     def activar_asustado(self):
