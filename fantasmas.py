@@ -112,11 +112,11 @@ class Fantasma:
             self.y += self.velocidad
             self.direccion_actual = "ABAJO"
             return True
-        elif direccion == "IZQUIERDA" and not self.bloque.colision(self.x - self.velocidad, self.y):
+        elif direccion == "IZQUIERDA":
             self.x -= self.velocidad
             self.direccion_actual = "IZQUIERDA"
             return True
-        elif direccion == "DERECHA" and not self.bloque.colision(self.x + self.velocidad, self.y):
+        elif direccion == "DERECHA":
             self.x += self.velocidad
             self.direccion_actual = "DERECHA"
             return True
