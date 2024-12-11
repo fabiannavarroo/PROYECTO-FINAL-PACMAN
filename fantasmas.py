@@ -20,7 +20,7 @@ class Fantasma:
         self.celdas_para_emboscada = 10
         self.salida_final = (192, 176)  # Punto fuera de la trampa
         self.puerta_salida = (192, 192) # Punto de la puerta de salida de la trampa para colision
-        self.trampa_coordenadas = ((144, 192), (240, 224))  # Región de la trampa
+        self.trampa_coordenadas = ((144, 176), (240, 224))  # Región de la trampa
         self.ultimo_cambio_modo = time.time()
         self.modo_perseguir = True  # Iniciar persiguiendo/emboscando para fantasmas azules y naranjas
 
