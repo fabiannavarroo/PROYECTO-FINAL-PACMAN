@@ -435,59 +435,139 @@ class Tablero:
             self.mover_fantasma_azul(fantasma)
         elif isinstance(fantasma, FantasmaNaranja):
             self.mover_fantasma_naranja(fantasma)
-    
-
-    def perseguir_a_pacman(self, fantasma, objetivo_x, objetivo_y):
-        # Mueve el fantasma hacia Pac-Man utilizando BFS (búsqueda por anchura)
-        if self.usar_portal(fantasma):
-            return False  # Si el fantasma usa un portal, no necesita buscar
-
-        inicio = (fantasma.x, fantasma.y)
-        objetivo = (objetivo_x, objetivo_y)
-        
-        # Movimientos posibles (derecha, izquierda, abajo, arriba)
-        direcciones = [(fantasma.velocidad, 0), (-fantasma.velocidad, 0),
-                    (0, fantasma.velocidad), (0, -fantasma.velocidad)]
-        
-        # Inicializar cola y conjunto visitado
-        cola = deque([(inicio, [])])  # Cada elemento: ((x, y), [ruta])
-        visitados = set()
-        visitados.add(inicio)
-        pasos_maximos = 100  # Limitar la búsqueda a 100 pasos
-
-        while cola and pasos_maximos > 0:
-            (x, y), ruta = cola.popleft()
-            pasos_maximos -= 1
             
-            # Si encontramos el objetivo, mover en la dirección inicial de la ruta
-            if (x, y) == objetivo:
-                if ruta:
-                    dx, dy = ruta[0]
-                    fantasma.x += dx
-                    fantasma.y += dy
-                    fantasma.direccion_actual = self.calcular_direccion(dx, dy)
-                return True
 
-            # ver cuales son las celdas adyacentes
-            for dx, dy in direcciones:
-                celda_adyacente = (x + dx, y + dy)
-                if celda_adyacente not in visitados and not self.bloque.colision(celda_adyacente[0], celda_adyacente[1]):
-                    visitados.add(celda_adyacente)
-                    cola.append((celda_adyacente, ruta + [(dx, dy)]))
+    def seguir_a_pacman(self, fantasma):
+        # El fantasma busca una ruta simple hacia la posición de Pac-Man
+        if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
+            inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
+            objetivo = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
+            ruta = self.buscar_ruta_simple(inicio, objetivo)
 
-        # Si no se encuentra una ruta, no moverse
-        return False
+            if ruta and len(ruta) > 1:
+                fantasma.siguiente_celda = ruta[1]
+            else:
+                fantasma.siguiente_celda = None
 
-    def calcular_direccion(self, dx, dy):
-        # Convierte un desplazamiento en una dirección textual.
-        if dx > 0:
-            return "DERECHA"
-        elif dx < 0:
-            return "IZQUIERDA"
-        elif dy > 0:
-            return "ABAJO"
-        elif dy < 0:
-            return "ARRIBA"
+        self.mover_hacia_siguiente_celda(fantasma)
+
+    def alejarse_de_pacman(self, fantasma):
+        # El fantasma busca una celda cercana que lo aleje de Pac-Man
+        if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
+            inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
+            pacman_pos = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
+
+            opciones = []
+            for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
+                posible_celda = (inicio[0] + dx, inicio[1] + dy)
+                if not self.colision_fantasmas(posible_celda[0], posible_celda[1]):
+                    distancia = abs(posible_celda[0] - pacman_pos[0]) + abs(posible_celda[1] - pacman_pos[1])
+                    opciones.append((distancia, posible_celda))
+
+            if opciones:
+                mayor_distancia = -1
+                mejor_celda = None
+                for distancia, celda in opciones:
+                    if distancia > mayor_distancia:
+                        mayor_distancia = distancia
+                        mejor_celda = celda
+                fantasma.siguiente_celda = mejor_celda
+            else:
+                fantasma.siguiente_celda = None
+
+        self.mover_hacia_siguiente_celda(fantasma)
+
+    
+    def predecir_posicion_pacman(self, casillas_adelante):
+        # Predecir la posición futura de Pac-Man según su dirección y un número de celdas
+        dx, dy = 0, 0
+        if self.pacman.direccion_actual == PACMAN_ARRIBA:
+            dy = -16 * casillas_adelante
+        elif self.pacman.direccion_actual == PACMAN_ABAJO:
+            dy = 16 * casillas_adelante
+        elif self.pacman.direccion_actual == PACMAN_IZQUIERDA:
+            dx = -16 * casillas_adelante
+        elif self.pacman.direccion_actual == PACMAN_DERECHA:
+            dx = 16 * casillas_adelante
+
+        pos_futura = ((self.pacman.x // 16) * 16 + dx, (self.pacman.y // 16) * 16 + dy)
+        return pos_futura
+
+    def movimiento_emboscada(self, fantasma, objetivo):
+        # Mover el fantasma rosa hacia la posición emboscada o hacia Pac-Man si no hay ruta
+        if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
+            inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
+            ruta = self.buscar_ruta_simple(inicio, objetivo)
+
+            if ruta and len(ruta) > 1:
+                fantasma.siguiente_celda = ruta[1]
+            else:
+                # Si no hay ruta a la emboscada, seguir a Pac-Man directamente
+                objetivo_pacman = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
+                ruta = self.buscar_ruta_simple(inicio, objetivo_pacman)
+                if ruta and len(ruta) > 1:
+                    fantasma.siguiente_celda = ruta[1]
+                else:
+                    fantasma.siguiente_celda = None
+
+        self.mover_hacia_siguiente_celda(fantasma)
+
+
+    def mover_hacia_siguiente_celda(self, fantasma):
+        # Mueve el fantasma hacia la siguiente celda de su ruta
+        if fantasma.siguiente_celda:
+            dx = fantasma.siguiente_celda[0] - fantasma.x
+            dy = fantasma.siguiente_celda[1] - fantasma.y
+
+            if dx > 0:
+                fantasma.x += min(fantasma.velocidad, dx)
+                fantasma.direccion_actual = "DERECHA"
+            elif dx < 0:
+                fantasma.x += max(-fantasma.velocidad, dx)
+                fantasma.direccion_actual = "IZQUIERDA"
+            elif dy > 0:
+                fantasma.y += min(fantasma.velocidad, dy)
+                fantasma.direccion_actual = "ABAJO"
+            elif dy < 0:
+                fantasma.y += max(-fantasma.velocidad, dy)
+                fantasma.direccion_actual = "ARRIBA"
+
+
+            # Si el fantasma llega a una posición que es un portal se hace tp
+            if (fantasma.x, fantasma.y) in PORTALES:
+                fantasma.x, fantasma.y = PORTALES[(fantasma.x, fantasma.y)]
+
+    def buscar_ruta_simple(self, inicio, objetivo):
+        # Búsqueda en anchura para encontrar una ruta simple entre inicio y objetivo
+        # Se limita el número de pasos para evitar que se cuelgue
+        max_pasos = 1000
+        cola = deque([inicio])
+        visitados = {inicio: None}
+        pasos = 0
+
+        while cola:
+            actual = cola.popleft()
+            pasos += 1
+
+            if pasos > max_pasos:
+                # Si excede el número máximo de pasos, abandonar la búsqueda para evitar que vaya lento el juego
+                return None
+
+            if actual == objetivo:
+                # Si se encontró el objetivo buscar la ruta
+                ruta = []
+                while actual is not None:
+                    ruta.append(actual)
+                    actual = visitados[actual]
+                ruta.reverse()
+                return ruta
+
+            for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
+                posible_celda = (actual[0] + dx, actual[1] + dy)
+                if posible_celda not in visitados and not self.bloque.colision(posible_celda[0], posible_celda[1]):
+                    visitados[posible_celda] = actual
+                    cola.append(posible_celda)
+
         return None
     
     def usar_portal(self, fantasma):
