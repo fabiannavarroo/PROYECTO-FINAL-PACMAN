@@ -527,7 +527,7 @@ class Tablero:
     def buscar_ruta_simple(self, inicio, objetivo):
         # Búsqueda en anchura para encontrar una ruta simple entre inicio y objetivo
         # Se limita el número de pasos para evitar que se cuelgue
-        max_pasos = 500
+        max_pasos = 1000
         cola = deque([inicio])
         visitados = {inicio: None}
         pasos = 0
