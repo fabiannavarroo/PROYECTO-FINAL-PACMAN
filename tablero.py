@@ -349,8 +349,18 @@ class Tablero:
     def mover_fantasma_naranja(self):
         if self.victoria or self.pacman.en_muerte:
             return False
+# Movimiento de fantasmas
+    def mover_a_salida(self, fantasma):
+        dx = fantasma.salida_final[0] - fantasma.x
+        dy = fantasma.salida_final[1] - fantasma.y
+        if abs(dx) > 0:
+            fantasma.x += fantasma.velocidad if dx > 0 else -fantasma.velocidad
+        elif abs(dy) > 0:
+            fantasma.y += fantasma.velocidad if dy > 0 else -fantasma.velocidad
 
-        
+    
+
+    
 
 
     #--------------------------------------------------------------------MOVIMIENTO--------------------------------------------------------------------#
@@ -448,6 +458,17 @@ class Tablero:
             # Si llega cerca de la salida final, limpiar la celda objetivo
             if abs(dx) <= margen and abs(dy) <= margen:
                 fantasma.siguiente_celda = None
+
+    def mover_fantasma(self, fantasma):
+        # Lógica de movimiento para cada tipo de fantasma
+        if isinstance(fantasma, FantasmaRojo):
+            self.mover_fantasma_rojo(fantasma)
+        elif isinstance(fantasma, FantasmaRosa):
+            self.mover_fantasma_rosa(fantasma)
+        elif isinstance(fantasma, FantasmaAzul):
+            self.mover_fantasma_azul(fantasma)
+        elif isinstance(fantasma, FantasmaNaranja):
+            self.mover_fantasma_naranja(fantasma)
     
 
     #--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------#
