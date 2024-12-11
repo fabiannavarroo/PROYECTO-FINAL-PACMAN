@@ -446,7 +446,6 @@ class Tablero:
             nueva_x, nueva_y = PORTALES[(x_actual, y_actual)]
             fantasma.x = nueva_x
             fantasma.y = nueva_y
-            return False
 
         # Lista de direcciones posibles
         posibles_direcciones = [
