@@ -46,6 +46,8 @@ class Tablero:
         # Controlar la animación de muerte final de Pac-Man
         self.animacion_muerte_finalizada = False
 
+        # Distancia de emboscada para el fantasma rosa
+        self.celdas_para_emboscada = 4
 
         # Controlar la condición de victoria
         self.victoria = False  
@@ -342,7 +344,7 @@ class Tablero:
             self.alejarse_de_pacman(fantasma)
 
         else:
-            posicion_emboscada = self.predecir_posicion_pacman(self.fantasmas.celdas_para_emboscada)
+            posicion_emboscada = self.predecir_posicion_pacman(self.celdas_para_emboscada)
             self.emboscada_a_pacman(fantasma, posicion_emboscada)
 
     def mover_fantasma_azul(self,fantasma):
