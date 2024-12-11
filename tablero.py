@@ -368,6 +368,14 @@ class Tablero:
                     fantasma.modo_perseguir = not fantasma.modo_perseguir
                 # Actualizar el tiempo del último cambio
                 fantasma.ultimo_cambio_modo = time.time()
+            
+            if fantasma.modo_perseguir:
+                # Modo perseguir/emboscar
+                posicion_emboscada = self.predecir_posicion_pacman(self.celdas_para_emboscada)
+                self.movimiento_emboscada(fantasma, posicion_emboscada)
+            else:
+                # Modo alejarse
+                self.alejarse_de_pacman(fantasma)
 
 
     def mover_fantasma_naranja(self, fantasma):
