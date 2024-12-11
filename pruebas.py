@@ -335,7 +335,7 @@ class Tablero:
             self.alejarse_de_pacman(fantasma)  # Movimiento cuando está asustado
         else:
             # Intentar emboscar a Pac-Man
-            posicion_emboscada = self.predecir_posicion_pacman(self.celdas_adelante)  # Por ejemplo, 4 tiles por delante
+            posicion_emboscada = self.predecir_posicion_pacman(self.celdas_adelante) 
             self.movimiento_emboscada(fantasma, posicion_emboscada)
 
     def predecir_posicion_pacman(self, casillas_adelante):
