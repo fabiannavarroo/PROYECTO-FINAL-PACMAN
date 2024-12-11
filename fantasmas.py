@@ -37,6 +37,7 @@ class Fantasma:
         self.asustado = False # Sale del estado asustado
         self.direccion_actual = "DERECHA"
         self.tiempo_trampa = time.time() 
+        self.en_trampa = True
         self.velocidad = 2
 
 
