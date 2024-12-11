@@ -507,13 +507,9 @@ class Tablero:
 
                 # Actualizar la dirección actual para evitar retrocesos
                 if salida[0] > entrada[0]:  # Portal de izquierda a derecha
-                    fantasma.direccion_actual = "IZQUIERDA"
-                elif salida[0] < entrada[0]:  # Portal de derecha a izquierda
                     fantasma.direccion_actual = "DERECHA"
-                elif salida[1] > entrada[1]:  # Portal de arriba hacia abajo
-                    fantasma.direccion_actual = "ARRIBA"
-                elif salida[1] < entrada[1]:  # Portal de abajo hacia arriba
-                    fantasma.direccion_actual = "ABAJO"
+                else salida[0] < entrada[0]:  # Portal de derecha a izquierda
+                    fantasma.direccion_actual = "IZQUIERDA"
                 return True  # Indica que el fantasma usó un portal
         return False  # El fantasma no usó ningún portal
     
