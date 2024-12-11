@@ -33,6 +33,7 @@ class Fantasma:
         self.en_trampa = True
         self.en_salida = False
         self.asustado = False
+        self.velocidad = 2
         self.tiempo_trampa = time.time()
 
     def mover_a_salida(self):
