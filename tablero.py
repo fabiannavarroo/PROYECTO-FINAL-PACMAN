@@ -81,22 +81,14 @@ class Tablero:
                 self.generar_fruta()
 
                 # Actualizar cada fantasma
-                for index, fantasma in enumerate(self.fantasmas):
-                    if fantasma.en_trampa():
-                        # Si el fantasma está en la trampa, esperar un tiempo antes de que salga
-                        tiempo_espera = (index + 1) * 2
-                        if time.time() - fantasma.tiempo_trampa >= tiempo_espera:
-                            self.salir_de_trampa(fantasma)  # Pasar el fantasma al método del tablero
-                    else:
-                        # Movimiento normal de los fantasmas fuera de la trampa
-                        if isinstance(fantasma, FantasmaRojo):
-                            self.mover_fantasma_rojo()
-                        elif isinstance(fantasma, FantasmaRosa):
-                            self.mover_fantasma_rosa()
-                        elif isinstance(fantasma, FantasmaAzul):
-                            self.mover_fantasma_azul()
-                        elif isinstance(fantasma, FantasmaNaranja):
-                            self.mover_fantasma_naranja()
+                for fantasma in self.fantasmas:
+                    if time.time() - fantasma.tiempo_trampa >= 2:
+                        if (fantasma.x, fantasma.y) == (fantasma.x_inicial, fantasma.y_inicial):
+                            # Mover desde posición inicial a salida final
+                            self.mover_a_salida(fantasma)
+                        elif (fantasma.x, fantasma.y) == fantasma.salida_final:
+                            # Movimiento normal después de llegar a salida final
+                            self.mover_fantasma(fantasma)
 
                     # Actualizar el estado del fantasma 
                     fantasma.actualizar_estado()
