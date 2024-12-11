@@ -64,25 +64,11 @@ class Fantasma:
     def salir_de_trampa(self):
         # Verifica si el fantasma puede salir de la trampa
         if time.time() - self.tiempo_trampa < 2:
-            return  False# Esperar 2 segundos antes de salir
+            return False  # Esperar 2 segundos antes de salir
 
-        if self.en_trampa():
-            if (self.x, self.y) == self.puerta_salida:
-                # Mover hacia la salida final
-                dx, dy = self.salida_final[0] - self.x, self.salida_final[1] - self.y
-            else:
-                # Mover hacia la puerta de salida
-                dx, dy = self.puerta_salida[0] - self.x, self.puerta_salida[1] - self.y
-
-            # Asegurarse de que el fantasma se mueve gradualmente
-            if dx > 0:
-                self.x += min(self.velocidad, dx)
-            elif dx < 0:
-                self.x -= min(self.velocidad, abs(dx))
-            if dy > 0:
-                self.y += min(self.velocidad, dy)
-            elif dy < 0:
-                self.y -= min(self.velocidad, abs(dy))
+    # Mover al fantasma hacia la posición de salida final
+        self.x, self.y = self.salida_final
+        self.en_trampa = False  # Cambiar el estado a fuera de la trampa    
 
 
     def volver_a_posicion_inicial(self):
