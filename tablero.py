@@ -442,10 +442,8 @@ class Tablero:
         x_actual, y_actual = fantasma.x, fantasma.y
 
          # Comprobar si el fantasma está en un portal
-        if (x_actual, y_actual) in PORTALES:
-            nueva_x, nueva_y = PORTALES[(x_actual, y_actual)]
-            fantasma.x = nueva_x
-            fantasma.y = nueva_y
+        if self.usar_portal(fantasma):
+            return False
 
 
         # Lista de direcciones posibles
