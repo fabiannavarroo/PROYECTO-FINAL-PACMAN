@@ -359,11 +359,8 @@ class Tablero:
         if fantasma.asustado:
             self.alejarse_de_pacman(fantasma)
         else:
-            if random.random() < 0.5:
-                posicion_emboscada = self.predecir_posicion_pacman(self.celdas_para_emboscada)
-                self.movimiento_emboscada(fantasma, posicion_emboscada)
-            else:
-                self.alejarse_de_pacman(fantasma)
+            posicion_emboscada = self.predecir_posicion_pacman(self.celdas_para_emboscada)
+            self.movimiento_emboscada(fantasma, posicion_emboscada)
 
 
     def mover_fantasma_naranja(self, fantasma):
