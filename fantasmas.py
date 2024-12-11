@@ -104,11 +104,11 @@ class Fantasma:
 
     def mover_en_direccion(self, direccion):    
         # Mueve al fantasma en la dirección especificada si es posible.
-        if direccion == "ARRIBA" and not self.bloque.colision(self.x, self.y - self.velocidad):
+        if direccion == "ARRIBA":
             self.y -= self.velocidad
             self.direccion_actual = "ARRIBA"
             return True
-        elif direccion == "ABAJO" and not self.bloque.colision(self.x, self.y + self.velocidad):
+        elif direccion == "ABAJO":
             self.y += self.velocidad
             self.direccion_actual = "ABAJO"
             return True
