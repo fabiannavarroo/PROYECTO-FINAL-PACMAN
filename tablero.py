@@ -438,55 +438,57 @@ class Tablero:
     
 
     def perseguir_a_pacman(self, fantasma, objetivo_x, objetivo_y):
-        # Comprobar si el fantasma está en un portal
+        # Mueve el fantasma hacia Pac-Man utilizando BFS (búsqueda por anchura)
         if self.usar_portal(fantasma):
-            return False
-    
-        # Mueve el fantasma hacia  Pac-Man, evitando retrocesos y colisiones.
-        x_actual, y_actual = fantasma.x, fantasma.y
+            return False  # Si el fantasma usa un portal, no necesita buscar
 
-        # Lista de direcciones posibles
-        posibles_direcciones = [
-            ("DERECHA", x_actual + fantasma.velocidad, y_actual),
-            ("IZQUIERDA", x_actual - fantasma.velocidad, y_actual),
-            ("ABAJO", x_actual, y_actual + fantasma.velocidad),
-            ("ARRIBA", x_actual, y_actual - fantasma.velocidad)
-        ]
+        inicio = (fantasma.x, fantasma.y)
+        objetivo = (objetivo_x, objetivo_y)
+        
+        # Movimientos posibles (derecha, izquierda, abajo, arriba)
+        direcciones = [(fantasma.velocidad, 0), (-fantasma.velocidad, 0),
+                    (0, fantasma.velocidad), (0, -fantasma.velocidad)]
+        
+        # Inicializar cola y conjunto visitado
+        cola = deque([(inicio, [])])  # Cada elemento: ((x, y), [ruta])
+        visitados = set()
+        visitados.add(inicio)
+        pasos_maximos = 100  # Limitar la búsqueda a 100 pasos
 
-        nueva_direccion = None  # Dirección que el fantasma tomará
-        nueva_x = x_actual      # Nueva posición X del fantasma
-        nueva_y = y_actual      # Nueva posición Y del fantasma
-        menor_distancia = 400  # Distancia mínima es decir la que mide el mapa
+        while cola and pasos_maximos > 0:
+            (x, y), ruta = cola.popleft()
+            pasos_maximos -= 1
+            
+            # Si encontramos el objetivo, mover en la dirección inicial de la ruta
+            if (x, y) == objetivo:
+                if ruta:
+                    dx, dy = ruta[0]
+                    fantasma.x += dx
+                    fantasma.y += dy
+                    fantasma.direccion_actual = self.calcular_direccion(dx, dy)
+                return True
 
-        # Evaluar todas las direcciones posibles
-        for direccion, x, y in posibles_direcciones:
-            # Comprobar si la dirección es válida (sin colisión y no retrocede)
-            if not self.bloque.colision(x, y) and direccion != self.invertir_direccion(fantasma.direccion_actual):
-                # Calcular la distancia Manhattan entre la nueva posición y Pac-Man
-                distancia = abs(objetivo_x - x) + abs(objetivo_y - y)
-                
-                # Actualizar si esta dirección acerca más al fantasma al objetivo
-                if distancia < menor_distancia:
-                    menor_distancia = distancia
-                    nueva_direccion = direccion
-                    nueva_x = x
-                    nueva_y = y
+            # ver cuales son las celdas adyacentes
+            for dx, dy in direcciones:
+                celda_adyacente = (x + dx, y + dy)
+                if celda_adyacente not in visitados and not self.bloque.colision(celda_adyacente[0], celda_adyacente[1]):
+                    visitados.add(celda_adyacente)
+                    cola.append((celda_adyacente, ruta + [(dx, dy)]))
 
-        # Si se encontró una dirección válida, mover al fantasma
-        if nueva_direccion is not None:
-            fantasma.x = nueva_x
-            fantasma.y = nueva_y
-            fantasma.direccion_actual = nueva_direccion
+        # Si no se encuentra una ruta, no moverse
+        return False
 
-    def invertir_direccion(self, direccion):
-        # Devuelve la dirección opuesta a la dirección actual asi el fantasma no retrocede
-        if direccion == "DERECHA":
-            return "IZQUIERDA"
-        elif direccion == "IZQUIERDA":
+    def calcular_direccion(self, dx, dy):
+        """
+        Convierte un desplazamiento en una dirección textual.
+        """
+        if dx > 0:
             return "DERECHA"
-        elif direccion == "ARRIBA":
+        elif dx < 0:
+            return "IZQUIERDA"
+        elif dy > 0:
             return "ABAJO"
-        elif direccion == "ABAJO":
+        elif dy < 0:
             return "ARRIBA"
         return None
     
