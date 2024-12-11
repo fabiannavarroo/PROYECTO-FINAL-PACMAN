@@ -18,10 +18,10 @@ class Tablero:
         self.bloque = Bloque()
         self.pacman = Pacman(192, 304)
         self.fantasmas = [
-            FantasmaRojo(160, 208),
-            FantasmaRosa(181, 208),
-            FantasmaAzul(203, 208),
-            FantasmaNaranja(225, 208),
+            FantasmaRojo(160, 176),
+            FantasmaRosa(181, 176),
+            FantasmaAzul(203, 176),
+            FantasmaNaranja(225, 176),
         ]
         self.puntos = Puntos(OBJETOS)
         self.generar_puntos()
