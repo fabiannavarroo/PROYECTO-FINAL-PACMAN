@@ -261,7 +261,7 @@ class Tablero:
         pyxel.blt(x, y, 0, sprite["Coordenadas"][0], sprite["Coordenadas"][1], sprite["Tamaño"][0], sprite["Tamaño"][1], colkey=0)
 
     def esta_en_zona_prohibida(self, x, y):
-        # Verificar si la posición (x, y) está en una zona prohibida (sin puntos)
+        # Verificar si la posición (x, y) está en una zona prohibida
         for lugar in self.puntos.zonas_prohibidas[self.bloque.nivel]:
             x1, y1, x2, y2 = lugar
             if x1 <= x <= x2 and y1 <= y <= y2:
