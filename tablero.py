@@ -49,6 +49,9 @@ class Tablero:
         # Controlar la condición de victoria
         self.victoria = False
 
+        # Controla el tiempo entre salidas de fantasmas
+        self.tiempo_salida = time.time()  
+
         # Distancia de emboscada para el fantasma rosa
         self.celdas_para_emboscada = 4
 
