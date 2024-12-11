@@ -83,7 +83,7 @@ class Tablero:
                         if time.time() - fantasma.tiempo_trampa >= tiempo_espera:
                             if not fantasma.en_salida:
                                 fantasma.en_salida = True
-                            fantasma.mover_a_salida()
+                            #fantasma.mover_a_salida()
                     else:
                         # Actualizar movimiento normal si no está en la trampa
                         self.mover_fantasma(fantasma)
