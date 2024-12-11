@@ -409,8 +409,8 @@ class Tablero:
             self.pacman.y = nueva_y
 
         # Portales: si Pac-Man entra en un portal, salir por el otro lado del mapa
-        if (self.pacman.x, self.pacman.y) in PORTALES:
-            self.pacman.x, self.pacman.y = PORTALES[(self.pacman.x, self.pacman.y)]
+        if self.usar_portal(self.pacman):
+            return True
 
         print("Pacman", self.pacman.x, self.pacman.y)
 
