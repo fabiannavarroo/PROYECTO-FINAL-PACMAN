@@ -341,7 +341,7 @@ class Tablero:
             self.alejarse_de_pacman(fantasma)
 
         else:
-            self.
+            self.emboscada_a_pacman(fantasma)
 
     def mover_fantasma_azul(self,fantasma):
         if self.victoria or self.pacman.en_muerte:
