@@ -43,11 +43,11 @@ class Fantasma:
         if isinstance(self, FantasmaRojo):
             self.x, self.y = 160, 208
         elif isinstance(self, FantasmaRosa):
-            self.x, self.y = 181, 208
+            self.x, self.y = 180, 208
         elif isinstance(self, FantasmaAzul):
-            self.x, self.y = 203, 208
+            self.x, self.y = 202, 208
         elif isinstance(self, FantasmaNaranja):
-            self.x, self.y = 225, 208
+            self.x, self.y = 224, 208
 
     def mover_a_salida(self):
         # Movimiento hacia las coordenadas de salida
