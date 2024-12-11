@@ -386,25 +386,30 @@ class Tablero:
         if self.victoria or self.pacman.en_muerte:
             return False
 
-        if fantasma.asustado:
-            self.alejarse_de_pacman(fantasma)
-        else:
-            # Cada 10 segundos, hacer un random y decidir si cambiar el modo
+        # Solo cambiar modo si no está en la trampa
+        if not fantasma.en_trampa():
             if time.time() - fantasma.ultimo_cambio_modo >= 10:
                 if random.random() < 0.5:
-                    pass  # Mantiene el modo actual
+                    pass
                 else:
-                    # Cambia el modo
                     fantasma.modo_perseguir = not fantasma.modo_perseguir
                 fantasma.ultimo_cambio_modo = time.time()
 
-
+        if fantasma.asustado:
+            if fantasma.en_trampa():
+                return False
+            self.alejarse_de_pacman(fantasma)
+        else:
             if fantasma.modo_perseguir:
                 # Seguir a Pac-Man
                 self.seguir_a_pacman(fantasma)
             else:
-                # Alejarse de Pac-Man
+                # Alejarse de Pac-Man solo si no está en la trampa
+                if fantasma.en_trampa():
+                    return False
                 self.alejarse_de_pacman(fantasma)
+
+                
     #--------------------------------------------------------------------MOVIMIENTO--------------------------------------------------------------------#
 
     def movimineto_pacman(self):
