@@ -479,6 +479,7 @@ class Tablero:
                     return True
         return False
 
+
     def colision_fantasmas(self, x, y):
         # Comprobar si una posición (x, y) colisiona con muros o zonas prohibidas para el fantasma
         puerta_x, puerta_y = PUERTA_SALIDA
@@ -496,9 +497,11 @@ class Tablero:
 
         return False
 
+
     def detectar_colision_puntos(self, pacman_x, pacman_y, punto_x, punto_y):
         # Detecta si Pac-Man ha comido un punto
         return abs(pacman_x - punto_x) < 10 and abs(pacman_y - punto_y) < 10
+
 
     def comer_puntos(self):
         # Comprueba si Pac-Man ha comido puntos o regalos
@@ -520,6 +523,7 @@ class Tablero:
             else:
                 regalos_sin_comer.append((x, y))
         self.puntos.regalos = regalos_sin_comer
+
 
     def comer_fruta(self):
         # Comprueba si Pac-Man ha comido la fruta
