@@ -43,17 +43,17 @@ class Fantasma:
         if abs(dx) > 0:
             if dx > 0:  
                 self.x += self.velocidad 
-                self.direccion_actual = "IZQUIERDA" 
+                self.direccion_actual = "DERECHA" 
             else:
                 self.x -= self.velocidad
-                self.direccion_actual = "DERECHA" 
+                self.direccion_actual = "IZQUIERDA" 
         elif abs(dy) > 0:
             if dy > 0:
                 self.y += self.velocidad 
-                self.direccion_actual = "ARRIBA" 
+                self.direccion_actual = "ABAJO" 
             else:
                 self.y -= self.velocidad
-                self.direccion_actual = "ABAJO" 
+                self.direccion_actual = "ARRIBA" 
         else:
             self.en_salida = False
             self.en_trampa = False  # Marcamos que ha salido de la trampa
