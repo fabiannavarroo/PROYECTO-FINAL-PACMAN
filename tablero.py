@@ -519,12 +519,12 @@ class Tablero:
                     fantasma.direccion_actual = "ARRIBA"
 
                 # Registrar el portal usado
-                personaje.ultimo_portal = salida
+                fantasma.ultimo_portal = salida
                 return True
 
         # Si no se usó un portal, limpiar último portal
-        if hasattr(personaje, "ultimo_portal"):
-            personaje.ultimo_portal = None
+        if hasattr(fantasma, "ultimo_portal"):
+            fantasma.ultimo_portal = None
 
         return False
         
