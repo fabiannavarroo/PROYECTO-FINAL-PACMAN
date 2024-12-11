@@ -52,6 +52,9 @@ class Tablero:
         # Distancia de emboscada para el fantasma rosa
         self.celdas_para_emboscada = 4
 
+        # Cambiar la dirección de los fantasmas
+        self.fantasmas_cambio_de_movimiento = 5
+
         # Iniciar el bucle principal de Pyxel
         pyxel.run(self.update, self.draw)
 
