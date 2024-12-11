@@ -490,33 +490,33 @@ class Tablero:
             return "ARRIBA"
         return None
     
-    def usar_portal(self, personaje):
+    def usar_portal(self, fantasma):
         """
         Comprueba si el personaje está cerca de un portal y lo transporta al otro lado,
         evitando que lo use inmediatamente de nuevo.
         """
         tolerancia = 8  # Tolerancia para detectar el portal
-        x_actual, y_actual = personaje.x, personaje.y
+        x_actual, y_actual = fantasma.x, fantasma.y
 
         for entrada, salida in PORTALES.items():
             # Verificar si el personaje está cerca del portal de entrada
             if abs(x_actual - entrada[0]) <= tolerancia and abs(y_actual - entrada[1]) <= tolerancia:
                 # Verificar que no sea el portal recién usado
-                if hasattr(personaje, "ultimo_portal") and personaje.ultimo_portal == entrada:
+                if hasattr(fantasma, "ultimo_portal") and fantasma.ultimo_portal == entrada:
                     return False  # No usar el mismo portal inmediatamente
 
                 # Transportar al portal de salida
-                personaje.x, personaje.y = salida
+                fantasma.x, fantasma.y = salida
 
                 # Actualizar dirección según la salida
                 if salida[0] > entrada[0]:  # Portal de izquierda a derecha
-                    personaje.direccion_actual = "DERECHA"
+                    fantasma.direccion_actual = "DERECHA"
                 elif salida[0] < entrada[0]:  # Portal de derecha a izquierda
-                    personaje.direccion_actual = "IZQUIERDA"
+                    fantasma.direccion_actual = "IZQUIERDA"
                 elif salida[1] > entrada[1]:  # Portal de arriba a abajo
-                    personaje.direccion_actual = "ABAJO"
+                    fantasma.direccion_actual = "ABAJO"
                 elif salida[1] < entrada[1]:  # Portal de abajo a arriba
-                    personaje.direccion_actual = "ARRIBA"
+                    fantasma.direccion_actual = "ARRIBA"
 
                 # Registrar el portal usado
                 personaje.ultimo_portal = salida
