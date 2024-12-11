@@ -444,6 +444,7 @@ class Tablero:
          # Comprobar si el fantasma está en un portal
         if (x_actual, y_actual) in PORTALES:
             nueva_direccion = PORTALES[(x_actual, y_actual)]
+            fantasma.direccion_actual = nueva_direccion
             
 
         # Lista de direcciones posibles
