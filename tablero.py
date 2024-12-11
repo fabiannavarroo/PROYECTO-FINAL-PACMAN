@@ -85,12 +85,16 @@ class Tablero:
 
                 # Actualizar cada fantasma
                 for index, fantasma in enumerate(self.fantasmas):
-                    if time.time() - self.tiempo_salida >= index * 2:
-                        if fantasma.en_posicion_inicial():
-                            if time.time() - fantasma.tiempo_espera >= 2:
-                                self.mover_a_salida(fantasma)
-                        else:
-                            self.mover_fantasma(fantasma)
+                    # Revisar si el fantasma está en la posición inicial
+                    if fantasma.en_trampa:
+                        # Esperar 2 segundos antes de moverlo a la salida
+                        if time.time() - fantasma.tiempo_espera >= 2:
+                            if not fantasma.en_salida:
+                                fantasma.en_salida = True
+                            fantasma.mover_a_salida()
+                    else:
+                        # Actualizar movimiento normal si no está en la trampa
+                        self.mover_fantasma(fantasma)
                     # Actualizar el estado del fantasma 
                     fantasma.actualizar_estado()
 
