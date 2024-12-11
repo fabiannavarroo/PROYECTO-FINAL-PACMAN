@@ -438,14 +438,7 @@ class Tablero:
     
 
     def perseguir_a_pacman(self, fantasma, objetivo_x, objetivo_y):
-        """
-        Mueve el fantasma hacia el objetivo (Pac-Man), evitando retrocesos y colisiones.
-        
-        Parámetros:
-        - fantasma: el objeto del fantasma que se mueve.
-        - objetivo_x, objetivo_y: coordenadas de Pac-Man que el fantasma persigue.
-        """
-        # Posición actual del fantasma
+        # Mueve el fantasma hacia  Pac-Man, evitando retrocesos y colisiones.
         x_actual, y_actual = fantasma.x, fantasma.y
 
         # Comprobar si el fantasma está en un portal y moverlo al otro lado
