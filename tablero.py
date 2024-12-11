@@ -421,75 +421,70 @@ class Tablero:
             self.mover_fantasma_naranja()
     
 
-    def movimiento_fantasma_persiguiendo(self, fantasma, objetivo_x, objetivo_y):
+    def perseguir_a_pacman(self, fantasma, objetivo_x, objetivo_y):
         """
-        Movimiento principal del fantasma hacia un objetivo (e.g., Pac-Man).
+        Mueve el fantasma hacia el objetivo (Pac-Man), evitando retrocesos y colisiones.
+        
+        Parámetros:
+        - fantasma: el objeto del fantasma que se mueve.
+        - objetivo_x, objetivo_y: coordenadas de Pac-Man que el fantasma persigue.
         """
-        # Intentar moverse en el eje X
-        if fantasma.x < objetivo_x:
-            nueva_x = fantasma.x + fantasma.velocidad
-            nueva_y = fantasma.y
-            direccion = "DERECHA"
-        elif fantasma.x > objetivo_x:
-            nueva_x = fantasma.x - fantasma.velocidad
-            nueva_y = fantasma.y
-            direccion = "IZQUIERDA"
-        else:
-            nueva_x = fantasma.x
-            nueva_y = fantasma.y
-            direccion = None
+        # Posición actual del fantasma
+        x_actual, y_actual = fantasma.x, fantasma.y
 
-        # Verificar colisiones y pasar al eje Y si no puede avanzar en X
-        if direccion is None or self.bloque.colision(nueva_x, nueva_y):
-            if fantasma.y < objetivo_y:
-                nueva_x = fantasma.x
-                nueva_y = fantasma.y + fantasma.velocidad
-                direccion = "ABAJO"
-            elif fantasma.y > objetivo_y:
-                nueva_x = fantasma.x
-                nueva_y = fantasma.y - fantasma.velocidad
-                direccion = "ARRIBA"
-
-        # Intentar moverse en la dirección seleccionada
-        if not self.bloque.colision(nueva_x, nueva_y):
-            self.aplicar_movimiento_fantasma(fantasma, nueva_x, nueva_y, direccion)
-        else:
-            # Si no puede moverse, intentar rodear el obstáculo
-            self.ajustar_movimiento_fantasma(fantasma)
-
-    def ajustar_movimiento_fantasma(self, fantasma):
-        """
-        Intenta rodear obstáculos moviéndose en cualquier dirección válida.
-        """
+        # Lista de direcciones posibles (con prioridad: DERECHA, IZQUIERDA, ABAJO, ARRIBA)
         posibles_direcciones = [
-            ("DERECHA", fantasma.x + fantasma.velocidad, fantasma.y),
-            ("IZQUIERDA", fantasma.x - fantasma.velocidad, fantasma.y),
-            ("ARRIBA", fantasma.x, fantasma.y - fantasma.velocidad),
-            ("ABAJO", fantasma.x, fantasma.y + fantasma.velocidad),
+            ("DERECHA", x_actual + fantasma.velocidad, y_actual),
+            ("IZQUIERDA", x_actual - fantasma.velocidad, y_actual),
+            ("ABAJO", x_actual, y_actual + fantasma.velocidad),
+            ("ARRIBA", x_actual, y_actual - fantasma.velocidad)
         ]
 
-        direccion_valida = None
-        nueva_x_valida = fantasma.x
-        nueva_y_valida = fantasma.y
+        # Inicializar variables para la mejor dirección
+        nueva_direccion = None  # Dirección que el fantasma tomará
+        nueva_x = x_actual      # Nueva posición X del fantasma
+        nueva_y = y_actual      # Nueva posición Y del fantasma
+        menor_distancia = float("inf")  # Distancia mínima encontrada al objetivo
 
-        for direccion, nueva_x, nueva_y in posibles_direcciones:
-            # Comprobar colisiones
-            if direccion_valida is None and not self.bloque.colision(nueva_x, nueva_y):
-                direccion_valida = direccion
-                nueva_x_valida = nueva_x
-                nueva_y_valida = nueva_y
+        # Evaluar todas las direcciones posibles
+        for direccion, x, y in posibles_direcciones:
+            # Comprobar si la dirección es válida (sin colisión y no retrocede)
+            if not self.bloque.colision(x, y) and direccion != self.invertir_direccion(fantasma.direccion_actual):
+                # Calcular la distancia Manhattan entre la nueva posición y Pac-Man
+                distancia = abs(objetivo_x - x) + abs(objetivo_y - y)
+                
+                # Actualizar si esta dirección acerca más al fantasma al objetivo
+                if distancia < menor_distancia:
+                    menor_distancia = distancia
+                    nueva_direccion = direccion
+                    nueva_x = x
+                    nueva_y = y
 
-        # Aplicar el movimiento válido encontrado
-        if direccion_valida is not None:
-            self.aplicar_movimiento_fantasma(fantasma, nueva_x_valida, nueva_y_valida, direccion_valida)
+        # Si se encontró una dirección válida, mover al fantasma
+        if nueva_direccion is not None:
+            fantasma.x = nueva_x
+            fantasma.y = nueva_y
+            fantasma.direccion_actual = nueva_direccion
 
-    def aplicar_movimiento_fantasma(self, fantasma, nueva_x, nueva_y, direccion):
+    def invertir_direccion(self, direccion):
         """
-        Aplica el movimiento y actualiza la dirección del fantasma.
+        Devuelve la dirección opuesta (para evitar retrocesos).
+        
+        Parámetros:
+        - direccion: la dirección actual del fantasma.
+        
+        Retorna:
+        - La dirección opuesta.
         """
-        fantasma.x = nueva_x
-        fantasma.y = nueva_y
-        fantasma.direccion_actual = direccion
+        if direccion == "DERECHA":
+            return "IZQUIERDA"
+        elif direccion == "IZQUIERDA":
+            return "DERECHA"
+        elif direccion == "ARRIBA":
+            return "ABAJO"
+        elif direccion == "ABAJO":
+            return "ARRIBA"
+        return None
 
     #--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------#
 
