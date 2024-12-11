@@ -357,7 +357,7 @@ class Tablero:
     def movimiento_emboscada(self, fantasma, objetivo):
         if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
             inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
-            ruta = self.buscar_ruta_simple(inicio, objetivo, fantasma=fantasma)
+            ruta = self.buscar_ruta_simple(inicio, objetivo)
 
             if ruta and len(ruta) > 1:
                 fantasma.siguiente_celda = ruta[1]
