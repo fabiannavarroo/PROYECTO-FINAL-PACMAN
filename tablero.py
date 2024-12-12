@@ -546,7 +546,7 @@ class Tablero:
         for direccion, nueva_celda_x, nueva_celda_y in posibles_direcciones:
             # Comprobar si no hay colisión y no es la dirección opuesta
             if not self.bloque.colision(nueva_celda_x, nueva_celda_y) and direccion != self.invertir_direccion(fantasma.direccion_actual):
-                # Calcular la distancia  entre la nueva celda y Pac-Man
+                # Calcular la distancia entre la nueva celda y Pac-Man
                 distancia = abs(objetivo_celda_x - nueva_celda_x) + abs(objetivo_celda_y - nueva_celda_y)
 
                 # Actualizar si esta dirección acerca más al fantasma al objetivo
