@@ -525,39 +525,37 @@ class Tablero:
             fantasma.ultima_direccion = "DERECHA"  # Establece una dirección inicial
 
 
-    def perseguir_a_pacman(self, fantasma):
+   def perseguir_a_pacman(self, fantasma):
+    """
+    Lógica para que el fantasma persiga a Pac-Man.
+    """
+    if self.usar_portal(fantasma):  # Verificar portal
+        return
 
-        ruta= []
-        ubicacion_pacman = (self.pacman.x//16, self.pacman.y//16)
-        distancia_x, distancia_y = 400,400
-        proxima_celda = None
+    # Obtener celdas de destino y elegir la mejor dirección
+    direcciones = {
+        "ARRIBA": (fantasma.x, fantasma.y - fantasma.velocidad),
+        "ABAJO": (fantasma.x, fantasma.y + fantasma.velocidad),
+        "IZQUIERDA": (fantasma.x - fantasma.velocidad, fantasma.y),
+        "DERECHA": (fantasma.x + fantasma.velocidad, fantasma.y),
+    }
 
-        if not self.bloque.colision(fantasma.x, fantasma.y) and fantasma.ultima_direccion!= "ARRIBA":
-            proxima_celda = ((fantasma.x//16), (fantasma.y//16)-1)
-        if not self.bloque.colision(fantasma.x, fantasma.y) and fantasma.ultima_direccion!= "ABAJO":
-            proxima_celda = ((fantasma.x//16), (fantasma.y//16)+1)
-        if not self.bloque.colision(fantasma.x, fantasma.y) and fantasma.ultima_direccion!= "DERECHA":
-            proxima_celda = ((fantasma.x//16)+1, (fantasma.y//16))
-        if not self.bloque.colision(fantasma.x, fantasma.y) and fantasma.ultima_direccion!= "IZQUIERDA":
-            proxima_celda = ((fantasma.x//16)-1, (fantasma.y//16))
+    mejor_direccion = None
+    menor_distancia = float('inf')
+    objetivo = (self.pacman.x, self.pacman.y)
 
-        for celda in ruta:
-            nueva_distancia_x = celda[0] - ubicacion_pacman[0]
-            nueva_distancia_y =celda[1] - ubicacion_pacman[1]
-            if abs(nueva_distancia_x) + abs(nueva_distancia_y) < abs(distancia_x) + abs(distancia_y):
-                distancia_x, distancia_y = nueva_distancia_x, nueva_distancia_y
-                proxima_celda = celda
+    for direccion, (nx, ny) in direcciones.items():
+        if not self.bloque.colision(nx, ny) and direccion != self.invertir_direccion(fantasma.ultima_direccion):
+            distancia = abs(nx - objetivo[0]) + abs(ny - objetivo[1])
+            if distancia < menor_distancia:
+                menor_distancia = distancia
+                mejor_direccion = direccion
 
-        if proxima_celda == (fantasma.x//16, (fantasma.y//16)-1):
-            self.mover_fantasma(fantasma, "ARRIBA")
-        elif proxima_celda == (fantasma.x//16, (fantasma.y//16)+1):
-            self.mover_fantasma(fantasma, "ABAJO")
-        elif proxima_celda == ((fantasma.x//16)+1, (fantasma.y//16)):
-            self.mover_fantasma(fantasma, "DERECHA")
-        elif proxima_celda == ((fantasma.x//16)-1, (fantasma.y//16)):
-            self.mover_fantasma(fantasma, "IZQUIERDA")
-        else:
-            self.mover_fantasma(fantasma, fantasma.ultima_direccion)
+    # Mueve al fantasma en la mejor dirección encontrada
+    if mejor_direccion:
+        self.mover_fantasma(fantasma, mejor_direccion)
+    else:
+        print("El fantasma está atascado.")
 
 
     def mover_fantasma(self, fantasma, direccion):
