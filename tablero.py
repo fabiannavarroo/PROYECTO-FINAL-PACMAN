@@ -666,11 +666,12 @@ class Tablero:
 
 
     def usar_portal(self, personaje):
-        # Comprueba si el fantasma está cerca de un portal y lo transporta al otro lado.
-        x_actual, y_actual = personaje.x, personaje.y
-        if (x_actual, y_actual) in PORTALES:
-            personaje.x, personaje.y = PORTALES[(x_actual, y_actual)]
-            return True
+        # Comprueba si el personaje está cerca de un portal y lo transporta al otro lado.
+        if isinstance(personaje, Pacman):
+            x_actual, y_actual = personaje.x, personaje.y
+            if (x_actual, y_actual) in PORTALES:
+                personaje.x, personaje.y = PORTALES[(x_actual, y_actual)]
+                return True
         return False
         
         
