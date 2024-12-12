@@ -494,7 +494,9 @@ class Tablero:
 
 
     def alejarse_de_pacman(self, fantasma):
-        # El fantasma busca una celda cercana que lo aleje de Pac-Man
+        """
+        Movimiento del fantasma en modo asustado para alejarse de Pac-Man.
+        """
         if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
             inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
             pacman_pos = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
@@ -502,21 +504,25 @@ class Tablero:
             opciones = []
             for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
                 posible_celda = (inicio[0] + dx, inicio[1] + dy)
+                # Verificar que la celda no es un muro o zona prohibida
                 if not self.colision_fantasmas(posible_celda[0], posible_celda[1]):
                     distancia = abs(posible_celda[0] - pacman_pos[0]) + abs(posible_celda[1] - pacman_pos[1])
                     opciones.append((distancia, posible_celda))
 
             if opciones:
-                mayor_distancia = -1
-                mejor_celda = None
-                for distancia, celda in opciones:
-                    if distancia > mayor_distancia:
-                        mayor_distancia = distancia
-                        mejor_celda = celda
+                # Ordenar opciones por distancia y añadir aleatoriedad
+                opciones.sort(reverse=True, key=lambda x: x[0])  # Más lejos primero
+                mejor_celda = random.choice(opciones[:2])[1]  # Elegir entre las 2 mejores opciones
                 fantasma.siguiente_celda = mejor_celda
             else:
-                fantasma.siguiente_celda = None
+                # Si no hay opciones válidas, forzar un movimiento aleatorio
+                for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
+                    posible_celda = (inicio[0] + dx, inicio[1] + dy)
+                    if not self.bloque.colision(posible_celda[0], posible_celda[1]):
+                        fantasma.siguiente_celda = posible_celda
+                        break
 
+        # Mover hacia la siguiente celda
         self.mover_hacia_siguiente_celda(fantasma)
 
     
