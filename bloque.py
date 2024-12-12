@@ -174,7 +174,7 @@ class Bloque:
 
     def colision(self, x, y):
         # Verifica si un punto (x, y) colisiona con un bloque del mapa.
-        sprite_tamaño = self.celda_tamaño  # Asegúrate de que `self.celda_tamaño` esté definido en `Bloque`
+        sprite_tamaño = self.celda_tamaño
         
         # Verificar los cuatro puntos clave del sprite
         puntos_a_verificar = [
