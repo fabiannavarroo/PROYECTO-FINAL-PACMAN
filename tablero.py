@@ -561,7 +561,7 @@ class Tablero:
                 nueva_celda_x = fantasma_x + dx
                 nueva_celda_y = fantasma_y + dy
 
-                # Comprobar nuevamente sin restricciones
+                # Comprobar nuevamente la colision
                 if not self.colision_fantasmas(nueva_celda_x, nueva_celda_y):
                     celda_mas_lejos = (nueva_celda_x, nueva_celda_y)
 
