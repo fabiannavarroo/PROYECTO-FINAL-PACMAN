@@ -530,9 +530,60 @@ class Tablero:
             fantasma.y += fantasma.velocidad if dy > 0 else -fantasma.velocidad
 
 
+    def perseguir_a_pacman(self, fantasma, objetivo_x, objetivo_y):
+        # Comprobar si el fantasma está en un portal
+        if self.usar_portal(fantasma):
+            return False
     
-    
+        # Mueve el fantasma hacia  Pac-Man, evitando retrocesos y colisiones.
+        x_actual, y_actual = fantasma.x, fantasma.y
 
+        # Lista de direcciones posibles
+        posibles_direcciones = [
+            ("DERECHA", x_actual + fantasma.velocidad, y_actual),
+            ("IZQUIERDA", x_actual - fantasma.velocidad, y_actual),
+            ("ABAJO", x_actual, y_actual + fantasma.velocidad),
+            ("ARRIBA", x_actual, y_actual - fantasma.velocidad)
+        ]
+
+  
+        nueva_direccion = None  # Dirección que el fantasma tomará
+        nueva_x = x_actual      # Nueva posición X del fantasma
+        nueva_y = y_actual      # Nueva posición Y del fantasma
+        menor_distancia = 400  # Distancia mínima es decir la que mide el mapa
+
+        # Evaluar todas las direcciones posibles
+        for direccion, x, y in posibles_direcciones:
+            # Comprobar si la dirección es válida (sin colisión y no retrocede)
+            if not self.bloque.colision(x, y) and direccion != self.invertir_direccion(fantasma.direccion_actual):
+                # Calcular la distancia Manhattan entre la nueva posición y Pac-Man
+                distancia = abs(objetivo_x - x) + abs(objetivo_y - y)
+                
+                # Actualizar si esta dirección acerca más al fantasma al objetivo
+                if distancia < menor_distancia:
+                    menor_distancia = distancia
+                    nueva_direccion = direccion
+                    nueva_x = x
+                    nueva_y = y
+
+        # Si se encontró una dirección válida, mover al fantasma
+        if nueva_direccion is not None:
+            fantasma.x = nueva_x
+            fantasma.y = nueva_y
+            fantasma.direccion_actual = nueva_direccion
+
+    def invertir_direccion(self, direccion):
+        # Devuelve la dirección opuesta a la dirección actual asi el fantasma no retrocede
+        if direccion == "DERECHA":
+            return "IZQUIERDA"
+        elif direccion == "IZQUIERDA":
+            return "DERECHA"
+        elif direccion == "ARRIBA":
+            return "ABAJO"
+        elif direccion == "ABAJO":
+            return "ARRIBA"
+        return None
+    
 
     def usar_portal(self, personaje):
         # Comprueba si el personaje está cerca de un portal y lo transporta al otro lado.
