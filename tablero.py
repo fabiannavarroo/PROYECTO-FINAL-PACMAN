@@ -518,7 +518,7 @@ class Tablero:
         # Definir las direcciones posibles: izquierda, derecha, arriba, abajo
         direcciones = [(-16, 0), (16, 0), (0, -16), (0, 16)]
         max_distancia = -1  # Variable para almacenar la mayor distancia encontrada
-        celda_mas_lejos = None  # Celda más lejana a seleccionar
+        celda_mas_lejos = None  # Celda más lejana 
 
         # Calcular la dirección opuesta para evitar que el fantasma retroceda
         direccion_opuesta = None
@@ -540,10 +540,10 @@ class Tablero:
 
             # Comprobar que la celda no tiene colisiones y no sea la dirección opuesta
             if not self.colision_fantasmas(nueva_celda_x, nueva_celda_y) and (dx, dy) != direccion_opuesta:
-                # Calcular la "distancia al cuadrado" entre esta celda y Pac-Man
+                # Calcular la distancia al cuadrado entre esta celda y Pac-Man
                 diferencia_x = nueva_celda_x - pacman_x
                 diferencia_y = nueva_celda_y - pacman_y
-                distancia = diferencia_x * diferencia_x + diferencia_y * diferencia_y  # Evita cálculos de raíz cuadrada
+                distancia = diferencia_x * diferencia_x + diferencia_y * diferencia_y
 
                 # Agregar la celda como válida
                 celdas_validas.append((distancia, (nueva_celda_x, nueva_celda_y)))
@@ -554,7 +554,7 @@ class Tablero:
                 max_distancia = distancia  # Actualizar la mayor distancia encontrada
                 celda_mas_lejos = celda  # Actualizar la celda correspondiente
 
-        # Si no se encuentra ninguna celda válida, considerar todas las direcciones
+        # Si no se encuentra ninguna celda válida utilizara todas las direcciones
         if celda_mas_lejos is None:
             for dx, dy in direcciones:
                 # Calcular las coordenadas de la nueva celda en esta dirección
