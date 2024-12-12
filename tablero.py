@@ -170,6 +170,7 @@ class Tablero:
             # Si se ganó la partida, limpiar pantalla y volver a dibujar el mapa
             if self.victoria:
                 pyxel.cls(0)
+                self.dibujar_letras_mapa(185,208,"VICTORIA_1")
                 if self.victoria_contador < 10:
                     if pyxel.frame_count % 2 == 0:  
                         self.bloque.draw()
