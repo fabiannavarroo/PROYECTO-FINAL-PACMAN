@@ -16,8 +16,8 @@ class Tablero:
         # Cargar los recursos del archivo .pyxres
         pyxel.load("assets/recursos.pyxres")
 
-        # Iniciar la música 
-        pyxel.playm(0,0,True)
+        # Iniciar la música para el mapa 1
+        pyxel.playm(0, 0, True)
 
         # Crear el objeto bloque, que representa el mapa
         self.bloque = Bloque()  
