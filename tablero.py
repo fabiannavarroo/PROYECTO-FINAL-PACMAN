@@ -635,36 +635,38 @@ class Tablero:
 
 
 
-    def buscar_ruta_simple(self, inicio, objetivo):
+        def buscar_ruta_simple(self, inicio, objetivo):
         # Búsqueda en anchura para encontrar una ruta simple entre inicio y objetivo
-        # Se limita el número de pasos para evitar que se cuelgue
-        max_pasos = 1000
+        max_pasos = 500  # Limitar el número de pasos
         cola = deque([inicio])
-        visitados = {inicio: None}
+        visitados = set()
+        padre = {inicio: None}
         pasos = 0
 
         while cola:
             actual = cola.popleft()
+            visitados.add(actual)
             pasos += 1
 
             if pasos > max_pasos:
-                # Si excede el número máximo de pasos, abandonar la búsqueda para evitar que vaya lento el juego
+                # Detener si excede los pasos permitidos
                 return None
 
             if actual == objetivo:
-                # Si se encontró el objetivo buscar la ruta
+                # Reconstruir la ruta desde el objetivo al inicio
                 ruta = []
                 while actual is not None:
                     ruta.append(actual)
-                    actual = visitados[actual]
-                ruta.reverse()
-                return ruta
+                    actual = padre[actual]
+                return list(reversed(ruta))
 
+            # Generar vecinos válidos
             for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
-                posible_celda = (actual[0] + dx, actual[1] + dy)
-                if posible_celda not in visitados and not self.colision_fantasmas(posible_celda[0], posible_celda[1]):
-                    visitados[posible_celda] = actual
-                    cola.append(posible_celda)
+                vecino = (actual[0] + dx, actual[1] + dy)
+                if vecino not in visitados and not self.colision_fantasmas(vecino[0], vecino[1]):
+                    cola.append(vecino)
+                    visitados.add(vecino)
+                    padre[vecino] = actual
 
         return None
 
