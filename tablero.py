@@ -592,23 +592,31 @@ class Tablero:
         return pos_futura
 
 
-    def emboscada_a_pacman(self, fantasma, objetivo):
-        # Mover el fantasma rosa hacia la posición emboscada o hacia Pac-Man si no hay ruta
+    def emboscada_a_pacman(self, fantasma, objetivo_emboscada):
+        # Mueve al fantasma hacia la posición emboscada o, si no encuentra una ruta válida, lo hace perseguir a Pac-Man directamente.
+
         if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
             inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
-            ruta = self.buscar_ruta_simple(inicio, objetivo)
+            
+            # Intentar emboscar a Pac-Man
+            ruta_emboscada = self.buscar_ruta_simple(inicio, objetivo_emboscada)
 
-            if ruta and len(ruta) > 1:
-                fantasma.siguiente_celda = ruta[1]
+            if ruta_emboscada and len(ruta_emboscada) > 1:
+                # Emboscada exitosa: establecer la siguiente celda hacia el objetivo de emboscada
+                fantasma.siguiente_celda = ruta_emboscada[1]
             else:
-                # Si no hay ruta a la emboscada, seguir a Pac-Man directamente
+                # Si la emboscada falla, intentar perseguir directamente a Pac-Man
                 objetivo_pacman = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
-                ruta = self.buscar_ruta_simple(inicio, objetivo_pacman)
-                if ruta and len(ruta) > 1:
-                    fantasma.siguiente_celda = ruta[1]
-                else:
-                    fantasma.siguiente_celda = None
+                ruta_perseguir = self.buscar_ruta_simple(inicio, objetivo_pacman)
 
+                if ruta_perseguir and len(ruta_perseguir) > 1:
+                    # Perseguir directamente a Pac-Man
+                    fantasma.siguiente_celda = ruta_perseguir[1]
+                else:
+                    # Si tampoco encuentra una ruta directa, moverse aleatoriamente
+                    fantasma.siguiente_celda = self.movimiento_aleatorio(fantasma)
+
+        # Mover hacia la celda determinada
         self.mover_hacia_siguiente_celda(fantasma)
 
 
