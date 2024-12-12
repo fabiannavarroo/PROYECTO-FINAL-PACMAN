@@ -2,5 +2,5 @@ fantasma azul: Tiene un patrón de movimiento más errático, a veces cortando a
 fantasma naranja: Un fantasma más aleatorio, a veces moviéndose hacia Pac-Man, a veces alejándose
 
 
-TExto de win
+TExto de win animacion
 
