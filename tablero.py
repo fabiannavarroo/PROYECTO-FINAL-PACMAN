@@ -593,7 +593,7 @@ class Tablero:
 
 
     def emboscada_a_pacman(self, fantasma, objetivo_emboscada):
-        # Mueve al fantasma hacia la posición donde tiende a estar Pac-Man o, si no encuentra una ruta válida, lo hace perseguir a Pac-Man directamente.
+        # Mueve al fantasma hacia la posición donde tiende a estar Pac-Man o, si no encuentra una ruta válida, persigue a Pac-Man directamente.
 
         if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
             inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
