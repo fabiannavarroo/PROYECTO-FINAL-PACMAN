@@ -611,7 +611,11 @@ class Tablero:
 
 
     def mover_hacia_siguiente_celda(self, fantasma):
-        # Mueve el fantasma hacia la siguiente celda de su ruta
+        # Si el fantasma ya está en su objetivo, no recalcular
+        if fantasma.siguiente_celda and (fantasma.x, fantasma.y) == fantasma.siguiente_celda:
+            fantasma.siguiente_celda = None
+
+        # Mueve el fantasma hacia la siguiente celda
         if fantasma.siguiente_celda:
             dx = fantasma.siguiente_celda[0] - fantasma.x
             dy = fantasma.siguiente_celda[1] - fantasma.y
@@ -709,15 +713,15 @@ class Tablero:
 
 
     def colision_fantasmas(self, x, y):
-
-        for zona in ZONAS_PROHIBIDAS_FANTASMAS:
-            x1, y1, x2, y2 = zona
+        # Verificar colisión con zonas prohibidas de fantasmas
+        for x1, y1, x2, y2 in ZONAS_PROHIBIDAS_FANTASMAS:
             if x1 <= x <= x2 and y1 <= y <= y2:
                 return True
 
+        # Verificar colisión con bloques del mapa
         if self.bloque.colision(x, y):
             return True
-
+        # No hay colision
         return False
 
 
