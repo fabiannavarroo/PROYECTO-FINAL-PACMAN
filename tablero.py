@@ -524,7 +524,7 @@ class Tablero:
             fantasma.en_salida = False  # Termina la salida
 
 
-    def perseguir_a_pacman(self, fantasma):
+    def perseguir_un_objectivo(self, fantasma, objectivo_x, objectivo_y):
         # El fantasma persigue a Pac-Man.
         if self.usar_portal(fantasma):  # Verificar portal
             return
@@ -538,7 +538,7 @@ class Tablero:
 
         mejor_direccion = None
         menor_distancia = 400 # Es lo que mide la pantalla por tanto es la maxima dirección
-        objetivo = (self.pacman.x, self.pacman.y)
+        objetivo = (objectivo_x, objectivo_y)
 
         for direccion in direcciones:
             nueva_x, nueva_y = direcciones[direccion]
