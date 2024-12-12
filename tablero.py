@@ -537,10 +537,10 @@ class Tablero:
 
         # Direcciones posibles
         direcciones = [
-            ("ARRIBA", celda_actual_x, celda_actual_y - 1),
-            ("ABAJO", celda_actual_x, celda_actual_y + 1),
-            ("IZQUIERDA", celda_actual_x - 1, celda_actual_y),
-            ("DERECHA", celda_actual_x + 1, celda_actual_y),
+            ("ARRIBA", celda_actual_x, celda_actual_y - 16),
+            ("ABAJO", celda_actual_x, celda_actual_y + 16),
+            ("IZQUIERDA", celda_actual_x - 16, celda_actual_y),
+            ("DERECHA", celda_actual_x + 16, celda_actual_y),
         ]
 
         # Buscar la mejor dirección
