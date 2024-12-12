@@ -178,6 +178,7 @@ class Tablero:
                         pass
                 else:
                     self.bloque.draw()
+                    self.dibujar_letras_mapa(185,208,"VICTORIA")
         else:
             # Si Pac-Man no tiene vidas, mostrar GAME OVER
             pyxel.cls(0)
