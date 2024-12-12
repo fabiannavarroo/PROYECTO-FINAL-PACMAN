@@ -631,12 +631,6 @@ class Tablero:
         return False
 
 
-    def colision_fantasmas(self, x, y):
-        # 3. Verificar si hay colisión con zonas prohibidas
-        # 4. Verificar si hay colisión con bloques del mapa
-        return self.bloque.colision(x, y)
-
-
     def detectar_colision_puntos(self, pacman_x, pacman_y, punto_x, punto_y):
         # Detecta si Pac-Man ha comido un punto
         return abs(pacman_x - punto_x) < 10 and abs(pacman_y - punto_y) < 10
