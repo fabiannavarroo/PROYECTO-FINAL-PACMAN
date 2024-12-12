@@ -510,10 +510,10 @@ class Tablero:
 
     def calcular_celda_mas_alejada(self, fantasma):
         # Posición actual de Pac-Man y el fantasma redondeadas a un múltiplo de 16
-        pacman_x = self.pacman.x +16
-        pacman_y = self.pacman.y + 16
-        fantasma_x = fantasma.x +16
-        fantasma_y = fantasma.y + 16
+        pacman_x = self.pacman.x // 16 * 16
+        pacman_y = self.pacman.y // 16 * 16
+        fantasma_x = fantasma.x // 16 * 16
+        fantasma_y = fantasma.y // 16 * 16
 
         # Definir las direcciones posibles: izquierda, derecha, arriba, abajo
         direcciones = [(-16, 0), (16, 0), (0, -16), (0, 16)]
