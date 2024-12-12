@@ -95,8 +95,7 @@ class Tablero:
                             # Esperar un tiempo antes de moverlo a la salida
                             tiempo_espera = (index + 1) * 2
                             if time.time() - fantasma.tiempo_trampa >= tiempo_espera:
-                                if not fantasma.en_salida:
-                                    fantasma.en_salida = True
+                                fantasma.en_salida = True
                                 fantasma.mover_a_salida()
                     else:
                         # Actualizar movimiento normal si no está en la trampa
