@@ -193,7 +193,7 @@ class Tablero:
         # Reiniciar fantasmas a su posición original después de una muerte o cambio de nivel
         for fantasma in self.fantasmas:
             fantasma.volver_a_posicion_inicial()
-            fantasma.siguiente_celda = None
+            fantasma.ultima_direccion = None
             fantasma.tiempo_trampa = time.time()
 
     def reiniciar_tablero(self):
