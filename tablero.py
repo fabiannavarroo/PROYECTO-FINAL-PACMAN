@@ -522,8 +522,15 @@ class Tablero:
         distancia_x, distancia_y = 400,400
         proxima_celda = None
 
-        if not self.bloque.colision(fantasma.x, fantasma.y):
-        
+        if not self.bloque.colision(fantasma.x, fantasma.y) and fantasma.ultima_direccion!= "ARRIBA":
+            proxima_celda = (fantasma.x//16, fantasma.y-16)
+        elif not self.bloque.colision(fantasma.x, fantasma.y) and fantasma.ultima_direccion!= "ABAJO":
+            proxima_celda = (fantasma.x//16, fantasma.y+16)
+        elif not self.bloque.colision(fantasma.x, fantasma.y) and fantasma.ultima_direccion!= "DERECHA":
+            proxima_celda = (fantasma.x+16, fantasma.y//16)
+        elif not self.bloque.colision(fantasma.x, fantasma.y) and fantasma.ultima_direccion!= "IZQUIERDA":
+            proxima_celda = (fantasma.x-16, fantasma.y//16)
+
 
     def mover_fantasma(self, fantasma, direccion):
         # Mueve al fantasma en la dirección especificada
