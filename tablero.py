@@ -177,7 +177,7 @@ class Tablero:
                     else: 
                         pass
                 else:
-                    self.victoria_contador = 0
+                    self.bloque.draw()
         else:
             # Si Pac-Man no tiene vidas, mostrar GAME OVER
             pyxel.cls(0)
