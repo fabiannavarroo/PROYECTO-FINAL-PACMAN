@@ -530,10 +530,10 @@ class Tablero:
             return
 
         # Obtener las coordenadas actuales del fantasma en celdas
-        celda_actual_x = fantasma.x 
-        celda_actual_y = fantasma.y 
-        objetivo_x = self.pacman.x 
-        objetivo_y = self.pacman.y 
+        celda_actual_x = fantasma.x // 16 * 16
+        celda_actual_y = fantasma.y // 16 * 16
+        objetivo_x = self.pacman.x // 16 * 16
+        objetivo_y = self.pacman.y // 16 * 16
 
         # Direcciones posibles
         direcciones = [
