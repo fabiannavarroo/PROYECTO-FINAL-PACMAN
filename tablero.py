@@ -51,7 +51,7 @@ class Tablero:
         self.celdas_para_emboscada = 3
 
         # Controlar la condición de victoria
-        self.victoria = True  
+        self.victoria = False  
         self.victoria_contador = 0
 
         # COntrola la musica actual
