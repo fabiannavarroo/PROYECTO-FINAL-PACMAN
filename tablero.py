@@ -508,12 +508,12 @@ class Tablero:
         self.mover_hacia_siguiente_celda(fantasma)
 
 
-    def calcular_celda_mas_alejada(self):
+    def calcular_celda_mas_alejada(self,fantasma):
         # Encuentra la celda más alejada de Pac-Man
         pacman_x = self.pacman.x // 16 * 16
         pacman_y = self.pacman.y // 16 * 16
-        fantasma_x = self.fantasma.x // 16 * 16
-        fantasma_y = self.fantasma.y // 16 * 16
+        fantasma_x = fantasma.x // 16 * 16
+        fantasma_y = fantasma.y // 16 * 16
 
         direcciones = [(-16, 0), (16, 0), (0, -16), (0, 16)]  # izquierda, derecha, arriba, abajo
         max_distancia = -1
