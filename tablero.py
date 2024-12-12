@@ -566,7 +566,7 @@ class Tablero:
             self.mover_fantasma(fantasma, direccion_opuesta)
             fantasma.direccion_actual = direccion_opuesta
 
-    def mover_fantasma(fantasma, direccion):
+    def mover_fantasma(self, fantasma, direccion):
         #  Mueve al fantasma en la dirección especificada.
         if direccion == "ARRIBA":
             fantasma.y -= fantasma.velocidad
