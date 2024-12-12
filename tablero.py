@@ -545,7 +545,7 @@ class Tablero:
 
         # Buscar la mejor dirección
         mejor_direccion = None
-        menor_distancia = 400 # 400 es la distancia máxima que puede haber entre el fantasma y el pacman
+        menor_distancia = 400 # 400 es la distancia máxima que puede haber entre el fantasma y el pacman porque es lo que mide la pantalla
         for direccion, nueva_x, nueva_y in direcciones:
             # Verificar colisión y evitar la dirección opuesta
             if not self.bloque.colision(nueva_x, nueva_y) and direccion != self.invertir_direccion(fantasma.direccion_actual):
