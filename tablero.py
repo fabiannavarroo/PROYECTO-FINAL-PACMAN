@@ -548,7 +548,7 @@ class Tablero:
         menor_distancia = 400 # 400 es la distancia máxima que puede haber entre el fantasma y el pacman porque es lo que mide la pantalla
         for direccion, nueva_x, nueva_y in direcciones:
             # Verificar colisión y evitar la dirección opuesta
-            if not self.bloque.colision(nueva_x * 16, nueva_y) and direccion != self.invertir_direccion(fantasma.direccion_actual):
+            if not self.bloque.colision(nueva_x * 16, nueva_y * 16) and direccion != self.invertir_direccion(fantasma.direccion_actual):
                 # Calcular la distancia Manhattan
                 distancia = abs(objetivo_x - nueva_x) + abs(objetivo_y - nueva_y)
                 if distancia < menor_distancia:
