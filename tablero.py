@@ -373,7 +373,7 @@ class Tablero:
             return False
         
         if fantasma.en_trampa:
-            return True
+            return False
 
         elif fantasma.asustado:
             pass # alejarse de pacman
@@ -387,7 +387,7 @@ class Tablero:
             return False
 
         if fantasma.en_trampa:
-            return True
+            return False
 
         elif fantasma.asustado:
             pass # alejarse de pacman
@@ -401,7 +401,7 @@ class Tablero:
             return False
         
         if fantasma.en_trampa:
-            return True
+            return False
 
         elif fantasma.asustado:
             pass # alejarse de pacman
@@ -420,7 +420,7 @@ class Tablero:
             return False
         
         if fantasma.en_trampa:
-            return True
+            return False
 
         elif fantasma.asustado:
             pass # alejarse de pacman
