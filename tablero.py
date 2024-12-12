@@ -60,7 +60,8 @@ class Tablero:
         pyxel.run(self.update, self.draw)
 
     def update(self):
-
+        # Actualizar_musica para gestionar la música dinámica
+        self.actualizar_musica()
         if self.pacman.vidas > 0:
             # Mientras Pac-Man tenga vidas
             if self.contador_ready < 90:
