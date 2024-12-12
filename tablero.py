@@ -445,12 +445,6 @@ class Tablero:
         elif isinstance(fantasma, FantasmaNaranja):
             self.mover_fantasma_naranja(fantasma)
 
-        # Verificar si el fantasma usa un portal
-        if self.usar_portal(fantasma):
-            # Recalcular la ruta al objetivo (Pac-Man)
-            self.recalcular_ruta_fantasma(fantasma)
-
-
     #--------------------------------------------------------------------MOVIMIENTO--------------------------------------------------------------------#
 
     def movimineto_pacman(self):
