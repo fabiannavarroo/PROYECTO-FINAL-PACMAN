@@ -577,7 +577,7 @@ class Tablero:
     
     
     def predecir_posicion_pacman(self, casillas_adelante):
-        # Predecir la posición futura de Pac-Man según su dirección y un número de celdas
+        # Predecir la posición futura de Pac-Man según su dirección y un número de celdas adelante.
         dx, dy = 0, 0
         if self.pacman.direccion_actual == PACMAN_ARRIBA:
             dy = -16 * casillas_adelante
@@ -589,7 +589,12 @@ class Tablero:
             dx = 16 * casillas_adelante
 
         pos_futura = ((self.pacman.x // 16) * 16 + dx, (self.pacman.y // 16) * 16 + dy)
-        return pos_futura
+        # Validar si está dentro de los límites del mapa
+        if not self.bloque.colision(pos_futura[0], pos_futura[1]):
+            return pos_futura
+        else:
+            # Si está fuera de los límites, usar la posición actual de Pac-Man
+            return (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
 
 
     def emboscada_a_pacman(self, fantasma, objetivo_emboscada):
