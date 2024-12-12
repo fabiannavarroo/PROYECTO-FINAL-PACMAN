@@ -12,7 +12,7 @@ import pyxel
 class Tablero:
     def __init__(self):
         # Inicializar la ventana del juego
-        pyxel.init(400, 400, title="Pacman", fps=30)
+        pyxel.init(500, 500, title="Pacman", fps=30)
         # Cargar los recursos del archivo .pyxres
         pyxel.load("assets/recursos.pyxres")
 
@@ -378,7 +378,7 @@ class Tablero:
             pass # alejarse de pacman
 
         else:
-            self.perseguir_a_pacman(fantasma) # seguir a pacman 
+            self.perseguir_un_objectivo(fantasma, self.pacman.x, self.pacman.y) # seguir a pacman 
 
 
     def mover_fantasma_rosa(self,fantasma):
@@ -526,8 +526,7 @@ class Tablero:
 
     def perseguir_un_objectivo(self, fantasma, objectivo_x, objectivo_y):
         # El fantasma persigue a Pac-Man.
-        if self.usar_portal(fantasma):  # Verificar portal
-            return
+        self.usar_portal(fantasma)  # Verificar portal
         # Obtener celdas de destino y elegir la mejor dirección
         direcciones = {
             "ARRIBA": (fantasma.x, fantasma.y - fantasma.velocidad),
