@@ -261,19 +261,27 @@ class Tablero:
 #--------------------------------------------------------------------MUSICA--------------------------------------------------------------------#
 
     def actualizar_musica(self):
-            # Cambiar la música según el estado del juego
-            if self.victoria:
-                pyxel.playm(1, 0, True)  # Música de victoria
-            elif self.pacman.en_muerte:
-                pyxel.playm(3, 0, False)  # Música de muerte de Pac-Man
-            elif any(fantasma.asustado for fantasma in self.fantasmas):
-                pyxel.playm(2, 0, False)  # Música de fantasmas asustados
-            elif self.bloque.nivel == 1:
-                pyxel.playm(0, 0, True)  # Música del mapa 1
-            elif self.bloque.nivel == 2:
-                pyxel.playm(5, 0, True)  # Música del mapa 2
-            elif self.bloque.nivel == 3:
-                pyxel.playm(4, 0, True)  # Música del mapa 3
+        # Variable para rastrear la música actual
+        musica_actual = None
+
+        # Determinar qué música debería sonar
+        if self.victoria:
+            musica_actual = 1  # Música de victoria
+        elif self.pacman.en_muerte:
+            musica_actual = 3  # Música de muerte de Pac-Man
+        elif any(fantasma.asustado for fantasma in self.fantasmas):
+            musica_actual = 2  # Música de fantasmas asustados
+        elif self.bloque.nivel == 1:
+            musica_actual = 0  # Música del mapa 1
+        elif self.bloque.nivel == 2:
+            musica_actual = 5  # Música del mapa 2
+        elif self.bloque.nivel == 3:
+            musica_actual = 4  # Música del mapa 3
+
+        # Cambiar la música solo si es diferente a la actual
+        if musica_actual is not None and musica_actual != self.musica_actual:
+            pyxel.playm(musica_actual, 0, True)
+            self.musica_actual = musica_actual
 
     #--------------------------------------------------------------------MAPA--------------------------------------------------------------------#
 
