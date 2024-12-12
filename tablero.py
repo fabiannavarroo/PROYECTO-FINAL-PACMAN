@@ -51,11 +51,12 @@ class Tablero:
         self.celdas_para_emboscada = 3
 
         # Controlar la condición de victoria
-        self.victoria = True  
+        self.victoria = False  
         self.victoria_contador_mapa = 0
         self.victoria_contador_texto = 0
 
         # COntrola la musica actual
+        self.elegir_cancion = random.random() # elegir la cancion del mapa 2
         self.musica_actual = None
 
         # Cambiar la dirección de los fantasmas
@@ -299,8 +300,12 @@ class Tablero:
             musica_actual = 2  # Música de fantasmas asustados
         elif self.bloque.nivel == 1:
             musica_actual = 0  # Música del mapa 1
-        elif self.bloque.nivel == 2:
-            musica_actual = 5  # Música del mapa 2
+        elif self.bloque.nivel == 2: # Música del mapa 2
+            
+            if self.elegir_cancion < 0.5:
+                musica_actual = 5  
+            else:
+                musica_actual = 7
         elif self.bloque.nivel == 3:
             musica_actual = 4  # Música del mapa 3
 
