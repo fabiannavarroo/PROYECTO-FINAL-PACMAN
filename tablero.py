@@ -499,23 +499,7 @@ class Tablero:
             inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
             pacman_pos = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
 
-            opciones = []
-            for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
-                posible_celda = (inicio[0] + dx, inicio[1] + dy)
-                if not self.colision_fantasmas(posible_celda[0], posible_celda[1]):
-                    distancia = abs(posible_celda[0] - pacman_pos[0]) + abs(posible_celda[1] - pacman_pos[1])
-                    opciones.append((distancia, posible_celda))
-
-            if opciones:
-                mayor_distancia = -1
-                mejor_celda = None
-                for distancia, celda in opciones:
-                    if distancia > mayor_distancia:
-                        mayor_distancia = distancia
-                        mejor_celda = celda
-                fantasma.siguiente_celda = mejor_celda
-            else:
-                fantasma.siguiente_celda = None
+            
 
         self.mover_hacia_siguiente_celda(fantasma)
 
