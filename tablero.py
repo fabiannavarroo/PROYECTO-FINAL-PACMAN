@@ -512,6 +512,12 @@ class Tablero:
         print("Pacman", self.pacman.x, self.pacman.y)
 
 
+    def perseguir_pacman(self):
+        
+
+
+
+
     def mover_a_salida(self, fantasma):
         dx = fantasma.salida_final[0] - fantasma.x
         dy = fantasma.salida_final[1] - fantasma.y
