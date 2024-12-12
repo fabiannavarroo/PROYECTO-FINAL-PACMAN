@@ -100,7 +100,7 @@ class Tablero:
                                 fantasma.mover_a_salida()
                     else:
                         # Actualizar movimiento normal si no está en la trampa
-                        self.mover_fantasma(fantasma)
+                        self.movimiento_fantasmas(fantasma)
                     # Actualizar el estado del fantasma 
                     fantasma.actualizar_estado()
 
