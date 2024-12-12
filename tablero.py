@@ -549,8 +549,6 @@ class Tablero:
         else:
             self.mover_fantasma(fantasma, fantasma.ultima_direccion)
 
-        ruta.append(proxima_celda)
-        return proxima_celda
 
     def mover_fantasma(self, fantasma, direccion):
         # Mueve al fantasma en la dirección especificada
