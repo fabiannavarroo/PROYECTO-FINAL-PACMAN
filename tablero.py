@@ -12,7 +12,7 @@ import pyxel
 class Tablero:
     def __init__(self):
         # Inicializar la ventana del juego
-        pyxel.init(500, 500, title="Pacman", fps=30)
+        pyxel.init(400, 400, title="Pacman", fps=30)
         # Cargar los recursos del archivo .pyxres
         pyxel.load("assets/recursos.pyxres")
 
@@ -547,7 +547,6 @@ class Tablero:
                     menor_distancia = distancia
                     mejor_direccion = direccion
 
-
         # Mueve al fantasma en la mejor dirección encontrada
         if mejor_direccion:
             self.mover_fantasma(fantasma, mejor_direccion)
@@ -589,6 +588,7 @@ class Tablero:
         else: 
             return None
 
+    #def generar_objectivo(self, fantasma, pacman)
 
     def usar_portal(self, personaje):
         # Comprueba si el personaje está cerca de un portal y lo transporta al otro lado.
