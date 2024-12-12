@@ -493,6 +493,23 @@ class Tablero:
         self.mover_hacia_siguiente_celda(fantasma)
 
 
+    def alejarse_de_pacman(self, fantasma):
+            # Intentar encontrar la celda más alejada
+            if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
+                inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
+                objetivo = self.calcular_celda_mas_alejada(fantasma)
+                # Si no hay un objetivo válido, moverse aleatoriamente
+                if objetivo is None:
+                    objetivo = self.movimiento_aleatorio(fantasma)
+                ruta = self.buscar_ruta_simple(inicio, objetivo)
+                if ruta and len(ruta) > 1:
+                    fantasma.siguiente_celda = ruta[1]
+                else:
+                    # Si no hay una ruta, mover de manera aleatoria
+                    fantasma.siguiente_celda = self.movimiento_aleatorio(fantasma)
+            self.mover_hacia_siguiente_celda(fantasma)
+
+
     def calcular_celda_mas_alejada(self, fantasma):
         # Posición de Pac-Man y del fantasma redondeadas a múltiplos de 16
         pacman_x = self.pacman.x // 16 * 16
