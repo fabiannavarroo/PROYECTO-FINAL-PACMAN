@@ -19,7 +19,6 @@ class Fantasma:
         self.en_salida = False
         self.en_trampa = True  # Indica si está en la trampa
         self.posicion_salida = (192, 176)
-        self.ultima_direccion = None
         
 
 

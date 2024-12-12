@@ -522,16 +522,12 @@ class Tablero:
         if fantasma.x == fantasma.salida_final[0] and fantasma.y == fantasma.salida_final[1]:
             fantasma.en_trampa = False  # Sale de la trampa
             fantasma.en_salida = False  # Termina la salida
-            fantasma.ultima_direccion = "DERECHA"  # Establece una dirección inicial
 
 
     def perseguir_a_pacman(self, fantasma):
-        """
-        Lógica para que el fantasma persiga a Pac-Man.
-        """
+        # El fantasma persigue a Pac-Man.
         if self.usar_portal(fantasma):  # Verificar portal
             return
-
         # Obtener celdas de destino y elegir la mejor dirección
         direcciones = {
             "ARRIBA": (fantasma.x, fantasma.y - fantasma.velocidad),
@@ -541,35 +537,58 @@ class Tablero:
         }
 
         mejor_direccion = None
-        menor_distancia = float('inf')
+        menor_distancia = 400 # Es lo que mide la pantalla por tanto es la maxima dirección
         objetivo = (self.pacman.x, self.pacman.y)
-
-        for direccion, (nx, ny) in direcciones.items():
-            if not self.bloque.colision(nx, ny) and direccion != self.invertir_direccion(fantasma.ultima_direccion):
-                distancia = abs(nx - objetivo[0]) + abs(ny - objetivo[1])
+    
+        for direccion in direcciones:
+            nueva_x, nueva_y = direcciones[direccion]
+            if not self.bloque.colision(nueva_x, nueva_y) and direccion != self.invertir_direccion(fantasma):
+                distancia = abs(nueva_x - objetivo[0]) + abs(nueva_y - objetivo[1])
                 if distancia < menor_distancia:
                     menor_distancia = distancia
                     mejor_direccion = direccion
+
 
         # Mueve al fantasma en la mejor dirección encontrada
         if mejor_direccion:
             self.mover_fantasma(fantasma, mejor_direccion)
         else:
-            print("El fantasma está atascado.")
+            # Si no hay una mejor dirección, moverse en la dirección opuesta
+            direccion_opuesta = self.invertir_direccion(fantasma)
+            if direccion_opuesta:
+                self.mover_fantasma(fantasma, direccion_opuesta)
 
 
     def mover_fantasma(self, fantasma, direccion):
         # Mueve al fantasma en la dirección especificada si no hay colisión.
         if direccion == "ARRIBA" and not self.bloque.colision(fantasma.x, fantasma.y - fantasma.velocidad):
             fantasma.y -= fantasma.velocidad
+            fantasma.direccion_actual = "ARRIBA"
         elif direccion == "ABAJO" and not self.bloque.colision(fantasma.x, fantasma.y + fantasma.velocidad):
             fantasma.y += fantasma.velocidad
+            fantasma.direccion_actual = "ABAJO"
         elif direccion == "IZQUIERDA" and not self.bloque.colision(fantasma.x - fantasma.velocidad, fantasma.y):
             fantasma.x -= fantasma.velocidad
+            fantasma.direccion_actual = "IZQUIERDA"
         elif direccion == "DERECHA" and not self.bloque.colision(fantasma.x + fantasma.velocidad, fantasma.y):
             fantasma.x += fantasma.velocidad
+            fantasma.direccion_actual = "DERECHA"
 
         fantasma.ultima_direccion = direccion
+
+    
+    def invertir_direccion(self,fantasma):
+        # Devuelve la posicion opueta a la actual en la que esta el fantasma
+        if fantasma.direccion_actual == "DERECHA":
+            return "IZQUIERDA"
+        elif fantasma.direccion_actual == "IZQUIERDA":
+            return "DERECHA"
+        elif fantasma.direccion_actual == "ARRIBA":
+            return "ABAJO"
+        elif fantasma.direccion_actual == "ABAJO":
+            return "ARRIBA"
+        else: 
+            return None
 
 
     def usar_portal(self, personaje):
