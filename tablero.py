@@ -631,19 +631,7 @@ class Tablero:
 
 
     def colision_fantasmas(self, x, y):
-        # 1. Verificar si está fuera de los límites del mapa
-        if x < 0 or x >= pyxel.width or y < 0 or y >= pyxel.height:
-            return True
-
-        # 2. Verificar si está en una posición de portal
-        if (x, y) in PORTALES:
-            return True
-
         # 3. Verificar si hay colisión con zonas prohibidas
-        for x1, y1, x2, y2 in ZONAS_PROHIBIDAS_FANTASMAS:
-            if x1 <= x <= x2 and y1 <= y <= y2:
-                return True
-
         # 4. Verificar si hay colisión con bloques del mapa
         return self.bloque.colision(x, y)
 
