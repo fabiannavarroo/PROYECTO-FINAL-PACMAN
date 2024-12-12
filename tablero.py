@@ -555,7 +555,7 @@ class Tablero:
                 max_distancia = distancia
                 celda_mas_lejos = celda
 
-        # Si no se encuentra una celda válida, considerar todas las direcciones posibles
+        # Si no se encuentra una celda válida, puede usar todas las direcciones posibles
         if celda_mas_lejos is None:
             for dx, dy in direcciones:
                 nueva_celda_x = fantasma_x + dx
