@@ -549,15 +549,30 @@ class Tablero:
         direcciones = [(-16, 0), (16, 0), (0, -16), (0, 16)]
         random.shuffle(direcciones)  # Mezclar las direcciones para que el movimiento sea aleatorio
 
+        # Inicializar variables de máxima distancia
+        max_distancia = -1
+        mejor_celda = (fantasma_x, fantasma_y)
+
+        # Buscar la celda válida más alejada
         for dx, dy in direcciones:
             nueva_celda_x = fantasma_x + dx
             nueva_celda_y = fantasma_y + dy
 
             if not self.colision_fantasmas(nueva_celda_x, nueva_celda_y):
-                return (nueva_celda_x, nueva_celda_y)
+                distancia = (nueva_celda_x - self.pacman.x) ** 2 + (nueva_celda_y - self.pacman.y) ** 2
+                if distancia > max_distancia:
+                    max_distancia = distancia
+                    mejor_celda = (nueva_celda_x, nueva_celda_y)
 
-        # Si no se encuentra ninguna celda válida, quedarse en la posición actual
-        return (fantasma_x, fantasma_y)
+        # Si no se encuentra ninguna celda válida, moverse al menos una posición en círculo
+        if mejor_celda == (fantasma_x, fantasma_y):
+            for dx, dy in direcciones:
+                nueva_celda_x = fantasma_x + dx
+                nueva_celda_y = fantasma_y + dy
+                if not self.bloque.colision(nueva_celda_x, nueva_celda_y):
+                    return (nueva_celda_x, nueva_celda_y)
+
+        return mejor_celda
 
     
     
