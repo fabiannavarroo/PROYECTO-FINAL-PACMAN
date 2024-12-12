@@ -77,8 +77,8 @@ PORTALES={
 
 #---------------TEXTO--------------#
 TEXTO={
-    "READY!": {"Coordenadas": (32, 192), "Tamaño": (64, 16)}, 
-    "HIGHSCORE":{"Coordenadas": (0, 168), "Tamaño": (80, 16)}, 
+    "READY!": {"Coordenadas": (32, 192), "Tamaño": (64, 8)}, 
+    "HIGHSCORE":{"Coordenadas": (0, 168), "Tamaño": (80, 8)}, 
     "GAME OVER": {"Coordenadas": (0, 192), "Tamaño": (32, 16)}, 
     "VICTORIA_1": {"Coordenadas": (0, 176), "Tamaño": (24, 16)},
     "VICTORIA_2": {"Coordenadas": (24, 176), "Tamaño": (24, 16)},
