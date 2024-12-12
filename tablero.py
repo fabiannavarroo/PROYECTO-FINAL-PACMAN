@@ -510,7 +510,6 @@ class Tablero:
             return True
 
         print("Pacman", self.pacman.x, self.pacman.y)
-        
 
 
     def mover_a_salida(self, fantasma):
