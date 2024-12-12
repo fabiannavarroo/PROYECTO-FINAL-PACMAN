@@ -522,48 +522,49 @@ class Tablero:
 
 
     def perseguir_a_pacman(self, fantasma):
-        # Comprobar si el fantasma está en un portal
+        """
+        Lógica para que el fantasma persiga a Pac-Man.
+        """
+        # Verificar si el fantasma está en un portal
         if self.usar_portal(fantasma):
-            return False
+            return
 
-        # Obtener las coordenadas actuales del fantasma en términos de celdas
+        # Obtener las coordenadas actuales del fantasma en celdas
         celda_actual_x = fantasma.x // 16
         celda_actual_y = fantasma.y // 16
-        objetivo_celda_x, objetivo_celda_y = self.pacman.x // 16, self.pacman.y // 16
+        objetivo_x = self.pacman.x // 16
+        objetivo_y = self.pacman.y // 16
 
-        # Lista de direcciones posibles con sus coordenadas de destino
-        posibles_direcciones = [
-            ("DERECHA", celda_actual_x + 1, celda_actual_y),
-            ("IZQUIERDA", celda_actual_x - 1, celda_actual_y),
-            ("ABAJO", celda_actual_x, celda_actual_y + 1),
+        # Direcciones posibles
+        direcciones = [
             ("ARRIBA", celda_actual_x, celda_actual_y - 1),
+            ("ABAJO", celda_actual_x, celda_actual_y + 1),
+            ("IZQUIERDA", celda_actual_x - 1, celda_actual_y),
+            ("DERECHA", celda_actual_x + 1, celda_actual_y),
         ]
 
-        nueva_direccion = None  # Dirección que el fantasma tomará
-        menor_distancia = 400  # Distancia inicial alta para comparaciones
+        # Buscar la mejor dirección
+        mejor_direccion = None
+        menor_distancia = float("inf")
 
-        # Evaluar todas las direcciones posibles
-        for direccion, nueva_celda_x, nueva_celda_y in posibles_direcciones:
-            # Comprobar si no hay colisión y no es la dirección opuesta
-            if not self.bloque.colision(nueva_celda_x, nueva_celda_y) and direccion != self.invertir_direccion(fantasma.direccion_actual):
-                # Calcular la distancia entre la nueva celda y Pac-Man
-                distancia = abs(objetivo_celda_x - nueva_celda_x) + abs(objetivo_celda_y - nueva_celda_y)
-
-                # Actualizar si esta dirección acerca más al fantasma al objetivo
+        for direccion, nueva_x, nueva_y in direcciones:
+            # Verificar colisión y evitar la dirección opuesta
+            if not self.bloque.colision(nueva_x * 16, nueva_y * 16) and direccion != self.invertir_direccion(fantasma.direccion_actual):
+                # Calcular la distancia Manhattan
+                distancia = abs(objetivo_x - nueva_x) + abs(objetivo_y - nueva_y)
                 if distancia < menor_distancia:
                     menor_distancia = distancia
-                    nueva_direccion = direccion
+                    mejor_direccion = direccion
 
-        # Si se encontró una dirección válida, mover al fantasma
-        if nueva_direccion:
-            self.mover_fantasma(fantasma, nueva_direccion)
-            fantasma.direccion_actual = nueva_direccion
+        # Si se encuentra una dirección válida, mover al fantasma
+        if mejor_direccion:
+            self.mover_fantasma(fantasma, mejor_direccion)
+            fantasma.direccion_actual = mejor_direccion
         else:
-            # Si no hay opciones válidas, volver por donde vino
-            direccion_invertida = self.invertir_direccion(fantasma.direccion_actual)
-            self.mover_fantasma(fantasma, direccion_invertida)
-            fantasma.direccion_actual = direccion_invertida
-
+            # Si no hay direcciones válidas, permitir retroceder
+            direccion_opuesta = self.invertir_direccion(fantasma.direccion_actual)
+            self.mover_fantasma(fantasma, direccion_opuesta)
+            fantasma.direccion_actual = direccion_opuesta
 
     def mover_fantasma(fantasma, direccion):
         #  Mueve al fantasma en la dirección especificada.
