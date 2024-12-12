@@ -565,7 +565,7 @@ class Tablero:
                 if not self.colision_fantasmas(nueva_celda_x, nueva_celda_y):
                     celda_mas_lejos = (nueva_celda_x, nueva_celda_y)
 
-        # Retornar la celda más lejana encontrada o una alternativa
+        # Devuelve la celda más lejana encontrada o una alternativa
         return celda_mas_lejos
 
     
