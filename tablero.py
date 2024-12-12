@@ -521,7 +521,7 @@ class Tablero:
             nueva_celda_y = fantasma_y + dy
 
             # Comprueba si la celda no tiene colisión
-            if not self.bloque.colision(nueva_celda_x, nueva_celda_y):
+            if not self.fantasmas.colision(nueva_celda_x, nueva_celda_y):
                 # Evaluar si está más lejos según las reglas básicas (sin usar vectores)
                 diferencia_x = nueva_celda_x - pacman_x
                 diferencia_y = nueva_celda_y - pacman_y
