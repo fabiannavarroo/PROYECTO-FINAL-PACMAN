@@ -172,6 +172,7 @@ class Tablero:
                 pyxel.cls(0)
                 if pyxel.frame_count % 10 == 0:  
                     self.bloque.draw()
+                    self.victoria_contador += 1
                 else: 
                     pass
         else:
