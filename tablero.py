@@ -16,6 +16,9 @@ class Tablero:
         # Cargar los recursos del archivo .pyxres
         pyxel.load("assets/recursos.pyxres")
 
+        # Iniciar la música 
+        self.sonido_musica = pyxel.playm(0,0,True)
+
         # Crear el objeto bloque, que representa el mapa
         self.bloque = Bloque()  
         # Crear el objeto Pacman, en la posición 192, 304
@@ -59,8 +62,6 @@ class Tablero:
     def update(self):
 
         if self.pacman.vidas > 0:
-            # Iniciar la música 
-            pyxel.playm(0,0,True)
             # Mientras Pac-Man tenga vidas
             if self.contador_ready < 90:
                 # Mostrar el mensaje READY! por un tiempo
