@@ -523,28 +523,20 @@ class Tablero:
         if direccion == "ARRIBA":
             if not self.bloque.colision(fantasma.x, fantasma.y - fantasma.velocidad):
                 fantasma.y -= fantasma.velocidad
+                fantasma.ultima_direccion = "ARRIBA"
         elif direccion == "ABAJO":
             if not self.bloque.colision(fantasma.x, fantasma.y + fantasma.velocidad):
                 fantasma.y += fantasma.velocidad
+                fantasma.ultima_direccion = "ABAJO"
         elif direccion == "DERECHA":
             if not self.bloque.colision(fantasma.x + fantasma.velocidad, fantasma.y):
                 fantasma.x += fantasma.velocidad
+                fantasma.ultima_direccion = "DERECHA"
         elif direccion == "IZQUIERDA":
             if not self.bloque.colision(fantasma.x - fantasma.velocidad, fantasma.y):
                 fantasma.x -= fantasma.velocidad
+                fantasma.ultima_direccion = "IZQUIERDA"
 
-    def invertir_direccion(self, direccion):
-        # Devuelve la dirección opuesta a la dirección actual así el fantasma no retrocede
-        if direccion == "DERECHA":
-            return "IZQUIERDA"
-        elif direccion == "IZQUIERDA":
-            return "DERECHA"
-        elif direccion == "ARRIBA":
-            return "ABAJO"
-        elif direccion == "ABAJO":
-            return "ARRIBA"
-        else:
-            return None
 
     def usar_portal(self, personaje):
         # Comprueba si el personaje está cerca de un portal y lo transporta al otro lado.
