@@ -101,13 +101,13 @@ class Tablero:
                     else:
                         # Actualizar movimiento normal si no está en la trampa
                         self.movimiento_fantasmas(fantasma)
+                    # Comprobar colisiones de fantasmas con el mapa
+                    self.bloque.colision(fantasma.x, fantasma.y)
                     # Actualizar el estado del fantasma 
                     fantasma.actualizar_estado()
 
                 # Comprobar colisiones entre fantasmas y Pac-Man
                 self.colision_fantasmas_con_pacman()
-                # Comprobar colisiones de fantasmas con el mapa
-                self.bloque.colision(fantasma.x, fantasma.y)
 
                 # Comprobar si se han comido todos los puntos y regalos
                 if self.comprobar_puntos_restantes():
