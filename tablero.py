@@ -545,7 +545,7 @@ class Tablero:
         # Evaluar todas las direcciones posibles
         for direccion, nueva_celda_x, nueva_celda_y in posibles_direcciones:
             # Comprobar si no hay colisión y no es la dirección opuesta
-            if not self.bloque.colision(nueva_celda_x * 16, nueva_celda_y * 16) and direccion != self.invertir_direccion(fantasma.direccion_actual):
+            if not self.bloque.colision(nueva_celda_x, nueva_celda_y) and direccion != self.invertir_direccion(fantasma.direccion_actual):
                 # Calcular la distancia Manhattan entre la nueva celda y Pac-Man
                 distancia = abs(objetivo_celda_x - nueva_celda_x) + abs(objetivo_celda_y - nueva_celda_y)
 
