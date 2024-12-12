@@ -188,7 +188,7 @@ class Bloque:
         for px, py in puntos_a_verificar:
             celda_x = px // sprite_tamaño
             celda_y = py // sprite_tamaño
-            if (celda_x, celda_y) in self.bloques:  # `self.bloques` debería contener las celdas bloqueadas
+            if (celda_x, celda_y) in self.bloques:
                 return True  # Hay colisión
         return False  # No hay colisión
 
