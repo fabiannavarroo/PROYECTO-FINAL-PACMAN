@@ -525,57 +525,51 @@ class Tablero:
             fantasma.ultima_direccion = "DERECHA"  # Establece una dirección inicial
 
 
-   def perseguir_a_pacman(self, fantasma):
-    """
-    Lógica para que el fantasma persiga a Pac-Man.
-    """
-    if self.usar_portal(fantasma):  # Verificar portal
-        return
+    def perseguir_a_pacman(self, fantasma):
+        """
+        Lógica para que el fantasma persiga a Pac-Man.
+        """
+        if self.usar_portal(fantasma):  # Verificar portal
+            return
 
-    # Obtener celdas de destino y elegir la mejor dirección
-    direcciones = {
-        "ARRIBA": (fantasma.x, fantasma.y - fantasma.velocidad),
-        "ABAJO": (fantasma.x, fantasma.y + fantasma.velocidad),
-        "IZQUIERDA": (fantasma.x - fantasma.velocidad, fantasma.y),
-        "DERECHA": (fantasma.x + fantasma.velocidad, fantasma.y),
-    }
+        # Obtener celdas de destino y elegir la mejor dirección
+        direcciones = {
+            "ARRIBA": (fantasma.x, fantasma.y - fantasma.velocidad),
+            "ABAJO": (fantasma.x, fantasma.y + fantasma.velocidad),
+            "IZQUIERDA": (fantasma.x - fantasma.velocidad, fantasma.y),
+            "DERECHA": (fantasma.x + fantasma.velocidad, fantasma.y),
+        }
 
-    mejor_direccion = None
-    menor_distancia = float('inf')
-    objetivo = (self.pacman.x, self.pacman.y)
+        mejor_direccion = None
+        menor_distancia = float('inf')
+        objetivo = (self.pacman.x, self.pacman.y)
 
-    for direccion, (nx, ny) in direcciones.items():
-        if not self.bloque.colision(nx, ny) and direccion != self.invertir_direccion(fantasma.ultima_direccion):
-            distancia = abs(nx - objetivo[0]) + abs(ny - objetivo[1])
-            if distancia < menor_distancia:
-                menor_distancia = distancia
-                mejor_direccion = direccion
+        for direccion, (nx, ny) in direcciones.items():
+            if not self.bloque.colision(nx, ny) and direccion != self.invertir_direccion(fantasma.ultima_direccion):
+                distancia = abs(nx - objetivo[0]) + abs(ny - objetivo[1])
+                if distancia < menor_distancia:
+                    menor_distancia = distancia
+                    mejor_direccion = direccion
 
-    # Mueve al fantasma en la mejor dirección encontrada
-    if mejor_direccion:
-        self.mover_fantasma(fantasma, mejor_direccion)
-    else:
-        print("El fantasma está atascado.")
+        # Mueve al fantasma en la mejor dirección encontrada
+        if mejor_direccion:
+            self.mover_fantasma(fantasma, mejor_direccion)
+        else:
+            print("El fantasma está atascado.")
 
 
     def mover_fantasma(self, fantasma, direccion):
-        # Mueve al fantasma en la dirección especificada
-        if direccion == "ARRIBA":
-            if not self.bloque.colision(fantasma.x, fantasma.y - fantasma.velocidad):
-                fantasma.y -= fantasma.velocidad
-                fantasma.ultima_direccion = "ARRIBA"
-        elif direccion == "ABAJO":
-            if not self.bloque.colision(fantasma.x, fantasma.y + fantasma.velocidad):
-                fantasma.y += fantasma.velocidad
-                fantasma.ultima_direccion = "ABAJO"
-        elif direccion == "DERECHA":
-            if not self.bloque.colision(fantasma.x + fantasma.velocidad, fantasma.y):
-                fantasma.x += fantasma.velocidad
-                fantasma.ultima_direccion = "DERECHA"
-        elif direccion == "IZQUIERDA":
-            if not self.bloque.colision(fantasma.x - fantasma.velocidad, fantasma.y):
-                fantasma.x -= fantasma.velocidad
-                fantasma.ultima_direccion = "IZQUIERDA"
+        # Mueve al fantasma en la dirección especificada si no hay colisión.
+        if direccion == "ARRIBA" and not self.bloque.colision(fantasma.x, fantasma.y - fantasma.velocidad):
+            fantasma.y -= fantasma.velocidad
+        elif direccion == "ABAJO" and not self.bloque.colision(fantasma.x, fantasma.y + fantasma.velocidad):
+            fantasma.y += fantasma.velocidad
+        elif direccion == "IZQUIERDA" and not self.bloque.colision(fantasma.x - fantasma.velocidad, fantasma.y):
+            fantasma.x -= fantasma.velocidad
+        elif direccion == "DERECHA" and not self.bloque.colision(fantasma.x + fantasma.velocidad, fantasma.y):
+            fantasma.x += fantasma.velocidad
+
+        fantasma.ultima_direccion = direccion
 
 
     def usar_portal(self, personaje):
