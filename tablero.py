@@ -651,7 +651,7 @@ class Tablero:
             
 
     def buscar_ruta_simple(self, inicio, objetivo):
-        max_pasos = 500  # Limitar el número de pasos
+        max_pasos = 1000  # Limitar el número de pasos
         cola = deque([inicio])  
         visitados = set()
         padre = {inicio: None}
