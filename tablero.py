@@ -508,31 +508,54 @@ class Tablero:
         self.mover_hacia_siguiente_celda(fantasma)
 
 
-    def calcular_celda_mas_alejada(self,fantasma):
-        # Encuentra la celda más alejada de Pac-Man
+    def calcular_celda_mas_alejada(self, fantasma):
+        # Calcula la celda más alejada de Pac-Man en las direcciones posibles
         pacman_x = self.pacman.x // 16 * 16
         pacman_y = self.pacman.y // 16 * 16
         fantasma_x = fantasma.x // 16 * 16
         fantasma_y = fantasma.y // 16 * 16
 
-        direcciones = [(-16, 0), (16, 0), (0, -16), (0, 16)]  # izquierda, derecha, arriba, abajo
+        # Definir las direcciones posibles: izquierda, derecha, arriba, abajo
+        direcciones = [(-16, 0), (16, 0), (0, -16), (0, 16)]
         max_distancia = -1
         celda_mas_lejos = None
 
-        # Recorre todas las direcciones posibles
+        # Calcular la dirección opuesta para evitar retrocesos
+        direccion_opuesta = None
+        if fantasma.direccion_actual == "ARRIBA":
+            direccion_opuesta = (0, 16)
+        elif fantasma.direccion_actual == "ABAJO":
+            direccion_opuesta = (0, -16)
+        elif fantasma.direccion_actual == "IZQUIERDA":
+            direccion_opuesta = (16, 0)
+        elif fantasma.direccion_actual == "DERECHA":
+            direccion_opuesta = (-16, 0)
+
+        # Evaluar todas las celdas válidas
+        celdas_validas = []
         for dx, dy in direcciones:
             nueva_celda_x = fantasma_x + dx
             nueva_celda_y = fantasma_y + dy
 
-            # Comprueba si la celda no tiene colisión
-            if not self.colision_fantasmas(nueva_celda_x, nueva_celda_y):
-                # Evaluar si está más lejos según las reglas básicas (sin usar vectores)
+            if not self.colision_fantasmas(nueva_celda_x, nueva_celda_y) and (dx, dy) != direccion_opuesta:
                 diferencia_x = nueva_celda_x - pacman_x
                 diferencia_y = nueva_celda_y - pacman_y
                 distancia = diferencia_x * diferencia_x + diferencia_y * diferencia_y  # Cuadrado de la distancia
 
-                if distancia > max_distancia:
-                    max_distancia = distancia
+                celdas_validas.append((distancia, (nueva_celda_x, nueva_celda_y)))
+
+        # Seleccionar la celda con la mayor distancia
+        for distancia, celda in celdas_validas:
+            if distancia > max_distancia:
+                max_distancia = distancia
+                celda_mas_lejos = celda
+
+        # Si no se encuentra una celda válida, evaluar direcciones sin restricciones
+        if celda_mas_lejos is None:
+            for dx, dy in direcciones:
+                nueva_celda_x = fantasma_x + dx
+                nueva_celda_y = fantasma_y + dy
+                if not self.colision_fantasmas(nueva_celda_x, nueva_celda_y):
                     celda_mas_lejos = (nueva_celda_x, nueva_celda_y)
 
         return celda_mas_lejos
