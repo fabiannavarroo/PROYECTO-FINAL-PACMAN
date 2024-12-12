@@ -253,6 +253,24 @@ class Tablero:
                 self.animacion_muerte_finalizada = True
                 self.pacman.en_muerte = False
 
+
+#--------------------------------------------------------------------MUSICA--------------------------------------------------------------------#
+
+    def actualizar_musica(self):
+            # Cambiar la música según el estado del juego
+            if self.victoria:
+                pyxel.playm(1, 0, False)  # Música de victoria
+            elif self.pacman.en_muerte:
+                pyxel.playm(3, 0, False)  # Música de muerte de Pac-Man
+            elif any(fantasma.asustado for fantasma in self.fantasmas):
+                pyxel.playm(2, 0, False)  # Música de fantasmas asustados
+            elif self.bloque.nivel == 1:
+                pyxel.playm(0, 0, True)  # Música del mapa 1
+            elif self.bloque.nivel == 2:
+                pyxel.playm(5, 0, True)  # Música del mapa 2
+            elif self.bloque.nivel == 3:
+                pyxel.playm(4, 0, True)  # Música del mapa 3
+
     #--------------------------------------------------------------------MAPA--------------------------------------------------------------------#
 
     def dibujar_letras_mapa(self, x, y, sprite):
