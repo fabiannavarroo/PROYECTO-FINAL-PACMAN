@@ -541,34 +541,7 @@ class Tablero:
 
         nueva_direccion = None  # Dirección que el fantasma tomará
         menor_distancia = 400  # Distancia inicial alta para comparaciones
-
-        # Evaluar todas las direcciones posibles
-        for direccion, nueva_celda_x, nueva_celda_y in posibles_direcciones:
-            nueva_pos_x = nueva_celda_x * 16  # Convertir celdas a coordenadas
-            nueva_pos_y = nueva_celda_y * 16  # Convertir celdas a coordenadas
-
-            # Comprobar si la dirección es válida (sin colisión y no retrocede)
-            if not self.bloque.colision(nueva_pos_x, nueva_pos_y) and direccion != self.invertir_direccion(fantasma.direccion_actual):
-                # Calcular la distancia Manhattan entre la nueva celda y Pac-Man
-                distancia = abs(objetivo_celda_x - nueva_celda_x) + abs(objetivo_celda_y - nueva_celda_y)
-
-                # Actualizar si esta dirección acerca más al fantasma al objetivo
-                if distancia < menor_distancia:
-                    menor_distancia = distancia
-                    nueva_direccion = direccion
-
-        # Si se encontró una dirección válida, mover al fantasma
-        if nueva_direccion == "DERECHA":
-            fantasma.x += fantasma.velocidad
-        elif nueva_direccion == "IZQUIERDA":
-            fantasma.x -= fantasma.velocidad
-        elif nueva_direccion == "ABAJO":
-            fantasma.y += fantasma.velocidad
-        elif nueva_direccion == "ARRIBA":
-            fantasma.y -= fantasma.velocidad
-
-        # Actualizar la dirección actual del fantasma
-        fantasma.direccion_actual = nueva_direccion
+    
 
     def mover_fantasma(fantasma, direccion):
         #  Mueve al fantasma en la dirección especificada.
