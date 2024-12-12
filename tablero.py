@@ -661,7 +661,10 @@ class Tablero:
 
 
     def colision_fantasmas(self, x, y):
-        
+
+        for zona in ZONAS_PROHIBIDAS_FANTASMAS:
+            if zona[0] <= x <= zona[2] and zona[1] <= y <= zona[3]:
+                return True
 
         if self.bloque.colision(x, y):
             return True
