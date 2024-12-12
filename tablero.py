@@ -379,7 +379,7 @@ class Tablero:
             pass # alejarse de pacman
 
         else:
-            self.perseguir_pacman() # seguir a pacman 
+            self.perseguir_a_pacman(fantasma) # seguir a pacman 
 
 
     def mover_fantasma_rosa(self,fantasma):
