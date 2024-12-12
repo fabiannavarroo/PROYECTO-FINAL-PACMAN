@@ -559,25 +559,7 @@ class Tablero:
         # Si no se encuentra ninguna celda válida, quedarse en la posición actual
         return (fantasma_x, fantasma_y)
 
-    def mover_hacia_siguiente_celda(self, fantasma):
-        # Mueve el fantasma hacia la siguiente celda
-        if fantasma.siguiente_celda:
-            dx = fantasma.siguiente_celda[0] - fantasma.x
-            dy = fantasma.siguiente_celda[1] - fantasma.y
-
-            if dx > 0:
-                fantasma.x += fantasma.velocidad
-                fantasma.direccion_actual = "DERECHA"
-            elif dx < 0:
-                fantasma.x -= fantasma.velocidad
-                fantasma.direccion_actual = "IZQUIERDA"
-            elif dy > 0:
-                fantasma.y += fantasma.velocidad
-                fantasma.direccion_actual = "ABAJO"
-            elif dy < 0:
-                fantasma.y -= fantasma.velocidad
-                fantasma.direccion_actual = "ARRIBA"
-
+    
     
     def predecir_posicion_pacman(self, casillas_adelante):
         # Predecir la posición futura de Pac-Man según su dirección y un número de celdas
@@ -616,27 +598,24 @@ class Tablero:
 
 
     def mover_hacia_siguiente_celda(self, fantasma):
-        # Si el fantasma ya está en su objetivo, no recalcular
-        if fantasma.siguiente_celda and (fantasma.x, fantasma.y) == fantasma.siguiente_celda:
-            fantasma.siguiente_celda = None
-
         # Mueve el fantasma hacia la siguiente celda
         if fantasma.siguiente_celda:
             dx = fantasma.siguiente_celda[0] - fantasma.x
             dy = fantasma.siguiente_celda[1] - fantasma.y
 
             if dx > 0:
-                fantasma.x += min(fantasma.velocidad, dx)
+                fantasma.x += fantasma.velocidad
                 fantasma.direccion_actual = "DERECHA"
             elif dx < 0:
-                fantasma.x += max(-fantasma.velocidad, dx)
+                fantasma.x -= fantasma.velocidad
                 fantasma.direccion_actual = "IZQUIERDA"
             elif dy > 0:
-                fantasma.y += min(fantasma.velocidad, dy)
+                fantasma.y += fantasma.velocidad
                 fantasma.direccion_actual = "ABAJO"
             elif dy < 0:
-                fantasma.y += max(-fantasma.velocidad, dy)
+                fantasma.y -= fantasma.velocidad
                 fantasma.direccion_actual = "ARRIBA"
+
 
     def recalcular_ruta_fantasma(self, fantasma):
         inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
