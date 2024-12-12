@@ -494,79 +494,84 @@ class Tablero:
 
 
     def alejarse_de_pacman(self, fantasma):
-        # El fantasma busca una celda cercana que lo aleje de Pac-Man
+        # Intentar encontrar la celda más alejada
         if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
             inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
             objetivo = self.calcular_celda_mas_alejada(fantasma)
+
+            # Si no hay un objetivo válido, moverse aleatoriamente
             if objetivo is None:
-                # Si no hay un objetivo válido, permanecer en la misma posición
-                objetivo = inicio
+                objetivo = self.movimiento_aleatorio(fantasma)
+
             ruta = self.buscar_ruta_simple(inicio, objetivo)
             if ruta and len(ruta) > 1:
                 fantasma.siguiente_celda = ruta[1]
             else:
-                fantasma.siguiente_celda = None
+                # Si no hay una ruta, mover de manera aleatoria
+                fantasma.siguiente_celda = self.movimiento_aleatorio(fantasma)
 
         self.mover_hacia_siguiente_celda(fantasma)
 
-
     def calcular_celda_mas_alejada(self, fantasma):
-        # Posición de Pac-Man y del fantasma redondeadas a múltiplos de 16
+        # Posición actual de Pac-Man y el fantasma
         pacman_x = self.pacman.x // 16 * 16
         pacman_y = self.pacman.y // 16 * 16
         fantasma_x = fantasma.x // 16 * 16
         fantasma_y = fantasma.y // 16 * 16
 
-        # Direcciones posibles: izquierda, derecha, arriba, abajo
         direcciones = [(-16, 0), (16, 0), (0, -16), (0, 16)]
-        max_distancia = -1  # Mayor distancia encontrada (inicializada como -1)
-        celda_mas_lejos = None  # Celda que estará más lejos de Pac-Man
+        max_distancia = -1
+        celda_mas_lejos = None
 
-        # Determinar la dirección opuesta para evitar retrocesos
-        direccion_opuesta = None
-        if fantasma.direccion_actual == "ARRIBA":
-            direccion_opuesta = (0, 16)
-        elif fantasma.direccion_actual == "ABAJO":
-            direccion_opuesta = (0, -16)
-        elif fantasma.direccion_actual == "IZQUIERDA":
-            direccion_opuesta = (16, 0)
-        elif fantasma.direccion_actual == "DERECHA":
-            direccion_opuesta = (-16, 0)
-
-        # Lista de celdas válidas y sus distancias
-        celdas_validas = []
+        # Buscar la celda más alejada
         for dx, dy in direcciones:
             nueva_celda_x = fantasma_x + dx
             nueva_celda_y = fantasma_y + dy
 
-            # Verificar que no haya colisión y no sea dirección opuesta
-            if not self.colision_fantasmas(nueva_celda_x, nueva_celda_y) and (dx, dy) != direccion_opuesta:
-                # Calcular distancia al cuadrado a Pac-Man
-                diferencia_x = nueva_celda_x - pacman_x
-                diferencia_y = nueva_celda_y - pacman_y
-                distancia = diferencia_x * diferencia_x + diferencia_y * diferencia_y
-
-                # Agregar celda válida a la lista
-                celdas_validas.append((distancia, (nueva_celda_x, nueva_celda_y)))
-
-        # Encontrar la celda con la mayor distancia
-        for distancia, celda in celdas_validas:
-            if distancia > max_distancia:
-                max_distancia = distancia
-                celda_mas_lejos = celda
-
-        # Si no se encuentra una celda válida, puede usar todas las direcciones posibles
-        if celda_mas_lejos is None:
-            for dx, dy in direcciones:
-                nueva_celda_x = fantasma_x + dx
-                nueva_celda_y = fantasma_y + dy
-                #Revisa si hay colision
-                if not self.colision_fantasmas(nueva_celda_x, nueva_celda_y):
+            if not self.colision_fantasmas(nueva_celda_x, nueva_celda_y):
+                distancia = (nueva_celda_x - pacman_x) ** 2 + (nueva_celda_y - pacman_y) ** 2
+                if distancia > max_distancia:
+                    max_distancia = distancia
                     celda_mas_lejos = (nueva_celda_x, nueva_celda_y)
-                    max_distancia = 0  # Evitar que quede sin actualizar
-        # Devuelve la celda más lejana a Pac-Man
+
         return celda_mas_lejos
 
+    def movimiento_aleatorio(self, fantasma):
+        # Moverse aleatoriamente si no hay una ruta válida
+        fantasma_x = fantasma.x // 16 * 16
+        fantasma_y = fantasma.y // 16 * 16
+
+        direcciones = [(-16, 0), (16, 0), (0, -16), (0, 16)]
+        random.shuffle(direcciones)  # Mezclar las direcciones para que el movimiento sea aleatorio
+
+        for dx, dy in direcciones:
+            nueva_celda_x = fantasma_x + dx
+            nueva_celda_y = fantasma_y + dy
+
+            if not self.colision_fantasmas(nueva_celda_x, nueva_celda_y):
+                return (nueva_celda_x, nueva_celda_y)
+
+        # Si no se encuentra ninguna celda válida, quedarse en la posición actual
+        return (fantasma_x, fantasma_y)
+
+    def mover_hacia_siguiente_celda(self, fantasma):
+        # Mueve el fantasma hacia la siguiente celda
+        if fantasma.siguiente_celda:
+            dx = fantasma.siguiente_celda[0] - fantasma.x
+            dy = fantasma.siguiente_celda[1] - fantasma.y
+
+            if dx > 0:
+                fantasma.x += fantasma.velocidad
+                fantasma.direccion_actual = "DERECHA"
+            elif dx < 0:
+                fantasma.x -= fantasma.velocidad
+                fantasma.direccion_actual = "IZQUIERDA"
+            elif dy > 0:
+                fantasma.y += fantasma.velocidad
+                fantasma.direccion_actual = "ABAJO"
+            elif dy < 0:
+                fantasma.y -= fantasma.velocidad
+                fantasma.direccion_actual = "ARRIBA"
 
     
     def predecir_posicion_pacman(self, casillas_adelante):
