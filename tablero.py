@@ -513,7 +513,13 @@ class Tablero:
 
 
     def perseguir_pacman(self):
-        
+        nuevas_celdas = []
+        celdas_pacman = (self.pacman.x//16, self.pacman.y//16)
+        distancia_minima_x = pyxel.width
+        distancia_minima_y = pyxel.height
+        proxima_celda = None
+
+        if not s
 
 
 
