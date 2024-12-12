@@ -350,11 +350,10 @@ class Tablero:
             return True
 
         elif fantasma.asustado:
-            self.alejarse_de_pacman(fantasma)
+            pass # alejarse de pacman
 
         else:
-            posicion_emboscada = self.predecir_posicion_pacman(self.celdas_para_emboscada)
-            self.emboscada_a_pacman(fantasma, posicion_emboscada)
+            pass # emboscar a pacman 
 
 
     def mover_fantasma_azul(self,fantasma):
@@ -365,16 +364,15 @@ class Tablero:
             return True
 
         elif fantasma.asustado:
-            self.alejarse_de_pacman(fantasma)
+            pass # alejarse de pacman
 
         else:
             if time.time() - 10 >= self.fantasmas_cambio_de_movimiento:
                 modo = random.choice(["emboscada", "alejarse"])
                 if modo == "emboscada":
-                    posicion_emboscada = self.predecir_posicion_pacman(self.celdas_para_emboscada)
-                    self.emboscada_a_pacman(fantasma, posicion_emboscada)
+                    pass # emboscar a pacman
                 else:
-                    self.alejarse_de_pacman(fantasma)
+                    pass # alejarse de pacman
 
 
     def mover_fantasma_naranja(self,fantasma):
@@ -385,15 +383,15 @@ class Tablero:
             return True
 
         elif fantasma.asustado:
-            self.alejarse_de_pacman(fantasma)
+            pass # alejarse de pacman
 
         else:
             if time.time() - 10 >= self.fantasmas_cambio_de_movimiento:
                 modo = random.choice(["perseguir", "alejarse"])
                 if modo == "perseguir":
-                    self.seguir_a_pacman(fantasma)
+                    pass # seguir a pacman
                 else:
-                    self.alejarse_de_pacman(fantasma)
+                    pass # alejarse de pacman
 
 
     def mover_fantasma(self, fantasma):
