@@ -539,7 +539,7 @@ class Tablero:
         mejor_direccion = None
         menor_distancia = 400 # Es lo que mide la pantalla por tanto es la maxima dirección
         objetivo = (self.pacman.x, self.pacman.y)
-    
+
         for direccion in direcciones:
             nueva_x, nueva_y = direcciones[direccion]
             if not self.bloque.colision(nueva_x, nueva_y) and direccion != self.invertir_direccion(fantasma):
