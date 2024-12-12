@@ -663,7 +663,7 @@ class Tablero:
             # Generar vecinos válidos
             for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
                 vecino = (actual[0] + dx, actual[1] + dy)
-                if vecino not in visitados and not self.bloque.colision(vecino[0], vecino[1]):
+                if vecino not in visitados and not self.colision_fantasmas(vecino[0], vecino[1]):
                     cola.append(vecino)
                     visitados.add(vecino)
                     padre[vecino] = actual
@@ -715,16 +715,21 @@ class Tablero:
 
 
     def colision_fantasmas(self, x, y):
-        # Verificar colisión con zonas prohibidas de fantasmas
+        # 1. Verificar si está fuera de los límites del mapa
+        if x < 0 or x >= pyxel.width or y < 0 or y >= pyxel.height:
+            return True
+
+        # 2. Verificar si está en una posición de portal
+        if (x, y) in PORTALES:
+            return True
+
+        # 3. Verificar si hay colisión con zonas prohibidas
         for x1, y1, x2, y2 in ZONAS_PROHIBIDAS_FANTASMAS:
             if x1 <= x <= x2 and y1 <= y <= y2:
                 return True
 
-        # Verificar colisión con bloques del mapa
-        if self.bloque.colision(x, y):
-            return True
-        # No hay colision
-        return False
+        # 4. Verificar si hay colisión con bloques del mapa
+        return self.bloque.colision(x, y)
 
 
     def detectar_colision_puntos(self, pacman_x, pacman_y, punto_x, punto_y):
