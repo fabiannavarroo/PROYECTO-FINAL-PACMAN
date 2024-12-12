@@ -51,8 +51,9 @@ class Tablero:
         self.celdas_para_emboscada = 3
 
         # Controlar la condición de victoria
-        self.victoria = False  
-        self.victoria_contador = 0
+        self.victoria = True  
+        self.victoria_contador_mapa = 0
+        self.victoria_contador_texto = 0
 
         # COntrola la musica actual
         self.musica_actual = None
@@ -168,17 +169,7 @@ class Tablero:
 
             # Si se ganó la partida, limpiar pantalla y volver a dibujar el mapa
             if self.victoria:
-                pyxel.cls(0)
-                self.dibujar_letras_mapa(185,208,"VICTORIA_1")
-                if self.victoria_contador < 10:
-                    if pyxel.frame_count % 2 == 0:  
-                        self.bloque.draw()
-                        self.victoria_contador += 1
-                    else: 
-                        pass
-                else:
-                    self.bloque.draw()
-                    self.dibujar_letras_mapa(185,208,"VICTORIA_1")
+                self.animar_win()
         else:
             # Si Pac-Man no tiene vidas, mostrar GAME OVER
             pyxel.cls(0)
@@ -247,6 +238,32 @@ class Tablero:
             # Mantener el texto "GAME OVER" visible
             self.dibujar_letras_mapa(185,208,"GAME OVER")
 
+
+    def animar_win(self):
+        pyxel.cls(0)
+        if self.victoria_contador_texto <=10: 
+            self.dibujar_letras_mapa(185,208,"VICTORIA_1")
+            self.victoria_contador_texto += 1
+        elif self.victoria_contador_texto <=20: 
+            self.dibujar_letras_mapa(185,208,"VICTORIA_2")
+            self.victoria_contador_texto += 1
+        else:
+            self.dibujar_letras_mapa(185,208,"VICTORIA_3")
+            self.victoria_contador_texto += 1
+        # Para que la animacion este en continuo funcionamiento
+        if self.victoria_contador_texto == 40:
+            self.victoria_contador_texto = 0 
+        # Animacion del mapa 
+        if self.victoria_contador_mapa < 10:
+            if pyxel.frame_count % 2 == 0:  
+                self.bloque.draw()
+                self.victoria_contador_mapa += 1
+            else: 
+                pass
+        else:
+            self.bloque.draw()
+
+
     def animar_muerte(self):
         # Animación de la muerte de Pac-Man
         if self.pacman.animacion_frame < len(ANIMACION_MUERTE):
@@ -299,6 +316,7 @@ class Tablero:
         sprite = TEXTO[sprite]
         pyxel.blt(x, y, 0, sprite["Coordenadas"][0], sprite["Coordenadas"][1], sprite["Tamaño"][0], sprite["Tamaño"][1], colkey=0)
 
+
     def esta_en_zona_prohibida(self, x, y):
         # Verificar si la posición (x, y) está en una zona prohibida
         for lugar in self.puntos.zonas_prohibidas[self.bloque.nivel]:
@@ -310,6 +328,7 @@ class Tablero:
         if self.bloque.colision(x, y):
             return True
         return False
+
 
     def encontrar_celdas_vacias(self):
         # Encuentra celdas vacías donde colocar frutas u otros objetos
@@ -339,6 +358,7 @@ class Tablero:
                 if not self.esta_en_zona_prohibida(x, y) and (x, y) not in self.puntos.regalos:
                     self.puntos.lista_puntos.append((x, y, "BASTON"))
 
+
     def generar_fruta(self):
         # Generar una fruta cada 30 segundos, si es posible
         if time.time() - self.puntos.ultimo_tiempo_fruta < 30:
@@ -356,6 +376,7 @@ class Tablero:
             self.puntos.posicion_fruta = None
 
         self.puntos.ultimo_tiempo_fruta = time.time()
+
 
     def comprobar_puntos_restantes(self):
         # Comprueba si ya no quedan puntos ni regalos
@@ -410,7 +431,8 @@ class Tablero:
             if time.time() - 10 >= self.fantasmas_cambio_de_movimiento:
                 modo = random.choice(["emboscada", "alejarse"])
                 if modo == "emboscada":
-                    pass # emboscar a pacman
+                    objectivo_x, objectivo_y = self.calcular_objectivo()
+                    self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)
                 else:
                     pass # alejarse de pacman
 
@@ -429,7 +451,7 @@ class Tablero:
             if time.time() - 10 >= self.fantasmas_cambio_de_movimiento:
                 modo = random.choice(["perseguir", "alejarse"])
                 if modo == "perseguir":
-                    pass # seguir a pacman
+                    self.perseguir_un_objectivo(fantasma, self.pacman.x, self.pacman.y)
                 else:
                     pass # alejarse de pacman
 
@@ -589,6 +611,7 @@ class Tablero:
         else: 
             return None
 
+
     def calcular_objectivo(self):
         # Tamaño de cada celda
         celda_tamaño = 16
@@ -624,8 +647,6 @@ class Tablero:
             return True
         return False
         
-        
-
     #--------------------------------------------------------------------COLISIONES--------------------------------------------------------------------#
 
     def colision_fantasmas_con_pacman(self):
