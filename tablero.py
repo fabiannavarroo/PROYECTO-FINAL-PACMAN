@@ -516,6 +516,13 @@ class Tablero:
 
 
     def perseguir_a_pacman(self, fantasma):
+
+        ruta= []
+        ubicacion_pacman = (self.pacman.x//16, self.pacman.y//16)
+        distancia_x, distancia_y = 400,400
+        proxima_celda = None
+
+        if not self.bloque.colision(fantasma.x, fantasma.y):
         
 
     def mover_fantasma(self, fantasma, direccion):
