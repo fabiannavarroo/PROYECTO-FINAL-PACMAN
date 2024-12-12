@@ -434,7 +434,7 @@ class Tablero:
                     pass # alejarse de pacman
 
 
-    def mover_fantasma(self, fantasma):
+    def movimiento_fantasmas(self, fantasma):
         # Lógica de movimiento para cada tipo de fantasma
         if isinstance(fantasma, FantasmaRojo):
             self.mover_fantasma_rojo(fantasma)
