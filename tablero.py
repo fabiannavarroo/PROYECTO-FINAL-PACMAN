@@ -574,11 +574,11 @@ class Tablero:
         #  Mueve al fantasma en la dirección especificada.
         if direccion == "ARRIBA":
             fantasma.y -= fantasma.velocidad
-        elif direccion == "ABAJOP":
+        elif direccion == "ABAJO":
             fantasma.y += fantasma.velocidad
-        elif direccion == "right":
+        elif direccion == "DERECHA":
             fantasma.x += fantasma.velocidad
-        elif direccion == "left":
+        elif direccion == "IZQUIERDA":
             fantasma.x -= fantasma.velocidad
 
     def invertir_direccion(self, direccion):
