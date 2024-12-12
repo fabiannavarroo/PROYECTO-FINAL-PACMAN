@@ -533,7 +533,7 @@ class Tablero:
             nueva_celda_x = fantasma_x + dx
             nueva_celda_y = fantasma_y + dy
 
-            if not self.bloque.colision(nueva_celda_x, nueva_celda_y):
+            if not self.colision_fantasmas(nueva_celda_x, nueva_celda_y):
                 distancia = (nueva_celda_x - pacman_x) ** 2 + (nueva_celda_y - pacman_y) ** 2
                 if distancia > max_distancia:
                     max_distancia = distancia
