@@ -534,13 +534,7 @@ class Tablero:
         # Comprobar si el fantasma está en un portal
         if self.usar_portal(fantasma):
             return False
-
-        nuevas_celdas = []
-        celdas_pacman = (x // 16, y // 16)
-        dist_x = 500
-        dist_y = 500
-        prox_celda = None
-
+    
         # Mueve el fantasma hacia  Pac-Man, evitando retrocesos y colisiones.
         x_actual, y_actual = fantasma.x, fantasma.y
 
@@ -589,7 +583,7 @@ class Tablero:
         elif direccion == "ABAJO":
             return "ARRIBA"
         return None
-    
+        
 
     def usar_portal(self, personaje):
         # Comprueba si el personaje está cerca de un portal y lo transporta al otro lado.
