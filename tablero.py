@@ -260,7 +260,7 @@ class Tablero:
     def actualizar_musica(self):
             # Cambiar la música según el estado del juego
             if self.victoria:
-                pyxel.playm(1, 0, False)  # Música de victoria
+                pyxel.playm(1, 0, True)  # Música de victoria
             elif self.pacman.en_muerte:
                 pyxel.playm(3, 0, False)  # Música de muerte de Pac-Man
             elif any(fantasma.asustado for fantasma in self.fantasmas):
