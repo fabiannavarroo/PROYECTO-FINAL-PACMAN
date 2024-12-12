@@ -494,29 +494,52 @@ class Tablero:
 
 
     def alejarse_de_pacman(self, fantasma):
-        # El fantasma busca una celda cercana que lo aleje de Pac-Man
-        if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
-            inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
-            pacman_pos = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
+        """
+        El fantasma busca una ruta para alejarse de Pac-Man evitando quedarse atrapado
+        en esquinas y garantizando movimiento constante.
+        """
+        inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
+        pacman_pos = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
+        direcciones = [(-16, 0), (16, 0), (0, -16), (0, 16)]  # Izquierda, Derecha, Arriba, Abajo
 
-            opciones = []
-            for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
+        # Cola para búsqueda en amplitud limitada
+        cola = [(inicio, 0)]  # Cada elemento es (posición, pasos)
+        visitados = set()
+        opciones = []
+
+        while len(cola) > 0:
+            actual, pasos = cola.pop(0)
+
+            # Limitar el rango de búsqueda a un máximo de 3 pasos
+            if pasos > 3:
+                continue
+
+            # Marcar como visitado
+            visitados.add(actual)
+
+            # Calcular distancia actual a Pac-Man
+            distancia_a_pacman = abs(actual[0] - pacman_pos[0]) + abs(actual[1] - pacman_pos[1])
+            opciones.append((distancia_a_pacman, actual))
+
+            # Explorar vecinos
+            for dx, dy in direcciones:
+                vecino = (actual[0] + dx, actual[1] + dy)
+                if vecino not in visitados and not self.colision_fantasmas(vecino[0], vecino[1]):
+                    cola.append((vecino, pasos + 1))
+
+        # Seleccionar la mejor opción (celda más alejada de Pac-Man)
+        if len(opciones) > 0:
+            opciones_ordenadas = sorted(opciones, key=lambda x: x[0], reverse=True)  # Ordenar por mayor distancia
+            mejor_celda = opciones_ordenadas[0][1]
+            fantasma.siguiente_celda = mejor_celda
+        else:
+            # Si no hay opciones válidas, elegir un movimiento al azar
+            for dx, dy in direcciones:
                 posible_celda = (inicio[0] + dx, inicio[1] + dy)
-                if not self.colision_fantasmas(posible_celda[0], posible_celda[1]):
-                    distancia = abs(posible_celda[0] - pacman_pos[0]) + abs(posible_celda[1] - pacman_pos[1])
-                    opciones.append((distancia, posible_celda))
+                if not self.bloque.colision(posible_celda[0], posible_celda[1]):
+                    fantasma.siguiente_celda = posible_celda
 
-            if opciones:
-                mayor_distancia = -1
-                mejor_celda = None
-                for distancia, celda in opciones:
-                    if distancia > mayor_distancia:
-                        mayor_distancia = distancia
-                        mejor_celda = celda
-                fantasma.siguiente_celda = mejor_celda
-            else:
-                fantasma.siguiente_celda = None
-
+        # Mover hacia la siguiente celda
         self.mover_hacia_siguiente_celda(fantasma)
 
     
