@@ -336,10 +336,10 @@ class Tablero:
             return True
 
         elif fantasma.asustado:
-            self.alejarse_de_pacman(fantasma)
+            pass # alejarse de pacman
 
         else:
-            self.seguir_a_pacman(fantasma)
+            pass # seguir a pacman 
 
 
     def mover_fantasma_rosa(self,fantasma):
