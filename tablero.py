@@ -378,7 +378,7 @@ class Tablero:
             pass # alejarse de pacman
 
         else:
-            self.perseguir_un_objectivo(fantasma, self.pacman.x, self.pacman.y) # seguir a pacman 
+            self.perseguir_un_objectivo(fantasma, self.pacman.x, self.pacman.y) # seguir a pacman directamente
 
 
     def mover_fantasma_rosa(self,fantasma):
@@ -392,7 +392,8 @@ class Tablero:
             pass # alejarse de pacman
 
         else:
-            pass # emboscar a pacman 
+            objectivo_x, objectivo_y = self.calcular_objectivo()
+            self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)
 
 
     def mover_fantasma_azul(self,fantasma):
@@ -588,7 +589,33 @@ class Tablero:
         else: 
             return None
 
-    #def generar_objectivo(self, fantasma, pacman)
+    def calcular_objectivo(self):
+        # Tamaño de cada celda
+        celda_tamaño = 16
+        # Calcular la posicion delante del pacman en funcion de la dirrecion de donde se encuentra
+        if self.pacman.direccion_actual == "ARRIBA":
+            objetivo_x = self.pacman.x
+            objetivo_y = self.pacman.y - self.celdas_para_emboscada * celda_tamaño
+        elif self.pacman.direccion_actual == "ABAJO":
+            objetivo_x = self.pacman.x
+            objetivo_y = self.pacman.y + self.celdas_para_emboscada * celda_tamaño
+        elif self.pacman.direccion_actual == "IZQUIERDA":
+            objetivo_x = self.pacman.x - self.celdas_para_emboscada * celda_tamaño
+            objetivo_y = self.pacman.y 
+        elif self.pacman.direccion_actual == "DERECHA":
+            objetivo_x = self.pacman.x + self.celdas_para_emboscada * celda_tamaño
+            objetivo_y = self.pacman.y 
+        else:
+            # Si no hay una direcciona valida, seguira al pacman
+            return self.pacman.x, self.pacman.y
+        
+        # Verifica si la posicion calculada no tiene colision y se encuentra dentro del mapa
+        if not self.bloque.colision(objetivo_x, objetivo_y):
+            return objetivo_x, objetivo_y
+        
+        # Si la posicion no es valida simplemente seguira al pacman
+        return self.pacman.x, self.pacman.y
+    
 
     def usar_portal(self, personaje):
         # Comprueba si el personaje está cerca de un portal y lo transporta al otro lado.
