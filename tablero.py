@@ -62,6 +62,8 @@ class Tablero:
     def update(self):
 
         if self.pacman.vidas > 0:
+
+            self.sonido_musica.update()
             # Mientras Pac-Man tenga vidas
             if self.contador_ready < 90:
                 # Mostrar el mensaje READY! por un tiempo
