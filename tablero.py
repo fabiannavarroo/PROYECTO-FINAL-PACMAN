@@ -510,15 +510,7 @@ class Tablero:
             return True
 
         print("Pacman", self.pacman.x, self.pacman.y)
-
-
-    def perseguir_pacman(self):
-        nuevas_celdas = []
-        celdas_pacman = (self.pacman.x//16, self.pacman.y//16)
-        distancia_minima_x = pyxel.width
-        distancia_minima_y = pyxel.height
-        proxima_celda = None
-
+        
 
 
     def mover_a_salida(self, fantasma):
