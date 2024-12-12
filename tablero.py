@@ -516,47 +516,7 @@ class Tablero:
 
 
     def perseguir_a_pacman(self, fantasma):
-        """
-        Lógica para que el fantasma persiga a Pac-Man.
-        """
-        # Verificar si el fantasma está en un portal
-        if self.usar_portal(fantasma):
-            return
-
-        # Obtener las coordenadas actuales del fantasma en celdas
-        celda_actual_x = fantasma.x // 16
-        celda_actual_y = fantasma.y // 16
-        objetivo_x = self.pacman.x // 16
-        objetivo_y = self.pacman.y // 16
-
-        # Direcciones posibles
-        direcciones = [
-            ("ARRIBA", celda_actual_x, celda_actual_y - 1),
-            ("ABAJO", celda_actual_x, celda_actual_y + 1),
-            ("IZQUIERDA", celda_actual_x - 1, celda_actual_y),
-            ("DERECHA", celda_actual_x + 1, celda_actual_y),
-        ]
-
-        # Buscar la mejor dirección
-        mejor_direccion = None
-        menor_distancia = float('inf')
-
-        for direccion, nueva_x, nueva_y in direcciones:
-            # Verificar colisión
-            if not self.bloque.colision(nueva_x * 16, nueva_y * 16):
-                # Calcular la distancia Manhattan
-                distancia = abs(objetivo_x - nueva_x) + abs(objetivo_y - nueva_y)
-                if distancia < menor_distancia:
-                    menor_distancia = distancia
-                    mejor_direccion = direccion
-
-        # Si se encuentra una dirección válida, mover al fantasma
-        if mejor_direccion:
-            self.mover_fantasma(fantasma, mejor_direccion)
-            fantasma.direccion_actual = mejor_direccion
-        else:
-            # Si no hay direcciones válidas, detener al fantasma
-            print(f"Fantasma {type(fantasma)} detenido por colisión")
+        
 
     def mover_fantasma(self, fantasma, direccion):
         # Mueve al fantasma en la dirección especificada
