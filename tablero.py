@@ -523,7 +523,7 @@ class Tablero:
         if fantasma.x == fantasma.salida_final[0] and fantasma.y == fantasma.salida_final[1]:
             fantasma.en_trampa = False  # Sale de la trampa
             fantasma.en_salida = False  # Termina la salida
-            fantasma.ultima_direccion = "ABAJO"  # Establece una dirección inicial
+            fantasma.ultima_direccion = "DERECHA"  # Establece una dirección inicial
 
 
     def perseguir_a_pacman(self, fantasma):
