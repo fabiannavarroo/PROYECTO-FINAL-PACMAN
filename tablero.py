@@ -52,6 +52,7 @@ class Tablero:
 
         # Controlar la condición de victoria
         self.victoria = True  
+        self.victoria_contador = 0
 
         # COntrola la musica actual
         self.musica_actual = None
