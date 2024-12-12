@@ -534,46 +534,54 @@ class Tablero:
         # Comprobar si el fantasma está en un portal
         if self.usar_portal(fantasma):
             return False
-    
-        # Mueve el fantasma hacia  Pac-Man, evitando retrocesos y colisiones.
-        x_actual, y_actual = fantasma.x, fantasma.y
 
-        # Lista de direcciones posibles
+        # Obtener las coordenadas actuales del fantasma en términos de celdas
+        celda_actual_x = fantasma.x // 16
+        celda_actual_y = fantasma.y // 16
+        objetivo_celda_x = objetivo_x // 16
+        objetivo_celda_y = objetivo_y // 16
+
+        # Lista de direcciones posibles con sus coordenadas de destino
         posibles_direcciones = [
-            ("DERECHA", x_actual + fantasma.velocidad, y_actual),
-            ("IZQUIERDA", x_actual - fantasma.velocidad, y_actual),
-            ("ABAJO", x_actual, y_actual + fantasma.velocidad),
-            ("ARRIBA", x_actual, y_actual - fantasma.velocidad)
+            ("DERECHA", celda_actual_x + 1, celda_actual_y),
+            ("IZQUIERDA", celda_actual_x - 1, celda_actual_y),
+            ("ABAJO", celda_actual_x, celda_actual_y + 1),
+            ("ARRIBA", celda_actual_x, celda_actual_y - 1),
         ]
 
-  
         nueva_direccion = None  # Dirección que el fantasma tomará
-        nueva_x = x_actual      # Nueva posición X del fantasma
-        nueva_y = y_actual      # Nueva posición Y del fantasma
-        menor_distancia = 400  # Distancia mínima es decir la que mide el mapa
+        menor_distancia = 400  # Distancia inicial alta para comparaciones
 
         # Evaluar todas las direcciones posibles
-        for direccion, x, y in posibles_direcciones:
+        for direccion, nueva_celda_x, nueva_celda_y in posibles_direcciones:
+            nueva_pos_x = nueva_celda_x * 16  # Convertir celdas a coordenadas
+            nueva_pos_y = nueva_celda_y * 16  # Convertir celdas a coordenadas
+
             # Comprobar si la dirección es válida (sin colisión y no retrocede)
-            if not self.bloque.colision(x, y) and direccion != self.invertir_direccion(fantasma.direccion_actual):
-                # Calcular la distancia Manhattan entre la nueva posición y Pac-Man
-                distancia = abs(objetivo_x - x) + abs(objetivo_y - y)
-                
+            if not self.bloque.colision(nueva_pos_x, nueva_pos_y) and direccion != self.invertir_direccion(fantasma.direccion_actual):
+                # Calcular la distancia Manhattan entre la nueva celda y Pac-Man
+                distancia = abs(objetivo_celda_x - nueva_celda_x) + abs(objetivo_celda_y - nueva_celda_y)
+
                 # Actualizar si esta dirección acerca más al fantasma al objetivo
                 if distancia < menor_distancia:
                     menor_distancia = distancia
                     nueva_direccion = direccion
-                    nueva_x = x
-                    nueva_y = y
 
         # Si se encontró una dirección válida, mover al fantasma
-        if nueva_direccion is not None:
-            fantasma.x = nueva_x
-            fantasma.y = nueva_y
-            fantasma.direccion_actual = nueva_direccion
+        if nueva_direccion == "DERECHA":
+            fantasma.x += fantasma.velocidad
+        elif nueva_direccion == "IZQUIERDA":
+            fantasma.x -= fantasma.velocidad
+        elif nueva_direccion == "ABAJO":
+            fantasma.y += fantasma.velocidad
+        elif nueva_direccion == "ARRIBA":
+            fantasma.y -= fantasma.velocidad
+
+        # Actualizar la dirección actual del fantasma
+        fantasma.direccion_actual = nueva_direccion
 
     def invertir_direccion(self, direccion):
-        # Devuelve la dirección opuesta a la dirección actual asi el fantasma no retrocede
+        # Devuelve la dirección opuesta a la dirección actual así el fantasma no retrocede
         if direccion == "DERECHA":
             return "IZQUIERDA"
         elif direccion == "IZQUIERDA":
@@ -582,8 +590,8 @@ class Tablero:
             return "ABAJO"
         elif direccion == "ABAJO":
             return "ARRIBA"
-        return None
-        
+        else:
+            return None
 
     def usar_portal(self, personaje):
         # Comprueba si el personaje está cerca de un portal y lo transporta al otro lado.
