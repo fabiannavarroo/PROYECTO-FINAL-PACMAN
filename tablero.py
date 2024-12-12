@@ -503,6 +503,36 @@ class Tablero:
 
         self.mover_hacia_siguiente_celda(fantasma)
 
+
+    def calcular_celda_mas_alejada(self):
+        # Encuentra la celda más alejada de Pac-Man
+        pacman_x = self.pacman.x // 16 * 16
+        pacman_y = self.pacman.y // 16 * 16
+        fantasma_x = self.fantasma.x // 16 * 16
+        fantasma_y = self.fantasma.y // 16 * 16
+
+        direcciones = [(-16, 0), (16, 0), (0, -16), (0, 16)]  # izquierda, derecha, arriba, abajo
+        max_distancia = -1
+        celda_mas_lejos = None
+
+        # Recorre todas las direcciones posibles
+        for dx, dy in direcciones:
+            nueva_celda_x = fantasma_x + dx
+            nueva_celda_y = fantasma_y + dy
+
+            # Comprueba si la celda no tiene colisión
+            if not self.bloque.colision(nueva_celda_x, nueva_celda_y):
+                # Evaluar si está más lejos según las reglas básicas (sin usar vectores)
+                diferencia_x = nueva_celda_x - pacman_x
+                diferencia_y = nueva_celda_y - pacman_y
+                distancia = diferencia_x * diferencia_x + diferencia_y * diferencia_y  # Cuadrado de la distancia
+
+                if distancia > max_distancia:
+                    max_distancia = distancia
+                    celda_mas_lejos = (nueva_celda_x, nueva_celda_y)
+
+        return celda_mas_lejos
+
     
     def predecir_posicion_pacman(self, casillas_adelante):
         # Predecir la posición futura de Pac-Man según su dirección y un número de celdas
