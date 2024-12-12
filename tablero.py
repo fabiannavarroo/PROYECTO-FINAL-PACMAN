@@ -467,15 +467,12 @@ class Tablero:
 
 
     def mover_a_salida(self, fantasma):
-        if fantasma.asustado:
-            return True
-        else:   
-            dx = fantasma.salida_final[0] - fantasma.x
-            dy = fantasma.salida_final[1] - fantasma.y
-            if abs(dx) > 0:
-                fantasma.x += fantasma.velocidad if dx > 0 else -fantasma.velocidad
-            elif abs(dy) > 0:
-                fantasma.y += fantasma.velocidad if dy > 0 else -fantasma.velocidad
+        dx = fantasma.salida_final[0] - fantasma.x
+        dy = fantasma.salida_final[1] - fantasma.y
+        if abs(dx) > 0:
+            fantasma.x += fantasma.velocidad if dx > 0 else -fantasma.velocidad
+        elif abs(dy) > 0:
+            fantasma.y += fantasma.velocidad if dy > 0 else -fantasma.velocidad
 
 
     def seguir_a_pacman(self, fantasma):
