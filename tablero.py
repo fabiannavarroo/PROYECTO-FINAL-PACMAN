@@ -53,6 +53,9 @@ class Tablero:
         # Controlar la condición de victoria
         self.victoria = False  
 
+        # COntrola la musica actual
+        self.musica_actual = None
+
         # Cambiar la dirección de los fantasmas
         self.fantasmas_cambio_de_movimiento = 10
 
