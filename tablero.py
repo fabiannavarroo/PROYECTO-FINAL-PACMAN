@@ -661,9 +661,6 @@ class Tablero:
         if self.bloque.colision(x, y):
             return True
 
-        if self.esta_en_zona_prohibida(x, y):
-            return True
-
         return False
 
 
