@@ -530,7 +530,7 @@ class Tablero:
             fantasma.y += fantasma.velocidad if dy > 0 else -fantasma.velocidad
 
 
-    def perseguir_a_pacman(self, fantasma, objetivo_x, objetivo_y):
+    def perseguir_a_pacman(self, fantasma):
         # Comprobar si el fantasma está en un portal
         if self.usar_portal(fantasma):
             return False
@@ -538,8 +538,7 @@ class Tablero:
         # Obtener las coordenadas actuales del fantasma en términos de celdas
         celda_actual_x = fantasma.x // 16
         celda_actual_y = fantasma.y // 16
-        objetivo_celda_x = objetivo_x // 16
-        objetivo_celda_y = objetivo_y // 16
+        objetivo_celda_x, objetivo_celda_y = self.pacman.x // 16, self.pacman.y // 16
 
         # Lista de direcciones posibles con sus coordenadas de destino
         posibles_direcciones = [
