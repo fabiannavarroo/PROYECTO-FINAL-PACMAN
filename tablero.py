@@ -494,29 +494,29 @@ class Tablero:
 
 
     def alejarse_de_pacman(self, fantasma):
+
         """
-        Movimiento del fantasma en modo asustado para garantizar que se aleja de Pac-Man
-        y no se queda atrapado en esquinas.
+        Movimiento del fantasma en modo asustado garantizando que se aleja de Pac-Man y evita quedarse atrapado.
         """
         inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
         pacman_pos = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
-        direcciones_validas = []
+        direcciones = [(-16, 0), (16, 0), (0, -16), (0, 16)]  # Izquierda, Derecha, Arriba, Abajo
+        opciones_validas = []
 
-        # Verificar todas las direcciones posibles
-        for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
+        # Calcular direcciones válidas
+        for dx, dy in direcciones:
             posible_celda = (inicio[0] + dx, inicio[1] + dy)
             if not self.colision_fantasmas(posible_celda[0], posible_celda[1]) and posible_celda != fantasma.anterior_celda:
                 distancia = abs(posible_celda[0] - pacman_pos[0]) + abs(posible_celda[1] - pacman_pos[1])
-                direcciones_validas.append((distancia, posible_celda))
+                opciones_validas.append((distancia, posible_celda))
 
-        if direcciones_validas:
-            # Priorizar las celdas más alejadas de Pac-Man
-            direcciones_validas.sort(reverse=True, key=lambda x: x[0])
-            mejor_opcion = direcciones_validas[0][1]
-            fantasma.siguiente_celda = mejor_opcion
+        # Si hay opciones válidas, elegir la más lejana a Pac-Man
+        if len(opciones_validas) > 0:
+            opciones_validas.sort(reverse=True, key=lambda x: x[0])  # Ordenar por distancia descendente
+            fantasma.siguiente_celda = opciones_validas[0][1]
         else:
-            # Si no hay opciones válidas, forzar un movimiento aleatorio
-            for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
+            # Si no hay opciones válidas, moverse de forma aleatoria a una celda libre
+            for dx, dy in direcciones:
                 posible_celda = (inicio[0] + dx, inicio[1] + dy)
                 if not self.bloque.colision(posible_celda[0], posible_celda[1]):
                     fantasma.siguiente_celda = posible_celda
@@ -525,7 +525,7 @@ class Tablero:
         # Mover hacia la siguiente celda
         self.mover_hacia_siguiente_celda(fantasma)
 
-        # Actualizar la celda anterior para evitar retrocesos inmediatos
+        # Registrar la celda anterior
         fantasma.anterior_celda = inicio
     
     def predecir_posicion_pacman(self, casillas_adelante):
