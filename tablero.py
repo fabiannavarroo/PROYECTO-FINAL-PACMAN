@@ -519,7 +519,7 @@ class Tablero:
         distancia_minima_y = pyxel.height
         proxima_celda = None
 
-        if not s
+        if not self.bloque.colision(celdas_pacman[0]*16, celdas_pacman[1]*16):
 
 
 
