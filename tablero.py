@@ -570,6 +570,17 @@ class Tablero:
         # Actualizar la dirección actual del fantasma
         fantasma.direccion_actual = nueva_direccion
 
+    def mover_fantasma(fantasma, direccion):
+        #  Mueve al fantasma en la dirección especificada.
+        if direccion == "ARRIBA":
+            fantasma.y -= fantasma.velocidad
+        elif direccion == "ABAJOP":
+            fantasma.y += fantasma.velocidad
+        elif direccion == "right":
+            fantasma.x += fantasma.velocidad
+        elif direccion == "left":
+            fantasma.x -= fantasma.velocidad
+
     def invertir_direccion(self, direccion):
         # Devuelve la dirección opuesta a la dirección actual así el fantasma no retrocede
         if direccion == "DERECHA":
