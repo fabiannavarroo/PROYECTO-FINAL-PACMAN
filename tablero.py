@@ -546,6 +546,8 @@ class Tablero:
             self.mover_fantasma(fantasma, "DERECHA")
         elif proxima_celda == ((fantasma.x//16)-1, (fantasma.y//16)):
             self.mover_fantasma(fantasma, "IZQUIERDA")
+        else:
+            self.mover_fantasma(fantasma, fantasma.ultima_direccion)
 
         ruta.append(proxima_celda)
         return proxima_celda
