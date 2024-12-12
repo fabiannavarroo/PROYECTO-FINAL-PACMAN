@@ -17,7 +17,7 @@ class Tablero:
         pyxel.load("assets/recursos.pyxres")
 
         # Iniciar la música 
-        self.sonido_musica = pyxel.playm(0,0,True)
+        pyxel.playm(0,0,True)
 
         # Crear el objeto bloque, que representa el mapa
         self.bloque = Bloque()  
@@ -62,8 +62,6 @@ class Tablero:
     def update(self):
 
         if self.pacman.vidas > 0:
-
-            self.sonido_musica
             # Mientras Pac-Man tenga vidas
             if self.contador_ready < 90:
                 # Mostrar el mensaje READY! por un tiempo
