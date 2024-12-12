@@ -407,6 +407,11 @@ class Tablero:
         elif isinstance(fantasma, FantasmaNaranja):
             self.mover_fantasma_naranja(fantasma)
 
+        # Verificar si el fantasma usa un portal
+        if self.usar_portal(fantasma):
+            # Recalcular la ruta al objetivo (Pac-Man)
+            self.recalcular_ruta_fantasma(fantasma)
+
 
     #--------------------------------------------------------------------MOVIMIENTO--------------------------------------------------------------------#
 
@@ -633,12 +638,21 @@ class Tablero:
                 fantasma.y += max(-fantasma.velocidad, dy)
                 fantasma.direccion_actual = "ARRIBA"
 
+    def recalcular_ruta_fantasma(self, fantasma):
+        inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
+        objetivo = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
+        ruta = self.buscar_ruta_simple(inicio, objetivo)
 
+        if ruta and len(ruta) > 1:
+            fantasma.siguiente_celda = ruta[1]
+        else:
+            # Si no hay ruta directa, moverse aleatoriamente
+            fantasma.siguiente_celda = self.movimiento_aleatorio(fantasma)
+            
 
     def buscar_ruta_simple(self, inicio, objetivo):
-        # Búsqueda en anchura para encontrar una ruta simple entre inicio y objetivo
         max_pasos = 500  # Limitar el número de pasos
-        cola = deque([inicio])
+        cola = deque([inicio])  
         visitados = set()
         padre = {inicio: None}
         pasos = 0
@@ -664,20 +678,20 @@ class Tablero:
             for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
                 vecino = (actual[0] + dx, actual[1] + dy)
                 if vecino not in visitados and not self.bloque.colision(vecino[0], vecino[1]):
-                    cola.append(vecino)
-                    visitados.add(vecino)
-                    padre[vecino] = actual
+                    # Evitar portales de entrada recientes
+                    if vecino not in PORTALES or vecino != inicio:
+                        cola.append(vecino)
+                        visitados.add(vecino)
+                        padre[vecino] = actual
 
         return None
 
 
     def usar_portal(self, personaje):
         # Comprueba si el personaje está cerca de un portal y lo transporta al otro lado.
-        if isinstance(personaje, Pacman):
-            x_actual, y_actual = personaje.x, personaje.y
-            if (x_actual, y_actual) in PORTALES:
-                personaje.x, personaje.y = PORTALES[(x_actual, y_actual)]
-                return True
+        if (personaje.x, personaje.y) in PORTALES:
+            personaje.x, personaje.y = PORTALES[(personaje.x, personaje.y)]
+            return True
         return False
         
         
