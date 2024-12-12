@@ -663,7 +663,7 @@ class Tablero:
             # Generar vecinos válidos
             for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
                 vecino = (actual[0] + dx, actual[1] + dy)
-                if vecino not in visitados and not self.colision_fantasmas(vecino[0], vecino[1]):
+                if vecino not in visitados and not self.bloque.colision(vecino[0], vecino[1]):
                     cola.append(vecino)
                     visitados.add(vecino)
                     padre[vecino] = actual
