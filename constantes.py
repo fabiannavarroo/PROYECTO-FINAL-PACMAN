@@ -139,8 +139,8 @@ REFRESH_REGALOS = 35
 TEXTO_MUERTE = ["Te has quedado sin vidas", "(ESC)Salir"]
 ZONAS_PROHIBIDAS_MAPA_1 = [(0,0,384,16), (112,160,272,256),(32,64,64,96),(96,64,160,96), (224,64,288,96),
                            (320,64,352,96), (0,160,80, 256), (304, 160,384, 256),(192, 304,192, 304)]
-ZONAS_PROHIBIDAS_MAPA_2 = []#(0,0,384,16),(112,160,272,256),(0,160,80, 256),(304, 160,384, 256),(-14, 144,32, 144),
-                           #(350,144,402, 144),(192, 304,192, 304)
+ZONAS_PROHIBIDAS_MAPA_2 = [(0,0,384,16),(112,160,272,256),(0,160,80, 256),(304, 160,384, 256),(-14, 144,32, 144),
+                           (350,144,402, 144),(192, 304,192, 304)]
 ZONAS_PROHIBIDAS_MAPA_3 = [(0,0,384,16),(112,160,272,256),(192, 304,192, 304),(0,112,0,112),(384,112,384,112),(0, 272, 64, 288),(330,272, 394, 272)]
 ZONAS_PROHIBIDAS_FANTASMAS = [(384,112,384,112),(0, 272, 64, 288)]
 ZONAS_PROHIBIDAS = {1: ZONAS_PROHIBIDAS_MAPA_1, 2: ZONAS_PROHIBIDAS_MAPA_2, 3: ZONAS_PROHIBIDAS_MAPA_3} # Zonas prohibidas para generar puntos en los distintos niveles
@@ -166,7 +166,7 @@ SPRITE_BLOQUE_15 = (8,72,1,16,16) # Esquina izquierda superior trampa fantasmas
 SPRITE_BLOQUE_16 = (24,72,1,16,16) # Puerta salida de fantasmas
 SPRITE_BLOQUE_17 = (40,72,1,16,16) # Esquina derecha superior trampa fantasmas
 SPRITE_BLOQUE_18 = (8,88,1,16,16) # Esquina izquierda inferior trampa fantasmas
-SPRITE_BLOQUE_19 = (32,56,1,16,16) # Borde superior trampa fantasmampa
+SPRITE_BLOQUE_19 = (32,56,1,16,16) # Borde superior trampa fantasma
 SPRITE_BLOQUE_20 = (40,88,1,16,16) # Esquina derecha inferior trampa fantasmas
 SPRITE_BLOQUE_21 = (8,80,1,16,16) # Borde derecha trampa fantasmas
 SPRITE_BLOQUE_22 = (40,80,1,16,16) # Borde izquierda trampa fantasmas
