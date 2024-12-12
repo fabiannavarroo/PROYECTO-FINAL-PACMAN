@@ -510,9 +510,15 @@ class Tablero:
         dx = fantasma.salida_final[0] - fantasma.x
         dy = fantasma.salida_final[1] - fantasma.y
         if abs(dx) > 0:
-            fantasma.x += fantasma.velocidad if dx > 0 else -fantasma.velocidad
+            if dx > 0:
+                fantasma.x += fantasma.velocidad  
+            else:
+                fantasma.x -= fantasma.velocidad
         elif abs(dy) > 0:
-            fantasma.y += fantasma.velocidad if dy > 0 else -fantasma.velocidad
+            if dy > 0:
+                fantasma.y += fantasma.velocidad
+            else:
+                fantasma.y -= fantasma.velocidad
 
 
     def perseguir_a_pacman(self, fantasma):
