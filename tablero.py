@@ -380,6 +380,8 @@ class Tablero:
 
         else:
             self.perseguir_a_pacman(fantasma) # seguir a pacman 
+            if self.bloque.colision(fantasma.x, fantasma.y):
+                print("Colisión detectada para fantasma:", type(fantasma))
 
 
     def mover_fantasma_rosa(self,fantasma):
