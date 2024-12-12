@@ -640,7 +640,7 @@ class Tablero:
 
             for dx, dy in [(-16, 0), (16, 0), (0, -16), (0, 16)]:
                 posible_celda = (actual[0] + dx, actual[1] + dy)
-                if posible_celda not in visitados and not self.bloque.colision(posible_celda[0], posible_celda[1]) and not self.colision_fantasmas(posible_celda[0], posible_celda[1]):
+                if posible_celda not in visitados and not self.colision_fantasmas(posible_celda[0], posible_celda[1]):
                     visitados[posible_celda] = actual
                     cola.append(posible_celda)
 
