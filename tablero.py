@@ -511,21 +511,21 @@ class Tablero:
 
 
     def calcular_celda_mas_alejada(self, fantasma):
-        # Posición actual de Pac-Man y el fantasma redondeadas a un múltiplo de 16
+        # Posición de Pac-Man y del fantasma redondeadas a múltiplos de 16
         pacman_x = self.pacman.x // 16 * 16
         pacman_y = self.pacman.y // 16 * 16
         fantasma_x = fantasma.x // 16 * 16
         fantasma_y = fantasma.y // 16 * 16
 
-        # Definir las direcciones posibles: izquierda, derecha, arriba, abajo
+        # Direcciones posibles: izquierda, derecha, arriba, abajo
         direcciones = [(-16, 0), (16, 0), (0, -16), (0, 16)]
-        max_distancia = -1  # Variable para almacenar la mayor distancia encontrada
-        celda_mas_lejos = None  # Celda más lejana 
+        max_distancia = -1  # Mayor distancia encontrada (inicializada como -1)
+        celda_mas_lejos = None  # Celda que estará más lejos de Pac-Man
 
-        # Calcular la dirección opuesta para evitar que el fantasma retroceda
+        # Determinar la dirección opuesta para evitar retrocesos
         direccion_opuesta = None
         if fantasma.direccion_actual == "ARRIBA":
-            direccion_opuesta = (0, 16)  # Dirección opuesta al movimiento actual
+            direccion_opuesta = (0, 16)
         elif fantasma.direccion_actual == "ABAJO":
             direccion_opuesta = (0, -16)
         elif fantasma.direccion_actual == "IZQUIERDA":
@@ -533,42 +533,39 @@ class Tablero:
         elif fantasma.direccion_actual == "DERECHA":
             direccion_opuesta = (-16, 0)
 
-        # Lista para almacenar las celdas válidas junto con su distancia a Pac-Man
+        # Lista de celdas válidas y sus distancias
         celdas_validas = []
         for dx, dy in direcciones:
-            # Calcular las coordenadas de la nueva celda en esta dirección
             nueva_celda_x = fantasma_x + dx
             nueva_celda_y = fantasma_y + dy
 
-            # Comprobar que la celda no tiene colisiones y no sea la dirección opuesta
+            # Verificar que no haya colisión y no sea dirección opuesta
             if not self.colision_fantasmas(nueva_celda_x, nueva_celda_y) and (dx, dy) != direccion_opuesta:
-                # Calcular la distancia al cuadrado entre esta celda y Pac-Man
+                # Calcular distancia al cuadrado a Pac-Man
                 diferencia_x = nueva_celda_x - pacman_x
                 diferencia_y = nueva_celda_y - pacman_y
                 distancia = diferencia_x * diferencia_x + diferencia_y * diferencia_y
 
-                # Agregar la celda como válida
+                # Agregar celda válida a la lista
                 celdas_validas.append((distancia, (nueva_celda_x, nueva_celda_y)))
 
-        # Seleccionar la celda con la mayor distancia entre las válidas
+        # Encontrar manualmente la celda con la mayor distancia
         for distancia, celda in celdas_validas:
             if distancia > max_distancia:
-                max_distancia = distancia  # Actualizar la mayor distancia encontrada
-                celda_mas_lejos = celda  # Actualizar la celda correspondiente
+                max_distancia = distancia
+                celda_mas_lejos = celda
 
-        # Si no se encuentra ninguna celda válida utilizara todas las direcciones
+        # Si no se encuentra una celda válida, considerar todas las direcciones posibles
         if celda_mas_lejos is None:
             for dx, dy in direcciones:
-                # Calcular las coordenadas de la nueva celda en esta dirección
                 nueva_celda_x = fantasma_x + dx
                 nueva_celda_y = fantasma_y + dy
-
-                # Comprobar nuevamente la colision
                 if not self.colision_fantasmas(nueva_celda_x, nueva_celda_y):
                     celda_mas_lejos = (nueva_celda_x, nueva_celda_y)
-
-        # Devuelve la celda más lejana encontrada
+                    max_distancia = 0  # Evitar que quede sin actualizar
+        # Devuelve la celda más lejana a Pac-Man
         return celda_mas_lejos
+
 
     
     def predecir_posicion_pacman(self, casillas_adelante):
