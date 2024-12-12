@@ -497,9 +497,13 @@ class Tablero:
         # El fantasma busca una celda cercana que lo aleje de Pac-Man
         if fantasma.siguiente_celda is None or (fantasma.x == fantasma.siguiente_celda[0] and fantasma.y == fantasma.siguiente_celda[1]):
             inicio = (fantasma.x // 16 * 16, fantasma.y // 16 * 16)
-            pacman_pos = (self.pacman.x // 16 * 16, self.pacman.y // 16 * 16)
+            objetivo = self.calcular_celda_mas_alejada()
+            ruta = self.buscar_ruta_simple(inicio, objetivo)
 
-            
+            if ruta and len(ruta) > 1:
+                fantasma.siguiente_celda = ruta[1]
+            else:
+                fantasma.siguiente_celda = None
 
         self.mover_hacia_siguiente_celda(fantasma)
 
