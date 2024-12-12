@@ -549,7 +549,7 @@ class Tablero:
                 # Agregar celda válida a la lista
                 celdas_validas.append((distancia, (nueva_celda_x, nueva_celda_y)))
 
-        # Encontrar manualmente la celda con la mayor distancia
+        # Encontrar la celda con la mayor distancia
         for distancia, celda in celdas_validas:
             if distancia > max_distancia:
                 max_distancia = distancia
