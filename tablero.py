@@ -539,10 +539,11 @@ class Tablero:
 
         # Buscar la mejor dirección
         mejor_direccion = None
-        menor_distancia = 400 # 400 es la distancia máxima que puede haber entre el fantasma y el pacman porque es lo que mide la pantalla
+        menor_distancia = float('inf')
+
         for direccion, nueva_x, nueva_y in direcciones:
-            # Verificar colisión y evitar la dirección opuesta
-            if not self.bloque.colision(nueva_x * 16, nueva_y * 16) and direccion != self.invertir_direccion(fantasma.direccion_actual):
+            # Verificar colisión
+            if not self.bloque.colision(nueva_x * 16, nueva_y * 16):
                 # Calcular la distancia Manhattan
                 distancia = abs(objetivo_x - nueva_x) + abs(objetivo_y - nueva_y)
                 if distancia < menor_distancia:
@@ -554,21 +555,23 @@ class Tablero:
             self.mover_fantasma(fantasma, mejor_direccion)
             fantasma.direccion_actual = mejor_direccion
         else:
-            # Si no hay direcciones válidas, permitir retroceder
-            direccion_opuesta = self.invertir_direccion(fantasma.direccion_actual)
-            self.mover_fantasma(fantasma, direccion_opuesta)
-            fantasma.direccion_actual = direccion_opuesta
+            # Si no hay direcciones válidas, detener al fantasma
+            print(f"Fantasma {type(fantasma)} detenido por colisión")
 
     def mover_fantasma(self, fantasma, direccion):
-        #  Mueve al fantasma en la dirección especificada.
+        # Mueve al fantasma en la dirección especificada
         if direccion == "ARRIBA":
-            fantasma.y -= fantasma.velocidad
+            if not self.bloque.colision(fantasma.x, fantasma.y - fantasma.velocidad):
+                fantasma.y -= fantasma.velocidad
         elif direccion == "ABAJO":
-            fantasma.y += fantasma.velocidad
+            if not self.bloque.colision(fantasma.x, fantasma.y + fantasma.velocidad):
+                fantasma.y += fantasma.velocidad
         elif direccion == "DERECHA":
-            fantasma.x += fantasma.velocidad
+            if not self.bloque.colision(fantasma.x + fantasma.velocidad, fantasma.y):
+                fantasma.x += fantasma.velocidad
         elif direccion == "IZQUIERDA":
-            fantasma.x -= fantasma.velocidad
+            if not self.bloque.colision(fantasma.x - fantasma.velocidad, fantasma.y):
+                fantasma.x -= fantasma.velocidad
 
     def invertir_direccion(self, direccion):
         # Devuelve la dirección opuesta a la dirección actual así el fantasma no retrocede
