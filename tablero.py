@@ -575,10 +575,13 @@ class Tablero:
                 fantasma.y += max(-fantasma.velocidad, dy)
                 fantasma.direccion_actual = "ARRIBA"
 
+            # Verificar si el fantasma usó un portal
+            if self.usar_portal(fantasma):
+                # Si se usó el portal, recalcular la ruta
+                fantasma.siguiente_celda = None
+                return True  # Se usó el portal
 
-            # Si el fantasma llega a una posición que es un portal se hace tp
-            self.usar_portal(fantasma)
-            return True
+            return False  # No se usó el portal
 
 
     def buscar_ruta_simple(self, inicio, objetivo):
@@ -615,11 +618,11 @@ class Tablero:
         return None
 
 
-    def usar_portal(self, fantasma):
+    def usar_portal(self, personaje):
         # Comprueba si el fantasma está cerca de un portal y lo transporta al otro lado.
-        x_actual, y_actual = fantasma.x, fantasma.y
+        x_actual, y_actual = personaje.x, personaje.y
         if (x_actual, y_actual) in PORTALES:
-            fantasma.x, fantasma.y = PORTALES[(x_actual, y_actual)]
+            personaje.x, personaje.y = PORTALES[(x_actual, y_actual)]
             return True
         return False
         
