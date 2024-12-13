@@ -18,7 +18,7 @@ class Puntos:
         self.zonas_prohibidas = ZONAS_PROHIBIDAS
         self.regalos = [(16, 304), (368, 304), (16, 80),(368, 80)] # Coordenadas fijas de los regalos
         self.lista_puntos = [] # Lista de puntos generados
-        self.ista_frutas = [] # Lista de frutas generadas
+        self.lista_frutas = [] # Lista de frutas generadas
 
 
 #--------------------------------------------------------------------PROPERTY--------------------------------------------------------------------#
