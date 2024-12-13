@@ -13,7 +13,7 @@ class Tablero:
         # Cargar los recursos del archivo .pyxres
         pyxel.load("assets/recursos.pyxres")
         #menu pincipal del juego
-        self.estdo_juego = "menu"
+        self.estado_juego = "menu"
 
         # Iniciar la música para el mapa 1
         pyxel.playm(0, 0, True)
