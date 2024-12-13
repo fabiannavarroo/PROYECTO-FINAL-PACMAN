@@ -289,53 +289,7 @@ class Tablero:
 
     def modo_vision_reducida(self):
 
-        self.vision_reducida = True
-        self.radio = 4 * 16
-        pyxel.cls(0)  # Limpiar la pantalla
-        self.dibujar_letras_mapa(120,16,"HIGHSCORE")
-        self.puntos.ver_puntuacion(195,16)
-        if self.pacman.vidas > 0:
-            # Mientras Pac-Man tenga vidas, dibujar el mapa y los objetos
-            if self.vision_reducida and not self.esta_radio.bloque.draw()  # Dibujar el mapa
-            if self.pacman.en_muerte:
-                # Si Pac-Man está en animación de muerte, dibujar solo la animación
-                self.animar_muerte()
-            else:
-                # Dibujar puntos, frutas, puntuación
-                self.puntos.draw()
-                # Dibujar las vidas de Pac-Man
-                self.pacman.ver_vidas(10, 10)
-                # Dibujar a Pac-Man
-                self.pacman.draw()
-                # Dibujar los fantasmas
-                for fantasma in self.fantasmas:
-                    fantasma.draw()
-
-                # Dibujar el mensaje READY! si corresponde
-                if self.bloque.mostrar_ready:
-                    self.animar_ready()
-
-                # Si Pac-Man ha comido un fantasma, mostrar los puntos que ganó
-                if self.pacman.mostrar_puntos and time.time() - self.pacman.texto_tiempo_inicio < 1.5:
-                    pyxel.text(self.pacman.posicion_fantasma_comido_x, self.pacman.posicion_fantasma_comido_y, "+200 puntos", pyxel.COLOR_RED)
-                else:
-                    self.pacman.mostrar_puntos = False
-
-            # Si se ganó la partida, limpiar pantalla y volver a dibujar el mapa
-            if self.bloque.victoria:
-                self.animar_win()
-        else:
-            # Si Pac-Man no tiene vidas, mostrar GAME OVER
-            pyxel.cls(0)
-            self.bloque.draw()
-            self.animar_muerte()
-            self.animar_fin()
-            if pyxel.btnp(pyxel.KEY_R):
-                self.reinicar_juego()
-
-        def esta_radio(self, obj_x, obj_y):
-            # Comprobar si un objeto está dentro del radio
-            return abs( obj_x - self.pacman.x ) <= self.radio and abs( obj_y - self.pacman.y) <= self.radio
+        
         
                
 
