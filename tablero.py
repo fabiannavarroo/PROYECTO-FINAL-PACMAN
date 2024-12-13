@@ -168,6 +168,7 @@ class Tablero:
         self.reiniciar_posiciones()
         self.pacman.en_muerte = False
         self.pacman.animacion_frame = 0
+        self.pacman.direccion_actual = PACMAN
 
     def reiniciar_posiciones(self):
         # Reiniciar las posiciones de Pac-Man y fantasmas a sus posiciones iniciales
