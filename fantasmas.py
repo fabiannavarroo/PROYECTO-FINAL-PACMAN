@@ -153,68 +153,68 @@ class Fantasma:
 
     def activar_asustado(self):
         #Activa el estado asustado
-        self.__asustado = True
-        self.__velocidad = 1
-        self.__tiempo_asustado = time.time()
+        self.asustado = True
+        self.velocidad = 1
+        self.tiempo_asustado = time.time()
 
     def volver_a_posicion_inicial(self):
         # Envía al fantasma a la trampa
         # Reubicar al fantasma en la trampa y reiniciar estado
-        self.__x, self.__y = self.__x_inicial, self.__y_inicial
-        self.__siguiente_celda = None
-        self.__asustado = False # Sale del estado asustado
-        self.__direccion_actual = "DERECHA"
-        self.__tiempo_trampa = time.time() 
-        self.__en_trampa = True
-        self.__en_salida = False
-        self.__velocidad = 2
+        self.x, self.y = self.x_inicial, self.y_inicial
+        self.siguiente_celda = None
+        self.asustado = False # Sale del estado asustado
+        self.direccion_actual = "DERECHA"
+        self.tiempo_trampa = time.time() 
+        self.en_trampa = True
+        self.en_salida = False
+        self.velocidad = 2
 
 
     def mover_a_salida(self):
         # Movimiento hacia las coordenadas de salida
-        dx = self.posicion_salida[0] - self.__x
-        dy = self.posicion_salida[1] - self.__y
+        dx = self.posicion_salida[0] - self.x
+        dy = self.posicion_salida[1] - self.y
         if abs(dx) > 0:
             if dx > 0:  
-                self.__x += self.__velocidad 
+                self.x += self.velocidad 
                 self.direccion_actual = "DERECHA" 
             else:
-                self.__x -= self.__velocidad
-                self.__direccion_actual = "IZQUIERDA" 
+                self.x -= self.velocidad
+                self.direccion_actual = "IZQUIERDA" 
         elif abs(dy) > 0:
             if dy > 0:
-                self.__y += self.__velocidad 
+                self.y += self.velocidad 
                 self.direccion_actual = "ABAJO" 
             else:
-                self.__y -= self.__velocidad
-                self.__direccion_actual = "ARRIBA" 
+                self.y -= self.velocidad
+                self.direccion_actual = "ARRIBA" 
         else:
-            self.__en_salida = False
-            self.__en_trampa = False  # Marcamos que ha salido de la trampa
+            self.en_salida = False
+            self.en_trampa = False  # Marcamos que ha salido de la trampa
         
 
     def actualizar_estado(self):
         #Verifica y actualiza el estado asustado
-        if self.__asustado:
-            tiempo_restante = self.__tiempo_para_ser_comido - (time.time() - self.__tiempo_asustado)
+        if self.asustado:
+            tiempo_restante = self.tiempo_para_ser_comido - (time.time() - self.tiempo_asustado)
             if tiempo_restante <= 0:
-                self.__asustado = False  # Finaliza el estado asustado
-                self.__velocidad = 2
+                self.asustado = False  # Finaliza el estado asustado
+                self.velocidad = 2
     
 
     def draw(self):
         #Dibuja el fantasma en su estado actual.
-        if self.__asustado:
+        if self.asustado:
             # Alternar entre azul y blanco si está asustado
             if pyxel.frame_count // REFRESH % 2 == 0:
                 sprite = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
             else:
                 sprite = FANTASMAS_ASUSTADOS["BLANCO"]["Coordenadas"]
         else:
-            sprite = self.__sprites[self.__direccion_actual]  # Usar sprite según dirección
+            sprite = self.sprites[self.direccion_actual]  # Usar sprite según dirección
 
         # Dibuja el fantasma
-        pyxel.blt(self.__x, self.__y, 0, sprite[0], sprite[1], 16, 16, colkey=0)
+        pyxel.blt(self.x, self.y, 0, sprite[0], sprite[1], 16, 16, colkey=0)
 
 
 # Subclases de Fantasma
