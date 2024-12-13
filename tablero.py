@@ -125,7 +125,7 @@ class Tablero:
             pyxel.text(100, 120, "P: JUGAR", pyxel.COLOR_WHITE)
             pyxel.text(100, 140, "N: VISION REDUCIDA", pyxel.COLOR_WHITE)
             pyxel.text(100, 160, "ESC: SALIR", pyxel.COLOR_WHITE)
-            
+
         elif self.estado_juego == "jugando":
             self.modo_juego_normal()
 
@@ -314,6 +314,7 @@ class Tablero:
     #--------------------------------------------------------------------MODOS--------------------------------------------------------------------#
 
     def modo_juego_normal(self):
+
         pyxel.cls(0)  # Limpiar la pantalla
         self.dibujar_letras_mapa(120,16,"HIGHSCORE")
         self.puntos.ver_puntuacion(195,16)
@@ -355,6 +356,8 @@ class Tablero:
             self.animar_fin()
             if pyxel.btnp(pyxel.KEY_R):
                 self.reinicar_juego()
+
+    def modo_vision_reducida(self):
 
                
 
