@@ -137,14 +137,14 @@ class Bloque:
     def cargar_mapa(self):
         # Cargar los bloques del nivel actual
         self.__bloques = []
-        for x, y, tipo in self.mapas[self.nivel]:
+        for x, y, tipo in self.__mapas[self.__nivel]:
             sprite = self.obtener_sprite(tipo)  # Obtener el sprite 
             self.bloques.append((x, y, sprite))  # Guardar solo coordenadas y sprite
 
 
     def obtener_sprite(self, tipo):
         # Devuelve el sprite correspondiente al tipo
-        if self.nivel == 1:
+        if self.__nivel == 1:
             if tipo == 1:
                 return SPRITE_BLOQUE_1
             elif tipo == 2:
@@ -193,7 +193,7 @@ class Bloque:
                 return SPRITE_BLOQUE_23
             else:
                 raise ValueError("Tipo de bloque no válido. Debe estar entre 1 y 23.")
-        elif self.nivel == 2:
+        elif self.__nivel == 2:
             if tipo == 1:
                 return SPRITE_BLOQUE_1_1
             elif tipo == 2:
@@ -296,7 +296,7 @@ class Bloque:
 
 
     def colision(self, x, y):
-        sprite_tamaño = self.celda_tamaño  # Tamaño del sprite (16x16 típico)
+        sprite_tamaño = self.__celda_tamaño  # Tamaño del sprite (16x16 típico)
 
         # Calcular los puntos clave del sprite
         puntos_a_verificar = [
@@ -308,7 +308,7 @@ class Bloque:
 
         # Verificar si algún punto clave está dentro de un bloque
         for px, py in puntos_a_verificar:
-            for bloque_x, bloque_y, _ in self.bloques:
+            for bloque_x, bloque_y, _ in self.__bloques:
                 if (
                     bloque_x <= px < bloque_x + sprite_tamaño and
                     bloque_y <= py < bloque_y + sprite_tamaño
@@ -320,7 +320,7 @@ class Bloque:
 
     def draw(self):
         # Dibuja todos los bloques
-        for bloque in self.bloques:
+        for bloque in self.__bloques:
             bloque_x = bloque[0]  # Coordenada x del bloque
             bloque_y = bloque[1]  # Coordenada y del bloque
             sprite = bloque[2]  # Sprite del bloque
