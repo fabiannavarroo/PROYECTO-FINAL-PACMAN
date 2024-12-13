@@ -360,8 +360,8 @@ class Tablero:
     def modo_vision_reducida(self):
         pyxel.cls(0)  # Limpiar la pantalla
 
-        # Definir el radio de visión (en píxeles)
-        radio_vision = 64
+        # Definir el radio de visión 
+        radio_vision = 10*16
 
         # Dibujar solo los elementos visibles dentro del radio
         self.dibujar_letras_mapa(120, 16, "HIGHSCORE")
