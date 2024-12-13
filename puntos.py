@@ -129,7 +129,7 @@ class Puntos:
     def draw(self):
         # Dibuja los puntos, frutas y regalos en el mapa.
         # Dibujar puntos
-        for x, y, tipo in self.lista_puntos:
+        for x, y, tipo in self.__lista_puntos:
             sprite = OBJETOS[tipo]["Coordenadas"]
             pyxel.blt(x, y, 0, sprite[0], sprite[1], 16, 16, colkey=0)
 
