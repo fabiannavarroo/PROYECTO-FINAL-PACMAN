@@ -223,6 +223,10 @@ class Fantasma:
 
 
     def perseguir_un_objetivo(self, bloque, objetivo_x, objetivo_y):
+
+        # Portales: si Pac-Man entra en un portal, salir por el otro lado del mapa
+        if self.usar_portal(self.x, self.y):
+            self.x, self.y = self.usar_portal(self.x, self.y)
         # El fantasma persigue a un objetivo.
         # Obtener celdas de destino y elegir la mejor dirección
         direcciones = {
