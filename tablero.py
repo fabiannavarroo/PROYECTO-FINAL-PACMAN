@@ -303,7 +303,7 @@ class Tablero:
                 return True
 
         # Comprobar también si hay un muro
-        if self.bloque.colision(x, y):
+        if self.bloque.colision(x, y, None, None, 1):
             return True
         return False
 
