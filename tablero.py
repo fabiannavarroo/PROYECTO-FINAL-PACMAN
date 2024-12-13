@@ -149,7 +149,7 @@ class Tablero:
             self.animar_muerte()
             self.animar_fin()
             if pyxel.btnp(pyxel.KEY_R):
-                self.reinicar_juego
+                self.reinicar_juego()
 
     #--------------------------------------------------------------------REINICIO--------------------------------------------------------------------#
 
