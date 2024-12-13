@@ -244,7 +244,7 @@ class Tablero:
 
     #--------------------------------------------------------------------MODOS--------------------------------------------------------------------#
 
-    def modo_juego_normal(self):
+    def modo_juego_normal_dibujo(self):
 
         pyxel.cls(0)  # Limpiar la pantalla
         self.dibujar_letras_mapa(120,16,"HIGHSCORE")
@@ -287,6 +287,49 @@ class Tablero:
             self.animar_fin()
             if pyxel.btnp(pyxel.KEY_R):
                 self.reinicar_juego()
+
+    def modo_juego_normal_update(self):
+
+        # Actualizar musica para las distintas situaciones
+        self.actualizar_musica()
+
+        if self.pacman.vidas > 0:
+            # Mientras Pac-Man tenga vidas
+            if self.bloque.contador_ready < 90:
+                # Mostrar el mensaje READY! por un tiempo
+                self.bloque.contador_ready += 1
+                if self.bloque.contador_ready == 90:
+                    self.bloque.mostrar_ready = False  # Ocultar READY! después de un tiempo
+
+            if not self.pacman.en_muerte:
+                # Actualizar el juego si Pac-Man no está en estado de muerte
+                # Mover Pac-Man según la dirección del jugador
+                self.pacman.movimineto_pacman(self.bloque)
+                # Comprobar si Pac-Man come puntos
+                self.puntos.comer_puntos(self.pacman.x, self.pacman.y, self.fantasmas)
+                # Comprobar si Pac-Man come fruta
+                self.puntos.comer_fruta(self.pacman.x, self.pacman.y)
+                # Intentar generar una fruta cada cierto tiempo
+                self.puntos.generar_fruta(self.bloque)
+                # Comprobar colisiones entre fantasmas y Pac-Man
+                self.comprobar_colision_pacman_fantasmas()
+
+                # Actualizar cada fantasma
+                for index, fantasma in enumerate(self.fantasmas):
+                    # Actualizar el estado del fantasma
+                    fantasma.actualizar_estado()
+                    # Revisar si el fantasma está en la posición inicial
+                    if fantasma.en_trampa:
+                        # Comprobar si el fantasma está en modo asustado
+                        if not fantasma.asustado:
+                            # Esperar un tiempo antes de moverlo a la salida
+                            tiempo_espera = (index + 1) * 2
+                            if time.time() - fantasma.tiempo_trampa >= tiempo_espera:
+                                fantasma.en_salida = True
+                                fantasma.mover_a_salida()
+                    else:
+                        # Actualizar movimiento normal si no está en la trampa
+                        fantasma.mover(self.bloque, self.pacman)
 
     def modo_vision_reducida(self):
         pyxel.cls(0)  # Limpiar la pantalla
