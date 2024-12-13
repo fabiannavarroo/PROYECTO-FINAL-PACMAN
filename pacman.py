@@ -17,6 +17,7 @@ class Pacman:
         self.mostrar_puntos = False
         self.texto_tiempo_inicio = 0
         self.posicion_fantasma_comido_x,self.posicion_fantasma_comido_y = None, None
+        self.animacion_muerte_finalizada = False # Controlar la animación de muerte final de Pac-Man
          
  #--------------------------------------------------------------------PROPERTY--------------------------------------------------------------------#
   

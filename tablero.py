@@ -35,25 +35,6 @@ class Tablero:
         # Generar puntos por todo el mapa
         self.generar_puntos()
 
-        # Variable para controlar el mensaje READY!
-        self.mostrar_ready = True
-        self.contador_ready = 0
-
-        # Variables para controlar GAME OVER
-        self.contador_game_over = 0
-        self.mostrar_fin = False
-
-        # Controlar la animación de muerte final de Pac-Man
-        self.animacion_muerte_finalizada = False
-
-        # Distancia de emboscada para el fantasma rosa
-        self.celdas_para_emboscada = 3
-
-        # Controlar la condición de victoria
-        self.victoria = False  
-        self.victoria_contador_mapa = 0
-        self.victoria_contador_texto = 0
-
         # COntrola la musica actual
         self.elegir_cancion = random.random() # elegir la cancion del mapa 2
         self.musica_actual = None
@@ -69,11 +50,11 @@ class Tablero:
         self.actualizar_musica()
         if self.pacman.vidas > 0:
             # Mientras Pac-Man tenga vidas
-            if self.contador_ready < 90:
+            if self.bloque.contador_ready < 90:
                 # Mostrar el mensaje READY! por un tiempo
-                self.contador_ready += 1
-                if self.contador_ready == 90:
-                    self.mostrar_ready = False  # Ocultar READY! después de un tiempo
+                self.bloque.contador_ready += 1
+                if self.bloque.contador_ready == 90:
+                    self.bloque.mostrar_ready = False  # Ocultar READY! después de un tiempo
 
             if not self.pacman.en_muerte:
                 # Actualizar el juego si Pac-Man no está en estado de muerte
@@ -119,7 +100,7 @@ class Tablero:
                         self.reiniciar_tablero()
                     else:
                         # Si no hay más niveles, ganar el juego
-                        self.victoria = True
+                        self.bloque.victoria = True
                         
             else:
                 # Si Pac-Man está en muerte, ejecutar la animación de muerte
@@ -127,14 +108,14 @@ class Tablero:
 
         else:
             # Pac-Man no tiene vidas
-            if not self.animacion_muerte_finalizada:
+            if not self.pacman.animacion_muerte_finalizada:
                 # Ejecutar la animación de muerte final de Pac-Man
                 self.animar_muerte()
                 if self.pacman.animacion_frame >= len(ANIMACION_MUERTE):
-                    self.animacion_muerte_finalizada = True
+                    self.pacman.animacion_muerte_finalizada = True
             else:
                 # Después de la animación de muerte final, esperar antes de mostrar GAME OVER fijo
-                self.contador_game_over += 1
+                self.bloque.contador_game_over += 1
 
     def draw(self):
         pyxel.cls(0)  # Limpiar la pantalla
@@ -158,7 +139,7 @@ class Tablero:
                     fantasma.draw()
 
                 # Dibujar el mensaje READY! si corresponde
-                if self.mostrar_ready:
+                if self.bloque.mostrar_ready:
                     self.animar_ready()
 
                 # Si Pac-Man ha comido un fantasma, mostrar los puntos que ganó
@@ -168,7 +149,7 @@ class Tablero:
                     self.pacman.mostrar_puntos = False
 
             # Si se ganó la partida, limpiar pantalla y volver a dibujar el mapa
-            if self.victoria:
+            if self.bloque.victoria:
                 self.animar_win()
         else:
             # Si Pac-Man no tiene vidas, mostrar GAME OVER
@@ -188,8 +169,8 @@ class Tablero:
 
     def reiniciar_tablero(self):
         # Reinicia las condiciones iniciales después de la animación de muerte o al cambiar de nivel
-        self.mostrar_ready = True
-        self.contador_ready = 0
+        self.bloque.mostrar_ready = True
+        self.bloque.contador_ready = 0
         self.bloque.cargar_mapa()
         self.reiniciar_posiciones()
         self.pacman.en_muerte = False
@@ -217,9 +198,9 @@ class Tablero:
 
     def animar_ready(self):
         # Animación del mensaje READY! durante los primeros segundos del nivel
-        if self.contador_ready < 90:
+        if self.bloque.contador_ready < 90:
             # Alternar el mensaje cada cierto tiempo para parpadear
-            if (self.contador_ready // 10) % 2 == 0:
+            if (self.bloque.contador_ready // 10) % 2 == 0:
                 self.dibujar_letras_mapa(180,240,"READY!")
             else:
                 pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0)
@@ -229,8 +210,8 @@ class Tablero:
 
     def animar_fin(self):
         # Animación del mensaje GAME OVER cuando se acaban las vidas de Pac-Man
-        if self.contador_game_over < 70:
-            if (self.contador_game_over // 10) % 2 == 0:
+        if self.bloque.contador_game_over < 70:
+            if (self.bloque.contador_game_over // 10) % 2 == 0:
                 self.dibujar_letras_mapa(185,208,"GAME OVER")
             else:
                 pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0)
@@ -241,23 +222,23 @@ class Tablero:
 
     def animar_win(self):
         pyxel.cls(0)
-        if self.victoria_contador_texto <=10: 
+        if self.bloque.victoria_contador_texto <=10: 
             self.dibujar_letras_mapa(185,208,"VICTORIA_1")
-            self.victoria_contador_texto += 1
-        elif self.victoria_contador_texto <=20: 
+            self.bloque.victoria_contador_texto += 1
+        elif self.bloque.victoria_contador_texto <=20: 
             self.dibujar_letras_mapa(185,208,"VICTORIA_2")
-            self.victoria_contador_texto += 1
+            self.bloque.victoria_contador_texto += 1
         else:
             self.dibujar_letras_mapa(185,208,"VICTORIA_3")
-            self.victoria_contador_texto += 1
+            self.bloque.victoria_contador_texto += 1
         # Para que la animacion este en continuo funcionamiento
-        if self.victoria_contador_texto == 40:
-            self.victoria_contador_texto = 0 
+        if self.bloque.victoria_contador_texto == 40:
+            self.bloque.victoria_contador_texto = 0 
         # Animacion del mapa 
-        if self.victoria_contador_mapa < 10:
+        if self.bloque.victoria_contador_mapa < 10:
             if pyxel.frame_count % 2 == 0:  
                 self.bloque.draw()
-                self.victoria_contador_mapa += 1
+                self.bloque.victoria_contador_mapa += 1
             else: 
                 pass
         else:
@@ -291,7 +272,7 @@ class Tablero:
         musica_actual = None
 
         # Determinar qué música debería sonar
-        if self.victoria:
+        if self.bloque.victoria:
             musica_actual = 1  # Música de victoria
         elif self.pacman.en_muerte:
             musica_actual = 3  # Música de muerte de Pac-Man
@@ -393,7 +374,7 @@ class Tablero:
     def mover_fantasma_rojo(self, fantasma):
     
          # Fantasma rojo: persigue a Pac-Man
-        if self.victoria or self.pacman.en_muerte:
+        if self.bloque.victoria or self.pacman.en_muerte:
             return False
         
         if fantasma.en_trampa:
@@ -408,7 +389,7 @@ class Tablero:
 
 
     def mover_fantasma_rosa(self,fantasma):
-        if self.victoria or self.pacman.en_muerte:
+        if self.bloque.victoria or self.pacman.en_muerte:
             return False
 
         if fantasma.en_trampa:
@@ -424,7 +405,7 @@ class Tablero:
 
 
     def mover_fantasma_azul(self,fantasma):
-        if self.victoria or self.pacman.en_muerte:
+        if self.bloque.victoria or self.pacman.en_muerte:
             return False
         
         if fantasma.en_trampa:
@@ -446,7 +427,7 @@ class Tablero:
 
 
     def mover_fantasma_naranja(self,fantasma):
-        if self.victoria or self.pacman.en_muerte:
+        if self.bloque.victoria or self.pacman.en_muerte:
             return False
         
         if fantasma.en_trampa:
@@ -628,15 +609,15 @@ class Tablero:
         # Calcular la posicion delante del pacman en funcion de la dirrecion de donde se encuentra
         if self.pacman.direccion_actual == "ARRIBA":
             objetivo_x = self.pacman.x
-            objetivo_y = self.pacman.y - self.celdas_para_emboscada * celda_tamaño
+            objetivo_y = self.pacman.y - self.fantasmas.celdas_para_emboscada * celda_tamaño
         elif self.pacman.direccion_actual == "ABAJO":
             objetivo_x = self.pacman.x
-            objetivo_y = self.pacman.y + self.celdas_para_emboscada * celda_tamaño
+            objetivo_y = self.pacman.y + self.fantasmas.celdas_para_emboscada * celda_tamaño
         elif self.pacman.direccion_actual == "IZQUIERDA":
-            objetivo_x = self.pacman.x - self.celdas_para_emboscada * celda_tamaño
+            objetivo_x = self.pacman.x - self.fantasmas.celdas_para_emboscada * celda_tamaño
             objetivo_y = self.pacman.y 
         elif self.pacman.direccion_actual == "DERECHA":
-            objetivo_x = self.pacman.x + self.celdas_para_emboscada * celda_tamaño
+            objetivo_x = self.pacman.x + self.fantasmas.celdas_para_emboscada * celda_tamaño
             objetivo_y = self.pacman.y 
         else:
             # Si no hay una direcciona valida, seguira al pacman

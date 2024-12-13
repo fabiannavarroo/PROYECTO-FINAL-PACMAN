@@ -1,5 +1,6 @@
 import pyxel
 from constantes import *
+import random
 
 
 class Bloque:
@@ -8,7 +9,20 @@ class Bloque:
         self.celda_tamaño = 16
         self.bloques = []
         self.mapas = MAPA
-        self.cargar_mapa()  # Cargar el mapa del nivel inicial 
+        self.cargar_mapa()  # Cargar el mapa del nivel inicial
+        # Controlar la condición de victoria
+        self.victoria = False  
+        self.victoria_contador_mapa = 0
+        self.victoria_contador_texto = 0
+        # Variable para controlar el mensaje READY!
+        self.mostrar_ready = True
+        self.contador_ready = 0
+        # Variables para controlar GAME OVER
+        self.contador_game_over = 0
+        self.mostrar_fin = False
+        # COntrola la musica actual
+        self.elegir_cancion = random.random() # elegir la cancion del mapa 2
+        self.musica_actual = None
 
 
 #--------------------------------------------------------------------PROPERTY--------------------------------------------------------------------#
