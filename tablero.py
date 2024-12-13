@@ -37,6 +37,9 @@ class Tablero:
         self.puntos.generar_puntos(self.bloque)
 =======
         self.generar_puntos()
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
         # Iniciar el bucle principal de Pyxel
@@ -54,7 +57,10 @@ class Tablero:
             # Mientras Pac-Man tenga vidas
             if self.bloque.contador_ready < 90:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             if self.bloque.contador_ready < 90:
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                 # Mostrar el mensaje READY! por un tiempo
@@ -62,9 +68,12 @@ class Tablero:
                 if self.bloque.contador_ready == 90:
                     self.bloque.mostrar_ready = False  # Ocultar READY! después de un tiempo
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 self.bloque.contador_ready += 1
                 if self.bloque.contador_ready == 90:
                     self.bloque.mostrar_ready = False  # Ocultar READY! después de un tiempo
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 
@@ -113,7 +122,10 @@ class Tablero:
                         # Si no hay más niveles, ganar el juego
                         self.bloque.victoria = True
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                         self.bloque.victoria = True
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                         
@@ -125,7 +137,10 @@ class Tablero:
             # Pac-Man no tiene vidas
             if not self.pacman.animacion_muerte_finalizada:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             if not self.pacman.animacion_muerte_finalizada:
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                 # Ejecutar la animación de muerte final de Pac-Man
@@ -133,11 +148,17 @@ class Tablero:
                 if self.pacman.animacion_frame >= len(ANIMACION_MUERTE):
                     self.pacman.animacion_muerte_finalizada = True
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                     self.pacman.animacion_muerte_finalizada = True
             else:
                 # Después de la animación de muerte final, esperar antes de mostrar GAME OVER fijo
                 self.bloque.contador_game_over += 1
                 self.bloque.contador_game_over += 1
+=======
+            else:
+                # Después de la animación de muerte final, esperar antes de mostrar GAME OVER fijo
+                self.bloque.contador_game_over += 1
+>>>>>>> Stashed changes
 =======
             else:
                 # Después de la animación de muerte final, esperar antes de mostrar GAME OVER fijo
@@ -168,7 +189,10 @@ class Tablero:
                 # Dibujar el mensaje READY! si corresponde
                 if self.bloque.mostrar_ready:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 if self.bloque.mostrar_ready:
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                     self.animar_ready()
@@ -183,8 +207,11 @@ class Tablero:
             if self.bloque.victoria:
                 self.animar_win()
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             if self.bloque.victoria:
                 self.animar_win()
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         else:
@@ -208,8 +235,11 @@ class Tablero:
         self.bloque.mostrar_ready = True
         self.bloque.contador_ready = 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         self.bloque.mostrar_ready = True
         self.bloque.contador_ready = 0
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         self.bloque.cargar_mapa()
@@ -237,10 +267,15 @@ class Tablero:
         # Animación del mensaje READY! durante los primeros segundos del nivel
         if self.bloque.contador_ready < 90:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         if self.bloque.contador_ready < 90:
             # Alternar el mensaje cada cierto tiempo para parpadear
             if (self.bloque.contador_ready // 10) % 2 == 0:
             if (self.bloque.contador_ready // 10) % 2 == 0:
+=======
+            # Alternar el mensaje cada cierto tiempo para parpadear
+            if (self.bloque.contador_ready // 10) % 2 == 0:
+>>>>>>> Stashed changes
 =======
             # Alternar el mensaje cada cierto tiempo para parpadear
             if (self.bloque.contador_ready // 10) % 2 == 0:
@@ -257,8 +292,11 @@ class Tablero:
         if self.bloque.contador_game_over < 70:
             if (self.bloque.contador_game_over // 10) % 2 == 0:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         if self.bloque.contador_game_over < 70:
             if (self.bloque.contador_game_over // 10) % 2 == 0:
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                 self.dibujar_letras_mapa(185,208,"GAME OVER")
@@ -295,6 +333,7 @@ class Tablero:
 
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
     def animar_win(self):
         pyxel.cls(0)
@@ -321,6 +360,8 @@ class Tablero:
             self.bloque.draw()
 
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     def animar_muerte(self):
@@ -352,7 +393,10 @@ class Tablero:
         # Determinar qué música debería sonar
         if self.bloque.victoria:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         if self.bloque.victoria:
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
             musica_actual = 1  # Música de victoria
@@ -369,6 +413,7 @@ class Tablero:
             else:
                 musica_actual = 7
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         elif self.bloque.nivel == 2: # Música del mapa 2
             
             if self.bloque.elegir_cancion < 0.5:
@@ -377,16 +422,23 @@ class Tablero:
                 musica_actual = 7
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
         elif self.bloque.nivel == 3:
             musica_actual = 4  # Música del mapa 3
 
         # Cambiar la música solo si es diferente a la actual
         if musica_actual is not None and musica_actual != self.bloque.musica_actual:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         if musica_actual is not None and musica_actual != self.bloque.musica_actual:
             pyxel.playm(musica_actual, 0, True)
             self.bloque.musica_actual = musica_actual
             self.bloque.musica_actual = musica_actual
+=======
+            pyxel.playm(musica_actual, 0, True)
+            self.bloque.musica_actual = musica_actual
+>>>>>>> Stashed changes
 =======
             pyxel.playm(musica_actual, 0, True)
             self.bloque.musica_actual = musica_actual
@@ -400,6 +452,7 @@ class Tablero:
         pyxel.blt(x, y, 0, sprite["Coordenadas"][0], sprite["Coordenadas"][1], sprite["Tamaño"][0], sprite["Tamaño"][1], colkey=0)
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 #--------------------------------------------------------------------COLISION--------------------------------------------------------------------#
 
     def comprobar_colision_pacman_fantasmas(self):
@@ -407,6 +460,8 @@ class Tablero:
         pacman_centro_y = self.pacman.y + 8
         colision_detectada = False  # Bandera para indicar si Pac-Man ha sido comido
 =======
+=======
+>>>>>>> Stashed changes
 
     def esta_en_zona_prohibida(self, x, y):
         # Verificar si la posición (x, y) está en una zona prohibida

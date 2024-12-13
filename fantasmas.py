@@ -23,6 +23,9 @@ class Fantasma:
         self.celdas_para_emboscada = 3 # Distancia de emboscada para el fantasma
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 
@@ -146,6 +149,7 @@ class Fantasma:
     def posicion_salida(self, nuevo_valor):
         self.__posicion_salida = nuevo_valor
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     @celdas_para_emboscada.setter
     def celdas_para_emboscada(self, nuevo_valor):
@@ -289,6 +293,8 @@ class Fantasma:
     def posicion_salida(self, nuevo_valor):
         self.__posicion_salida = nuevo_valor
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     @posicion_salida.setter
