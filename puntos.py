@@ -164,8 +164,8 @@ class Puntos:
             self.puntos_alcanzados = self.puntos // 500  # Actualiza los puntos alcanzados
             self.color_actual = random.choice(colores_dispo)  # Elige un nuevo color aleatorio
 
-        color_numeros = self.__color_actual
-        puntuacion_str = str(self.__puntos)
+        color_numeros = self.color_actual
+        puntuacion_str = str(self.puntos)
         pos_x = x
 
         for num in puntuacion_str:
