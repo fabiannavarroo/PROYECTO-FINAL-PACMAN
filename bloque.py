@@ -302,15 +302,15 @@ class Bloque:
 
         for bloque_x, bloque_y, _ in self.__bloques:
             if(
-                x < 
-            )
-            if (
-                bloque_x <= x < bloque_x + sprite_tamaño and
-                bloque_y <= y < bloque_y + sprite_tamaño
+                x < bloque_x + sprite_tamaño and
+                x + sprite_tamaño > bloque_x and
+                y < bloque_y + sprite_tamaño and
+                y + sprite_tamaño > bloque_y
             ):
-                    return True  # Colisión detectada
+                return True # hay olisión 
 
         return False  # No hay colisión
+
 
 
     def draw(self):
