@@ -78,6 +78,10 @@ class Fantasma:
     @property
     def posicion_salida(self):
         return self.__posicion_salida
+    
+    @property
+    def celdas_para_emboscada(self):
+        return self.__celdas_para_emboscada
 
 #--------------------------------------------------------------------SETTERS--------------------------------------------------------------------#
 
@@ -140,6 +144,10 @@ class Fantasma:
     @posicion_salida.setter
     def posicion_salida(self, nuevo_valor):
         self.__posicion_salida = nuevo_valor
+
+    @celdas_para_emboscada.setter
+    def celdas_para_emboscada(self, nuevo_valor):
+        self.__celdas_para_emboscada = nuevo_valor
 
 #--------------------------------------------------------------------METODOS PROPIOS--------------------------------------------------------------------#   
 
