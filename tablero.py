@@ -55,7 +55,7 @@ class Tablero:
     def draw(self):
         if self.estado_juego == "menu":
             pyxel.cls(0)
-            pyxel.bltm(0, 0, 1, 0, 0, 16, 16)  # Dibuja el mapa
+            pyxel.bltm(100, 50, 1, 0, 0, 16, 16)  # Dibuja el mapa
             pyxel.text(100, 120, "P: JUGAR", pyxel.COLOR_WHITE)
             pyxel.text(100, 140, "N: VISION REDUCIDA", pyxel.COLOR_WHITE)
             pyxel.text(100, 160, "ESC: SALIR", pyxel.COLOR_WHITE)
