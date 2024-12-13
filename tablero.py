@@ -174,8 +174,7 @@ class Tablero:
     def reiniciar_posiciones(self):
         # Reiniciar las posiciones de Pac-Man y fantasmas a sus posiciones iniciales
         self.pacman.x, self.pacman.y = 192, 304
-        for fantasma in self.fantasmas:
-            fantasma.volver_a_posicion_inicial()
+        self.reiniciar_fantasmas()
         self.pacman.reiniciando = False
 
     
