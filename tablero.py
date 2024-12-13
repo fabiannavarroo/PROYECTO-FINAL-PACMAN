@@ -585,7 +585,7 @@ class Tablero:
     def calcular_emboscada(self):
         # Tamaño de cada celda
         celda_tamaño = 16
-        # Calcular la posicion delante del pacman en funcion de la dirrecion de donde se encuentra
+        # Calcular la posición delante del Pac-Man en función de su dirección actual
         if self.pacman.direccion_actual == "ARRIBA":
             objetivo_x = self.pacman.x
             objetivo_y = self.pacman.y - self.fantasmas.celdas_para_emboscada * celda_tamaño
@@ -594,30 +594,31 @@ class Tablero:
             objetivo_y = self.pacman.y + self.fantasmas.celdas_para_emboscada * celda_tamaño
         elif self.pacman.direccion_actual == "IZQUIERDA":
             objetivo_x = self.pacman.x - self.fantasmas.celdas_para_emboscada * celda_tamaño
-            objetivo_y = self.pacman.y 
+            objetivo_y = self.pacman.y
         elif self.pacman.direccion_actual == "DERECHA":
             objetivo_x = self.pacman.x + self.fantasmas.celdas_para_emboscada * celda_tamaño
-            objetivo_y = self.pacman.y 
+            objetivo_y = self.pacman.y
         else:
-            # Si no hay una direcciona valida, seguira al pacman
+            # Si no hay una dirección válida, seguirá al Pac-Man
             return self.pacman.x, self.pacman.y
-        
-        # Verifica si la posicion calculada no tiene colision y se encuentra dentro del mapa
-        if not self.bloque.colision(objetivo_x, objetivo_y):
+
+        # Verifica si la posición calculada no tiene colisión y está dentro del mapa
+        if not self.bloque.colision(self.pacman.x, self.pacman.y, objetivo_x, objetivo_y, self.pacman.velocidad):
             return objetivo_x, objetivo_y
-        
-        # Si la posicion no es valida simplemente seguira al pacman
+
+        # Si la posición no es válida, simplemente seguirá al Pac-Man
         return self.pacman.x, self.pacman.y
+
     
 
     def calcular_objectivo_mas_lejano(self, fantasma):
-
         pacman_x, pacman_y = self.pacman.x, self.pacman.y
 
-        # Varibles de las distancia maxima y la posicion más lejana
+        # Variables de la distancia máxima y la posición más lejana
         distancia_maxima = -1
+        posicion_para_alejarse = (fantasma.x, fantasma.y)
 
-        # Podibles direccionede los fantasmas
+        # Posibles direcciones del fantasma
         direcciones = {
             "ARRIBA": (fantasma.x, fantasma.y - fantasma.velocidad),
             "ABAJO": (fantasma.x, fantasma.y + fantasma.velocidad),
@@ -625,21 +626,21 @@ class Tablero:
             "DERECHA": (fantasma.x + fantasma.velocidad, fantasma.y),
         }
 
-        # Comprobar todas las celdas del mapa 
+        # Comprobar todas las celdas del mapa
         for direccion in direcciones:
-            # Vemos si la celda no tiene colision
             nueva_x, nueva_y = direcciones[direccion]
-            if not self.bloque.colision(nueva_x, nueva_y):
-                # Calculamos la distancia entre la celda y pacman
+            # Usar el nuevo sistema de colisión para validar posiciones intermedias
+            if not self.bloque.colision(fantasma.x, fantasma.y, nueva_x, nueva_y, fantasma.velocidad):
+                # Calcular la distancia entre la celda y Pac-Man
                 distancia = abs(nueva_x - pacman_x) + abs(nueva_y - pacman_y)
-                # Actualizamos si la distancia es mayor
+                # Actualizar si la distancia es mayor
                 if distancia > distancia_maxima:
                     distancia_maxima = distancia
-                    posicion_para_alejarse = (nueva_x, pacman_y)
+                    posicion_para_alejarse = (nueva_x, nueva_y)
 
-
-        # Devuelve la posicion mas lejana                
+        # Devuelve la posición más lejana
         return posicion_para_alejarse
+
     
 
     def usar_portal(self, personaje):
