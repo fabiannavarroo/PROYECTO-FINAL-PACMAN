@@ -160,7 +160,7 @@ class Puntos:
     def ver_puntuacion(self, x, y):
         # Cambia el color solo cuando se supera un nuevo múltiplo de 500
         colores_dispo = [NUMEROS_BLANCOS, NUMEROS_MORADOS, NUMEROS_NARANJAS, NUMEROS_VERDES]
-        if self.puntos // 500 > self.__puntos_alcanzados:
+        if self.__puntos // 500 > self.__puntos_alcanzados:
             self.__puntos_alcanzados = self.__puntos // 500  # Actualiza los puntos alcanzados
             self.__color_actual = random.choice(colores_dispo)  # Elige un nuevo color aleatorio
 
