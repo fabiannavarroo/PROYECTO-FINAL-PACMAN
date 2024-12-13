@@ -198,7 +198,7 @@ class Tablero:
         # Animación del mensaje GAME OVER cuando se acaban las vidas de Pac-Man
         pyxel.cls(0)
 
-        pyxel.bltm(pyxel.width/4,pyxel.height/4, 0, 0, 0, 200, 200)  # LAPIDA DE MUERTE
+        
 
 
         if self.bloque.contador_game_over < 70:
@@ -209,6 +209,7 @@ class Tablero:
         else:
             # Mantener el texto "GAME OVER" visible
             self.dibujar_letras_mapa(185,208,"GAME OVER")
+            pyxel.bltm(pyxel.width/4,pyxel.height/4, 0, 0, 0, 200, 200)  # LAPIDA DE MUERTE
 
 
     def animar_win(self):
