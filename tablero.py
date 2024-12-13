@@ -3,8 +3,6 @@ from fantasmas import *
 from puntos import Puntos
 from bloque import Bloque
 from constantes import *
-import random
-import time
 import pyxel
 
 
