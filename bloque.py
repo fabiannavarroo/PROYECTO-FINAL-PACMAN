@@ -295,43 +295,21 @@ class Bloque:
                 raise ValueError("Tipo de bloque no válido. Debe estar entre 1 y 23.")
 
 
-    def colision(self, x1, y1, x2, y2, velocidad=1):
-        """
-        Verifica si hay colisión con un bloque.
-        Si se proporcionan x2, y2 y velocidad, verifica también posiciones intermedias.
-        """
+    def colision(self, x, y):
         sprite_tamaño = self.__celda_tamaño  # Tamaño del sprite (16x16)
 
-        # Si no hay x2, y2, verifica la colisión simple en (x1, y1)
-        if x2 is None and y2 is None:
-            for bloque_x, bloque_y, _ in self.__bloques:
-                if (
-                    x1 < bloque_x + sprite_tamaño and
-                    x1 + sprite_tamaño > bloque_x and
-                    y1 < bloque_y + sprite_tamaño and
-                    y1 + sprite_tamaño > bloque_y
-                ):
-                    return True  # Hay colisión
-            return False  # No hay colisión
+        # Verificar si algún punto clave está dentro de un bloque
 
-        # Si x2, y2 y velocidad están definidos, verifica colisiones intermedias
-        delta_x = x2 - x1
-        delta_y = y2 - y1
-        pasos = max(abs(delta_x), abs(delta_y)) // velocidad
+        for bloque_x, bloque_y, _ in self.__bloques:
+            if(
+                x < bloque_x + sprite_tamaño and
+                x + sprite_tamaño > bloque_x and
+                y < bloque_y + sprite_tamaño and
+                y + sprite_tamaño > bloque_y
+            ):
+                return True # hay olisión 
 
-        for paso in range(1, pasos + 1):
-            xi = x1 + (delta_x * paso) // pasos
-            yi = y1 + (delta_y * paso) // pasos
-            for bloque_x, bloque_y, _ in self.__bloques:
-                if (
-                    xi < bloque_x + sprite_tamaño and
-                    xi + sprite_tamaño > bloque_x and
-                    yi < bloque_y + sprite_tamaño and
-                    yi + sprite_tamaño > bloque_y
-                ):
-                    return True  # Hay colisión
         return False  # No hay colisión
-
 
     def draw(self):
         # Dibuja todos los bloques
