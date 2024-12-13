@@ -358,7 +358,64 @@ class Tablero:
                 self.reinicar_juego()
 
     def modo_vision_reducida(self):
+        pyxel.cls(0)  # Limpiar la pantalla
+
+        # Definir el radio de visión (en píxeles)
+        radio_vision = 64
+
+        # Dibujar solo los elementos visibles dentro del radio
+        self.dibujar_letras_mapa(120, 16, "HIGHSCORE")
+        self.puntos.ver_puntuacion(195, 16)
         
+        # Dibujar bloques visibles
+        for bloque in self.bloque.bloques:
+            bloque_x, bloque_y, sprite = bloque
+            distancia = ((self.pacman.x - bloque_x) ** 2 + (self.pacman.y - bloque_y) ** 2) ** 0.5
+            if distancia <= radio_vision:
+                sprite_x, sprite_y, sprite_bank, sprite_w, sprite_h = sprite
+                pyxel.blt(bloque_x, bloque_y, sprite_bank, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
+
+        # Dibujar puntos visibles
+        for x, y, tipo in self.puntos.lista_puntos:
+            distancia = ((self.pacman.x - x) ** 2 + (self.pacman.y - y) ** 2) ** 0.5
+            if distancia <= radio_vision:
+                sprite = OBJETOS[tipo]["Coordenadas"]
+                pyxel.blt(x, y, 0, sprite[0], sprite[1], 16, 16, colkey=0)
+
+        # Dibujar regalos visibles
+        for x, y in self.puntos.regalos:
+            distancia = ((self.pacman.x - x) ** 2 + (self.pacman.y - y) ** 2) ** 0.5
+            if distancia <= radio_vision:
+                coord = OBJETOS["REGALO"]["Coordenadas"]
+                pyxel.blt(x, y, 0, coord[0], coord[1], 16, 16, colkey=0)
+
+        # Dibujar fruta visible
+        if self.puntos.posicion_fruta and self.puntos.fruta_actual:
+            fruta_x, fruta_y = self.puntos.posicion_fruta
+            distancia = ((self.pacman.x - fruta_x) ** 2 + (self.pacman.y - fruta_y) ** 2) ** 0.5
+            if distancia <= radio_vision:
+                sprite = OBJETOS[self.puntos.fruta_actual]["Coordenadas"]
+                pyxel.blt(fruta_x, fruta_y, 0, sprite[0], sprite[1], 16, 16, colkey=0)
+
+        # Dibujar fantasmas visibles
+        for fantasma in self.fantasmas:
+            distancia = ((self.pacman.x - fantasma.x) ** 2 + (self.pacman.y - fantasma.y) ** 2) ** 0.5
+            if distancia <= radio_vision:
+                fantasma.draw()
+
+        # Dibujar Pac-Man
+        self.pacman.draw()
+
+        # Oscurecer todo fuera del área visible
+        self.dibujar_mascara(radio_vision)
+
+    def dibujar_mascara(self, radio_vision):
+        # Crear una máscara negra para oscurecer fuera del radio de visión
+        for x in range(0, pyxel.width, 16):
+            for y in range(0, pyxel.height, 16):
+                distancia = ((self.pacman.x - x) ** 2 + (self.pacman.y - y) ** 2) ** 0.5
+                if distancia > radio_vision:
+                    pyxel.rect(x, y, 16, 16, 0)  # Dibujar rectángulo negro
 
                
 
