@@ -703,12 +703,12 @@ class Tablero:
     def comer_puntos(self):
         # Comprueba si Pac-Man ha comido puntos o regalos
         puntos_sin_comer = []
-        for x, y, tipo in self.puntos.lista_puntos:
-            if self.detectar_colision_puntos(self.pacman.x, self.pacman.y, x, y):
-                self.puntos.puntos += OBJETOS[tipo]["Puntos"]
+        for x, y, tipo in self.puntos.__lista_puntos:
+            if self.detectar_colision_puntos(self.pacman.__x, self.pacman.__y, x, y):
+                self.puntos.__puntos += OBJETOS[tipo]["Puntos"]
             else:
                 puntos_sin_comer.append((x, y, tipo))
-        self.puntos.lista_puntos = puntos_sin_comer
+        self.puntos.__lista_puntos = puntos_sin_comer
 
         regalos_sin_comer = []
         for x, y in self.puntos.regalos:
