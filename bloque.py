@@ -311,8 +311,6 @@ class Bloque:
 
         return False  # No hay colisión
 
-
-
     def draw(self):
         # Dibuja todos los bloques
         for bloque in self.__bloques:
