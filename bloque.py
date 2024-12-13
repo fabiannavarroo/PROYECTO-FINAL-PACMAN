@@ -301,9 +301,9 @@ class Bloque:
         # Calcular los puntos clave del sprite
         puntos_a_verificar = [
             (x, y),  # Esquina superior izquierda
-            (x + sprite_tamaño - 1, y),  # Esquina superior derecha
-            (x, y + sprite_tamaño - 1),  # Esquina inferior izquierda
-            (x + sprite_tamaño - 1, y + sprite_tamaño - 1)  # Esquina inferior derecha
+            (x + sprite_tamaño, y),  # Esquina superior derecha
+            (x, y + sprite_tamaño),  # Esquina inferior izquierda
+            (x + sprite_tamaño, y + sprite_tamaño)  # Esquina inferior derecha
         ]
 
         # Verificar si algún punto clave está dentro de un bloque
