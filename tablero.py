@@ -670,8 +670,8 @@ class Tablero:
         if self.pacman.en_muerte or self.pacman.reiniciando or self.pacman.vidas <= 0:
             return False
 
-        pacman_x = self.pacman.x + 8
-        pacman_y = self.pacman.y + 8
+        pacman_x = self.pacman.__x + 8
+        pacman_y = self.pacman.__y + 8
 
         for fantasma in self.fantasmas:
             fantasma_x = fantasma.x + 8
@@ -711,20 +711,20 @@ class Tablero:
         self.puntos.__lista_puntos = puntos_sin_comer
 
         regalos_sin_comer = []
-        for x, y in self.puntos.regalos:
-            if self.detectar_colision_puntos(self.pacman.x, self.pacman.y, x, y):
+        for x, y in self.puntos.__regalos:
+            if self.detectar_colision_puntos(self.pacman.__x, self.pacman.__y, x, y):
                 # Comer un regalo hace que los fantasmas se pongan asustados
                 for fantasma in self.fantasmas:
                     fantasma.activar_asustado()
-                self.puntos.puntos += OBJETOS["REGALO"]["Puntos"]
+                self.puntos.__puntos += OBJETOS["REGALO"]["Puntos"]
             else:
                 regalos_sin_comer.append((x, y))
-        self.puntos.regalos = regalos_sin_comer
+        self.puntos.__regalos = regalos_sin_comer
 
 
     def comer_fruta(self):
         # Comprueba si Pac-Man ha comido la fruta
         if self.puntos.posicion_fruta and self.detectar_colision_puntos(self.pacman.x, self.pacman.y, self.puntos.posicion_fruta[0], self.puntos.posicion_fruta[1]):
-            self.puntos.puntos += OBJETOS[self.puntos.fruta_actual]["Puntos"]
-            self.puntos.posicion_fruta = None
-            self.puntos.fruta_actual = None
+            self.puntos.__puntos += OBJETOS[self.puntos.fruta_actual]["Puntos"]
+            self.puntos.__posicion_fruta = None
+            self.puntos.__fruta_actual = None
