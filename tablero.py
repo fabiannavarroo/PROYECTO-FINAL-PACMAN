@@ -76,7 +76,7 @@ class Tablero:
                         # Actualizar movimiento normal si no está en la trampa
                         self.movimiento_fantasmas(fantasma)
                     # Comprobar colisiones de fantasmas con el mapa
-                    self.bloque.colision(fantasma.x, fantasma.y)
+                    self.bloque.colision(fantasma.x, fantasma.y,)
                     # Actualizar el estado del fantasma 
                     fantasma.actualizar_estado()
 
