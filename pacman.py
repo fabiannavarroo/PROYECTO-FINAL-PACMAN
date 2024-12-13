@@ -176,3 +176,68 @@ class Pacman:
             pyxel.blt(pos_x, y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
             pos_x += sprite_w + 2
 
+    def movimineto_pacman(self,bloque):
+        # Actualiza la posición de Pac-Man según las teclas presionadas y evita colisiones
+        if self.vidas <= 0 or self.en_muerte or self.reiniciando:
+            return False
+
+        nueva_x, nueva_y = self.x, self.y
+
+        # Leer las teclas para cambiar dirección
+        if pyxel.btnp(pyxel.KEY_UP):
+            self.direccion_pendiente = PACMAN_ARRIBA
+        elif pyxel.btnp(pyxel.KEY_DOWN):
+            self.direccion_pendiente = PACMAN_ABAJO
+        elif pyxel.btnp(pyxel.KEY_LEFT):
+            self.direccion_pendiente = PACMAN_IZQUIERDA
+        elif pyxel.btnp(pyxel.KEY_RIGHT):
+            self.direccion_pendiente = PACMAN_DERECHA
+        elif pyxel.btnp(pyxel.KEY_W):
+            self.direccion_pendiente = PACMAN_ARRIBA
+        elif pyxel.btnp(pyxel.KEY_S):
+            self.direccion_pendiente = PACMAN_ABAJO
+        elif pyxel.btnp(pyxel.KEY_A):
+            self.direccion_pendiente = PACMAN_IZQUIERDA
+        elif pyxel.btnp(pyxel.KEY_D):
+            self.direccion_pendiente = PACMAN_DERECHA
+
+        # Comprobar si la dirección pendiente se puede usar es decir no hay colisión
+        if self.direccion_pendiente:
+            if self.direccion_pendiente == PACMAN_ARRIBA and not bloque.colision(self.x, self.y - self.velocidad):
+                self.direccion_actual = self.direccion_pendiente
+            elif self.direccion_pendiente == PACMAN_ABAJO and not bloque.colision(self.x, self.y + self.velocidad):
+                self.direccion_actual = self.direccion_pendiente
+            elif self.direccion_pendiente == PACMAN_IZQUIERDA and not bloque.colision(self.x - self.velocidad, self.y):
+                self.direccion_actual = self.direccion_pendiente
+            elif self.direccion_pendiente == PACMAN_DERECHA and not bloque.colision(self.x + self.velocidad, self.y):
+                self.direccion_actual = self.direccion_pendiente
+
+        # Mover Pac-Man en la dirección actual si no hay colisión
+        if self.direccion_actual == PACMAN_ARRIBA:
+            nueva_y -= self.velocidad
+        elif self.direccion_actual == PACMAN_ABAJO:
+            nueva_y += self.velocidad
+        elif self.direccion_actual == PACMAN_IZQUIERDA:
+            nueva_x -= self.velocidad
+        elif self.direccion_actual == PACMAN_DERECHA:
+            nueva_x += self.velocidad
+
+        # Comprobar colisiones con muros
+        if not bloque.colision(nueva_x, self.y):
+            self.x = nueva_x
+        if not bloque.colision(self.x, nueva_y):
+            self.y = nueva_y
+
+        # Portales: si Pac-Man entra en un portal, salir por el otro lado del mapa
+        if self.usar_portal(self.x, self.y):
+            return True
+
+        print("Pacman", self.x, self.y)
+
+
+    def usar_portal(self, x, y):
+        # Comprueba si el personaje está cerca de un portal y lo transporta al otro lado.
+        if (x, y) in PORTALES:
+            x, y = PORTALES[(x, y)]
+            return True
+        return False

@@ -1,6 +1,7 @@
 import pyxel
 from constantes import *
 import time
+import random
 
 
 class Fantasma:
@@ -141,15 +142,26 @@ class Fantasma:
     def posicion_salida(self, nuevo_valor):
         self.__posicion_salida = nuevo_valor
 
-    @posicion_salida.setter
-    def posicion_salida(self, nuevo_valor):
-        self.__posicion_salida = nuevo_valor
-
     @celdas_para_emboscada.setter
     def celdas_para_emboscada(self, nuevo_valor):
         self.__celdas_para_emboscada = nuevo_valor
 
 #--------------------------------------------------------------------METODOS PROPIOS--------------------------------------------------------------------#   
+
+    def draw(self):
+        #Dibuja el fantasma en su estado actual.
+        if self.asustado:
+            # Alternar entre azul y blanco si está asustado
+            if pyxel.frame_count // REFRESH % 2 == 0:
+                sprite = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
+            else:
+                sprite = FANTASMAS_ASUSTADOS["BLANCO"]["Coordenadas"]
+        else:
+            sprite = self.sprites[self.direccion_actual]  # Usar sprite según dirección
+
+        # Dibuja el fantasma
+        pyxel.blt(self.x, self.y, 0, sprite[0], sprite[1], 16, 16, colkey=0)
+
 
     def activar_asustado(self):
         #Activa el estado asustado
@@ -200,32 +212,179 @@ class Fantasma:
             if tiempo_restante <= 0:
                 self.asustado = False  # Finaliza el estado asustado
                 self.velocidad = 2
+
+
+    def usar_portal(self, bloque):
+        # Si el fantasma está en un portal, lo transporta al otro lado.
+        portales = bloque.portales  # Accede a los portales desde Bloque
+        if (self.x, self.y) in portales:
+            self.x, self.y = portales[(self.x, self.y)]
+            return True
+        return False
+
+
+    def perseguir_un_objetivo(self, bloque, objetivo_x, objetivo_y):
+        # El fantasma persigue a un objetivo.
+        # Obtener celdas de destino y elegir la mejor dirección
+        direcciones = {
+            "ARRIBA": (self.x, self.y - self.velocidad),
+            "ABAJO": (self.x, self.y + self.velocidad),
+            "IZQUIERDA": (self.x - self.velocidad, self.y),
+            "DERECHA": (self.x + self.velocidad, self.y),
+        }
+
+        mejor_direccion = None
+        menor_distancia = 400 # Es lo que mide la pantalla por tanto es la maxima dirección
+        objetivo = (objetivo_x, objetivo_y)
+
+        for direccion in direcciones:
+            nueva_x, nueva_y = direcciones[direccion]
+            if not bloque.colision(nueva_x, nueva_y) and direccion != self.invertir_direccion():
+                distancia = abs(nueva_x - objetivo[0]) + abs(nueva_y - objetivo[1])
+                if distancia < menor_distancia:
+                    menor_distancia = distancia
+                    mejor_direccion = direccion
+
+        # Mueve al fantasma en la mejor dirección encontrada
+        if mejor_direccion:
+            self.mover_fantasma(bloque, mejor_direccion)
+        else:
+            # Si no hay una mejor dirección, moverse en la dirección opuesta
+            direccion_opuesta = self.invertir_direccion()
+            if direccion_opuesta:
+                self.mover_fantasma(bloque, direccion_opuesta)
+
+
+    def mover_fantasma(self, bloque, direccion):
+        # Mueve al fantasma en la dirección especificada si no hay colisión.
+        if direccion == "ARRIBA" and not bloque.colision(self.x, self.y - self.velocidad):
+            self.y -= self.velocidad
+            self.direccion_actual = "ARRIBA"
+        elif direccion == "ABAJO" and not bloque.colision(self.x, self.y + self.velocidad):
+            self.y += self.velocidad
+            self.direccion_actual = "ABAJO"
+        elif direccion == "IZQUIERDA" and not bloque.colision(self.x - self.velocidad, self.y):
+            self.x -= self.velocidad
+            self.direccion_actual = "IZQUIERDA"
+        elif direccion == "DERECHA" and not bloque.colision(self.x + self.velocidad, self.y):
+            self.x += self.velocidad
+            self.direccion_actual = "DERECHA"
+
+        self.ultima_direccion = direccion
+
+    
+    def invertir_direccion(self):
+        # Devuelve la posicion opueta a la actual en la que esta el fantasma
+        if self.direccion_actual == "DERECHA":
+            return "IZQUIERDA"
+        elif self.direccion_actual == "IZQUIERDA":
+            return "DERECHA"
+        elif self.direccion_actual == "ARRIBA":
+            return "ABAJO"
+        elif self.direccion_actual == "ABAJO":
+            return "ARRIBA"
+        else: 
+            return None
+
+
+    def calcular_emboscada(self, pacman, bloque):
+        # Tamaño de cada celda
+        celda_tamaño = 16
+        # Calcular la posicion delante del pacman en funcion de la dirrecion de donde se encuentra
+        if pacman.direccion_actual == "ARRIBA":
+            objetivo_x = pacman.x
+            objetivo_y = pacman.y - self.celdas_para_emboscada * celda_tamaño
+        elif pacman.direccion_actual == "ABAJO":
+            objetivo_x = pacman.x
+            objetivo_y = pacman.y + self.celdas_para_emboscada * celda_tamaño
+        elif pacman.direccion_actual == "IZQUIERDA":
+            objetivo_x = pacman.x - self.celdas_para_emboscada * celda_tamaño
+            objetivo_y = pacman.y 
+        elif pacman.direccion_actual == "DERECHA":
+            objetivo_x = pacman.x + self.celdas_para_emboscada * celda_tamaño
+            objetivo_y = pacman.y 
+        else:
+            # Si no hay una direcciona valida, seguira al pacman
+            return pacman.x, pacman.y
+        
+        # Verifica si la posicion calculada no tiene colision y se encuentra dentro del mapa
+        if not bloque.colision(objetivo_x, objetivo_y):
+            return objetivo_x, objetivo_y
+        
+        # Si la posicion no es valida simplemente seguira al pacman
+        return pacman.x, pacman.y
     
 
-    def draw(self):
-        #Dibuja el fantasma en su estado actual.
-        if self.asustado:
-            # Alternar entre azul y blanco si está asustado
-            if pyxel.frame_count // REFRESH % 2 == 0:
-                sprite = FANTASMAS_ASUSTADOS["AZUL"]["Coordenadas"]
-            else:
-                sprite = FANTASMAS_ASUSTADOS["BLANCO"]["Coordenadas"]
-        else:
-            sprite = self.sprites[self.direccion_actual]  # Usar sprite según dirección
+    def calcular_objectivo_mas_lejano(self, pacman, bloque):
 
-        # Dibuja el fantasma
-        pyxel.blt(self.x, self.y, 0, sprite[0], sprite[1], 16, 16, colkey=0)
+        pacman_x, pacman_y = pacman.x, pacman.y
+        # Varibles de las distancia maxima y la posicion más lejana
+        distancia_maxima = -1
+
+        # Podibles direccionede los fantasmas
+        direcciones = {
+            "ARRIBA": (self.x, self.y - self.velocidad),
+            "ABAJO": (self.x, self.y + self.velocidad),
+            "IZQUIERDA": (self.x - self.velocidad, self.y),
+            "DERECHA": (self.x + self.velocidad, self.y),
+        }
+
+        # Comprobar todas las celdas del mapa 
+        for direccion in direcciones:
+            # Vemos si la celda no tiene colision
+            nueva_x, nueva_y = direcciones[direccion]
+            if not bloque.colision(nueva_x, nueva_y):
+                # Calculamos la distancia entre la celda y pacman
+                distancia = abs(nueva_x - pacman_x) + abs(nueva_y - pacman_y)
+                # Actualizamos si la distancia es mayor
+                if distancia > distancia_maxima:
+                    distancia_maxima = distancia
+                    posicion_para_alejarse = (nueva_x, pacman_y)
+        # Devuelve la posicion mas lejana                
+        return posicion_para_alejarse
 
 
 # Subclases de Fantasma
 class FantasmaRojo(Fantasma):
     def __init__(self, x, y):
         super().__init__(x, y, FANTASMA_ROJO)
+
+    def mover(self,bloque,pacman):
+    
+         # Fantasma rojo: persigue a Pac-Man
+        if bloque.victoria or pacman.en_muerte:
+            return False
+        
+        if self.en_trampa:
+            return True
+
+        elif self.asustado:
+            objetivo_x, objetivo_y = self.calcular_objectivo_mas_lejano(pacman, bloque)
+            self.perseguir_un_objetivo(bloque, objetivo_x, objetivo_y)
+
+        else:
+            self.perseguir_un_objetivo(bloque, pacman.x, pacman.y) # seguir a pacman directamente
+
        
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y):
         # Inicializa al Fantasma Rosa
         super().__init__(x, y, FANTASMA_ROSA)
+
+    def mover(self,bloque,pacman):
+        if bloque.victoria or pacman.en_muerte:
+            return False
+
+        if self.en_trampa:
+            return True
+
+        elif self.asustado:
+            objetivo_x, objetivo_y = self.calcular_objectivo_mas_lejano(pacman, bloque)
+            self.perseguir_un_objetivo(bloque, objetivo_x, objetivo_y)
+
+        else:
+            objetivo_x, objetivo_y = self.calcular_emboscada(pacman, bloque)
+            self.perseguir_un_objetivo(bloque, objetivo_x, objetivo_y)
 
 
 class FantasmaAzul(Fantasma):
@@ -233,8 +392,51 @@ class FantasmaAzul(Fantasma):
         # Inicializa al Fantasma Azul
         super().__init__(x, y, FANTASMA_AZUL)
 
+    def mover(self,bloque,pacman):
+        if bloque.victoria or pacman.en_muerte:
+            return False
+        
+        if self.en_trampa:
+            return True
+
+        elif self.asustado:
+            objetivo_x, objetivo_y = self.calcular_objectivo_mas_lejano(pacman, bloque)
+            self.perseguir_un_objetivo(bloque, objetivo_x, objetivo_y)
+
+        else:
+            if time.time() - 10 >= 10: # Cada 10s se cambia el modo del fantasma
+                modo = random.choice(["emboscada", "alejarse"])
+                if modo == "emboscada":
+                    objetivo_x, objetivo_y = self.calcular_emboscada(pacman, bloque)
+                    self.perseguir_un_objetivo(bloque, objetivo_x, objetivo_y)
+                else:
+                    objetivo_x, objetivo_y = self.calcular_objectivo_mas_lejano(pacman, bloque)
+                    self.perseguir_un_objetivo(bloque, objetivo_x, objetivo_y)
+
 
 class FantasmaNaranja(Fantasma):
     def __init__(self, x, y):
         # Inicializa al Fantasma Naranja
         super().__init__(x, y, FANTASMA_NARANJA)
+
+    def mover(self,bloque, pacman):
+        if bloque.victoria or pacman.en_muerte:
+            return False
+        
+        if self.en_trampa:
+            return True
+
+        elif self.asustado:
+            objetivo_x, objetivo_y = self.calcular_objectivo_mas_lejano(pacman, bloque) 
+            self.perseguir_un_objetivo(bloque, objetivo_x, objetivo_y)# alejarse de pacman
+
+        else:
+            if time.time() - 10 >= 10: # Cada 10s se cambia el modo del self
+                modo = random.choice(["perseguir", "alejarse"])
+                if modo == "perseguir":
+                    self.perseguir_un_objetivo(bloque, pacman.x, pacman.y)
+                else:
+                    objetivo_x, objetivo_y = self.calcular_objectivo_mas_lejano(pacman, bloque )
+                    self.perseguir_un_objetivo(bloque, objetivo_x, objetivo_y)
+
+    

@@ -11,7 +11,7 @@ class Bloque:
         self.mapas = MAPA
         self.cargar_mapa()  # Cargar el mapa del nivel inicial
         # Controlar la condición de victoria
-        self.victoria = True  
+        self.victoria = False  
         self.victoria_contador_mapa = 0
         self.victoria_contador_texto = 0
         # Variable para controlar el mensaje READY!
@@ -310,6 +310,14 @@ class Bloque:
                 return True # hay olisión 
 
         return False  # No hay colisión
+    
+    def usar_portal(self, personaje):
+        # Comprueba si el personaje está cerca de un portal y lo transporta al otro lado.
+        if (personaje.x, personaje.y) in PORTALES:
+            personaje.x, personaje.y = PORTALES[(personaje.x, personaje.y)]
+            return True
+        return False
+ 
 
     def draw(self):
         # Dibuja todos los bloques

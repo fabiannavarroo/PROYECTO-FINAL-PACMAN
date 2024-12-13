@@ -18,7 +18,7 @@ class Puntos:
         self.zonas_prohibidas = ZONAS_PROHIBIDAS
         self.regalos = [(16, 304), (368, 304), (16, 80),(368, 80)] # Coordenadas fijas de los regalos
         self.lista_puntos = [] # Lista de puntos generados
-        self.ista_frutas = [] # Lista de frutas generadas
+        self.lista_frutas = [] # Lista de frutas generadas
 
 
 #--------------------------------------------------------------------PROPERTY--------------------------------------------------------------------#
@@ -181,6 +181,120 @@ class Puntos:
             )
             pos_x += sprite_w + 1  # Espacio entre los numeros
 
+
+    def esta_en_zona_prohibida(self, x, y, bloque):
+        # Verificar si la posición (x, y) está en una zona prohibida
+        for lugar in self.zonas_prohibidas[bloque.nivel]:
+            x1, y1, x2, y2 = lugar
+            if x1 <= x <= x2 and y1 <= y <= y2:
+                return True
+
+        # Comprobar también si hay un muro
+        if bloque.colision(x, y):
+            return True
+        return False
+
+
+    def encontrar_celdas_vacias(self,bloque):
+        # Encuentra celdas vacías donde colocar frutas u otros objetos
+        celdas_vacias = []
+        for x in range(0, pyxel.width, 16):
+            for y in range(0, pyxel.height, 16):
+                # Verificar que no haya un punto en esa celda
+                punto_encontrado = False
+                for p in self.lista_puntos:
+                    if (x, y) == (p[0], p[1]):
+                        punto_encontrado = True
+                
+                # Debe no estar en zona prohibida, no ser la fruta actual ni un regalo
+                if (not punto_encontrado and
+                    not self.esta_en_zona_prohibida(x, y, bloque) and
+                    (x, y) != self.posicion_fruta and
+                    (x, y) not in self.regalos):
+                    celdas_vacias.append((x, y))
+        return celdas_vacias
+    
+
+    def generar_puntos(self,bloque):
+            # Generar los puntos en todas las celdas válidas del mapa
+            for x in range(0, pyxel.width, 16):
+                for y in range(0, pyxel.height, 16):
+                    if not self.esta_en_zona_prohibida(x, y, bloque) and (x, y) not in self.regalos:
+                        self.lista_puntos.append((x, y, "BASTON"))
+
+
+    def generar_fruta(self,bloque):
+        # Generar una fruta cada 30 segundos, si es posible
+        if time.time() - self.ultimo_tiempo_fruta < 30:
+             return False
+
+        objetos_dispo = ["CEREZA", "FRESA", "NARANJA", "MANZANA", "MELON", "PARAGUAS", "CAMPANA", "LLAVE"]
+        self.fruta_actual = random.choice(objetos_dispo)
+
+        celdas_vacias = self.encontrar_celdas_vacias(bloque)
+        if celdas_vacias:
+            self.posicion_fruta = random.choice(celdas_vacias)
+            self.animacion_activa = True
+            self.animacion_contador = 0
+        else:
+            self.posicion_fruta = None
+
+        self.ultimo_tiempo_fruta = time.time()
+
+
+    def comprobar_puntos_restantes(self):
+        # Comprueba si ya no quedan puntos ni regalos
+        if len(self.lista_puntos) == 0 and len(self.regalos) == 0:
+            return True
+        return False
+    
+
+    def detectar_colision_puntos(self, pacman_x, pacman_y, punto_x, punto_y):
+        # Detecta si Pac-Man ha comido un punto
+        return abs(pacman_x - punto_x) < 10 and abs(pacman_y - punto_y) < 10
+    
+
+    def comer_puntos(self, pacman_x, pacman_y,fantasmas):
+        # Comprueba si Pac-Man ha comido puntos o regalos
+        puntos_sin_comer = []
+        for x, y, tipo in self.lista_puntos:
+            if self.detectar_colision_puntos(pacman_x, pacman_y, x, y):
+                self.puntos += OBJETOS[tipo]["Puntos"]
+            else:
+                puntos_sin_comer.append((x, y, tipo))
+        self.lista_puntos = puntos_sin_comer
+
+        regalos_sin_comer = []
+        for x, y in self.regalos:
+            if self.detectar_colision_puntos(pacman_x, pacman_y, x, y):
+                # Comer un regalo hace que los fantasmas se pongan asustados
+                for fantasma in fantasmas:
+                    fantasma.activar_asustado()
+                    fantasma.tiempo_asustado = time.time()
+                self.puntos += OBJETOS["REGALO"]["Puntos"]
+            else:
+                regalos_sin_comer.append((x, y))
+        self.regalos = regalos_sin_comer
+
+
+    def comer_fruta(self, pacman_x, pacman_y):
+        # Comprueba si Pac-Man ha comido la fruta
+        if self.posicion_fruta and self.detectar_colision_puntos(pacman_x, pacman_y, self.posicion_fruta[0], self.posicion_fruta[1]):
+            self.puntos += OBJETOS[self.fruta_actual]["Puntos"]
+            self.posicion_fruta = None
+            self.fruta_actual = None
+
+
+    def reiniciar_puntos(self):
+        # Reiniciar los puntos, regalos y frutas al cambiar de nivel
+        self.regalos = [(16, 304), (368, 304), (16, 80),(368, 80)]
+        self.lista_puntos = []
+        self.generar_puntos()
+        self.ultimo_tiempo_fruta = time.time()
+        self.fruta_actual = None
+        self.posicion_fruta = None
+        self.animacion_activa = False
+        self.animacion_contador = 0
 
 
 
