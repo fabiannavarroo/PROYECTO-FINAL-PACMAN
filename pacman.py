@@ -6,7 +6,7 @@ class Pacman:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.velocidad = 3  # Velocidad de movimiento
+        self.velocidad = 2  # Velocidad de movimiento
         self.direccion_actual = PACMAN  # Dirección inicial
         self.direccion_pendiente = None  # Dirección elegida por el jugador
         self.vidas = 3  # Pac-Man empieza con 3 vidas
