@@ -35,13 +35,6 @@ class Tablero:
         # Generar puntos por todo el mapa
         self.generar_puntos()
 
-        # COntrola la musica actual
-        self.elegir_cancion = random.random() # elegir la cancion del mapa 2
-        self.musica_actual = None
-
-        # Cambiar la dirección de los fantasmas
-        self.fantasmas_cambio_de_movimiento = 10
-
         # Iniciar el bucle principal de Pyxel
         pyxel.run(self.update, self.draw)
 
@@ -282,7 +275,7 @@ class Tablero:
             musica_actual = 0  # Música del mapa 1
         elif self.bloque.nivel == 2: # Música del mapa 2
             
-            if self.elegir_cancion < 0.5:
+            if self.bloque.elegir_cancion < 0.5:
                 musica_actual = 5  
             else:
                 musica_actual = 7
@@ -290,9 +283,9 @@ class Tablero:
             musica_actual = 4  # Música del mapa 3
 
         # Cambiar la música solo si es diferente a la actual
-        if musica_actual is not None and musica_actual != self.musica_actual:
+        if musica_actual is not None and musica_actual != self.bloque.musica_actual:
             pyxel.playm(musica_actual, 0, True)
-            self.musica_actual = musica_actual
+            self.bloque.musica_actual = musica_actual
 
     #--------------------------------------------------------------------MAPA--------------------------------------------------------------------#
 
@@ -416,7 +409,7 @@ class Tablero:
             self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)
 
         else:
-            if time.time() - 10 >= self.fantasmas_cambio_de_movimiento:
+            if time.time() - 10 >= 10: # Cada 10s se cambia el modo del fantasma
                 modo = random.choice(["emboscada", "alejarse"])
                 if modo == "emboscada":
                     objectivo_x, objectivo_y = self.calcular_emboscada()
@@ -438,7 +431,7 @@ class Tablero:
             self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)# alejarse de pacman
 
         else:
-            if time.time() - 10 >= self.fantasmas_cambio_de_movimiento:
+            if time.time() - 10 >= 10: # Cada 10s se cambia el modo del fantasma
                 modo = random.choice(["perseguir", "alejarse"])
                 if modo == "perseguir":
                     self.perseguir_un_objectivo(fantasma, self.pacman.x, self.pacman.y)
