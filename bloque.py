@@ -310,8 +310,8 @@ class Bloque:
         for px, py in puntos_a_verificar:'''
         for bloque_x, bloque_y, _ in self.__bloques:
             if (
-                bloque_x <= x < bloque_x + sprite_tamaño and
-                bloque_y <= y < bloque_y + sprite_tamaño
+                bloque_x <= x < bloque_x-1 + sprite_tamaño and
+                bloque_y <= y < bloque_y-1 + sprite_tamaño
             ):
                 return True  # Colisión detectada
 
