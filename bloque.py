@@ -43,6 +43,42 @@ class Bloque:
     def mapas(self):
         return self.__mapas
     
+    @property
+    def victoria(self):
+        return self.__victoria
+    
+    @property
+    def victoria_contador_mapa(self):
+        return self.__victoria_contador_mapa
+    
+    @property
+    def victoria_contador_texto(self):
+        return self.__victoria_contador_texto
+    
+    @property
+    def mostrar_ready(self):
+        return self.__mostrar_ready
+    
+    @property
+    def contador_ready(self):
+        return self.__contador_ready
+    
+    @property
+    def contador_game_over(self):
+        return self.__contador_game_over
+        
+    @property
+    def mostrar_fin(self):
+        return self.__mostrar_fin
+    
+    @property
+    def elegir_cancion(self):
+        return self.__elegir_cancion
+    
+    @property
+    def musica_actual(self):
+        return self.__musica_actual
+    
 #--------------------------------------------------------------------SETTERS--------------------------------------------------------------------#
     @nivel.setter
     def nivel(self, nuevo_valor):
@@ -60,7 +96,42 @@ class Bloque:
     def mapas(self, nuevo_valor):
         self.__mapas = nuevo_valor
 
+    @victoria.setter
+    def victoria(self, nuevo_valor):
+        self.__victoria = nuevo_valor
 
+    @victoria_contador_mapa.setter
+    def victoria_contador_mapa(self, nuevo_valor):
+        self.__victoria_contador_mapa = nuevo_valor
+
+    @victoria_contador_texto.setter
+    def victoria_contador_texto(self, nuevo_valor):
+        self.__victoria_contador_texto = nuevo_valor
+
+    @mostrar_ready.setter
+    def mostrar_ready(self, nuevo_valor):
+        self.__mostrar_ready = nuevo_valor
+
+    @contador_ready.setter
+    def contador_ready(self, nuevo_valor):
+        self.__contador_ready = nuevo_valor
+
+    @contador_game_over.setter
+    def contador_game_over(self, nuevo_valor):
+        self.__contador_game_over = nuevo_valor
+
+    @mostrar_fin.setter
+    def mostrar_fin(self, nuevo_valor):
+        self.__mostrar_fin = nuevo_valor
+
+    @elegir_cancion.setter
+    def elegir_cancion(self, nuevo_valor):
+        self.__elegir_cancion = nuevo_valor
+
+    @musica_actual.setter
+    def musica_actual(self, nuevo_valor):
+        self.__musica_actual = nuevo_valor
+        
 #--------------------------------------------------------------------METODOS PROPIOS--------------------------------------------------------------------#    
 
     def cargar_mapa(self):
