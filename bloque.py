@@ -295,7 +295,7 @@ class Bloque:
                 raise ValueError("Tipo de bloque no válido. Debe estar entre 1 y 23.")
 
 
-    def colision(self, x1, y1, x2=None, y2=None, velocidad=1):
+    def colision(self, x1, y1, x2, y2, velocidad=1):
         """
         Verifica si hay colisión con un bloque.
         Si se proporcionan x2, y2 y velocidad, verifica también posiciones intermedias.
