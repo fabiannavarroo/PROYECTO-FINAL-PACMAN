@@ -358,6 +358,7 @@ class Tablero:
                 self.reinicar_juego()
 
     def modo_vision_reducida(self):
+        
 
                
 
