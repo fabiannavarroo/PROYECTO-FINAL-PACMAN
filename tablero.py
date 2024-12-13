@@ -334,6 +334,8 @@ class Tablero:
                         # Actualizar movimiento normal si no está en la trampa
                         fantasma.mover(self.bloque, self.pacman)
 
+                
+
     def modo_vision_reducida(self):
         pyxel.cls(0)  # Limpiar la pantalla
 
