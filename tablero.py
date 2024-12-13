@@ -528,12 +528,13 @@ class Tablero:
         }
 
         mejor_direccion = None
-        menor_distancia = 400 # Es lo que mide la pantalla por tanto es la maxima dirección
+        menor_distancia = 400  # Máxima distancia inicial basada en el tamaño de la pantalla
         objetivo = (objectivo_x, objectivo_y)
 
         for direccion in direcciones:
             nueva_x, nueva_y = direcciones[direccion]
-            if not self.bloque.colision(nueva_x, nueva_y) and direccion != self.invertir_direccion(fantasma):
+            # Usar el método de colisión actualizado
+            if not self.bloque.colision(fantasma.x, fantasma.y, nueva_x, nueva_y, fantasma.velocidad) and direccion != self.invertir_direccion(fantasma):
                 distancia = abs(nueva_x - objetivo[0]) + abs(nueva_y - objetivo[1])
                 if distancia < menor_distancia:
                     menor_distancia = distancia
@@ -551,16 +552,16 @@ class Tablero:
 
     def mover_fantasma(self, fantasma, direccion):
         # Mueve al fantasma en la dirección especificada si no hay colisión.
-        if direccion == "ARRIBA" and not self.bloque.colision(fantasma.x, fantasma.y - fantasma.velocidad):
+        if direccion == "ARRIBA" and not self.bloque.colision(fantasma.x, fantasma.y, fantasma.x, fantasma.y - fantasma.velocidad, fantasma.velocidad):
             fantasma.y -= fantasma.velocidad
             fantasma.direccion_actual = "ARRIBA"
-        elif direccion == "ABAJO" and not self.bloque.colision(fantasma.x, fantasma.y + fantasma.velocidad):
+        elif direccion == "ABAJO" and not self.bloque.colision(fantasma.x, fantasma.y, fantasma.x, fantasma.y + fantasma.velocidad, fantasma.velocidad):
             fantasma.y += fantasma.velocidad
             fantasma.direccion_actual = "ABAJO"
-        elif direccion == "IZQUIERDA" and not self.bloque.colision(fantasma.x - fantasma.velocidad, fantasma.y):
+        elif direccion == "IZQUIERDA" and not self.bloque.colision(fantasma.x, fantasma.y, fantasma.x - fantasma.velocidad, fantasma.y, fantasma.velocidad):
             fantasma.x -= fantasma.velocidad
             fantasma.direccion_actual = "IZQUIERDA"
-        elif direccion == "DERECHA" and not self.bloque.colision(fantasma.x + fantasma.velocidad, fantasma.y):
+        elif direccion == "DERECHA" and not self.bloque.colision(fantasma.x, fantasma.y, fantasma.x + fantasma.velocidad, fantasma.y, fantasma.velocidad):
             fantasma.x += fantasma.velocidad
             fantasma.direccion_actual = "DERECHA"
 
