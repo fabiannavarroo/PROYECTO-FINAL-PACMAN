@@ -679,13 +679,13 @@ class Tablero:
 
             # Si la distancia es pequeña, hay colisión
             if abs(pacman_x - fantasma_x) < 16 and abs(pacman_y - fantasma_y) < 16:
-                if fantasma.asustado:
+                if fantasma.__asustado:
                     # Si el fantasma está asustado, Pac-Man lo come y gana 200 puntos
-                    self.puntos.puntos += 200
-                    self.fantasmas_comido = True
-                    self.pacman.mostrar_puntos = True
-                    self.pacman.texto_tiempo_inicio = time.time()
-                    self.pacman.posicion_fantasma_comido_x, self.pacman.posicion_fantasma_comido_y = self.pacman.x, self.pacman.y
+                    self.puntos.__puntos += 200
+                    self.__fantasmas_comido = True
+                    self.pacman.__mostrar_puntos = True
+                    self.pacman.__texto_tiempo_inicio = time.time()
+                    self.pacman.__posicion_fantasma_comido_x, self.pacman.__posicion_fantasma_comido_y = self.pacman.__x, self.pacman.__y
                     fantasma.volver_a_posicion_inicial()
                     return True
                 else:
