@@ -289,7 +289,7 @@ class Puntos:
         # Reiniciar los puntos, regalos y frutas al cambiar de nivel
         self.regalos = [(16, 304), (368, 304), (16, 80),(368, 80)]
         self.lista_puntos = []
-        self.generar_puntos()
+        self.generar_puntos(self.bloque)
         self.ultimo_tiempo_fruta = time.time()
         self.fruta_actual = None
         self.posicion_fruta = None
