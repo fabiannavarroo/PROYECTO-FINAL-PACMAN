@@ -138,33 +138,33 @@ class Pacman:
 #--------------------------------------------------------------------METODOS PROPIOS--------------------------------------------------------------------# 
 
     def draw(self):
-        if self.__vidas <= 0:  # Si no hay vidas, no se dibuja
+        if self.vidas <= 0:  # Si no hay vidas, no se dibuja
             return
         else:
             if pyxel.frame_count // REFRESH % 2 == 0:
-                sprite_x, sprite_y = self.__direccion_actual
+                sprite_x, sprite_y = self.direccion_actual
             else:
-                if self.__direccion_actual == PACMAN_ARRIBA:
+                if self.direccion_actual == PACMAN_ARRIBA:
                     sprite_x, sprite_y = PACMAN_ARRIBA_CERRADA
                 elif self.direccion_actual == PACMAN_ABAJO:
                     sprite_x, sprite_y = PACMAN_ABAJO_CERRADA
-                elif self.__direccion_actual == PACMAN_IZQUIERDA:
+                elif self.direccion_actual == PACMAN_IZQUIERDA:
                     sprite_x, sprite_y = PACMAN_IZQUIERDA_CERRADA
-                elif self.__direccion_actual == PACMAN_DERECHA:
+                elif self.direccion_actual == PACMAN_DERECHA:
                     sprite_x, sprite_y = PACMAN_DERECHA_CERRADA
                 else:
                     sprite_x, sprite_y = PACMAN
             # Dibujar Pac-Man
-            pyxel.blt(self.__x, self.__y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
+            pyxel.blt(self.x, self.y, 0, sprite_x, sprite_y, 16, 16, colkey=0)
 
             # Dibujar vidas
             self.ver_vidas(10, 10)
 
     def perder_vida(self):
-        self.__vidas -= 1
-        self.__en_muerte = True
-        self.__animacion_frame = 0
-        self.__reiniciando = True  # Activar estado de reinicio
+        self.vidas -= 1
+        self.en_muerte = True
+        self.animacion_frame = 0
+        self.reiniciando = True  # Activar estado de reinicio
 
 
     def ver_vidas(self, x, y):
@@ -172,7 +172,7 @@ class Pacman:
         sprite_x, sprite_y = PACMAN
         sprite_w, sprite_h = 16, 16
         pos_x = x
-        for i in range(self.__vidas):
+        for i in range(self.vidas):
             pyxel.blt(pos_x, y, 0, sprite_x, sprite_y, sprite_w, sprite_h, colkey=0)
             pos_x += sprite_w + 2
 
