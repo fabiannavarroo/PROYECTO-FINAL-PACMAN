@@ -239,5 +239,5 @@ class Pacman:
         # Comprueba si el personaje está cerca de un portal y lo transporta al otro lado.
         if (x, y) in PORTALES:
             x, y = PORTALES[(x, y)]
-            return True
+            return x, y
         return False
