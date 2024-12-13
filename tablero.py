@@ -334,8 +334,32 @@ class Tablero:
                         # Actualizar movimiento normal si no está en la trampa
                         fantasma.mover(self.bloque, self.pacman)
 
-                
+                # Comprobar si se han comido todos los puntos y regalos
+                if self.puntos.comprobar_puntos_restantes():
+                    # Si hay un siguiente nivel, pasar al siguiente
+                    if self.bloque.nivel + 1 in self.bloque.mapas:
+                        self.bloque.nivel += 1
+                        self.reiniciar_tablero()
+                    else:
+                        # Si no hay más niveles, ganar el juego
+                        self.bloque.victoria = True
+                        
+            else:
+                # Si Pac-Man está en muerte, ejecutar la animación de muerte
+                self.animar_muerte()
 
+        else:
+            # Pac-Man no tiene vidas
+            if not self.pacman.animacion_muerte_finalizada:
+                # Ejecutar la animación de muerte final de Pac-Man
+                self.animar_muerte()
+                if self.pacman.animacion_frame >= len(ANIMACION_MUERTE):
+                    self.pacman.animacion_muerte_finalizada = True
+            else:
+                # Después de la animación de muerte final, esperar antes de mostrar GAME OVER fijo
+                self.bloque.contador_game_over += 1
+
+                
     def modo_vision_reducida(self):
         pyxel.cls(0)  # Limpiar la pantalla
 
