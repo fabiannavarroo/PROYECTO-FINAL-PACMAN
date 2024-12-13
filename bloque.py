@@ -2,6 +2,7 @@ import pyxel
 from constantes import *
 import random
 import random
+import math
 
 
 class Bloque:
