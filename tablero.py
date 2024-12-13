@@ -533,7 +533,7 @@ class Tablero:
 
         for direccion in direcciones:
             nueva_x, nueva_y = direcciones[direccion]
-            # Usar el método de colisión actualizado
+            # Usar el método de colisión para ver si hay colision en la celda
             if not self.bloque.colision(fantasma.x, fantasma.y, nueva_x, nueva_y, fantasma.velocidad) and direccion != self.invertir_direccion(fantasma):
                 distancia = abs(nueva_x - objetivo[0]) + abs(nueva_y - objetivo[1])
                 if distancia < menor_distancia:
