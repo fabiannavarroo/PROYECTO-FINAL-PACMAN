@@ -288,8 +288,9 @@ class Tablero:
                 self.reinicar_juego()
 
     def modo_vision_reducida(self):
-        
+
         self.vision_reducida = True
+        self.radio = 4 * 16
         
                
 
