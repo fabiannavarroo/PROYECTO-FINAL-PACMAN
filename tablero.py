@@ -728,5 +728,3 @@ class Tablero:
             self.puntos.puntos += OBJETOS[self.puntos.fruta_actual]["Puntos"]
             self.puntos.posicion_fruta = None
             self.puntos.fruta_actual = None
-
-Tablero()
