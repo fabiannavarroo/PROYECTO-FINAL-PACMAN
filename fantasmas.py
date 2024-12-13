@@ -214,12 +214,11 @@ class Fantasma:
                 self.velocidad = 2
 
 
-    def usar_portal(self, bloque):
-        # Si el fantasma está en un portal, lo transporta al otro lado.
-        portales = bloque.portales  # Accede a los portales desde Bloque
-        if (self.x, self.y) in portales:
-            self.x, self.y = portales[(self.x, self.y)]
-            return True
+    def usar_portal(self, x, y):
+        # Comprueba si el personaje está cerca de un portal y lo transporta al otro lado.
+        if (x, y) in PORTALES:
+            x, y = PORTALES[(x, y)]
+            return x, y
         return False
 
 
