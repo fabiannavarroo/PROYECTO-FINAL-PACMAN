@@ -21,6 +21,10 @@ class Fantasma:
         self.en_trampa = True  # Indica si está en la trampa
         self.posicion_salida = (192, 176)
         self.celdas_para_emboscada = 3 # Distancia de emboscada para el fantasma
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 
 #--------------------------------------------------------------------PROPERTY--------------------------------------------------------------------#
         
@@ -142,6 +146,7 @@ class Fantasma:
     def posicion_salida(self, nuevo_valor):
         self.__posicion_salida = nuevo_valor
 
+<<<<<<< Updated upstream
     @celdas_para_emboscada.setter
     def celdas_para_emboscada(self, nuevo_valor):
         self.__celdas_para_emboscada = nuevo_valor
@@ -161,7 +166,140 @@ class Fantasma:
 
         # Dibuja el fantasma
         pyxel.blt(self.x, self.y, 0, sprite[0], sprite[1], 16, 16, colkey=0)
+=======
+>>>>>>> Stashed changes
 
+#--------------------------------------------------------------------PROPERTY--------------------------------------------------------------------#
+        
+    @property
+    def x(self):
+        return self.__x
+
+    @property
+    def y(self):
+        return self.__y
+
+    @property
+    def velocidad(self):
+        return self.__velocidad
+
+    @property
+    def x_inicial(self):
+        return self.__x_inicial
+
+    @property
+    def y_inicial(self):
+        return self.__y_inicial
+
+    @property
+    def sprites(self):
+        return self.__sprites
+
+    @property
+    def direccion_actual(self):
+        return self.__direccion_actual
+
+    @property
+    def asustado(self):
+        return self.__asustado
+
+    @property
+    def tiempo_asustado(self):
+        return self.__tiempo_asustado
+
+    @property
+    def tiempo_para_ser_comido(self):
+        return self.__tiempo_para_ser_comido
+
+    @property
+    def tiempo_trampa(self):
+        return self.__tiempo_trampa
+
+    @property
+    def en_salida(self):
+        return self.__en_salida
+
+    @property
+    def en_trampa(self):
+        return self.__en_trampa
+
+    @property
+    def posicion_salida(self):
+        return self.__posicion_salida
+    
+    @property
+    def celdas_para_emboscada(self):
+        return self.__celdas_para_emboscada
+
+#--------------------------------------------------------------------SETTERS--------------------------------------------------------------------#
+
+    @x.setter
+    def x(self, nuevo_valor):
+        self.__x = nuevo_valor
+
+    @y.setter
+    def y(self, nuevo_valor):
+        self.__y = nuevo_valor
+
+    @velocidad.setter
+    def velocidad(self, nuevo_valor):
+        self.__velocidad = nuevo_valor
+
+    @x_inicial.setter
+    def x_inicial(self, nuevo_valor):
+        self.__x_inicial = nuevo_valor
+
+    @y_inicial.setter
+    def y_inicial(self, nuevo_valor):
+        self.__y_inicial = nuevo_valor
+
+    @sprites.setter
+    def sprites(self, nuevo_valor):
+        self.__sprites = nuevo_valor
+
+    @direccion_actual.setter
+    def direccion_actual(self, nuevo_valor):
+        self.__direccion_actual = nuevo_valor
+
+    @asustado.setter
+    def asustado(self, nuevo_valor):
+        self.__asustado = nuevo_valor
+
+    @tiempo_asustado.setter
+    def tiempo_asustado(self, nuevo_valor):
+        self.__tiempo_asustado = nuevo_valor
+
+    @tiempo_para_ser_comido.setter
+    def tiempo_para_ser_comido(self, nuevo_valor):
+        self.__tiempo_para_ser_comido = nuevo_valor
+
+    @tiempo_trampa.setter
+    def tiempo_trampa(self, nuevo_valor):
+        self.__tiempo_trampa = nuevo_valor
+
+    @en_salida.setter
+    def en_salida(self, nuevo_valor):
+        self.__en_salida = nuevo_valor
+
+    @en_trampa.setter
+    def en_trampa(self, nuevo_valor):
+        self.__en_trampa = nuevo_valor
+        
+    @posicion_salida.setter
+    def posicion_salida(self, nuevo_valor):
+        self.__posicion_salida = nuevo_valor
+
+=======
+>>>>>>> Stashed changes
+    @posicion_salida.setter
+    def posicion_salida(self, nuevo_valor):
+        self.__posicion_salida = nuevo_valor
+
+    @celdas_para_emboscada.setter
+    def celdas_para_emboscada(self, nuevo_valor):
+        self.__celdas_para_emboscada = nuevo_valor
+
+#--------------------------------------------------------------------METODOS PROPIOS--------------------------------------------------------------------#   
 
     def activar_asustado(self):
         #Activa el estado asustado
