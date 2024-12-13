@@ -199,8 +199,6 @@ class Tablero:
         pyxel.cls(0)
 
         
-
-
         if self.bloque.contador_game_over < 70:
             if (self.bloque.contador_game_over // 10) % 2 == 0:
                 pyxel.bltm(pyxel.width/4,pyxel.height/4, 0, 0, 0, 200, 200)
