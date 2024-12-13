@@ -206,7 +206,7 @@ class Tablero:
         else:
             # Mantener el texto "GAME OVER" visible
             pyxel.bltm(pyxel.width/4,pyxel.height/4, 0, 0, 0, 200, 200)  # LAPIDA DE MUERTE
-            self.dibujar_letras_mapa(185,208,"GAME OVER")
+            self.dibujar_letras_mapa(185,300,"GAME OVER")
 
 
     def animar_win(self):
