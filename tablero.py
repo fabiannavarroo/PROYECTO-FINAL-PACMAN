@@ -361,7 +361,7 @@ class Tablero:
         pyxel.cls(0)  # Limpiar la pantalla
 
         # Definir el radio de visión 
-        radio_vision = 5 *16
+        radio_vision = 5 * 16
 
         # Dibujar solo los elementos visibles dentro del radio
         # Dibujar bloques visibles
