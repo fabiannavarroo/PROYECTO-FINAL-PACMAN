@@ -5,7 +5,11 @@ import random
 
 class Bloque:
     def __init__(self):
+<<<<<<< HEAD
         self.nivel = 1  # Nivel inicial
+=======
+        self.nivel = 2  # Nivel inicial
+>>>>>>> 3b9c8b6 (Auto-commit: 13/12/2024 17:02:00.81)
         self.celda_tamaño = 16
         self.bloques = []
         self.mapas = MAPA
