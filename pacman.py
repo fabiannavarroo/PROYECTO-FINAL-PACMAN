@@ -230,7 +230,7 @@ class Pacman:
 
         # Portales: si Pac-Man entra en un portal, salir por el otro lado del mapa
         if self.usar_portal(self.x, self.y):
-            return True
+            self.x, self.y = self.usar_portal(self.x, self.y)
 
         print("Pacman", self.x, self.y)
 
