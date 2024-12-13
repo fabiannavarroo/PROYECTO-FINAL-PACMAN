@@ -446,6 +446,14 @@ class Tablero:
         self.puntos.ver_puntuacion(195, 16)
         self.pacman.ver_vidas(10, 10)  # Dibujar las vidas
 
+    def dibujar_mascara(self, radio_vision):
+        # Crear una máscara negra para oscurecer fuera del radio de visión
+        for x in range(0, pyxel.width, 16):
+            for y in range(0, pyxel.height, 16):
+                distancia = ((self.pacman.x - x) ** 2 + (self.pacman.y - y) ** 2) ** 0.5
+                if distancia > radio_vision:
+                    pyxel.rect(x, y, 16, 16, 0)  # Dibujar rectángulo negro
+
                
 
 
