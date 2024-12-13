@@ -401,7 +401,8 @@ class Tablero:
             return True
 
         elif fantasma.asustado:
-            pass # alejarse de pacman
+            objectivo_x, objectivo_y = self.calcular_objectivo()
+            self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)
 
         else:
             self.perseguir_un_objectivo(fantasma, self.pacman.x, self.pacman.y) # seguir a pacman directamente
@@ -415,7 +416,8 @@ class Tablero:
             return True
 
         elif fantasma.asustado:
-            pass # alejarse de pacman
+            objectivo_x, objectivo_y = self.calcular_objectivo()
+            self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)
 
         else:
             objectivo_x, objectivo_y = self.calcular_objectivo()
@@ -430,7 +432,8 @@ class Tablero:
             return True
 
         elif fantasma.asustado:
-            pass # alejarse de pacman
+            objectivo_x, objectivo_y = self.calcular_objectivo()
+            self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)
 
         else:
             if time.time() - 10 >= self.fantasmas_cambio_de_movimiento:
@@ -439,7 +442,8 @@ class Tablero:
                     objectivo_x, objectivo_y = self.calcular_objectivo()
                     self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)
                 else:
-                    pass # alejarse de pacman
+                    objectivo_x, objectivo_y = self.calcular_objectivo()
+                    self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)
 
 
     def mover_fantasma_naranja(self,fantasma):
@@ -450,7 +454,8 @@ class Tablero:
             return True
 
         elif fantasma.asustado:
-            pass # alejarse de pacman
+            objetivo_x, objetivo_y = self.calcular_objectivo_mas_lejano() 
+            self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)# alejarse de pacman
 
         else:
             if time.time() - 10 >= self.fantasmas_cambio_de_movimiento:
@@ -458,7 +463,8 @@ class Tablero:
                 if modo == "perseguir":
                     self.perseguir_un_objectivo(fantasma, self.pacman.x, self.pacman.y)
                 else:
-                    pass # alejarse de pacman
+                    objectivo_x, objectivo_y = self.calcular_objectivo()
+                    self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)
 
 
     def movimiento_fantasmas(self, fantasma):
@@ -643,6 +649,32 @@ class Tablero:
         
         # Si la posicion no es valida simplemente seguira al pacman
         return self.pacman.x, self.pacman.y
+    
+
+    def calcular_objectivo_mas_lejano(self):
+        # Tamaño de cada celda
+        celda_tamaño = 16
+        pacman_x, pacman_y = self.pacman.x, self.pacman.y
+
+        # Varibles de las distancia maxima y la posicion más lejana
+        distancia_maxima = -1
+        posicion_mas_lejana = (pacman_x, pacman_y)
+
+        # Comprobar todas las celdas del mapa 
+        for x in range(0, pyxel.width, celda_tamaño):
+            for y in range(0, pyxel.height, celda_tamaño):
+                # Verificar que la celda no tenga colsion 
+                if not self.bloque.colision(x, y):
+                    # Calcular la distancua entre la celda y el Pacman
+                    distancia = abs(x - pacman_x) + abs(y - pacman_y) 
+
+                    # Actualizar si la distancia es mayor que la encontrada
+                    if distancia > distancia_maxima:
+                        distancia_maxima = distancia
+                        posicion_mas_lejana = (x, y)
+
+        # Devuelve la posicion mas lejana                
+        return posicion_mas_lejana
     
 
     def usar_portal(self, personaje):
