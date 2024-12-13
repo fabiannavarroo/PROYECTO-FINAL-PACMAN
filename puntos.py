@@ -129,26 +129,27 @@ class Puntos:
     def draw(self):
         # Dibuja los puntos, frutas y regalos en el mapa.
         # Dibujar puntos
-        for x, y, tipo in self.__lista_puntos:
+        for x, y, tipo in self.lista_puntos:
             sprite = OBJETOS[tipo]["Coordenadas"]
             pyxel.blt(x, y, 0, sprite[0], sprite[1], 16, 16, colkey=0)
+
         # Dibujar fruta actual
-        if self.__posicion_fruta and self.__fruta_actual:
-            if self.__animacion_activa and self.__animacion_contador < 30:
+        if self.posicion_fruta and self.fruta_actual:
+            if self.animacion_activa and self.animacion_contador < 30:
                 # Parpadea cada 5 frames
-                if self.__animacion_contador// REFRESH % 2 == 0:
-                    sprite = OBJETOS[self.__fruta_actual]["Coordenadas"]
-                    pyxel.blt(self.__posicion_fruta[0], self.__posicion_fruta[1], 0, sprite[0], sprite[1], 16, 16, colkey=0)
-                self.__animacion_contador += 1
+                if self.animacion_contador// REFRESH % 2 == 0:
+                    sprite = OBJETOS[self.fruta_actual]["Coordenadas"]
+                    pyxel.blt(self.posicion_fruta[0], self.posicion_fruta[1], 0, sprite[0], sprite[1], 16, 16, colkey=0)
+                self.animacion_contador += 1
             else:
                 # Detiene la animación y dibuja la fruta
-                self.__animacion_activa = False
-                sprite = OBJETOS[self.__fruta_actual]["Coordenadas"]
-                pyxel.blt(self.__posicion_fruta[0], self.__posicion_fruta[1], 0, sprite[0], sprite[1], 16, 16, colkey=0)
+                self.animacion_activa = False
+                sprite = OBJETOS[self.fruta_actual]["Coordenadas"]
+                pyxel.blt(self.posicion_fruta[0], self.posicion_fruta[1], 0, sprite[0], sprite[1], 16, 16, colkey=0)
             
 
         # Dibujar regalos
-        for x, y in self.__regalos:
+        for x, y in self.regalos:
             if pyxel.frame_count // REFRESH_REGALOS % 2:
                 coord = OBJETOS["REGALO_BRILLANTE"]["Coordenadas"]
                 pyxel.blt(x, y, 0, coord[0], coord[1], 16, 16, colkey=0)
