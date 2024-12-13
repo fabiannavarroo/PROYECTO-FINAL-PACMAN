@@ -289,7 +289,7 @@ class Tablero:
             self.animar_muerte()
             self.animar_fin()
             if pyxel.btnp(pyxel.KEY_R):
-                self.reinicar_juego()
+                self.estado_juego = "menu"
 
     def modo_juego_normal_update(self):
 
