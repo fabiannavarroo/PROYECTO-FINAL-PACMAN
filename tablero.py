@@ -40,10 +40,6 @@ class Tablero:
         # Actualizar musica para las distintas situaciones
         self.actualizar_musica()
 
-        # El usuraio reinica el juego por completo
-        if pyxel.btnp(pyxel.KEY_R):
-            self.reinicar_juego()
-
         if self.pacman.vidas > 0:
             # Mientras Pac-Man tenga vidas
             if self.bloque.contador_ready < 90:
