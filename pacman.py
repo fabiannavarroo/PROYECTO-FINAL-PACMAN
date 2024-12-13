@@ -1,6 +1,6 @@
 from constantes import *
 import pyxel
-import time
+
 
 class Pacman:
     def __init__(self, x, y):

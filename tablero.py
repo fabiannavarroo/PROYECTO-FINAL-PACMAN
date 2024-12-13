@@ -1,5 +1,4 @@
 from pacman import Pacman
-from collections import deque
 from fantasmas import *
 from puntos import Puntos
 from bloque import Bloque
@@ -401,7 +400,7 @@ class Tablero:
             return True
 
         elif fantasma.asustado:
-            objectivo_x, objectivo_y = self.calcular_objectivo()
+            objectivo_x, objectivo_y = self.calcular_objectivo_mas_lejano(fantasma)
             self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)
 
         else:
@@ -416,11 +415,11 @@ class Tablero:
             return True
 
         elif fantasma.asustado:
-            objectivo_x, objectivo_y = self.calcular_objectivo()
+            objectivo_x, objectivo_y = self.calcular_objectivo_mas_lejano(fantasma)
             self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)
 
         else:
-            objectivo_x, objectivo_y = self.calcular_objectivo()
+            objectivo_x, objectivo_y = self.calcular__emboscada()
             self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)
 
 
@@ -432,17 +431,17 @@ class Tablero:
             return True
 
         elif fantasma.asustado:
-            objectivo_x, objectivo_y = self.calcular_objectivo()
+            objectivo_x, objectivo_y = self.calcular_objectivo_mas_lejano(fantasma)
             self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)
 
         else:
             if time.time() - 10 >= self.fantasmas_cambio_de_movimiento:
                 modo = random.choice(["emboscada", "alejarse"])
                 if modo == "emboscada":
-                    objectivo_x, objectivo_y = self.calcular_objectivo()
+                    objectivo_x, objectivo_y = self.calcular__emboscada()
                     self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)
                 else:
-                    objectivo_x, objectivo_y = self.calcular_objectivo()
+                    objectivo_x, objectivo_y = self.calcular_objectivo_mas_lejano(fantasma)
                     self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)
 
 
@@ -454,7 +453,7 @@ class Tablero:
             return True
 
         elif fantasma.asustado:
-            objetivo_x, objetivo_y = self.calcular_objectivo_mas_lejano() 
+            objectivo_x, objectivo_y = self.calcular_objectivo_mas_lejano(fantasma) 
             self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)# alejarse de pacman
 
         else:
@@ -463,7 +462,7 @@ class Tablero:
                 if modo == "perseguir":
                     self.perseguir_un_objectivo(fantasma, self.pacman.x, self.pacman.y)
                 else:
-                    objectivo_x, objectivo_y = self.calcular_objectivo()
+                    objectivo_x, objectivo_y = self.calcular_objectivo_mas_lejano(fantasma)
                     self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)
 
 
@@ -623,7 +622,7 @@ class Tablero:
             return None
 
 
-    def calcular_objectivo(self):
+    def calcular__emboscada(self):
         # Tamaño de cada celda
         celda_tamaño = 16
         # Calcular la posicion delante del pacman en funcion de la dirrecion de donde se encuentra
@@ -651,30 +650,36 @@ class Tablero:
         return self.pacman.x, self.pacman.y
     
 
-    def calcular_objectivo_mas_lejano(self):
-        # Tamaño de cada celda
-        celda_tamaño = 16
+    def calcular_objectivo_mas_lejano(self, fantasma):
+
         pacman_x, pacman_y = self.pacman.x, self.pacman.y
 
         # Varibles de las distancia maxima y la posicion más lejana
         distancia_maxima = -1
-        posicion_mas_lejana = (pacman_x, pacman_y)
+
+        # Podibles direccionede los fantasmas
+        direcciones = {
+            "ARRIBA": (fantasma.x, fantasma.y - fantasma.velocidad),
+            "ABAJO": (fantasma.x, fantasma.y + fantasma.velocidad),
+            "IZQUIERDA": (fantasma.x - fantasma.velocidad, fantasma.y),
+            "DERECHA": (fantasma.x + fantasma.velocidad, fantasma.y),
+        }
 
         # Comprobar todas las celdas del mapa 
-        for x in range(0, pyxel.width, celda_tamaño):
-            for y in range(0, pyxel.height, celda_tamaño):
-                # Verificar que la celda no tenga colsion 
-                if not self.bloque.colision(x, y):
-                    # Calcular la distancua entre la celda y el Pacman
-                    distancia = abs(x - pacman_x) + abs(y - pacman_y) 
+        for direccion in direcciones:
+            # Vemos si la celda no tiene colision
+            nueva_x, nueva_y = direcciones[direccion]
+            if not self.bloque.colision(nueva_x, nueva_y):
+                # Calculamos la distancia entre la celda y pacman
+                distancia = abs(nueva_x - pacman_x) + abs(nueva_y - pacman_y)
+                # Actualizamos si la distancia es mayor
+                if distancia > distancia_maxima:
+                    distancia_maxima = distancia
+                    posicion_para_alejarse = (nueva_x, pacman_y)
 
-                    # Actualizar si la distancia es mayor que la encontrada
-                    if distancia > distancia_maxima:
-                        distancia_maxima = distancia
-                        posicion_mas_lejana = (x, y)
 
         # Devuelve la posicion mas lejana                
-        return posicion_mas_lejana
+        return posicion_para_alejarse
     
 
     def usar_portal(self, personaje):
