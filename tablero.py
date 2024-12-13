@@ -12,6 +12,8 @@ class Tablero:
         pyxel.init(400, 400, title="Pacman", fps=30)
         # Cargar los recursos del archivo .pyxres
         pyxel.load("assets/recursos.pyxres")
+        #menu pincipal del juego
+        self.estdo_juego = "menu"
 
         # Iniciar la música para el mapa 1
         pyxel.playm(0, 0, True)
@@ -37,6 +39,9 @@ class Tablero:
         pyxel.run(self.update, self.draw)
 
     def update(self):
+        if self.estado_juego == "menu":
+
+
         # Actualizar musica para las distintas situaciones
         self.actualizar_musica()
 
