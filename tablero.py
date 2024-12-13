@@ -42,6 +42,7 @@ class Tablero:
         if self.estado_juego == "menu":
             if pyxel.btnp(pyxel.KEY_P): # Modo normal
                 self.estado_juego = "jugando"
+                self.modo_vision_reducida()
             elif pyxel.btnp(pyxel.KEY_N): # Modo vision reducida
                 self.estado_juego = "vision_reducida" 
             elif pyxel.btnp(pyxel.KEY_ESCAPE):
@@ -288,9 +289,11 @@ class Tablero:
                 self.reinicar_juego()
 
     def modo_vision_reducida(self):
+        pyxel.cls(0)  # Limpiar la pantalla
 
         
-        
+    
+
                
 
 
