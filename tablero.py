@@ -182,7 +182,7 @@ class Tablero:
     def reinicar_juego(self):
         self.bloque.nivel = 1
         self.reiniciar_tablero()
-        self.puntos.reiniciar_puntos()
+        self.puntos.reiniciar_puntos(self.bloque)
 
 
     #--------------------------------------------------------------------ANIMACIONES--------------------------------------------------------------------#
