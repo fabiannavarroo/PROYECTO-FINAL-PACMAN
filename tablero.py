@@ -667,15 +667,15 @@ class Tablero:
 
     def colision_fantasmas_con_pacman(self):
         # Comprobar si algún fantasma colisiona con Pac-Man
-        if self.pacman.en_muerte or self.pacman.reiniciando or self.pacman.vidas <= 0:
+        if self.pacman.__en_muerte or self.pacman.__reiniciando or self.pacman.__vidas <= 0:
             return False
 
         pacman_x = self.pacman.__x + 8
         pacman_y = self.pacman.__y + 8
 
         for fantasma in self.fantasmas:
-            fantasma_x = fantasma.x + 8
-            fantasma_y = fantasma.y + 8
+            fantasma_x = fantasma.__x + 8
+            fantasma_y = fantasma.__y + 8
 
             # Si la distancia es pequeña, hay colisión
             if abs(pacman_x - fantasma_x) < 16 and abs(pacman_y - fantasma_y) < 16:
