@@ -7,4 +7,3 @@ print("Feliz Navidad!!")
 Tablero()
 
 
-
