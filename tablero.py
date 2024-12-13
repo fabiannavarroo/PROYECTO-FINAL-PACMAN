@@ -360,13 +360,10 @@ class Tablero:
     def modo_vision_reducida(self):
         pyxel.cls(0)  # Limpiar la pantalla
 
-        # Definir el radio de visión 
-        radio_vision = 5    *16
+        # Definir el radio de visión (en píxeles)
+        radio_vision = 64
 
         # Dibujar solo los elementos visibles dentro del radio
-        self.dibujar_letras_mapa(120, 16, "HIGHSCORE")
-        self.puntos.ver_puntuacion(195, 16)
-        
         # Dibujar bloques visibles
         for bloque in self.bloque.bloques:
             bloque_x, bloque_y, sprite = bloque
@@ -408,6 +405,11 @@ class Tablero:
 
         # Oscurecer todo fuera del área visible
         self.dibujar_mascara(radio_vision)
+
+        # Dibujar puntuación y vidas **después** de la máscara
+        self.dibujar_letras_mapa(120, 16, "HIGHSCORE")
+        self.puntos.ver_puntuacion(195, 16)
+        self.pacman.ver_vidas(10, 10)  # Dibujar las vidas
 
     def dibujar_mascara(self, radio_vision):
         # Crear una máscara negra para oscurecer fuera del radio de visión
