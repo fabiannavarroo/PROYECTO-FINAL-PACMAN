@@ -1,6 +1,7 @@
 import pyxel
 from constantes import *
 import random
+import random
 
 
 class Bloque:
@@ -9,6 +10,130 @@ class Bloque:
         self.celda_tamaño = 16
         self.bloques = []
         self.mapas = MAPA
+        self.cargar_mapa()  # Cargar el mapa del nivel inicial
+        # Controlar la condición de victoria
+        self.victoria = False  
+        self.victoria_contador_mapa = 0
+        self.victoria_contador_texto = 0
+        # Variable para controlar el mensaje READY!
+        self.mostrar_ready = True
+        self.contador_ready = 0
+        # Variables para controlar GAME OVER
+        self.contador_game_over = 0
+        self.mostrar_fin = False
+        # COntrola la musica actual
+        self.elegir_cancion = random.random() # elegir la cancion del mapa 2
+        self.musica_actual = None
+
+
+#--------------------------------------------------------------------PROPERTY--------------------------------------------------------------------#
+
+    @property
+    def nivel(self):
+        return self.__nivel
+
+    @property
+    def celda_tamaño(self):
+        return self.__celda_tamaño
+
+    @property
+    def bloques(self):
+        return self.__bloques
+
+    @property
+    def mapas(self):
+        return self.__mapas
+    
+    @property
+    def victoria(self):
+        return self.__victoria
+    
+    @property
+    def victoria_contador_mapa(self):
+        return self.__victoria_contador_mapa
+    
+    @property
+    def victoria_contador_texto(self):
+        return self.__victoria_contador_texto
+    
+    @property
+    def mostrar_ready(self):
+        return self.__mostrar_ready
+    
+    @property
+    def contador_ready(self):
+        return self.__contador_ready
+    
+    @property
+    def contador_game_over(self):
+        return self.__contador_game_over
+        
+    @property
+    def mostrar_fin(self):
+        return self.__mostrar_fin
+    
+    @property
+    def elegir_cancion(self):
+        return self.__elegir_cancion
+    
+    @property
+    def musica_actual(self):
+        return self.__musica_actual
+    
+#--------------------------------------------------------------------SETTERS--------------------------------------------------------------------#
+    @nivel.setter
+    def nivel(self, nuevo_valor):
+        self.__nivel = nuevo_valor
+
+    @celda_tamaño.setter
+    def celda_tamaño(self, nuevo_valor):
+        self.__celda_tamaño = nuevo_valor
+    
+    @bloques.setter
+    def bloques(self, nuevo_valor):
+        self._bloques = nuevo_valor
+
+    @mapas.setter
+    def mapas(self, nuevo_valor):
+        self.__mapas = nuevo_valor
+
+    @victoria.setter
+    def victoria(self, nuevo_valor):
+        self.__victoria = nuevo_valor
+
+    @victoria_contador_mapa.setter
+    def victoria_contador_mapa(self, nuevo_valor):
+        self.__victoria_contador_mapa = nuevo_valor
+
+    @victoria_contador_texto.setter
+    def victoria_contador_texto(self, nuevo_valor):
+        self.__victoria_contador_texto = nuevo_valor
+
+    @mostrar_ready.setter
+    def mostrar_ready(self, nuevo_valor):
+        self.__mostrar_ready = nuevo_valor
+
+    @contador_ready.setter
+    def contador_ready(self, nuevo_valor):
+        self.__contador_ready = nuevo_valor
+
+    @contador_game_over.setter
+    def contador_game_over(self, nuevo_valor):
+        self.__contador_game_over = nuevo_valor
+
+    @mostrar_fin.setter
+    def mostrar_fin(self, nuevo_valor):
+        self.__mostrar_fin = nuevo_valor
+
+    @elegir_cancion.setter
+    def elegir_cancion(self, nuevo_valor):
+        self.__elegir_cancion = nuevo_valor
+
+    @musica_actual.setter
+    def musica_actual(self, nuevo_valor):
+        self.__musica_actual = nuevo_valor
+        
+#--------------------------------------------------------------------METODOS PROPIOS--------------------------------------------------------------------#    
         self.cargar_mapa()  # Cargar el mapa del nivel inicial
         # Controlar la condición de victoria
         self.victoria = False  
