@@ -86,8 +86,6 @@ class Tablero:
                     # Si hay un siguiente nivel, pasar al siguiente
                     if self.bloque.nivel + 1 in self.bloque.mapas:
                         self.bloque.nivel += 1
-                        self.bloque.cargar_mapa()
-                        self.puntos.reiniciar_puntos()
                         self.reiniciar_tablero()
                     else:
                         # Si no hay más niveles, ganar el juego
