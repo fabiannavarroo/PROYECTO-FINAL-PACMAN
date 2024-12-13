@@ -198,7 +198,7 @@ class Tablero:
         # Animación del mensaje GAME OVER cuando se acaban las vidas de Pac-Man
         pyxel.cls(0)
 
-        pyxel.bltm(0, 0, 0, 0, 0, 400, 400)  # Tilemap 0, posición (0,0), tamaño 400x400
+        pyxel.bltm(0, 0, 0, 0, 0, 256, 256)  # Tilemap 0, posición (0,0), tamaño 400x400
 
 
         if self.bloque.contador_game_over < 70:
