@@ -207,13 +207,13 @@ class Tablero:
             else:
                 pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0)
                 self.dibujar_letras_mapa(185,300,"GAME OVER")
-                pyxel.text(140, 320, "PULSE R PARA REINICIAR", pyxel.COLOR_WHITE)
+                pyxel.text(160, 320, "PULSE R PARA REINICIAR", pyxel.COLOR_WHITE)
         else:
             # Mantener el texto "GAME OVER" visible
             pyxel.bltm(pyxel.width/4,pyxel.height/4, 0, 0, 0, 200, 200)  # LAPIDA DE MUERTE
             self.dibujar_letras_mapa(185,300,"GAME OVER")
 
-            pyxel.text(140, 320, "PULSE R PARA REINICIAR", pyxel.COLOR_WHITE)
+            pyxel.text(160, 320, "PULSE R PARA REINICIAR", pyxel.COLOR_WHITE)
 
 
     def animar_win(self):
