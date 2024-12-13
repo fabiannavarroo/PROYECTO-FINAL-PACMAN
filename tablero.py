@@ -203,7 +203,7 @@ class Tablero:
 
         if self.bloque.contador_game_over < 70:
             if (self.bloque.contador_game_over // 5) % 2 == 0:
-                pyxel.bltm(pyxel.width/4,pyxel.height/4, 0, 0, 0, 200, 200)
+                pass
             else:
                 pyxel.bltm(pyxel.width/4,pyxel.height/4, 0, 0, 0, 200, 200)
                 self.dibujar_letras_mapa(185,300,"GAME OVER")
