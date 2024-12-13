@@ -16,10 +16,125 @@ class Pacman:
         self.fantasmas_comido = False
         self.mostrar_puntos = False
         self.texto_tiempo_inicio = 0
-        self.posicion_fantasma_comido_x,self.posicion_fantasma_comido_y = 0,0
+        self.posicion_fantasma_comido_x,self.posicion_fantasma_comido_y = None, None
          
+ #--------------------------------------------------------------------PROPERTY--------------------------------------------------------------------#
+  
+    @property
+    def x(self):
+        return self.__x
 
+    @property
+    def y(self):
+        return self.__y
 
+    @property
+    def velocidad(self):
+        return self.__velocidad
+
+    @property
+    def direccion_actual(self):
+        return self.__direccion_actual
+
+    @property
+    def direccion_pendiente(self):
+        return self.__direccion_pendiente
+
+    @property
+    def vidas(self):
+        return self.__vidas
+
+    @property
+    def animacion_frame(self):
+        return self.__animacion_frame
+    
+    @property
+    def en_muerte(self):
+        return self.__en_muerte
+    
+    @property
+    def reiniciando(self):
+        return self.__reiniciando
+    
+    @property
+    def texto_tiempo_inicio(self):
+        return self.__texto_tiempo_inicio
+    
+    @property
+    def fantasmas_comido(self):
+        return self.__fantasmas_comido
+    
+    @property
+    def mostrar_puntos(self):
+        return self.__mostrar_puntos
+
+    @property
+    def posicion_fantasma_comido_x(self):
+        return self.__posicion_fantasma_comido_x
+
+    @property
+    def posicion_fantasma_comido_y(self):
+        return self.__posicion_fantasma_comido_y
+
+#--------------------------------------------------------------------SETTERS--------------------------------------------------------------------#
+
+    @x.setter
+    def x(self, nuevo_valor):
+        self.__x = nuevo_valor
+
+    @y.setter
+    def y(self, nuevo_valor):
+        self.__y = nuevo_valor
+
+    @velocidad.setter
+    def velocidad(self, nuevo_valor):
+        self.__velocidad = nuevo_valor
+
+    @direccion_actual.setter
+    def direccion_actual(self, nuevo_valor):
+        self.__direccion_actual = nuevo_valor
+
+    @direccion_pendiente.setter
+    def direccion_pendiente(self, nuevo_valor):
+        self.__direccion_pendiente = nuevo_valor
+
+    @vidas.setter
+    def vidas(self, nuevo_valor):
+        self.__vidas = nuevo_valor
+
+    @animacion_frame.setter
+    def animacion_frame(self, nuevo_valor):
+        self.__animacion_frame = nuevo_valor
+
+    @en_muerte.setter
+    def en_muerte(self, nuevo_valor):
+        self.__en_muerte = nuevo_valor
+
+    @reiniciando.setter
+    def reiniciando(self, nuevo_valor):
+        self.__reiniciando = nuevo_valor
+
+    @fantasmas_comido.setter
+    def fantasmas_comido(self, nuevo_valor):
+        self.__fantasmas_comido = nuevo_valor
+
+    @mostrar_puntos.setter
+    def mostrar_puntos(self, nuevo_valor):
+        self.__mostrar_puntos = nuevo_valor
+
+    @texto_tiempo_inicio.setter
+    def texto_tiempo_inicio(self, nuevo_valor):
+        self.__texto_tiempo_inicio = nuevo_valor
+
+    @posicion_fantasma_comido_x.setter
+    def posicion_fantasma_comido_x(self, nuevo_valor):
+        self.__posicion_fantasma_comido_x = nuevo_valor
+
+    @posicion_fantasma_comido_y.setter
+    def posicion_fantasma_comido_y(self, nuevo_valor):
+        self.__posicion_fantasma_comido_y = nuevo_valor
+
+#--------------------------------------------------------------------METODOS PROPIOS--------------------------------------------------------------------# 
 
     def draw(self):
         if self.vidas <= 0:  # Si no hay vidas, no se dibuja

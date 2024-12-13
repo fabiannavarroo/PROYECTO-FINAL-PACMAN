@@ -18,9 +18,114 @@ class Puntos:
         self.zonas_prohibidas = ZONAS_PROHIBIDAS
         self.regalos = [(16, 304), (368, 304), (16, 80),(368, 80)] # Coordenadas fijas de los regalos
         self.lista_puntos = [] # Lista de puntos generados
-        self.lista_frutas = [] # Lista de frutas generadas
+        self.ista_frutas = [] # Lista de frutas generadas
 
 
+#--------------------------------------------------------------------PROPERTY--------------------------------------------------------------------#
+        # Solo lectura
+        @property
+        def sprite(self):
+            return self.__sprite
+        
+        @property
+        def puntos(self):
+            return self.__puntos
+
+        @property
+        def puntos_alcanzados(self):
+            return self.__puntos_alcanzados
+
+        @property
+        def color_actual(self):
+            return self.__color_actual
+
+        @property
+        def ultimo_tiempo_fruta(self):
+            return self.__ultimo_tiempo_fruta
+
+        @property
+        def fruta_actual(self):
+            return self.__fruta_actual
+
+        @property
+        def posicion_fruta(self):
+            return self.__posicion_fruta
+
+        @property
+        def animacion_activa(self):
+            return self.__animacion_activa
+
+        @property
+        def animacion_contador(self):
+            return self.__animacion_contador
+        
+        @property
+        def zonas_prohibidas(self):
+            return self.__zonas_prohibidas
+
+        @property
+        def regalos(self):
+            return self.__regalos
+
+        @property
+        def lista_puntos(self):
+            return self.__lista_puntos
+
+        @property
+        def lista_frutas(self):
+            return self.__lista_frutas
+        
+#--------------------------------------------------------------------SETTERS--------------------------------------------------------------------#
+
+        @puntos.setter
+        def puntos(self, nuevo_valor):
+            self.__puntos = nuevo_valor
+
+        @puntos_alcanzados.setter
+        def puntos_alcanzados(self, nuevo_valor):
+            self.__puntos_alcanzados = nuevo_valor
+
+        @color_actual.setter
+        def color_actual(self, nuevo_valor):
+            self.__color_actual = nuevo_valor
+
+        @ultimo_tiempo_fruta.setter
+        def ultimo_tiempo_fruta(self, nuevo_valor):
+            self.__ultimo_tiempo_fruta = nuevo_valor
+
+        @fruta_actual.setter
+        def fruta_actual(self, nuevo_valor):
+            self.__fruta_actual = nuevo_valor
+
+        @posicion_fruta.setter
+        def posicion_fruta(self, nuevo_valor):
+            self.__posicion_fruta = nuevo_valor
+        
+        @animacion_activa.setter
+        def animacion_activa(self, nuevo_valor):
+            self.__animacion_activa = nuevo_valor
+
+        @animacion_contador.setter
+        def animacion_contador(self, nuevo_valor):
+            self.__animacion_contador = nuevo_valor
+
+        @zonas_prohibidas.setter
+        def zonas_prohibidas(self, nuevo_valor):
+            self.__zonas_prohibidas = nuevo_valor
+
+        @regalos.setter
+        def regalos(self, nuevo_valor):
+            self.__regalos = nuevo_valor
+
+        @lista_puntos.setter
+        def lista_puntos(self, nuevo_valor):
+            self.__lista_puntos = nuevo_valor
+
+        @lista_frutas.setter
+        def lista_frutas(self, nuevo_valor):
+            self.__lista_frutas = nuevo_valor
+
+#--------------------------------------------------------------------METODOS PROPIOS--------------------------------------------------------------------#
     def draw(self):
         # Dibuja los puntos, frutas y regalos en el mapa.
         # Dibujar puntos

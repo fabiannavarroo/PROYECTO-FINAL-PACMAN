@@ -419,7 +419,7 @@ class Tablero:
             self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)
 
         else:
-            objectivo_x, objectivo_y = self.calcular__emboscada()
+            objectivo_x, objectivo_y = self.calcular_emboscada()
             self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)
 
 
@@ -438,7 +438,7 @@ class Tablero:
             if time.time() - 10 >= self.fantasmas_cambio_de_movimiento:
                 modo = random.choice(["emboscada", "alejarse"])
                 if modo == "emboscada":
-                    objectivo_x, objectivo_y = self.calcular__emboscada()
+                    objectivo_x, objectivo_y = self.calcular_emboscada()
                     self.perseguir_un_objectivo(fantasma, objectivo_x, objectivo_y)
                 else:
                     objectivo_x, objectivo_y = self.calcular_objectivo_mas_lejano(fantasma)
@@ -622,7 +622,7 @@ class Tablero:
             return None
 
 
-    def calcular__emboscada(self):
+    def calcular_emboscada(self):
         # Tamaño de cada celda
         celda_tamaño = 16
         # Calcular la posicion delante del pacman en funcion de la dirrecion de donde se encuentra

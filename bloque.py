@@ -11,9 +11,47 @@ class Bloque:
         self.cargar_mapa()  # Cargar el mapa del nivel inicial 
 
 
+#--------------------------------------------------------------------PROPERTY--------------------------------------------------------------------#
+
+    @property
+    def nivel(self):
+        return self.__nivel
+
+    @property
+    def celda_tamaño(self):
+        return self.__celda_tamaño
+
+    @property
+    def bloques(self):
+        return self.__bloques
+
+    @property
+    def mapas(self):
+        return self.__mapas
+    
+#--------------------------------------------------------------------SETTERS--------------------------------------------------------------------#
+    @nivel.setter
+    def nivel(self, nuevo_valor):
+        self.__nivel = nuevo_valor
+
+    @celda_tamaño.setter
+    def celda_tamaño(self, nuevo_valor):
+        self.__celda_tamaño = nuevo_valor
+    
+    @bloques.setter
+    def bloques(self, nuevo_valor):
+        self._bloques = nuevo_valor
+
+    @mapas.setter
+    def mapas(self, nuevo_valor):
+        self.__mapas = nuevo_valor
+
+
+#--------------------------------------------------------------------METODOS PROPIOS--------------------------------------------------------------------#    
+
     def cargar_mapa(self):
         # Cargar los bloques del nivel actual
-        self.bloques = []
+        self.__bloques = []
         for x, y, tipo in self.mapas[self.nivel]:
             sprite = self.obtener_sprite(tipo)  # Obtener el sprite 
             self.bloques.append((x, y, sprite))  # Guardar solo coordenadas y sprite
