@@ -298,7 +298,7 @@ class Bloque:
     def colision(self, x, y):
         sprite_tamaño = self.__celda_tamaño  # Tamaño del sprite (16x16 típico)
 
-        # Calcular los puntos clave del sprite
+        '''# Calcular los puntos clave del sprite
         puntos_a_verificar = [
             (x, y),  # Esquina superior izquierda
             (x + sprite_tamaño - 1, y),  # Esquina superior derecha
@@ -307,13 +307,13 @@ class Bloque:
         ]
 
         # Verificar si algún punto clave está dentro de un bloque
-        for px, py in puntos_a_verificar:
-            for bloque_x, bloque_y, _ in self.__bloques:
-                if (
-                    bloque_x <= px < bloque_x + sprite_tamaño and
-                    bloque_y <= py < bloque_y + sprite_tamaño
-                ):
-                    return True  # Colisión detectada
+        for px, py in puntos_a_verificar:'''
+        for bloque_x, bloque_y, _ in self.__bloques:
+            if (
+                bloque_x <= x < bloque_x + sprite_tamaño and
+                bloque_y <= y < bloque_y + sprite_tamaño
+            ):
+                return True  # Colisión detectada
 
         return False  # No hay colisión
 
