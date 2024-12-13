@@ -291,6 +291,11 @@ class Tablero:
 
         self.vision_reducida = True
         self.radio = 4 * 16
+
+
+        def esta_radio(self, obj_x, obj_y):
+            # Comprobar si un objeto está dentro del radio
+            return abs( obj_x - self.pacman.x ) <= self.radio and abs( obj_y - self.pacman.y) <= self.radio
         
                
 
