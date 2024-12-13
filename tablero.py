@@ -454,13 +454,12 @@ class Tablero:
     #--------------------------------------------------------------------MOVIMIENTO--------------------------------------------------------------------#
 
     def movimineto_pacman(self):
-        # Actualiza la posición de Pac-Man según las teclas presionadas y evita colisiones
         if self.pacman.vidas <= 0 or self.pacman.en_muerte or self.pacman.reiniciando:
             return False
 
         nueva_x, nueva_y = self.pacman.x, self.pacman.y
 
-        # Leer las teclas para cambiar dirección
+        # Leer teclas y establecer dirección pendiente
         if pyxel.btnp(pyxel.KEY_UP):
             self.pacman.direccion_pendiente = PACMAN_ARRIBA
         elif pyxel.btnp(pyxel.KEY_DOWN):
@@ -469,27 +468,19 @@ class Tablero:
             self.pacman.direccion_pendiente = PACMAN_IZQUIERDA
         elif pyxel.btnp(pyxel.KEY_RIGHT):
             self.pacman.direccion_pendiente = PACMAN_DERECHA
-        elif pyxel.btnp(pyxel.KEY_W):
-            self.pacman.direccion_pendiente = PACMAN_ARRIBA
-        elif pyxel.btnp(pyxel.KEY_S):
-            self.pacman.direccion_pendiente = PACMAN_ABAJO
-        elif pyxel.btnp(pyxel.KEY_A):
-            self.pacman.direccion_pendiente = PACMAN_IZQUIERDA
-        elif pyxel.btnp(pyxel.KEY_D):
-            self.pacman.direccion_pendiente = PACMAN_DERECHA
 
-        # Comprobar si la dirección pendiente se puede usar es decir no hay colisión
+        # Ajustar dirección actual si es válida
         if self.pacman.direccion_pendiente:
-            if self.pacman.direccion_pendiente == PACMAN_ARRIBA and not self.bloque.colision(self.pacman.x, self.pacman.y - self.pacman.velocidad):
+            if self.pacman.direccion_pendiente == PACMAN_ARRIBA and not self.bloque.colision(self.pacman.x, self.pacman.y, self.pacman.x, self.pacman.y - self.pacman.velocidad, self.pacman.velocidad):
                 self.pacman.direccion_actual = self.pacman.direccion_pendiente
-            elif self.pacman.direccion_pendiente == PACMAN_ABAJO and not self.bloque.colision(self.pacman.x, self.pacman.y + self.pacman.velocidad):
+            elif self.pacman.direccion_pendiente == PACMAN_ABAJO and not self.bloque.colision(self.pacman.x, self.pacman.y, self.pacman.x, self.pacman.y + self.pacman.velocidad, self.pacman.velocidad):
                 self.pacman.direccion_actual = self.pacman.direccion_pendiente
-            elif self.pacman.direccion_pendiente == PACMAN_IZQUIERDA and not self.bloque.colision(self.pacman.x - self.pacman.velocidad, self.pacman.y):
+            elif self.pacman.direccion_pendiente == PACMAN_IZQUIERDA and not self.bloque.colision(self.pacman.x, self.pacman.y, self.pacman.x - self.pacman.velocidad, self.pacman.y, self.pacman.velocidad):
                 self.pacman.direccion_actual = self.pacman.direccion_pendiente
-            elif self.pacman.direccion_pendiente == PACMAN_DERECHA and not self.bloque.colision(self.pacman.x + self.pacman.velocidad, self.pacman.y):
+            elif self.pacman.direccion_pendiente == PACMAN_DERECHA and not self.bloque.colision(self.pacman.x, self.pacman.y, self.pacman.x + self.pacman.velocidad, self.pacman.y, self.pacman.velocidad):
                 self.pacman.direccion_actual = self.pacman.direccion_pendiente
 
-        # Mover Pac-Man en la dirección actual si no hay colisión
+        # Calcular la nueva posición
         if self.pacman.direccion_actual == PACMAN_ARRIBA:
             nueva_y -= self.pacman.velocidad
         elif self.pacman.direccion_actual == PACMAN_ABAJO:
@@ -499,17 +490,13 @@ class Tablero:
         elif self.pacman.direccion_actual == PACMAN_DERECHA:
             nueva_x += self.pacman.velocidad
 
-        # Comprobar colisiones con muros
-        if not self.bloque.colision(nueva_x, self.pacman.y):
-            self.pacman.x = nueva_x
-        if not self.bloque.colision(self.pacman.x, nueva_y):
-            self.pacman.y = nueva_y
+        # Verificar colisión antes de mover
+        if not self.bloque.colision(self.pacman.x, self.pacman.y, nueva_x, nueva_y, self.pacman.velocidad):
+            self.pacman.x, self.pacman.y = nueva_x, nueva_y
 
-        # Portales: si Pac-Man entra en un portal, salir por el otro lado del mapa
-        if self.usar_portal(self.pacman):
-            return True
+        # Portales
+        self.usar_portal(self.pacman)
 
-        print("Pacman", self.pacman.x, self.pacman.y)
 
 
     def mover_a_salida(self, fantasma):
