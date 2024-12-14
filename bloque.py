@@ -12,7 +12,7 @@ class Bloque:
         self.cargar_mapa()  # Cargar el mapa del nivel inicial
         # Controlar la condición de victoria
         self.victoria = True  
-        self.victoria_contador_mapa = 0
+        self.victoria_contador_corona = 0
         self.victoria_contador_texto = 0
         # Variable para controlar el mensaje READY!
         self.mostrar_ready = True
@@ -48,8 +48,8 @@ class Bloque:
         return self.__victoria
     
     @property
-    def victoria_contador_mapa(self):
-        return self.__victoria_contador_mapa
+    def victoria_contador_corona(self):
+        return self.__victoria_contador_corona
     
     @property
     def victoria_contador_texto(self):
@@ -101,8 +101,8 @@ class Bloque:
         self.__victoria = nuevo_valor
 
     @victoria_contador_mapa.setter
-    def victoria_contador_mapa(self, nuevo_valor):
-        self.__victoria_contador_mapa = nuevo_valor
+    def victoria_contador_corona(self, nuevo_valor):
+        self.__victoria_contador_corona = nuevo_valor
 
     @victoria_contador_texto.setter
     def victoria_contador_texto(self, nuevo_valor):
