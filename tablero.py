@@ -111,11 +111,14 @@ class Tablero:
         self.pacman.texto_tiempo_inicio = 0
         self.pacman.posicion_fantasma_comido_x,self.pacman.posicion_fantasma_comido_y = None, None
         self.pacman.animacion_muerte_finalizada = False
-        self.asustado = False  
-        self.tiempo_trampa = time.time()  
-        self.en_salida = False
-        self.en_trampa = True
-        self.tiempo_asustado = 0
+        for fantasma in self.fantasmas:
+            fantasma.fantasmas.asustado = False  
+            fantasma.tiempo_trampa = time.time()  
+            fantasma.en_salida = False
+            fantasma.en_trampa = True
+            fantasma.tiempo_asustado = 0
+
+        
         self.reiniciar_tablero()
         self.puntos.reiniciar_puntos(self.bloque)
 
