@@ -141,13 +141,13 @@ class Tablero:
     def animar_win(self):
         pyxel.cls(0)
         if self.bloque.victoria_contador_texto <=10: 
-            self.dibujar_letras_mapa(185,208,"VICTORIA_1")
+            self.dibujar_letras_mapa(185,250,"VICTORIA_1")
             self.bloque.victoria_contador_texto += 1
         elif self.bloque.victoria_contador_texto <=20: 
-            self.dibujar_letras_mapa(185,208,"VICTORIA_2")
+            self.dibujar_letras_mapa(185,250,"VICTORIA_2")
             self.bloque.victoria_contador_texto += 1
         else:
-            self.dibujar_letras_mapa(185,208,"VICTORIA_3")
+            self.dibujar_letras_mapa(185,250,"VICTORIA_3")
             self.bloque.victoria_contador_texto += 1
         # Para que la animacion este en continuo funcionamiento
         if self.bloque.victoria_contador_texto == 40:
