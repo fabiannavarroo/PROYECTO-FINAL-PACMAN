@@ -152,12 +152,12 @@ class Tablero:
         # Animacion del mapa 
         if self.bloque.victoria_contador_mapa < 10:
             if pyxel.frame_count % 2 == 0:  
-                self.bloque.draw()
+                pyxel.blt(180, 245, 2, 16, 120, 0, 0, colkey=0)
                 self.bloque.victoria_contador_mapa += 1
             else: 
                 pass
         else:
-            self.bloque.draw()
+            pyxel.blt(180, 245, 2, 0, 0, 0, 0, colkey=0)
 
 
     def animar_muerte(self):
