@@ -408,7 +408,7 @@ class Tablero:
             self.puntos.ver_puntuacion(195, 16)
             self.pacman.ver_vidas(10, 10)
 
-            # Rreinicio desde las pantallas finales
+            # Reinicio desde las pantallas finales
             if pyxel.btnp(pyxel.KEY_R):
                 self.estado_juego = "menu"
                 self.reinicar_juego()
