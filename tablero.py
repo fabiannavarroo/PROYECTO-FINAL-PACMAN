@@ -283,7 +283,7 @@ class Tablero:
                 for fantasma in self.fantasmas:
                     fantasma.draw()
 
-                # Dibujar el mensaje READY! si corresponde
+                # Dibujar el mensaje READY!
                 if self.bloque.mostrar_ready:
                     self.animar_ready()
 
