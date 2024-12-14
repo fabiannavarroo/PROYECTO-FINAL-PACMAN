@@ -353,10 +353,10 @@ class FantasmaRojo(Fantasma):
     
          # Fantasma rojo: persigue a Pac-Man
         if bloque.victoria or pacman.en_muerte:
-            return False
+            return False # Si se ha ganado o pacman esta muerto, no se mueve
         
         if self.en_trampa:
-            return True
+            return True # Si esta en la trampa, se rige por el movimiento de salida
 
         elif self.asustado:
             objetivo_x, objetivo_y = self.calcular_objectivo_mas_lejano(pacman, bloque)
