@@ -270,9 +270,6 @@ class Fantasma:
             self.direccion_actual = "DERECHA"
 
         # Portales: si el fantasma entra en un portal, salir por el otro lado del mapa
-        if self.usar_portal(self.x, self.y):
-            self.x, self.y = self.usar_portal(self.x, self.y)
-
         self.ultima_direccion = direccion
 
     
