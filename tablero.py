@@ -403,7 +403,7 @@ class Tablero:
             else:
                 self.animar_fin()
 
-            # Interfaz siempre visible
+            # Interfaz de vidas y puntos
             self.dibujar_letras_mapa(120, 16, "HIGHSCORE")
             self.puntos.ver_puntuacion(195, 16)
             self.pacman.ver_vidas(10, 10)
