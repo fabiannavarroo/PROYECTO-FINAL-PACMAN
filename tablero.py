@@ -149,11 +149,11 @@ class Tablero:
         # Para que la animacion este en continuo funcionamiento
         if self.bloque.victoria_contador_texto == 40:
             self.bloque.victoria_contador_texto = 0 
-        # Animacion del mapa 
-        if self.bloque.victoria_contador_mapa < 10:
+        # Animacion de la corona 
+        if self.bloque.victoria_contador_corona < 10:
             if pyxel.frame_count % 2 == 0:  
                 pyxel.blt(180, 245, 2, 16, 120, 208, 144, colkey=0)
-                self.bloque.victoria_contador_mapa += 1
+                self.bloque.victoria_contador_corona += 1
             else: 
                 pyxel.blt(246, 246, 3, 0, 0, 0, 0, colkey=0)
         else:
