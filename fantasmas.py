@@ -359,6 +359,7 @@ class FantasmaRojo(Fantasma):
             return True # Si esta en la trampa, se rige por el movimiento de salida
 
         elif self.asustado:
+            # Si esta asustado, se aleja del pacman
             objetivo_x, objetivo_y = self.calcular_objectivo_mas_lejano(pacman, bloque)
             self.perseguir_un_objetivo(bloque, objetivo_x, objetivo_y)
 
