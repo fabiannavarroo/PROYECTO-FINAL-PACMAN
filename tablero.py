@@ -380,76 +380,72 @@ class Tablero:
         pyxel.cls(0)  # Limpiar la pantalla
         radio_vision = 80  # Radio de visión
 
-        # Dibujar la interfaz superior siempre visible
+        if self.bloque.victoria or self.pacman.vidas <= 0:
+            # Si estamos en pantalla de victoria o Game Over, dibujar todo normalmente
+            self.bloque.draw()  # Dibujar todo el mapa
+            self.puntos.draw()  # Dibujar todos los puntos
+            for fantasma in self.fantasmas:
+                fantasma.draw()  # Dibujar todos los fantasmas
+            self.pacman.draw()  # Dibujar Pac-Man
+
+            if self.bloque.victoria:
+                self.animar_win()
+            else:
+                self.animar_muerte()
+                self.animar_fin()
+
+            # Interfaz siempre visible
+            self.dibujar_letras_mapa(120, 16, "HIGHSCORE")
+            self.puntos.ver_puntuacion(195, 16)
+            self.pacman.ver_vidas(10, 10)
+
+            # Manejar reinicio desde las pantallas finales
+            if pyxel.btnp(pyxel.KEY_R):
+                self.estado_juego = "menu"
+                self.reinicar_juego()
+            return  # No aplicar visión reducida en estas pantallas
+
+        # Mientras Pac-Man tenga vidas y no esté en Game Over o Victoria
+        self.bloque.draw()  # Dibujar el mapa completo (será oscurecido más adelante)
+
+        # Dibujar puntos visibles
+        self.puntos.draw()
+
+        # Dibujar fantasmas visibles dentro del radio
+        for fantasma in self.fantasmas:
+            if self.esta_dentro_radio(fantasma.x + 8, fantasma.y + 8, self.pacman.x + 8, self.pacman.y + 8, radio_vision):
+                fantasma.draw()
+
+        # Dibujar a Pac-Man
+        self.pacman.draw()
+
+        # Dibujar el mensaje READY!
+        if self.bloque.mostrar_ready:
+            self.animar_ready()
+
+        # Si Pac-Man ha comido un fantasma, mostrar los puntos que ganó
+        if self.pacman.mostrar_puntos and time.time() - self.pacman.texto_tiempo_inicio < 1.5:
+            pyxel.text(self.pacman.posicion_fantasma_comido_x, self.pacman.posicion_fantasma_comido_y, "+200 puntos", pyxel.COLOR_RED)
+        else:
+            self.pacman.mostrar_puntos = False
+
+        # Oscurecer el área fuera del radio de visión (excepto en las pantallas finales)
+        for x in range(pyxel.width):
+            for y in range(pyxel.height):
+                if not self.esta_dentro_radio(x, y, self.pacman.x + 8, self.pacman.y + 8, radio_vision):
+                    pyxel.pset(x, y, 0)  # Pintar fuera del radio en negro
+
+        # Interfaz siempre visible
         self.dibujar_letras_mapa(120, 16, "HIGHSCORE")
         self.puntos.ver_puntuacion(195, 16)
         self.pacman.ver_vidas(10, 10)
 
-        if self.pacman.vidas > 0:
-            # Mientras Pac-Man tenga vidas, dibujar el mapa y los objetos visibles
-            self.bloque.draw()  # Dibujar el mapa
-
-            if self.pacman.en_muerte:
-                # Si Pac-Man está en animación de muerte, mostrar todo el mapa
-                self.puntos.draw()  # Dibujar todos los puntos
-                for fantasma in self.fantasmas:
-                    fantasma.draw()  # Dibujar todos los fantasmas
-                self.pacman.draw()  # Dibujar Pac-Man
-                self.animar_muerte()
-            else:
-                # Dibujar los puntos
-                self.puntos.draw()
-
-                # Dibujar los fantasmas visibles (dentro del radio de visión)
-                for fantasma in self.fantasmas:
-                    if self.esta_dentro_radio(fantasma.x + 8, fantasma.y + 8, self.pacman.x + 8, self.pacman.y + 8, radio_vision):
-                        fantasma.draw()
-
-                # Dibujar a Pac-Man
-                self.pacman.draw()
-
-                # Dibujar el mensaje READY!
-                if self.bloque.mostrar_ready:
-                    self.animar_ready()
-
-                # Si Pac-Man ha comido un fantasma, mostrar los puntos que ganó
-                if self.pacman.mostrar_puntos and time.time() - self.pacman.texto_tiempo_inicio < 1.5:
-                    pyxel.text(self.pacman.posicion_fantasma_comido_x, self.pacman.posicion_fantasma_comido_y, "+200 puntos", pyxel.COLOR_RED)
-                else:
-                    self.pacman.mostrar_puntos = False
-
-            # Si se ganó la partida, limpiar pantalla y poner la animación de victoria
-            if self.bloque.victoria:
-                self.animar_win()
-                if pyxel.btnp(pyxel.KEY_R):
-                    self.estado_juego = "menu"
-                    self.reinicar_juego()
-
-        else:
-            # Si Pac-Man no tiene vidas, mostrar GAME OVER
-            pyxel.cls(0)
-            self.bloque.draw()
-            self.puntos.draw()  # Asegurar que los puntos sean visibles
-            for fantasma in self.fantasmas:
-                fantasma.draw()  # Dibujar todos los fantasmas
-            self.animar_muerte()
-            self.animar_fin()
-            if pyxel.btnp(pyxel.KEY_R):
-                self.estado_juego = "menu"
-                self.reinicar_juego()
-
-        # Oscurecer el área fuera del radio de visión, excepto cuando Pac-Man está en muerte
-        if not self.pacman.en_muerte:
-            for x in range(pyxel.width):
-                for y in range(pyxel.height):
-                    if not self.esta_dentro_radio(x, y, self.pacman.x + 8, self.pacman.y + 8, radio_vision):
-                        pyxel.pset(x, y, 0)  # Pintar fuera del radio en negro
-
 
     def esta_dentro_radio(self, x1, y1, x2, y2, radio):
-        # Calcula si un punto está dentro del radio especificado
+        # Calcula si un punto está dentro del radio
         distancia = ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
         return distancia <= radio
+
 
 Tablero()
         
