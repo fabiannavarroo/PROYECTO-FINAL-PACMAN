@@ -116,16 +116,7 @@ class Tablero:
             fantasma.tiempo_trampa = time.time()  
             fantasma.en_salida = False
             fantasma.en_trampa = True
-            fantasma.tiempo_asustado = 0
-        self.puntos.puntos = 0
-        self.puntos.puntos_alcanzados = 0
-        self.puntos.ultimo_tiempo_fruta = time.time()  # Tiempo de la última fruta generada
-        self.puntos.fruta_actual = None  # Información de la fruta actual
-        self.puntos.posicion_fruta = None  # Posición actual de la fruta
-        self.puntos.animacion_activa = False  # Indica si hay animación activa
-        self.puntos.animacion_contador = 0
-        self.puntos.lista_puntos = [] # Lista de puntos generados
-        self.puntos.lista_frutas = [] # Lista de frutas generadas  
+            fantasma.tiempo_asustado = 0s  
         self.reiniciar_tablero()
         self.puntos.reiniciar_puntos(self.bloque)
 
