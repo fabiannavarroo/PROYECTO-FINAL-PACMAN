@@ -152,12 +152,12 @@ class Tablero:
         # Animacion de la corona 
         if self.bloque.victoria_contador_corona < 10:
             if pyxel.frame_count % 2 == 0:  
-                pyxel.blt(10, 10, 2, 16, 120, 208, 144, colkey=0)
+                pyxel.blt(10, 10, 1, 16, 120, 208, 144, colkey=0)
                 self.bloque.victoria_contador_corona += 1
             else: 
                 pyxel.blt(0, 0, 2, 0, 0, 0, 0, colkey=0)
         else:
-            pyxel.blt(10, 10, 2, 16, 120, 208, 144, colkey=0)
+            pyxel.blt(180, 245, 1, 16, 120, 208, 144, colkey=0)
 
 
     def animar_muerte(self):
