@@ -100,7 +100,7 @@ class Bloque:
     def victoria(self, nuevo_valor):
         self.__victoria = nuevo_valor
 
-    @victoria_contador_mapa.setter
+    @victoria_contador_corona.setter
     def victoria_contador_corona(self, nuevo_valor):
         self.__victoria_contador_corona = nuevo_valor
 
