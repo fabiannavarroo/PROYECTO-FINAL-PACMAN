@@ -155,9 +155,9 @@ class Tablero:
                 pyxel.blt(180, 245, 2, 16, 120, 208, 144, colkey=0)
                 self.bloque.victoria_contador_mapa += 1
             else: 
-                pass
+                pyxel.blt(246, 246, 3, 0, 0, 0, 0, colkey=0)
         else:
-            pyxel.blt(246, 246, 3, 0, 0, 0, 0, colkey=0)
+            pyxel.blt(180, 245, 2, 16, 120, 208, 144, colkey=0)
 
 
     def animar_muerte(self):
