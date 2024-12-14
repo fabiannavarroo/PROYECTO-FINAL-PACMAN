@@ -51,6 +51,7 @@ class Tablero:
         elif self.estado_juego == "vision_reducida":
             self.modo_juego_update()
             
+            
 
     def draw(self):
         if self.estado_juego == "menu":
