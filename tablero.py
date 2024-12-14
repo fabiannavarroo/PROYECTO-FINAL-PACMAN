@@ -57,7 +57,7 @@ class Tablero:
             pyxel.cls(0)
             pyxel.bltm(10, -60, 0, 0, 360, 390, 150, colkey=0)
             pyxel.bltm(120, 50, 1, 0, 0, 120, 120, colkey=0)  # Dibuja lo fantsams y al pamcan
-            pyxel.bltm(120, 50, 1, 0, 0, 120, 120, colkey=0)  # P: Jugar
+            pyxel.bltm(120, 80, 0, 0, 360, 360, 120, colkey=0)  # P: Jugar
             pyxel.text(100, 140, "N: VISION REDUCIDA", pyxel.COLOR_WHITE)
             pyxel.text(100, 160, "ESC: SALIR", pyxel.COLOR_WHITE)
 
