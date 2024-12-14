@@ -438,7 +438,7 @@ class Tablero:
         else:
             self.pacman.mostrar_puntos = False
 
-        # Oscurecer el área fuera del radio de visión (excepto en las pantallas finales)
+        # Oscurecer el área fuera del radio de visión
         for x in range(pyxel.width):
             for y in range(pyxel.height):
                 if not self.esta_dentro_radio(x, y, self.pacman.x + 8, self.pacman.y + 8, radio_vision):
