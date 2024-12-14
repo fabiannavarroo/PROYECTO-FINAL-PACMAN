@@ -235,7 +235,7 @@ class Tablero:
     def comprobar_colision_pacman_fantasmas(self):
         pacman_centro_x = self.pacman.x + 8  # Coordenada central de Pac-Man
         pacman_centro_y = self.pacman.y + 8
-        colision_detectada = False  # Bandera para indicar si Pac-Man ha sido comido
+        colision_detectada = False  # Nos dicesi Pac-Man ha sido comido
 
         for fantasma in self.fantasmas:
             fantasma_centro_x = fantasma.x + 8  # Coordenada central del fantasma
