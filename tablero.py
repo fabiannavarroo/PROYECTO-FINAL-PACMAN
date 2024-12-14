@@ -362,7 +362,7 @@ class Tablero:
                 self.bloque.contador_game_over += 1
 
                 
-    def modo_vision_reducida(self):
+    def modo_vision_reducida_dibujo(self):
         pyxel.cls(0)  # Limpiar la pantalla
 
         
