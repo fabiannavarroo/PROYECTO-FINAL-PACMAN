@@ -56,7 +56,7 @@ class Tablero:
         if self.estado_juego == "menu":
             pyxel.cls(0)
             pyxel.bltm(0, 0, 0, 0, 350, 390, 200)
-            pyxel.bltm(120, 50, 1, 0, 0, 120, 120, colkey=0)  # Dibuja lo fantsams y al pamcan
+            pyxel.bltm(120, 50, 1, 10, 0, 120, 120, colkey=0)  # Dibuja lo fantsams y al pamcan
             pyxel.text(100, 120, "P: JUGAR", pyxel.COLOR_WHITE)
             pyxel.text(100, 140, "N: VISION REDUCIDA", pyxel.COLOR_WHITE)
             pyxel.text(100, 160, "ESC: SALIR", pyxel.COLOR_WHITE)
