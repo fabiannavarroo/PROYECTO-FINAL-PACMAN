@@ -285,6 +285,9 @@ class Tablero:
             # Si se ganó la partida, limpiar pantalla y volver a dibujar el mapa
             if self.bloque.victoria:
                 self.animar_win()
+                if pyxel.btnp(pyxel.KEY_R):
+                self.estado_juego = "menu"
+                self.reinicar_juego()
         else:
             # Si Pac-Man no tiene vidas, mostrar GAME OVER
             pyxel.cls(0)
