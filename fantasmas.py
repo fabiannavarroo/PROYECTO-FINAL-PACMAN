@@ -406,7 +406,7 @@ class FantasmaAzul(Fantasma):
             self.perseguir_un_objetivo(bloque, objetivo_x, objetivo_y)
 
         else:
-            if time.time() - 10 >= 10: # Cada 10s se cambia el modo del fantasma
+            if time.time() - 10 >= 10: # Cada 10s se cambia el modo de movimiento
                 modo = random.choice(["emboscada", "alejarse"])
                 if modo == "emboscada":
                     objetivo_x, objetivo_y = self.calcular_emboscada(pacman, bloque)
@@ -433,7 +433,7 @@ class FantasmaNaranja(Fantasma):
             self.perseguir_un_objetivo(bloque, objetivo_x, objetivo_y)# alejarse de pacman
 
         else:
-            if time.time() - 10 >= 10: # Cada 10s se cambia el modo del self
+            if time.time() - 10 >= 10: # Cada 10s se cambia el modo de movimiento
                 modo = random.choice(["perseguir", "alejarse"])
                 if modo == "perseguir":
                     self.perseguir_un_objetivo(bloque, pacman.x, pacman.y)
