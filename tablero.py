@@ -405,7 +405,7 @@ class Tablero:
                 # Dibujar a Pac-Man
                 self.pacman.draw()
 
-                # Dibujar el mensaje READY! si corresponde
+                # Dibujar el mensaje READY! 
                 if self.bloque.mostrar_ready:
                     self.animar_ready()
 
@@ -415,7 +415,7 @@ class Tablero:
                 else:
                     self.pacman.mostrar_puntos = False
 
-            # Si se ganó la partida, limpiar pantalla y volver a dibujar el mapa
+            # Si se ganó la partida, limpiar pantalla y poner la animacion de win
             if self.bloque.victoria:
                 self.animar_win()
                 if pyxel.btnp(pyxel.KEY_R):
