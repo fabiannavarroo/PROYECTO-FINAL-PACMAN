@@ -47,9 +47,9 @@ class Tablero:
             elif pyxel.btnp(pyxel.KEY_ESCAPE):  # Salir
                 pyxel.quit()
         elif self.estado_juego == "jugando":
-            self.modo_juego_normal_update()
+            self.modo_juego_update()
         elif self.estado_juego == "vision_reducida":
-            self.modo_vision_reducida_update()
+            self.modo_juego_update()
             
 
     def draw(self):
@@ -65,7 +65,7 @@ class Tablero:
             self.modo_juego_normal_dibujo()
 
         elif self.estado_juego == "vision_reducida":
-            self.modo_vision_reducida()
+            self.modo_vision_reducida_dibujo()
 
     #--------------------------------------------------------------------REINICIO--------------------------------------------------------------------#
 
