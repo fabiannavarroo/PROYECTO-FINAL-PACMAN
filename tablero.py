@@ -456,9 +456,6 @@ class Tablero:
         return distancia <= radio
 
 
-Tablero()
-        
-
     
 
 
