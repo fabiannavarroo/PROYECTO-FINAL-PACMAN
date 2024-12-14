@@ -112,7 +112,7 @@ class Tablero:
         self.pacman.posicion_fantasma_comido_x,self.pacman.posicion_fantasma_comido_y = None, None
         self.pacman.animacion_muerte_finalizada = False
         for fantasma in self.fantasmas:
-            fantasma.fantasmas.asustado = False  
+            fantasma.asustado = False  
             fantasma.tiempo_trampa = time.time()  
             fantasma.en_salida = False
             fantasma.en_trampa = True
