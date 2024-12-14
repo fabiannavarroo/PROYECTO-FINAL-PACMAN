@@ -171,7 +171,7 @@ class Fantasma:
 
     def volver_a_posicion_inicial(self):
         # Envía al fantasma a la trampa
-        # Reubicar al fantasma en la trampa y reiniciar estado
+        # Y reiniciar estado
         self.x, self.y = self.x_inicial, self.y_inicial
         self.siguiente_celda = None
         self.asustado = False # Sale del estado asustado
@@ -224,7 +224,7 @@ class Fantasma:
 
     def perseguir_un_objetivo(self, bloque, objetivo_x, objetivo_y):
         # El fantasma persigue a un objetivo.
-        # Obtener celdas de destino y elegir la mejor dirección
+        # Obtener celdas de destino y elegir la mejor
         direcciones = {
             "ARRIBA": (self.x, self.y - self.velocidad),
             "ABAJO": (self.x, self.y + self.velocidad),
@@ -255,7 +255,7 @@ class Fantasma:
 
 
     def mover_fantasma(self, bloque, direccion):
-        # Mueve al fantasma en la dirección especificada si no hay colisión.
+        # Mueve al fantasma en la dirección si no hay colisión.
         if direccion == "ARRIBA" and not bloque.colision(self.x, self.y - self.velocidad):
             self.y -= self.velocidad
             self.direccion_actual = "ARRIBA"
