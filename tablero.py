@@ -96,6 +96,7 @@ class Tablero:
     def reinicar_juego(self):
         self.bloque.nivel = 1
         self.pacman.vidas = 3
+        self.bloque.victoria = False
         self.reiniciar_tablero()
         self.puntos.reiniciar_puntos(self.bloque)
 
