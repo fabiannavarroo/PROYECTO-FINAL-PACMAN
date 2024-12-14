@@ -361,6 +361,39 @@ class Tablero:
                 
     def modo_vision_reducida_dibujo(self):
         pyxel.cls(0)  # Limpiar la pantalla
+        radio_vision = 80  # Radio de visión en píxeles
+
+        # Dibujar el mapa normalmente primero
+        self.bloque.draw()
+
+        # Dibujar puntos visibles
+        self.puntos.draw()
+
+        # Dibujar fantasmas visibles
+        for fantasma in self.fantasmas:
+            if self.esta_dentro_radio(fantasma.x + 8, fantasma.y + 8, self.pacman.x + 8, self.pacman.y + 8, radio_vision):
+                fantasma.draw()
+
+        # Dibujar a Pac-Man
+        self.pacman.draw()
+
+        # Oscurecer el área fuera del radio de visión
+        for x in range(pyxel.width):
+            for y in range(pyxel.height):
+                if not self.esta_dentro_radio(x, y, self.pacman.x + 8, self.pacman.y + 8, radio_vision):
+                    pyxel.pset(x, y, 0)  # Pintar fuera del radio en negro
+
+        # Dibujar interfaz superior (puntos y vidas)
+        self.dibujar_letras_mapa(120, 16, "HIGHSCORE")
+        self.puntos.ver_puntuacion(195, 16)
+        self.pacman.ver_vidas(10, 10)
+
+    
+    def esta_dentro_radio(self, x1, y1, x2, y2, radio):
+        # Calcula si un punto está dentro del radio especificado
+        distancia = ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
+        return distancia <= radio
+
 
         
     
