@@ -298,7 +298,7 @@ class Bloque:
     def colision(self, x, y):
         sprite_tamaño = self.__celda_tamaño  # Tamaño del sprite
 
-        # Verificar si la posicion cocha con un bloque está dentro de un bloque
+        # Verificar si la posicion choca con un bloque 
 
         for bloque_x, bloque_y, _ in self.__bloques:
             if(
