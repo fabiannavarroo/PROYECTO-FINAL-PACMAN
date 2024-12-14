@@ -415,7 +415,7 @@ class Tablero:
             return  # No aplicar visión reducida en estas pantallas
 
         # Mientras Pac-Man tenga vidas y no esté en Game Over o Victoria
-        self.bloque.draw()  # Dibujar el mapa completo (será oscurecido más adelante)
+        self.bloque.draw()  # Dibujar el mapa completo
 
         # Dibujar puntos visibles
         self.puntos.draw()
