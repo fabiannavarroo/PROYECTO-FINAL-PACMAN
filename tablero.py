@@ -99,24 +99,6 @@ class Tablero:
         self.bloque.victoria = False  
         self.bloque.victoria_contador_corona = 0
         self.bloque.victoria_contador_texto = 0
-        self.bloque.mostrar_ready = True
-        self.bloque.contador_ready = 0
-        self.bloque.contador_game_over = 0
-        self.bloque.mostrar_fin = False
-        self.pacman.animacion_frame = 0
-        self.pacman.en_muerte = False
-        self.pacman.reiniciando = False
-        self.pacman.fantasmas_comido = False
-        self.pacman.mostrar_puntos = False
-        self.pacman.texto_tiempo_inicio = 0
-        self.pacman.posicion_fantasma_comido_x,self.pacman.posicion_fantasma_comido_y = None, None
-        self.pacman.animacion_muerte_finalizada = False
-        for fantasma in self.fantasmas:
-            fantasma.asustado = False  
-            fantasma.tiempo_trampa = time.time()  
-            fantasma.en_salida = False
-            fantasma.en_trampa = True
-            fantasma.tiempo_asustado = 0  
         self.reiniciar_tablero()
         self.puntos.reiniciar_puntos(self.bloque)
 
