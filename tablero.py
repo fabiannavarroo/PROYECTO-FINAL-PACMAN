@@ -292,7 +292,7 @@ class Tablero:
                     pyxel.text(self.pacman.posicion_fantasma_comido_x, self.pacman.posicion_fantasma_comido_y, "+200 puntos", pyxel.COLOR_RED)
                 else:
                     self.pacman.mostrar_puntos = False
-            # Si se ganó la partida, limpiar pantalla y dibuja la animacion de la muerte
+            # Si se ganó la partida, limpiar pantalla y dibuja la animacion de la victoria
             if self.bloque.victoria:
                 self.animar_win()
                 if pyxel.btnp(pyxel.KEY_R):
