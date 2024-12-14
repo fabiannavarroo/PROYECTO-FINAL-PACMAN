@@ -197,7 +197,7 @@ class Tablero:
 #--------------------------------------------------------------------MUSICA--------------------------------------------------------------------#
 
     def actualizar_musica(self):
-        # Variable para rastrear la música actual
+        # Variable para ver la música actual
         musica_actual = None
 
         # Determinar qué música debería sonar
