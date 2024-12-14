@@ -116,7 +116,7 @@ class Tablero:
             fantasma.tiempo_trampa = time.time()  
             fantasma.en_salida = False
             fantasma.en_trampa = True
-            fantasma.tiempo_asustado = 0s  
+            fantasma.tiempo_asustado = 0  
         self.reiniciar_tablero()
         self.puntos.reiniciar_puntos(self.bloque)
 
