@@ -11,7 +11,7 @@ class Bloque:
         self.mapas = MAPA
         self.cargar_mapa()  # Cargar el mapa del nivel inicial
         # Controlar la condición de victoria
-        self.victoria = False  
+        self.victoria = True  
         self.victoria_contador_corona = 0
         self.victoria_contador_texto = 0
         # Variable para controlar el mensaje READY!
