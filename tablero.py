@@ -444,7 +444,7 @@ class Tablero:
                 if not self.esta_dentro_radio(x, y, self.pacman.x + 8, self.pacman.y + 8, radio_vision):
                     pyxel.pset(x, y, 0)  # Pintar fuera del radio en negro
 
-        # Interfaz de vidas y putnos
+        # Interfaz de vidas y puntos
         self.dibujar_letras_mapa(120, 16, "HIGHSCORE")
         self.puntos.ver_puntuacion(195, 16)
         self.pacman.ver_vidas(10, 10)
