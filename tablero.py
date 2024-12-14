@@ -388,7 +388,7 @@ class Tablero:
                 fantasma.draw()  # Dibujar todos los fantasmas
             self.pacman.draw()  # Dibujar Pac-Man
             self.animar_muerte()  # Ejecutar la animación de muerte
-            return  # No hacer nada más mientras se ejecuta la animación
+            return False  # No hacer nada más mientras se ejecuta la animación
 
         if self.bloque.victoria or self.pacman.vidas <= 0:
             # Si estamos en pantalla de victoria o Game Over, dibujar todo normalmente
@@ -420,7 +420,7 @@ class Tablero:
         # Dibujar puntos visibles
         self.puntos.draw()
 
-        # Dibujar fantasmas visibles dentro del radio
+        # Dibujar fantasmas dentro del radio
         for fantasma in self.fantasmas:
             if self.esta_dentro_radio(fantasma.x + 8, fantasma.y + 8, self.pacman.x + 8, self.pacman.y + 8, radio_vision):
                 fantasma.draw()
