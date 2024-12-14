@@ -249,7 +249,6 @@ class Tablero:
     #--------------------------------------------------------------------MODOS--------------------------------------------------------------------#
 
     def modo_juego_normal_dibujo(self):
-
         pyxel.cls(0)  # Limpiar la pantalla
         self.dibujar_letras_mapa(120,16,"HIGHSCORE")
         self.puntos.ver_puntuacion(195,16)
@@ -279,7 +278,6 @@ class Tablero:
                     pyxel.text(self.pacman.posicion_fantasma_comido_x, self.pacman.posicion_fantasma_comido_y, "+200 puntos", pyxel.COLOR_RED)
                 else:
                     self.pacman.mostrar_puntos = False
-
             # Si se ganó la partida, limpiar pantalla y volver a dibujar el mapa
             if self.bloque.victoria:
                 self.animar_win()
@@ -293,8 +291,7 @@ class Tablero:
                 self.estado_juego = "menu"
                 self.reinicar_juego()
 
-    def modo_juego_normal_update(self):
-
+    def modo_juego_update(self):
         # Actualizar musica para las distintas situaciones
         self.actualizar_musica()
 
