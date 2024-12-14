@@ -380,6 +380,16 @@ class Tablero:
         pyxel.cls(0)  # Limpiar la pantalla
         radio_vision = 80  # Radio de visión
 
+        if self.pacman.en_muerte:
+            # Si Pac-Man está en animación de muerte, mostrar todo el mapa y la animación
+            self.bloque.draw()  # Dibujar todo el mapa
+            self.puntos.draw()  # Dibujar todos los puntos
+            for fantasma in self.fantasmas:
+                fantasma.draw()  # Dibujar todos los fantasmas
+            self.pacman.draw()  # Dibujar Pac-Man
+            self.animar_muerte()  # Ejecutar la animación de muerte
+            return  # No hacer nada más mientras se ejecuta la animación
+
         if self.bloque.victoria or self.pacman.vidas <= 0:
             # Si estamos en pantalla de victoria o Game Over, dibujar todo normalmente
             self.bloque.draw()  # Dibujar todo el mapa
@@ -391,7 +401,6 @@ class Tablero:
             if self.bloque.victoria:
                 self.animar_win()
             else:
-                self.animar_muerte()
                 self.animar_fin()
 
             # Interfaz siempre visible
