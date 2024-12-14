@@ -451,13 +451,6 @@ class Tablero:
         distancia = ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
         return distancia <= radio
 
-
-        
-    
-
-               
-
-
 Tablero()
         
 
