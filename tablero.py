@@ -378,7 +378,7 @@ class Tablero:
                 
     def modo_vision_reducida_dibujo(self):
         pyxel.cls(0)  # Limpiar la pantalla
-        radio_vision = 80  # Radio de visión en píxeles
+        radio_vision = 80  # Radio de visión
 
         self.dibujar_letras_mapa(120, 16, "HIGHSCORE")
         self.puntos.ver_puntuacion(195, 16)
