@@ -94,13 +94,20 @@ class Tablero:
 
     
     def reinicar_juego(self):
+        # Reinicia las condiciones del tablero y los estados generales
         self.bloque.nivel = 1
         self.pacman.vidas = 3
-        self.bloque.victoria = False  
+        self.bloque.victoria = False
+        self.bloque.contador_ready = 0
+        self.bloque.contador_game_over = 0
         self.bloque.victoria_contador_corona = 0
         self.bloque.victoria_contador_texto = 0
+        self.pacman.en_muerte = False
+        self.pacman.animacion_frame = 0
+        self.pacman.mostrar_puntos = False
         self.reiniciar_tablero()
         self.puntos.reiniciar_puntos(self.bloque)
+        self.estado_juego = "menu"
 
 
     #--------------------------------------------------------------------ANIMACIONES--------------------------------------------------------------------#
