@@ -368,21 +368,22 @@ class FantasmaRojo(Fantasma):
        
 class FantasmaRosa(Fantasma):
     def __init__(self, x, y):
-        # Inicializa al Fantasma Rosa
         super().__init__(x, y, FANTASMA_ROSA)
 
     def mover(self,bloque,pacman):
         if bloque.victoria or pacman.en_muerte:
-            return False
+            return False # Si se ha ganado o pacman esta muerto, no se mueve
 
         if self.en_trampa:
-            return True
+            return True # Si esta en la trampa, se rige por el movimiento de salida
 
         elif self.asustado:
+            # Si esta asustado, se aleja del pacman
             objetivo_x, objetivo_y = self.calcular_objectivo_mas_lejano(pacman, bloque)
             self.perseguir_un_objetivo(bloque, objetivo_x, objetivo_y)
 
         else:
+            # Si no esta asustado, se embosca al pacman
             objetivo_x, objetivo_y = self.calcular_emboscada(pacman, bloque)
             self.perseguir_un_objetivo(bloque, objetivo_x, objetivo_y)
 
