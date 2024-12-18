@@ -39,7 +39,7 @@ class Tablero:
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        if pyxel.btnp(pyxel.KEY_A):
+        if pyxel.btnp(pyxel.KEY_Z):
             self.bloque.nivel += 1
             self.reiniciar_tablero()
             self.puntos.reiniciar_puntos(self.bloque)
