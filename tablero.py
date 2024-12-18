@@ -39,6 +39,9 @@ class Tablero:
         pyxel.run(self.update, self.draw)
 
     def update(self):
+        if pyxel.btnp(pyxel.KEY_A):
+            self.bloque.nivel += 1
+
         if self.estado_juego == "menu":
             if pyxel.btnp(pyxel.KEY_P):  # Modo normal
                 self.estado_juego = "jugando"
