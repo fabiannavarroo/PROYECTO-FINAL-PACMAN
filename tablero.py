@@ -42,7 +42,7 @@ class Tablero:
         if pyxel.btnp(pyxel.KEY_A):
             self.bloque.nivel += 1
             self.reiniciar_tablero()
-            self.puntos.reiniciar_puntos()
+            self.puntos.reiniciar_puntos(self.bloque)
             
 
         if self.estado_juego == "menu":
