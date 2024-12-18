@@ -272,7 +272,8 @@ class Fantasma:
         # Portales: si el fantasma entra en un portal, salir por el otro lado del mapa
         self.ultima_direccion = direccion
 
-        self.usar_portal()
+        if self.usar_portal(self.x, self.y):
+            self.x, self.y = self.usar_portal(self.x, self.y)
 
     
     def invertir_direccion(self):
