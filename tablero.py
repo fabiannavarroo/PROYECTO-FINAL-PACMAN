@@ -42,7 +42,7 @@ class Tablero:
         if pyxel.btnp(pyxel.KEY_Z):
             self.bloque.nivel += 1
             self.reiniciar_tablero()
-            self.puntos.reiniciar_puntos(self.bloque)
+            
 
         if pyxel.btnp(pyxel.KEY_X):
             self.bloque.victoria = True
@@ -100,6 +100,7 @@ class Tablero:
         self.bloque.contador_ready = 0
         self.bloque.cargar_mapa()
         self.reiniciar_posiciones()
+        self.puntos.reiniciar_puntos(self.bloque)
         self.pacman.en_muerte = False
         self.pacman.animacion_frame = 0
         self.pacman.direccion_actual = PACMAN
