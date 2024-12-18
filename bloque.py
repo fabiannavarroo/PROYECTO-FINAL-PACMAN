@@ -5,13 +5,13 @@ import random
 
 class Bloque:
     def __init__(self):
-        self.nivel = 3  # Nivel inicial
+        self.nivel = 1  # Nivel inicial
         self.celda_tamaño = 16
         self.bloques = []
         self.mapas = MAPA
         self.cargar_mapa()  # Cargar el mapa del nivel inicial
         # Controlar la condición de victoria
-        self.victoria = False  
+        self.victoria = True  
         self.victoria_contador_corona = 0
         self.victoria_contador_texto = 0
         # Variable para controlar el mensaje READY!
