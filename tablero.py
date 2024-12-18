@@ -59,7 +59,8 @@ class Tablero:
                     fantasma.tiempo_trampa = time.time()
             elif pyxel.btnp(pyxel.KEY_N):  # Modo visión reducida
                 self.estado_juego = "vision_reducida"
-                self.fantasmas.tiempo_trampa = time.time()
+                for fantasma in self.fantasmas:
+                    fantasma.tiempo_trampa = time.time()
             elif pyxel.btnp(pyxel.KEY_ESCAPE):  # Salir
                 pyxel.quit()
         elif self.estado_juego == "jugando":
