@@ -43,6 +43,13 @@ class Tablero:
             self.bloque.nivel += 1
             self.reiniciar_tablero()
             self.puntos.reiniciar_puntos(self.bloque)
+
+        if pyxel.btnp(pyxel.KEY_X):
+            self.bloque.victoria = True
+
+        if pyxel.btnp(pyxel.KEY_c):
+            self.pacman.vidas = 0
+
             
 
         if self.estado_juego == "menu":
