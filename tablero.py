@@ -47,7 +47,7 @@ class Tablero:
         if pyxel.btnp(pyxel.KEY_X):
             self.bloque.victoria = True
 
-        if pyxel.btnp(pyxel.KEY_c):
+        if pyxel.btnp(pyxel.KEY_C):
             self.pacman.vidas = 0
 
             
