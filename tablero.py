@@ -100,7 +100,6 @@ class Tablero:
         self.bloque.contador_ready = 0
         self.bloque.cargar_mapa()
         self.reiniciar_posiciones()
-        self.puntos.reiniciar_puntos(self.bloque)
         self.pacman.en_muerte = False
         self.pacman.animacion_frame = 0
         self.pacman.direccion_actual = PACMAN
