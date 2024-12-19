@@ -42,6 +42,7 @@ class Tablero:
         if pyxel.btnp(pyxel.KEY_Z):
             self.bloque.nivel += 1
             self.reiniciar_tablero()
+            self.puntos.reiniciar_puntos()
             
 
         if pyxel.btnp(pyxel.KEY_X):
